@@ -18,6 +18,7 @@ class DashboardController extends BaseController {
   RxBool loadingNewsAndUpdates = false.obs;
   RxBool loadingUpcomingHolidays = false.obs;
 
+// helo word
   @override
   void onInit() {
     super.onInit();
