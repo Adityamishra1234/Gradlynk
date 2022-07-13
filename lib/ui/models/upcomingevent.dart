@@ -1,0 +1,18 @@
+class UpcomingEvent {
+  String? campaignName;
+  String? campaignDate;
+
+  UpcomingEvent({this.campaignName, this.campaignDate});
+
+  UpcomingEvent.fromJson(Map<String, dynamic> json) {
+    campaignName = json['campaign_name'];
+    campaignDate = json['campaign_date'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['campaign_name'] = this.campaignName;
+    data['campaign_date'] = this.campaignDate;
+    return data;
+  }
+}

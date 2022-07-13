@@ -36,6 +36,14 @@ dependencies:
   cupertino_icons: ^1.0.2
   file_picker: ^4.6.1
   syncfusion_flutter_pdfviewer: ^20.1.61-beta
+  get: ^4.6.5
+  http: ^0.13.4
+  shared_preferences: ^2.0.15
+  date_format: ^2.0.6
+  google_fonts: ^3.0.1
+  intl: ^0.17.0
+  back_pressed: ^0.0.2
+  dropdown_search: ^5.0.2
 
 dev_dependencies:
   flutter_test:
