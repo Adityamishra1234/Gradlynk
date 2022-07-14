@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 mixin BaseMaxin {
   // void startTimer(String currentScreen, RxBool temp) {
-  //   print(currentScreen);
+  //   debugPrint(currentScreen);
   //   const maxmin = 20;
   //   int min = maxmin;
   //   Timer? timer;
@@ -12,7 +12,7 @@ mixin BaseMaxin {
   //     if (temp == true) {
   //       timer.cancel();
   //     }
-  //     print(min);
+  //     debugPrint(min);
   //     min--;
   //     if (min == 0) {
   //       exit(0);

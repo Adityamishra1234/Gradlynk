@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginController extends BaseController {
+class LoginController extends BaseController with StateMixin<UserModel> {
   UserModel? userModel;
   ApiServices services = ApiServices();
 
@@ -39,13 +39,13 @@ class LoginController extends BaseController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var Userlogincheck = prefs.getString("UserModel");
     if (kDebugMode) {
-      print(Userlogincheck);
+      debugPrint(Userlogincheck);
     }
     if (Userlogincheck != null) {
       var jsondata = json.decode(Userlogincheck);
       UserModel userModel = UserModel.fromJson(jsondata);
       if (kDebugMode) {
-        print(userModel);
+        debugPrint(userModel.toString());
       }
       return userModel;
     } else {

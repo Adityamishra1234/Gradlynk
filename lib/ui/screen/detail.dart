@@ -42,7 +42,7 @@ class _DetialScreenState extends State<DetialScreen>
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print("DetailPage${Get.arguments}");
+      debugPrint("DetailPage${Get.arguments}");
     }
 
     List<String> difference = [];
@@ -52,12 +52,12 @@ class _DetialScreenState extends State<DetialScreen>
       body: OnBackPressed(
         perform: () {
           if (kDebugMode) {
-            print(Get.previousRoute);
+            debugPrint(Get.previousRoute);
           }
           Get.toNamed(Get.previousRoute, arguments: false);
           detailController.temp = true.obs;
           if (kDebugMode) {
-            print('The back button on the device was pressed');
+            debugPrint('The back button on the device was pressed');
           }
         },
         child: SizedBox(
@@ -68,7 +68,7 @@ class _DetialScreenState extends State<DetialScreen>
                   builder: (controller) {
                     if (controller.isLoading.value == true) {
                       if (kDebugMode) {
-                        print("back button");
+                        debugPrint("back button");
                       }
                       return SizedBox(
                         height: MediaQuery.of(context).size.height * 0.5,

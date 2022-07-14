@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:studentpanel/ui/controllers/basemixin.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/detailcontroller.dart';
@@ -10,7 +11,7 @@ class TextScreenController extends BaseController {
   RxBool temp = false.obs;
 
   void startTimer(String currentScreen) {
-    print(currentScreen);
+    debugPrint(currentScreen.toString());
     const maxmin = 20;
     int min = maxmin;
     Timer? timer;
@@ -18,7 +19,7 @@ class TextScreenController extends BaseController {
       if (temp == true) {
         timer.cancel();
       }
-      print(currentScreen + min.toString());
+      debugPrint(currentScreen + min.toString());
       min--;
       if (min == 0) {
         exit(0);

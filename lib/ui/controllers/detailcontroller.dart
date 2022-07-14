@@ -23,7 +23,7 @@ class DetailController extends BaseController {
   }
 
   void startTimer(String currentScreen) {
-    print(currentScreen);
+    debugPrint(currentScreen);
     const maxmin = 5220;
     int min = maxmin;
     Timer? timer;
@@ -32,7 +32,7 @@ class DetailController extends BaseController {
         timer.cancel();
       }
       if (kDebugMode) {
-        print(currentScreen + min.toString());
+        debugPrint(currentScreen + min.toString());
       }
       min--;
       if (min == 0) {

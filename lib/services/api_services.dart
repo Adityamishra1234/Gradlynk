@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiServices extends StudentPanelBase {
-  StudentPanelBase? studentpanelBase = StudentPanelBase();
+  StudentPanelBase? crmBase = StudentPanelBase();
 
   login(String baseUrl, String endpoint, String email, String password) async {
     UserModel userModel;
@@ -53,7 +53,7 @@ class ApiServices extends StudentPanelBase {
     var response;
 
     try {
-      response = await studentpanelBase!.httpPost(baseUrl + endpoint, jsonData);
+      response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -85,7 +85,7 @@ class ApiServices extends StudentPanelBase {
       "reason": reason
     };
     try {
-      response = await studentpanelBase!.httpPost(baseUrl + endpoint, jsonData);
+      response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -106,7 +106,7 @@ class ApiServices extends StudentPanelBase {
     var response;
 
     try {
-      response = await studentpanelBase!.httpPost(baseUrl + endpoint, jsonData);
+      response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
       if (response != null) {
         List jsonResponse = json.decode(response.body);
         userHistoryList =
@@ -129,7 +129,7 @@ class ApiServices extends StudentPanelBase {
     var response;
 
     try {
-      response = await studentpanelBase!.httpPost(baseUrl + endpoint, jsonData);
+      response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -153,7 +153,7 @@ class ApiServices extends StudentPanelBase {
     var response;
 
     try {
-      response = await studentpanelBase!.httpPost(baseUrl + endpoint, jsonData);
+      response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -178,7 +178,7 @@ class ApiServices extends StudentPanelBase {
     var jsonData = {"user_id": sharedPreferences.getString("id")};
     var response;
     try {
-      response = await studentpanelBase!.httpPost(baseUrl + endpoint, jsonData);
+      response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
     } catch (e) {
       if (kDebugMode) {
         print(e);

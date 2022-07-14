@@ -30,7 +30,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    print(Get.arguments);
+    debugPrint(Get.arguments);
 
     return Scaffold(
       body: SizedBox(
