@@ -53,14 +53,19 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: Login.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
             page: () => const Login(),
             binding: LoginBinding()),
-        GetPage(name: DashBoard.routeNamed, page: () => DashBoard()),
+        GetPage(
+          name: DashBoard.routeNamed,
+          page: () => DashBoard(),
+          transition: Transition.native,
+          transitionDuration: const Duration(seconds: 3),
+        ),
         GetPage(
             name: DetialScreen.routeNamed,
             page: () => const DetialScreen(),

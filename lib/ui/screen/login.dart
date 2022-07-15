@@ -67,25 +67,27 @@ class _LoginState extends State<Login> {
                   child: Padding(
                     padding:
                         const EdgeInsets.only(left: 50, right: 50, top: 10),
-                    child: TextField(
-                      autofillHints: const [AutofillHints.email],
-                      onChanged: (value) {
-                        password = value;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        // disabledBorder: InputBorder.none,
+                    child: AutofillGroup(
+                      child: TextField(
+                        autofillHints: const [AutofillHints.email],
+                        onChanged: (value) {
+                          password = value;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black)),
+                          // disabledBorder: InputBorder.none,
 
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.black,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                            ),
                           ),
+                          labelStyle: TextStyle(color: Color(0xFF424242)),
                         ),
-                        labelStyle: TextStyle(color: Color(0xFF424242)),
                       ),
                     ),
                   ),
@@ -136,7 +138,9 @@ class _LoginState extends State<Login> {
                             fontSize: 10,
                             fontStyle: FontStyle.normal),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(DashBoard.routeNamed);
+                      },
                       child: Center(
                         child: Text(
                           'Login',
