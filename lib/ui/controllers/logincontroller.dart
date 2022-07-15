@@ -22,17 +22,17 @@ class LoginController extends BaseController with StateMixin<UserModel> {
 
   Login(String email, String password) async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool responsive = await services.login(
-        Endpoints.baseUrl!, Endpoints.login!, email, password);
-    if (responsive == true) {
-      return getUserData();
-    } else {
-      Get.snackbar(
-        "Error",
-        "Please Retry email and Password",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-    }
+    // bool responsive = await services.login(
+    //     Endpoints.baseUrl!, Endpoints.login!, email, password);
+    // if (responsive == true) {
+    //   return getUserData();
+    // } else {
+    //   Get.snackbar(
+    //     "Error",
+    //     "Please Retry email and Password",
+    //     snackPosition: SnackPosition.BOTTOM,
+    //   );
+    // }
   }
 
   checkUserData() async {

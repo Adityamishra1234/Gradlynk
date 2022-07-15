@@ -19,7 +19,7 @@ class DetailController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    getUserHistory();
+    // getUserHistory();
   }
 
   void startTimer(String currentScreen) {
@@ -41,14 +41,14 @@ class DetailController extends BaseController {
     });
   }
 
-  getUserHistory() async {
-    userHistoryList = await apiServices.getUserHistory(
-        Endpoints.baseUrl!, Endpoints.getUserHistory!);
-    if (userHistoryList != null) {
-      isLoading.value = true;
-      update();
-    }
+  // getUserHistory() async {
+  //   // userHistoryList = await apiServices.getUserHistory(
+  //   //     Endpoints.baseUrl!, Endpoints.getUserHistory!);
+  //   // if (userHistoryList != null) {
+  //   //   isLoading.value = true;
+  //   //   update();
+  //   }
 
-    return userHistoryList!;
-  }
+  //   return userHistoryList!;
+  // }
 }

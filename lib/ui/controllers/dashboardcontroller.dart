@@ -28,34 +28,34 @@ class DashboardController extends BaseController {
   }
 
   newAndUpdates() async {
-    var res = await apiservices.newAndUpdates(
-        Endpoints.baseUrl!, Endpoints.newsAndUpdate!);
-    if (res != null) {
-      newsAndUpdatelist = res;
-      loadingNewsAndUpdates = true.obs;
-      update();
-    } else {}
+    // var res = await apiservices.newAndUpdates(
+    //     Endpoints.baseUrl!, Endpoints.newsAndUpdate!);
+    // if (res != null) {
+    //   newsAndUpdatelist = res;
+    //   loadingNewsAndUpdates = true.obs;
+    //   update();
+    // } else {}
   }
 
   upcomingEvents() async {
-    var res = await apiservices.upcomingEvents(
-        Endpoints.baseUrl!, Endpoints.upcomingEvents!);
+    // var res = await apiservices.upcomingEvents(
+    //     Endpoints.baseUrl!, Endpoints.upcomingEvents!);
 
-    if (res != null) {
-      upcomingEventlist = res;
-      loadingUpcomingEvents = true.obs;
-      update();
-    } else {}
+    // if (res != null) {
+    //   upcomingEventlist = res;
+    //   loadingUpcomingEvents = true.obs;
+    //   update();
+    // } else {}
   }
 
   upcomingholidays() async {
-    var res = await apiservices.upcomingholidays(
-        Endpoints.baseUrl!, Endpoints.upcomingHolidays!);
-    if (res != null) {
-      upcomingholidayslist = res;
-      loadingUpcomingHolidays = true.obs;
-      update();
-    } else {}
+    // var res = await apiservices.upcomingholidays(
+    //     Endpoints.baseUrl!, Endpoints.upcomingHolidays!);
+    // if (res != null) {
+    //   upcomingholidayslist = res;
+    //   loadingUpcomingHolidays = true.obs;
+    //   update();
+    // } else {}
   }
 
   removeAllData() async {
@@ -64,8 +64,8 @@ class DashboardController extends BaseController {
   }
 
   updateUserHistory(String reason) {
-    return apiservices.updateUserHistory(
-        Endpoints.baseUrl!, Endpoints.userHistory!, reason);
+    // return apiservices.updateUserHistory(
+    //     Endpoints.baseUrl!, Endpoints.userHistory!, reason);
   }
 
 // Notification Api call

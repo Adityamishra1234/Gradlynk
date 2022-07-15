@@ -45,6 +45,9 @@ dependencies:
   back_pressed: ^0.0.2
   dropdown_search: ^5.0.2
   flutter_expanded_tile: ^0.3.6
+  flutter_svg: ^1.1.1+1
+
+ 
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +75,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/
 
   #   - images/a_dot_ham.jpeg
 

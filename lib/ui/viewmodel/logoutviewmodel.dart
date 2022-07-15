@@ -4,6 +4,6 @@ class LogoutViewModel {
   ApiServices services = ApiServices();
 
   logout(String baseUrl, String endpoint) {
-    services.logout(baseUrl, endpoint);
+    // services.logout(baseUrl, endpoint);
   }
 }

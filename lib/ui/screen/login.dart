@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -23,14 +24,7 @@ class _LoginState extends State<Login> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFFFFFFFF),
-                  Color.fromARGB(255, 228, 230, 255),
-                ],
-              ),
+              gradient: Constants.linearGradient,
             ),
             child: ListView(
               children: [
