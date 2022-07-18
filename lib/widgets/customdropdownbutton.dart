@@ -35,22 +35,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
             ),
           ),
         ),
-        //mode of dropdown
-        // mode: Mode.DIALOG,
-        //to show search box
-        // showSearchBox: true,
-        // showSelectedItem: true,
-        //list of dropdown items
         items: model!,
-        //  const [
-        //   "India",
-        //   "USA",
-        //   "Brazil",
-        //   "Canada",
-        //   "Australia",
-        //   "Singapore"
-        // ],
-        // label: "Country",
         onChanged: (value) {},
         //show selected item
       ),

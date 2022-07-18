@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
@@ -58,7 +59,7 @@ class _MyApState extends State<MyAp> {
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
-            page: () => const Login(),
+            page: () => Login(),
             binding: LoginBinding()),
         GetPage(
           name: DashBoard.routeNamed,

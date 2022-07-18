@@ -44,8 +44,12 @@ dependencies:
   intl: ^0.17.0
   back_pressed: ^0.0.2
   dropdown_search: ^5.0.2
-  flutter_expanded_tile: ^0.3.6
   flutter_svg: ^1.1.1+1
+  multiselect: ^0.0.7
+  multi_select_flutter: ^4.1.2
+  checkbox_grouped: ^1.8.1
+  configurable_expansion_tile_null_safety: ^2.0.3
+
 
  
 
@@ -59,6 +63,14 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.9.3
+  
+
+flutter_icons:
+  name: "Gradlynk"
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
