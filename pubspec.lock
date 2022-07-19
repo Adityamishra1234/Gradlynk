@@ -712,27 +712,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
-  zoom:
-    dependency: "direct main"
-    description:
-      name: zoom
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3+5"
-  zoom_platform_interface:
-    dependency: transitive
-    description:
-      name: zoom_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3+3"
-  zoom_web:
-    dependency: transitive
-    description:
-      name: zoom_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2+1"
 sdks:
   dart: ">=2.17.3 <3.0.0"
   flutter: ">=3.0.0"

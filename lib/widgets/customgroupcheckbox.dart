@@ -1,4 +1,5 @@
 import 'package:checkbox_grouped/checkbox_grouped.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class CustomgroupCheckBox extends StatefulWidget {
@@ -21,7 +22,7 @@ class _CustomgroupCheckBoxState extends State<CustomgroupCheckBox> {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleGroupedCheckbox<int>(
+    return SimpleGroupedCheckbox(
       itemsTitle: data!,
       controller: chipsController,
       values: List.generate(data!.length, (index) => index),

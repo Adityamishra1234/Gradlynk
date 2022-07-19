@@ -1,6 +1,4 @@
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,7 +54,7 @@ class _LoginState extends State<Login> {
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
       appBar: AppBar(
-        title: Text("title"),
+        title: const Text("title"),
         backgroundColor: Colors.green,
       ),
       drawer: DrawerFilter(),
