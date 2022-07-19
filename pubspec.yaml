@@ -49,6 +49,7 @@ dependencies:
   multi_select_flutter: ^4.1.2
   checkbox_grouped: ^1.8.1
   configurable_expansion_tile_null_safety: ^2.0.3
+  zoom: ^1.0.3+5
 
 
  
@@ -64,6 +65,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.9.3
+  new_version: ^0.3.1
   
 
 flutter_icons:

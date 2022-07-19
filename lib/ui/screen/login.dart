@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -6,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
+import 'package:new_version/new_version.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -17,6 +19,37 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   String? email, password;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _checkVersion();
+  }
+
+  void _checkVersion() async {
+    final newVersion = NewVersion(
+      // For Real Case
+      // androidId: "com.example.studentpanel",
+      //Use For Test Purpose only
+      androidId: "com.snapchat.android",
+    );
+    final status = await newVersion.getVersionStatus();
+    newVersion.showUpdateDialog(
+      context: context,
+      versionStatus: status!,
+      dialogTitle: "UPDATE!!!",
+      dismissButtonText: "Skip",
+      dialogText:
+          "Please update the app from ${status.localVersion} to ${status.storeVersion}",
+      dismissAction: () {
+        Navigator.of(context).pop();
+      },
+      updateButtonText: "Lets update",
+    );
+    debugPrint("DEVICE : ${status.localVersion}");
+    debugPrint("STORE : ${status.storeVersion}");
+  }
 
   @override
   Widget build(BuildContext context) {
