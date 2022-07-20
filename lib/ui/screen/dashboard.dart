@@ -1,10 +1,8 @@
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
-import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 
 class DashBoard extends StatefulWidget {
@@ -18,7 +16,6 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  UserModel? model;
   var dashboardController = Get.put(DashboardController());
   final TextStyle _textStyle = GoogleFonts.roboto(
     fontWeight: FontWeight.w600,
@@ -78,127 +75,153 @@ class _DashBoardState extends State<DashBoard> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          height: 130,
+              InkWell(
+                onTap: () {
+                  debugPrint("Create your profile");
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            height: 130,
+                            width: 160,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 0, color: const Color(0xFFF1F0FF)),
+                                color: const Color(0xFFF1F0FF),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            child: SvgPicture.asset(
+                                "assets/icons/create_profile.svg",
+                                color: const Color(0xFF6F61FF),
+                                height: 60,
+                                width: 80,
+                                fit: BoxFit.scaleDown),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Create your profile",
+                              style: _textStyle,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {
+                          debugPrint("Upload Document");
+                        },
+                        child: Ink(
+                          height: 160,
                           width: 160,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 0, color: const Color(0xFFF1F0FF)),
-                              color: const Color(0xFFF1F0FF),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
-                          child: SvgPicture.asset(
-                              "assets/icons/create_profile.svg",
-                              color: const Color(0xFF6F61FF),
-                              height: 60,
-                              width: 80,
-                              fit: BoxFit.scaleDown),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Create your profile",
-                            style: _textStyle,
-                          ),
-                        )
-                      ],
-                    ),
-                    const Spacer(),
-                    Column(
-                      children: [
-                        Container(
-                          height: 130,
-                          width: 160,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 0, color: const Color(0xFFFEF6E6)),
-                              color: const Color(0xFFFEF6E6),
-                              borderRadius: const BorderRadius.all(
-                                  const Radius.circular(20))),
-                          child: SvgPicture.asset(
-                            "assets/icons/upload_document.svg",
-                            color: const Color(0xFFF8A300),
-                            height: 60,
-                            width: 80,
-                            fit: BoxFit.scaleDown,
+                          color: Colors.amber,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 130,
+                                width: 160,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 0,
+                                        color: const Color(0xFFFEF6E6)),
+                                    color: const Color(0xFFFEF6E6),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
+                                child: SvgPicture.asset(
+                                  "assets/icons/upload_document.svg",
+                                  color: const Color(0xFFF8A300),
+                                  height: 60,
+                                  width: 80,
+                                  fit: BoxFit.scaleDown,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Text(
+                                  "Upload document",
+                                  style: _textStyle,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Upload document",
-                            style: _textStyle,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: Row(
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          height: 130,
-                          width: 160,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 0, color: const Color(0xFFFEF0F0)),
-                              color: const Color(0xFFFEF0F0),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
-                          child: SvgPicture.asset("assets/icons/course.svg",
-                              color: const Color(0xFFF16660),
-                              height: 60,
-                              width: 80,
-                              fit: BoxFit.scaleDown),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Course Search",
-                            style: _textStyle,
+              GestureDetector(
+                onTap: () {
+                  debugPrint("Course Search");
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            height: 130,
+                            width: 160,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    width: 0, color: const Color(0xFFFEF0F0)),
+                                color: const Color(0xFFFEF0F0),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            child: SvgPicture.asset("assets/icons/course.svg",
+                                color: const Color(0xFFF16660),
+                                height: 60,
+                                width: 80,
+                                fit: BoxFit.scaleDown),
                           ),
-                        )
-                      ],
-                    ),
-                    const Spacer(),
-                    Column(
-                      children: [
-                        Container(
-                          height: 130,
-                          width: 160,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 0, color: const Color(0xFFE8FAFD)),
-                              color: const Color(0xFFE8FAFD),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
-                          child: SvgPicture.asset("assets/icons/track.svg",
-                              color: const Color(0xFF05B4D2),
-                              height: 60,
-                              width: 80,
-                              fit: BoxFit.scaleDown),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Course Search",
+                              style: _textStyle,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Spacer(),
+                      InkWell(
+                        onTap: () {
+                          debugPrint('Track Application');
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 130,
+                              width: 160,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 0, color: const Color(0xFFE8FAFD)),
+                                  color: const Color(0xFFE8FAFD),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: SvgPicture.asset("assets/icons/track.svg",
+                                  color: const Color(0xFF05B4D2),
+                                  height: 60,
+                                  width: 80,
+                                  fit: BoxFit.scaleDown),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                "Track application",
+                                style: _textStyle,
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Track application",
-                            style: _textStyle,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(
