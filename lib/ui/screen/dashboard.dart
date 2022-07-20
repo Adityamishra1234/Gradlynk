@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +6,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/widgets/appbar.dart';
+import 'package:studentpanel/widgets/customautosizetext.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -63,17 +65,13 @@ class _DashBoardState extends State<DashBoard> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: Text(
-                            "Nishant",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: GoogleFonts.roboto(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40,
-                                textStyle: const TextStyle()),
-                          ),
-                        ),
+                            alignment: AlignmentDirectional.topStart,
+                            child: CustomAutoSizeText(
+                              text: "Nishant",
+                              maxLines: 1,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                            )),
                       ),
                       const Divider(
                         thickness: 1,
@@ -95,7 +93,7 @@ class _DashBoardState extends State<DashBoard> {
                   debugPrint("Create your profile");
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
                   child: Row(
                     children: [
                       Column(
@@ -282,7 +280,7 @@ class _DashBoardState extends State<DashBoard> {
                           Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 10),
+                                padding: const EdgeInsets.only(left: 5),
                                 child: SizedBox(
                                   width: 50,
                                   child: SvgPicture.asset(
@@ -305,22 +303,20 @@ class _DashBoardState extends State<DashBoard> {
                                             CrossAxisAlignment.start,
                                         bullet: MyBullet(),
                                         listItems: [
-                                          Text(
-                                            "Canada Migration Counselling Day Bangalore ",
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 3,
-                                            style: _textStyle2,
-                                          )
+                                          CustomAutoSizeText(
+                                              text:
+                                                  "Canada Migration Counselling Day Bangalore",
+                                              maxLines: 3),
                                         ],
                                       ),
                                       SizedBox(
                                         width:
                                             MediaQuery.of(context).size.width *
-                                                0.65,
+                                                0.70,
                                         child: const Padding(
-                                          padding: EdgeInsets.only(left: 37),
+                                          padding: EdgeInsets.only(left: 38),
                                           child: Text(
-                                              "on Thu, May 5th, 2022 16;11 pm"),
+                                              "on Thu, May 5th, 2022  16:11 pm"),
                                         ),
                                       )
                                     ],

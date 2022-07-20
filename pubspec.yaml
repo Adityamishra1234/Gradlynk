@@ -51,6 +51,7 @@ dependencies:
   configurable_expansion_tile_null_safety: ^2.0.3
   fluent_ui: ^3.12.0
   bulleted_list: ^0.0.1+0.1a
+  auto_size_text: ^3.0.0
 
 
 
