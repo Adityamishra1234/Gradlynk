@@ -1,3 +1,4 @@
+import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
@@ -18,8 +19,12 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   var dashboardController = Get.put(DashboardController());
   final TextStyle _textStyle = GoogleFonts.roboto(
+    fontWeight: FontWeight.w800,
+    fontSize: 17,
+  );
+  final TextStyle _textStyle2 = GoogleFonts.roboto(
     fontWeight: FontWeight.w600,
-    fontSize: 16,
+    fontSize: 15,
   );
 
   @override
@@ -35,48 +40,58 @@ class _DashBoardState extends State<DashBoard> {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              SizedBox(
-                height: 100,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: Text(
-                          "Hi,",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                              textStyle: const TextStyle()),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SizedBox(
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: Text(
+                            "Hi,",
+                            style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30,
+                                textStyle: const TextStyle()),
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: Text(
-                          "Nishant",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              textStyle: const TextStyle()),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: Text(
+                            "Nishant",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40,
+                                textStyle: const TextStyle()),
+                          ),
                         ),
                       ),
-                    ),
-                    const Divider(
-                      thickness: 2,
-                      indent: 30,
-                      endIndent: 30,
-                      color: const Color(0xFFD6D6D6),
-                    )
-                  ],
+                      const Divider(
+                        thickness: 1,
+                        indent: 30,
+                        endIndent: 30,
+                        color: Color(0xFFD6D6D6),
+                      )
+                    ],
+                  ),
                 ),
               ),
               InkWell(
                 onTap: () {
+                  Get.snackbar(
+                    "DashBoard",
+                    "Create your profile",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
                   debugPrint("Create your profile");
                 },
                 child: Padding(
@@ -113,6 +128,11 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
+                          Get.snackbar(
+                            "DashBoard",
+                            "Upload Document",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
                           debugPrint("Upload Document");
                         },
                         child: Ink(
@@ -156,6 +176,11 @@ class _DashBoardState extends State<DashBoard> {
               ),
               GestureDetector(
                 onTap: () {
+                  Get.snackbar(
+                    "DashBoard",
+                    "Course Search",
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
                   debugPrint("Course Search");
                 },
                 child: Padding(
@@ -191,6 +216,11 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
+                          Get.snackbar(
+                            "DashBoard",
+                            "Track Application",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
                           debugPrint('Track Application');
                         },
                         child: Column(
@@ -229,70 +259,106 @@ class _DashBoardState extends State<DashBoard> {
                   top: 30,
                 ),
                 child: SizedBox(
-                  height: 160,
-                  width: MediaQuery.of(context).size.width * 0.85,
-                  child: Card(
-                    elevation: 2,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Stack(children: [
-                      Positioned(
-                          top: 30,
-                          left: 20,
-                          child: SvgPicture.asset("assets/icons/calender.svg",
-                              color: const Color(0xFF6F61FF),
-                              height: 40,
-                              width: 40,
-                              fit: BoxFit.scaleDown)),
-                      Positioned(
-                        top: 10,
-                        left: 80,
-                        child: Text(
-                          "Upcoming Event",
-                          style: GoogleFonts.roboto(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 26,
-                              textStyle: const TextStyle(
-                                decoration: TextDecoration.underline,
-                              )),
-                        ),
+                    width: MediaQuery.of(context).size.width * 0.90,
+                    child: Card(
+                      elevation: 0.7,
+                      shadowColor: const Color(0xFFE5E1FE),
+                      shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: Color(0xFFE5E1FE), width: 1.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      const Positioned(
-                        top: 47,
-                        left: 70,
-                        child: Icon(
-                          Icons.circle,
-                          size: 10,
-                        ),
-                      ),
-                      Positioned(
-                          top: 42,
-                          left: 85,
-                          child: Text(
-                            "Canda Migration Counselling",
-                            style: GoogleFonts.roboto(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10, left: 35),
+                            child: Text(
+                              "Upcoming Event",
+                              style: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                textStyle: const TextStyle()),
-                          )),
-                      const Positioned(
-                          top: 60, left: 85, child: Text("Day Bangalore")),
-                      const Positioned(
-                          top: 75,
-                          left: 85,
-                          child: Text("on Thu, May 5th,2022 16:11 pm")),
-                      Align(
-                          alignment: AlignmentDirectional.bottomCenter,
-                          child: TextButton(
-                              onPressed: () {}, child: const Text("View all")))
-                    ]),
-                  ),
-                ),
+                                fontSize: 26,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: SizedBox(
+                                  width: 50,
+                                  child: SvgPicture.asset(
+                                    "assets/icons/calender.svg",
+                                    color: Color(0xFF6F61FF),
+                                    height: 50,
+                                    width: 40,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.70,
+                                  child: Column(
+                                    children: [
+                                      BulletedList(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        bullet: MyBullet(),
+                                        listItems: [
+                                          Text(
+                                            "Canada Migration Counselling Day Bangalore ",
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 3,
+                                            style: _textStyle2,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.65,
+                                        child: const Padding(
+                                          padding: EdgeInsets.only(left: 37),
+                                          child: Text(
+                                              "on Thu, May 5th, 2022 16;11 pm"),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Get.snackbar(
+                                  "DashBoard",
+                                  "View All",
+                                  snackPosition: SnackPosition.BOTTOM,
+                                );
+                              },
+                              child: const Text("View all"))
+                        ],
+                      ),
+                    )),
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MyBullet extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 7,
+      width: 7,
+      decoration: const BoxDecoration(
+        color: Colors.black,
+        shape: BoxShape.circle,
       ),
     );
   }

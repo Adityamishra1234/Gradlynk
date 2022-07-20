@@ -15,55 +15,64 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      actions: [
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/menu.svg",
-            color: Color.fromARGB(255, 99, 99, 99),
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: AppBar(
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/menu.svg",
+                color: Color.fromARGB(255, 99, 99, 99),
+                height: 30,
+                width: 30,
+              ),
+              onPressed: () {},
+            ),
           ),
-          onPressed: () {},
-        ),
-        SvgPicture.asset(
-          "assets/icons/work.svg",
-          color: Colors.transparent,
-        ),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Image.asset(
-            "assets/images/logo.png",
-            width: 150,
-            height: 50,
+          SvgPicture.asset(
+            "assets/icons/work.svg",
+            width: 32,
+            color: Colors.transparent,
           ),
-        ),
-        const Spacer(),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/notification.svg",
-            color: Color.fromARGB(255, 99, 99, 99),
-            height: 27,
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.asset(
+              "assets/images/logo.png",
+              width: 150,
+              height: 50,
+            ),
           ),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: SvgPicture.asset(
-            "assets/icons/profile.svg",
-            height: 30,
-            color: Color.fromARGB(255, 99, 99, 99),
+          const Spacer(),
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/notification.svg",
+              color: Color.fromARGB(255, 99, 99, 99),
+              height: 27,
+            ),
+            onPressed: () {},
           ),
-          onPressed: () {},
-        ),
-        const SizedBox(
-          width: 5,
-        )
-      ],
-      // title: Text(
-      //   title,
-      //   style: const TextStyle(color: Colors.black),
-      // ),
-      backgroundColor: Colors.white,
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/profile.svg",
+              height: 30,
+              color: Color.fromARGB(255, 99, 99, 99),
+            ),
+            onPressed: () {},
+          ),
+          const SizedBox(
+            width: 5,
+          )
+        ],
+        // title: Text(
+        //   title,
+        //   style: const TextStyle(color: Colors.black),
+        // ),
+        backgroundColor: Colors.white,
+      ),
     );
   }
 }
