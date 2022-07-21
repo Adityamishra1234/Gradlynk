@@ -49,7 +49,6 @@ dependencies:
   multi_select_flutter: ^4.1.2
   checkbox_grouped: ^1.8.1
   configurable_expansion_tile_null_safety: ^2.0.3
-  fluent_ui: ^3.12.0
   bulleted_list: ^0.0.1+0.1a
   auto_size_text: ^3.0.0
 
@@ -69,6 +68,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.9.3
   new_version: ^0.3.1
+  
   
 
 flutter_icons:

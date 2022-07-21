@@ -36,8 +36,6 @@ class BottomNavigation extends StatelessWidget {
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
-
-                            const Text("Buy"), // <-- Text
                           ],
                         ),
                       ),

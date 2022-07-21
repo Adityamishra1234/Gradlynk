@@ -24,10 +24,6 @@ class _DashBoardState extends State<DashBoard> {
     fontWeight: FontWeight.w800,
     fontSize: 17,
   );
-  final TextStyle _textStyle2 = GoogleFonts.roboto(
-    fontWeight: FontWeight.w600,
-    fontSize: 15,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -107,8 +103,7 @@ class _DashBoardState extends State<DashBoard> {
                                 color: const Color(0xFFF1F0FF),
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20))),
-                            child: SvgPicture.asset(
-                                "assets/icons/create_profile.svg",
+                            child: SvgPicture.asset("assets/icons/home.svg",
                                 color: const Color(0xFF6F61FF),
                                 height: 60,
                                 width: 80,

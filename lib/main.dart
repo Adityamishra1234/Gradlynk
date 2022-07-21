@@ -4,12 +4,14 @@ import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/detail.dart';
 import 'package:studentpanel/ui/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/ui/screen/profilepagehorizontal.dart';
 
 void main() {
   runApp(const MyAp());
@@ -54,7 +56,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: ProfilePageHorizontal.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -71,6 +73,18 @@ class _MyApState extends State<MyAp> {
             name: DetialScreen.routeNamed,
             page: () => const DetialScreen(),
             binding: DetailBinding()),
+        GetPage(
+          name: ProfilePage.routeNamed,
+          page: () => ProfilePage(),
+        ),
+        GetPage(
+          name: ProfilePage.routeNamed,
+          page: () => ProfilePage(),
+        ),
+        GetPage(
+          name: ProfilePageHorizontal.routeNamed,
+          page: () => ProfilePageHorizontal(),
+        ),
       ],
     );
   }
