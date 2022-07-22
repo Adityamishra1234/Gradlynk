@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             child: IconButton(
               icon: SvgPicture.asset(
                 "assets/icons/menu.svg",
-                color: Color.fromARGB(255, 99, 99, 99),
+                color: const Color.fromARGB(255, 99, 99, 99),
                 height: 30,
                 width: 30,
               ),
@@ -50,7 +50,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           IconButton(
             icon: SvgPicture.asset(
               "assets/icons/notification.svg",
-              color: Color.fromARGB(255, 99, 99, 99),
+              color: const Color.fromARGB(255, 99, 99, 99),
               height: 27,
             ),
             onPressed: () {},
@@ -59,7 +59,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             icon: SvgPicture.asset(
               "assets/icons/profile.svg",
               height: 30,
-              color: Color.fromARGB(255, 99, 99, 99),
+              color: const Color.fromARGB(255, 99, 99, 99),
             ),
             onPressed: () {},
           ),

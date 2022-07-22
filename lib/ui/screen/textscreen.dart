@@ -53,3 +53,31 @@ class _TextScreenState extends State<TextScreen> {
     );
   }
 }
+
+// class Example3 extends StatelessWidget {
+//   const Example3({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: PhloxAnimations(
+//           duration: const Duration(seconds: 2),
+//           child: Container(
+//             height: 250,
+//             width: 250,
+//             decoration: BoxDecoration(
+//                 color: Colors.blue.shade900,
+//                 borderRadius: BorderRadius.circular(32)
+//             ),
+//           ),
+//           fromX: -200,
+//           toX: 200,
+//           fromY: -200, /// add
+//           toY: 200, /// add
+//           loop: true, /// add **Loop**
+//         ),
+//       ),
+//     );
+//   }
+// }

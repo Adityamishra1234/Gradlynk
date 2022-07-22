@@ -12,9 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/profilepagehorizontal.dart';
+import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
 void main() {
+  ;
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([]);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -61,7 +64,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: ProfilePage.routeNamed,
+      initialRoute: AnimationaPhonepe.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -85,6 +88,11 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: ProfilePageHorizontal.routeNamed,
           page: () => ProfilePageHorizontal(),
+        ),
+        //AnimationaPhonepe
+        GetPage(
+          name: AnimationaPhonepe.routeNamed,
+          page: () => AnimationaPhonepe(),
         ),
       ],
     );

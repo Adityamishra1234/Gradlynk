@@ -51,6 +51,8 @@ dependencies:
   configurable_expansion_tile_null_safety: ^2.0.3
   bulleted_list: ^0.0.1+0.1a
   auto_size_text: ^3.0.0
+  dependencies:
+  phlox_animations: ^2.1.1
 
 
 
