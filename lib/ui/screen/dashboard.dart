@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/widgets/appbar.dart';
+import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
 
 class DashBoard extends StatefulWidget {
@@ -28,7 +29,7 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     debugPrint(Get.arguments);
-
+    final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
       body: Container(
@@ -39,7 +40,7 @@ class _DashBoardState extends State<DashBoard> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 10),
                 child: SizedBox(
                   height: 100,
                   width: MediaQuery.of(context).size.width,
@@ -89,7 +90,7 @@ class _DashBoardState extends State<DashBoard> {
                   debugPrint("Create your profile");
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+                  padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
                   child: Row(
                     children: [
                       Column(
@@ -103,7 +104,8 @@ class _DashBoardState extends State<DashBoard> {
                                 color: const Color(0xFFF1F0FF),
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(20))),
-                            child: SvgPicture.asset("assets/icons/home.svg",
+                            child: SvgPicture.asset(
+                                "assets/icons/create_profile.svg",
                                 color: const Color(0xFF6F61FF),
                                 height: 60,
                                 width: 80,
@@ -249,7 +251,7 @@ class _DashBoardState extends State<DashBoard> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 30,
+                  top: 15,
                 ),
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.90,
@@ -337,6 +339,22 @@ class _DashBoardState extends State<DashBoard> {
           ),
         ),
       ),
+      floatingActionButtonLocation:
+          showFab ? FloatingActionButtonLocation.miniCenterDocked : null,
+      floatingActionButton: Visibility(
+        visible: showFab,
+        child: FloatingActionButton(
+            tooltip: "Action",
+            backgroundColor: const Color(0xFF1940B3),
+            onPressed: () {},
+            // isExtended: true,
+            child: SvgPicture.asset(
+              "assets/icons/video-call.svg",
+              height: 30,
+              color: Colors.white,
+            )),
+      ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }
