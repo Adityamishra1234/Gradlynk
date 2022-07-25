@@ -14,38 +14,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
 
-  // login(String baseUrl, String endpoint, String email, String password) async {
-  //   UserModel userModel;
-  //   var response;
-  //   var jsonData = {"email": email, "password": password};
-  //   try {
-  //     response = await http.post(Uri.parse(baseUrl + endpoint),
+  login(String baseUrl, String endpoint, String number) async {
+    UserModel userModel;
+    var response;
+    var jsonData = {"mobile_number": number};
+    try {
+      response = await http.post(Uri.parse(baseUrl + endpoint),
 
-  //         // Api Call
-  //         headers: {
-  //           "Accept": "application/json",
-  //           "Content-Type": "application/x-www-form-urlencoded"
-  //         },
-  //         body: jsonData);
-  //   } catch (e) {
-  //     Get.snackbar("", response.body);
-  //   }
-  //   if (response != null) {
-  //     SharedPreferences sharedPreferences =
-  //         await SharedPreferences.getInstance();
-  //     final formattedStr = formatDate(
-  //         DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
-  //     sharedPreferences.setString('UserModel', response.body);
-  //     var jsondata = json.decode(response.body);
-  //     userModel = UserModel.fromJson(jsondata);
-  //     sharedPreferences.setString('token', userModel.token);
-  //     sharedPreferences.setString("login_time", formattedStr);
-  //     sharedPreferences.setString("id", userModel.user.id.toString());
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+          // Api Call
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: jsonData);
+    } catch (e) {
+      Get.snackbar("", response.body);
+    }
+    if (response != null) {
+      print(response);
+      // SharedPreferences sharedPreferences =
+      //     await SharedPreferences.getInstance();
+      // final formattedStr = formatDate(
+      //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
+      // sharedPreferences.setString('UserModel', response.body);
+      // var jsondata = json.decode(response.body);
+      // userModel = UserModel.fromJson(jsondata);
+      // sharedPreferences.setString('token', userModel.token);
+      // sharedPreferences.setString("login_time", formattedStr);
+      // sharedPreferences.setString("id", userModel.user.id.toString());
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

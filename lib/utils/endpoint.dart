@@ -1,6 +1,6 @@
 class Endpoints {
   static String? baseUrl = "http://14.97.86.202:205/api/";
-  static String? login = "login";
+  static String? login = "student-panel-login";
   static String? logout = "logout";
   static String? userHistory = "login-logout-history";
   static String? getUserHistory = 'get-login-logout-history';

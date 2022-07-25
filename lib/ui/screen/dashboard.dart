@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
@@ -82,11 +83,13 @@ class _DashBoardState extends State<DashBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Get.snackbar(
-                    "DashBoard",
-                    "Create your profile",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
+                  // Get.snackbar(
+                  //   "DashBoard",
+                  //   "Create your profile",
+                  //   snackPosition: SnackPosition.BOTTOM,
+                  // );
+                  Get.toNamed(ProfilePage.routeNamed);
+
                   debugPrint("Create your profile");
                 },
                 child: Padding(

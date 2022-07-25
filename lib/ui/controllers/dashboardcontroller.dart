@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
+import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardController extends BaseController {
+  StudentPanel studentPanel = StudentPanel();
   ApiServices apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
   List<UpcomingEvent>? upcomingEventlist;
@@ -17,14 +19,25 @@ class DashboardController extends BaseController {
   RxBool loadingUpcomingEvents = false.obs;
   RxBool loadingNewsAndUpdates = false.obs;
   RxBool loadingUpcomingHolidays = false.obs;
+  RxBool loadingStudentPanelData = false.obs;
 
 // helo word
   @override
   void onInit() {
     super.onInit();
-    newAndUpdates();
-    upcomingEvents();
-    upcomingholidays();
+    login();
+    // newAndUpdates();
+    // upcomingEvents();
+    // upcomingholidays();
+  }
+
+  login() async {
+    var res = await apiservices.login(
+        Endpoints.baseUrl!, Endpoints.login!, "8860373603");
+    if (res != null) {
+      studentPanel = res;
+      loadingStudentPanelData = true.obs;
+    }
   }
 
   newAndUpdates() async {

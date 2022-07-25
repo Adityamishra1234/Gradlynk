@@ -5,17 +5,21 @@ import 'package:flutter/material.dart';
 class CustomDropDown extends StatefulWidget {
   List<String>? model;
   String? hint;
-  CustomDropDown({Key? key, this.model, this.hint}) : super(key: key);
+  bool? border;
+  CustomDropDown({Key? key, this.model, this.hint, this.border})
+      : super(key: key);
 
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
 
 class _CustomDropDownState extends State<CustomDropDown> {
+  bool? border;
   List<String>? model;
   String? hint;
   @override
   void initState() {
+    border = widget.border;
     model = widget.model;
     hint = widget.hint;
     super.initState();
@@ -24,8 +28,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.only(),
       child: DropdownSearch<String>(
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration:
+              border == true ? null : InputDecoration(border: InputBorder.none),
+        ),
         popupProps: PopupProps.menu(
           showSearchBox: true,
           title: Padding(
