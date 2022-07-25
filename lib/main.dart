@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/profilepagehorizontal.dart';
+import 'package:studentpanel/ui/screen/textscreen.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
 void main() {
@@ -64,7 +65,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: AnimationaPhonepe.routeNamed,
+      initialRoute: ProfilePage.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -89,6 +90,11 @@ class _MyApState extends State<MyAp> {
           name: ProfilePageHorizontal.routeNamed,
           page: () => ProfilePageHorizontal(),
         ),
+        GetPage(
+          name: TextScreen.routeNamed,
+          page: () => TextScreen(),
+        ),
+
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,

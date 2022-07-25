@@ -11,6 +11,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePageController extends BaseController with StateMixin<UserModel> {
   RxInt? chooseIndex = 0.obs;
+  RxBool? englishTestDetail = true.obs;
+
+  getEnglishTestDetail(RxBool data) {
+    englishTestDetail = data;
+    update();
+  }
 
   getChooseIndex(RxInt data) {
     chooseIndex = data;
