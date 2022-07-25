@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
+import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
 import 'package:studentpanel/ui/models/userHistory.dart';
@@ -15,7 +16,7 @@ class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
 
   login(String baseUrl, String endpoint, String number) async {
-    UserModel userModel;
+    StudentPanel studentPanel;
     var response;
     var jsonData = {"mobile_number": number};
     try {
@@ -32,17 +33,17 @@ class ApiServices extends StudentPanelBase {
     }
     if (response != null) {
       print(response);
-      // SharedPreferences sharedPreferences =
-      //     await SharedPreferences.getInstance();
-      // final formattedStr = formatDate(
-      //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
-      // sharedPreferences.setString('UserModel', response.body);
-      // var jsondata = json.decode(response.body);
-      // userModel = UserModel.fromJson(jsondata);
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      final formattedStr = formatDate(
+          DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
+      sharedPreferences.setString('UserModel', response.body);
+      var jsondata = json.decode(response.body);
+      studentPanel = StudentPanel.fromJson(jsondata);
       // sharedPreferences.setString('token', userModel.token);
       // sharedPreferences.setString("login_time", formattedStr);
       // sharedPreferences.setString("id", userModel.user.id.toString());
-      return true;
+      return studentPanel;
     } else {
       return false;
     }

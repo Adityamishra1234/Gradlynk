@@ -88,7 +88,10 @@ class _DashBoardState extends State<DashBoard> {
                   //   "Create your profile",
                   //   snackPosition: SnackPosition.BOTTOM,
                   // );
-                  Get.toNamed(ProfilePage.routeNamed);
+                  Get.toNamed(ProfilePage.routeNamed, parameters: {
+                    "studentPanelModel":
+                        dashboardController.studentPanel.toString()
+                  });
 
                   debugPrint("Create your profile");
                 },
@@ -357,7 +360,9 @@ class _DashBoardState extends State<DashBoard> {
               color: Colors.white,
             )),
       ),
-      bottomNavigationBar: const BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(
+        index: 0,
+      ),
     );
   }
 }

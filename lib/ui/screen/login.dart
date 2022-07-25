@@ -200,7 +200,7 @@ class _LoginState extends State<Login> {
             // isExtended: true,
             child: const Icon(Icons.add)),
       ),
-      bottomNavigationBar: const BottomNavigation(),
+      bottomNavigationBar: BottomNavigation(),
     );
   }
 }

@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({Key? key}) : super(key: key);
+  int? index;
+  BottomNavigation({Key? key, this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +28,15 @@ class BottomNavigation extends StatelessWidget {
                       height: 50,
                       width: 60,
                       child: InkWell(
-                        splashColor: Colors.green,
+                        splashColor: Color(0xFF1940B3),
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SvgPicture.asset("assets/icons/home.svg",
-                                color:
-                                    //  false
-                                    //     ? Color(0xFF677082)
-                                    //     :
-                                    Color(0xFF1940B3),
+                                color: index == 0
+                                    ? Color(0xFF1940B3)
+                                    : Color(0xFF677082),
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
@@ -60,13 +59,15 @@ class BottomNavigation extends StatelessWidget {
                       height: 46,
                       width: 60,
                       child: InkWell(
-                        splashColor: Colors.green,
+                        splashColor: Color(0xFF1940B3),
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SvgPicture.asset("assets/icons/messanger.svg",
-                                color: Color(0xFF677082),
+                                color: index == 1
+                                    ? Color(0xFF1940B3)
+                                    : Color(0xFF677082),
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
@@ -99,13 +100,15 @@ class BottomNavigation extends StatelessWidget {
                       height: 46,
                       width: 60,
                       child: InkWell(
-                        splashColor: Colors.green,
+                        splashColor: Color(0xFF1940B3),
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SvgPicture.asset("assets/icons/enqiry.svg",
-                                color: Colors.blueGrey,
+                                color: index == 2
+                                    ? Color(0xFF1940B3)
+                                    : Color(0xFF677082),
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
@@ -126,13 +129,15 @@ class BottomNavigation extends StatelessWidget {
                     height: 46,
                     width: 50,
                     child: InkWell(
-                      splashColor: Colors.green,
+                      splashColor: Color(0xFF1940B3),
                       onTap: () {},
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           SvgPicture.asset("assets/icons/profile-bottom.svg",
-                              color: Color(0xFF677082),
+                              color: index == 3
+                                  ? Color(0xFF1940B3)
+                                  : Color(0xFF677082),
                               height: 30,
                               width: 30,
                               semanticsLabel: 'A red up arrow'),

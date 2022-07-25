@@ -16,13 +16,12 @@ import 'package:studentpanel/ui/screen/textscreen.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
 void main() {
-  ;
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([]);
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // SystemChrome.setEnabledSystemUIOverlays([]);
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
   runApp(const MyAp());
 }
 
