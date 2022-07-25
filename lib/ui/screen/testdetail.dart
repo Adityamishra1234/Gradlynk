@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -19,6 +20,7 @@ class _TestDetailState extends State<TestDetail> {
   var controller = Get.put(ProfilePageController());
 
   late BestTutorSite _site = BestTutorSite.Tentative;
+  var dashboardcontroller = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +70,11 @@ class _TestDetailState extends State<TestDetail> {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  border: false,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: dashboardcontroller
+                                      .studentPanel.testDetails!.examStatus,
+                                  maxLines: 1,
+                                  textColor: Colors.grey,
                                 ),
                               )
                             ],
@@ -106,10 +109,10 @@ class _TestDetailState extends State<TestDetail> {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  border: false,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Exam Name",
+                                  maxLines: 1,
+                                  textColor: Colors.grey,
                                 ),
                               )
                             ],
@@ -148,7 +151,8 @@ class _TestDetailState extends State<TestDetail> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "",
+                                    text: dashboardcontroller
+                                        .studentPanel.testDetails!.dateOfExam,
                                     maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -190,7 +194,8 @@ class _TestDetailState extends State<TestDetail> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "",
+                                    text: dashboardcontroller
+                                        .studentPanel.testDetails!.resultDate,
                                     maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -232,7 +237,8 @@ class _TestDetailState extends State<TestDetail> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "",
+                                    text: dashboardcontroller.studentPanel
+                                        .testDetails!.expirationDate,
                                     maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),

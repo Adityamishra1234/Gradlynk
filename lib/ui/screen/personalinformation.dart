@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 
 import 'package:studentpanel/widgets/animationshowdown.dart';
@@ -12,6 +13,7 @@ class PersonalInformation extends StatelessWidget {
   }) : super(key: key);
 
   var controller = Get.put(ProfilePageController());
+  var dashboardcontroller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -44,7 +46,7 @@ class PersonalInformation extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, top: 5, right: 10),
                   child: Center(
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Nishant Bhardwaj",
+                      text: dashboardcontroller.studentPanel.enquiryName,
                       maxLines: 1,
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -73,7 +75,7 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Male",
+                              text: dashboardcontroller.studentPanel.gender,
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -106,14 +108,13 @@ class PersonalInformation extends StatelessWidget {
                         ),
                         Spacer(),
                         SizedBox(
-                          height: 40,
                           width: 200,
                           // custom Text field
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 15),
+                            padding: const EdgeInsets.only(top: 0),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "nishan@gmail.com",
-                              maxLines: 1,
+                              text: dashboardcontroller.studentPanel.email,
+                              maxLines: 2,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -151,7 +152,8 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "9876543210",
+                              text: dashboardcontroller.studentPanel.mobile
+                                  .toString(),
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -229,7 +231,8 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Single",
+                              text: dashboardcontroller
+                                  .studentPanel.maritalStatus,
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -268,7 +271,8 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Application",
+                              text: dashboardcontroller
+                                  .studentPanel.applicantType,
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -307,7 +311,8 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "India",
+                              text:
+                                  dashboardcontroller.studentPanel.countryName,
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -346,7 +351,7 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Delhi",
+                              text: dashboardcontroller.studentPanel.stateName,
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),
@@ -385,7 +390,7 @@ class PersonalInformation extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 15),
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Delhi",
+                              text: dashboardcontroller.studentPanel.cityName,
                               maxLines: 1,
                               fontWeight: FontWeight.w600,
                             ),

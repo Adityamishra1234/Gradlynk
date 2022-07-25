@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -11,6 +12,7 @@ class MandatoryInformation extends StatelessWidget {
   }) : super(key: key);
 
   var controller = Get.put(ProfilePageController());
+  var dashboardcontroller = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,9 @@ class MandatoryInformation extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Branch",
+                      text: dashboardcontroller
+                              .studentPanel.addtionalDetails![1].branchType ??
+                          "",
                       maxLines: 1,
                       fontWeight: FontWeight.w600,
                     ),
@@ -82,7 +86,9 @@ class MandatoryInformation extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Gurugram",
+                      text: dashboardcontroller
+                              .studentPanel.addtionalDetails![1].branchName ??
+                          "",
                       maxLines: 1,
                       fontWeight: FontWeight.w600,
                     ),
@@ -124,7 +130,9 @@ class MandatoryInformation extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Student Visa",
+                      text: dashboardcontroller
+                              .studentPanel.addtionalDetails![1].serviceName ??
+                          "",
                       maxLines: 1,
                       fontWeight: FontWeight.w600,
                     ),
@@ -166,7 +174,9 @@ class MandatoryInformation extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Gurugram",
+                      text: dashboardcontroller
+                              .studentPanel.addtionalDetails![1].countryName ??
+                          "",
                       maxLines: 1,
                       fontWeight: FontWeight.w600,
                     ),
@@ -295,7 +305,9 @@ class MandatoryInformation extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Yes",
+                      text:
+                          dashboardcontroller.studentPanel.passportAvailable ??
+                              "",
                       maxLines: 1,
                       fontWeight: FontWeight.w600,
                     ),
