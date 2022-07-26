@@ -6,6 +6,12 @@ import 'package:studentpanel/widgets/customdropdownbutton.dart';
 class Passport extends StatelessWidget {
   const Passport({Key? key}) : super(key: key);
 
+  callback(varTopic) {
+    print("mandatory" + varTopic);
+
+    // dashboardcontroller.setdropdown1(varTopic);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,7 +34,12 @@ class Passport extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: Text("aman"),
+                  child: CustomDropDown(
+                    hint: "Test Already taken",
+                    model: ["1", "2", "3", "4"],
+                    callbackFunction: callback,
+                    border: false,
+                  ),
                 )
               ],
             ),
@@ -59,7 +70,12 @@ class Passport extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: Text("aman"),
+                  child: CustomDropDown(
+                    hint: "Test Already taken",
+                    model: ["1", "2", "3", "4"],
+                    callbackFunction: callback,
+                    border: false,
+                  ),
                 )
               ],
             ),
@@ -90,7 +106,12 @@ class Passport extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: Text("aman"),
+                  child: CustomDropDown(
+                    hint: "Test Already taken",
+                    model: ["1", "2", "3", "4"],
+                    callbackFunction: callback,
+                    border: false,
+                  ),
                 )
               ],
             ),
@@ -121,7 +142,12 @@ class Passport extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: Text("aman"),
+                  child: CustomDropDown(
+                    hint: "Test Already taken",
+                    model: ["1", "2", "3", "4"],
+                    callbackFunction: callback,
+                    border: false,
+                  ),
                 )
               ],
             ),
@@ -152,7 +178,12 @@ class Passport extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: Text("aman"),
+                  child: CustomDropDown(
+                    hint: "Test Already taken",
+                    model: ["1", "2", "3", "4"],
+                    callbackFunction: callback,
+                    border: false,
+                  ),
                 )
               ],
             ),
@@ -183,7 +214,12 @@ class Passport extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: Text("aman"),
+                  child: CustomDropDown(
+                    hint: "Test Already taken",
+                    model: ["1", "2", "3", "4"],
+                    callbackFunction: callback,
+                    border: false,
+                  ),
                 )
               ],
             ),

@@ -23,15 +23,10 @@ class DashboardController extends BaseController {
   RxBool loadingUpcomingHolidays = false.obs;
   RxBool loadingStudentPanelData = false.obs;
   RxBool loadingCreateModel = false.obs;
+  RxBool loadingBranchname = false.obs;
+  RxBool loadingServiceName = false.obs;
   List<String>? model = [];
-  RxString? dropdown1;
-
-  setdropdown1(String? data) {
-    print(data);
-    dropdown1 = data!.obs;
-    print("aman" + dropdown1!.value);
-    update();
-  }
+  RxString? dropdown1 = "".obs;
 
 // helo word
   @override
@@ -44,6 +39,13 @@ class DashboardController extends BaseController {
     // upcomingholidays();
   }
 
+  setdropdown1(String? data) {
+    dropdown1 = data!.obs;
+    update();
+    loadingBranchname = true.obs;
+    update();
+  }
+
   List<String>? createModelForDropdown() {
     if (loadingStudentPanelData.value == true) {
       studentPanel.addtionalDetails!.forEach((element) {
@@ -52,6 +54,8 @@ class DashboardController extends BaseController {
     }
     model = model!.toSet().toList();
     loadingCreateModel = true.obs;
+    update();
+
     return model;
   }
 
@@ -61,14 +65,15 @@ class DashboardController extends BaseController {
     String choose3 = "",
     String choose4 = "",
   ]) {
+    print("choose1" + choose1);
     List<String>? tempModel = [];
-    if (loadingStudentPanelData.value == true) {
-      studentPanel.addtionalDetails!.forEach((element) {
-        if (choose1 == element.branchType) {
-          tempModel!.add(element.branchType!);
-        }
-      });
-    }
+
+    studentPanel.addtionalDetails!.forEach((element) {
+      if (choose1 == element.branchType) {
+        tempModel!.add(element.branchName!);
+      }
+    });
+
     tempModel = tempModel!.toSet().toList();
     return tempModel;
   }
@@ -79,6 +84,7 @@ class DashboardController extends BaseController {
     if (res != null) {
       studentPanel = res;
       loadingStudentPanelData = true.obs;
+      update();
     }
   }
 
