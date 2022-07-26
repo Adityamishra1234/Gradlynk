@@ -29,11 +29,7 @@ class CourseChoose extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    border: false,
-                  ),
+                  child: Text("aman"),
                 )
               ],
             ),
@@ -64,11 +60,7 @@ class CourseChoose extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    border: false,
-                  ),
+                  child: Text("aman"),
                 )
               ],
             ),
@@ -99,11 +91,7 @@ class CourseChoose extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    border: false,
-                  ),
+                  child: Text("aman"),
                 )
               ],
             ),

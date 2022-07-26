@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -11,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardController extends BaseController {
+  DropDownModel? dropDownModel;
   StudentPanel studentPanel = StudentPanel();
   ApiServices apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
@@ -20,15 +22,55 @@ class DashboardController extends BaseController {
   RxBool loadingNewsAndUpdates = false.obs;
   RxBool loadingUpcomingHolidays = false.obs;
   RxBool loadingStudentPanelData = false.obs;
+  RxBool loadingCreateModel = false.obs;
+  List<String>? model = [];
+  RxString? dropdown1;
+
+  setdropdown1(String? data) {
+    print(data);
+    dropdown1 = data!.obs;
+    print("aman" + dropdown1!.value);
+    update();
+  }
 
 // helo word
   @override
   void onInit() {
     super.onInit();
     login();
+    createModelForDropdown();
     // newAndUpdates();
     // upcomingEvents();
     // upcomingholidays();
+  }
+
+  List<String>? createModelForDropdown() {
+    if (loadingStudentPanelData.value == true) {
+      studentPanel.addtionalDetails!.forEach((element) {
+        model!.add(element.branchType!);
+      });
+    }
+    model = model!.toSet().toList();
+    loadingCreateModel = true.obs;
+    return model;
+  }
+
+  List<String>? createDropDownData(
+    String choose1, [
+    String choose2 = "",
+    String choose3 = "",
+    String choose4 = "",
+  ]) {
+    List<String>? tempModel = [];
+    if (loadingStudentPanelData.value == true) {
+      studentPanel.addtionalDetails!.forEach((element) {
+        if (choose1 == element.branchType) {
+          tempModel!.add(element.branchType!);
+        }
+      });
+    }
+    tempModel = tempModel!.toSet().toList();
+    return tempModel;
   }
 
   login() async {

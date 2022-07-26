@@ -74,7 +74,7 @@ class _TestDetailState extends State<TestDetail> {
                                   text: dashboardcontroller
                                       .studentPanel.testDetails!.examStatus,
                                   maxLines: 1,
-                                  textColor: Colors.grey,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
@@ -110,9 +110,10 @@ class _TestDetailState extends State<TestDetail> {
                                 width: 150,
                                 // custom Text field
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "Exam Name",
+                                  text: dashboardcontroller
+                                      .studentPanel.testDetails!.examName,
                                   maxLines: 1,
-                                  textColor: Colors.grey,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
@@ -258,6 +259,7 @@ class _TestDetailState extends State<TestDetail> {
                               contentPadding: EdgeInsets.only(left: 0),
                               title: const Text('Tentative'),
                               leading: Radio<BestTutorSite>(
+                                autofocus: true,
                                 value: BestTutorSite.Tentative,
                                 groupValue: _site,
                                 onChanged: (BestTutorSite? value) {
@@ -311,7 +313,9 @@ class _TestDetailState extends State<TestDetail> {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "",
+                                    text: dashboardcontroller
+                                        .studentPanel.testDetails!.overAll
+                                        .toString(),
                                     maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -358,7 +362,12 @@ class _TestDetailState extends State<TestDetail> {
                                                   top: 15),
                                               child:
                                                   CustomAutoSizeTextMontserrat(
-                                                text: "7",
+                                                text: dashboardcontroller
+                                                        .studentPanel
+                                                        .testDetails!
+                                                        .listening
+                                                        .toString() ??
+                                                    "",
                                                 maxLines: 1,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -402,7 +411,12 @@ class _TestDetailState extends State<TestDetail> {
                                                   top: 15),
                                               child:
                                                   CustomAutoSizeTextMontserrat(
-                                                text: "7",
+                                                text: dashboardcontroller
+                                                        .studentPanel
+                                                        .testDetails!
+                                                        .writing
+                                                        .toString() ??
+                                                    "",
                                                 maxLines: 1,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -455,7 +469,12 @@ class _TestDetailState extends State<TestDetail> {
                                                   top: 15),
                                               child:
                                                   CustomAutoSizeTextMontserrat(
-                                                text: "7",
+                                                text: dashboardcontroller
+                                                        .studentPanel
+                                                        .testDetails!
+                                                        .reading
+                                                        .toString() ??
+                                                    "",
                                                 maxLines: 1,
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -499,7 +518,12 @@ class _TestDetailState extends State<TestDetail> {
                                                   top: 15),
                                               child:
                                                   CustomAutoSizeTextMontserrat(
-                                                text: "7",
+                                                text: dashboardcontroller
+                                                        .studentPanel
+                                                        .testDetails!
+                                                        .speaking
+                                                        .toString() ??
+                                                    "",
                                                 maxLines: 1,
                                                 fontWeight: FontWeight.w600,
                                               ),

@@ -12,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/profilepagehorizontal.dart';
-import 'package:studentpanel/ui/screen/textscreen.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
 void main() {
@@ -88,10 +87,6 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: ProfilePageHorizontal.routeNamed,
           page: () => ProfilePageHorizontal(),
-        ),
-        GetPage(
-          name: TextScreen.routeNamed,
-          page: () => TextScreen(),
         ),
 
         //AnimationaPhonepe

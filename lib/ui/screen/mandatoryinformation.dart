@@ -4,7 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
+import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
 class MandatoryInformation extends StatelessWidget {
   MandatoryInformation({
@@ -14,10 +16,14 @@ class MandatoryInformation extends StatelessWidget {
   var controller = Get.put(ProfilePageController());
   var dashboardcontroller = Get.put(DashboardController());
 
+  callback(varTopic) {
+    print("mandatory" + varTopic);
+
+    dashboardcontroller.setdropdown1(varTopic);
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(controller.chooseIndex);
-
     return Column(
       children: [
         Padding(
@@ -40,15 +46,12 @@ class MandatoryInformation extends StatelessWidget {
                   width: 200,
                   // custom Text field
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: dashboardcontroller
-                              .studentPanel.addtionalDetails![1].branchType ??
-                          "",
-                      maxLines: 1,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                      padding: const EdgeInsets.only(),
+                      child: CustomDropDown(
+                        hint: "Branch Type",
+                        model: dashboardcontroller.createModelForDropdown(),
+                        callbackFunction: callback,
+                      )),
                 )
               ],
             ),
@@ -83,15 +86,13 @@ class MandatoryInformation extends StatelessWidget {
                   height: 40,
                   width: 200,
                   // custom Text field
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: dashboardcontroller
-                              .studentPanel.addtionalDetails![1].branchName ??
-                          "",
-                      maxLines: 1,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  child: CustomDropDown(
+                    hint: "Branch Type",
+                    model: dashboardcontroller.dropdown1 == null
+                        ? dashboardcontroller.createDropDownData(
+                            dashboardcontroller.dropdown1!.value)
+                        : [],
+                    callbackFunction: callback,
                   ),
                 )
               ],

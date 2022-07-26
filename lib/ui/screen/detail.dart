@@ -1,6 +1,6 @@
 import 'package:back_pressed/back_pressed.dart';
 import 'package:studentpanel/ui/controllers/detailcontroller.dart';
-import 'package:studentpanel/ui/screen/textscreen.dart';
+
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
 import 'package:flutter/foundation.dart';
 
@@ -153,26 +153,21 @@ class _DetialScreenState extends State<DetialScreen>
                     }
                   }),
               SizedBox(
-                height: 80,
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: CustomDropDown(
-                  model: const [
-                    "India",
-                    "USA",
-                    "Brazil",
-                    "Canada",
-                    "Australia",
-                    "Singapore"
-                  ],
-                  hint: "Country",
-                ),
-              ),
-              TextButton(
-                  onPressed: () {
-                    detailController.temp = true.obs;
-                    Get.to(() => const TextScreen());
-                  },
-                  child: const Text("click for Text Screen")),
+                  height: 80,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: Text("aman")
+                  // CustomDropDown(
+                  //   model: const [
+                  //     "India",
+                  //     "USA",
+                  //     "Brazil",
+                  //     "Canada",
+                  //     "Australia",
+                  //     "Singapore"
+                  //   ],
+                  //   hint: "Country",
+                  // ),
+                  ),
             ],
           ),
         ),
