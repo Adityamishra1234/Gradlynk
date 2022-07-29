@@ -22,7 +22,7 @@ class CourseChoose extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
           child: SizedBox(
-            height: 30,
+            height: 40,
             child: Row(
               children: [
                 Padding(
