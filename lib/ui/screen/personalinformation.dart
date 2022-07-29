@@ -205,7 +205,7 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
+                                  height: 30,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
