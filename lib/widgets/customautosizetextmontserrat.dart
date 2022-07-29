@@ -22,23 +22,26 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(text!,
-        overflow: TextOverflow.ellipsis,
-        maxLines: maxLines,
-        style: GoogleFonts.montserrat(
-          fontWeight: fontWeight ?? FontWeight.w500,
-          color: textColor ?? Colors.black,
-          fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-          decoration: underline != null
-              ? underline == true
-                  ? TextDecoration.underline
-                  : TextDecoration.none
-              : TextDecoration.none,
-        )
-        // GoogleFonts.monster(
-        //   fontWeight: fontWeight ?? FontWeight.w500,
-        //   fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-        // ),
-        );
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: AutoSizeText(text!,
+          overflow: TextOverflow.ellipsis,
+          maxLines: maxLines,
+          style: GoogleFonts.montserrat(
+            fontWeight: fontWeight ?? FontWeight.w500,
+            color: textColor ?? Colors.black,
+            fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
+            decoration: underline != null
+                ? underline == true
+                    ? TextDecoration.underline
+                    : TextDecoration.none
+                : TextDecoration.none,
+          )
+          // GoogleFonts.monster(
+          //   fontWeight: fontWeight ?? FontWeight.w500,
+          //   fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
+          // ),
+          ),
+    );
   }
 }

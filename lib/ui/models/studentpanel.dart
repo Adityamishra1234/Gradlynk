@@ -141,20 +141,6 @@ class AddtionalDetail {
       };
 }
 
-// enum BranchName { WEST_DELHI, PUNE }
-
-// final branchNameValues =
-//     EnumValues({"Pune": BranchName.PUNE, "West Delhi": BranchName.WEST_DELHI});
-
-// enum BranchType { BRANCH }
-
-// final branchTypeValues = EnumValues({"Branch": BranchType.BRANCH});
-
-// enum CountryName { AUSTRALIA, IRELAND }
-
-// final countryNameValues = EnumValues(
-//     {"Australia": CountryName.AUSTRALIA, "Ireland": CountryName.IRELAND});
-
 class OtherCountryOfInterest {
   OtherCountryOfInterest({
     this.countryName,
@@ -190,25 +176,21 @@ class PassportDetail {
   String? expiryDate;
 
   factory PassportDetail.fromJson(Map<String?, dynamic> json) => PassportDetail(
-        citizenOf: json["citizen_of"] == null ? null : json["citizen_of"],
-        countryOfIssue:
-            json["country_of_issue"] == null ? null : json["country_of_issue"],
-        passportNumber:
-            json["passport_number"] == null ? null : json["passport_number"],
-        placeOfIssue:
-            json["place_of_issue"] == null ? null : json["place_of_issue"],
-        dateOfIssue:
-            json["date_of_issue"] == null ? null : json["date_of_issue"],
-        expiryDate: json["expiry_date"] == null ? null : json["expiry_date"],
+        citizenOf: json["citizen_of"] ?? null,
+        countryOfIssue: json["country_of_issue"] ?? null,
+        passportNumber: json["passport_number"] ?? null,
+        placeOfIssue: json["place_of_issue"] ?? null,
+        dateOfIssue: json["date_of_issue"] ?? null,
+        expiryDate: json["expiry_date"] ?? null,
       );
 
   Map<String?, dynamic> toJson() => {
-        "citizen_of": citizenOf == null ? null : citizenOf,
-        "country_of_issue": countryOfIssue == null ? null : countryOfIssue,
-        "passport_number": passportNumber == null ? null : passportNumber,
-        "place_of_issue": placeOfIssue == null ? null : placeOfIssue,
-        "date_of_issue": dateOfIssue == null ? null : dateOfIssue,
-        "expiry_date": expiryDate == null ? null : expiryDate,
+        "citizen_of": citizenOf ?? null,
+        "country_of_issue": countryOfIssue ?? null,
+        "passport_number": passportNumber ?? null,
+        "place_of_issue": placeOfIssue ?? null,
+        "date_of_issue": dateOfIssue ?? null,
+        "expiry_date": expiryDate ?? null,
       };
 }
 
@@ -270,17 +252,3 @@ class TestDetails {
         "speaking": speaking,
       };
 }
-
-// class EnumValues<T> {
-//   Map<String?, T> map;
-//   Map<T, String?> reverseMap;
-
-//   EnumValues(this.map);
-
-//   Map<T, String?> get reverse {
-//     if (reverseMap == null) {
-//       reverseMap = map.map((k, v) => new MapEntry(v, k));
-//     }
-//     return reverseMap;
-//   }
-// }

@@ -16,6 +16,7 @@ class PersonalInformation extends StatelessWidget {
   var dashboardcontroller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
+    print(dashboardcontroller.studentPanel.mobile);
     return GetBuilder<DashboardController>(
       builder: (_) => Column(
         children: [
@@ -152,6 +153,51 @@ class PersonalInformation extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),
                                   child: CustomAutoSizeTextMontserrat(
+                                    text: "Date of Birth",
+                                    maxLines: 1,
+                                    textColor: Colors.grey,
+                                  ),
+                                ),
+                                Spacer(),
+                                SizedBox(
+                                  height: 40,
+                                  width: 200,
+                                  // custom Text field
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 15),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: dashboardcontroller
+                                                  .studentPanel.dateOfBirth !=
+                                              null
+                                          ? dashboardcontroller
+                                              .studentPanel.dateOfBirth!
+                                              .toString()
+                                          : "",
+                                      maxLines: 1,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: Divider(
+                            height: 5,
+                            thickness: 1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          child: SizedBox(
+                            height: 40,
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: CustomAutoSizeTextMontserrat(
                                     text: "Mobile",
                                     maxLines: 1,
                                     textColor: Colors.grey,
@@ -166,7 +212,7 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 15),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
-                                                  .studentPanel.mobile ==
+                                                  .studentPanel.mobile !=
                                               null
                                           ? dashboardcontroller
                                               .studentPanel.mobile!
@@ -498,7 +544,7 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 15),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
-                                                  .studentPanel.pincode ==
+                                                  .studentPanel.pincode !=
                                               null
                                           ? dashboardcontroller
                                               .studentPanel.pincode
