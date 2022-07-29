@@ -13,6 +13,8 @@ class CourseChoose extends StatelessWidget {
     // dashboardcontroller.setdropdown1(varTopic);
   }
 
+
+//Aman
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +22,7 @@ class CourseChoose extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
           child: SizedBox(
-            height: 40,
+            height: 30,
             child: Row(
               children: [
                 Padding(
