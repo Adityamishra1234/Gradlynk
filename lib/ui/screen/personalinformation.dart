@@ -150,7 +150,7 @@ class PersonalInformation extends StatelessWidget {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 0),
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Mobile",
                                     maxLines: 1,
