@@ -209,7 +209,7 @@ class PersonalInformation extends StatelessWidget {
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
                                                   .studentPanel.mobile !=
