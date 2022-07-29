@@ -151,7 +151,7 @@ class PersonalInformation extends StatelessWidget {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 10),
+                                  padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Date of Birth",
                                     maxLines: 1,
