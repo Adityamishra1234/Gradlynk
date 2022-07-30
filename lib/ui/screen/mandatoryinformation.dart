@@ -34,7 +34,6 @@ class MandatoryInformation extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 30),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -47,7 +46,6 @@ class MandatoryInformation extends StatelessWidget {
                               ),
                               Spacer(),
                               SizedBox(
-                                height: 40,
                                 width: 200,
                                 // custom Text field
                                 child: Padding(
@@ -76,7 +74,6 @@ class MandatoryInformation extends StatelessWidget {
                           right: 10,
                         ),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -90,7 +87,6 @@ class MandatoryInformation extends StatelessWidget {
                               Spacer(),
                               GetBuilder<DashboardController>(
                                 builder: (controller) => SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: controller.loadingBranchname.value ==
@@ -132,7 +128,6 @@ class MandatoryInformation extends StatelessWidget {
                           right: 10,
                         ),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -156,7 +151,6 @@ class MandatoryInformation extends StatelessWidget {
                               ),
                               Spacer(),
                               SizedBox(
-                                height: 40,
                                 width: 200,
                                 // custom Text field
                                 child: Padding(
@@ -187,7 +181,6 @@ class MandatoryInformation extends StatelessWidget {
                           right: 10,
                         ),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -200,7 +193,6 @@ class MandatoryInformation extends StatelessWidget {
                               ),
                               Spacer(),
                               SizedBox(
-                                height: 40,
                                 width: 150,
                                 // custom Text field
                                 child: Padding(
@@ -231,7 +223,6 @@ class MandatoryInformation extends StatelessWidget {
                           right: 10,
                         ),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -244,7 +235,6 @@ class MandatoryInformation extends StatelessWidget {
                               ),
                               Spacer(),
                               SizedBox(
-                                height: 40,
                                 width: 150,
                                 // custom Text field
                                 child: Padding(
@@ -273,7 +263,6 @@ class MandatoryInformation extends StatelessWidget {
                           right: 10,
                         ),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -286,7 +275,6 @@ class MandatoryInformation extends StatelessWidget {
                               ),
                               Spacer(),
                               SizedBox(
-                                height: 40,
                                 width: 150,
                                 // custom Text field
                                 child: Padding(
@@ -318,7 +306,6 @@ class MandatoryInformation extends StatelessWidget {
                           right: 10,
                         ),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -331,7 +318,6 @@ class MandatoryInformation extends StatelessWidget {
                               ),
                               Spacer(),
                               SizedBox(
-                                height: 40,
                                 width: 150,
                                 // custom Text field
                                 child: Padding(

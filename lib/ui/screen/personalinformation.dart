@@ -75,7 +75,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -114,7 +114,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -153,7 +153,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -239,7 +239,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -278,7 +278,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -317,7 +317,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -356,7 +356,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -395,7 +395,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -434,7 +434,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -473,7 +473,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -482,7 +482,7 @@ class PersonalInformation extends StatelessWidget {
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
                                               .studentPanel.address ??
-                                          "asdjucjgasd awdeioqwedrn dsfcioerhdnfde fcweiordhfnnsdf veqiowrdhndefw e3qirhdwf wehrifwamfbaiohdfiowaf eifobsgf eqfibrf",
+                                          "",
                                       maxLines: 5,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -512,7 +512,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -555,7 +555,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
