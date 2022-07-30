@@ -31,6 +31,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     debugPrint(Get.arguments);
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
+    print(MediaQuery.of(context).size.height);
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
       body: Container(

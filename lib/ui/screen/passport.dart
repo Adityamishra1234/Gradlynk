@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
@@ -14,225 +16,230 @@ class Passport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-          child: SizedBox(
-            height: 40,
-            child: Row(
+    return GetBuilder<DashboardController>(
+        builder: (_) => Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Passport Number",
-                    maxLines: 1,
-                    textColor: Colors.grey,
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Passport Number",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 150,
+                          // custom Text field
+                          child: CustomAutoSizeTextMontserrat(
+                            text: _.studentPanel.passportDetails![0]
+                                    .passportNumber ??
+                                "",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 150,
-                  // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    callbackFunction: callback,
-                    border: false,
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(
-            height: 5,
-            thickness: 1,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              children: [
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Citizen of",
-                    maxLines: 1,
-                    textColor: Colors.grey,
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Citizen of",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 150,
+                          // custom Text field
+                          child: CustomDropDown(
+                            hint: "Test Already taken",
+                            model: ["1", "2", "3", "4"],
+                            callbackFunction: callback,
+                            border: false,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 150,
-                  // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    callbackFunction: callback,
-                    border: false,
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(
-            height: 5,
-            thickness: 1,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              children: [
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Country Of Issuse",
-                    maxLines: 1,
-                    textColor: Colors.grey,
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Country Of Issuse",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 150,
+                          // custom Text field
+                          child: CustomDropDown(
+                            hint: "Test Already taken",
+                            model: ["1", "2", "3", "4"],
+                            callbackFunction: callback,
+                            border: false,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 150,
-                  // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    callbackFunction: callback,
-                    border: false,
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(
-            height: 5,
-            thickness: 1,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              children: [
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Place Of Issuse",
-                    maxLines: 1,
-                    textColor: Colors.grey,
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Place Of Issuse",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 150,
+                          // custom Text field
+                          child: CustomAutoSizeTextMontserrat(
+                            text: _.studentPanel.passportDetails![0]
+                                    .placeOfIssue ??
+                                "",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 150,
-                  // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    callbackFunction: callback,
-                    border: false,
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(
-            height: 5,
-            thickness: 1,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              children: [
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Date Of Issuse",
-                    maxLines: 1,
-                    textColor: Colors.grey,
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Date Of Issuse",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 150,
+                          // custom Text field
+                          child: CustomAutoSizeTextMontserrat(
+                            text: _.studentPanel.passportDetails![0]
+                                    .dateOfIssue ??
+                                "",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 150,
-                  // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    callbackFunction: callback,
-                    border: false,
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
                   ),
-                )
-              ],
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(
-            height: 5,
-            thickness: 1,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              children: [
+                ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Expire Date",
-                    maxLines: 1,
-                    textColor: Colors.grey,
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Expire Date",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        ),
+                        Spacer(),
+                        SizedBox(
+                          width: 150,
+                          // custom Text field
+                          child: CustomAutoSizeTextMontserrat(
+                            text:
+                                _.studentPanel.passportDetails![0].expiryDate ??
+                                    "",
+                            maxLines: 1,
+                            textColor: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
-                SizedBox(
-                  width: 150,
-                  // custom Text field
-                  child: CustomDropDown(
-                    hint: "Test Already taken",
-                    model: ["1", "2", "3", "4"],
-                    callbackFunction: callback,
-                    border: false,
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
                   ),
-                )
+                ),
               ],
-            ),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(
-            height: 5,
-            thickness: 1,
-          ),
-        ),
-      ],
-    );
+            ));
   }
 }

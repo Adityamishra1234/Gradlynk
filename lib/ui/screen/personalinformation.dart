@@ -66,7 +66,6 @@ class PersonalInformation extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               left: 20, right: 10, top: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -79,7 +78,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -107,7 +105,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -126,9 +123,9 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 0),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
-                                              .studentPanel.email ??
+                                              .studentPanel.email! ??
                                           "",
-                                      maxLines: 2,
+                                      maxLines: 5,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -147,7 +144,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -160,7 +156,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -192,7 +187,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -205,7 +199,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -237,7 +230,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -250,7 +242,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -278,7 +269,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -291,7 +281,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -319,7 +308,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -332,7 +320,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -360,7 +347,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -373,7 +359,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -401,7 +386,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -414,7 +398,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -442,7 +425,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -455,7 +437,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -483,7 +464,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -496,7 +476,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -504,8 +483,8 @@ class PersonalInformation extends StatelessWidget {
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
                                               .studentPanel.address ??
-                                          "",
-                                      maxLines: 1,
+                                          "asdjucjgasd awdeioqwedrn dsfcioerhdnfde fcweiordhfnnsdf veqiowrdhndefw e3qirhdwf wehrifwamfbaiohdfiowaf eifobsgf eqfibrf",
+                                      maxLines: 5,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -524,7 +503,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -537,7 +515,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -569,7 +546,6 @@ class PersonalInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 20, right: 10),
                           child: SizedBox(
-                            height: 40,
                             child: Row(
                               children: [
                                 Padding(
@@ -582,7 +558,6 @@ class PersonalInformation extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 SizedBox(
-                                  height: 40,
                                   width: 200,
                                   // custom Text field
                                   child: Padding(
@@ -603,9 +578,7 @@ class PersonalInformation extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 40,
-                        )
+                        const SizedBox()
                       ],
                     ),
                   ),
