@@ -16,7 +16,6 @@ class PersonalInformation extends StatelessWidget {
   var dashboardcontroller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
-    print(dashboardcontroller.studentPanel.mobile);
     return GetBuilder<DashboardController>(
       builder: (_) => Column(
         children: [
@@ -197,7 +196,7 @@ class PersonalInformation extends StatelessWidget {
                                     textColor: Colors.grey,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   // custom Text field
@@ -250,7 +249,7 @@ class PersonalInformation extends StatelessWidget {
                                       text: dashboardcontroller
                                               .studentPanel.secondaryEmail ??
                                           "",
-                                      maxLines: 1,
+                                      maxLines: 3,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -595,7 +594,7 @@ class PersonalInformation extends StatelessWidget {
                   ),
               ],
             ),
-          if (dashboardcontroller.loadingStudentPanelData.value == false)
+          if (_.loadingStudentPanelData.value == false)
             const Center(child: CircularProgressIndicator()),
         ],
       ),

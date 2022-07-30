@@ -74,7 +74,7 @@ class DashboardController extends BaseController {
       }
     });
 
-    tempModel = tempModel!.toSet().toList();
+    tempModel = tempModel.toSet().toList();
     return tempModel;
   }
 

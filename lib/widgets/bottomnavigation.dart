@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -29,7 +32,9 @@ class BottomNavigation extends StatelessWidget {
                       width: 60,
                       child: InkWell(
                         splashColor: Color(0xFF1940B3),
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(DashBoard.routeNamed);
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -130,7 +135,9 @@ class BottomNavigation extends StatelessWidget {
                     width: 50,
                     child: InkWell(
                       splashColor: Color(0xFF1940B3),
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(ProfilePage.routeNamed);
+                      },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
