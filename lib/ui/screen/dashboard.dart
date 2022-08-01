@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +5,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
+import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
@@ -130,12 +130,7 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
-                          Get.snackbar(
-                            "DashBoard",
-                            "Upload Document",
-                            snackPosition: SnackPosition.BOTTOM,
-                          );
-                          debugPrint("Upload Document");
+                          Get.toNamed(UploadDocument.routeNamed);
                         },
                         child: Ink(
                           height: 160,
