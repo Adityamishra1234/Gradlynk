@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -93,7 +94,7 @@ class _LoginState extends State<Login> {
     Column(
       children: [
         Image.asset(
-          "assets/images/track.png",
+          "assets/images/track.gif",
           height: 350,
           width: 300,
         ),
@@ -206,17 +207,7 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                     ],
-                                  )
-                              // AnimatedSmoothIndicator(
-                              //   activeIndex: _.currentindex.value,
-                              //   count: 3,
-                              //   effect: JumpingDotEffect(
-                              //       dotHeight: _.currentindex.value == 0 ? 5 : 8,
-                              //       dotWidth: _.currentindex.value == 0 ? 5 : 8,
-                              //       dotColor: Colors.white,
-                              //       activeDotColor: Colors.grey),
-                              // ),
-                              )),
+                                  ))),
                     ),
                   ),
                   const Spacer()
@@ -267,7 +258,9 @@ class _LoginState extends State<Login> {
                                       BorderRadius.circular(12), // <-- Radius
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(OTPScreen.routeNamed);
+                              },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Send OTP",
                                 maxLines: 1,

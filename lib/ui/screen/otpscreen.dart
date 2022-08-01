@@ -3,12 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
+import 'package:studentpanel/ui/controllers/otpscreencontroller.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class OTPScreen extends StatelessWidget {
-  const OTPScreen({Key? key}) : super(key: key);
-  static const routeNamed = '/Login';
+  OTPScreen({Key? key}) : super(key: key);
+  static const routeNamed = '/OTPScreen';
+  var controller = Get.put(OTPScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,85 +24,48 @@ class OTPScreen extends StatelessWidget {
           decoration: const BoxDecoration(color: Color(0xFF1940B3)),
           child: ListView(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    CustomAutoSizeTextMontserrat(
-                      text: "aman",
-                      maxLines: 1,
-                      textColor: Colors.white,
-                      fontSize: 25,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10, left: 2),
-                      child: Image.asset(
-                        "assets/images/logow.png",
-                        height: 45,
-                      ),
-                    ),
-                    const Spacer(),
-                  ],
-                ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.025,
               ),
               Row(
                 children: [
-                  const Spacer(),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 20,
-                      ),
-                      child: SizedBox(
-                          height: 10,
-                          child: GetBuilder<LoginController>(
-                              builder: (_) => Row(
-                                    children: [
-                                      Icon(
-                                        Icons.circle,
-                                        color: _.currentindex.value == 0
-                                            ? Colors.white
-                                            : Colors.grey,
-                                        size:
-                                            _.currentindex.value == 0 ? 11 : 8,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: Icon(
-                                          Icons.circle,
-                                          color: _.currentindex.value == 1
-                                              ? Colors.white
-                                              : Colors.grey,
-                                          size: _.currentindex.value == 1
-                                              ? 11
-                                              : 8,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: Icon(
-                                          Icons.circle,
-                                          color: _.currentindex.value == 2
-                                              ? Colors.white
-                                              : Colors.grey,
-                                          size: _.currentindex.value == 2
-                                              ? 11
-                                              : 8,
-                                        ),
-                                      ),
-                                    ],
-                                  ))),
-                    ),
+                  Spacer(),
+                  CustomAutoSizeTextMontserrat(
+                    text: "OTP has been send to",
+                    maxLines: 1,
+                    textColor: Colors.white,
+                    fontSize: 24,
                   ),
-                  const Spacer()
+                  Spacer()
                 ],
+              ),
+              Row(
+                children: [
+                  Spacer(),
+                  CustomAutoSizeTextMontserrat(
+                    text: "your sms",
+                    maxLines: 1,
+                    textColor: Colors.white,
+                    fontSize: 24,
+                  ),
+                  Spacer()
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              Image.asset(
+                "assets/images/otp.png",
+                height: 350,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
               Align(
                 alignment: AlignmentDirectional.bottomCenter,
-                heightFactor: 1.1,
+                heightFactor: 1,
                 child: Container(
-                  height: 240,
+                  height: 230,
                   width: 355,
                   decoration: const BoxDecoration(
                       color: Colors.white,
@@ -108,21 +76,32 @@ class OTPScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 20, left: 20, right: 20),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              filled: true,
-                              hintStyle: TextStyle(color: Colors.grey[800]),
-                              hintText: "Enter your phone number",
-                              fillColor: Colors.white70),
+                        padding: EdgeInsets.only(top: 10, left: 20, right: 20),
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 1),
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(
+                                    10) //                 <--- border radius here
+                                ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: OTPTextField(
+                              contentPadding:
+                                  EdgeInsets.only(top: 0, bottom: 10),
+                              length: 5,
+                              width: MediaQuery.of(context).size.width,
+                              fieldWidth: 25,
+                              style: TextStyle(fontSize: 17),
+                              textFieldAlignment: MainAxisAlignment.spaceAround,
+                              fieldStyle: FieldStyle.underline,
+                              onCompleted: (pin) {
+                                print("Completed: " + pin);
+                              },
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
@@ -138,14 +117,38 @@ class OTPScreen extends StatelessWidget {
                                       BorderRadius.circular(12), // <-- Radius
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(DashBoard.routeNamed);
+                              },
                               child: CustomAutoSizeTextMontserrat(
-                                text: "Send OTP",
+                                text: "Submit",
                                 maxLines: 1,
                                 textColor: Colors.white,
                               )),
                         ),
-                      )
+                      ),
+                      GetBuilder<OTPScreenController>(
+                          builder: (_) => Column(
+                                children: [
+                                  if (_.loadingcounter.value == true)
+                                    TextButton(
+                                        onPressed: () {},
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Resend OTP",
+                                          maxLines: 1,
+                                          textColor: Color(0xFF1940B3),
+                                        )),
+                                  if (_.loadingcounter.value == false)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "Resend OTP in 00:${_.count.value}",
+                                        maxLines: 1,
+                                      ),
+                                    )
+                                ],
+                              ))
                     ],
                   ),
                 ),
