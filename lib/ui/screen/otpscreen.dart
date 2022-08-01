@@ -1,117 +1,17 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:studentpanel/ui/controllers/logincontroller.dart';
-import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/utils/constants.dart';
-import 'package:studentpanel/widgets/bottomnavigation.dart';
+import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/drawerfilter.dart';
-import 'package:new_version/new_version.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class OTPScreen extends StatelessWidget {
+  const OTPScreen({Key? key}) : super(key: key);
   static const routeNamed = '/Login';
 
   @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  String? email, password;
-  var controller = Get.put(LoginController());
-
-  @override
-  void initState() {
-    super.initState();
-
-    // _checkVersion();
-  }
-
-  // void _checkVersion() async {
-  //   final newVersion = NewVersion(
-  //     // For Real Case
-  //     // androidId: "com.example.studentpanel",
-  //     //Use For Test Purpose only
-  //     androidId: "com.snapchat.android",
-  //   );
-  //   final status = await newVersion.getVersionStatus();
-  //   newVersion.showUpdateDialog(
-  //     context: context,
-  //     versionStatus: status!,
-  //     dialogTitle: "UPDATE!!!",
-  //     dismissButtonText: "Skip",
-  //     dialogText:
-  //         "Please update the app from ${status.localVersion} to ${status.storeVersion}",
-  //     dismissAction: () {
-  //       Navigator.of(context).pop();
-  //     },
-  //     updateButtonText: "Lets update",
-  //   );
-  //   debugPrint("DEVICE : ${status.localVersion}");
-  //   debugPrint("STORE : ${status.storeVersion}");
-  // }
-
-  List<Widget> imglist1 = [
-    Column(
-      children: [
-        Image.asset(
-          "assets/images/study.gif",
-          height: 350,
-          width: 300,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Your International Study patner",
-            maxLines: 1,
-            textColor: Colors.white,
-          ),
-        )
-      ],
-    ),
-    Column(
-      children: [
-        Image.asset(
-          "assets/images/upload_doc.png",
-          height: 350,
-          width: 300,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Upload your documents",
-            maxLines: 1,
-            textColor: Colors.white,
-          ),
-        )
-      ],
-    ),
-    Column(
-      children: [
-        Image.asset(
-          "assets/images/track.png",
-          height: 350,
-          width: 300,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Track your application",
-            maxLines: 1,
-            textColor: Colors.white,
-          ),
-        ),
-      ],
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
-    final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
       body: Container(
           height: MediaQuery.of(context).size.height,
@@ -125,7 +25,7 @@ class _LoginState extends State<Login> {
                   children: [
                     const Spacer(),
                     CustomAutoSizeTextMontserrat(
-                      text: "Welcome to",
+                      text: "aman",
                       maxLines: 1,
                       textColor: Colors.white,
                       fontSize: 25,
@@ -140,25 +40,6 @@ class _LoginState extends State<Login> {
                     const Spacer(),
                   ],
                 ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 0),
-                child: CarouselSlider(
-                    options: CarouselOptions(
-                      onPageChanged: (index, reason) {
-                        controller.setUpdateCurrentIndex(index);
-                      },
-                      aspectRatio: 2.0,
-                      disableCenter: true,
-                      viewportFraction: 1,
-                      enlargeCenterPage: false,
-                      autoPlayCurve: Curves.ease,
-                      autoPlay: true,
-                      height: 410,
-                      autoPlayInterval: const Duration(seconds: 3),
-                    ),
-                    items: imglist1),
               ),
               Row(
                 children: [
@@ -206,17 +87,7 @@ class _LoginState extends State<Login> {
                                         ),
                                       ),
                                     ],
-                                  )
-                              // AnimatedSmoothIndicator(
-                              //   activeIndex: _.currentindex.value,
-                              //   count: 3,
-                              //   effect: JumpingDotEffect(
-                              //       dotHeight: _.currentindex.value == 0 ? 5 : 8,
-                              //       dotWidth: _.currentindex.value == 0 ? 5 : 8,
-                              //       dotColor: Colors.white,
-                              //       activeDotColor: Colors.grey),
-                              // ),
-                              )),
+                                  ))),
                     ),
                   ),
                   const Spacer()

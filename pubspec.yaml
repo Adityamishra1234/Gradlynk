@@ -55,6 +55,7 @@ dependencies:
   phlox_animations: ^2.1.1
   container_tab_indicator: ^0.3.0
   carousel_slider: ^4.1.1
+  smooth_page_indicator: ^1.0.0+2
 
 
 

@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends BaseController with StateMixin<UserModel> {
   UserModel? userModel;
+  RxInt currentindex = 0.obs;
   ApiServices services = ApiServices();
 
   Future<UserModel> getUserData() async {
@@ -18,6 +19,11 @@ class LoginController extends BaseController with StateMixin<UserModel> {
     var jsondata =
         json.decode(sharedPreferences.getString("UserModel").toString());
     return userModel = UserModel.fromJson(jsondata);
+  }
+
+  setUpdateCurrentIndex(int data) {
+    currentindex.value = data;
+    update();
   }
 
   Login(String email, String password) async {

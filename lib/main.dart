@@ -4,6 +4,7 @@ import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/detail.dart';
@@ -63,7 +64,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: Login.routeNamed,
+      initialRoute: OTPScreen.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -92,6 +93,10 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: AnimationaPhonepe.routeNamed,
           page: () => AnimationaPhonepe(),
+        ),
+        GetPage(
+          name: OTPScreen.routeNamed,
+          page: () => OTPScreen(),
         ),
       ],
     );
