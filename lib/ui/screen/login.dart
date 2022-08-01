@@ -124,7 +124,6 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.only(top: 30),
                 child: Row(
                   children: [
-                    const Spacer(),
                     CustomAutoSizeTextMontserrat(
                       text: "Welcome to",
                       maxLines: 1,
@@ -138,11 +137,9 @@ class _LoginState extends State<Login> {
                         height: 45,
                       ),
                     ),
-                    const Spacer(),
                   ],
                 ),
               ),
-              const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 0),
                 child: CarouselSlider(
