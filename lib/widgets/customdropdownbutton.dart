@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomDropDown extends StatelessWidget {
   List<String>? model;
   bool? underline;
-  String? text;
+  // String? text;
   int? maxLines, fontSize;
   FontWeight? fontWeight;
   Color? textColor;
@@ -16,13 +16,13 @@ class CustomDropDown extends StatelessWidget {
     Key? key,
     required this.callbackFunction,
     required this.model,
-    this.hint,
+    required this.hint,
     this.border,
     this.fontSize,
     this.fontWeight,
     this.maxLines,
     this.textColor,
-    this.text,
+    // this.text,
     this.underline,
   }) : super(key: key);
 

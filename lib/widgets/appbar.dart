@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
+import 'package:studentpanel/widgets/drawerfilter.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -31,7 +32,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
                 height: 30,
                 width: 30,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+                DrawerFilter();
+              },
             ),
           ),
           SvgPicture.asset(

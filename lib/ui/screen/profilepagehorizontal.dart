@@ -161,7 +161,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         onPressed: () {
                                           controller.getChooseIndex(3.obs);
                                         },
-                                        child: Text("Course Choose",
+                                        child: Text("Course Choice",
                                             style: getTextStyle(
                                                 controller.chooseIndex!.value ==
                                                     3)))),
