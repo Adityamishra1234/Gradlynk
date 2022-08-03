@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
@@ -23,27 +21,19 @@ class DashboardController extends BaseController {
   RxBool loadingUpcomingHolidays = false.obs;
   RxBool loadingStudentPanelData = false.obs;
   RxBool loadingCreateModel = false.obs;
-  RxBool loadingBranchname = false.obs;
+
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
-  RxString? dropdown1 = "".obs;
 
 // helo word
   @override
   void onInit() {
     super.onInit();
     login();
-    createModelForDropdown();
+    // createModelForDropdown();
     // newAndUpdates();
     // upcomingEvents();
     // upcomingholidays();
-  }
-
-  setdropdown1(String? data) {
-    dropdown1 = data!.obs;
-    update();
-    loadingBranchname = true.obs;
-    update();
   }
 
   List<String>? createModelForDropdown() {
@@ -79,12 +69,14 @@ class DashboardController extends BaseController {
   }
 
   login() async {
-    var res = await apiservices.login(
-        Endpoints.baseUrl!, Endpoints.login!, "8860373603");
-    if (res != null) {
-      studentPanel = res;
-      loadingStudentPanelData = true.obs;
-      update();
+    if (loadingStudentPanelData.value == false) {
+      var res = await apiservices.login(
+          Endpoints.baseUrl!, Endpoints.login!, "8860373603");
+      if (res != null) {
+        studentPanel = res;
+        loadingStudentPanelData = true.obs;
+        update();
+      }
     }
   }
 

@@ -14,20 +14,19 @@ class MandatoryInformation extends StatelessWidget {
   }) : super(key: key);
 
   var controller = Get.put(ProfilePageController());
-  var dashboardcontroller = Get.put(DashboardController());
 
   callback(varTopic) {
     print("mandatory" + varTopic);
 
-    dashboardcontroller.setdropdown1(varTopic);
+    controller.setdropdown1(varTopic);
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DashboardController>(
-        builder: (controller) => Column(
+    return GetX<DashboardController>(
+        builder: (controller1) => Column(
               children: [
-                if (controller.loadingStudentPanelData.value == true)
+                if (controller1.loadingStudentPanelData.value == true)
                   Column(
                     children: [
                       Padding(
@@ -52,8 +51,8 @@ class MandatoryInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(),
                                     child: CustomDropDown(
                                       hint: "Branch Type",
-                                      model: dashboardcontroller
-                                          .createModelForDropdown(),
+                                      model:
+                                          controller1.createModelForDropdown(),
                                       callbackFunction: callback,
                                     )),
                               )
@@ -83,32 +82,26 @@ class MandatoryInformation extends StatelessWidget {
                                 ),
                               ),
                               Spacer(),
-                              GetBuilder<DashboardController>(
-                                builder: (controller) => SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: controller.loadingBranchname.value ==
-                                          true
-                                      ? CustomDropDown(
-                                          hint: dashboardcontroller
-                                              .dropdown1!.value,
-                                          model: dashboardcontroller
-                                              .createDropDownData(
-                                                  dashboardcontroller
-                                                      .dropdown1!.value),
-                                          callbackFunction: callback,
-                                        )
-                                      : Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Branch Name",
-                                            maxLines: 1,
-                                            fontWeight: FontWeight.w600,
-                                          ),
+                              SizedBox(
+                                width: 200,
+                                // custom Text field
+                                child: controller.loadingBranchname.value ==
+                                        true
+                                    ? CustomDropDown(
+                                        hint: controller.dropdown1!.value,
+                                        model: controller1.createDropDownData(
+                                            controller.dropdown1!.value),
+                                        callbackFunction: callback,
+                                      )
+                                    : Padding(
+                                        padding: const EdgeInsets.only(top: 15),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Branch Name",
+                                          maxLines: 1,
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                ),
-                              )
+                                      ),
+                              ),
                             ],
                           ),
                         ),
@@ -128,22 +121,19 @@ class MandatoryInformation extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
-                                child:
-                                    controller.loadingServiceName.value == true
-                                        ? CustomDropDown(
-                                            hint: dashboardcontroller
-                                                .dropdown1!.value,
-                                            model: dashboardcontroller
-                                                .createDropDownData(
-                                                    dashboardcontroller
-                                                        .dropdown1!.value),
-                                            callbackFunction: callback,
-                                          )
-                                        : CustomAutoSizeTextMontserrat(
-                                            text: "Service Name",
-                                            maxLines: 1,
-                                            textColor: Colors.grey,
-                                          ),
+                                child: controller1.loadingServiceName.value ==
+                                        true
+                                    ? CustomDropDown(
+                                        hint: controller.dropdown1!.value,
+                                        model: controller1.createDropDownData(
+                                            controller.dropdown1!.value),
+                                        callbackFunction: callback,
+                                      )
+                                    : CustomAutoSizeTextMontserrat(
+                                        text: "Service Name",
+                                        maxLines: 1,
+                                        textColor: Colors.grey,
+                                      ),
                               ),
                               Spacer(),
                               SizedBox(
@@ -152,7 +142,7 @@ class MandatoryInformation extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: dashboardcontroller.studentPanel
+                                    text: controller1.studentPanel
                                             .addtionalDetails![1].serviceName ??
                                         "",
                                     maxLines: 1,
@@ -192,7 +182,7 @@ class MandatoryInformation extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: dashboardcontroller.studentPanel
+                                    text: controller1.studentPanel
                                             .addtionalDetails![1].countryName ??
                                         "",
                                     maxLines: 1,
@@ -311,7 +301,7 @@ class MandatoryInformation extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: dashboardcontroller
+                                    text: controller1
                                             .studentPanel.passportAvailable ??
                                         "",
                                     maxLines: 1,
@@ -336,7 +326,7 @@ class MandatoryInformation extends StatelessWidget {
                       const Padding(padding: EdgeInsets.only(bottom: 60))
                     ],
                   ),
-                if (controller.loadingStudentPanelData.value == false)
+                if (controller1.loadingStudentPanelData.value == false)
                   const Center(
                     child: CircularProgressIndicator(),
                   )

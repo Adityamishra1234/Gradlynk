@@ -6,18 +6,18 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
 
 class ProfilePageController extends BaseController with StateMixin<UserModel> {
+  DropDownModel? dropDownModel;
+
+  ///
+
   RxInt? chooseIndex = 0.obs;
   RxBool? englishTestDetail = true.obs;
   RxBool? showAnimation = false.obs;
   RxBool? firstTimeAnimation = false.obs;
-
-  DropDownModel? dropDownModel;
-  StudentPanel studentPanel = StudentPanel();
-  RxBool loadingStudentPanelData = false.obs;
-  RxBool loadingCreateModel = false.obs;
-  RxBool loadingBranchname = false.obs;
-  List<String>? model = [];
   RxString? dropdown1 = "".obs;
+  RxBool loadingBranchname = false.obs;
+
+  StudentPanel studentPanel = StudentPanel();
 
   List<RxBool> loading = [];
 
@@ -28,18 +28,25 @@ class ProfilePageController extends BaseController with StateMixin<UserModel> {
     update();
   }
 
-  List<String>? createModelForDropdown() {
-    if (loadingStudentPanelData.value == true) {
-      studentPanel.addtionalDetails!.forEach((element) {
-        model!.add(element.branchType!);
-      });
-    }
-    model = model!.toSet().toList();
-    loadingCreateModel = true.obs;
-    update();
+  // setdropdown1(String? data) {
+  //   dropdown1 = data!.obs;
+  //   update();
+  //   loadingBranchname = true.obs;
+  //   update();
+  // }
 
-    return model;
-  }
+  // List<String>? createModelForDropdown() {
+  //   if (loadingStudentPanelData.value == true) {
+  //     studentPanel.addtionalDetails!.forEach((element) {
+  //       model!.add(element.branchType!);
+  //     });
+  //   }
+  //   model = model!.toSet().toList();
+  //   loadingCreateModel = true.obs;
+  //   update();
+
+  //   return model;
+  // }
 
   List<String>? createDropDownData(
     String choose1, [

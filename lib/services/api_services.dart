@@ -32,12 +32,12 @@ class ApiServices extends StudentPanelBase {
       Get.snackbar("", response.body);
     }
     if (response != null) {
-      print(response);
-      SharedPreferences sharedPreferences =
-          await SharedPreferences.getInstance();
-      final formattedStr = formatDate(
-          DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
-      sharedPreferences.setString('UserModel', response.body);
+      // print(response);
+      // SharedPreferences sharedPreferences =
+      //     await SharedPreferences.getInstance();
+      // final formattedStr = formatDate(
+      //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
+      // sharedPreferences.setString('UserModel', response.body);
       var jsondata = json.decode(response.body);
       studentPanel = StudentPanel.fromJson(jsondata);
       // sharedPreferences.setString('token', userModel.token);
