@@ -46,8 +46,8 @@ class _TestDetailState extends State<TestDetail> {
                                     Align(
                                       alignment: AlignmentDirectional.topStart,
                                       child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 15),
+                                          padding: const EdgeInsets.only(
+                                              left: 20, top: 15),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Self",
                                             maxLines: 1,

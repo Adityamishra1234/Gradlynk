@@ -24,7 +24,7 @@ class Passport extends StatelessWidget {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsets.only(left: 20, right: 10, top: 10),
+                            const EdgeInsets.only(left: 20, right: 10, top: 30),
                         child: SizedBox(
                           height: 40,
                           child: Row(
@@ -79,11 +79,12 @@ class Passport extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  callbackFunction: callback,
-                                  border: false,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: _.studentPanel.passportDetails![0]
+                                          .citizenOf ??
+                                      "",
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
@@ -116,11 +117,12 @@ class Passport extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  callbackFunction: callback,
-                                  border: false,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: _.studentPanel.passportDetails![0]
+                                          .countryOfIssue ??
+                                      "",
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],

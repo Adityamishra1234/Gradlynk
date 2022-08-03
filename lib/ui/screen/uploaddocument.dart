@@ -20,6 +20,7 @@ class UploadDocument extends StatelessWidget {
 
   callback(varTopic) {
     print("mandatory" + varTopic);
+    controller.setLoadingHighestQualification(true);
 
     // dashboardcontroller.setdropdown1(varTopic);
   }
@@ -177,7 +178,7 @@ class UploadDocument extends StatelessWidget {
                       ],
                     ),
                   ),
-                  if (false)
+                  if (_.loadingHighestQualification.value == false)
                     SizedBox(
                       height: 60,
                       width: MediaQuery.of(context).size.width,
@@ -201,7 +202,7 @@ class UploadDocument extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (false)
+                  if (_.loadingHighestQualification.value == false)
                     const Padding(
                       padding: EdgeInsets.only(left: 20, right: 20),
                       child: Divider(
@@ -209,87 +210,38 @@ class UploadDocument extends StatelessWidget {
                         thickness: 1,
                       ),
                     ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Add Degree",
-                              maxLines: 1,
-                              textColor: Colors.grey,
+                  if (_.loadingHighestQualification.value == true)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 10),
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Add Degree",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 50,
-                            // custom Text field
-                            child: Padding(
-                                padding: const EdgeInsets.only(top: 0),
-                                child: _.loadingDegree.value == false
-                                    ? IconButton(
-                                        onPressed: () {
-                                          Get.bottomSheet(Container(
-                                            height: 140,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.white,
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 50,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary: Colors
-                                                          .white, // background
-                                                      onPrimary: Colors
-                                                          .white, // foreground
-                                                    ),
-                                                    onPressed: () async {
-                                                      FilePickerResult? result =
-                                                          await FilePicker
-                                                              .platform
-                                                              .pickFiles();
-
-                                                      if (result != null) {
-                                                        PlatformFile file1 =
-                                                            result.files.first;
-                                                        io.File file = io.File(
-                                                            result.files.single
-                                                                .path!);
-                                                        debugPrint(
-                                                            file1.extension);
-                                                        _.setLoadingDegree(
-                                                            true);
-
-                                                        // ));
-                                                      } else {
-                                                        Get.back();
-                                                        // User canceled the picker
-                                                      }
-                                                    },
-                                                    child: const Text(
-                                                      'Gallery',
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const Divider(
-                                                  color: Colors.grey,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10),
-                                                  child: SizedBox(
+                            const Spacer(),
+                            SizedBox(
+                              width: 50,
+                              // custom Text field
+                              child: Padding(
+                                  padding: const EdgeInsets.only(top: 0),
+                                  child: _.loadingDegree.value == false
+                                      ? IconButton(
+                                          onPressed: () {
+                                            Get.bottomSheet(Container(
+                                              height: 140,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.white,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
                                                     height: 50,
                                                     width:
                                                         MediaQuery.of(context)
@@ -299,329 +251,131 @@ class UploadDocument extends StatelessWidget {
                                                       style: ElevatedButton
                                                           .styleFrom(
                                                         primary: Colors
-                                                            .red, // background
+                                                            .white, // background
                                                         onPrimary: Colors
                                                             .white, // foreground
                                                       ),
-                                                      onPressed: () {},
-                                                      child:
-                                                          const Text('Camera'),
+                                                      onPressed: () async {
+                                                        FilePickerResult?
+                                                            result =
+                                                            await FilePicker
+                                                                .platform
+                                                                .pickFiles();
+
+                                                        if (result != null) {
+                                                          PlatformFile file1 =
+                                                              result
+                                                                  .files.first;
+                                                          io.File file =
+                                                              io.File(result
+                                                                  .files
+                                                                  .single
+                                                                  .path!);
+                                                          debugPrint(
+                                                              file1.extension);
+                                                          _.setLoadingDegree(
+                                                              true);
+
+                                                          // ));
+                                                        } else {
+                                                          Get.back();
+                                                          // User canceled the picker
+                                                        }
+                                                      },
+                                                      child: const Text(
+                                                        'Gallery',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
                                                     ),
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          ));
-                                        },
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/add.svg",
-                                        ),
-                                      )
-                                    : IconButton(
-                                        onPressed: () {},
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/eye.svg",
-                                          color: const Color(0xFF1940B3),
-                                        ))),
-                          )
-                        ],
+                                                  const Divider(
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    child: SizedBox(
+                                                      height: 50,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Colors
+                                                              .red, // background
+                                                          onPrimary: Colors
+                                                              .white, // foreground
+                                                        ),
+                                                        onPressed: () {},
+                                                        child: const Text(
+                                                            'Camera'),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ));
+                                          },
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/add.svg",
+                                          ),
+                                        )
+                                      : IconButton(
+                                          onPressed: () {},
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/eye.svg",
+                                            color: const Color(0xFF1940B3),
+                                          ))),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    child: Divider(
-                      height: 5,
-                      thickness: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Add Sr. secondary certificate",
-                              maxLines: 2,
-                              textColor: Colors.grey,
-                            ),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 50,
-                            // custom Text field
-                            child: Padding(
-                                padding: const EdgeInsets.only(top: 0),
-                                child: _.loadingSrSecondary.value == false
-                                    ? IconButton(
-                                        onPressed: () {
-                                          Get.bottomSheet(Container(
-                                            height: 140,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.white,
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 50,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary: Colors
-                                                          .white, // background
-                                                      onPrimary: Colors
-                                                          .white, // foreground
-                                                    ),
-                                                    onPressed: () async {
-                                                      FilePickerResult? result =
-                                                          await FilePicker
-                                                              .platform
-                                                              .pickFiles();
-
-                                                      if (result != null) {
-                                                        PlatformFile file1 =
-                                                            result.files.first;
-                                                        io.File file = io.File(
-                                                            result.files.single
-                                                                .path!);
-                                                        debugPrint(
-                                                            file1.extension);
-                                                        _.setLoadingSrSecondary(
-                                                            true);
-                                                      } else {
-                                                        Get.back();
-                                                        // User canceled the picker
-                                                      }
-                                                    },
-                                                    child: const Text(
-                                                      'Gallery',
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const Divider(
-                                                  color: Colors.grey,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10),
-                                                  child: SizedBox(
-                                                    height: 50,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        primary: Colors
-                                                            .red, // background
-                                                        onPrimary: Colors
-                                                            .white, // foreground
-                                                      ),
-                                                      onPressed: () {},
-                                                      child:
-                                                          const Text('Camera'),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ));
-                                        },
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/add.svg",
-                                        ),
-                                      )
-                                    : IconButton(
-                                        onPressed: () {
-                                          Get.bottomSheet(Container(
-                                            height: 140,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.white,
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 50,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary: Colors
-                                                          .white, // background
-                                                      onPrimary: Colors
-                                                          .white, // foreground
-                                                    ),
-                                                    onPressed: () async {
-                                                      FilePickerResult? result =
-                                                          await FilePicker
-                                                              .platform
-                                                              .pickFiles();
-
-                                                      if (result != null) {
-                                                        PlatformFile file1 =
-                                                            result.files.first;
-                                                        io.File file = io.File(
-                                                            result.files.single
-                                                                .path!);
-                                                        debugPrint(
-                                                            file1.extension);
-                                                        _.setLoadingDegree(
-                                                            true);
-
-                                                        // ));
-                                                      } else {
-                                                        Get.back();
-                                                        // User canceled the picker
-                                                      }
-                                                    },
-                                                    child: const Text(
-                                                      'Gallery',
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const Divider(
-                                                  color: Colors.grey,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10),
-                                                  child: SizedBox(
-                                                    height: 50,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        primary: Colors
-                                                            .red, // background
-                                                        onPrimary: Colors
-                                                            .white, // foreground
-                                                      ),
-                                                      onPressed: () {},
-                                                      child:
-                                                          const Text('Camera'),
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ));
-                                        },
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/eye.svg",
-                                          color: const Color(0xFF1940B3),
-                                        ))),
-                          )
-                        ],
+                  if (_.loadingHighestQualification.value == true)
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      child: Divider(
+                        height: 5,
+                        thickness: 1,
                       ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    child: Divider(
-                      height: 5,
-                      thickness: 1,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 10),
-                    child: SizedBox(
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Add secondary certificate",
-                              maxLines: 1,
-                              textColor: Colors.grey,
+                  if (_.loadingHighestQualification.value == true)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 10),
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Add Sr. secondary certificate",
+                                maxLines: 2,
+                                textColor: Colors.grey,
+                              ),
                             ),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 50,
-                            // custom Text field
-                            child: Padding(
-                                padding: const EdgeInsets.only(top: 0),
-                                child: _.loadingSecondary.value == false
-                                    ? IconButton(
-                                        onPressed: () {
-                                          Get.bottomSheet(Container(
-                                            height: 140,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            color: Colors.white,
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 50,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary: Colors
-                                                          .white, // background
-                                                      onPrimary: Colors
-                                                          .white, // foreground
-                                                    ),
-                                                    onPressed: () async {
-                                                      FilePickerResult? result =
-                                                          await FilePicker
-                                                              .platform
-                                                              .pickFiles();
-
-                                                      if (result != null) {
-                                                        PlatformFile file1 =
-                                                            result.files.first;
-                                                        io.File file = io.File(
-                                                            result.files.single
-                                                                .path!);
-                                                        debugPrint(
-                                                            file1.extension);
-                                                        _.setLoadingSecondary(
-                                                            true);
-
-                                                        // ));
-                                                      } else {
-                                                        Get.back();
-                                                        // User canceled the picker
-                                                      }
-                                                    },
-                                                    child: const Text(
-                                                      'Gallery',
-                                                      style: TextStyle(
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                                const Divider(
-                                                  color: Colors.grey,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10),
-                                                  child: SizedBox(
+                            const Spacer(),
+                            SizedBox(
+                              width: 50,
+                              // custom Text field
+                              child: Padding(
+                                  padding: const EdgeInsets.only(top: 0),
+                                  child: _.loadingSrSecondary.value == false
+                                      ? IconButton(
+                                          onPressed: () {
+                                            Get.bottomSheet(Container(
+                                              height: 140,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.white,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
                                                     height: 50,
                                                     width:
                                                         MediaQuery.of(context)
@@ -631,42 +385,319 @@ class UploadDocument extends StatelessWidget {
                                                       style: ElevatedButton
                                                           .styleFrom(
                                                         primary: Colors
-                                                            .red, // background
+                                                            .white, // background
                                                         onPrimary: Colors
                                                             .white, // foreground
                                                       ),
-                                                      onPressed: () {},
-                                                      child:
-                                                          const Text('Camera'),
+                                                      onPressed: () async {
+                                                        FilePickerResult?
+                                                            result =
+                                                            await FilePicker
+                                                                .platform
+                                                                .pickFiles();
+
+                                                        if (result != null) {
+                                                          PlatformFile file1 =
+                                                              result
+                                                                  .files.first;
+                                                          io.File file =
+                                                              io.File(result
+                                                                  .files
+                                                                  .single
+                                                                  .path!);
+                                                          debugPrint(
+                                                              file1.extension);
+                                                          _.setLoadingSrSecondary(
+                                                              true);
+                                                        } else {
+                                                          Get.back();
+                                                          // User canceled the picker
+                                                        }
+                                                      },
+                                                      child: const Text(
+                                                        'Gallery',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
                                                     ),
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          ));
-                                        },
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/add.svg",
-                                        ),
-                                      )
-                                    : IconButton(
-                                        onPressed: () {},
-                                        icon: SvgPicture.asset(
-                                          "assets/icons/eye.svg",
-                                          color: const Color(0xFF1940B3),
-                                        ))),
-                          )
-                        ],
+                                                  const Divider(
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    child: SizedBox(
+                                                      height: 50,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Colors
+                                                              .red, // background
+                                                          onPrimary: Colors
+                                                              .white, // foreground
+                                                        ),
+                                                        onPressed: () {},
+                                                        child: const Text(
+                                                            'Camera'),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ));
+                                          },
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/add.svg",
+                                          ),
+                                        )
+                                      : IconButton(
+                                          onPressed: () {
+                                            Get.bottomSheet(Container(
+                                              height: 140,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.white,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 50,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary: Colors
+                                                            .white, // background
+                                                        onPrimary: Colors
+                                                            .white, // foreground
+                                                      ),
+                                                      onPressed: () async {
+                                                        FilePickerResult?
+                                                            result =
+                                                            await FilePicker
+                                                                .platform
+                                                                .pickFiles();
+
+                                                        if (result != null) {
+                                                          PlatformFile file1 =
+                                                              result
+                                                                  .files.first;
+                                                          io.File file =
+                                                              io.File(result
+                                                                  .files
+                                                                  .single
+                                                                  .path!);
+                                                          debugPrint(
+                                                              file1.extension);
+                                                          _.setLoadingDegree(
+                                                              true);
+
+                                                          // ));
+                                                        } else {
+                                                          Get.back();
+                                                          // User canceled the picker
+                                                        }
+                                                      },
+                                                      child: const Text(
+                                                        'Gallery',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const Divider(
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    child: SizedBox(
+                                                      height: 50,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Colors
+                                                              .red, // background
+                                                          onPrimary: Colors
+                                                              .white, // foreground
+                                                        ),
+                                                        onPressed: () {},
+                                                        child: const Text(
+                                                            'Camera'),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ));
+                                          },
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/eye.svg",
+                                            color: const Color(0xFF1940B3),
+                                          ))),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20, right: 20),
-                    child: Divider(
-                      height: 5,
-                      thickness: 1,
+                  if (_.loadingHighestQualification.value == true)
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      child: Divider(
+                        height: 5,
+                        thickness: 1,
+                      ),
                     ),
-                  ),
+                  if (_.loadingHighestQualification.value == true)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 10),
+                      child: SizedBox(
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Add secondary certificate",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 50,
+                              // custom Text field
+                              child: Padding(
+                                  padding: const EdgeInsets.only(top: 0),
+                                  child: _.loadingSecondary.value == false
+                                      ? IconButton(
+                                          onPressed: () {
+                                            Get.bottomSheet(Container(
+                                              height: 140,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.white,
+                                              child: Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height: 50,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    child: ElevatedButton(
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                        primary: Colors
+                                                            .white, // background
+                                                        onPrimary: Colors
+                                                            .white, // foreground
+                                                      ),
+                                                      onPressed: () async {
+                                                        FilePickerResult?
+                                                            result =
+                                                            await FilePicker
+                                                                .platform
+                                                                .pickFiles();
+
+                                                        if (result != null) {
+                                                          PlatformFile file1 =
+                                                              result
+                                                                  .files.first;
+                                                          io.File file =
+                                                              io.File(result
+                                                                  .files
+                                                                  .single
+                                                                  .path!);
+                                                          debugPrint(
+                                                              file1.extension);
+                                                          _.setLoadingSecondary(
+                                                              true);
+
+                                                          // ));
+                                                        } else {
+                                                          Get.back();
+                                                          // User canceled the picker
+                                                        }
+                                                      },
+                                                      child: const Text(
+                                                        'Gallery',
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.black),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const Divider(
+                                                    color: Colors.grey,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    child: SizedBox(
+                                                      height: 50,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          primary: Colors
+                                                              .red, // background
+                                                          onPrimary: Colors
+                                                              .white, // foreground
+                                                        ),
+                                                        onPressed: () {},
+                                                        child: const Text(
+                                                            'Camera'),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ));
+                                          },
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/add.svg",
+                                          ),
+                                        )
+                                      : IconButton(
+                                          onPressed: () {},
+                                          icon: SvgPicture.asset(
+                                            "assets/icons/eye.svg",
+                                            color: const Color(0xFF1940B3),
+                                          ))),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  if (_.loadingHighestQualification.value == true)
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      child: Divider(
+                        height: 5,
+                        thickness: 1,
+                      ),
+                    ),
                   if (_.loadingDegree.value == true &&
                       _.loadingSrSecondary.value == true &&
                       _.loadingSecondary.value == true)

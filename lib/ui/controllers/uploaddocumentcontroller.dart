@@ -5,6 +5,7 @@ class UploadDocumentController extends BaseController {
   RxBool loadingDegree = false.obs;
   RxBool loadingSrSecondary = false.obs;
   RxBool loadingSecondary = false.obs;
+  RxBool loadingHighestQualification = false.obs;
 
   setLoadingDegree(bool data) {
     loadingDegree.value = data;
@@ -18,6 +19,11 @@ class UploadDocumentController extends BaseController {
 
   setLoadingSecondary(bool data) {
     loadingSecondary.value = data;
+    update();
+  }
+
+  setLoadingHighestQualification(bool data) {
+    loadingHighestQualification.value = data;
     update();
   }
 }

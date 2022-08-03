@@ -28,6 +28,7 @@ class StudentPanel {
     this.testDetails,
     this.passportDetails,
     this.otherCountryOfInterest,
+    this.courseChoice,
   });
 
   String? gender;
@@ -51,6 +52,7 @@ class StudentPanel {
   TestDetails? testDetails;
   List<PassportDetail>? passportDetails;
   List<OtherCountryOfInterest>? otherCountryOfInterest;
+  List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
         gender: json["gender"],
@@ -73,6 +75,8 @@ class StudentPanel {
         addtionalDetails: List<AddtionalDetail>.from(
             json["addtionalDetails"].map((x) => AddtionalDetail.fromJson(x))),
         testDetails: TestDetails.fromJson(json["testDetails"]),
+        courseChoice: List<CourseChoice>.from(
+            json["courseChoice"].map((x) => CourseChoice.fromJson(x))),
         passportDetails: List<PassportDetail>.from(
             json["passportDetails"].map((x) => PassportDetail.fromJson(x))),
         otherCountryOfInterest: List<OtherCountryOfInterest>.from(
@@ -101,6 +105,8 @@ class StudentPanel {
         "addtionalDetails":
             List<dynamic>.from(addtionalDetails!.map((x) => x.toJson())),
         "testDetails": testDetails!.toJson(),
+        "courseChoice":
+            List<dynamic>.from(courseChoice!.map((x) => x.toJson())),
         "passportDetails":
             List<dynamic>.from(passportDetails!.map((x) => x.toJson())),
         "otherCountryOfInterest":
@@ -250,5 +256,29 @@ class TestDetails {
         "writing": writing,
         "listening": listening,
         "speaking": speaking,
+      };
+}
+
+class CourseChoice {
+  CourseChoice({
+    this.broadFieldName,
+    this.narrowFieldName,
+    this.courseLevel,
+  });
+
+  String? broadFieldName;
+  String? narrowFieldName;
+  String? courseLevel;
+
+  factory CourseChoice.fromJson(Map<String?, dynamic> json) => CourseChoice(
+        broadFieldName: json["broad_field_name"],
+        narrowFieldName: json["narrow_field_name"],
+        courseLevel: json["course_level"],
+      );
+
+  Map<String?, dynamic> toJson() => {
+        "broad_field_name": broadFieldName,
+        "narrow_field_name": narrowFieldName,
+        "course_level": courseLevel,
       };
 }

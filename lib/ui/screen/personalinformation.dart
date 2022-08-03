@@ -577,7 +577,9 @@ class PersonalInformation extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox()
+                        const SizedBox(
+                          height: 50,
+                        )
                       ],
                     ),
                   ),

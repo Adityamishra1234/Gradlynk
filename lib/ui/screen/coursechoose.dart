@@ -26,7 +26,7 @@ class CourseChoose extends StatelessWidget {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsets.only(left: 20, right: 10, top: 10),
+                            const EdgeInsets.only(left: 20, right: 10, top: 30),
                         child: SizedBox(
                           height: 40,
                           child: Row(
@@ -43,11 +43,12 @@ class CourseChoose extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  border: false,
-                                  callbackFunction: callback,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: dashboardcontroller.studentPanel
+                                          .courseChoice![0].courseLevel ??
+                                      "",
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
@@ -80,11 +81,12 @@ class CourseChoose extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  callbackFunction: callback,
-                                  border: false,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: dashboardcontroller.studentPanel
+                                          .courseChoice![0].broadFieldName ??
+                                      "",
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
@@ -117,11 +119,12 @@ class CourseChoose extends StatelessWidget {
                               SizedBox(
                                 width: 150,
                                 // custom Text field
-                                child: CustomDropDown(
-                                  hint: "Test Already taken",
-                                  model: ["1", "2", "3", "4"],
-                                  callbackFunction: callback,
-                                  border: false,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: dashboardcontroller.studentPanel
+                                          .courseChoice![0].narrowFieldName ??
+                                      "",
+                                  maxLines: 2,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               )
                             ],
