@@ -49,15 +49,17 @@ class _CollapsingItemTilesState extends State<CollapsingItemTiles> {
             Icon(
               widget.icon,
               size: 30,
-              color: widget.isSelected! ? selectedColor : Colors.white30,
+              color: widget.isSelected!
+                  ? ThemeConstants.selectedColor
+                  : Colors.white30,
             ),
             SizedBox(width: _sizedBoxAnimation.value),
             _widthAnimation.value > 220
                 ? Text(
                     widget.title!,
                     style: widget.isSelected!
-                        ? selectedTextStyle
-                        : defaultTextStyle,
+                        ? ThemeConstants.selectedTextStyle
+                        : ThemeConstants.defaultTextStyle,
                   )
                 : const Offstage()
           ],

@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -31,7 +32,7 @@ class BottomNavigation extends StatelessWidget {
                       height: 50,
                       width: 60,
                       child: InkWell(
-                        splashColor: Color(0xFF1940B3),
+                        splashColor: ThemeConstants.bluecolor,
                         onTap: () {
                           Get.toNamed(DashBoard.routeNamed);
                         },
@@ -40,7 +41,7 @@ class BottomNavigation extends StatelessWidget {
                           children: <Widget>[
                             SvgPicture.asset("assets/icons/home.svg",
                                 color: index == 0
-                                    ? Color(0xFF1940B3)
+                                    ? ThemeConstants.bluecolor
                                     : Color(0xFF677082),
                                 height: 30,
                                 width: 30,
@@ -64,14 +65,14 @@ class BottomNavigation extends StatelessWidget {
                       height: 46,
                       width: 60,
                       child: InkWell(
-                        splashColor: Color(0xFF1940B3),
+                        splashColor: ThemeConstants.bluecolor,
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SvgPicture.asset("assets/icons/messanger.svg",
                                 color: index == 1
-                                    ? Color(0xFF1940B3)
+                                    ? ThemeConstants.bluecolor
                                     : Color(0xFF677082),
                                 height: 30,
                                 width: 30,
@@ -90,7 +91,7 @@ class BottomNavigation extends StatelessWidget {
               child: CustomAutoSizeTextMontserrat(
                 text: "Join SVO link",
                 maxLines: 1,
-                textColor: Color(0xFF1940B3),
+                textColor: ThemeConstants.bluecolor,
                 fontSize: 13,
               ),
             )),
@@ -105,14 +106,14 @@ class BottomNavigation extends StatelessWidget {
                       height: 46,
                       width: 60,
                       child: InkWell(
-                        splashColor: Color(0xFF1940B3),
+                        splashColor: ThemeConstants.bluecolor,
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             SvgPicture.asset("assets/icons/enqiry.svg",
                                 color: index == 2
-                                    ? Color(0xFF1940B3)
+                                    ? ThemeConstants.bluecolor
                                     : Color(0xFF677082),
                                 height: 30,
                                 width: 30,
@@ -134,7 +135,7 @@ class BottomNavigation extends StatelessWidget {
                     height: 46,
                     width: 50,
                     child: InkWell(
-                      splashColor: Color(0xFF1940B3),
+                      splashColor: ThemeConstants.bluecolor,
                       onTap: () {
                         Get.toNamed(ProfilePage.routeNamed);
                       },
@@ -143,7 +144,7 @@ class BottomNavigation extends StatelessWidget {
                         children: <Widget>[
                           SvgPicture.asset("assets/icons/profile-bottom.svg",
                               color: index == 3
-                                  ? Color(0xFF1940B3)
+                                  ? ThemeConstants.bluecolor
                                   : Color(0xFF677082),
                               height: 30,
                               width: 30,

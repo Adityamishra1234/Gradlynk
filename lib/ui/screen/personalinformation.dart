@@ -36,564 +36,565 @@ class PersonalInformation extends StatelessWidget {
                       }
                       return true;
                     },
-                    child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Container(
-                            height: 76,
-                            width: 76,
-                            decoration: const BoxDecoration(
-                                color: Colors.orange, shape: BoxShape.circle),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 10, top: 5, right: 10),
-                          child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: dashboardcontroller
-                                      .studentPanel.enquiryName ??
-                                  "",
-                              maxLines: 1,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: Container(
+                              height: 76,
+                              width: 76,
+                              decoration: const BoxDecoration(
+                                  color: Colors.orange, shape: BoxShape.circle),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Gender",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, top: 5, right: 10),
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: dashboardcontroller
+                                        .studentPanel.enquiryName ??
+                                    "",
+                                maxLines: 1,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.gender ??
-                                          "",
+                                      text: "Gender",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Email",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 0),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.email ??
-                                          "",
-                                      maxLines: 5,
-                                      fontWeight: FontWeight.w600,
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.gender ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Date of Birth",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                                  .studentPanel.dateOfBirth !=
-                                              null
-                                          ? dashboardcontroller
-                                              .studentPanel.dateOfBirth!
-                                              .toString()
-                                          : "",
+                                      text: "Email",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 0),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.email ??
+                                            "",
+                                        maxLines: 5,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Mobile",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
                                     padding: const EdgeInsets.only(top: 15),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                                  .studentPanel.mobile !=
-                                              null
-                                          ? dashboardcontroller
-                                              .studentPanel.mobile!
-                                              .toString()
-                                          : "",
+                                      text: "Date of Birth",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Sec. Email",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.secondaryEmail ??
-                                          "",
-                                      maxLines: 3,
-                                      fontWeight: FontWeight.w600,
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                    .studentPanel.dateOfBirth !=
+                                                null
+                                            ? dashboardcontroller
+                                                .studentPanel.dateOfBirth!
+                                                .toString()
+                                            : "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Marital Status",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.maritalStatus ??
-                                          "",
+                                      text: "Mobile",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                    .studentPanel.mobile !=
+                                                null
+                                            ? dashboardcontroller
+                                                .studentPanel.mobile!
+                                                .toString()
+                                            : "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Application Type",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.applicantType ??
-                                          "",
+                                      text: "Sec. Email",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.secondaryEmail ??
+                                            "",
+                                        maxLines: 3,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Country",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.countryName ??
-                                          "",
+                                      text: "Marital Status",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.maritalStatus ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "State",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.stateName ??
-                                          "",
+                                      text: "Application Type",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.applicantType ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Selected City",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.cityName ??
-                                          "",
+                                      text: "Country",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Address(Passport)",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                              .studentPanel.address ??
-                                          "",
-                                      maxLines: 5,
-                                      fontWeight: FontWeight.w600,
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.countryName ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Zip Code",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: dashboardcontroller
-                                                  .studentPanel.pincode !=
-                                              null
-                                          ? dashboardcontroller
-                                              .studentPanel.pincode
-                                              .toString()
-                                          : "",
+                                      text: "State",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.stateName ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 20, right: 20),
-                          child: Divider(
-                            height: 5,
-                            thickness: 1,
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 10, top: 10),
-                          child: SizedBox(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Other Country Int.",
-                                    maxLines: 1,
-                                    textColor: Colors.grey,
-                                  ),
-                                ),
-                                const Spacer(),
-                                SizedBox(
-                                  width: 200,
-                                  // custom Text field
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 15),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
-                                      // Test
-                                      text: dashboardcontroller
-                                              .studentPanel
-                                              .otherCountryOfInterest![0]
-                                              .countryName ??
-                                          "",
+                                      text: "Selected City",
                                       maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.grey,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.cityName ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 50,
-                        )
-                      ],
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Address(Passport)",
+                                      maxLines: 1,
+                                      textColor: Colors.grey,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                .studentPanel.address ??
+                                            "",
+                                        maxLines: 5,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Zip Code",
+                                      maxLines: 1,
+                                      textColor: Colors.grey,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: dashboardcontroller
+                                                    .studentPanel.pincode !=
+                                                null
+                                            ? dashboardcontroller
+                                                .studentPanel.pincode
+                                                .toString()
+                                            : "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 20, right: 20),
+                            child: Divider(
+                              height: 5,
+                              thickness: 1,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 10, top: 10),
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Other Country Int.",
+                                      maxLines: 1,
+                                      textColor: Colors.grey,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: 200,
+                                    // custom Text field
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        // Test
+                                        text: dashboardcontroller
+                                                .studentPanel
+                                                .otherCountryOfInterest![0]
+                                                .countryName ??
+                                            "",
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
@@ -117,7 +118,7 @@ class _LoginState extends State<Login> {
       body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(color: Color(0xFF1940B3)),
+          decoration: BoxDecoration(color: ThemeConstants.bluecolor),
           child: ListView(
             children: [
               Padding(
@@ -251,7 +252,7 @@ class _LoginState extends State<Login> {
                           width: 315,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFF1940B3),
+                                primary: ThemeConstants.bluecolor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.circular(12), // <-- Radius

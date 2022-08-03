@@ -19,6 +19,8 @@ class ProfilePageController extends BaseController with StateMixin<UserModel> {
   List<String>? model = [];
   RxString? dropdown1 = "".obs;
 
+  List<RxBool> loading = [];
+
   setdropdown1(String? data) {
     dropdown1 = data!.obs;
     update();
