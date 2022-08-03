@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/mandatoryinformation.dart';
 import 'package:studentpanel/ui/screen/passport.dart';
 import 'package:studentpanel/ui/screen/personalinformation.dart';
 import 'package:studentpanel/ui/screen/testdetail.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
@@ -236,7 +237,7 @@ class _ProfilePageState extends State<ProfilePage> {
         visible: showFab,
         child: FloatingActionButton(
             tooltip: "Join SVO Link",
-            backgroundColor: const Color(0xFF1940B3),
+            backgroundColor: ThemeConstants.bluecolor,
             onPressed: () {},
             // isExtended: true,
             child: SvgPicture.asset(

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
@@ -347,7 +348,7 @@ class _DashBoardState extends State<DashBoard> {
         visible: showFab,
         child: FloatingActionButton(
             tooltip: "Action",
-            backgroundColor: const Color(0xFF1940B3),
+            backgroundColor: ThemeConstants.bluecolor,
             onPressed: () {},
             // isExtended: true,
             child: SvgPicture.asset(

@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
@@ -66,7 +67,7 @@ class UploadDocument extends StatelessWidget {
                           width: 60,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.black),
-                            color: const Color(0xFF1940B3),
+                            color: ThemeConstants.bluecolor,
                             shape: BoxShape.circle,
                           ),
                           child: Padding(
@@ -84,8 +85,8 @@ class UploadDocument extends StatelessWidget {
                           child: Container(
                             height: 10,
                             width: 10,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFF1940B3),
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.bluecolor,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -93,7 +94,7 @@ class UploadDocument extends StatelessWidget {
                         CustomAutoSizeTextMontserrat(
                           text: "________",
                           maxLines: 1,
-                          textColor: const Color(0xFF1940B3),
+                          textColor: ThemeConstants.bluecolor,
                           fontWeight: FontWeight.w900,
                         ),
                         Padding(
@@ -101,8 +102,8 @@ class UploadDocument extends StatelessWidget {
                           child: Container(
                             height: 10,
                             width: 10,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFF1940B3),
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.bluecolor,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -114,7 +115,7 @@ class UploadDocument extends StatelessWidget {
                             width: 60,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black),
-                                color: const Color(0xFF1940B3),
+                                color: ThemeConstants.bluecolor,
                                 shape: BoxShape.circle),
                             child: Padding(
                               padding: const EdgeInsets.only(
@@ -329,7 +330,7 @@ class UploadDocument extends StatelessWidget {
                                           onPressed: () {},
                                           icon: SvgPicture.asset(
                                             "assets/icons/eye.svg",
-                                            color: const Color(0xFF1940B3),
+                                            color: ThemeConstants.bluecolor,
                                           ))),
                             )
                           ],
@@ -549,7 +550,7 @@ class UploadDocument extends StatelessWidget {
                                           },
                                           icon: SvgPicture.asset(
                                             "assets/icons/eye.svg",
-                                            color: const Color(0xFF1940B3),
+                                            color: ThemeConstants.bluecolor,
                                           ))),
                             )
                           ],
@@ -683,7 +684,7 @@ class UploadDocument extends StatelessWidget {
                                           onPressed: () {},
                                           icon: SvgPicture.asset(
                                             "assets/icons/eye.svg",
-                                            color: const Color(0xFF1940B3),
+                                            color: ThemeConstants.bluecolor,
                                           ))),
                             )
                           ],
@@ -708,9 +709,9 @@ class UploadDocument extends StatelessWidget {
                           const Spacer(),
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFF1940B3), // background
+                                primary: ThemeConstants.bluecolor, // background
                                 onPrimary:
-                                    const Color(0xFF1940B3), // foreground
+                                    ThemeConstants.bluecolor, // foreground
                               ),
                               onPressed: () {},
                               child: CustomAutoSizeTextMontserrat(

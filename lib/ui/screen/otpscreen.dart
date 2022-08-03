@@ -8,6 +8,7 @@ import 'package:otp_text_field/style.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/controllers/otpscreencontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class OTPScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class OTPScreen extends StatelessWidget {
       body: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(color: Color(0xFF1940B3)),
+          decoration: BoxDecoration(color: ThemeConstants.bluecolor),
           child: ListView(
             children: [
               SizedBox(
@@ -111,7 +112,7 @@ class OTPScreen extends StatelessWidget {
                           width: 315,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: const Color(0xFF1940B3),
+                                primary: ThemeConstants.bluecolor,
                                 shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.circular(12), // <-- Radius
@@ -136,7 +137,7 @@ class OTPScreen extends StatelessWidget {
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Resend OTP",
                                           maxLines: 1,
-                                          textColor: Color(0xFF1940B3),
+                                          textColor: ThemeConstants.bluecolor,
                                         )),
                                   if (_.loadingcounter.value == false)
                                     Padding(
