@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -65,7 +65,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: UploadDocument.routeNamed,
+      initialRoute: Login.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -102,6 +102,10 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: UploadDocument.routeNamed,
           page: () => UploadDocument(),
+        ),
+        GetPage(
+          name: ImageViewerScreen.routeNamed,
+          page: () => ImageViewerScreen(),
         ),
       ],
     );
