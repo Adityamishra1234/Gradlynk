@@ -42,6 +42,7 @@ class _TestDetailState extends State<TestDetail> {
                                     MediaQuery.of(context).size.height - 290,
                                 width: MediaQuery.of(context).size.width,
                                 child: ListView(
+                                  physics: BouncingScrollPhysics(),
                                   children: [
                                     Align(
                                       alignment: AlignmentDirectional.topStart,

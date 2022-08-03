@@ -8,12 +8,6 @@ import 'package:studentpanel/widgets/customdropdownbutton.dart';
 class Passport extends StatelessWidget {
   const Passport({Key? key}) : super(key: key);
 
-  callback(varTopic) {
-    debugPrint("mandatory" + varTopic);
-
-    // dashboardcontroller.setdropdown1(varTopic);
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
@@ -26,7 +20,6 @@ class Passport extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 30),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -64,7 +57,6 @@ class Passport extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -102,7 +94,6 @@ class Passport extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -140,7 +131,6 @@ class Passport extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -178,7 +168,6 @@ class Passport extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -216,7 +205,6 @@ class Passport extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(

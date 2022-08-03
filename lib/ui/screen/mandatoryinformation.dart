@@ -69,10 +69,8 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 10,
-                        ),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
                           child: Row(
                             children: [
@@ -123,10 +121,8 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 10,
-                        ),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
                           child: Row(
                             children: [
@@ -176,10 +172,8 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 10,
-                        ),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
                           child: Row(
                             children: [
@@ -218,10 +212,8 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 10,
-                        ),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
                           child: Row(
                             children: [
@@ -258,10 +250,8 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 10,
-                        ),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
                           child: Row(
                             children: [
@@ -301,10 +291,8 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 10,
-                        ),
+                        padding:
+                            const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
                           child: Row(
                             children: [

@@ -37,6 +37,7 @@ class PersonalInformation extends StatelessWidget {
                       return true;
                     },
                     child: ListView(
+                      physics: BouncingScrollPhysics(),
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
@@ -102,7 +103,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -122,7 +124,7 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 0),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: dashboardcontroller
-                                              .studentPanel.email! ??
+                                              .studentPanel.email ??
                                           "",
                                       maxLines: 5,
                                       fontWeight: FontWeight.w600,
@@ -141,7 +143,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -184,7 +187,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -227,7 +231,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -266,7 +271,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -305,7 +311,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -344,7 +351,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -383,7 +391,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -422,7 +431,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -461,7 +471,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -500,7 +511,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [
@@ -543,7 +555,8 @@ class PersonalInformation extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 10),
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 10, top: 10),
                           child: SizedBox(
                             child: Row(
                               children: [

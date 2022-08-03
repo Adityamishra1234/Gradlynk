@@ -75,7 +75,6 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: DashBoard.routeNamed,
           page: () => DashBoard(),
-          transition: Transition.native,
         ),
         GetPage(
             name: DetialScreen.routeNamed,

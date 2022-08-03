@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
 class CourseChoose extends StatelessWidget {
   const CourseChoose({Key? key}) : super(key: key);
 
-  callback(varTopic) {
-    print("mandatory" + varTopic);
-
-    // dashboardcontroller.setdropdown1(varTopic);
-  }
-
-//Aman
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
@@ -28,7 +18,6 @@ class CourseChoose extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 30),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -66,7 +55,6 @@ class CourseChoose extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
@@ -104,7 +92,6 @@ class CourseChoose extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 20, right: 10, top: 10),
                         child: SizedBox(
-                          height: 40,
                           child: Row(
                             children: [
                               Padding(
