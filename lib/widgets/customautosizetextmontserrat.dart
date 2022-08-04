@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomAutoSizeTextMontserrat extends StatelessWidget {
   bool? underline;
+  bool? mandatory;
   String? text;
   int? maxLines, fontSize;
   FontWeight? fontWeight;
@@ -14,6 +15,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
       {Key? key,
       required this.text,
       required this.maxLines,
+      this.mandatory,
       this.fontSize,
       this.textColor,
       this.fontWeight,
@@ -24,24 +26,25 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
-      child: AutoSizeText(text!,
-          overflow: TextOverflow.ellipsis,
-          maxLines: maxLines,
-          style: GoogleFonts.montserrat(
-            fontWeight: fontWeight ?? FontWeight.w500,
-            color: textColor ?? Colors.black,
-            fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-            decoration: underline != null
-                ? underline == true
-                    ? TextDecoration.underline
-                    : TextDecoration.none
-                : TextDecoration.none,
-          )
-          // GoogleFonts.monster(
-          //   fontWeight: fontWeight ?? FontWeight.w500,
-          //   fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-          // ),
-          ),
+      child: AutoSizeText(
+        text!,
+        overflow: TextOverflow.ellipsis,
+        maxLines: maxLines,
+        style: GoogleFonts.montserrat(
+          fontWeight: fontWeight ?? FontWeight.w500,
+          color: textColor ?? Colors.black,
+          fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
+          decoration: underline != null
+              ? underline == true
+                  ? TextDecoration.underline
+                  : TextDecoration.none
+              : TextDecoration.none,
+        ),
+        // GoogleFonts.monster(
+        //   fontWeight: fontWeight ?? FontWeight.w500,
+        //   fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
+        // ),
+      ),
     );
   }
 }
