@@ -63,7 +63,7 @@ class ProfilePageController extends BaseController with StateMixin<UserModel> {
       }
     });
 
-    tempModel = tempModel!.toSet().toList();
+    tempModel = tempModel.toSet().toList();
     return tempModel;
   }
 
