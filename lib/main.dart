@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/profilepagehorizontal.dart';
+import 'package:studentpanel/ui/screen/test.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
@@ -66,7 +67,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: CourseSearch.routeNamed,
+      initialRoute: TestTest.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -110,6 +111,10 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: CourseSearch.routeNamed,
           page: () => CourseSearch(),
+        ),
+        GetPage(
+          name: TestTest.routeNamed,
+          page: () => TestTest(),
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/country.dart';
+import 'package:studentpanel/ui/models/courselevel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -52,14 +53,54 @@ class ApiServices extends StudentPanelBase {
 
   getCountry(String baseUrl, String endpoint) async {
     Country country = Country();
+    String data;
     var response;
+    List<String> countrylist = [], countryCode = [], listdata = [];
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
       var jsondata = json.decode(response.body);
+      data = jsondata.toString();
+      data = data.split("{[")[0];
+      data = data.split("{")[1].split("}")[0];
+      listdata = data.split(",");
+      listdata.forEach((element) {
+        countrylist.add(element.toString().split(":")[0]);
+        countryCode.add(element.toString().split(":")[1]);
+      });
+
       country = Country.fromJson(jsondata);
+      country.countrylist = countrylist;
+      country.codelist = countryCode;
       return country;
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  getCourseLevel(String baseUrl, String endpoint) async {
+    String data;
+    var response;
+    List<String> courselist = [], courseCode = [], listdata = [];
+    CourseLevel courseLevel = CourseLevel();
+    try {
+      response = await httpPostNullBody(baseUrl + endpoint);
+      var jsondata = json.decode(response.body);
+
+      data = jsondata.toString();
+      data = data.split("{[")[0];
+      data = data.split("{")[1].split("}")[0];
+      listdata = data.split(",");
+      listdata.forEach((element) {
+        courselist.add(element.toString().split(":")[0]);
+        courseCode.add(element.toString().split(":")[1]);
+      });
+
+      courseLevel = CourseLevel.fromJson(jsondata);
+      courseLevel.courseLevelList = courselist;
+      courseLevel.courseCode = courseCode;
+      return courseLevel;
+    } catch (e) {
+      print(e.toString());
     }
   }
 

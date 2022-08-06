@@ -12,4 +12,11 @@ class Endpoints {
   static String? notificationForUser = 'get-notification-for-user';
   static String? upcomingHolidays = 'get-upcoming-holidays';
   static String? country = 'get-country';
+  static String? state = 'get-state?country=';
+  static String? city = 'get-city?state=';
+  static String? courselevel = 'get-course-level';
+  static String? courseBoardField = 'get-course-broad-field';
+  static String? courseNarrowField = 'get-course-narrow-field?broad_field_id=';
+  static String? courseSearchPart1 = 'get-course-search-data?country=';
+  static String? courseSearchPart2 = '&course_level=';
 }

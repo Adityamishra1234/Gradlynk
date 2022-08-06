@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:multiselect/multiselect.dart';
 
@@ -24,6 +26,9 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
   @override
   Widget build(BuildContext context) {
     return DropDownMultiSelect(
+      decoration: InputDecoration(
+        border: InputBorder.none,
+      ),
       onChanged: (List<String> x) {
         setState(() {
           selected = x;
