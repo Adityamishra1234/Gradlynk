@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
+import 'package:studentpanel/ui/models/country.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -46,6 +47,19 @@ class ApiServices extends StudentPanelBase {
       return studentPanel;
     } else {
       return false;
+    }
+  }
+
+  getCountry(String baseUrl, String endpoint) async {
+    Country country = Country();
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoint);
+      var jsondata = json.decode(response.body);
+      country = Country.fromJson(jsondata);
+      return country;
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 

@@ -90,13 +90,21 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           decoration: BoxDecoration(
                               color: Color(0xFFECF0FB), shape: BoxShape.circle),
                           child: Center(
-                            child: AnimatedIcon(
-                              icon: AnimatedIcons.play_pause,
-                              progress: controller!!,
-                              size: 200,
-                              color: Colors.blue,
+                              child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (resize == false) {
+                                  onStartIconPress(context);
+                                } else {
+                                  onEndIconPress(context);
+                                }
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SvgPicture.asset("assets/icons/arrow.svg"),
                             ),
-                          ))),
+                          )))),
                   Column(
                     children: [
                       Padding(

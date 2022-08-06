@@ -48,6 +48,31 @@ class StudentPanelBase {
     }
   }
 
+  httpPostNullBody(String url) async {
+    // String? token = await getToken();
+    try {
+      var response = await http.post(
+        Uri.parse(url),
+        // headers: {
+        //   "Accept": "application/json",
+        //   "Content-Type": "application/x-www-form-urlencoded",
+        //   //'Authorization': 'Bearer $token',
+        // },
+        // body: ""
+      );
+
+      if (response.statusCode == 200) {
+        return response;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
   httpPut(String url, var jsonData) async {
     String? token = await getToken();
     try {
