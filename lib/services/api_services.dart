@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/country.dart';
+import 'package:studentpanel/ui/models/courseboardfield.dart';
 import 'package:studentpanel/ui/models/courselevel.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -13,6 +15,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/ui/screen/coursesearch.dart';
 
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
@@ -104,6 +107,99 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  getState(String baseUrl, String endpoint, String countrydata) async {
+    var temp = countrydata.split('[');
+    var temp2 = temp[1].split(']')[0];
+    print(temp2.removeAllWhitespace);
+    print(baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+
+    try {
+      var response = await httpPostNullBody(
+          baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+      return response.body;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  getCity(String baseUrl, String endpoint, String statedata) async {
+    var temp = statedata.split('[');
+    var temp2 = temp[1].split(']')[0];
+    print(temp2.removeAllWhitespace);
+    print(baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+
+    try {
+      var response = await httpPostNullBody(
+          baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+      return response.body;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  getCoursenarrowField(
+      String baseUrl, String endpoint, String broadFieldId) async {
+    var temp = broadFieldId.split('[');
+    var temp2 = temp[1].split(']')[0];
+    print(temp2.removeAllWhitespace);
+    print(baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+
+    try {
+      var response = await httpPostNullBody(
+          baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+      return response.body;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  getCourseBoardField(String baseUrl, String endpoint) async {
+    CourseBoardField courseBoardField = CourseBoardField();
+    String data;
+    List<String> courseBoardFieldList = [],
+        courseBoardFieldCode = [],
+        listdata = [];
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoint);
+      var jsondata = json.decode(response.body);
+      courseBoardField = CourseBoardField.fromJson(jsondata);
+      data = jsondata.toString();
+      data = data.split("{[")[0];
+      data = data.split("{")[1].split("}")[0];
+      listdata = data.split(", ");
+      for (int i = 0; i <= listdata.length - 1; i++) {
+        // Bug Field Update
+        if (i == 10) {
+          courseBoardFieldCode.add("18");
+          courseBoardFieldList
+              .add("Agriculture,Environment and Related Studies");
+        } else {
+          courseBoardFieldCode.add(listdata[i].toString().split(":")[1]);
+          courseBoardFieldList.add(listdata[i].toString().split(":")[0]);
+        }
+      }
+
+      courseBoardField.courseBoardFieldList = courseBoardFieldList;
+      courseBoardField.courseboardFieldCode = courseBoardFieldCode;
+      return courseBoardField;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  getCourseSearch(String baseUrl, String endpoint) async {
+    List<CourseSearchModel> courseSearchModel = [];
+
+    var response = await httpPostNullBody(baseUrl + endpoint);
+    // var jsondata = json.decode(response.body);
+    courseSearchModel = List<CourseSearchModel>.from(
+        json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+    // courseSearchModel = jsondata.map(( CourseSearchModel data) {
+    //   CourseSearchModel.fromJson(data);
+    // }).toList();
+
+    return courseSearchModel;
+  }
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   //   var jsonData = {"token": sharedPreferences.getString("token")};

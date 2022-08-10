@@ -67,9 +67,13 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: TestTest.routeNamed,
+      initialRoute: CourseSearch.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
+        GetPage(
+            name: Login.routeNamed,
+            page: () => Login(),
+            binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
             page: () => Login(),
@@ -113,8 +117,8 @@ class _MyApState extends State<MyAp> {
           page: () => CourseSearch(),
         ),
         GetPage(
-          name: TestTest.routeNamed,
-          page: () => TestTest(),
+          name: MyHomePage.routeNamed,
+          page: () => MyHomePage(),
         ),
       ],
     );

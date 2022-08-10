@@ -1,42 +1,34 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:multiselect/multiselect.dart';
 
-class MultiSelectDropDown extends StatefulWidget {
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+
+
+class MultiSelectDropDown extends StatelessWidget {
+  Function callbackFunction;
   String? title;
-  List<String>? listdata;
-  MultiSelectDropDown({Key? key, this.title, this.listdata}) : super(key: key);
+  List<dynamic>? listdata;
+   MultiSelectDropDown({Key? key,this.listdata,this.title, required this.callbackFunction}) : super(key: key);
 
-  @override
-  State<MultiSelectDropDown> createState() => _MultiSelectDropDownState();
-}
-
-class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
-  String? title;
-  List<String>? listdata;
-  @override
-  void initState() {
-    super.initState();
-    title = widget.title;
-    listdata = widget.listdata;
-  }
-
-  List<String> selected = [];
   @override
   Widget build(BuildContext context) {
-    return DropDownMultiSelect(
-      decoration: InputDecoration(
-        border: InputBorder.none,
+   var  items =
+        listdata!.map((data) => MultiSelectItem(data, data)).toList();
+    return MultiSelectDialogField(
+      buttonIcon: const Icon(Icons.keyboard_arrow_down),
+      decoration: const BoxDecoration(color: Colors.transparent),
+      listType: MultiSelectListType.LIST,
+      searchable: true,
+      buttonText: Text(
+        title!,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
-      onChanged: (List<String> x) {
-        setState(() {
-          selected = x;
-        });
+      title: Text(title!),
+      items: items,
+      onConfirm: (values) {
+       callbackFunction(values);
       },
-      options: listdata!,
-      selectedValues: selected,
-      whenEmpty: title,
     );
   }
 }

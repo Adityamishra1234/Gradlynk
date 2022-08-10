@@ -4,11 +4,14 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CollagelistExpandedWidget extends StatefulWidget {
-  const CollagelistExpandedWidget({Key? key}) : super(key: key);
+  CourseSearchModel courseSearchModel;
+  CollagelistExpandedWidget({Key? key, required this.courseSearchModel})
+      : super(key: key);
 
   @override
   State<CollagelistExpandedWidget> createState() =>
@@ -17,6 +20,7 @@ class CollagelistExpandedWidget extends StatefulWidget {
 
 class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
     with TickerProviderStateMixin {
+  CourseSearchModel? courseSearchModel;
   bool resize = false;
   bool delayresize = false;
   late AnimationController controller;
@@ -24,6 +28,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
 
   @override
   void initState() {
+    courseSearchModel = widget.courseSearchModel;
     controller =
         AnimationController(duration: const Duration(seconds: 1), vsync: this);
     super.initState();
@@ -69,7 +74,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      height: resize ? 415 : 160,
+      height: resize ? 440 : 180,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -78,7 +83,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         child: Column(
           children: [
             SizedBox(
-              height: 140,
+              height: 170,
               child: Stack(
                 children: [
                   Positioned(
@@ -110,8 +115,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       Padding(
                         padding: const EdgeInsets.only(right: 50, left: 10),
                         child: CustomAutoSizeTextMontserrat(
-                          text: "Bachelor of Business-Economics and Finance",
-                          maxLines: 5,
+                          text: courseSearchModel!.courseName ?? "",
+                          maxLines: 3,
                           textColor: ThemeConstants.bluecolor,
                           fontWeight: FontWeight.bold,
                         ),
@@ -122,7 +127,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: CustomAutoSizeTextMontserrat(
                             text:
-                                "Australia,Victor,Melbourne | RMIT University",
+                                "${courseSearchModel!.countryName!},${courseSearchModel!.stateName!},${courseSearchModel!.cityName!}|${courseSearchModel!.universityName!}",
+                            // "Australia,Victor,Melbourne | RMIT University",
                             maxLines: 3,
                             textColor: ThemeConstants.bluegreycolor,
                           ),
@@ -133,7 +139,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Melbourne City Campus",
+                            text: courseSearchModel!.campusName,
                             maxLines: 3,
                             textColor: ThemeConstants.bluegreycolor,
                           ),
@@ -153,73 +159,86 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               maxLines: 1,
                               textColor: ThemeConstants.bluelightgreycolor,
                             ),
-                            SvgPicture.asset(
-                              "assets/icons/price.svg",
-                              color: ThemeConstants.bluelightgreycolor,
-                              height: 20,
-                            ),
-                            CustomAutoSizeTextMontserrat(
-                              text: "14500 AUD",
-                              maxLines: 1,
-                              textColor: ThemeConstants.bluelightgreycolor,
-                            ),
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
-                                  "assets/icons/i.svg",
-                                  height: 20,
-                                  color: ThemeConstants.bluecolor,
-                                )),
-                            const Spacer(flex: 1),
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.bluecolor,
-                                  border: Border.all(),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                              child: Padding(
-                                padding: const EdgeInsets.all(3),
-                                child: SvgPicture.asset(
-                                  "assets/icons/compare.svg",
-                                  color: ThemeConstants.whitecolor,
-                                  height: 25,
-                                ),
+                            if (courseSearchModel!.annualTutionFees != null)
+                              SvgPicture.asset(
+                                "assets/icons/price.svg",
+                                color: ThemeConstants.bluelightgreycolor,
+                                height: 20,
                               ),
-                            ),
+                            if (courseSearchModel!.annualTutionFees != null)
+                              CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel!.annualTutionFees
+                                        .toString() +
+                                    courseSearchModel!.currencyCode!,
+                                maxLines: 1,
+                                textColor: ThemeConstants.bluelightgreycolor,
+                              ),
+                            if (courseSearchModel!.annualTutionFees != null)
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: SvgPicture.asset(
+                                    "assets/icons/i.svg",
+                                    height: 20,
+                                    color: ThemeConstants.bluecolor,
+                                  )),
                             Spacer(),
                             Container(
                               height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  color: Color(0xFF2FAF5E),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                              child: Padding(
-                                padding: const EdgeInsets.all(3),
-                                child: SvgPicture.asset(
-                                  "assets/icons/list.svg",
-                                  color: ThemeConstants.whitecolor,
-                                  height: 25,
-                                ),
-                              ),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: const BoxDecoration(
-                                  color: Color(0xFFF97316),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(7))),
-                              child: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: SvgPicture.asset(
-                                  "assets/icons/star.svg",
-                                  color: ThemeConstants.whitecolor,
-                                  height: 20,
-                                ),
+                              width: 120,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                        color: ThemeConstants.bluecolor,
+                                        border: Border.all(),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(7))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(3),
+                                      child: SvgPicture.asset(
+                                        "assets/icons/compare.svg",
+                                        color: ThemeConstants.whitecolor,
+                                        height: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xFF2FAF5E),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(7))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(3),
+                                      child: SvgPicture.asset(
+                                        "assets/icons/list.svg",
+                                        color: ThemeConstants.whitecolor,
+                                        height: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xFFF97316),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(7))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child: SvgPicture.asset(
+                                        "assets/icons/star.svg",
+                                        color: ThemeConstants.whitecolor,
+                                        height: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
@@ -272,16 +291,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             ]),
                             TableRow(children: [
                               TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "14500 AUD (INR)",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              ),
+                                  child: courseSearchModel!.totalFees != null
+                                      ? CustomAutoSizeTextMontserrat(
+                                          text:
+                                              "${courseSearchModel!.totalFees}${courseSearchModel!.currencyCode} (${courseSearchModel!.totalFeesInr}INR)",
+                                          maxLines: 1,
+                                          textColor: Colors.grey,
+                                          fontSize: 12,
+                                        )
+                                      : Container()),
                               TableCell(
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "Yes",
+                                  text: courseSearchModel!.conditionalOffer,
                                   maxLines: 1,
                                   textColor: Colors.grey,
                                   fontSize: 12,
@@ -310,7 +331,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableRow(children: [
                               TableCell(
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "IELTS-6.0",
+                                  text: courseSearchModel!.englishProficiency
+                                      .toString()
+                                      .split("|")[0],
                                   maxLines: 1,
                                   textColor: Colors.grey,
                                   fontSize: 12,
@@ -318,7 +341,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                               TableCell(
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "No",
+                                  text: courseSearchModel!.scholarship ?? "",
                                   maxLines: 1,
                                   textColor: Colors.grey,
                                   fontSize: 12,
@@ -347,7 +370,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableRow(children: [
                               TableCell(
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "India-Class 12-65.00-0",
+                                  text:
+                                      courseSearchModel!.academicRequire ?? "",
                                   maxLines: 1,
                                   textColor: Colors.grey,
                                   fontSize: 12,
@@ -355,7 +379,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                               TableCell(
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "7 Days:",
+                                  text: courseSearchModel!.offerTat ?? "",
                                   maxLines: 1,
                                   textColor: Colors.grey,
                                   fontSize: 12,
@@ -417,7 +441,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                       child: Center(
                                     child: CustomAutoSizeTextMontserrat(
                                       maxLines: 1,
-                                      text: "jul",
+                                      text: courseSearchModel!.intakeFromYear ??
+                                          "",
                                       textColor: Colors.grey,
                                     ),
                                   )),
@@ -425,7 +450,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     child: Center(
                                       child: CustomAutoSizeTextMontserrat(
                                         maxLines: 1,
-                                        text: "2022",
+                                        text:
+                                            courseSearchModel!.intakeFromYear ??
+                                                "",
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -469,28 +496,29 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         child: Row(
                           children: [
                             CustomAutoSizeTextMontserrat(
-                              text: "ARWU:301",
+                              text: "ARWU:${courseSearchModel!.arwuRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
                             Spacer(),
                             CustomAutoSizeTextMontserrat(
-                              text: "Times:301",
+                              text: "Times:${courseSearchModel!.timesRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
                             Spacer(),
                             CustomAutoSizeTextMontserrat(
-                              text: "US News:301",
+                              text: "US News:${courseSearchModel!.usNewsRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
                             Spacer(),
                             CustomAutoSizeTextMontserrat(
-                              text: "QS World:301",
+                              text:
+                                  "QS World:${courseSearchModel!.qsWorldRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
