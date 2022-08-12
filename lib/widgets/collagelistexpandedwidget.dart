@@ -72,26 +72,51 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
 
   @override
   Widget build(BuildContext context) {
+    print(
+        "${courseSearchModel!.countryName!},${courseSearchModel!.stateName!},${courseSearchModel!.cityName!}|${courseSearchModel!.universityName!}"
+            .length);
+    print(courseSearchModel!.courseName!.length);
+    print(courseSearchModel!.courseName);
+    double size = 0;
+    if (courseSearchModel!.courseName!.length > 70) {
+      size = 30;
+    } else {
+      setState(() {
+        size = 0;
+      });
+    }
+    if ("${courseSearchModel!.countryName!},${courseSearchModel!.stateName!},${courseSearchModel!.cityName!}|${courseSearchModel!.universityName!}"
+            .length >
+        75) {
+      size = size + 20.0;
+    }
+    if (courseSearchModel!.courseName!.length > 10) {
+      //
+
+    }
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      height: resize ? 440 : 180,
+      height: resize ? 445 + size : 170 + size,
       child: Card(
+        shadowColor: Colors.white,
         shape: RoundedRectangleBorder(
+          side:
+              BorderSide(color: ThemeConstants.bluelightgreycolor, width: 0.5),
           borderRadius: BorderRadius.circular(15.0),
         ),
         elevation: 5,
         child: Column(
           children: [
             SizedBox(
-              height: 170,
+              height: 160 + size,
               child: Stack(
                 children: [
                   Positioned(
-                      top: 2,
+                      top: 8,
                       right: 10,
                       child: Container(
-                          height: 35,
-                          width: 35,
+                          height: 30,
+                          width: 30,
                           decoration: BoxDecoration(
                               color: Color(0xFFECF0FB), shape: BoxShape.circle),
                           child: Center(
@@ -106,14 +131,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               });
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8),
                               child: SvgPicture.asset("assets/icons/arrow.svg"),
                             ),
                           )))),
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(right: 50, left: 10),
+                        padding:
+                            const EdgeInsets.only(right: 50, left: 10, top: 10),
                         child: CustomAutoSizeTextMontserrat(
                           text: courseSearchModel!.courseName ?? "",
                           maxLines: 3,
@@ -146,32 +172,46 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        padding:
+                            const EdgeInsets.only(left: 10, right: 10, top: 0),
                         child: Row(
                           children: [
                             SvgPicture.asset(
                               "assets/icons/clock.svg",
-                              height: 20,
+                              height: 15,
                               color: ThemeConstants.bluelightgreycolor,
                             ),
-                            CustomAutoSizeTextMontserrat(
-                              text: "3 Year",
-                              maxLines: 1,
-                              textColor: ThemeConstants.bluelightgreycolor,
-                            ),
-                            if (courseSearchModel!.annualTutionFees != null)
-                              SvgPicture.asset(
-                                "assets/icons/price.svg",
-                                color: ThemeConstants.bluelightgreycolor,
-                                height: 20,
-                              ),
-                            if (courseSearchModel!.annualTutionFees != null)
-                              CustomAutoSizeTextMontserrat(
-                                text: courseSearchModel!.annualTutionFees
-                                        .toString() +
-                                    courseSearchModel!.currencyCode!,
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "3 Year",
                                 maxLines: 1,
                                 textColor: ThemeConstants.bluelightgreycolor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            if (courseSearchModel!.annualTutionFees != null)
+                              Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: SvgPicture.asset(
+                                  "assets/icons/price.svg",
+                                  color: ThemeConstants.bluelightgreycolor,
+                                  height: 15,
+                                ),
+                              ),
+                            if (courseSearchModel!.annualTutionFees != null)
+                              Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: courseSearchModel!.annualTutionFees
+                                          .toString() +
+                                      courseSearchModel!.currencyCode!,
+                                  maxLines: 1,
+                                  textColor: ThemeConstants.bluelightgreycolor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             if (courseSearchModel!.annualTutionFees != null)
                               IconButton(
@@ -192,7 +232,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     width: 30,
                                     decoration: BoxDecoration(
                                         color: ThemeConstants.bluecolor,
-                                        border: Border.all(),
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(7))),
                                     child: Padding(
@@ -246,7 +285,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ),
                       // if (resize == true)
                       //   Padding(
-                      //     padding: const EdgeInsets.only(left: 10, right: 10),
+                      //     padding: const EdgeInsets.only(
+                      //         left: 10, right: 10, top: 5),
                       //     child: DottedLine(
                       //       dashLength: 12,
                       //       dashGapLength: 7,

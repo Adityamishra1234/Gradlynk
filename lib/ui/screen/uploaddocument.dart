@@ -66,7 +66,6 @@ class UploadDocument extends StatelessWidget {
                           height: 60,
                           width: 60,
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
                             color: ThemeConstants.bluecolor,
                             shape: BoxShape.circle,
                           ),
@@ -114,7 +113,6 @@ class UploadDocument extends StatelessWidget {
                             height: 60,
                             width: 60,
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
                                 color: ThemeConstants.bluecolor,
                                 shape: BoxShape.circle),
                             child: Padding(

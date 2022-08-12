@@ -4,6 +4,7 @@ import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
@@ -67,7 +68,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: CourseSearch.routeNamed,
+      initialRoute: Login.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
@@ -119,6 +120,10 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: MyHomePage.routeNamed,
           page: () => MyHomePage(),
+        ),
+        GetPage(
+          name: CourseSearchFullDetail.routeNamed,
+          page: () => CourseSearchFullDetail(),
         ),
       ],
     );

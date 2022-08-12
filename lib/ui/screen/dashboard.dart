@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -174,11 +175,7 @@ class _DashBoardState extends State<DashBoard> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.snackbar(
-                    "DashBoard",
-                    "Course Search",
-                    snackPosition: SnackPosition.BOTTOM,
-                  );
+                  Get.toNamed(CourseSearch.routeNamed);
                   debugPrint("Course Search");
                 },
                 child: Padding(
