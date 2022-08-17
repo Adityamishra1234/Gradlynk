@@ -6,7 +6,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class EntryRequirement extends StatelessWidget {
-  const EntryRequirement({Key? key}) : super(key: key);
+  EntryRequirement({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

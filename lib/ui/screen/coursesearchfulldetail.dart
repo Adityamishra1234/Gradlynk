@@ -18,11 +18,26 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class CourseSearchFullDetail extends StatelessWidget {
   static const routeNamed = '/CourseSearchFullDetail';
   var controller = Get.put(CourseSearchFullDetailController());
+  String s2 = """
+  The United States is a popular hub for education as having seven of the top 10 universities globally. American colleges and universities are widely known for their teaching and research. The American education system is the most adaptable and versatile for international students.
+                                           American college is known for its academic excellence as it provides the world’s most adequate education with excellent programs across all discipline subjects. American colleges have an advanced stage of undergraduate programs that allows opting for multiple specializations.
+
+
+
+There are two prominent intakes in the USA, i.e., fall and spring.
+
+
+
+- The fall intake begins in August; most of the courses are          available and the most preferred intake among the
+international students.
+-Spring or Winter Intake starts in January, and it provides a few courses.
+However, Universities in the USA also have summer intakes, but it is limited to specific courses.'",
+  """;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
-      body: NestedScrollView(
+        appBar: CustomAppBar("title"),
+        body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
               SliverList(
@@ -183,193 +198,154 @@ class CourseSearchFullDetail extends StatelessWidget {
               ),
             ];
           },
-          body: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: SizedBox(
-                  height: 40,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
+          body: GetBuilder<CourseSearchFullDetailController>(
+              builder: (_) => Column(
                     children: [
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        height: 40,
+                        child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                  height: 40,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      controller.setIndex(0);
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "About Institute",
+                                      maxLines: 1,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                  height: 40,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      controller.setIndex(1);
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Course Information",
+                                      maxLines: 1,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                  height: 40,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      controller.setIndex(2);
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Entry Requirement",
+                                      maxLines: 1,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                  height: 40,
+                                  width: 200,
+                                  decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      controller.setIndex(3);
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Steps To Admissions",
+                                      maxLines: 1,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                  height: 40,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      controller.setIndex(4);
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Steps To Visa",
+                                      maxLines: 1,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                  height: 40,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {
+                                      controller.setIndex(5);
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "About USA",
+                                      maxLines: 1,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 40,
+                              )
+                            ]),
                       ),
-                      Container(
-                          height: 40,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.bluecolor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              controller.setIndex(0);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "About Institute",
-                              maxLines: 1,
-                              textColor: ThemeConstants.whitecolor,
-                            ),
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                          height: 40,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.bluecolor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              controller.setIndex(1);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Course Information",
-                              maxLines: 1,
-                              textColor: ThemeConstants.whitecolor,
-                            ),
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                          height: 40,
-                          width: 170,
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.bluecolor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              controller.setIndex(2);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Entry Requirement",
-                              maxLines: 1,
-                              textColor: ThemeConstants.whitecolor,
-                            ),
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                          height: 40,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.bluecolor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              controller.setIndex(3);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Steps To Admissions",
-                              maxLines: 1,
-                              textColor: ThemeConstants.whitecolor,
-                            ),
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                          height: 40,
-                          width: 120,
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.bluecolor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              controller.setIndex(4);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Steps To Visa",
-                              maxLines: 1,
-                              textColor: ThemeConstants.whitecolor,
-                            ),
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                          height: 40,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.bluecolor,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                          ),
-                          child: TextButton(
-                            onPressed: () {
-                              controller.setIndex(5);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "About USA",
-                              maxLines: 1,
-                              textColor: ThemeConstants.whitecolor,
-                            ),
-                          )),
-                      GetX<CourseSearchFullDetailController>(
-                          builder: (_) => SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.40,
-                                child: Column(
-                                  children: [
-                                    if (_.index.value == 0) ABoutInstitute(),
-                                    if (_.index.value == 1)
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.40,
-                                          child: CourseInformation()),
-                                    if (_.index.value == 2)
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.40,
-                                          child: EntryRequirement()),
-                                    if (_.index.value == 3)
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.40,
-                                          child: StepsToAdmissions()),
-                                    if (_.index.value == 4)
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.40,
-                                          child: StepsToVisa()),
-                                    if (_.index.value == 5)
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.40,
-                                          child: AboutCourse())
-                                  ],
-                                ),
-                              )),
+                      if (_.index.value == 0) AboutInstitute(),
+                      if (_.index.value == 1) CourseInformation(),
+                      if (_.index.value == 2) EntryRequirement(),
+                      if (_.index.value == 3) StepsToAdmissions(),
+                      if (_.index.value == 4) StepsToVisa(),
+                      if (_.index.value == 5) AboutCourse()
                     ],
-                  ),
-                ),
-              ),
-            ],
-          )),
-    );
+                  )),
+        ));
     // SizedBox(
     //   height: MediaQuery.of(context).size.height,
     //   child: ListView(children: [
@@ -409,4 +385,7 @@ class CourseSearchFullDetail extends StatelessWidget {
     //   ]),
     // ));
   }
+
+// Function
+
 }

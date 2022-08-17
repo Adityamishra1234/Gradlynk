@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class AboutCourse extends StatelessWidget {
-  const AboutCourse({Key? key}) : super(key: key);
+  AboutCourse({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

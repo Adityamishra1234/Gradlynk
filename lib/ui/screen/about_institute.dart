@@ -3,8 +3,8 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-class ABoutInstitute extends StatelessWidget {
-  ABoutInstitute({Key? key}) : super(key: key);
+class AboutInstitute extends StatelessWidget {
+  AboutInstitute({Key? key}) : super(key: key);
   String s2 = """
   The United States is a popular hub for education as having seven of the top 10 universities globally. American colleges and universities are widely known for their teaching and research. The American education system is the most adaptable and versatile for international students.
                                            American college is known for its academic excellence as it provides the world’s most adequate education with excellent programs across all discipline subjects. American colleges have an advanced stage of undergraduate programs that allows opting for multiple specializations.
@@ -23,8 +23,7 @@ However, Universities in the USA also have summer intakes, but it is limited to 
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.90,
+    return Expanded(
       child: ListView(
         children: [
           Padding(

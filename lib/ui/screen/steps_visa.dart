@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class StepsToVisa extends StatelessWidget {
-  const StepsToVisa({Key? key}) : super(key: key);
+  StepsToVisa({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
