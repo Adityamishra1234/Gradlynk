@@ -164,6 +164,9 @@ class CourseSearchController extends BaseController {
     var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
       courseSearchModel = res;
+      courseSearchModel.forEach((element) {
+        print(element.intakeFromYear);
+      });
       loadingCourseSearchDetail = true.obs;
       update();
     }

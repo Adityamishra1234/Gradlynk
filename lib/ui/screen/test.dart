@@ -20,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static List<Animal> _animals = [
+  static final List<Animal> _animals = [
     Animal(id: 1, name: "Lion"),
     Animal(id: 2, name: "Flamingo"),
     Animal(id: 3, name: "Hippo"),

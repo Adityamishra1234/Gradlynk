@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/controllers/otpscreencontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -30,26 +26,26 @@ class OTPScreen extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   CustomAutoSizeTextMontserrat(
                     text: "OTP has been send to",
                     maxLines: 1,
                     textColor: Colors.white,
                     fontSize: 24,
                   ),
-                  Spacer()
+                  const Spacer()
                 ],
               ),
               Row(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   CustomAutoSizeTextMontserrat(
                     text: "your sms",
                     maxLines: 1,
                     textColor: Colors.white,
                     fontSize: 24,
                   ),
-                  Spacer()
+                  const Spacer()
                 ],
               ),
               SizedBox(
@@ -77,7 +73,8 @@ class OTPScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 10, left: 20, right: 20),
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 20),
                         child: Container(
                           height: 60,
                           decoration: BoxDecoration(
@@ -91,11 +88,11 @@ class OTPScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 15),
                             child: OTPTextField(
                               contentPadding:
-                                  EdgeInsets.only(top: 0, bottom: 10),
+                                  const EdgeInsets.only(top: 0, bottom: 10),
                               length: 5,
                               width: MediaQuery.of(context).size.width,
                               fieldWidth: 25,
-                              style: TextStyle(fontSize: 17),
+                              style: const TextStyle(fontSize: 17),
                               textFieldAlignment: MainAxisAlignment.spaceAround,
                               fieldStyle: FieldStyle.underline,
                               onCompleted: (pin) {

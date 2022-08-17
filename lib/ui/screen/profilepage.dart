@@ -43,12 +43,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   var controller = Get.put(ProfilePageController());
   TextStyle getTextStyle(bool colorsChoose) {
-    final TextStyle _textStyle = GoogleFonts.montserrat(
+    final TextStyle textStyle = GoogleFonts.montserrat(
       fontWeight: FontWeight.w600,
       color: colorsChoose ? Colors.white : Colors.black,
       fontSize: 15,
     );
-    return _textStyle;
+    return textStyle;
   }
 
   @override

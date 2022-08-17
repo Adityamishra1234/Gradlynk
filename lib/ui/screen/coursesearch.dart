@@ -32,7 +32,7 @@ class _CourseSearchState extends State<CourseSearch> {
       countryindexvaluelist.add(controller.country.countrylist!
           .indexWhere((note) => note.startsWith(data[i])));
 
-      print(countryindexvaluelist);
+      debugPrint(countryindexvaluelist.toString());
     }
 
     for (var j = 0; j < countryindexvaluelist.length; j++) {
@@ -156,15 +156,12 @@ class _CourseSearchState extends State<CourseSearch> {
               //           })),
               GetBuilder<CourseSearchController>(
                 builder: (controller1) => controller1.loadingCountry.value
-                    ? SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.83,
+                    ? Expanded(
                         child: Column(
                           children: [
                             if (controller1.loadingCourseSearchDetail.value ==
                                 true)
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.83,
+                              Expanded(
                                 child: ListView.builder(
                                     itemCount:
                                         controller1.courseSearchModel.length,
@@ -207,8 +204,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                         ),
                                         child: MultiSelectDropDown(
                                           title: "Select State",
-                                          listdata: controller1.stateList ??
-                                              ["1", "2"],
+                                          listdata: controller1.stateList,
                                           callbackFunction: callbackState,
                                         ),
                                       ),

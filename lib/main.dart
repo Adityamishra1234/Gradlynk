@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
@@ -21,6 +22,8 @@ import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(systemStatusBarContrastEnforced: true));
   // SystemChrome.setEnabledSystemUIOverlays([]);
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
@@ -68,20 +71,20 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Create Route
-      initialRoute: Login.routeNamed,
+      initialRoute: CourseSearchFullDetail.routeNamed,
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
-            page: () => Login(),
+            page: () => const Login(),
             binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
-            page: () => Login(),
+            page: () => const Login(),
             binding: LoginBinding()),
         GetPage(
           name: DashBoard.routeNamed,
-          page: () => DashBoard(),
+          page: () => const DashBoard(),
         ),
         GetPage(
             name: DetialScreen.routeNamed,
@@ -99,7 +102,7 @@ class _MyApState extends State<MyAp> {
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,
-          page: () => AnimationaPhonepe(),
+          page: () => const AnimationaPhonepe(),
         ),
         GetPage(
           name: OTPScreen.routeNamed,
@@ -111,7 +114,7 @@ class _MyApState extends State<MyAp> {
         ),
         GetPage(
           name: ImageViewerScreen.routeNamed,
-          page: () => ImageViewerScreen(),
+          page: () => const ImageViewerScreen(),
         ),
         GetPage(
           name: CourseSearch.routeNamed,
