@@ -41,7 +41,7 @@ class _DashBoardState extends State<DashBoard> {
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Column(
+          child: ListView(
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10),

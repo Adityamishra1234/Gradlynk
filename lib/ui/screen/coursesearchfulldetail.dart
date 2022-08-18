@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchfulldetailcontroller.dart';
@@ -18,6 +15,8 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CourseSearchFullDetail extends StatelessWidget {
+  CourseSearchFullDetail({Key? key}) : super(key: key);
+
   static const routeNamed = '/CourseSearchFullDetail';
   var controller = Get.put(CourseSearchFullDetailController());
   String s2 = """
@@ -35,6 +34,7 @@ international students.
 -Spring or Winter Intake starts in January, and it provides a few courses.
 However, Universities in the USA also have summer intakes, but it is limited to specific courses.'",
   """;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +50,7 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                   builder: (_) => Column(
                     children: [
                       if (_.showAnimation!.value == true ||
-                          controller.firstTimeAnimation!.value == false)
+                          _.firstTimeAnimation!.value == false)
                         AnimationShowDownArror(),
                     ],
                   ),
