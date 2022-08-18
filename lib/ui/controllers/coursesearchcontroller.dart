@@ -155,7 +155,7 @@ class CourseSearchController extends BaseController {
     var temp = country.split('[');
     var temp2 = temp[1].split(']')[0];
     var temp3 = courseLevel.split('[');
-    var temp4 = temp[1].split(']')[0];
+    var temp4 = temp3[1].split(']')[0];
     String? endpoint = Endpoints.courseSearchPart1! +
         temp2 +
         Endpoints.courseSearchPart2! +

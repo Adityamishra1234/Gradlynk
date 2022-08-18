@@ -134,14 +134,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         )))),
                 Column(
                   children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 50, left: 10, top: 10),
-                      child: CustomAutoSizeTextMontserrat(
-                        text: courseSearchModel!.courseName ?? "",
-                        maxLines: 3,
-                        textColor: ThemeConstants.bluecolor,
-                        fontWeight: FontWeight.bold,
+                    Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(right: 50, left: 10, top: 10),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: courseSearchModel!.courseName ?? "",
+                          maxLines: 3,
+                          textColor: ThemeConstants.bluecolor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Align(
@@ -178,16 +181,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             height: 15,
                             color: ThemeConstants.bluelightgreycolor,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "3 Year",
-                              maxLines: 1,
-                              textColor: ThemeConstants.bluelightgreycolor,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
+                          if (courseSearchModel!.durationYear != null)
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: CustomAutoSizeTextMontserrat(
+                                text:
+                                    "${courseSearchModel!.durationYear!} Years",
+                                maxLines: 1,
+                                textColor: ThemeConstants.bluelightgreycolor,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
                           if (courseSearchModel!.annualTutionFees != null)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
@@ -200,14 +205,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           if (courseSearchModel!.annualTutionFees != null)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: courseSearchModel!.annualTutionFees
-                                        .toString() +
-                                    courseSearchModel!.currencyCode!,
-                                maxLines: 1,
-                                textColor: ThemeConstants.bluelightgreycolor,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
+                              child: SizedBox(
+                                width: 100,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: courseSearchModel!.annualTutionFees
+                                          .toString() +
+                                      courseSearchModel!.currencyCode!,
+                                  maxLines: 1,
+                                  textColor: ThemeConstants.bluelightgreycolor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           if (courseSearchModel!.annualTutionFees != null)
@@ -216,12 +224,13 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 icon: SvgPicture.asset(
                                   "assets/icons/i.svg",
                                   height: 20,
+                                  width: 20,
                                   color: ThemeConstants.bluecolor,
                                 )),
                           Spacer(),
-                          Container(
+                          SizedBox(
                             height: 30,
-                            width: 120,
+                            width: 100,
                             child: Row(
                               children: [
                                 Container(
@@ -297,134 +306,135 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               ],
             ),
             if (delayresize == true)
-              Container(
-                child: SizedBox(
-                  height: 260,
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Table(
-                          columnWidths: {0: FractionColumnWidth(.6)},
-                          children: [
-                            TableRow(children: [
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Total Tuition Fees:",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 14,
-                                ),
+              SizedBox(
+                height: 245 +
+                    courseSearchModel!.listIntake!.length * 12.0 -
+                    (courseSearchModel!.listIntake!.isEmpty ? 80.0 : 0.0),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Table(
+                        columnWidths: const {0: FractionColumnWidth(.6)},
+                        children: [
+                          TableRow(children: [
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Total Tuition Fees:",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
                               ),
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Conditional Offer:",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 14,
-                                ),
-                              )
-                            ]),
-                            TableRow(children: [
-                              TableCell(
-                                  child: courseSearchModel!.totalFees != null
-                                      ? CustomAutoSizeTextMontserrat(
-                                          text:
-                                              "${courseSearchModel!.totalFees}${courseSearchModel!.currencyCode} (${courseSearchModel!.totalFeesInr}INR)",
-                                          maxLines: 1,
-                                          textColor: Colors.grey,
-                                          fontSize: 12,
-                                        )
-                                      : Container()),
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: courseSearchModel!.conditionalOffer,
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              )
-                            ]),
-                            rowSpacer,
-                            TableRow(children: [
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "English test Requirement:",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 14,
-                                ),
+                            ),
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Conditional Offer:",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
                               ),
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Scholarship:",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 14,
-                                ),
-                              )
-                            ]),
-                            TableRow(children: [
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: courseSearchModel!.englishProficiency
-                                      .toString()
-                                      .split("|")[0],
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 12,
-                                ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                                child: courseSearchModel!.totalFees != null
+                                    ? CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "${courseSearchModel!.totalFees}${courseSearchModel!.currencyCode} (${courseSearchModel!.totalFeesInr}INR)",
+                                        maxLines: 1,
+                                        textColor: Colors.grey,
+                                        fontSize: 12,
+                                      )
+                                    : Container()),
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel!.conditionalOffer,
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 12,
                               ),
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: courseSearchModel!.scholarship ?? "",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              )
-                            ]),
-                            rowSpacer,
-                            TableRow(children: [
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Academic Requirement:",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 14,
-                                ),
+                            )
+                          ]),
+                          rowSpacer,
+                          TableRow(children: [
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "English test Requirement:",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
                               ),
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Offer TAT:",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 14,
-                                ),
-                              )
-                            ]),
-                            TableRow(children: [
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text:
-                                      courseSearchModel!.academicRequire ?? "",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 12,
-                                ),
+                            ),
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Scholarship:",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
                               ),
-                              TableCell(
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: courseSearchModel!.offerTat ?? "",
-                                  maxLines: 1,
-                                  textColor: Colors.grey,
-                                  fontSize: 12,
-                                ),
-                              )
-                            ]),
-                          ],
-                        ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel!.englishProficiency
+                                    .toString()
+                                    .split("|")[0],
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel!.scholarship ?? "",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            )
+                          ]),
+                          rowSpacer,
+                          TableRow(children: [
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Academic Requirement:",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
+                              ),
+                            ),
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Offer TAT:",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
+                              ),
+                            )
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel!.academicRequire ?? "",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            ),
+                            TableCell(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel!.offerTat ?? "",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 12,
+                              ),
+                            )
+                          ]),
+                        ],
                       ),
+                    ),
+                    if (courseSearchModel!.listIntake!.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(left: 20, top: 10),
                         child: Align(
@@ -436,9 +446,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           ),
                         ),
                       ),
+                    if (courseSearchModel!.listIntake!.isNotEmpty)
                       Padding(
-                        padding:
-                            const EdgeInsets.only(left: 20, right: 20, top: 10),
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                        ),
                         child: Table(
                           border: TableBorder.all(),
                           children: [
@@ -469,89 +482,116 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     ),
                                   )),
                                 ]),
-                            TableRow(
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.whitecolor),
-                                children: [
-                                  TableCell(
-                                      child: Center(
-                                    child: CustomAutoSizeTextMontserrat(
-                                      maxLines: 1,
-                                      text: courseSearchModel!.intakeFromYear ??
-                                          "",
-                                      textColor: Colors.grey,
-                                    ),
-                                  )),
-                                  TableCell(
-                                    child: Center(
-                                      child: CustomAutoSizeTextMontserrat(
-                                        maxLines: 1,
-                                        text:
-                                            courseSearchModel!.intakeFromYear ??
-                                                "",
-                                        textColor: Colors.grey,
-                                      ),
-                                    ),
+                          ],
+                        ),
+                      ),
+                    if (courseSearchModel!.listIntake!.isNotEmpty)
+                      Expanded(
+                        child: MediaQuery.removePadding(
+                          context: context,
+                          removeTop: true,
+                          removeBottom: true,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.only(bottom: 0),
+                              itemCount: courseSearchModel!.listIntake!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 20,
+                                    right: 20,
                                   ),
-                                  TableCell(
-                                      child: Center(
-                                    child: CustomAutoSizeTextMontserrat(
-                                      maxLines: 1,
-                                      text: "Close",
-                                      textColor: Colors.grey,
-                                    ),
-                                  )),
-                                ]),
-                          ],
+                                  child: Table(
+                                    border: TableBorder.all(),
+                                    children: [
+                                      TableRow(children: [
+                                        TableCell(
+                                            child: Center(
+                                          child: CustomAutoSizeTextMontserrat(
+                                            maxLines: 1,
+                                            text: courseSearchModel!
+                                                .listIntake![index],
+                                            textColor: Colors.grey,
+                                          ),
+                                        )),
+                                        TableCell(
+                                          child: Center(
+                                            child: CustomAutoSizeTextMontserrat(
+                                              maxLines: 1,
+                                              text: courseSearchModel!
+                                                  .listIntake![index],
+                                              textColor: Colors.grey,
+                                            ),
+                                          ),
+                                        ),
+                                        TableCell(
+                                            child: Center(
+                                          child: CustomAutoSizeTextMontserrat(
+                                            maxLines: 1,
+                                            text: "Close",
+                                            textColor: Colors.grey,
+                                          ),
+                                        )),
+                                      ]),
+                                    ],
+                                  ),
+                                );
+                              }),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 10),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/star.svg",
-                              height: 15,
-                              color: Color(0xFFF97316),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                      ),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            "assets/icons/star.svg",
+                            height: 15,
+                            color: Color(0xFFF97316),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Ranking",
+                              maxLines: 1,
+                              textColor: Colors.grey,
+                              fontSize: 14,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Ranking",
-                                maxLines: 1,
-                                textColor: Colors.grey,
-                                fontSize: 14,
-                              ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 20, right: 10, top: 10),
-                        child: Row(
-                          children: [
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 10, top: 5, bottom: 10),
+                      child: Row(
+                        children: [
+                          if (courseSearchModel!.arwuRank != null)
                             CustomAutoSizeTextMontserrat(
                               text: "ARWU:${courseSearchModel!.arwuRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                            Spacer(),
+                          Spacer(),
+                          if (courseSearchModel!.timesRank != null)
                             CustomAutoSizeTextMontserrat(
                               text: "Times:${courseSearchModel!.timesRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                            Spacer(),
+                          Spacer(),
+                          if (courseSearchModel!.usNewsRank != null)
                             CustomAutoSizeTextMontserrat(
                               text: "US News:${courseSearchModel!.usNewsRank}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                            Spacer(),
+                          Spacer(),
+                          if (courseSearchModel!.qsWorldRank != null)
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "QS World:${courseSearchModel!.qsWorldRank}",
@@ -559,11 +599,10 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               )
           ],

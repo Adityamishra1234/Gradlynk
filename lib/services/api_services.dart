@@ -198,6 +198,34 @@ class ApiServices extends StudentPanelBase {
     //   CourseSearchModel.fromJson(data);
     // }).toList();
 
+    //For Duration In Year
+    if (courseSearchModel.isNotEmpty) {
+      for (var i = 0; i < courseSearchModel.length; i++) {
+        if (courseSearchModel[i].courseDuration != null) {
+          courseSearchModel[i].durationYear =
+              ((int.parse(courseSearchModel[i].courseDuration!) / 12)
+                  .toStringAsFixed(1));
+          print(i);
+          print(courseSearchModel[i].durationYear);
+        }
+      }
+
+      //Intake
+      if (courseSearchModel.isNotEmpty) {
+        for (var i = 0; i < courseSearchModel.length; i++) {
+          if (courseSearchModel[i].intakeFromYear != null) {
+            courseSearchModel[i]
+                .listIntake!
+                .addAll(courseSearchModel[i].intakeFromYear!.split("|"));
+          }
+        }
+      }
+      for (var i = 0; i < courseSearchModel.length; i++) {
+        courseSearchModel[i].listIntake =
+            courseSearchModel[i].listIntake!.toSet().toList();
+      }
+    }
+
     return courseSearchModel;
   }
   // logout(String baseUrl, String endpoint) async {

@@ -59,8 +59,8 @@ class _CourseSearchState extends State<CourseSearch> {
     }
 
     for (var j = 0; j < courseindexvaluelist.length; j++) {
-      controller.selectCourseCode.add(
-          controller.courseLevel.courseLevelList![courseindexvaluelist[j]]);
+      controller.selectCourseCode
+          .add(controller.courseLevel.courseCode![courseindexvaluelist[j]]);
 
       var temp = Set.of(controller.selectCourseCode).toList();
       controller.selectCourseCode = temp.obs;

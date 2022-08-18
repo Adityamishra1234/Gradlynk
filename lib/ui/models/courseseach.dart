@@ -1,11 +1,13 @@
 class CourseSearchModel {
+  List? listIntake = [];
+  String? durationYear;
   int? id;
   String? courseName;
   String? intakeFromYear;
   String? academicRequire;
   int? allFees;
   int? allFeesInr;
-  int? annualTutionFees;
+  String? annualTutionFees;
   int? annualTutionFeesInr;
   String? arwuRank;
   String? backlogsAcceptable;
@@ -118,12 +120,13 @@ class CourseSearchModel {
 
   CourseSearchModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+
     courseName = json['course_name'];
     intakeFromYear = json['IntakeFrom_Year'];
     academicRequire = json['academic_require'];
     allFees = json['all_fees'];
     allFeesInr = json['all_fees_inr'];
-    annualTutionFees = json['annual_tution_fees'];
+    annualTutionFees = json['annual_tution_fees'].toString();
     annualTutionFeesInr = json['annual_tution_fees_inr'];
     arwuRank = json['arwu_rank'];
     backlogsAcceptable = json['backlogs_acceptable'];
