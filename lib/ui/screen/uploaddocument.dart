@@ -233,89 +233,129 @@ class UploadDocument extends StatelessWidget {
                                       ? IconButton(
                                           onPressed: () {
                                             Get.bottomSheet(Container(
-                                              height: 140,
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.only(
+                                                  topRight:
+                                                      Radius.circular(40.0),
+                                                  // bottomRight:
+                                                  //     Radius.circular(40.0),
+                                                  topLeft:
+                                                      Radius.circular(40.0),
+                                                  // bottomLeft:
+                                                  //     Radius.circular(40.0)),
+                                                ),
+                                              ),
+                                              height: 210,
                                               width: MediaQuery.of(context)
                                                   .size
                                                   .width,
-                                              color: Colors.white,
                                               child: Column(
                                                 children: [
-                                                  SizedBox(
-                                                    height: 50,
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    child: ElevatedButton(
-                                                      style: ElevatedButton
-                                                          .styleFrom(
-                                                        primary: Colors
-                                                            .white, // background
-                                                        onPrimary: Colors
-                                                            .white, // foreground
-                                                      ),
-                                                      onPressed: () async {
-                                                        FilePickerResult?
-                                                            result =
-                                                            await FilePicker
-                                                                .platform
-                                                                .pickFiles();
-
-                                                        if (result != null) {
-                                                          PlatformFile file1 =
-                                                              result
-                                                                  .files.first;
-                                                          io.File file =
-                                                              io.File(result
-                                                                  .files
-                                                                  .single
-                                                                  .path!);
-                                                          debugPrint(
-                                                              file1.extension);
-                                                          _.setLoadingDegree(
-                                                              true);
-
-                                                          // ));
-                                                        } else {
-                                                          Get.back();
-                                                          // User canceled the picker
-                                                        }
-                                                      },
-                                                      child: const Text(
-                                                        'Gallery',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const Divider(
-                                                    color: Colors.grey,
-                                                  ),
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            top: 10),
-                                                    child: SizedBox(
-                                                      height: 50,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          primary: Colors
-                                                              .red, // background
-                                                          onPrimary: Colors
-                                                              .white, // foreground
-                                                        ),
-                                                        onPressed: () {},
-                                                        child: const Text(
-                                                            'Camera'),
-                                                      ),
+                                                            top: 30),
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      text: "Select Source",
+                                                      maxLines: 1,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20,
                                                     ),
-                                                  )
+                                                  ),
+                                                  Spacer(),
+                                                  Row(
+                                                    children: [
+                                                      Spacer(),
+                                                      FlatButton(
+                                                        onPressed: () => {},
+                                                        color: ThemeConstants
+                                                            .whitecolor,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10.0),
+                                                        child: Column(
+                                                          // Replace with a Row for horizontal icon + text
+                                                          children: <Widget>[
+                                                            SvgPicture.asset(
+                                                              "assets/icons/camera.svg",
+                                                              height: 50,
+                                                              width: 50,
+                                                              color:
+                                                                  ThemeConstants
+                                                                      .bluecolor,
+                                                            ),
+                                                            CustomAutoSizeTextMontserrat(
+                                                                text: "Camera",
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                maxLines: 1)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 80,
+                                                      ),
+                                                      FlatButton(
+                                                        onPressed: () async {
+                                                          FilePickerResult?
+                                                              result =
+                                                              await FilePicker
+                                                                  .platform
+                                                                  .pickFiles();
+
+                                                          if (result != null) {
+                                                            PlatformFile file1 =
+                                                                result.files
+                                                                    .first;
+                                                            io.File file =
+                                                                io.File(result
+                                                                    .files
+                                                                    .single
+                                                                    .path!);
+                                                            debugPrint(file1
+                                                                .extension);
+                                                            _.setLoadingDegree(
+                                                                true);
+
+                                                            // ));
+                                                          } else {
+                                                            Get.back();
+                                                            // User canceled the picker
+                                                          }
+                                                        },
+                                                        color: ThemeConstants
+                                                            .whitecolor,
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(10.0),
+                                                        child: Column(
+                                                          // Replace with a Row for horizontal icon + text
+                                                          children: <Widget>[
+                                                            SvgPicture.asset(
+                                                              "assets/icons/gallery.svg",
+                                                              height: 50,
+                                                              width: 50,
+                                                              color:
+                                                                  ThemeConstants
+                                                                      .bluecolor,
+                                                            ),
+                                                            CustomAutoSizeTextMontserrat(
+                                                                text: "Gallery",
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                maxLines: 1)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Spacer(),
+                                                    ],
+                                                  ),
+                                                  Spacer()
                                                 ],
                                               ),
                                             ));

@@ -6,20 +6,20 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
 
 class ProfilePageController extends BaseController with StateMixin<UserModel> {
+  //Create Local Screen Variable
   DropDownModel? dropDownModel;
 
-  ///
-
+  //Using For Loading Progress
   RxInt? chooseIndex = 0.obs;
   RxBool? englishTestDetail = true.obs;
   RxBool? showAnimation = false.obs;
   RxBool? firstTimeAnimation = false.obs;
   RxString? dropdown1 = "".obs;
   RxBool loadingBranchname = false.obs;
-
-  StudentPanel studentPanel = StudentPanel();
-
   List<RxBool> loading = [];
+
+  //Create Class  Object
+  StudentPanel studentPanel = StudentPanel();
 
   setdropdown1(String? data) {
     dropdown1 = data!.obs;
