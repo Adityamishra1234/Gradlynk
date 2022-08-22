@@ -70,8 +70,9 @@ class _MyApState extends State<MyAp> {
     return GetMaterialApp(
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
-      // Create Route
+      // Initial Route
       initialRoute: CourseSearchFullDetail.routeNamed,
+      // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
