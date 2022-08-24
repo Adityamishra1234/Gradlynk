@@ -1,5 +1,6 @@
 class CourseSearchModel {
-  List? listIntake = [];
+  List<String>? listIntake = [];
+  String? nearByIntake;
   String? durationYear;
   int? id;
   String? courseName;
@@ -58,6 +59,9 @@ class CourseSearchModel {
   String? whyChooseUniv;
   String? workExpRequired;
   String? yearOfEducation;
+  List<dynamic>? IntakeMonth = [];
+  List<dynamic>? IntakeYear = [];
+  List<dynamic>? admission = [];
 
   CourseSearchModel(
       {this.id,

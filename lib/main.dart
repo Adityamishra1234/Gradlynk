@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
+import 'package:studentpanel/ui/screen/lunchingpage.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -71,7 +72,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: CourseSearchFullDetail.routeNamed,
+      initialRoute: CourseSearch.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -121,9 +122,13 @@ class _MyApState extends State<MyAp> {
           name: MyHomePage.routeNamed,
           page: () => MyHomePage(),
         ),
+        // GetPage(
+        //   name: CourseSearchFullDetail.routeNamed,
+        //   page: () => CourseSearchFullDetail(),
+        // ),
         GetPage(
-          name: CourseSearchFullDetail.routeNamed,
-          page: () => CourseSearchFullDetail(),
+          name: LunchingPage.routeNamed,
+          page: () => LunchingPage(),
         ),
       ],
     );

@@ -31,9 +31,8 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(Get.arguments);
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
-    print(MediaQuery.of(context).size.height);
+
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
       body: Container(
@@ -95,8 +94,6 @@ class _DashBoardState extends State<DashBoard> {
                     "studentPanelModel":
                         dashboardController.studentPanel.toString()
                   });
-
-                  debugPrint("Create your profile");
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
@@ -176,7 +173,6 @@ class _DashBoardState extends State<DashBoard> {
               GestureDetector(
                 onTap: () {
                   Get.toNamed(CourseSearch.routeNamed);
-                  debugPrint("Course Search");
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -216,7 +212,6 @@ class _DashBoardState extends State<DashBoard> {
                             "Track Application",
                             snackPosition: SnackPosition.BOTTOM,
                           );
-                          debugPrint('Track Application');
                         },
                         child: Column(
                           children: [

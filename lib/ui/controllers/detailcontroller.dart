@@ -23,7 +23,6 @@ class DetailController extends BaseController {
   }
 
   void startTimer(String currentScreen) {
-    debugPrint(currentScreen);
     const maxmin = 5220;
     int min = maxmin;
     Timer? timer;

@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchfulldetailcontroller.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/screen/CourseInformation.dart';
 import 'package:studentpanel/ui/screen/about_course.dart';
 import 'package:studentpanel/ui/screen/about_institute.dart';
@@ -15,7 +16,9 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CourseSearchFullDetail extends StatelessWidget {
-  CourseSearchFullDetail({Key? key}) : super(key: key);
+  List<CompleteCourseDetail> completeCourseDetail;
+  CourseSearchFullDetail({Key? key, required this.completeCourseDetail})
+      : super(key: key);
 
   static const routeNamed = '/CourseSearchFullDetail';
   var controller = Get.put(CourseSearchFullDetailController());
@@ -49,8 +52,8 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                 child: GetBuilder<CourseSearchFullDetailController>(
                   builder: (_) => Column(
                     children: [
-                      if (_.showAnimation!.value == true ||
-                          _.firstTimeAnimation!.value == false)
+                      if (_.showAnimation.value == true ||
+                          _.firstTimeAnimation.value == false)
                         AnimationShowDownArror(),
                     ],
                   ),
@@ -80,7 +83,7 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                           ),
                         ),
                         CustomAutoSizeTextMontserrat(
-                          text: "Bachelor of Science in Compluter Science",
+                          text: completeCourseDetail[0].courseName,
                           maxLines: 5,
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
@@ -94,7 +97,8 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                               width: 20,
                             ),
                             CustomAutoSizeTextMontserrat(
-                                text: "Valparaiso University", maxLines: 2)
+                                text: completeCourseDetail[0].universityName,
+                                maxLines: 2)
                           ],
                         ),
                         Card(
@@ -115,7 +119,11 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                           textColor: ThemeConstants.bluecolor,
                                         ),
                                         CustomAutoSizeTextMontserrat(
-                                          text: "4year 0 Month",
+                                          text: (int.parse(
+                                                      completeCourseDetail[0]
+                                                          .courseDuration!) /
+                                                  12)
+                                              .toStringAsFixed(1),
                                           maxLines: 1,
                                           textColor: ThemeConstants.blackcolor,
                                         ),
@@ -135,7 +143,9 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                           textColor: ThemeConstants.orangeColor,
                                         ),
                                         CustomAutoSizeTextMontserrat(
-                                          text: "347200 USD (INR 2,56,92,800)",
+                                          text:
+                                              "${completeCourseDetail[0].totalTutionFees}(${completeCourseDetail[0].totalTutionFeesInr}INR)",
+                                          // "347200 USD (INR 2,56,92,800)",
                                           maxLines: 1,
                                           textColor: ThemeConstants.blackcolor,
                                         ),
@@ -159,7 +169,8 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                           textColor: ThemeConstants.bluecolor,
                                         ),
                                         CustomAutoSizeTextMontserrat(
-                                          text: "Bachelors",
+                                          text: completeCourseDetail[0]
+                                              .courseLevel,
                                           maxLines: 1,
                                           textColor: ThemeConstants.blackcolor,
                                         ),
@@ -204,21 +215,37 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 10),
                                 child: Row(
                                   children: [
                                     CustomAutoSizeTextMontserrat(
-                                        text: "ARWU:0", maxLines: 1),
+                                      text:
+                                          "ARWU:${completeCourseDetail[0].arwuRank}",
+                                      maxLines: 1,
+                                      fontSize: 14,
+                                    ),
                                     Spacer(),
                                     CustomAutoSizeTextMontserrat(
-                                        text: "Times:0", maxLines: 1),
+                                      text:
+                                          "Times:${completeCourseDetail[0].timesRank}",
+                                      maxLines: 1,
+                                      fontSize: 14,
+                                    ),
                                     Spacer(),
                                     CustomAutoSizeTextMontserrat(
-                                        text: "US News:0", maxLines: 1),
+                                      text:
+                                          "US News:${completeCourseDetail[0].usNewsRank}",
+                                      maxLines: 1,
+                                      fontSize: 14,
+                                    ),
                                     Spacer(),
                                     CustomAutoSizeTextMontserrat(
-                                        text: "QS World:0", maxLines: 1),
+                                      text:
+                                          "QS World:${completeCourseDetail[0].qsWorldRank}",
+                                      maxLines: 1,
+                                      fontSize: 14,
+                                    ),
                                   ],
                                 ),
                               )
@@ -374,12 +401,24 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                     )
                                   ]),
                             ),
-                            if (_.index.value == 0) AboutInstitute(),
-                            if (_.index.value == 1) CourseInformation(),
-                            if (_.index.value == 2) EntryRequirement(),
-                            if (_.index.value == 3) StepsToAdmissions(),
-                            if (_.index.value == 4) StepsToVisa(),
-                            if (_.index.value == 5) AboutCourse()
+                            if (_.index.value == 0)
+                              AboutInstitute(
+                                  completeCourseDetail: completeCourseDetail),
+                            if (_.index.value == 1)
+                              CourseInformation(
+                                  completeCourseDetail: completeCourseDetail),
+                            if (_.index.value == 2)
+                              EntryRequirement(
+                                  completeCourseDetail: completeCourseDetail),
+                            if (_.index.value == 3)
+                              StepsToAdmissions(
+                                  completeCourseDetail: completeCourseDetail),
+                            if (_.index.value == 4)
+                              StepsToVisa(
+                                  completeCourseDetail: completeCourseDetail),
+                            if (_.index.value == 5)
+                              AboutCourse(
+                                  completeCourseDetail: completeCourseDetail)
                           ],
                         )),
               ),

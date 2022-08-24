@@ -11,7 +11,6 @@ class TextScreenController extends BaseController {
   RxBool temp = false.obs;
 
   void startTimer(String currentScreen) {
-    debugPrint(currentScreen.toString());
     const maxmin = 20;
     int min = maxmin;
     Timer? timer;

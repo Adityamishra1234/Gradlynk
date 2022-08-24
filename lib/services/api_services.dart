@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
-import 'package:studentpanel/ui/models/country.dart';
-import 'package:studentpanel/ui/models/courseboardfield.dart';
-import 'package:studentpanel/ui/models/courselevel.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
+
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
@@ -55,53 +54,27 @@ class ApiServices extends StudentPanelBase {
   }
 
   getCountry(String baseUrl, String endpoint) async {
-    Country country = Country();
+    // Country country = Country();
     String data;
     var response;
     List<String> countrylist = [], countryCode = [], listdata = [];
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
       var jsondata = json.decode(response.body);
-      data = jsondata.toString();
-      data = data.split("{[")[0];
-      data = data.split("{")[1].split("}")[0];
-      listdata = data.split(",");
-      listdata.forEach((element) {
-        countrylist.add(element.toString().split(":")[0]);
-        countryCode.add(element.toString().split(":")[1]);
-      });
-
-      country = Country.fromJson(jsondata);
-      country.countrylist = countrylist;
-      country.codelist = countryCode;
-      return country;
+      return jsondata;
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
   getCourseLevel(String baseUrl, String endpoint) async {
-    String data;
     var response;
-    List<String> courselist = [], courseCode = [], listdata = [];
-    CourseLevel courseLevel = CourseLevel();
+
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
       var jsondata = json.decode(response.body);
 
-      data = jsondata.toString();
-      data = data.split("{[")[0];
-      data = data.split("{")[1].split("}")[0];
-      listdata = data.split(",");
-      listdata.forEach((element) {
-        courselist.add(element.toString().split(":")[0]);
-        courseCode.add(element.toString().split(":")[1]);
-      });
-
-      courseLevel = CourseLevel.fromJson(jsondata);
-      courseLevel.courseLevelList = courselist;
-      courseLevel.courseCode = courseCode;
-      return courseLevel;
+      return jsondata;
     } catch (e) {
       print(e.toString());
     }
@@ -110,13 +83,12 @@ class ApiServices extends StudentPanelBase {
   getState(String baseUrl, String endpoint, String countrydata) async {
     var temp = countrydata.split('[');
     var temp2 = temp[1].split(']')[0];
-    print(temp2.removeAllWhitespace);
-    print(baseUrl + endpoint + temp2.removeAllWhitespace.toString());
 
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
-      return response.body;
+      var jsondata = json.decode(response.body);
+      return jsondata;
     } catch (e) {
       print(e.toString());
     }
@@ -125,13 +97,12 @@ class ApiServices extends StudentPanelBase {
   getCity(String baseUrl, String endpoint, String statedata) async {
     var temp = statedata.split('[');
     var temp2 = temp[1].split(']')[0];
-    print(temp2.removeAllWhitespace);
-    print(baseUrl + endpoint + temp2.removeAllWhitespace.toString());
 
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
-      return response.body;
+      var jsondata = json.decode(response.body);
+      return jsondata;
     } catch (e) {
       print(e.toString());
     }
@@ -141,47 +112,22 @@ class ApiServices extends StudentPanelBase {
       String baseUrl, String endpoint, String broadFieldId) async {
     var temp = broadFieldId.split('[');
     var temp2 = temp[1].split(']')[0];
-    print(temp2.removeAllWhitespace);
-    print(baseUrl + endpoint + temp2.removeAllWhitespace.toString());
 
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
-      return response.body;
+      var jsondata = json.decode(response.body);
+      return jsondata;
     } catch (e) {
       print(e.toString());
     }
   }
 
   getCourseBoardField(String baseUrl, String endpoint) async {
-    CourseBoardField courseBoardField = CourseBoardField();
-    String data;
-    List<String> courseBoardFieldList = [],
-        courseBoardFieldCode = [],
-        listdata = [];
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
       var jsondata = json.decode(response.body);
-      courseBoardField = CourseBoardField.fromJson(jsondata);
-      data = jsondata.toString();
-      data = data.split("{[")[0];
-      data = data.split("{")[1].split("}")[0];
-      listdata = data.split(", ");
-      for (int i = 0; i <= listdata.length - 1; i++) {
-        // Bug Field Update
-        if (i == 10) {
-          courseBoardFieldCode.add("18");
-          courseBoardFieldList
-              .add("Agriculture,Environment and Related Studies");
-        } else {
-          courseBoardFieldCode.add(listdata[i].toString().split(":")[1]);
-          courseBoardFieldList.add(listdata[i].toString().split(":")[0]);
-        }
-      }
-
-      courseBoardField.courseBoardFieldList = courseBoardFieldList;
-      courseBoardField.courseboardFieldCode = courseBoardFieldCode;
-      return courseBoardField;
+      return jsondata;
     } catch (e) {
       print(e.toString());
     }
@@ -205,8 +151,6 @@ class ApiServices extends StudentPanelBase {
           courseSearchModel[i].durationYear =
               ((int.parse(courseSearchModel[i].courseDuration!) / 12)
                   .toStringAsFixed(1));
-          print(i);
-          print(courseSearchModel[i].durationYear);
         }
       }
 
@@ -214,9 +158,15 @@ class ApiServices extends StudentPanelBase {
       if (courseSearchModel.isNotEmpty) {
         for (var i = 0; i < courseSearchModel.length; i++) {
           if (courseSearchModel[i].intakeFromYear != null) {
-            courseSearchModel[i]
-                .listIntake!
-                .addAll(courseSearchModel[i].intakeFromYear!.split("|"));
+            if (courseSearchModel[i].intakeFromYear!.contains("|")) {
+              courseSearchModel[i]
+                  .listIntake!
+                  .addAll(courseSearchModel[i].intakeFromYear!.split("|"));
+            } else {
+              courseSearchModel[i]
+                  .listIntake!
+                  .add(courseSearchModel[i].intakeFromYear.toString());
+            }
           }
         }
       }
@@ -224,9 +174,98 @@ class ApiServices extends StudentPanelBase {
         courseSearchModel[i].listIntake =
             courseSearchModel[i].listIntake!.toSet().toList();
       }
+      for (var i = 0; i < courseSearchModel.length; i++) {
+        if (courseSearchModel[i].listIntake!.isNotEmpty) {
+          String temp = "";
+          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Jan") {
+              temp =
+                  "01-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+              print(temp);
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Feb") {
+              temp =
+                  "02-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Mar") {
+              temp =
+                  "03-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+              print(temp);
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Apr") {
+              temp =
+                  "04-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "May") {
+              temp =
+                  "05-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Jun") {
+              temp =
+                  "06-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Jul") {
+              temp =
+                  "07-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Aug") {
+              temp =
+                  "08-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Sep") {
+              temp =
+                  "09-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Oct") {
+              temp =
+                  "10-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Nov") {
+              temp =
+                  "11-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+                "Dec") {
+              temp =
+                  "12-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+            }
+            courseSearchModel[i].listIntake![j] = temp;
+          }
+        }
+      }
     }
-
     return courseSearchModel;
+  }
+
+  completeCourseDetail() async {
+    // try {
+    var response = await httpPostNullBody(
+        "http://14.97.86.202:205/api/get-course-details?university_id=8571&course_id=31819");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      print("object");
+      List<CompleteCourseDetail> completeCourseDetail =
+          List<CompleteCourseDetail>.from(json
+              .decode(response.body)
+              .map((x) => CompleteCourseDetail.fromJson(x)));
+
+      print("object");
+      return completeCourseDetail;
+    }
+    // } catch (e) {
+    //   debugPrint(e.toString());
+    // }
   }
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

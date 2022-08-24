@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class AboutCourse extends StatelessWidget {
-  AboutCourse({Key? key}) : super(key: key);
+  List<CompleteCourseDetail> completeCourseDetail;
+  AboutCourse({Key? key, required this.completeCourseDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

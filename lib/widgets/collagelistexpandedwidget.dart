@@ -4,13 +4,21 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CollagelistExpandedWidget extends StatefulWidget {
   CourseSearchModel courseSearchModel;
-  CollagelistExpandedWidget({Key? key, required this.courseSearchModel})
+  final Function callbackFunction;
+  CollagelistExpandedWidget(
+      {Key? key,
+      required this.courseSearchModel,
+      required this.callbackFunction})
       : super(key: key);
 
   @override
@@ -52,7 +60,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   bool onStartIconPress(BuildContext context) {
     setState(() {
       resize = true;
-      Future.delayed(Duration(milliseconds: 220), () {
+      Future.delayed(Duration(milliseconds: 400), () {
         setState(() {
           delayresize = true;
         });
@@ -72,30 +80,14 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
 
   @override
   Widget build(BuildContext context) {
-    print(
-        "${courseSearchModel!.countryName!},${courseSearchModel!.stateName!},${courseSearchModel!.cityName!}|${courseSearchModel!.universityName!}"
-            .length);
-    print(courseSearchModel!.courseName!.length);
-    print(courseSearchModel!.courseName);
-    double size = 0;
-    if (courseSearchModel!.courseName!.length > 70) {
-      size = 30;
-    } else {
-      setState(() {
-        size = 0;
-      });
-    }
-    if ("${courseSearchModel!.countryName!},${courseSearchModel!.stateName!},${courseSearchModel!.cityName!}|${courseSearchModel!.universityName!}"
-            .length >
-        75) {
-      size = size + 20.0;
-    }
-    if (courseSearchModel!.courseName!.length > 10) {
-      //
+    var now = DateTime.now();
+    var formatterMonth = DateFormat('MMM');
+    var formatterYear = DateFormat('YYYY');
+    String formattedDate = formatterMonth.format(now);
+    String formattedDate2 = formatterYear.format(now);
 
-    }
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 400),
       child: Card(
         shadowColor: Colors.white,
         shape: RoundedRectangleBorder(
@@ -111,27 +103,36 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 Positioned(
                     top: 8,
                     right: 10,
-                    child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: Color(0xFFECF0FB), shape: BoxShape.circle),
-                        child: Center(
-                            child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (resize == false) {
-                                onStartIconPress(context);
-                              } else {
-                                onEndIconPress(context);
-                              }
-                            });
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: SvgPicture.asset("assets/icons/arrow.svg"),
-                          ),
-                        )))),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          if (resize == false) {
+                            onStartIconPress(context);
+                          } else {
+                            onEndIconPress(context);
+                          }
+                        });
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: const BoxDecoration(
+                                  color: Color(0xFFECF0FB),
+                                  shape: BoxShape.circle),
+                              child: Center(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child:
+                                    SvgPicture.asset("assets/icons/arrow.svg"),
+                              ))),
+                        ),
+                      ),
+                    )),
                 Column(
                   children: [
                     Align(
@@ -139,11 +140,23 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       child: Padding(
                         padding:
                             const EdgeInsets.only(right: 50, left: 10, top: 10),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: courseSearchModel!.courseName ?? "",
-                          maxLines: 3,
-                          textColor: ThemeConstants.bluecolor,
-                          fontWeight: FontWeight.bold,
+                        child: InkWell(
+                          onTap: () {
+                            var temp =
+                                "${courseSearchModel!.id},${courseSearchModel!.universityId}";
+                            widget.callbackFunction(temp);
+                            // Get.toNamed(CourseSearchFullDetail.routeNamed,
+                            //     arguments: [
+                            //       {"first": courseSearchModel!.id},
+                            //       {"second": courseSearchModel!.universityId}
+                            //     ]);
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: courseSearchModel!.courseName ?? "",
+                            maxLines: 3,
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -307,14 +320,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             ),
             if (delayresize == true)
               SizedBox(
-                height: 245 +
-                    courseSearchModel!.listIntake!.length * 12.0 -
-                    (courseSearchModel!.listIntake!.isEmpty ? 80.0 : 0.0),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Table(
+                height: 240,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Column(
+                    children: <Widget>[
+                      Table(
                         columnWidths: const {0: FractionColumnWidth(.6)},
                         children: [
                           TableRow(children: [
@@ -433,23 +444,19 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           ]),
                         ],
                       ),
-                    ),
-                    if (courseSearchModel!.listIntake!.isNotEmpty)
                       Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 10),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Align(
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Intake:",
+                            text: " NearBy Intake:",
                             maxLines: 1,
                             textColor: Colors.grey,
                           ),
                         ),
                       ),
-                    if (courseSearchModel!.listIntake!.isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(
-                          left: 20,
                           right: 20,
                         ),
                         child: Table(
@@ -485,124 +492,121 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           ],
                         ),
                       ),
-                    if (courseSearchModel!.listIntake!.isNotEmpty)
-                      Expanded(
-                        child: MediaQuery.removePadding(
+                      MediaQuery.removePadding(
                           context: context,
                           removeTop: true,
                           removeBottom: true,
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.only(bottom: 0),
-                              itemCount: courseSearchModel!.listIntake!.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 20,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              right: 20,
+                            ),
+                            child: Table(
+                              border: TableBorder.all(),
+                              children: [
+                                TableRow(children: [
+                                  TableCell(
+                                      child: Center(
+                                    child: CustomAutoSizeTextMontserrat(
+                                      maxLines: 1,
+                                      text: courseSearchModel!.nearByIntake !=
+                                              null
+                                          ? courseSearchModel!.nearByIntake!
+                                              .split("-")[0]
+                                          : "",
+                                      textColor: Colors.grey,
+                                    ),
+                                  )),
+                                  TableCell(
+                                    child: Center(
+                                      child: CustomAutoSizeTextMontserrat(
+                                        maxLines: 1,
+                                        text: courseSearchModel!.nearByIntake !=
+                                                null
+                                            ? courseSearchModel!.nearByIntake!
+                                                .split("-")[1]
+                                            : "",
+                                        textColor: Colors.grey,
+                                      ),
+                                    ),
                                   ),
-                                  child: Table(
-                                    border: TableBorder.all(),
-                                    children: [
-                                      TableRow(children: [
-                                        TableCell(
-                                            child: Center(
-                                          child: CustomAutoSizeTextMontserrat(
-                                            maxLines: 1,
-                                            text: courseSearchModel!
-                                                .listIntake![index],
-                                            textColor: Colors.grey,
-                                          ),
-                                        )),
-                                        TableCell(
-                                          child: Center(
-                                            child: CustomAutoSizeTextMontserrat(
-                                              maxLines: 1,
-                                              text: courseSearchModel!
-                                                  .listIntake![index],
-                                              textColor: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
-                                        TableCell(
-                                            child: Center(
-                                          child: CustomAutoSizeTextMontserrat(
-                                            maxLines: 1,
-                                            text: "Close",
-                                            textColor: Colors.grey,
-                                          ),
-                                        )),
-                                      ]),
-                                    ],
-                                  ),
-                                );
-                              }),
+                                  TableCell(
+                                      child: Center(
+                                    child: CustomAutoSizeTextMontserrat(
+                                      maxLines: 1,
+                                      text: courseSearchModel!
+                                              .listIntake!.isNotEmpty
+                                          ? courseSearchModel!.listIntake![0]
+                                              .toString()
+                                              .split('-')[2]
+                                          : "",
+                                      textColor: Colors.grey,
+                                    ),
+                                  )),
+                                ]),
+                              ],
+                            ),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/star.svg",
+                              height: 15,
+                              color: Color(0xFFF97316),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Ranking",
+                                maxLines: 1,
+                                textColor: Colors.grey,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 20,
-                      ),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            "assets/icons/star.svg",
-                            height: 15,
-                            color: Color(0xFFF97316),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Ranking",
-                              maxLines: 1,
-                              textColor: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 10, top: 5, bottom: 10),
-                      child: Row(
-                        children: [
-                          if (courseSearchModel!.arwuRank != null)
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 10, top: 5, bottom: 10),
+                        child: Row(
+                          children: [
                             CustomAutoSizeTextMontserrat(
-                              text: "ARWU:${courseSearchModel!.arwuRank}",
+                              text: "ARWU:${courseSearchModel!.arwuRank ?? ""}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                          Spacer(),
-                          if (courseSearchModel!.timesRank != null)
-                            CustomAutoSizeTextMontserrat(
-                              text: "Times:${courseSearchModel!.timesRank}",
-                              maxLines: 1,
-                              textColor: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          Spacer(),
-                          if (courseSearchModel!.usNewsRank != null)
-                            CustomAutoSizeTextMontserrat(
-                              text: "US News:${courseSearchModel!.usNewsRank}",
-                              maxLines: 1,
-                              textColor: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          Spacer(),
-                          if (courseSearchModel!.qsWorldRank != null)
+                            Spacer(),
                             CustomAutoSizeTextMontserrat(
                               text:
-                                  "QS World:${courseSearchModel!.qsWorldRank}",
+                                  "Times:${courseSearchModel!.timesRank ?? ""}",
                               maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                        ],
-                      ),
-                    )
-                  ],
+                            Spacer(),
+                            CustomAutoSizeTextMontserrat(
+                              text:
+                                  "US News:${courseSearchModel!.usNewsRank ?? ""}",
+                              maxLines: 1,
+                              textColor: Colors.grey,
+                              fontSize: 14,
+                            ),
+                            Spacer(),
+                            CustomAutoSizeTextMontserrat(
+                              text:
+                                  "QS World:${courseSearchModel!.qsWorldRank ?? ""}",
+                              maxLines: 1,
+                              textColor: Colors.grey,
+                              fontSize: 14,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               )
           ],

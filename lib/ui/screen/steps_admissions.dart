@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class StepsToAdmissions extends StatelessWidget {
-  StepsToAdmissions({Key? key}) : super(key: key);
+  List<CompleteCourseDetail> completeCourseDetail;
+  StepsToAdmissions({Key? key, required this.completeCourseDetail})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

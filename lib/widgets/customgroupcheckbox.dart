@@ -26,9 +26,7 @@ class _CustomgroupCheckBoxState extends State<CustomgroupCheckBox> {
       itemsTitle: data!,
       controller: chipsController,
       values: List.generate(data!.length, (index) => index),
-      onItemSelected: (values) {
-        debugPrint(values.toString());
-      },
+      onItemSelected: (values) {},
     );
   }
 }

@@ -55,7 +55,6 @@ class DashboardController extends BaseController {
     String choose3 = "",
     String choose4 = "",
   ]) {
-    print("choose1" + choose1);
     List<String>? tempModel = [];
 
     studentPanel.addtionalDetails!.forEach((element) {

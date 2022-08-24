@@ -16,7 +16,7 @@ class MandatoryInformation extends StatelessWidget {
   var controller = Get.put(ProfilePageController());
 
   callback(varTopic) {
-    print("mandatory" + varTopic);
+
 
     controller.setdropdown1(varTopic);
   }

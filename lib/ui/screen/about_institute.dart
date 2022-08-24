@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class AboutInstitute extends StatelessWidget {
-  AboutInstitute({Key? key}) : super(key: key);
+  List<CompleteCourseDetail> completeCourseDetail;
+  AboutInstitute({Key? key, required this.completeCourseDetail})
+      : super(key: key);
   String s2 = """
   The United States is a popular hub for education as having seven of the top 10 universities globally. American colleges and universities are widely known for their teaching and research. The American education system is the most adaptable and versatile for international students.
                                            American college is known for its academic excellence as it provides the world’s most adequate education with excellent programs across all discipline subjects. American colleges have an advanced stage of undergraduate programs that allows opting for multiple specializations.

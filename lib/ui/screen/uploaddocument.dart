@@ -20,7 +20,6 @@ class UploadDocument extends StatelessWidget {
   var controller = Get.put(UploadDocumentController());
 
   callback(varTopic) {
-    print("mandatory" + varTopic);
     controller.setLoadingHighestQualification(true);
 
     // dashboardcontroller.setdropdown1(varTopic);
@@ -316,8 +315,7 @@ class UploadDocument extends StatelessWidget {
                                                                     .files
                                                                     .single
                                                                     .path!);
-                                                            debugPrint(file1
-                                                                .extension);
+
                                                             _.setLoadingDegree(
                                                                 true);
 
@@ -444,8 +442,7 @@ class UploadDocument extends StatelessWidget {
                                                                   .files
                                                                   .single
                                                                   .path!);
-                                                          debugPrint(
-                                                              file1.extension);
+
                                                           _.setLoadingSrSecondary(
                                                               true);
                                                         } else {
@@ -536,8 +533,7 @@ class UploadDocument extends StatelessWidget {
                                                                   .files
                                                                   .single
                                                                   .path!);
-                                                          debugPrint(
-                                                              file1.extension);
+
                                                           _.setLoadingDegree(
                                                               true);
 
@@ -664,8 +660,7 @@ class UploadDocument extends StatelessWidget {
                                                                   .files
                                                                   .single
                                                                   .path!);
-                                                          debugPrint(
-                                                              file1.extension);
+
                                                           _.setLoadingSecondary(
                                                               true);
 

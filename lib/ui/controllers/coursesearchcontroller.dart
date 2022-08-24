@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/models/country.dart';
-import 'package:studentpanel/ui/models/courseboardfield.dart';
-import 'package:studentpanel/ui/models/courselevel.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
@@ -17,17 +16,27 @@ class CourseSearchController extends BaseController {
   RxList<dynamic> countryDropdown = [].obs;
   RxString courseLevelDropdown = "".obs;
 
+// Using for Local Variable for DropDown
+  List<dynamic> countryList = [];
+  List<dynamic> countryCode = [];
+  List<dynamic> stateList = [];
+  List<dynamic> stateCode = [];
+  List<dynamic> cityList = [];
+  List<dynamic> cityCode = [];
+  List<dynamic> courseLevelList = [];
+  List<dynamic> courseLevelCode = [];
+  List<dynamic> courseBoardList = [];
+  List<dynamic> courseBoardCode = [];
+  List<dynamic> courseNarrowList = [];
+  List<dynamic> courseNarrowCode = [];
+
 // Model Create
-  Country country = Country();
-  CourseLevel courseLevel = CourseLevel();
+  List<CompleteCourseDetail> completeCourseDetail = [];
   ApiServices apiservices = ApiServices();
-  CourseBoardField courseBoardField = CourseBoardField();
+
   List<CourseSearchModel> courseSearchModel = [];
 
 // Using in coursesearch Page field
-  List stateList = [], stateCode = [];
-  List cityList = [], cityCode = [];
-  List courseNarrowFieldList = [], courseNarrowFieldCode = [];
 
   //Loading State
   RxBool loadingCourseSearchDetail = false.obs;
@@ -46,42 +55,25 @@ class CourseSearchController extends BaseController {
     getCourseBoardField();
   }
 
-  setCountryDropdown(List data) {
-    countryDropdown.value = data;
-    update();
-  }
-
-  setCourseDropdown(String data) {
-    courseLevelDropdown.value = data;
-    update();
-  }
-
   getCountry() async {
     var res =
         await apiservices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
     if (res != null) {
-      country = res;
+      Map map = Map<String, dynamic>.from(res);
+      countryList = map.keys.toList();
+      countryCode = map.values.toList();
       loadingCountry.value = true;
       update();
     }
   }
 
   getState(String country) async {
-    List tempList;
     var res = await apiservices.getState(
         Endpoints.baseUrl!, Endpoints.state!, country);
     if (res != null) {
-      String temp = res.toString();
-      String temp2 = temp.split('{')[1].split('}')[0];
-      tempList = temp2.split(',');
-
-      tempList.forEach((element) {
-        stateList.add(element.toString().split(":")[0]);
-        stateCode.add(element.toString().split(":")[1]);
-      });
-      for (int i = 0; i < stateCode.length; i++) {
-        stateList[i] = stateList[i].toString().replaceAll('"', '');
-      }
+      Map map = Map<String, dynamic>.from(res);
+      stateList = map.keys.toList();
+      stateCode = map.values.toList();
       loadingState = true.obs;
       update();
     }
@@ -92,17 +84,9 @@ class CourseSearchController extends BaseController {
     var res =
         await apiservices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
     if (res != null) {
-      String temp = res.toString();
-      String temp2 = temp.split('{')[1].split('}')[0];
-      tempList = temp2.split(',');
-
-      tempList.forEach((element) {
-        cityList.add(element.toString().split(":")[0]);
-        cityCode.add(element.toString().split(":")[1]);
-      });
-      for (int i = 0; i < cityCode.length; i++) {
-        cityList[i] = cityList[i].toString().replaceAll('"', '');
-      }
+      Map map = Map<String, dynamic>.from(res);
+      cityList = map.keys.toList();
+      cityCode = map.values.toList();
       loadingCity = true.obs;
       update();
     }
@@ -112,7 +96,9 @@ class CourseSearchController extends BaseController {
     var res = await apiservices.getCourseLevel(
         Endpoints.baseUrl!, Endpoints.courselevel!);
     if (res != null) {
-      courseLevel = res;
+      Map map = Map<String, dynamic>.from(res);
+      courseLevelList = map.keys.toList();
+      courseLevelCode = map.values.toList();
       loadingCourseLevel.value = true;
       update();
     }
@@ -122,7 +108,9 @@ class CourseSearchController extends BaseController {
     var res = await apiservices.getCourseBoardField(
         Endpoints.baseUrl!, Endpoints.courseBoardField!);
     if (res != null) {
-      courseBoardField = res;
+      Map map = Map<String, dynamic>.from(res);
+      courseBoardList = map.keys.toList();
+      courseBoardCode = map.values.toList();
       loadingCourseBoardField = true.obs;
       update();
     }
@@ -133,25 +121,28 @@ class CourseSearchController extends BaseController {
     var res = await apiservices.getCoursenarrowField(
         Endpoints.baseUrl!, Endpoints.state!, boardField);
     if (res != null) {
-      String temp = res.toString();
-      String temp2 = temp.split('{')[1].split('}')[0];
-      tempList = temp2.split(',');
-
-      tempList.forEach((element) {
-        courseNarrowFieldList.add(element.toString().split(":")[0]);
-        courseNarrowFieldCode.add(element.toString().split(":")[1]);
-      });
-      for (int i = 0; i < courseNarrowFieldCode.length; i++) {
-        courseNarrowFieldList[i] =
-            courseNarrowFieldList[i].toString().replaceAll('"', '');
-      }
-      print(courseNarrowFieldList);
+      Map map = Map<String, dynamic>.from(res);
+      courseNarrowList = map.keys.toList();
+      courseNarrowCode = map.values.toList();
       loadingCourseNarrowField = true.obs;
       update();
     }
   }
 
+  setCountryDropdown(List data) {
+    countryDropdown.value = data;
+    update();
+  }
+
+  setCourseDropdown(String data) {
+    courseLevelDropdown.value = data;
+    update();
+  }
+
   courseSearch(String country, String courseLevel) async {
+    var now = DateTime.now();
+    var formatterYear = DateFormat('yyyy');
+    var formatterMonth = DateFormat('MM');
     var temp = country.split('[');
     var temp2 = temp[1].split(']')[0];
     var temp3 = courseLevel.split('[');
@@ -164,11 +155,38 @@ class CourseSearchController extends BaseController {
     var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
       courseSearchModel = res;
-      courseSearchModel.forEach((element) {
-        print(element.intakeFromYear);
-      });
+
+      for (var i = 0; i < courseSearchModel.length; i++) {
+        if (courseSearchModel[i].listIntake!.isNotEmpty) {
+          print(courseSearchModel[i].listIntake!.length);
+          print(courseSearchModel.length);
+          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
+            print("soni ii");
+            print(i);
+            print(j);
+            if (int.parse(courseSearchModel[i].listIntake![j].split("-")[1]) >=
+                int.parse(formatterYear.format(now))) {
+              if (int.parse(
+                      courseSearchModel[i].listIntake![j].split("-")[0]) >=
+                  int.parse(formatterMonth.format(now))) {
+                courseSearchModel[i].nearByIntake =
+                    courseSearchModel[i].listIntake![j];
+              }
+            }
+          }
+        }
+      }
+      courseSearchModel;
       loadingCourseSearchDetail = true.obs;
       update();
+    }
+  }
+
+  completeCourseDetailMethod() async {
+    var res = await apiservices.completeCourseDetail();
+    if (res != null) {
+      completeCourseDetail = res;
+      return completeCourseDetail;
     }
   }
 }
