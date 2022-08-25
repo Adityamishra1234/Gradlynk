@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:studentpanel/ui/controllers/ProfilePagecontroller.dart';
+import 'package:studentpanel/ui/controllers/profilePagecontroller.dart';
 import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
-import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customtextfield.dart';
 
 class ProfilePageHorizontal extends StatefulWidget {
   ProfilePageHorizontal({Key? key}) : super(key: key);

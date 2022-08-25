@@ -15,6 +15,7 @@ class EntryRequirement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
+      physics: BouncingScrollPhysics(),
       children: [
         CustomAutoSizeTextMontserrat(
           text: "Academic Requirement",

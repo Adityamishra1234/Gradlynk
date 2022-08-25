@@ -18,6 +18,7 @@ class AboutInstitute extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10),

@@ -167,7 +167,10 @@ class _CourseSearchState extends State<CourseSearch> {
                 builder: (controller1) => Expanded(
                   child: Column(
                     children: [
-                      if (controller1.loadingCourseSearchDetail.value == true)
+                      if (Get.find<CourseSearchController>()
+                              .loadingCourseSearchDetail
+                              .value ==
+                          true)
                         Expanded(
                           child: ListView.builder(
                               itemCount: controller1.courseSearchModel.length,

@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:studentpanel/binding/coursesearch.dart';
+import 'package:studentpanel/binding/dashboard.dart';
 import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
+import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
@@ -72,54 +75,63 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: CourseSearch.routeNamed,
+      initialRoute: Login.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
             page: () => const Login(),
+            transition: Transition.fade,
             binding: LoginBinding()),
         GetPage(
           name: DashBoard.routeNamed,
+          transition: Transition.fade,
+          binding: DashBoardBinding(),
           page: () => const DashBoard(),
         ),
         GetPage(
             name: DetialScreen.routeNamed,
             page: () => const DetialScreen(),
+            transition: Transition.fade,
             binding: DetailBinding()),
         GetPage(
           name: ProfilePage.routeNamed,
+          transition: Transition.fade,
+          binding: ProfilePageBinding(),
           page: () => ProfilePage(),
-        ),
-        GetPage(
-          name: ProfilePageHorizontal.routeNamed,
-          page: () => ProfilePageHorizontal(),
         ),
 
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,
+          transition: Transition.fade,
           page: () => const AnimationaPhonepe(),
         ),
         GetPage(
           name: OTPScreen.routeNamed,
+          transition: Transition.fade,
           page: () => OTPScreen(),
         ),
         GetPage(
           name: UploadDocument.routeNamed,
+          transition: Transition.fade,
           page: () => UploadDocument(),
         ),
         GetPage(
           name: ImageViewerScreen.routeNamed,
+          transition: Transition.fade,
           page: () => const ImageViewerScreen(),
         ),
         GetPage(
           name: CourseSearch.routeNamed,
+          transition: Transition.fade,
+          binding: CourseSearchBinding(),
           page: () => CourseSearch(),
         ),
         GetPage(
           name: MyHomePage.routeNamed,
+          transition: Transition.fade,
           page: () => MyHomePage(),
         ),
         // GetPage(
@@ -128,6 +140,7 @@ class _MyApState extends State<MyAp> {
         // ),
         GetPage(
           name: LunchingPage.routeNamed,
+          transition: Transition.fade,
           page: () => LunchingPage(),
         ),
       ],

@@ -33,8 +33,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   late BestTutorSite _site = BestTutorSite.Tentative;
   List<Color> selectButton = [
-    Color(0xFF1940BC),
-    Color(0xFF6366F1),
+    ThemeConstants.bluecolor,
+    ThemeConstants.bluecolor,
   ];
   List<Color> unSelectButton = [
     Colors.transparent,
@@ -65,142 +65,126 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: EdgeInsets.only(top: 10),
               child: Container(
                 color: Colors.white,
-                height: 80,
+                height: 40,
                 child: GetBuilder<ProfilePageController>(
                     init: ProfilePageController(),
                     builder: (controller) {
-                      return Column(
+                      return ListView(
+                        scrollDirection: Axis.horizontal,
                         children: [
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                    height: 35,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5)),
-                                        gradient: LinearGradient(
-                                          colors:
-                                              controller.chooseIndex!.value == 0
-                                                  ? selectButton
-                                                  : unSelectButton,
-                                          begin: FractionalOffset.centerLeft,
-                                          end: FractionalOffset.centerRight,
-                                        )),
-                                    child: TextButton(
-                                        onPressed: () {
-                                          controller.getChooseIndex(0.obs);
-                                        },
-                                        child: Text(
-                                          "Personal Info.",
-                                          style: getTextStyle(
-                                              controller.chooseIndex!.value ==
-                                                  0),
-                                        ))),
-                              ),
-                              Container(
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5)),
-                                      gradient: LinearGradient(
-                                        colors:
-                                            controller.chooseIndex!.value == 1
-                                                ? selectButton
-                                                : unSelectButton,
-                                        begin: FractionalOffset.centerLeft,
-                                        end: FractionalOffset.centerRight,
-                                      )),
-                                  child: TextButton(
-                                      onPressed: () {
-                                        controller.getChooseIndex(1.obs);
-                                      },
-                                      child: Text("Mandatory Info.",
-                                          style: getTextStyle(
-                                              controller.chooseIndex!.value ==
-                                                  1)))),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                    height: 35,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5)),
-                                        gradient: LinearGradient(
-                                          colors:
-                                              controller.chooseIndex!.value == 2
-                                                  ? selectButton
-                                                  : unSelectButton,
-                                          begin: FractionalOffset.centerLeft,
-                                          end: FractionalOffset.centerRight,
-                                        )),
-                                    child: TextButton(
-                                        onPressed: () {
-                                          controller.getChooseIndex(2.obs);
-                                        },
-                                        child: Text("Test Details",
-                                            style: getTextStyle(
-                                                controller.chooseIndex!.value ==
-                                                    2)))),
-                              )
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    gradient: LinearGradient(
+                                      colors: controller.chooseIndex!.value == 0
+                                          ? selectButton
+                                          : unSelectButton,
+                                      begin: FractionalOffset.centerLeft,
+                                      end: FractionalOffset.centerRight,
+                                    )),
+                                child: TextButton(
+                                    onPressed: () {
+                                      controller.getChooseIndex(0.obs);
+                                    },
+                                    child: Text(
+                                      "Personal Information",
+                                      style: getTextStyle(
+                                          controller.chooseIndex!.value == 0),
+                                    ))),
                           ),
-                          Row(
-                            children: [
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: Container(
-                                    height: 35,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5)),
-                                        gradient: LinearGradient(
-                                          colors:
-                                              controller.chooseIndex!.value == 3
-                                                  ? selectButton
-                                                  : unSelectButton,
-                                          begin: FractionalOffset.centerLeft,
-                                          end: FractionalOffset.centerRight,
-                                        )),
-                                    child: TextButton(
-                                        onPressed: () {
-                                          controller.getChooseIndex(3.obs);
-                                        },
-                                        child: Text("Course Choice",
-                                            style: getTextStyle(
-                                                controller.chooseIndex!.value ==
-                                                    3)))),
-                              ),
-                              const Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: Container(
-                                    height: 35,
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5)),
-                                        gradient: LinearGradient(
-                                          colors:
-                                              controller.chooseIndex!.value == 4
-                                                  ? selectButton
-                                                  : unSelectButton,
-                                          begin: FractionalOffset.centerLeft,
-                                          end: FractionalOffset.centerRight,
-                                        )),
-                                    child: TextButton(
-                                        onPressed: () {
-                                          controller.getChooseIndex(4.obs);
-                                        },
-                                        child: Text("Passport",
-                                            style: getTextStyle(
-                                                controller.chooseIndex!.value ==
-                                                    4)))),
-                              ),
-                              const Spacer()
-                            ],
-                          )
+                          Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5)),
+                                  gradient: LinearGradient(
+                                    colors: controller.chooseIndex!.value == 1
+                                        ? selectButton
+                                        : unSelectButton,
+                                    begin: FractionalOffset.centerLeft,
+                                    end: FractionalOffset.centerRight,
+                                  )),
+                              child: TextButton(
+                                  onPressed: () {
+                                    controller.getChooseIndex(1.obs);
+                                  },
+                                  child: Text("Mandatory Info.",
+                                      style: getTextStyle(
+                                          controller.chooseIndex!.value ==
+                                              1)))),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    gradient: LinearGradient(
+                                      colors: controller.chooseIndex!.value == 2
+                                          ? selectButton
+                                          : unSelectButton,
+                                      begin: FractionalOffset.centerLeft,
+                                      end: FractionalOffset.centerRight,
+                                    )),
+                                child: TextButton(
+                                    onPressed: () {
+                                      controller.getChooseIndex(2.obs);
+                                    },
+                                    child: Text("Test Details",
+                                        style: getTextStyle(
+                                            controller.chooseIndex!.value ==
+                                                2)))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    gradient: LinearGradient(
+                                      colors: controller.chooseIndex!.value == 3
+                                          ? selectButton
+                                          : unSelectButton,
+                                      begin: FractionalOffset.centerLeft,
+                                      end: FractionalOffset.centerRight,
+                                    )),
+                                child: TextButton(
+                                    onPressed: () {
+                                      controller.getChooseIndex(3.obs);
+                                    },
+                                    child: Text("Course Choice",
+                                        style: getTextStyle(
+                                            controller.chooseIndex!.value ==
+                                                3)))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5)),
+                                    gradient: LinearGradient(
+                                      colors: controller.chooseIndex!.value == 4
+                                          ? selectButton
+                                          : unSelectButton,
+                                      begin: FractionalOffset.centerLeft,
+                                      end: FractionalOffset.centerRight,
+                                    )),
+                                child: TextButton(
+                                    onPressed: () {
+                                      controller.getChooseIndex(4.obs);
+                                    },
+                                    child: Text("Passport",
+                                        style: getTextStyle(
+                                            controller.chooseIndex!.value ==
+                                                4)))),
+                          ),
                         ],
                       );
                     }),

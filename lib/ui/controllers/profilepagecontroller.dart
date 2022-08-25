@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 
 import 'package:get/get.dart';
 
-class ProfilePageController extends BaseController with StateMixin<UserModel> {
+class ProfilePageController extends GetxController with StateMixin<UserModel> {
   //Create Local Screen Variable
   DropDownModel? dropDownModel;
 

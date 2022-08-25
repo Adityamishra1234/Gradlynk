@@ -3,7 +3,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 
-class CourseSearchFullDetailController extends BaseController {
+class CompleteCourseDetailController extends BaseController {
   //
   RxInt index = 0.obs;
 

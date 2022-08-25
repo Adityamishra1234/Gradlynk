@@ -13,6 +13,7 @@ class StepsToAdmissions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
+      physics: BouncingScrollPhysics(),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 5),

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
-import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 
-import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class TestExpanded extends StatelessWidget {
