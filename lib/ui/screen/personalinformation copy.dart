@@ -32,7 +32,6 @@ class TestExpanded extends StatelessWidget {
                         children: [
                           CustomAutoSizeTextMontserrat(
                             text: "Email",
-                            maxLines: 1,
                             textColor: Colors.grey,
                           ),
                         ],

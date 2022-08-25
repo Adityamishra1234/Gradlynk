@@ -226,7 +226,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                               child: Center(
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Nishant Bhardwaj",
-                                  maxLines: 1,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
                                 ),
@@ -243,7 +242,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Gender",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -256,7 +254,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Male",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -283,7 +280,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Email",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -296,7 +292,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "nishan@gmail.com",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -323,7 +318,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Mobile",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -336,7 +330,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "9876543210",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -363,7 +356,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Sec. Email",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -376,7 +368,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -403,7 +394,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Marital Status",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -416,7 +406,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Single",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -443,7 +432,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Application Type",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -456,7 +444,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Application",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -483,7 +470,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Country",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -496,7 +482,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "India",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -523,7 +508,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "State",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -536,7 +520,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Delhi",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -563,7 +546,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Selected City",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -576,7 +558,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Delhi",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -603,7 +584,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Address",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -616,7 +596,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -643,7 +622,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                       padding: const EdgeInsets.only(top: 10),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Zip Code",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                                     ),
@@ -656,7 +634,6 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),

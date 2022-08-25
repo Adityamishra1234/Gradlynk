@@ -182,8 +182,16 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  completeCourseDetailMethod() async {
-    var res = await apiservices.completeCourseDetail();
+  completeCourseDetailMethod(
+      String universityId, String courseId, String instituteCourseId) async {
+    String endpoint = Endpoints.completeCoursePart1! +
+        universityId +
+        Endpoints.completeCoursePart2! +
+        courseId +
+        Endpoints.completeCoursePart3! +
+        instituteCourseId;
+    var res =
+        await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
     if (res != null) {
       completeCourseDetail = res;
       return completeCourseDetail;

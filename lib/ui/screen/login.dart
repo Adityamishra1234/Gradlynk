@@ -69,7 +69,6 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.only(top: 10),
           child: CustomAutoSizeTextMontserrat(
             text: "Your International Study patner",
-            maxLines: 1,
             textColor: Colors.white,
           ),
         )
@@ -86,7 +85,6 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.only(top: 10),
           child: CustomAutoSizeTextMontserrat(
             text: "Upload your documents",
-            maxLines: 1,
             textColor: Colors.white,
           ),
         )
@@ -103,7 +101,6 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.only(top: 10),
           child: CustomAutoSizeTextMontserrat(
             text: "Track your application",
-            maxLines: 1,
             textColor: Colors.white,
           ),
         ),
@@ -128,7 +125,6 @@ class _LoginState extends State<Login> {
                     const Spacer(),
                     CustomAutoSizeTextMontserrat(
                       text: "Welcome to",
-                      maxLines: 1,
                       textColor: Colors.white,
                       fontSize: 25,
                     ),
@@ -263,7 +259,6 @@ class _LoginState extends State<Login> {
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Send OTP",
-                                maxLines: 1,
                                 textColor: Colors.white,
                               )),
                         ),

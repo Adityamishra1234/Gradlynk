@@ -13,10 +13,15 @@ class StepsToVisa extends StatelessWidget {
     return Expanded(
         child: ListView(
       children: [
-        CustomAutoSizeTextMontserrat(text: "Visa Fee", maxLines: 1),
         CustomAutoSizeTextMontserrat(
-            text: "160.00 USD (In INR : 11840)", maxLines: 1),
-        CustomAutoSizeTextMontserrat(text: "Steps to Visa", maxLines: 1),
+          text: "Visa Fee",
+        ),
+        CustomAutoSizeTextMontserrat(
+          text: "160.00 USD (In INR : 11840)",
+        ),
+        CustomAutoSizeTextMontserrat(
+          text: "Steps to Visa",
+        ),
       ],
     ));
   }

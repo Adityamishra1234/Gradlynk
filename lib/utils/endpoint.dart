@@ -19,4 +19,7 @@ class Endpoints {
   static String? courseNarrowField = 'get-course-narrow-field?broad_field_id=';
   static String? courseSearchPart1 = 'get-course-search-data?country=';
   static String? courseSearchPart2 = '&course_level=';
+  static String? completeCoursePart1 = 'get-course-details?university_id=';
+  static String? completeCoursePart2 = '&course_id=';
+  static String? completeCoursePart3 = '&institute_course_id=';
 }

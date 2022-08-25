@@ -20,4 +20,5 @@ class ThemeConstants {
   static Color lightblueColor = const Color(0xFFF1F4FB);
   static Color lightorangeColor = const Color(0xFFFFF7F1);
   static Color orangeColor = const Color(0xFFF97316);
+  static Color TextColor = const Color(0xFF677082);
 }

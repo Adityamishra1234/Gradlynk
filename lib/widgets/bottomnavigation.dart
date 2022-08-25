@@ -90,7 +90,6 @@ class BottomNavigation extends StatelessWidget {
               padding: const EdgeInsets.only(top: 30, left: 5),
               child: CustomAutoSizeTextMontserrat(
                 text: "Join SVO link",
-                maxLines: 1,
                 textColor: ThemeConstants.bluecolor,
                 fontSize: 13,
               ),

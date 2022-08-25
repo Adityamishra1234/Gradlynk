@@ -56,7 +56,6 @@ class PersonalInformation extends StatelessWidget {
                                 text: dashboardcontroller
                                         .studentPanel.enquiryName ??
                                     "",
-                                maxLines: 1,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                               ),
@@ -72,7 +71,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Gender",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -86,7 +84,6 @@ class PersonalInformation extends StatelessWidget {
                                         text: dashboardcontroller
                                                 .studentPanel.gender ??
                                             "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -112,7 +109,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Email",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -152,7 +148,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 15),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Date of Birth",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -170,7 +165,6 @@ class PersonalInformation extends StatelessWidget {
                                                 .studentPanel.dateOfBirth!
                                                 .toString()
                                             : "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -196,7 +190,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Mobile",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -214,7 +207,6 @@ class PersonalInformation extends StatelessWidget {
                                                 .studentPanel.mobile!
                                                 .toString()
                                             : "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -240,7 +232,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Sec. Email",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -280,7 +271,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Marital Status",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -294,7 +284,6 @@ class PersonalInformation extends StatelessWidget {
                                         text: dashboardcontroller
                                                 .studentPanel.maritalStatus ??
                                             "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -320,7 +309,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Application Type",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -334,7 +322,6 @@ class PersonalInformation extends StatelessWidget {
                                         text: dashboardcontroller
                                                 .studentPanel.applicantType ??
                                             "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -360,7 +347,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Country",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -374,7 +360,6 @@ class PersonalInformation extends StatelessWidget {
                                         text: dashboardcontroller
                                                 .studentPanel.countryName ??
                                             "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -400,7 +385,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "State",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -414,7 +398,6 @@ class PersonalInformation extends StatelessWidget {
                                         text: dashboardcontroller
                                                 .studentPanel.stateName ??
                                             "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -440,7 +423,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Selected City",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -454,7 +436,6 @@ class PersonalInformation extends StatelessWidget {
                                         text: dashboardcontroller
                                                 .studentPanel.cityName ??
                                             "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -480,7 +461,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Address(Passport)",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -520,7 +500,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Zip Code",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -538,7 +517,6 @@ class PersonalInformation extends StatelessWidget {
                                                 .studentPanel.pincode
                                                 .toString()
                                             : "",
-                                        maxLines: 1,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -564,7 +542,6 @@ class PersonalInformation extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 10),
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Other Country Int.",
-                                      maxLines: 1,
                                       textColor: Colors.grey,
                                     ),
                                   ),
@@ -581,7 +558,7 @@ class PersonalInformation extends StatelessWidget {
                                                 .otherCountryOfInterest![0]
                                                 .countryName ??
                                             "",
-                                        maxLines: 1,
+
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),

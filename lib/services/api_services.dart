@@ -248,10 +248,10 @@ class ApiServices extends StudentPanelBase {
     return courseSearchModel;
   }
 
-  completeCourseDetail() async {
+  completeCourseDetail(String baseUrl, String endpoint) async {
+    print(endpoint);
     // try {
-    var response = await httpPostNullBody(
-        "http://14.97.86.202:205/api/get-course-details?university_id=8571&course_id=31819");
+    var response = await httpPostNullBody(baseUrl + endpoint);
     if (response != null) {
       var jsondata = json.decode(response.body);
       print("object");

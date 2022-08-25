@@ -26,7 +26,6 @@ class Passport extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Passport Number",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -63,7 +62,6 @@ class Passport extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Citizen of",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -100,7 +98,6 @@ class Passport extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Country Of Issuse",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -137,7 +134,6 @@ class Passport extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Place Of Issuse",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -149,7 +145,6 @@ class Passport extends StatelessWidget {
                                   text: _.studentPanel.passportDetails![0]
                                           .placeOfIssue ??
                                       "",
-                                  maxLines: 1,
                                   fontWeight: FontWeight.w600,
                                 ),
                               )
@@ -174,7 +169,6 @@ class Passport extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Date Of Issuse",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -186,7 +180,6 @@ class Passport extends StatelessWidget {
                                   text: _.studentPanel.passportDetails![0]
                                           .dateOfIssue ??
                                       "",
-                                  maxLines: 1,
                                   fontWeight: FontWeight.w600,
                                 ),
                               )
@@ -211,7 +204,6 @@ class Passport extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Expire Date",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -223,7 +215,6 @@ class Passport extends StatelessWidget {
                                   text: _.studentPanel.passportDetails![0]
                                           .expiryDate ??
                                       "",
-                                  maxLines: 1,
                                   fontWeight: FontWeight.w600,
                                 ),
                               )

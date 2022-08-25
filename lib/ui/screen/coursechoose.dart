@@ -24,7 +24,6 @@ class CourseChoose extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Level",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -61,7 +60,6 @@ class CourseChoose extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Broad Field",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -98,7 +96,6 @@ class CourseChoose extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Narrow Field",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),

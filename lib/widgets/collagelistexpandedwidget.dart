@@ -38,7 +38,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   void initState() {
     courseSearchModel = widget.courseSearchModel;
     controller =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+        AnimationController(duration: const Duration(seconds: 0), vsync: this);
     super.initState();
   }
 
@@ -60,11 +60,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   bool onStartIconPress(BuildContext context) {
     setState(() {
       resize = true;
-      Future.delayed(Duration(milliseconds: 400), () {
-        setState(() {
-          delayresize = true;
-        });
-      });
+      // Future.delayed(Duration(milliseconds: 600), () {
+      //   setState(() {
+
+      delayresize = true;
+      //   });
+      // });
     });
     return true;
   }
@@ -87,7 +88,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
     String formattedDate2 = formatterYear.format(now);
 
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 600),
       child: Card(
         shadowColor: Colors.white,
         shape: RoundedRectangleBorder(
@@ -143,7 +144,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         child: InkWell(
                           onTap: () {
                             var temp =
-                                "${courseSearchModel!.id},${courseSearchModel!.universityId}";
+                                "${courseSearchModel!.universityId},${courseSearchModel!.courseId},${courseSearchModel!.id}";
                             widget.callbackFunction(temp);
                             // Get.toNamed(CourseSearchFullDetail.routeNamed,
                             //     arguments: [
@@ -200,7 +201,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               child: CustomAutoSizeTextMontserrat(
                                 text:
                                     "${courseSearchModel!.durationYear!} Years",
-                                maxLines: 1,
                                 textColor: ThemeConstants.bluelightgreycolor,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -224,7 +224,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   text: courseSearchModel!.annualTutionFees
                                           .toString() +
                                       courseSearchModel!.currencyCode!,
-                                  maxLines: 1,
                                   textColor: ThemeConstants.bluelightgreycolor,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w600,
@@ -332,7 +331,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Total Tuition Fees:",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -340,7 +338,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Conditional Offer:",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -352,7 +349,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     ? CustomAutoSizeTextMontserrat(
                                         text:
                                             "${courseSearchModel!.totalFees}${courseSearchModel!.currencyCode} (${courseSearchModel!.totalFeesInr}INR)",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                         fontSize: 12,
                                       )
@@ -360,7 +356,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: courseSearchModel!.conditionalOffer,
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 12,
                               ),
@@ -371,7 +366,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "English test Requirement:",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -379,7 +373,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Scholarship:",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -391,7 +384,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 text: courseSearchModel!.englishProficiency
                                     .toString()
                                     .split("|")[0],
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 12,
                               ),
@@ -399,7 +391,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: courseSearchModel!.scholarship ?? "",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 12,
                               ),
@@ -410,7 +401,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Academic Requirement:",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -418,7 +408,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Offer TAT:",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -428,7 +417,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: courseSearchModel!.academicRequire ?? "",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 12,
                               ),
@@ -436,7 +424,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             TableCell(
                               child: CustomAutoSizeTextMontserrat(
                                 text: courseSearchModel!.offerTat ?? "",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 12,
                               ),
@@ -450,7 +437,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: " NearBy Intake:",
-                            maxLines: 1,
                             textColor: Colors.grey,
                           ),
                         ),
@@ -469,14 +455,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   TableCell(
                                       child: Center(
                                     child: CustomAutoSizeTextMontserrat(
-                                      maxLines: 1,
                                       text: "Month",
                                     ),
                                   )),
                                   TableCell(
                                     child: Center(
                                       child: CustomAutoSizeTextMontserrat(
-                                        maxLines: 1,
                                         text: "Year",
                                       ),
                                     ),
@@ -484,7 +468,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   TableCell(
                                       child: Center(
                                     child: CustomAutoSizeTextMontserrat(
-                                      maxLines: 1,
                                       text: "Admission",
                                     ),
                                   )),
@@ -507,7 +490,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   TableCell(
                                       child: Center(
                                     child: CustomAutoSizeTextMontserrat(
-                                      maxLines: 1,
                                       text: courseSearchModel!.nearByIntake !=
                                               null
                                           ? courseSearchModel!.nearByIntake!
@@ -519,7 +501,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   TableCell(
                                     child: Center(
                                       child: CustomAutoSizeTextMontserrat(
-                                        maxLines: 1,
                                         text: courseSearchModel!.nearByIntake !=
                                                 null
                                             ? courseSearchModel!.nearByIntake!
@@ -532,7 +513,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   TableCell(
                                       child: Center(
                                     child: CustomAutoSizeTextMontserrat(
-                                      maxLines: 1,
                                       text: courseSearchModel!
                                               .listIntake!.isNotEmpty
                                           ? courseSearchModel!.listIntake![0]
@@ -559,7 +539,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               padding: const EdgeInsets.only(top: 5),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Ranking",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                                 fontSize: 14,
                               ),
@@ -574,7 +553,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           children: [
                             CustomAutoSizeTextMontserrat(
                               text: "ARWU:${courseSearchModel!.arwuRank ?? ""}",
-                              maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
@@ -582,7 +560,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "Times:${courseSearchModel!.timesRank ?? ""}",
-                              maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
@@ -590,7 +567,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "US News:${courseSearchModel!.usNewsRank ?? ""}",
-                              maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
@@ -598,7 +574,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "QS World:${courseSearchModel!.qsWorldRank ?? ""}",
-                              maxLines: 1,
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),

@@ -28,7 +28,6 @@ class CustomTab extends StatelessWidget {
                     SizedBox(
                       height: 30,
                       child: CustomAutoSizeTextMontserrat(
-                        maxLines: 1,
                         text: 'English Test Details',
                         fontSize: 16,
                         textColor: controller.englishTestDetail!.value == false
@@ -39,7 +38,6 @@ class CustomTab extends StatelessWidget {
                     SizedBox(
                       height: 30,
                       child: CustomAutoSizeTextMontserrat(
-                        maxLines: 1,
                         text: 'Other Test Details',
                         fontSize: 16,
                         textColor: controller.englishTestDetail!.value == true

@@ -14,7 +14,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
   CustomAutoSizeTextMontserrat(
       {Key? key,
       required this.text,
-      required this.maxLines,
+      this.maxLines,
       this.mandatory,
       this.fontSize,
       this.textColor,
@@ -27,9 +27,9 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: AutoSizeText(
-        text!,
+        text ?? "",
+        maxLines: maxLines ?? 100000,
         overflow: TextOverflow.ellipsis,
-        maxLines: maxLines,
         style: GoogleFonts.montserrat(
           fontWeight: fontWeight ?? FontWeight.w500,
           color: textColor ?? Colors.black,

@@ -16,8 +16,6 @@ class MandatoryInformation extends StatelessWidget {
   var controller = Get.put(ProfilePageController());
 
   callback(varTopic) {
-
-
     controller.setdropdown1(varTopic);
   }
 
@@ -39,7 +37,6 @@ class MandatoryInformation extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Branch Type",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -77,7 +74,6 @@ class MandatoryInformation extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Branch Name",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -97,7 +93,6 @@ class MandatoryInformation extends StatelessWidget {
                                         padding: const EdgeInsets.only(top: 15),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Branch Name",
-                                          maxLines: 1,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -131,7 +126,6 @@ class MandatoryInformation extends StatelessWidget {
                                       )
                                     : CustomAutoSizeTextMontserrat(
                                         text: "Service Name",
-                                        maxLines: 1,
                                         textColor: Colors.grey,
                                       ),
                               ),
@@ -145,7 +139,6 @@ class MandatoryInformation extends StatelessWidget {
                                     text: controller1.studentPanel
                                             .addtionalDetails![1].serviceName ??
                                         "",
-                                    maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -171,7 +164,6 @@ class MandatoryInformation extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "1st Country of Interest",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -185,7 +177,6 @@ class MandatoryInformation extends StatelessWidget {
                                     text: controller1.studentPanel
                                             .addtionalDetails![1].countryName ??
                                         "",
-                                    maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -211,7 +202,6 @@ class MandatoryInformation extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Other Country of Interest",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -223,7 +213,6 @@ class MandatoryInformation extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Gurugram",
-                                    maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -249,7 +238,6 @@ class MandatoryInformation extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Decision Marker",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -261,7 +249,6 @@ class MandatoryInformation extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 15),
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "",
-                                    maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -290,7 +277,6 @@ class MandatoryInformation extends StatelessWidget {
                                 padding: const EdgeInsets.only(top: 10),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Passport Available",
-                                  maxLines: 1,
                                   textColor: Colors.grey,
                                 ),
                               ),
@@ -304,7 +290,6 @@ class MandatoryInformation extends StatelessWidget {
                                     text: controller1
                                             .studentPanel.passportAvailable ??
                                         "",
-                                    maxLines: 1,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),

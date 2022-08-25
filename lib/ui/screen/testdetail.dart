@@ -51,7 +51,6 @@ class _TestDetailState extends State<TestDetail> {
                                               left: 20, top: 15),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Self",
-                                            maxLines: 1,
                                             fontSize: 24,
                                             underline: true,
                                             fontWeight: FontWeight.bold,
@@ -70,7 +69,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "Exam Status",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -84,7 +82,6 @@ class _TestDetailState extends State<TestDetail> {
                                                     .studentPanel
                                                     .testDetails!
                                                     .examStatus,
-                                                maxLines: 1,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             )
@@ -115,7 +112,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "Exam Name",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -129,7 +125,6 @@ class _TestDetailState extends State<TestDetail> {
                                                     .studentPanel
                                                     .testDetails!
                                                     .examName,
-                                                maxLines: 1,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             )
@@ -160,7 +155,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "Date of Exam",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -178,7 +172,6 @@ class _TestDetailState extends State<TestDetail> {
                                                       .studentPanel
                                                       .testDetails!
                                                       .dateOfExam,
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -210,7 +203,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "Date Of Test Report",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -228,7 +220,6 @@ class _TestDetailState extends State<TestDetail> {
                                                       .studentPanel
                                                       .testDetails!
                                                       .resultDate,
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -260,7 +251,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "Test Score Expiration ",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -278,7 +268,6 @@ class _TestDetailState extends State<TestDetail> {
                                                       .studentPanel
                                                       .testDetails!
                                                       .expirationDate,
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -345,7 +334,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "English Overall Scores ",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -364,7 +352,6 @@ class _TestDetailState extends State<TestDetail> {
                                                       .testDetails!
                                                       .overAll
                                                       .toString(),
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -404,7 +391,6 @@ class _TestDetailState extends State<TestDetail> {
                                                           child:
                                                               CustomAutoSizeTextMontserrat(
                                                             text: "Listening",
-                                                            maxLines: 1,
                                                             textColor:
                                                                 Colors.grey,
                                                           ),
@@ -427,7 +413,6 @@ class _TestDetailState extends State<TestDetail> {
                                                                       .listening
                                                                       .toString() ??
                                                                   "",
-                                                              maxLines: 1,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -465,7 +450,6 @@ class _TestDetailState extends State<TestDetail> {
                                                           child:
                                                               CustomAutoSizeTextMontserrat(
                                                             text: "Writing",
-                                                            maxLines: 1,
                                                             textColor:
                                                                 Colors.grey,
                                                           ),
@@ -488,7 +472,6 @@ class _TestDetailState extends State<TestDetail> {
                                                                       .writing
                                                                       .toString() ??
                                                                   "",
-                                                              maxLines: 1,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -535,7 +518,6 @@ class _TestDetailState extends State<TestDetail> {
                                                           child:
                                                               CustomAutoSizeTextMontserrat(
                                                             text: "Reading",
-                                                            maxLines: 1,
                                                             textColor:
                                                                 Colors.grey,
                                                           ),
@@ -558,7 +540,6 @@ class _TestDetailState extends State<TestDetail> {
                                                                       .reading
                                                                       .toString() ??
                                                                   "",
-                                                              maxLines: 1,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -596,7 +577,6 @@ class _TestDetailState extends State<TestDetail> {
                                                           child:
                                                               CustomAutoSizeTextMontserrat(
                                                             text: "Speaking",
-                                                            maxLines: 1,
                                                             textColor:
                                                                 Colors.grey,
                                                           ),
@@ -619,7 +599,6 @@ class _TestDetailState extends State<TestDetail> {
                                                                       .speaking
                                                                       .toString() ??
                                                                   "",
-                                                              maxLines: 1,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
@@ -660,7 +639,6 @@ class _TestDetailState extends State<TestDetail> {
                                               left: 20, top: 15),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Self",
-                                            maxLines: 1,
                                             fontSize: 24,
                                             underline: true,
                                             fontWeight: FontWeight.bold,
@@ -679,7 +657,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "Exam Status",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -694,7 +671,6 @@ class _TestDetailState extends State<TestDetail> {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: "Not Yet Registered",
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -726,7 +702,6 @@ class _TestDetailState extends State<TestDetail> {
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "want to a book test?",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -741,7 +716,6 @@ class _TestDetailState extends State<TestDetail> {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: "No",
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
@@ -774,7 +748,6 @@ class _TestDetailState extends State<TestDetail> {
                                                   CustomAutoSizeTextMontserrat(
                                                 text:
                                                     "assumptive Proficiency Level",
-                                                maxLines: 1,
                                                 textColor: Colors.grey,
                                               ),
                                             ),
@@ -789,7 +762,6 @@ class _TestDetailState extends State<TestDetail> {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: "Good",
-                                                  maxLines: 1,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),

@@ -11,6 +11,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -66,9 +67,8 @@ class _DashBoardState extends State<DashBoard> {
                         padding: const EdgeInsets.only(left: 20),
                         child: Align(
                             alignment: AlignmentDirectional.topStart,
-                            child: CustomAutoSizeText(
+                            child: CustomAutoSizeTextMontserrat(
                               text: "Nishant",
-                              maxLines: 1,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                             )),

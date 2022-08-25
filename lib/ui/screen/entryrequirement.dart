@@ -16,7 +16,9 @@ class EntryRequirement extends StatelessWidget {
     return Expanded(
         child: ListView(
       children: [
-        CustomAutoSizeTextMontserrat(text: "Academic Requirement", maxLines: 1),
+        CustomAutoSizeTextMontserrat(
+          text: "Academic Requirement",
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: Table(
@@ -24,23 +26,19 @@ class EntryRequirement extends StatelessWidget {
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "Country",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "Level of study",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
               ]),
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "India",
-                  maxLines: 1,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "class 12",
-                  maxLines: 1,
                 ),
               ]),
             ],
@@ -53,29 +51,27 @@ class EntryRequirement extends StatelessWidget {
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "Min. Percentage",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "Min. Grade",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
               ]),
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "65.00",
-                  maxLines: 1,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "",
-                  maxLines: 1,
                 ),
               ]),
             ],
           ),
         ),
-        CustomAutoSizeTextMontserrat(text: "Mandatory Subject", maxLines: 1),
+        CustomAutoSizeTextMontserrat(
+          text: "Mandatory Subject",
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: Table(
@@ -91,39 +87,34 @@ class EntryRequirement extends StatelessWidget {
                   children: [
                     CustomAutoSizeTextMontserrat(
                       text: "Subject",
-                      maxLines: 1,
                       fontWeight: FontWeight.bold,
                     ),
                     CustomAutoSizeTextMontserrat(
                       text: "Percentage",
-                      maxLines: 1,
                       fontWeight: FontWeight.bold,
                     ),
                     CustomAutoSizeTextMontserrat(
                       text: "Grade",
-                      maxLines: 1,
                       fontWeight: FontWeight.bold,
                     ),
                   ]),
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "",
-                  maxLines: 1,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "",
-                  maxLines: 1,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "",
-                  maxLines: 1,
                 ),
               ]),
             ],
           ),
         ),
         CustomAutoSizeTextMontserrat(
-            text: "English proficiency Requirement", maxLines: 1),
+          text: "English proficiency Requirement",
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: Table(
@@ -131,23 +122,19 @@ class EntryRequirement extends StatelessWidget {
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "test Type",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "MIN.Grade",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
               ]),
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "TOEFL",
-                  maxLines: 1,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "",
-                  maxLines: 1,
                 ),
               ]),
             ],

@@ -29,7 +29,6 @@ class OTPScreen extends StatelessWidget {
                   const Spacer(),
                   CustomAutoSizeTextMontserrat(
                     text: "OTP has been send to",
-                    maxLines: 1,
                     textColor: Colors.white,
                     fontSize: 24,
                   ),
@@ -41,7 +40,6 @@ class OTPScreen extends StatelessWidget {
                   const Spacer(),
                   CustomAutoSizeTextMontserrat(
                     text: "your sms",
-                    maxLines: 1,
                     textColor: Colors.white,
                     fontSize: 24,
                   ),
@@ -120,7 +118,6 @@ class OTPScreen extends StatelessWidget {
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Submit",
-                                maxLines: 1,
                                 textColor: Colors.white,
                               )),
                         ),
@@ -133,7 +130,6 @@ class OTPScreen extends StatelessWidget {
                                         onPressed: () {},
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Resend OTP",
-                                          maxLines: 1,
                                           textColor: ThemeConstants.bluecolor,
                                         )),
                                   if (_.loadingcounter.value == false)
@@ -142,7 +138,6 @@ class OTPScreen extends StatelessWidget {
                                       child: CustomAutoSizeTextMontserrat(
                                         text:
                                             "Resend OTP in 00:${_.count.value}",
-                                        maxLines: 1,
                                       ),
                                     )
                                 ],

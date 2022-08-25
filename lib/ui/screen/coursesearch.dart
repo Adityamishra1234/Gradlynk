@@ -30,9 +30,10 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> courseBoardFieldindexvaluelist = [];
   List<int> courseNarrowFieldIndexvalueList = [];
   callbackCompleteDetailCourse(varTopic) async {
-    varTopic.toString().split(',')[0];
-    varTopic.toString().split(',')[1];
-    var res = await controller.completeCourseDetailMethod();
+    List<String> endpoint = varTopic.toString().split(',');
+    print(endpoint);
+    var res = await controller.completeCourseDetailMethod(
+        endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
       Navigator.push(
@@ -139,7 +140,6 @@ class _CourseSearchState extends State<CourseSearch> {
                     const Spacer(),
                     CustomAutoSizeTextMontserrat(
                       text: "Course Search",
-                      maxLines: 1,
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),
@@ -321,7 +321,7 @@ class _CourseSearchState extends State<CourseSearch> {
                               //           padding: const EdgeInsets.only(top: 10),
                               //           child: CustomAutoSizeTextMontserrat(
                               //             text: "Specialization",
-                              //             maxLines: 1,
+                              //             ,
                               //             textColor: Colors.grey,
                               //           ),
                               //         ),
@@ -363,7 +363,7 @@ class _CourseSearchState extends State<CourseSearch> {
                               //           padding: const EdgeInsets.only(top: 10),
                               //           child: CustomAutoSizeTextMontserrat(
                               //             text: "By Course Name Only",
-                              //             maxLines: 1,
+                              //             ,
                               //             textColor: Colors.grey,
                               //           ),
                               //         ),

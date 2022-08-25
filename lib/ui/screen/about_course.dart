@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customexpansionplanelist.dart';
 
 class AboutCourse extends StatelessWidget {
   List<CompleteCourseDetail> completeCourseDetail;
@@ -12,71 +13,98 @@ class AboutCourse extends StatelessWidget {
         child: ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 10, left: 10),
           child: Table(
             children: [
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "Country ",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "Currency Code",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
               ]),
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
-                  text: "USA",
-                  maxLines: 1,
+                  text: "completeCourseDetail[0].countryCapital",
                 ),
                 CustomAutoSizeTextMontserrat(
-                  text: "USD",
-                  maxLines: 1,
+                  text: completeCourseDetail[0].countryCurrencyCode,
                 ),
               ]),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 5, left: 10),
           child: Table(
             children: [
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
                   text: "Capital City",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
                 CustomAutoSizeTextMontserrat(
                   text: "INR value",
-                  maxLines: 1,
                   fontWeight: FontWeight.bold,
                 ),
               ]),
               TableRow(children: [
                 CustomAutoSizeTextMontserrat(
-                  text: "Washington DC",
-                  maxLines: 1,
+                  text: completeCourseDetail[0].countryCapital,
                 ),
                 CustomAutoSizeTextMontserrat(
-                  text: "74.000",
-                  maxLines: 1,
+                  text: completeCourseDetail[0].annualTutionFeesInr.toString(),
                 ),
               ]),
             ],
           ),
         ),
-        CustomAutoSizeTextMontserrat(text: "Language", maxLines: 1),
-        CustomAutoSizeTextMontserrat(text: "Englidh", maxLines: 1),
-        Card(
-          child: Column(
-            children: [
-              CustomAutoSizeTextMontserrat(text: "About Country", maxLines: 1)
-            ],
+        Padding(
+          padding: const EdgeInsets.only(top: 5, left: 10),
+          child: CustomAutoSizeTextMontserrat(
+            text: "Language",
+            fontWeight: FontWeight.bold,
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: CustomAutoSizeTextMontserrat(
+            text: completeCourseDetail[0].countryLanguage,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: CustomExpansionPlanList(
+            titel: "About Country",
+            text: completeCourseDetail[0].aboutCountry,
+          ),
+        ),
+        CustomExpansionPlanList(
+          titel: "Popular State",
+          text: completeCourseDetail[0].popularStates,
+        ),
+        CustomExpansionPlanList(
+          titel: "Education System",
+          text: completeCourseDetail[0].eduSystem,
+        ),
+        CustomExpansionPlanList(
+          titel: "Finances And Expenses (Annually)",
+          text: completeCourseDetail[0].financeAndExpenses,
+        ),
+        CustomExpansionPlanList(
+          titel: "Finding Work as a Student",
+          text: completeCourseDetail[0].findingWorkAsStudents,
+        ),
+        CustomExpansionPlanList(
+          titel: "Post Study Work Option",
+          text: completeCourseDetail[0].postStudyWorkOption,
+        ),
+        CustomExpansionPlanList(
+          titel: "Part Time Work Option",
+          text: completeCourseDetail[0].partTimeWorkOption,
         ),
       ],
     ));

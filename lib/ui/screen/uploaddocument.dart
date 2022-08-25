@@ -42,7 +42,6 @@ class UploadDocument extends StatelessWidget {
                     child: Center(
                       child: CustomAutoSizeTextMontserrat(
                         text: "Upload Documents",
-                        maxLines: 1,
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
                       ),
@@ -91,7 +90,6 @@ class UploadDocument extends StatelessWidget {
                         ),
                         CustomAutoSizeTextMontserrat(
                           text: "________",
-                          maxLines: 1,
                           textColor: ThemeConstants.bluecolor,
                           fontWeight: FontWeight.w900,
                         ),
@@ -137,7 +135,6 @@ class UploadDocument extends StatelessWidget {
                         ),
                         CustomAutoSizeTextMontserrat(
                           text: "________",
-                          maxLines: 1,
                           textColor: Colors.grey,
                           fontWeight: FontWeight.w900,
                         ),
@@ -184,7 +181,6 @@ class UploadDocument extends StatelessWidget {
                         children: [
                           CustomAutoSizeTextMontserrat(
                             text: "Highest Qualification",
-                            maxLines: 1,
                             textColor: Colors.grey,
                           ),
                           const Spacer(),
@@ -218,7 +214,6 @@ class UploadDocument extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 10),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Add Degree",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                               ),
                             ),
@@ -258,7 +253,6 @@ class UploadDocument extends StatelessWidget {
                                                     child:
                                                         CustomAutoSizeTextMontserrat(
                                                       text: "Select Source",
-                                                      maxLines: 1,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 20,
@@ -287,11 +281,11 @@ class UploadDocument extends StatelessWidget {
                                                                       .bluecolor,
                                                             ),
                                                             CustomAutoSizeTextMontserrat(
-                                                                text: "Camera",
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                maxLines: 1)
+                                                              text: "Camera",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            )
                                                           ],
                                                         ),
                                                       ),
@@ -342,11 +336,11 @@ class UploadDocument extends StatelessWidget {
                                                                       .bluecolor,
                                                             ),
                                                             CustomAutoSizeTextMontserrat(
-                                                                text: "Gallery",
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                maxLines: 1)
+                                                              text: "Gallery",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            )
                                                           ],
                                                         ),
                                                       ),
@@ -609,7 +603,6 @@ class UploadDocument extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 10),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Add secondary certificate",
-                                maxLines: 1,
                                 textColor: Colors.grey,
                               ),
                             ),
@@ -749,7 +742,6 @@ class UploadDocument extends StatelessWidget {
                               onPressed: () {},
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Submit",
-                                maxLines: 1,
                                 textColor: Colors.white,
                               )),
                         ],

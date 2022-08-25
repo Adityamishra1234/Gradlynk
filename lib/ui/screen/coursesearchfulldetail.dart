@@ -22,21 +22,6 @@ class CourseSearchFullDetail extends StatelessWidget {
 
   static const routeNamed = '/CourseSearchFullDetail';
   var controller = Get.put(CourseSearchFullDetailController());
-  String s2 = """
-  The United States is a popular hub for education as having seven of the top 10 universities globally. American colleges and universities are widely known for their teaching and research. The American education system is the most adaptable and versatile for international students.
-                                           American college is known for its academic excellence as it provides the world’s most adequate education with excellent programs across all discipline subjects. American colleges have an advanced stage of undergraduate programs that allows opting for multiple specializations.
-
-
-
-There are two prominent intakes in the USA, i.e., fall and spring.
-
-
-
-- The fall intake begins in August; most of the courses are          available and the most preferred intake among the
-international students.
--Spring or Winter Intake starts in January, and it provides a few courses.
-However, Universities in the USA also have summer intakes, but it is limited to specific courses.'",
-  """;
 
   @override
   Widget build(BuildContext context) {
@@ -82,174 +67,257 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                             thickness: 1,
                           ),
                         ),
-                        CustomAutoSizeTextMontserrat(
-                          text: completeCourseDetail[0].courseName,
-                          maxLines: 5,
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          textColor: ThemeConstants.bluecolor,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: completeCourseDetail[0].courseName,
+                            maxLines: 5,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            textColor: ThemeConstants.bluecolor,
+                          ),
                         ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/university.svg",
-                              height: 20,
-                              width: 20,
-                            ),
-                            CustomAutoSizeTextMontserrat(
-                                text: completeCourseDetail[0].universityName,
-                                maxLines: 2)
-                          ],
-                        ),
-                        Card(
-                          elevation: 5,
-                          child: Column(
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Row(
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    color: ThemeConstants.lightblueColor,
-                                    height: 100,
-                                    child: Column(
-                                      children: [
-                                        Spacer(),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Course Duration",
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.bluecolor,
-                                        ),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: (int.parse(
-                                                      completeCourseDetail[0]
-                                                          .courseDuration!) /
-                                                  12)
-                                              .toStringAsFixed(1),
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.blackcolor,
-                                        ),
-                                        Spacer()
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    color: ThemeConstants.lightorangeColor,
-                                    height: 100,
-                                    child: Column(
-                                      children: [
-                                        Spacer(),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Total Tutions Fees",
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.orangeColor,
-                                        ),
-                                        CustomAutoSizeTextMontserrat(
-                                          text:
-                                              "${completeCourseDetail[0].totalTutionFees}(${completeCourseDetail[0].totalTutionFeesInr}INR)",
-                                          // "347200 USD (INR 2,56,92,800)",
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.blackcolor,
-                                        ),
-                                        Spacer()
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                              SvgPicture.asset(
+                                "assets/icons/university.svg",
+                                height: 20,
+                                width: 20,
                               ),
-                              Row(
-                                children: [
-                                  Container(
-                                    color: ThemeConstants.lightblueColor,
-                                    height: 100,
-                                    child: Column(
-                                      children: [
-                                        Spacer(),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Course Level",
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.bluecolor,
-                                        ),
-                                        CustomAutoSizeTextMontserrat(
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional.topStart,
+                                  child: Column(
+                                    children: [
+                                      CustomAutoSizeTextMontserrat(
                                           text: completeCourseDetail[0]
-                                              .courseLevel,
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.blackcolor,
-                                        ),
-                                        Spacer()
-                                      ],
-                                    ),
+                                              .universityName,
+                                          maxLines: 2),
+                                    ],
                                   ),
-                                  Container(
-                                    color: ThemeConstants.lightorangeColor,
-                                    height: 100,
-                                    child: Column(
-                                      children: [
-                                        Spacer(),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Avaliable Intake",
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.orangeColor,
-                                        ),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Aug-2022|Jan-2023",
-                                          maxLines: 1,
-                                          textColor: ThemeConstants.blackcolor,
-                                        ),
-                                        Spacer()
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "assets/icons/star.svg",
-                                      height: 20,
-                                      width: 20,
-                                    ),
-                                    CustomAutoSizeTextMontserrat(
-                                        text: "Worlds Ranking", maxLines: 1)
-                                  ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, right: 10, bottom: 10),
-                                child: Row(
-                                  children: [
-                                    CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "ARWU:${completeCourseDetail[0].arwuRank}",
-                                      maxLines: 1,
-                                      fontSize: 14,
-                                    ),
-                                    Spacer(),
-                                    CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "Times:${completeCourseDetail[0].timesRank}",
-                                      maxLines: 1,
-                                      fontSize: 14,
-                                    ),
-                                    Spacer(),
-                                    CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "US News:${completeCourseDetail[0].usNewsRank}",
-                                      maxLines: 1,
-                                      fontSize: 14,
-                                    ),
-                                    Spacer(),
-                                    CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "QS World:${completeCourseDetail[0].qsWorldRank}",
-                                      maxLines: 1,
-                                      fontSize: 14,
-                                    ),
-                                  ],
-                                ),
-                              )
                             ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15, bottom: 15),
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  color: ThemeConstants.bluelightgreycolor,
+                                  width: 0.5),
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: Row(
+                                    children: [
+                                      Spacer(),
+                                      Container(
+                                        height: 80,
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          color: ThemeConstants.lightblueColor,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Spacer(),
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Course Duration",
+                                              maxLines: 2,
+                                              textColor:
+                                                  ThemeConstants.bluecolor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            CustomAutoSizeTextMontserrat(
+                                              text:
+                                                  "${(int.parse(completeCourseDetail[0].courseDuration!) / 12).toStringAsFixed(1)} Year",
+                                              fontSize: 14,
+                                              maxLines: 2,
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                            ),
+                                            Spacer()
+                                          ],
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Container(
+                                        height: 80,
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          color:
+                                              ThemeConstants.lightorangeColor,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Spacer(),
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Total Tutions Fees",
+                                              maxLines: 2,
+                                              textColor:
+                                                  ThemeConstants.orangeColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            CustomAutoSizeTextMontserrat(
+                                              text:
+                                                  "${completeCourseDetail[0].totalTutionFees}(${completeCourseDetail[0].totalTutionFeesInr}INR)",
+                                              // "347200 USD (INR 2,56,92,800)",
+                                              maxLines: 2,
+                                              fontSize: 14,
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                            ),
+                                            Spacer()
+                                          ],
+                                        ),
+                                      ),
+                                      Spacer(),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
+                                  child: Row(
+                                    children: [
+                                      Spacer(),
+                                      Container(
+                                        height: 80,
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          color: ThemeConstants.lightblueColor,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Spacer(),
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Course Level",
+                                              maxLines: 2,
+                                              textColor:
+                                                  ThemeConstants.bluecolor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            CustomAutoSizeTextMontserrat(
+                                              text: completeCourseDetail[0]
+                                                  .courseLevel,
+                                              maxLines: 2,
+                                              fontSize: 14,
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                            ),
+                                            Spacer()
+                                          ],
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Container(
+                                        height: 80,
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          color:
+                                              ThemeConstants.lightorangeColor,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                        child: Column(
+                                          children: [
+                                            Spacer(),
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Avaliable Intake",
+                                              fontWeight: FontWeight.bold,
+                                              maxLines: 2,
+                                              textColor:
+                                                  ThemeConstants.orangeColor,
+                                            ),
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Aug-2022|Jan-2023",
+                                              maxLines: 2,
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                              fontSize: 14,
+                                            ),
+                                            Spacer()
+                                          ],
+                                        ),
+                                      ),
+                                      Spacer(),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 10,
+                                    top: 10,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "assets/icons/star.svg",
+                                        height: 20,
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Worlds Ranking",
+                                          maxLines: 2,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10, bottom: 25, top: 10),
+                                  child: Row(
+                                    children: [
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "ARWU:${completeCourseDetail[0].arwuRank}",
+                                        maxLines: 2,
+                                        fontSize: 14,
+                                      ),
+                                      Spacer(),
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "Times:${completeCourseDetail[0].timesRank}",
+                                        maxLines: 2,
+                                        fontSize: 14,
+                                      ),
+                                      Spacer(),
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "US News:${completeCourseDetail[0].usNewsRank}",
+                                        maxLines: 2,
+                                        fontSize: 14,
+                                      ),
+                                      Spacer(),
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "QS World:${completeCourseDetail[0].qsWorldRank}",
+                                        maxLines: 2,
+                                        fontSize: 14,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ]),
@@ -271,7 +339,11 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                         height: 40,
                                         width: 170,
                                         decoration: BoxDecoration(
-                                          color: ThemeConstants.bluecolor,
+                                          color: _.index == 0
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.whitecolor,
+                                          border: Border.all(
+                                              color: ThemeConstants.TextColor),
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(10)),
                                         ),
@@ -282,8 +354,9 @@ However, Universities in the USA also have summer intakes, but it is limited to 
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "About Institute",
                                             maxLines: 1,
-                                            textColor:
-                                                ThemeConstants.whitecolor,
+                                            textColor: _.index == 0
+                                                ? ThemeConstants.whitecolor
+                                                : ThemeConstants.TextColor,
                                           ),
                                         )),
                                     const SizedBox(
