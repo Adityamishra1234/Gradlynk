@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -28,7 +29,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             child: IconButton(
               icon: SvgPicture.asset(
                 "assets/icons/menu.svg",
-                color: const Color.fromARGB(255, 99, 99, 99),
+                color: ThemeConstants.IconColor,
                 height: 30,
                 width: 30,
               ),
@@ -56,21 +57,22 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           IconButton(
             icon: SvgPicture.asset(
               "assets/icons/notification.svg",
-              color: const Color.fromARGB(255, 99, 99, 99),
+              color: ThemeConstants.IconColor,
               height: 27,
             ),
             onPressed: () {},
           ),
-          IconButton(
-            icon: SvgPicture.asset(
-              "assets/icons/profile.svg",
-              height: 30,
-              color: const Color.fromARGB(255, 99, 99, 99),
-            ),
-            onPressed: () {
-              Get.toNamed(ProfilePage.routeNamed);
-            },
-          ),
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     "assets/icons/profile.svg",
+          //     height: 30,
+          //     color: const Color.fromARGB(255, 99, 99, 99),
+          //   ),
+          //   onPressed: () {
+          //     Get.toNamed(ProfilePage.routeNamed);
+          //   },
+          // ),
+
           const SizedBox(
             width: 5,
           )

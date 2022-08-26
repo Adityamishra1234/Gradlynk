@@ -173,11 +173,13 @@ class _CourseSearchState extends State<CourseSearch> {
                           true)
                         Expanded(
                           child: ListView.builder(
-                              itemCount: controller1.courseSearchModel.length,
+                              itemCount: controller1
+                                  .courseSearchPages.courseSearchModel!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return CollagelistExpandedWidget(
-                                  courseSearchModel:
-                                      controller1.courseSearchModel[index],
+                                  courseSearchModel: controller1
+                                      .courseSearchPages
+                                      .courseSearchModel![index],
                                   callbackFunction:
                                       callbackCompleteDetailCourse,
                                 );
@@ -198,7 +200,8 @@ class _CourseSearchState extends State<CourseSearch> {
                                 ),
                               ),
                               const Padding(
-                                padding: EdgeInsets.only(left: 20, right: 20),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 5),
                                 child: Divider(
                                   height: 5,
                                   thickness: 1,
@@ -220,7 +223,8 @@ class _CourseSearchState extends State<CourseSearch> {
                                 ),
                               if (controller1.loadingState.value == true)
                                 const Padding(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 5),
                                   child: Divider(
                                     height: 5,
                                     thickness: 1,
@@ -240,7 +244,8 @@ class _CourseSearchState extends State<CourseSearch> {
                                     )),
                               if (controller1.loadingCity.value == true)
                                 const Padding(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 5),
                                   child: Divider(
                                     height: 5,
                                     thickness: 1,
@@ -260,7 +265,8 @@ class _CourseSearchState extends State<CourseSearch> {
                                 ),
 
                               const Padding(
-                                padding: EdgeInsets.only(left: 20, right: 20),
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 5),
                                 child: Divider(
                                   height: 5,
                                   thickness: 1,
@@ -282,7 +288,8 @@ class _CourseSearchState extends State<CourseSearch> {
                               if (controller1.loadingCourseBoardField.value ==
                                   true)
                                 const Padding(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 5),
                                   child: Divider(
                                     height: 5,
                                     thickness: 1,
@@ -304,7 +311,8 @@ class _CourseSearchState extends State<CourseSearch> {
                               if (controller1.loadingCourseNarrowField.value ==
                                   true)
                                 const Padding(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 5),
                                   child: Divider(
                                     height: 5,
                                     thickness: 1,

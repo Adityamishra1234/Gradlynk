@@ -23,7 +23,7 @@ class PersonalInformation extends StatelessWidget {
           Stack(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height - 205,
+                height: MediaQuery.of(context).size.height - 215,
                 child: NotificationListener<UserScrollNotification>(
                   onNotification: (notification) {
                     if (notification.direction == ScrollDirection.forward) {
@@ -40,7 +40,7 @@ class PersonalInformation extends StatelessWidget {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Container(
                             height: 76,
                             width: 76,

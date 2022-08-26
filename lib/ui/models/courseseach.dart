@@ -1,3 +1,32 @@
+class CourseSearchPages {
+  int? currentPage;
+  List<CourseSearchModel>? courseSearchModel;
+  int? lastPage;
+
+  CourseSearchPages({this.currentPage, this.courseSearchModel, this.lastPage});
+
+  CourseSearchPages.fromJson(Map<String, dynamic> json) {
+    currentPage = json['current_page'];
+    if (json['data'] != null) {
+      courseSearchModel = <CourseSearchModel>[];
+      json['data'].forEach((v) {
+        courseSearchModel!.add(CourseSearchModel.fromJson(v));
+      });
+    }
+    lastPage = json['last_page'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['current_page'] = currentPage;
+    if (courseSearchModel != null) {
+      data['data'] = courseSearchModel!.map((v) => v.toJson()).toList();
+    }
+    data['last_page'] = lastPage;
+    return data;
+  }
+}
+
 class CourseSearchModel {
   List<String>? listIntake = [];
   String? nearByIntake;

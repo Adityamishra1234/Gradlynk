@@ -4,30 +4,45 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-
-class MultiSelectDropDown extends StatelessWidget {
+class MultiSelectDropDown extends StatefulWidget {
   Function callbackFunction;
   String? title;
   List<dynamic>? listdata;
-   MultiSelectDropDown({Key? key,this.listdata,this.title, required this.callbackFunction}) : super(key: key);
+  MultiSelectDropDown(
+      {Key? key, this.listdata, this.title, required this.callbackFunction})
+      : super(key: key);
 
   @override
+  State<MultiSelectDropDown> createState() => _MultiSelectDropDownState();
+}
+
+class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
+  bool resize = false;
+  @override
   Widget build(BuildContext context) {
-   var  items =
-        listdata!.map((data) => MultiSelectItem(data, data)).toList();
+    var items =
+        widget.listdata!.map((data) => MultiSelectItem(data, data)).toList();
     return MultiSelectDialogField(
       buttonIcon: const Icon(Icons.keyboard_arrow_down),
-      decoration: const BoxDecoration(color: Colors.transparent),
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
       listType: MultiSelectListType.LIST,
       searchable: true,
       buttonText: Text(
-        title!,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        widget.title!,
+        style: TextStyle(
+            fontSize: resize == false ? 18 : 12,
+            fontWeight: FontWeight.bold,
+            fontFamily: "Montserra"),
       ),
-      title: Text(title!),
+      title: Text(widget.title!),
       items: items,
       onConfirm: (values) {
-       callbackFunction(values);
+        widget.callbackFunction(values);
+        setState(() {
+          resize = true;
+        });
       },
     );
   }

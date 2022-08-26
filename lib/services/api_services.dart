@@ -134,118 +134,147 @@ class ApiServices extends StudentPanelBase {
   }
 
   getCourseSearch(String baseUrl, String endpoint) async {
-    List<CourseSearchModel> courseSearchModel = [];
+    CourseSearchPages courseSearchPages = CourseSearchPages();
 
     var response = await httpPostNullBody(baseUrl + endpoint);
-    // var jsondata = json.decode(response.body);
-    courseSearchModel = List<CourseSearchModel>.from(
-        json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+    var jsondata = json.decode(response.body);
+    courseSearchPages = CourseSearchPages.fromJson(jsondata);
     // courseSearchModel = jsondata.map(( CourseSearchModel data) {
     //   CourseSearchModel.fromJson(data);
     // }).toList();
 
     //For Duration In Year
-    if (courseSearchModel.isNotEmpty) {
-      for (var i = 0; i < courseSearchModel.length; i++) {
-        if (courseSearchModel[i].courseDuration != null) {
-          courseSearchModel[i].durationYear =
-              ((int.parse(courseSearchModel[i].courseDuration!) / 12)
-                  .toStringAsFixed(1));
+    if (courseSearchPages.courseSearchModel!.isNotEmpty) {
+      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+        if (courseSearchPages.courseSearchModel![i].courseDuration != null) {
+          courseSearchPages.courseSearchModel![i].durationYear = ((int.parse(
+                      courseSearchPages.courseSearchModel![i].courseDuration!) /
+                  12)
+              .toStringAsFixed(1));
         }
       }
 
       //Intake
-      if (courseSearchModel.isNotEmpty) {
-        for (var i = 0; i < courseSearchModel.length; i++) {
-          if (courseSearchModel[i].intakeFromYear != null) {
-            if (courseSearchModel[i].intakeFromYear!.contains("|")) {
-              courseSearchModel[i]
-                  .listIntake!
-                  .addAll(courseSearchModel[i].intakeFromYear!.split("|"));
+      if (courseSearchPages.courseSearchModel!.isNotEmpty) {
+        for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+          if (courseSearchPages.courseSearchModel![i].intakeFromYear != null) {
+            if (courseSearchPages.courseSearchModel![i].intakeFromYear!
+                .contains("|")) {
+              courseSearchPages.courseSearchModel![i].listIntake!.addAll(
+                  courseSearchPages.courseSearchModel![i].intakeFromYear!
+                      .split("|"));
             } else {
-              courseSearchModel[i]
-                  .listIntake!
-                  .add(courseSearchModel[i].intakeFromYear.toString());
+              courseSearchPages.courseSearchModel![i].listIntake!.add(
+                  courseSearchPages.courseSearchModel![i].intakeFromYear
+                      .toString());
             }
           }
         }
       }
-      for (var i = 0; i < courseSearchModel.length; i++) {
-        courseSearchModel[i].listIntake =
-            courseSearchModel[i].listIntake!.toSet().toList();
+      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+        courseSearchPages.courseSearchModel![i].listIntake = courseSearchPages
+            .courseSearchModel![i].listIntake!
+            .toSet()
+            .toList();
       }
-      for (var i = 0; i < courseSearchModel.length; i++) {
-        if (courseSearchModel[i].listIntake!.isNotEmpty) {
+      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
           String temp = "";
-          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+          for (var j = 0;
+              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
+              j++) {
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Jan") {
               temp =
-                  "01-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "01-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
               print(temp);
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Feb") {
               temp =
-                  "02-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "02-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Mar") {
               temp =
-                  "03-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "03-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
               print(temp);
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Apr") {
               temp =
-                  "04-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "04-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "May") {
               temp =
-                  "05-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "05-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Jun") {
               temp =
-                  "06-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "06-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Jul") {
               temp =
-                  "07-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "07-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Aug") {
               temp =
-                  "08-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "08-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Sep") {
               temp =
-                  "09-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "09-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Oct") {
               temp =
-                  "10-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "10-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Nov") {
               temp =
-                  "11-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "11-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            if (courseSearchModel[i].listIntake![j].toString().split("-")[0] ==
+            if (courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .toString()
+                    .split("-")[0] ==
                 "Dec") {
               temp =
-                  "12-${courseSearchModel[i].listIntake![j].toString().split("-")[1]}-${courseSearchModel[i].listIntake![j].toString().split("-")[2]}";
+                  "12-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
             }
-            courseSearchModel[i].listIntake![j] = temp;
+            courseSearchPages.courseSearchModel![i].listIntake![j] = temp;
           }
         }
       }
     }
-    return courseSearchModel;
+    return courseSearchPages.courseSearchModel!;
   }
 
   completeCourseDetail(String baseUrl, String endpoint) async {

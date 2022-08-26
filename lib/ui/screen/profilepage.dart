@@ -46,7 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final TextStyle textStyle = GoogleFonts.montserrat(
       fontWeight: FontWeight.w600,
       color: colorsChoose ? Colors.white : Colors.black,
-      fontSize: 15,
+      fontSize: 16,
     );
     return textStyle;
   }
@@ -78,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 35,
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
+                                        Radius.circular(10)),
                                     gradient: LinearGradient(
                                       colors: controller.chooseIndex!.value == 0
                                           ? selectButton
@@ -100,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               height: 35,
                               decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(5)),
+                                      Radius.circular(10)),
                                   gradient: LinearGradient(
                                     colors: controller.chooseIndex!.value == 1
                                         ? selectButton
@@ -122,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 35,
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
+                                        Radius.circular(10)),
                                     gradient: LinearGradient(
                                       colors: controller.chooseIndex!.value == 2
                                           ? selectButton
@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 35,
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
+                                        Radius.circular(10)),
                                     gradient: LinearGradient(
                                       colors: controller.chooseIndex!.value == 3
                                           ? selectButton
@@ -168,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 height: 35,
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(5)),
+                                        Radius.circular(10)),
                                     gradient: LinearGradient(
                                       colors: controller.chooseIndex!.value == 4
                                           ? selectButton
@@ -191,7 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
+              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
               child: Divider(
                 height: 5,
                 thickness: 1,
@@ -207,9 +207,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   } else if (controller.chooseIndex!.value == 2) {
                     return TestDetail();
                   } else if (controller.chooseIndex!.value == 3) {
-                    return CourseChoose();
+                    return const CourseChoose();
                   } else {
-                    return Passport();
+                    return const Passport();
                   }
                 }),
           ],

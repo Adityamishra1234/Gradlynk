@@ -10,6 +10,7 @@ class ProfilePageController extends GetxController with StateMixin<UserModel> {
   DropDownModel? dropDownModel;
 
   //Using For Loading Progress
+  RxString? swipeDirection = "left".obs;
   RxInt? chooseIndex = 0.obs;
   RxBool? englishTestDetail = true.obs;
   RxBool? showAnimation = false.obs;
@@ -20,6 +21,11 @@ class ProfilePageController extends GetxController with StateMixin<UserModel> {
 
   //Create Class  Object
   StudentPanel studentPanel = StudentPanel();
+
+  setSwipeDirection(String data) {
+    swipeDirection!.value = data;
+    update();
+  }
 
   setdropdown1(String? data) {
     dropdown1 = data!.obs;

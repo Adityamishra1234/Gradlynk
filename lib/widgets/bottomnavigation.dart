@@ -42,7 +42,7 @@ class BottomNavigation extends StatelessWidget {
                             SvgPicture.asset("assets/icons/home.svg",
                                 color: index == 0
                                     ? ThemeConstants.bluecolor
-                                    : Color(0xFF677082),
+                                    : ThemeConstants.IconColor,
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
@@ -73,7 +73,7 @@ class BottomNavigation extends StatelessWidget {
                             SvgPicture.asset("assets/icons/messanger.svg",
                                 color: index == 1
                                     ? ThemeConstants.bluecolor
-                                    : Color(0xFF677082),
+                                    : ThemeConstants.IconColor,
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
@@ -101,11 +101,11 @@ class BottomNavigation extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: SizedBox(
+                    child: Container(
                       height: 46,
                       width: 60,
                       child: InkWell(
-                        splashColor: ThemeConstants.bluecolor,
+                        splashColor: Colors.transparent,
                         onTap: () {},
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +113,7 @@ class BottomNavigation extends StatelessWidget {
                             SvgPicture.asset("assets/icons/enqiry.svg",
                                 color: index == 2
                                     ? ThemeConstants.bluecolor
-                                    : Color(0xFF677082),
+                                    : ThemeConstants.IconColor,
                                 height: 30,
                                 width: 30,
                                 semanticsLabel: 'A red up arrow'),
@@ -144,7 +144,7 @@ class BottomNavigation extends StatelessWidget {
                           SvgPicture.asset("assets/icons/profile-bottom.svg",
                               color: index == 3
                                   ? ThemeConstants.bluecolor
-                                  : Color(0xFF677082),
+                                  : ThemeConstants.IconColor,
                               height: 30,
                               width: 30,
                               semanticsLabel: 'A red up arrow'),

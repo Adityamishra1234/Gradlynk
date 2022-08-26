@@ -28,16 +28,13 @@ class MandatoryInformation extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20, right: 10, top: 30),
+                padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
                 child: SizedBox(
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Branch Type",
-                          textColor: Colors.grey,
-                        ),
+                      CustomAutoSizeTextMontserrat(
+                        text: "Branch Type",
+                        textColor: Colors.grey,
                       ),
                       Spacer(),
                       SizedBox(

@@ -34,7 +34,7 @@ class CourseSearchController extends BaseController {
   List<CompleteCourseDetail> completeCourseDetail = [];
   ApiServices apiservices = ApiServices();
 
-  List<CourseSearchModel> courseSearchModel = [];
+  CourseSearchPages courseSearchPages = CourseSearchPages();
 
 // Using in coursesearch Page field
 
@@ -154,29 +154,33 @@ class CourseSearchController extends BaseController {
 
     var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
-      courseSearchModel = res;
+      courseSearchPages.courseSearchModel = res;
 
-      for (var i = 0; i < courseSearchModel.length; i++) {
-        if (courseSearchModel[i].listIntake!.isNotEmpty) {
-          print(courseSearchModel[i].listIntake!.length);
-          print(courseSearchModel.length);
-          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
+      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
+          print(courseSearchPages.courseSearchModel![i].listIntake!.length);
+          print(courseSearchPages.courseSearchModel!.length);
+          for (var j = 0;
+              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
+              j++) {
             print("soni ii");
             print(i);
             print(j);
-            if (int.parse(courseSearchModel[i].listIntake![j].split("-")[1]) >=
+            if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .split("-")[1]) >=
                 int.parse(formatterYear.format(now))) {
-              if (int.parse(
-                      courseSearchModel[i].listIntake![j].split("-")[0]) >=
+              if (int.parse(courseSearchPages
+                      .courseSearchModel![i].listIntake![j]
+                      .split("-")[0]) >=
                   int.parse(formatterMonth.format(now))) {
-                courseSearchModel[i].nearByIntake =
-                    courseSearchModel[i].listIntake![j];
+                courseSearchPages.courseSearchModel![i].nearByIntake =
+                    courseSearchPages.courseSearchModel![i].listIntake![j];
               }
             }
           }
         }
       }
-      courseSearchModel;
+      courseSearchPages.courseSearchModel!;
       loadingCourseSearchDetail = true.obs;
       update();
     }
