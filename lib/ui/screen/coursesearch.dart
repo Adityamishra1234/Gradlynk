@@ -173,15 +173,178 @@ class _CourseSearchState extends State<CourseSearch> {
                           true)
                         Expanded(
                           child: ListView.builder(
-                              itemCount: controller1
-                                  .courseSearchPages.courseSearchModel!.length,
+                              itemCount: controller1.courseSearchPages
+                                      .courseSearchModel!.length +
+                                  1,
                               itemBuilder: (BuildContext context, int index) {
-                                return CollagelistExpandedWidget(
-                                  courseSearchModel: controller1
-                                      .courseSearchPages
-                                      .courseSearchModel![index],
-                                  callbackFunction:
-                                      callbackCompleteDetailCourse,
+                                return Column(
+                                  children: [
+                                    if (controller1.courseSearchPages
+                                            .courseSearchModel!.length !=
+                                        index)
+                                      CollagelistExpandedWidget(
+                                        currentPage: controller1
+                                            .courseSearchPages.currentPage
+                                            .toString(),
+                                        lastPage: controller1
+                                            .courseSearchPages.lastPage
+                                            .toString(),
+                                        courseSearchModel: controller1
+                                            .courseSearchPages
+                                            .courseSearchModel![index],
+                                        callbackFunction:
+                                            callbackCompleteDetailCourse,
+                                      ),
+                                    if (controller1.courseSearchPages
+                                            .courseSearchModel!.length ==
+                                        index)
+                                      Row(
+                                        children: [
+                                          Spacer(),
+                                          if (controller1.courseSearchPages
+                                                  .currentPage !=
+                                              1)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 20,
+                                                  top: 20,
+                                                  bottom: 20),
+                                              child: SizedBox(
+                                                width: 160,
+                                                height: 50,
+                                                child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      side: BorderSide(
+                                                          color: ThemeConstants
+                                                              .bluegreycolor),
+                                                      primary: ThemeConstants
+                                                          .whitecolor, // background
+                                                      onPrimary: ThemeConstants
+                                                          .whitecolor, // foreground
+                                                    ),
+                                                    onPressed: () async {
+                                                      print(controller1
+                                                          .courseSearchPages
+                                                          .currentPage);
+                                                      var temp = await controller1.nextpage(
+                                                          controller1
+                                                              .courseSearchPages
+                                                              .endpoint
+                                                              .toString(),
+                                                          (controller1.courseSearchPages
+                                                                      .currentPage! -
+                                                                  1)
+                                                              .toString());
+                                                      if (temp == true) {
+                                                        Navigator.push(context,
+                                                            new MaterialPageRoute<
+                                                                    void>(
+                                                                builder:
+                                                                    (context) {
+                                                          return new CourseSearch();
+                                                        }));
+                                                      }
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Spacer(),
+                                                        SvgPicture.asset(
+                                                          "assets/icons/previous-icon.svg",
+                                                          height: 15,
+                                                          color: ThemeConstants
+                                                              .bluegreycolor,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        CustomAutoSizeTextMontserrat(
+                                                          text: "Previous",
+                                                          textColor:
+                                                              ThemeConstants
+                                                                  .bluegreycolor,
+                                                        ),
+                                                        Spacer(),
+                                                      ],
+                                                    )),
+                                              ),
+                                            ),
+                                          if (controller1.courseSearchPages
+                                                  .currentPage !=
+                                              controller1
+                                                  .courseSearchPages.lastPage)
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 20,
+                                                  top: 20,
+                                                  bottom: 20),
+                                              child: SizedBox(
+                                                width: 160,
+                                                height: 50,
+                                                child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      primary: ThemeConstants
+                                                          .bluecolor, // background
+                                                      onPrimary: ThemeConstants
+                                                          .bluecolor, // foreground
+                                                    ),
+                                                    onPressed: () async {
+                                                      print(controller1
+                                                          .courseSearchPages
+                                                          .currentPage);
+                                                      var temp = await controller1.nextpage(
+                                                          controller1
+                                                              .courseSearchPages
+                                                              .endpoint
+                                                              .toString(),
+                                                          (controller1.courseSearchPages
+                                                                      .currentPage! +
+                                                                  1)
+                                                              .toString());
+                                                      if (temp == true) {
+                                                        Navigator.push(context,
+                                                            new MaterialPageRoute<
+                                                                    void>(
+                                                                builder:
+                                                                    (context) {
+                                                          return new CourseSearch();
+                                                        }));
+                                                      }
+                                                      // // Api call
+                                                      // controller1.courseSearch(
+                                                      //     controller.selectCountryCode
+                                                      //         .toString(),
+                                                      //     controller.selectCourseCode
+                                                      //         .toString());
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Spacer(),
+                                                        CustomAutoSizeTextMontserrat(
+                                                          text: "Next",
+                                                          textColor:
+                                                              ThemeConstants
+                                                                  .whitecolor,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        SvgPicture.asset(
+                                                          "assets/icons/next-icon.svg",
+                                                          height: 15,
+                                                          color: ThemeConstants
+                                                              .whitecolor,
+                                                        ),
+                                                        Spacer(),
+                                                      ],
+                                                    )),
+                                              ),
+                                            ),
+                                          Spacer(),
+                                        ],
+                                      )
+                                  ],
                                 );
                               }),
                         ),

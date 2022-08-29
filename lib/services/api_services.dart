@@ -145,6 +145,7 @@ class ApiServices extends StudentPanelBase {
 
     //For Duration In Year
     if (courseSearchPages.courseSearchModel!.isNotEmpty) {
+      courseSearchPages.endpoint = endpoint;
       for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
         if (courseSearchPages.courseSearchModel![i].courseDuration != null) {
           courseSearchPages.courseSearchModel![i].durationYear = ((int.parse(
@@ -274,7 +275,7 @@ class ApiServices extends StudentPanelBase {
         }
       }
     }
-    return courseSearchPages.courseSearchModel!;
+    return courseSearchPages;
   }
 
   completeCourseDetail(String baseUrl, String endpoint) async {

@@ -13,12 +13,16 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CollagelistExpandedWidget extends StatefulWidget {
+  String? currentPage;
+  String? lastPage;
   CourseSearchModel courseSearchModel;
   final Function callbackFunction;
   CollagelistExpandedWidget(
       {Key? key,
       required this.courseSearchModel,
-      required this.callbackFunction})
+      required this.callbackFunction,
+      this.currentPage,
+      this.lastPage})
       : super(key: key);
 
   @override

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:studentpanel/services/api_services.dart';
@@ -36,8 +37,6 @@ class CourseSearchController extends BaseController {
 
   CourseSearchPages courseSearchPages = CourseSearchPages();
 
-// Using in coursesearch Page field
-
   //Loading State
   RxBool loadingCourseSearchDetail = false.obs;
   RxBool loadingCountry = false.obs;
@@ -46,6 +45,7 @@ class CourseSearchController extends BaseController {
   RxBool loadingCity = false.obs;
   RxBool loadingCourseBoardField = false.obs;
   RxBool loadingCourseNarrowField = false.obs;
+  RxBool loadingNextAndPrevious = false.obs;
 
   @override
   void onInit() {
@@ -139,6 +139,47 @@ class CourseSearchController extends BaseController {
     update();
   }
 
+  nextpage(String endpoint, String pageNumber) async {
+    if (loadingNextAndPrevious.value == true) {
+      loadingNextAndPrevious = false.obs;
+      update();
+    }
+    var now = DateTime.now();
+    var formatterYear = DateFormat('yyyy');
+    var formatterMonth = DateFormat('MM');
+
+    debugPrint("$endpoint&page=$pageNumber");
+    var res = await apiservices.getCourseSearch(
+        Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
+    if (res != null) {
+      courseSearchPages = res;
+
+      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
+          for (var j = 0;
+              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
+              j++) {
+            if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
+                    .split("-")[1]) >=
+                int.parse(formatterYear.format(now))) {
+              if (int.parse(courseSearchPages
+                      .courseSearchModel![i].listIntake![j]
+                      .split("-")[0]) >=
+                  int.parse(formatterMonth.format(now))) {
+                courseSearchPages.courseSearchModel![i].nearByIntake =
+                    courseSearchPages.courseSearchModel![i].listIntake![j];
+              }
+            }
+          }
+        }
+      }
+      courseSearchPages.courseSearchModel!;
+      return loadingNextAndPrevious.value = true;
+    } else {
+      return loadingNextAndPrevious.value = false;
+    }
+  }
+
   courseSearch(String country, String courseLevel) async {
     var now = DateTime.now();
     var formatterYear = DateFormat('yyyy');
@@ -154,18 +195,13 @@ class CourseSearchController extends BaseController {
 
     var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
-      courseSearchPages.courseSearchModel = res;
+      courseSearchPages = res;
 
       for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
         if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-          print(courseSearchPages.courseSearchModel![i].listIntake!.length);
-          print(courseSearchPages.courseSearchModel!.length);
           for (var j = 0;
               j < courseSearchPages.courseSearchModel![i].listIntake!.length;
               j++) {
-            print("soni ii");
-            print(i);
-            print(j);
             if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
                     .split("-")[1]) >=
                 int.parse(formatterYear.format(now))) {

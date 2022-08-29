@@ -2,6 +2,7 @@ class CourseSearchPages {
   int? currentPage;
   List<CourseSearchModel>? courseSearchModel;
   int? lastPage;
+  String? endpoint;
 
   CourseSearchPages({this.currentPage, this.courseSearchModel, this.lastPage});
 

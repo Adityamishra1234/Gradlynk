@@ -11,20 +11,20 @@ class OTPScreenController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    setCounter();
+    // setCounter();
   }
 
-  setCounter() {
-    if (loadingTimer.value == false) {
-      Timer.periodic(const Duration(seconds: 1), (timer) {
-        count--;
-        if (count.value == 0) {
-          loadingcounter.value = true;
-        } else if (count.value == -1) {
-          loadingTimer.value = true;
-        }
-        update();
-      });
-    }
-  }
+  // setCounter() {
+  //   if (loadingTimer.value == false) {
+  //     Timer.periodic(const Duration(seconds: 1), (timer) {
+  //       count--;
+  //       if (count.value == 0) {
+  //         loadingcounter.value = true;
+  //       } else if (count.value == -1) {
+  //         loadingTimer.value = true;
+  //       }
+  //       update();
+  //     });
+  //   }
+  // }
 }
