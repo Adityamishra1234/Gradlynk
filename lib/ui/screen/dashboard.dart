@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
+import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -207,11 +208,7 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
-                          Get.snackbar(
-                            "DashBoard",
-                            "Track Application",
-                            snackPosition: SnackPosition.BOTTOM,
-                          );
+                          Get.toNamed(TrackApplication.routeNamed);
                         },
                         child: Column(
                           children: [

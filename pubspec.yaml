@@ -56,6 +56,7 @@ dependencies:
   expansion_tile_card: ^2.0.0
   easy_search_bar: ^2.3.1
   flutter_widget_from_html_core: ^0.8.5+3
+  scroll_to_index: ^3.0.1
 
  
   

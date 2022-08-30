@@ -150,9 +150,9 @@ class CompleteCourseDetail {
     totalTutionFeesInr = json['total_tution_fees_inr'].toString();
     courseLevel = json['course_level'];
     intakeFromYear = json['IntakeFrom_Year'];
-    arwuRank = json['arwu_rank'];
+    arwuRank = json['arwu_rank'] == null ? "" : json['arwu_rank'].toString();
     timesRank = json['times_rank'];
-    usNewsRank = json['us_news_rank'];
+    usNewsRank = json['us_news_rank'].toString();
     qsWorldRank = json['qs_world_rank'];
     instituteType = json['institute_type'];
     campusName = json['campus_name'];

@@ -321,7 +321,6 @@ class CourseInformation extends StatelessWidget {
                   CustomAutoSizeTextMontserrat(
                     text: completeCourseDetail[0].courseDuration ?? "",
                     maxLines: 3,
-                    fontWeight: FontWeight.bold,
                   ),
                 ]),
               ],

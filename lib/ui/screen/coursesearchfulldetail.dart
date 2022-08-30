@@ -535,46 +535,5 @@ class CourseSearchFullDetail extends StatelessWidget {
             )
           ],
         ));
-    // SizedBox(
-    //   height: MediaQuery.of(context).size.height,
-    //   child: ListView(children: [
-    //     SizedBox(
-    //       height: MediaQuery.of(context).size.height,
-    //       child: GetX<CourseSearchFullDetailController>(
-    //           builder: (_) => Column(
-    //                 children: [
-    //                   if (_.index.value == 0) ABoutInstitute(),
-    //                   if (_.index.value == 1) CourseInformation(),
-    //                   if (_.index.value == 2) EntryRequirement(),
-    //                   if (_.index.value == 3) StepsToAdmissions(),
-    //                   if (_.index.value == 4) StepsToVisa(),
-    //                   if (_.index.value == 5) AboutCourse()
-    //                 ],
-    //               )),
-    //     ),
-
-    //     // Choose 1
-
-    //     //Choose 2
-
-    //     // Choose 3
-
-    //     //choose 4
-
-    //     // choose 5
-
-    //     //choose 6
-
-    //     // SizedBox(
-    //     //   height: MediaQuery.of(context).size.height * 0.4,
-    //     //   child: ListView(
-    //     //     children: [],
-    //     //   ),
-    //     // ),
-    //   ]),
-    // ));
   }
-
-// Function
-
 }

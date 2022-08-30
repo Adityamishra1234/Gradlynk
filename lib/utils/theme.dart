@@ -22,4 +22,5 @@ class ThemeConstants {
   static Color orangeColor = const Color(0xFFF97316);
   static Color TextColor = const Color(0xFF677082);
   static Color IconColor = const Color(0xFF3C4351);
+  static Color GreenColor = const Color(0xFF2FAF5E);
 }

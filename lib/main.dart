@@ -8,7 +8,6 @@ import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/lunchingpage.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
@@ -19,8 +18,10 @@ import 'package:studentpanel/ui/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/ui/screen/profilepagehorizontal.dart';
+import 'package:studentpanel/ui/screen/test%20copy.dart';
 import 'package:studentpanel/ui/screen/test.dart';
+import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
+import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
@@ -75,7 +76,7 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: CourseSearch.routeNamed,
+      initialRoute: Login.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -130,14 +131,29 @@ class _MyApState extends State<MyAp> {
           page: () => CourseSearch(),
         ),
         GetPage(
-          name: MyHomePage.routeNamed,
+          name: Test.routeNamed,
           transition: Transition.fade,
-          page: () => MyHomePage(),
+          page: () => Test(),
+        ),
+        GetPage(
+          name: Test1.routeNamed,
+          transition: Transition.fade,
+          page: () => Test1(),
         ),
         // GetPage(
         //   name: CourseSearchFullDetail.routeNamed,
         //   page: () => CourseSearchFullDetail(),
         // ),
+        GetPage(
+          name: TestAutoScrollListView.routeNamed,
+          transition: Transition.fade,
+          page: () => TestAutoScrollListView(),
+        ),
+        GetPage(
+          name: TrackApplication.routeNamed,
+          transition: Transition.fade,
+          page: () => TrackApplication(),
+        ),
         GetPage(
           name: LunchingPage.routeNamed,
           transition: Transition.fade,

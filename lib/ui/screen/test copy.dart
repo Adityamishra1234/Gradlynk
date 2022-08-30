@@ -8,17 +8,15 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 enum BestTutorSite { Ascending, Deascending }
 
-class Test extends StatefulWidget {
-  const Test({Key? key}) : super(key: key);
-  static const routeNamed = '/Test';
+class Test1 extends StatefulWidget {
+  const Test1({Key? key}) : super(key: key);
+  static const routeNamed = '/Test1';
 
   @override
-  State<Test> createState() => _TestState();
+  State<Test1> createState() => _Test1State();
 }
 
-class _TestState extends State<Test> {
-  late BestTutorSite _site = BestTutorSite.Ascending;
-
+class _Test1State extends State<Test1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,45 +114,52 @@ class _TestState extends State<Test> {
                               ],
                             ),
                             SizedBox(
+                              width: MediaQuery.of(context).size.width / 2,
                               height: 200,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2,
-                                    height: 40,
-                                    child: ListTile(
-                                      title: const Text('Ascending'),
-                                      leading: Radio<BestTutorSite>(
-                                        autofocus: true,
-                                        value: BestTutorSite.Ascending,
-                                        groupValue: _site,
-                                        onChanged: (BestTutorSite? value) {
-                                          setState(() {
-                                            _site = value!;
-                                          });
+                              child: Align(
+                                alignment: AlignmentDirectional.topStart,
+                                child: Row(
+                                  children: [
+                                    Spacer(),
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: ThemeConstants
+                                              .bluecolor, // background
+                                          onPrimary: ThemeConstants
+                                              .bluecolor, // foreground
+                                        ),
+                                        onPressed: () {
+                                          // Api call
                                         },
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2,
-                                    height: 40,
-                                    child: ListTile(
-                                      title: const Text('Deascending'),
-                                      leading: Radio<BestTutorSite>(
-                                        value: BestTutorSite.Deascending,
-                                        groupValue: _site,
-                                        onChanged: (BestTutorSite? value) {
-                                          setState(() {
-                                            _site = value!;
-                                          });
+                                        child: Text(
+                                          "Asc.",
+                                          style: TextStyle(
+                                              color: ThemeConstants.whitecolor),
+                                        )),
+                                    Spacer(),
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: ThemeConstants
+                                              .bluecolor, // background
+                                          onPrimary: ThemeConstants
+                                              .bluecolor, // foreground
+                                        ),
+                                        onPressed: () {
+                                          // Api call
+                                          // controller1.courseSearch(
+                                          //     controller.selectCountryCode
+                                          //         .toString(),
+                                          //     controller.selectCourseCode
+                                          //         .toString());
                                         },
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                        child: Text(
+                                          "Deas.",
+                                          style: TextStyle(
+                                              color: ThemeConstants.whitecolor),
+                                        )),
+                                    Spacer(),
+                                  ],
+                                ),
                               ),
                             )
                           ],

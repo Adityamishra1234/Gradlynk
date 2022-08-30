@@ -147,22 +147,6 @@ class _CourseSearchState extends State<CourseSearch> {
                   ],
                 ),
               ),
-              // if (false)
-              //   const Padding(
-              //     padding: EdgeInsets.only(left: 20, right: 20),
-              //     child: Divider(
-              //       height: 5,
-              //       thickness: 1,
-              //     ),
-              //   ),
-              // if (false)
-              //   SizedBox(
-              //       height: MediaQuery.of(context).size.height - 200,
-              //       child: ListView.builder(
-              //           itemCount: 5,
-              //           itemBuilder: (BuildContext context, int index) {
-              //             return CollagelistExpandedWidget();
-              //           })),
               GetBuilder<CourseSearchController>(
                 builder: (controller1) => Expanded(
                   child: Column(
