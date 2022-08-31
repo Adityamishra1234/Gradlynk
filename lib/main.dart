@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
+import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/lunchingpage.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
@@ -76,10 +77,15 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Login.routeNamed,
+      initialRoute: LunchingPage.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
+        GetPage(
+            name: LoginCopy.routeNamed,
+            page: () => const LoginCopy(),
+            transition: Transition.fade,
+            binding: LoginBinding()),
         GetPage(
             name: Login.routeNamed,
             page: () => const Login(),
@@ -156,7 +162,7 @@ class _MyApState extends State<MyAp> {
         ),
         GetPage(
           name: LunchingPage.routeNamed,
-          transition: Transition.fade,
+          transition: Transition.cupertino,
           page: () => LunchingPage(),
         ),
       ],

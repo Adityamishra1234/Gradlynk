@@ -51,7 +51,7 @@ class _CourseSearchState extends State<CourseSearch> {
 
   callbackCountry(data) {
     for (var i = 0; i < data.length; i++) {
-      countryindexvaluelist.add(controller.countryList!
+      countryindexvaluelist.add(controller.countryList
           .indexWhere((note) => note.startsWith(data[i])));
 
       debugPrint(countryindexvaluelist.toString());
@@ -146,6 +146,80 @@ class _CourseSearchState extends State<CourseSearch> {
                     Spacer()
                   ],
                 ),
+              ),
+              Row(
+                children: [
+                  Spacer(),
+                  RaisedButton(
+                    onPressed: () {},
+                    color: ThemeConstants.lightblueColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        CustomAutoSizeTextMontserrat(
+                            text: "Sort By",
+                            textColor: ThemeConstants.bluecolor),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        SvgPicture.asset(
+                          "assets/icons/sort.svg",
+                          height: 15,
+                          color: ThemeConstants.bluecolor,
+                        )
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  RaisedButton(
+                    onPressed: () {},
+                    color: ThemeConstants.lightorangeColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        CustomAutoSizeTextMontserrat(
+                            text: "Filter ",
+                            textColor: ThemeConstants.orangeColor),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        SvgPicture.asset(
+                          "assets/icons/filter.svg",
+                          height: 15,
+                          color: ThemeConstants.orangeColor,
+                        )
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                  RaisedButton(
+                    onPressed: () {},
+                    color: ThemeConstants.lightgreentColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        CustomAutoSizeTextMontserrat(
+                            text: "Compare",
+                            textColor: ThemeConstants.GreenColor),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        SvgPicture.asset(
+                          "assets/icons/sort.svg",
+                          height: 15,
+                          color: ThemeConstants.GreenColor,
+                        )
+                      ],
+                    ),
+                  ),
+                  Spacer(),
+                ],
               ),
               GetBuilder<CourseSearchController>(
                 builder: (controller1) => Expanded(

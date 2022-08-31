@@ -10,29 +10,34 @@ class ApplicationDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 15, left: 10),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Application Detail -",
-            textColor: ThemeConstants.bluecolor,
-            fontWeight: FontWeight.bold,
+    return Expanded(
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 10),
+            child: CustomAutoSizeTextMontserrat(
+              text: "Application Detail -",
+              textColor: ThemeConstants.bluecolor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        FieldDetail(firstField: "Application TAT", secondField: "0"),
-        FieldDetail(firstField: "Fee Waiver(If applicable)", secondField: "No"),
-        FieldDetail(firstField: "Modified By", secondField: "Nirmal"),
-        FieldDetail(firstField: "Created By", secondField: "Nirmal"),
-        FieldDetail(
-            firstField: "Application Type",
-            secondField: "Application for full offer"),
-        FieldDetail(firstField: "Early Application Deadline", secondField: ""),
-        FieldDetail(
-            firstField: "Application Creation Date",
-            secondField: "Sat 27th Feb 2021  03:28 PM"),
-        FieldDetail(firstField: "Application Status", secondField: "Complete"),
-      ],
+          FieldDetail(firstField: "Application TAT", secondField: "0"),
+          FieldDetail(
+              firstField: "Fee Waiver(If applicable)", secondField: "No"),
+          FieldDetail(firstField: "Modified By", secondField: "Nirmal"),
+          FieldDetail(firstField: "Created By", secondField: "Nirmal"),
+          FieldDetail(
+              firstField: "Application Type",
+              secondField: "Application for full offer"),
+          FieldDetail(
+              firstField: "Early Application Deadline", secondField: ""),
+          FieldDetail(
+              firstField: "Application Creation Date",
+              secondField: "Sat 27th Feb 2021  03:28 PM"),
+          FieldDetail(
+              firstField: "Application Status", secondField: "Complete"),
+        ],
+      ),
     );
   }
 }

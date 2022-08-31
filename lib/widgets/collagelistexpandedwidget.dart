@@ -148,7 +148,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         child: InkWell(
                           onTap: () {
                             var temp =
-                                "${courseSearchModel!.universityId},${courseSearchModel!.courseId},${courseSearchModel!.id}";
+                                "${courseSearchModel.universityId},${courseSearchModel.courseId},${courseSearchModel!.id}";
                             widget.callbackFunction(temp);
                             // Get.toNamed(CourseSearchFullDetail.routeNamed,
                             //     arguments: [

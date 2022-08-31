@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/screen/CourseInformation.dart';
 import 'package:studentpanel/ui/screen/about_course.dart';
 import 'package:studentpanel/ui/screen/about_institute.dart';
 import 'package:studentpanel/ui/screen/entryrequirement.dart';
+
 import 'package:studentpanel/ui/screen/steps_admissions.dart';
 import 'package:studentpanel/ui/screen/steps_visa.dart';
 import 'package:studentpanel/utils/theme.dart';
