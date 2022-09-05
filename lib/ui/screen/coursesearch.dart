@@ -31,7 +31,7 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> courseNarrowFieldIndexvalueList = [];
   callbackCompleteDetailCourse(varTopic) async {
     List<String> endpoint = varTopic.toString().split(',');
-    print(endpoint);
+
     var res = await controller.completeCourseDetailMethod(
         endpoint[0], endpoint[1], endpoint[2]);
 
@@ -133,98 +133,94 @@ class _CourseSearchState extends State<CourseSearch> {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              SizedBox(
-                height: 40,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    CustomAutoSizeTextMontserrat(
-                      text: "Course Search",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                    ),
-                    Spacer()
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Spacer(),
-                  RaisedButton(
-                    onPressed: () {},
-                    color: ThemeConstants.lightblueColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        CustomAutoSizeTextMontserrat(
-                            text: "Sort By",
-                            textColor: ThemeConstants.bluecolor),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        SvgPicture.asset(
-                          "assets/icons/sort.svg",
-                          height: 15,
-                          color: ThemeConstants.bluecolor,
-                        )
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  RaisedButton(
-                    onPressed: () {},
-                    color: ThemeConstants.lightorangeColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        CustomAutoSizeTextMontserrat(
-                            text: "Filter ",
-                            textColor: ThemeConstants.orangeColor),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        SvgPicture.asset(
-                          "assets/icons/filter.svg",
-                          height: 15,
-                          color: ThemeConstants.orangeColor,
-                        )
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  RaisedButton(
-                    onPressed: () {},
-                    color: ThemeConstants.lightgreentColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        CustomAutoSizeTextMontserrat(
-                            text: "Compare",
-                            textColor: ThemeConstants.GreenColor),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        SvgPicture.asset(
-                          "assets/icons/sort.svg",
-                          height: 15,
-                          color: ThemeConstants.GreenColor,
-                        )
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                ],
-              ),
               GetBuilder<CourseSearchController>(
                 builder: (controller1) => Expanded(
                   child: Column(
                     children: [
+                      if (Get.find<CourseSearchController>()
+                              .loadingCourseSearchDetail
+                              .value ==
+                          true)
+                        Row(
+                          children: [
+                            Spacer(),
+                            RaisedButton(
+                              elevation: 0,
+                              onPressed: () {},
+                              color: ThemeConstants.lightblueColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CustomAutoSizeTextMontserrat(
+                                      text: "Sort By",
+                                      textColor: ThemeConstants.bluecolor),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SvgPicture.asset(
+                                    "assets/icons/sort.svg",
+                                    height: 15,
+                                    color: ThemeConstants.bluecolor,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            RaisedButton(
+                              elevation: 0,
+                              onPressed: () {},
+                              color: ThemeConstants.lightorangeColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CustomAutoSizeTextMontserrat(
+                                      text: "Filter ",
+                                      textColor: ThemeConstants.orangeColor),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SvgPicture.asset(
+                                    "assets/icons/filter.svg",
+                                    height: 15,
+                                    color: ThemeConstants.orangeColor,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            RaisedButton(
+                              elevation: 0,
+                              onPressed: () {},
+                              color: ThemeConstants.lightgreentColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  CustomAutoSizeTextMontserrat(
+                                      text: "Compare",
+                                      textColor: ThemeConstants.GreenColor),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  SvgPicture.asset(
+                                    "assets/icons/sort.svg",
+                                    height: 15,
+                                    color: ThemeConstants.GreenColor,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                          ],
+                        ),
                       if (Get.find<CourseSearchController>()
                               .loadingCourseSearchDetail
                               .value ==
@@ -430,60 +426,18 @@ class _CourseSearchState extends State<CourseSearch> {
                               ),
 
 //Select State
-                              if (controller1.loadingState.value == true)
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 10,
-                                  ),
-                                  child: MultiSelectDropDown(
-                                    title: "Select State",
-                                    listdata: controller1.stateList,
-                                    callbackFunction: callbackState,
-                                  ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 10,
                                 ),
-                              if (controller1.loadingState.value == true)
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
+                                child: MultiSelectDropDown(
+                                  title: "Select State",
+                                  listdata: controller1.stateList,
+                                  callbackFunction: callbackState,
                                 ),
-                              //Select City
-                              if (controller1.loadingCity.value == true)
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 10,
-                                    ),
-                                    child: MultiSelectDropDown(
-                                      title: "Select City",
-                                      listdata: controller1.cityList,
-                                      callbackFunction: callback,
-                                    )),
-                              if (controller1.loadingCity.value == true)
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
-                              if (controller1.loadingCourseLevel.value == true)
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 10,
-                                  ),
-                                  child: MultiSelectDropDown(
-                                    title: "Select Course Level",
-                                    listdata: controller1.courseLevelList,
-                                    callbackFunction: callbackCourse,
-                                  ),
-                                ),
+                              ),
 
                               const Padding(
                                 padding: EdgeInsets.only(
@@ -493,52 +447,90 @@ class _CourseSearchState extends State<CourseSearch> {
                                   thickness: 1,
                                 ),
                               ),
-                              if (controller1.loadingCourseBoardField.value ==
-                                  true)
-                                Padding(
+                              //Select City
+
+                              Padding(
                                   padding: const EdgeInsets.only(
                                     left: 20,
                                     right: 10,
                                   ),
                                   child: MultiSelectDropDown(
-                                    title: "Course Board Field",
-                                    listdata: controller1.courseBoardList,
-                                    callbackFunction: callbackCourseBoardField,
-                                  ),
-                                ),
-                              if (controller1.loadingCourseBoardField.value ==
-                                  true)
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
-                              if (controller1.loadingCourseNarrowField.value ==
-                                  true)
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 10,
-                                  ),
-                                  child: MultiSelectDropDown(
-                                    title: "Course Narrow Field",
-                                    listdata: controller1.courseNarrowList,
+                                    title: "Select City",
+                                    listdata: controller1.cityList,
                                     callbackFunction: callback,
-                                  ),
+                                  )),
+
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 5),
+                                child: Divider(
+                                  height: 5,
+                                  thickness: 1,
                                 ),
-                              if (controller1.loadingCourseNarrowField.value ==
-                                  true)
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 10,
                                 ),
+                                child: MultiSelectDropDown(
+                                  title: "Select Course Level",
+                                  listdata: controller1.courseLevelList,
+                                  callbackFunction: callbackCourse,
+                                ),
+                              ),
+
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 5),
+                                child: Divider(
+                                  height: 5,
+                                  thickness: 1,
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 10,
+                                ),
+                                child: MultiSelectDropDown(
+                                  title: "Course Board Field",
+                                  listdata: controller1.courseBoardList,
+                                  callbackFunction: callbackCourseBoardField,
+                                ),
+                              ),
+
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 5),
+                                child: Divider(
+                                  height: 5,
+                                  thickness: 1,
+                                ),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 10,
+                                ),
+                                child: MultiSelectDropDown(
+                                  title: "Course Narrow Field",
+                                  listdata: controller1.courseNarrowList,
+                                  callbackFunction: callback,
+                                ),
+                              ),
+
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20, right: 20, top: 5),
+                                child: Divider(
+                                  height: 5,
+                                  thickness: 1,
+                                ),
+                              ),
                               //Specialization
 
                               // Padding(

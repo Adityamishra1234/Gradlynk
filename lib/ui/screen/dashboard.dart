@@ -70,6 +70,7 @@ class _DashBoardState extends State<DashBoard> {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Nishant",
+                              maxLines: 1,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                             )),

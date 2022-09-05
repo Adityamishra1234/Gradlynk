@@ -23,4 +23,6 @@ class ThemeConstants {
   static Color TextColor = const Color(0xFF677082);
   static Color IconColor = const Color(0xFF3C4351);
   static Color GreenColor = const Color(0xFF2FAF5E);
+  static Color ultraLightgreyColor = const Color(0xFFF6F6F6);
+  static Color bluelightgreycolor2 = Color.fromARGB(255, 164, 178, 202);
 }

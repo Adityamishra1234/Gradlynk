@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -28,11 +26,11 @@ class Comparing extends StatelessWidget {
             border: TableBorder(
                 horizontalInside: BorderSide(
                     width: 1,
-                    color: ThemeConstants.lightgreycolor,
+                    color: ThemeConstants.bluelightgreycolor2,
                     style: BorderStyle.solid),
                 verticalInside: BorderSide(
                     width: 1,
-                    color: ThemeConstants.lightgreycolor,
+                    color: ThemeConstants.bluelightgreycolor2,
                     style: BorderStyle.solid)),
             children: [
               TableRow(
@@ -44,11 +42,23 @@ class Comparing extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 5, right: 5),
                         child: CustomAutoSizeTextMontserrat(
+                            text: "University & Campus Name",
+                            fontSize: 14,
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )),
+                    TableCell(
+                        child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
                           text:
                               "California State University fresno (Fresno Campus)",
                           fontSize: 14,
-                          textColor: ThemeConstants.bluecolor,
                           fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.bluecolor,
                         ),
                       ),
                     )),
@@ -61,42 +71,36 @@ class Comparing extends StatelessWidget {
                           text:
                               "California State University fresno (Fresno Campus)",
                           fontSize: 14,
-                          textColor: ThemeConstants.bluecolor,
                           fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )),
-                    TableCell(
-                        child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 5, right: 5),
-                        child: CustomAutoSizeTextMontserrat(
-                          text:
-                              "California State University fresno (Fresno Campus)",
-                          fontSize: 14,
                           textColor: ThemeConstants.bluecolor,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     )),
                   ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 5, right: 5, top: 15, bottom: 15),
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 15, bottom: 15, left: 5, right: 5),
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "USA",
-                        fontSize: 14,
-                        textColor: ThemeConstants.TextColor,
-                        fontWeight: FontWeight.bold,
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Country",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                        ),
                       ),
-                    ),
+                    )),
+                TableCell(
+                    child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 15, bottom: 15, left: 5, right: 5),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "USA",
+                    fontSize: 14,
+                    textColor: ThemeConstants.TextColor,
                   ),
                 )),
                 TableCell(
@@ -108,38 +112,26 @@ class Comparing extends StatelessWidget {
                       text: "USA",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "USA",
-                      fontSize: 14,
-                      textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "California",
-                      fontSize: 14,
-                      textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )),
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "State",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                        ),
+                      ),
+                    )),
                 TableCell(
                     child: Center(
                   child: Padding(
@@ -149,7 +141,6 @@ class Comparing extends StatelessWidget {
                       text: "California",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
@@ -162,12 +153,26 @@ class Comparing extends StatelessWidget {
                     text: "California",
                     fontSize: 14,
                     textColor: ThemeConstants.TextColor,
-                    fontWeight: FontWeight.bold,
                   ),
                 ))),
               ]),
               TableRow(children: [
                 TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "City",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                        ),
+                      ),
+                    )),
+                TableCell(
                     child: Center(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -176,7 +181,6 @@ class Comparing extends StatelessWidget {
                       text: "Fresno",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
@@ -189,67 +193,26 @@ class Comparing extends StatelessWidget {
                       text: "Fresno",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Fresno",
-                      fontSize: 14,
-                      textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
               ]),
-              // TableRow(children: [
-              //   TableCell(
-              //       child: Center(
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(
-              //           top: 15, bottom: 15, left: 5, right: 5),
-              //       child: CustomAutoSizeTextMontserrat(
-              //         text: "Fresno",
-              //         fontSize: 14,
-              //         textColor: ThemeConstants.TextColor,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //   )),
-              //   TableCell(
-              //       child: Center(
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(
-              //           top: 15, bottom: 15, left: 5, right: 5),
-              //       child: CustomAutoSizeTextMontserrat(
-              //         text: "Fresno",
-              //         fontSize: 14,
-              //         textColor: ThemeConstants.TextColor,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //   )),
-              //   TableCell(
-              //       child: Center(
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(
-              //           top: 15, bottom: 15, left: 5, right: 5),
-              //       child: CustomAutoSizeTextMontserrat(
-              //         text: "Fresno",
-              //         fontSize: 14,
-              //         textColor: ThemeConstants.TextColor,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     ),
-              //   )),
-              // ]),
-
               TableRow(children: [
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Course Name",
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
                 TableCell(
                     child: Center(
                   child: Padding(
@@ -259,7 +222,6 @@ class Comparing extends StatelessWidget {
                       text: "Bachelor of Science in Computer Engineering",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
@@ -272,38 +234,26 @@ class Comparing extends StatelessWidget {
                       text: "Bachelor of Science in Computer Engineering",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Bachelor of Science in Computer Engineering",
-                      fontSize: 14,
-                      textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Bachelor",
-                      fontSize: 14,
-                      textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )),
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Course Level",
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
                 TableCell(
                     child: Center(
                   child: Padding(
@@ -313,7 +263,6 @@ class Comparing extends StatelessWidget {
                       text: "Bachelor",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
@@ -326,12 +275,26 @@ class Comparing extends StatelessWidget {
                       text: "Bachelor",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Course Duration",
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
                 TableCell(
                     child: Center(
                   child: Padding(
@@ -341,7 +304,6 @@ class Comparing extends StatelessWidget {
                       text: "4 year",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
@@ -354,7 +316,35 @@ class Comparing extends StatelessWidget {
                       text: "4 year",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )),
+              ]),
+              TableRow(children: [
+                TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Scholarship",
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
+                TableCell(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 5, right: 5),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "YES",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
@@ -364,35 +354,38 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "4 year",
+                      text: "YES",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Scholarship - ",
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Annual Tuition Fees  ",
                           fontSize: 14,
                           textColor: ThemeConstants.blackcolor,
                           fontWeight: FontWeight.bold,
                         ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "YES",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                      ),
+                    )),
+                TableCell(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 5, right: 5),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "16089 USD [11901586 Inr]",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
@@ -401,140 +394,39 @@ class Comparing extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Scholarship - ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "YES",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Scholarship - ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "YES",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "16089 USD [11901586 Inr]",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Annual Tuition Fees - ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "16089 USD [11901586 Inr]",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Annual Tuition Fees - ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "16089 USD [11901586 Inr]",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Annual Tuition Fees - ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "16089 USD [11901586 Inr]",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-              ]),
-              TableRow(children: [
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
                           text: "Total  Fees ",
                           fontSize: 14,
                           textColor: ThemeConstants.blackcolor,
                           fontWeight: FontWeight.bold,
                         ),
-                        CustomAutoSizeTextMontserrat(
-                          text: " 16089 USD [11901586 Inr] ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                      ),
+                    )),
+                TableCell(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 5, right: 5),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: " 16089 USD [11901586 Inr] ",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
@@ -543,69 +435,39 @@ class Comparing extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Total Fees ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: " 16089 USD [11901586 Inr] ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Total  Fees ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: " 16089 USD [11901586 Inr] ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                    child: CustomAutoSizeTextMontserrat(
+                      text: " 16089 USD [11901586 Inr] ",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
                           text: "Application Fees",
                           fontSize: 14,
                           textColor: ThemeConstants.blackcolor,
                           fontWeight: FontWeight.bold,
                         ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "16089 USD [11901586 Inr]",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                      ),
+                    )),
+                TableCell(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 5, right: 5),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "16089 USD [11901586 Inr]",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
@@ -614,68 +476,39 @@ class Comparing extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Application Fees",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "16089 USD [11901586 Inr]",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Application Fees",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "16089 USD [11901586 Inr]",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "16089 USD [11901586 Inr]",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
                           text: "Intake Month and Year-",
                           fontSize: 14,
                           textColor: ThemeConstants.blackcolor,
                           fontWeight: FontWeight.bold,
                         ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "Aug|Jan|Sep",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      ],
+                      ),
+                    )),
+                TableCell(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 5, right: 5),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Aug|Jan|Sep",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
@@ -686,34 +519,6 @@ class Comparing extends StatelessWidget {
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: Column(
                       children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Intake Month and Year-",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "Aug|Jan|Sep",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Intake Month and Year-",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
                         CustomAutoSizeTextMontserrat(
                           text: "Aug|Jan|Sep",
                           fontSize: 14,
@@ -726,24 +531,29 @@ class Comparing extends StatelessWidget {
               ]),
               TableRow(children: [
                 TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
+                    verticalAlignment: TableCellVerticalAlignment.fill,
+                    child: Container(
+                      color: ThemeConstants.lightgreycolor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15, bottom: 15, left: 5, right: 5),
+                        child: CustomAutoSizeTextMontserrat(
                           text: "Tests Required- ",
                           fontSize: 14,
                           textColor: ThemeConstants.blackcolor,
                           fontWeight: FontWeight.bold,
                         ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "IELTS-6.0",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      ],
+                      ),
+                    )),
+                TableCell(
+                    child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 15, bottom: 15, left: 5, right: 5),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "IELTS-6.0",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),
@@ -752,42 +562,10 @@ class Comparing extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Tests Required- ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "IELTS-6.0",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                )),
-                TableCell(
-                    child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 5, right: 5),
-                    child: Column(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Tests Required- ",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                          text: "IELTS-6.0",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      ],
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "IELTS-6.0",
+                      fontSize: 14,
+                      textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 )),

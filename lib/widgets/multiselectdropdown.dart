@@ -23,6 +23,7 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
     var items =
         widget.listdata!.map((data) => MultiSelectItem(data, data)).toList();
     return MultiSelectDialogField(
+      dialogHeight: 180,
       buttonIcon: const Icon(Icons.keyboard_arrow_down),
       decoration: const BoxDecoration(
         color: Colors.transparent,

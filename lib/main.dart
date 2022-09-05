@@ -7,7 +7,10 @@ import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
+import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/lunchingpage.dart';
@@ -19,8 +22,8 @@ import 'package:studentpanel/ui/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/ui/screen/test%20copy.dart';
-import 'package:studentpanel/ui/screen/test.dart';
+import 'package:studentpanel/ui/screen/sortcopy.dart';
+import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
@@ -35,17 +38,17 @@ void main() {
   //   DeviceOrientation.portraitUp,
   //   DeviceOrientation.portraitDown,
   // ]);
-  runApp(const MyAp());
+  runApp(const MyApp());
 }
 
-class MyAp extends StatefulWidget {
-  const MyAp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
-  State<MyAp> createState() => _MyApState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _MyApState extends State<MyAp> {
+class _MyAppState extends State<MyApp> {
   UserModel? userModel;
 
   @override
@@ -77,15 +80,20 @@ class _MyApState extends State<MyAp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: LunchingPage.routeNamed,
+      initialRoute: Comparing.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
+        GetPage(
+          name: Comparing.routeNamed,
+          page: () => const Comparing(),
+        ),
         GetPage(
             name: LoginCopy.routeNamed,
             page: () => const LoginCopy(),
             transition: Transition.fade,
             binding: LoginBinding()),
+
         GetPage(
             name: Login.routeNamed,
             page: () => const Login(),
@@ -107,6 +115,11 @@ class _MyApState extends State<MyAp> {
           transition: Transition.fade,
           binding: ProfilePageBinding(),
           page: () => ProfilePage(),
+        ),
+        GetPage(
+          name: ProfilePageCopy.routeNamed,
+          transition: Transition.fade,
+          page: () => ProfilePageCopy(),
         ),
 
         //AnimationaPhonepe
@@ -139,12 +152,17 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: Test.routeNamed,
           transition: Transition.fade,
-          page: () => Test(),
+          page: () => const Test(),
         ),
         GetPage(
           name: Test1.routeNamed,
           transition: Transition.fade,
-          page: () => Test1(),
+          page: () => const Test1(),
+        ),
+        GetPage(
+          name: Filter.routeNamed,
+          transition: Transition.fade,
+          page: () => const Filter(),
         ),
         // GetPage(
         //   name: CourseSearchFullDetail.routeNamed,
@@ -158,7 +176,7 @@ class _MyApState extends State<MyAp> {
         GetPage(
           name: TrackApplication.routeNamed,
           transition: Transition.fade,
-          page: () => TrackApplication(),
+          page: () => const TrackApplication(),
         ),
         GetPage(
           name: LunchingPage.routeNamed,

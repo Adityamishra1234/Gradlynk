@@ -246,25 +246,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           const Spacer(),
                           SizedBox(
                             height: 30,
-                            width: 100,
+                            width: 80,
                             child: Row(
                               children: [
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      color: ThemeConstants.bluecolor,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(7))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: SvgPicture.asset(
-                                      "assets/icons/compare.svg",
-                                      color: ThemeConstants.whitecolor,
-                                      height: 25,
-                                    ),
-                                  ),
-                                ),
                                 const Spacer(),
                                 Container(
                                   height: 30,
@@ -333,14 +317,14 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           TableCell(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Total Tuition Fees:",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           ),
                           TableCell(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Conditional Offer:",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           )
@@ -368,14 +352,14 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           TableCell(
                             child: CustomAutoSizeTextMontserrat(
                               text: "English test Requirement:",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           ),
                           TableCell(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Scholarship:",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           )
@@ -403,14 +387,14 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           TableCell(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Academic Requirement:",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           ),
                           TableCell(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Offer TAT:",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           )
@@ -546,7 +530,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             padding: const EdgeInsets.only(top: 5),
                             child: CustomAutoSizeTextMontserrat(
                               text: "Ranking",
-                              textColor: Colors.grey,
+                              textColor: ThemeConstants.bluelightgreycolor,
                               fontSize: 14,
                             ),
                           )
