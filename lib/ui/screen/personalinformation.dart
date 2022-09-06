@@ -571,9 +571,13 @@ class PersonalInformation extends StatelessWidget {
                                       // Test
                                       text: Get.find<DashboardController>()
                                               .studentPanel
+                                              .otherCountryOfInterest!
+                                              .isNotEmpty
+                                          ? Get.find<DashboardController>()
+                                              .studentPanel
                                               .otherCountryOfInterest![0]
-                                              .countryName ??
-                                          "",
+                                              .countryName
+                                          : "",
 
                                       fontWeight: FontWeight.w600,
                                     ),

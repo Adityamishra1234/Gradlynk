@@ -24,5 +24,13 @@ class ThemeConstants {
   static Color IconColor = const Color(0xFF3C4351);
   static Color GreenColor = const Color(0xFF2FAF5E);
   static Color ultraLightgreyColor = const Color(0xFFF6F6F6);
+  static Color lightYellow = const Color(0xFFFFEFD8);
+  static Color lightSkyblue = const Color(0xFFe7fbfc);
+  static Color lightbrow = const Color(0xFFfbefde);
+  static Color browcolor = const Color(0xFFf0d3a9);
+  static Color lightRed = const Color(0xFFffe2e2);
+  static Color red = const Color(0xFFeda8a8);
+  static Color yellow = const Color(0xFFfad8a7);
+  static Color skycolor = const Color(0xFFacebee);
   static Color bluelightgreycolor2 = Color.fromARGB(255, 164, 178, 202);
 }

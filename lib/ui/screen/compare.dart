@@ -6,14 +6,6 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class Comparing extends StatelessWidget {
   const Comparing({Key? key}) : super(key: key);
   static const routeNamed = '/Compring';
-  final rowSpacer = const TableRow(children: [
-    SizedBox(
-      height: 8,
-    ),
-    const SizedBox(
-      height: 8,
-    )
-  ]);
 
   @override
   Widget build(BuildContext context) {

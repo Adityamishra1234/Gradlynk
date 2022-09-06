@@ -34,8 +34,9 @@ class CourseSearchController extends BaseController {
 // Model Create
   List<CompleteCourseDetail> completeCourseDetail = [];
   ApiServices apiservices = ApiServices();
-
   CourseSearchPages courseSearchPages = CourseSearchPages();
+  CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
+  CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
   //Loading State
   RxBool loadingCourseSearchDetail = false.obs;
@@ -46,6 +47,7 @@ class CourseSearchController extends BaseController {
   RxBool loadingCourseBoardField = false.obs;
   RxBool loadingCourseNarrowField = false.obs;
   RxBool loadingNextAndPrevious = false.obs;
+  RxBool compareApply = false.obs;
 
   @override
   void onInit() {
@@ -236,5 +238,10 @@ class CourseSearchController extends BaseController {
       completeCourseDetail = res;
       return completeCourseDetail;
     }
+  }
+
+  setCompare(bool data) {
+    compareApply.value = data;
+    update();
   }
 }

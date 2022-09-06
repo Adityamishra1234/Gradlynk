@@ -29,6 +29,7 @@ class CourseSearchPages {
 }
 
 class CourseSearchModel {
+  bool? isSelected = false;
   List<String>? listIntake = [];
   String? nearByIntake;
   String? durationYear;

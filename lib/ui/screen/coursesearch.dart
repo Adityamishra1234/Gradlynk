@@ -3,15 +3,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
-import 'package:studentpanel/ui/screen/personalinformation%20copy.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownbutton.dart';
 import 'package:studentpanel/widgets/multiselectdropdown.dart';
-import 'package:intl/intl.dart';
 
 class CourseSearch extends StatefulWidget {
   CourseSearch({Key? key}) : super(key: key);
@@ -29,100 +25,14 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> Stateindexvaluelist = [];
   List<int> courseBoardFieldindexvaluelist = [];
   List<int> courseNarrowFieldIndexvalueList = [];
-  callbackCompleteDetailCourse(varTopic) async {
-    List<String> endpoint = varTopic.toString().split(',');
-
-    var res = await controller.completeCourseDetailMethod(
-        endpoint[0], endpoint[1], endpoint[2]);
-
-    if (res != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return CourseSearchFullDetail(
-              completeCourseDetail: res,
-            );
-          },
-        ),
-      );
-    }
-  }
-
-  callbackCountry(data) {
-    for (var i = 0; i < data.length; i++) {
-      countryindexvaluelist.add(controller.countryList
-          .indexWhere((note) => note.startsWith(data[i])));
-
-      debugPrint(countryindexvaluelist.toString());
-    }
-
-    for (var j = 0; j < countryindexvaluelist.length; j++) {
-      controller.selectCountryCode
-          .add(controller.countryCode[countryindexvaluelist[j]]);
-
-      var temp = Set.of(controller.selectCountryCode).toList();
-      controller.selectCountryCode = temp.obs;
-    }
-
-    controller.getState(controller.selectCountryCode.toString());
-  }
-
-  callbackCourse(data) {
-    for (var i = 0; i < data.length; i++) {
-      courseindexvaluelist.add(controller.courseLevelList
-          .indexWhere((note) => note.startsWith(data[i])));
-    }
-
-    for (var j = 0; j < courseindexvaluelist.length; j++) {
-      controller.selectCourseCode
-          .add(controller.courseLevelCode[courseindexvaluelist[j]]);
-
-      var temp = Set.of(controller.selectCourseCode).toList();
-      controller.selectCourseCode = temp.obs;
-    }
-  }
-
-  callbackState(data) {
-    for (var i = 0; i < data.length; i++) {
-      Stateindexvaluelist.add(
-          controller.stateList.indexWhere((note) => note.startsWith(data[i])));
-    }
-
-    for (var j = 0; j < Stateindexvaluelist.length; j++) {
-      controller.selectStateCode
-          .add(controller.stateCode[Stateindexvaluelist[j]]);
-
-      var temp = Set.of(controller.selectStateCode).toList();
-      controller.selectStateCode = temp.obs;
-    }
-    controller.getCity(controller.selectStateCode.toString());
-  }
-
-  callback(varTopic) {
-    // controller.setdropdown1(varTopic);
-  }
-
-  callbackCourseBoardField(data) {
-    for (var i = 0; i < data.length; i++) {
-      courseBoardFieldindexvaluelist.add(controller.courseBoardList
-          .indexWhere((note) => note.startsWith(data[i])));
-    }
-
-    for (var j = 0; j < courseBoardFieldindexvaluelist.length; j++) {
-      controller.selectCourseBoardFieldCode
-          .add(controller.courseBoardCode[courseBoardFieldindexvaluelist[j]]);
-
-      var temp = Set.of(controller.selectCourseBoardFieldCode).toList();
-      controller.selectCourseBoardFieldCode = temp.obs;
-    }
-
-    controller
-        .getCoursenarrowField(controller.selectCourseBoardFieldCode.toString());
-  }
-
-  bool size = false;
   GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
+  bool size = false;
+  bool isApplyCompare = false;
+  @override
+  void didUpdateWidget(covariant CourseSearch oldWidget) {
+    setCompare;
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +106,23 @@ class _CourseSearchState extends State<CourseSearch> {
                             Spacer(),
                             RaisedButton(
                               elevation: 0,
-                              onPressed: () {},
+                              onPressed: () {
+                                if (controller1.compareApply.value == false) {
+                                  controller1.setCompare(true);
+                                  Navigator.push(context,
+                                      new MaterialPageRoute<void>(
+                                          builder: (context) {
+                                    return new CourseSearch();
+                                  }));
+                                } else {
+                                  controller1.setCompare(false);
+                                  Navigator.push(context,
+                                      new MaterialPageRoute<void>(
+                                          builder: (context) {
+                                    return new CourseSearch();
+                                  }));
+                                }
+                              },
                               color: ThemeConstants.lightgreentColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8)),
@@ -237,6 +163,10 @@ class _CourseSearchState extends State<CourseSearch> {
                                             .courseSearchModel!.length !=
                                         index)
                                       CollagelistExpandedWidget(
+                                        index: index,
+                                        callbackCompare: callbackCompare,
+                                        iscompare:
+                                            controller1.compareApply.value,
                                         currentPage: controller1
                                             .courseSearchPages.currentPage
                                             .toString(),
@@ -679,5 +609,123 @@ class _CourseSearchState extends State<CourseSearch> {
             ],
           )),
     );
+  }
+
+// Function
+  callbackCompleteDetailCourse(varTopic) async {
+    List<String> endpoint = varTopic.toString().split(',');
+
+    var res = await controller.completeCourseDetailMethod(
+        endpoint[0], endpoint[1], endpoint[2]);
+
+    if (res != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) {
+            return CourseSearchFullDetail(
+              completeCourseDetail: res,
+            );
+          },
+        ),
+      );
+    }
+  }
+
+  callbackCompare(varTopic) async {
+    if (controller.courseSearchModelCompare1.id == null) {
+      controller.courseSearchModelCompare1 = controller.courseSearchPages
+          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+      controller
+          .courseSearchPages
+          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+          .isSelected = true;
+    } else if (controller.courseSearchModelCompare2.id == null) {
+      controller.courseSearchModelCompare2 = controller.courseSearchPages
+          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+      controller
+          .courseSearchPages
+          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+          .isSelected = true;
+    } else {
+      debugPrint(varTopic);
+    }
+  }
+
+  callbackCountry(data) {
+    for (var i = 0; i < data.length; i++) {
+      countryindexvaluelist.add(controller.countryList
+          .indexWhere((note) => note.startsWith(data[i])));
+
+      debugPrint(countryindexvaluelist.toString());
+    }
+
+    for (var j = 0; j < countryindexvaluelist.length; j++) {
+      controller.selectCountryCode
+          .add(controller.countryCode[countryindexvaluelist[j]]);
+
+      var temp = Set.of(controller.selectCountryCode).toList();
+      controller.selectCountryCode = temp.obs;
+    }
+
+    controller.getState(controller.selectCountryCode.toString());
+  }
+
+  callbackCourse(data) {
+    for (var i = 0; i < data.length; i++) {
+      courseindexvaluelist.add(controller.courseLevelList
+          .indexWhere((note) => note.startsWith(data[i])));
+    }
+
+    for (var j = 0; j < courseindexvaluelist.length; j++) {
+      controller.selectCourseCode
+          .add(controller.courseLevelCode[courseindexvaluelist[j]]);
+
+      var temp = Set.of(controller.selectCourseCode).toList();
+      controller.selectCourseCode = temp.obs;
+    }
+  }
+
+  callbackState(data) {
+    for (var i = 0; i < data.length; i++) {
+      Stateindexvaluelist.add(
+          controller.stateList.indexWhere((note) => note.startsWith(data[i])));
+    }
+
+    for (var j = 0; j < Stateindexvaluelist.length; j++) {
+      controller.selectStateCode
+          .add(controller.stateCode[Stateindexvaluelist[j]]);
+
+      var temp = Set.of(controller.selectStateCode).toList();
+      controller.selectStateCode = temp.obs;
+    }
+    controller.getCity(controller.selectStateCode.toString());
+  }
+
+  callback(varTopic) {
+    // controller.setdropdown1(varTopic);
+  }
+
+  callbackCourseBoardField(data) {
+    for (var i = 0; i < data.length; i++) {
+      courseBoardFieldindexvaluelist.add(controller.courseBoardList
+          .indexWhere((note) => note.startsWith(data[i])));
+    }
+
+    for (var j = 0; j < courseBoardFieldindexvaluelist.length; j++) {
+      controller.selectCourseBoardFieldCode
+          .add(controller.courseBoardCode[courseBoardFieldindexvaluelist[j]]);
+
+      var temp = Set.of(controller.selectCourseBoardFieldCode).toList();
+      controller.selectCourseBoardFieldCode = temp.obs;
+    }
+
+    controller
+        .getCoursenarrowField(controller.selectCourseBoardFieldCode.toString());
+  }
+
+  setCompare(bool data) {
+    isApplyCompare = data;
+    setState(() {});
   }
 }
