@@ -726,14 +726,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
-            if (Get.find<CourseSearchController>()
-                        .courseSearchModelCompare1
-                        .id ==
-                    courseSearchModel.id ||
-                Get.find<CourseSearchController>()
-                        .courseSearchModelCompare2
-                        .id ==
-                    courseSearchModel.id)
+            if (isCompare == true &&
+                (Get.find<CourseSearchController>()
+                            .courseSearchModelCompare1
+                            .id ==
+                        courseSearchModel.id ||
+                    Get.find<CourseSearchController>()
+                            .courseSearchModelCompare2
+                            .id ==
+                        courseSearchModel.id))
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: SizedBox(
@@ -752,20 +753,20 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       },
                       child: Row(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           SvgPicture.asset(
                             "assets/icons/plus.svg",
                             height: 15,
                             color: ThemeConstants.whitecolor,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           CustomAutoSizeTextMontserrat(
                             text: "Added",
                             textColor: ThemeConstants.whitecolor,
                           ),
-                          Spacer(),
+                          const Spacer(),
                         ],
                       )),
                 ),
@@ -803,32 +804,31 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           Get.bottomSheet(Container(
                             height: 40,
                             width: MediaQuery.of(context).size.width,
-                            child: Text("data"),
+                            child: const Text("data"),
                           ));
                         } else {
                           setState(() {
                             addCompare = true;
-                            widget.callbackCompare(
-                                true.toString() + "," + index.toString());
+                            widget.callbackCompare("${true},$index");
                           });
                         }
                       },
                       child: Row(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           SvgPicture.asset(
                             "assets/icons/plus.svg",
                             height: 15,
                             color: ThemeConstants.bluegreycolor,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           CustomAutoSizeTextMontserrat(
                             text: "Add to Compare",
                             textColor: ThemeConstants.bluegreycolor,
                           ),
-                          Spacer(),
+                          const Spacer(),
                         ],
                       )),
                 ),

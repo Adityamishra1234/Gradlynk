@@ -633,23 +633,27 @@ class _CourseSearchState extends State<CourseSearch> {
   }
 
   callbackCompare(varTopic) async {
-    if (controller.courseSearchModelCompare1.id == null) {
-      controller.courseSearchModelCompare1 = controller.courseSearchPages
-          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
-      controller
-          .courseSearchPages
-          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
-          .isSelected = true;
-    } else if (controller.courseSearchModelCompare2.id == null) {
-      controller.courseSearchModelCompare2 = controller.courseSearchPages
-          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
-      controller
-          .courseSearchPages
-          .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
-          .isSelected = true;
-    } else {
-      debugPrint(varTopic);
-    }
+    // Add To Compare  For Comparing
+    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+      if (controller.courseSearchModelCompare1.id == null) {
+        controller.courseSearchModelCompare1 = controller.courseSearchPages
+            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+        controller
+            .courseSearchPages
+            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+      } else if (controller.courseSearchModelCompare2.id == null) {
+        controller.courseSearchModelCompare2 = controller.courseSearchPages
+            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+        controller
+            .courseSearchPages
+            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+      } else {
+        debugPrint(varTopic);
+      }
+      // Added Button For Comparing
+    } else {}
   }
 
   callbackCountry(data) {
