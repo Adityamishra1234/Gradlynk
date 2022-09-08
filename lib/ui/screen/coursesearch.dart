@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/binding/coursesearch.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
+import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -331,6 +333,52 @@ class _CourseSearchState extends State<CourseSearch> {
                                   ],
                                 );
                               }),
+                        ),
+                      if (controller1.compareApply.value == true)
+                        InkWell(
+                          onTap: () {
+                            Get.to(
+                              Comparing(
+                                courseSearchModel1:
+                                    Get.find<CourseSearchController>()
+                                        .courseSearchModelCompare1,
+                                courseSearchModel2:
+                                    Get.find<CourseSearchController>()
+                                        .courseSearchModelCompare2,
+                              ),
+                            );
+                          },
+                          child: Container(
+                            height: 80,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                borderRadius: BorderRadiusDirectional.only(
+                                  topStart: Radius.circular(20.0),
+                                  topEnd: Radius.circular(20.0),
+                                )),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  Spacer(),
+                                  SvgPicture.asset(
+                                    "assets/icons/compare.svg",
+                                    height: 30,
+                                    color: ThemeConstants.whitecolor,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  CustomAutoSizeTextMontserrat(
+                                    text: "Compare",
+                                    fontSize: 20,
+                                    textColor: ThemeConstants.whitecolor,
+                                  ),
+                                  Spacer(),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       if (controller1.loadingCourseSearchDetail.value == false)
                         SingleChildScrollView(

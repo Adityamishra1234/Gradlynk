@@ -43,7 +43,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   bool delayresize = false;
   late AnimationController controller;
   AnimateIconController c1 = AnimateIconController();
-  bool addCompare = false;
+  bool? addCompare;
   bool? isCompare;
   int? index;
 
@@ -726,116 +726,238 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
-            if (isCompare == true &&
-                (Get.find<CourseSearchController>()
-                            .courseSearchModelCompare1
-                            .id ==
-                        courseSearchModel.id ||
-                    Get.find<CourseSearchController>()
-                            .courseSearchModelCompare2
-                            .id ==
-                        courseSearchModel.id))
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SizedBox(
-                  width: 160,
-                  height: 40,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: ThemeConstants.bluecolor, // background
-                        onPrimary: ThemeConstants.bluecolor, // foreground
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          addCompare = false;
-                          widget.callbackCompare(false);
-                        });
-                      },
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          SvgPicture.asset(
-                            "assets/icons/plus.svg",
-                            height: 15,
-                            color: ThemeConstants.whitecolor,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          CustomAutoSizeTextMontserrat(
-                            text: "Added",
-                            textColor: ThemeConstants.whitecolor,
-                          ),
-                          const Spacer(),
-                        ],
-                      )),
-                ),
-              ),
-            if (addCompare == false &&
-                isCompare == true &&
-                Get.find<CourseSearchController>()
-                        .courseSearchModelCompare1
-                        .id !=
-                    courseSearchModel.id &&
-                Get.find<CourseSearchController>()
-                        .courseSearchModelCompare2
-                        .id !=
-                    courseSearchModel.id)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SizedBox(
-                  width: 190,
-                  height: 40,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        side: BorderSide(color: ThemeConstants.bluegreycolor),
-                        primary: ThemeConstants.whitecolor, // background
-                        onPrimary: ThemeConstants.whitecolor, // foreground
-                      ),
-                      onPressed: () {
-                        if (Get.find<CourseSearchController>()
-                                    .courseSearchModelCompare1
-                                    .id !=
-                                null &&
-                            Get.find<CourseSearchController>()
-                                    .courseSearchModelCompare2
-                                    .id !=
-                                null) {
-                          Get.bottomSheet(Container(
-                            height: 40,
-                            width: MediaQuery.of(context).size.width,
-                            child: const Text("data"),
-                          ));
-                        } else {
-                          setState(() {
-                            addCompare = true;
-                            widget.callbackCompare("${true},$index");
-                          });
-                        }
-                      },
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          SvgPicture.asset(
-                            "assets/icons/plus.svg",
-                            height: 15,
-                            color: ThemeConstants.bluegreycolor,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          CustomAutoSizeTextMontserrat(
-                            text: "Add to Compare",
-                            textColor: ThemeConstants.bluegreycolor,
-                          ),
-                          const Spacer(),
-                        ],
-                      )),
-                ),
-              ),
+            if (isCompare == true) AddedButtonShow(),
+            // if ((addCompare == false || addCompare == null) &&
+            //     isCompare == true &&
+            //     )
           ],
         ),
       ),
     );
+  }
+  // Function
+
+  AddedButtonShow() {
+    // add compare in both
+    if (addCompare == null) {
+      if (Get.find<CourseSearchController>().courseSearchModelCompare1.id ==
+              courseSearchModel.id ||
+          Get.find<CourseSearchController>().courseSearchModelCompare2.id ==
+              courseSearchModel.id) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: SizedBox(
+            width: 160,
+            height: 40,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: ThemeConstants.bluecolor, // background
+                  onPrimary: ThemeConstants.bluecolor, // foreground
+                ),
+                onPressed: () {
+                  addCompare = false;
+                  // widget.callbackCompare(false);
+
+                  if (Get.find<CourseSearchController>()
+                          .courseSearchModelCompare1
+                          .id ==
+                      courseSearchModel.id) {
+                    Get.find<CourseSearchController>()
+                        .courseSearchModelCompare1 = CourseSearchModel();
+                    print(Get.find<CourseSearchController>()
+                        .courseSearchModelCompare1
+                        .id);
+                  } else {
+                    Get.find<CourseSearchController>()
+                        .courseSearchModelCompare2 = CourseSearchModel();
+                  }
+                  setState(() {});
+                },
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    SvgPicture.asset(
+                      "assets/icons/plus.svg",
+                      height: 15,
+                      color: ThemeConstants.whitecolor,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    CustomAutoSizeTextMontserrat(
+                      text: "Added",
+                      textColor: ThemeConstants.whitecolor,
+                    ),
+                    const Spacer(),
+                  ],
+                )),
+          ),
+        );
+      } else if (Get.find<CourseSearchController>()
+                  .courseSearchModelCompare1
+                  .id !=
+              courseSearchModel.id &&
+          Get.find<CourseSearchController>().courseSearchModelCompare2.id !=
+              courseSearchModel.id) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: SizedBox(
+            width: 190,
+            height: 40,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  side: BorderSide(color: ThemeConstants.bluegreycolor),
+                  primary: ThemeConstants.whitecolor, // background
+                  onPrimary: ThemeConstants.whitecolor, // foreground
+                ),
+                onPressed: () {
+                  if (Get.find<CourseSearchController>()
+                              .courseSearchModelCompare1
+                              .id !=
+                          null &&
+                      Get.find<CourseSearchController>()
+                              .courseSearchModelCompare2
+                              .id !=
+                          null) {
+                    Get.bottomSheet(Container(
+                      height: 40,
+                      width: MediaQuery.of(context).size.width,
+                      child: const Text("data"),
+                    ));
+                  } else {
+                    setState(() {
+                      addCompare = true;
+                      widget.callbackCompare("${true},$index");
+                    });
+                  }
+                },
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    SvgPicture.asset(
+                      "assets/icons/plus.svg",
+                      height: 15,
+                      color: ThemeConstants.bluegreycolor,
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    CustomAutoSizeTextMontserrat(
+                      text: "Add to Compare",
+                      textColor: ThemeConstants.bluegreycolor,
+                    ),
+                    const Spacer(),
+                  ],
+                )),
+          ),
+        );
+      }
+    }
+    if (addCompare == true) {
+      //Added Button
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: SizedBox(
+          width: 160,
+          height: 40,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: ThemeConstants.bluecolor, // background
+                onPrimary: ThemeConstants.bluecolor, // foreground
+              ),
+              onPressed: () {
+                addCompare = false;
+                // widget.callbackCompare(false);
+
+                if (Get.find<CourseSearchController>()
+                        .courseSearchModelCompare1
+                        .id ==
+                    courseSearchModel.id) {
+                  Get.find<CourseSearchController>().courseSearchModelCompare1 =
+                      CourseSearchModel();
+                  print(Get.find<CourseSearchController>()
+                      .courseSearchModelCompare1
+                      .id);
+                } else {
+                  Get.find<CourseSearchController>().courseSearchModelCompare2 =
+                      CourseSearchModel();
+                }
+                setState(() {});
+              },
+              child: Row(
+                children: [
+                  const Spacer(),
+                  SvgPicture.asset(
+                    "assets/icons/plus.svg",
+                    height: 15,
+                    color: ThemeConstants.whitecolor,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  CustomAutoSizeTextMontserrat(
+                    text: "Added",
+                    textColor: ThemeConstants.whitecolor,
+                  ),
+                  const Spacer(),
+                ],
+              )),
+        ),
+      );
+    } else if (addCompare == false) {
+      // added to compare
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: SizedBox(
+          width: 190,
+          height: 40,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                side: BorderSide(color: ThemeConstants.bluegreycolor),
+                primary: ThemeConstants.whitecolor, // background
+                onPrimary: ThemeConstants.whitecolor, // foreground
+              ),
+              onPressed: () {
+                if (Get.find<CourseSearchController>()
+                            .courseSearchModelCompare1
+                            .id !=
+                        null &&
+                    Get.find<CourseSearchController>()
+                            .courseSearchModelCompare2
+                            .id !=
+                        null) {
+                  Get.bottomSheet(Container(
+                    height: 40,
+                    width: MediaQuery.of(context).size.width,
+                    child: const Text("data"),
+                  ));
+                } else {
+                  setState(() {
+                    addCompare = true;
+                    widget.callbackCompare("${true},$index");
+                  });
+                }
+              },
+              child: Row(
+                children: [
+                  const Spacer(),
+                  SvgPicture.asset(
+                    "assets/icons/plus.svg",
+                    height: 15,
+                    color: ThemeConstants.bluegreycolor,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  CustomAutoSizeTextMontserrat(
+                    text: "Add to Compare",
+                    textColor: ThemeConstants.bluegreycolor,
+                  ),
+                  const Spacer(),
+                ],
+              )),
+        ),
+      );
+    }
   }
 }

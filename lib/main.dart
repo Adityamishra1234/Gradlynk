@@ -80,14 +80,10 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Login.routeNamed,
+      initialRoute: CourseSearch.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
-        GetPage(
-          name: Comparing.routeNamed,
-          page: () => const Comparing(),
-        ),
         GetPage(
             name: LoginCopy.routeNamed,
             page: () => const LoginCopy(),

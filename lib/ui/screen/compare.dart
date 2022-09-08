@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class Comparing extends StatelessWidget {
-  const Comparing({Key? key}) : super(key: key);
+  CourseSearchModel courseSearchModel1,
+      courseSearchModel2 = CourseSearchModel();
+  Comparing(
+      {Key? key,
+      required this.courseSearchModel1,
+      required this.courseSearchModel2})
+      : super(key: key);
   static const routeNamed = '/Compring';
 
   @override
@@ -47,7 +54,7 @@ class Comparing extends StatelessWidget {
                             top: 15, bottom: 15, left: 5, right: 5),
                         child: CustomAutoSizeTextMontserrat(
                           text:
-                              "California State University fresno (Fresno Campus)",
+                              "${courseSearchModel1.universityName}(${courseSearchModel1.campusName})",
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           textColor: ThemeConstants.bluecolor,
@@ -61,7 +68,7 @@ class Comparing extends StatelessWidget {
                             top: 15, bottom: 15, left: 5, right: 5),
                         child: CustomAutoSizeTextMontserrat(
                           text:
-                              "California State University fresno (Fresno Campus)",
+                              "${courseSearchModel2.universityName}(${courseSearchModel2.campusName})",
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           textColor: ThemeConstants.bluecolor,
@@ -90,7 +97,7 @@ class Comparing extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       top: 15, bottom: 15, left: 5, right: 5),
                   child: CustomAutoSizeTextMontserrat(
-                    text: "USA",
+                    text: courseSearchModel1.countryName,
                     fontSize: 14,
                     textColor: ThemeConstants.TextColor,
                   ),
@@ -101,7 +108,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "USA",
+                      text: courseSearchModel2.countryName,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -130,7 +137,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "California",
+                      text: courseSearchModel1.stateName,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -142,7 +149,7 @@ class Comparing extends StatelessWidget {
                   padding: const EdgeInsets.only(
                       top: 15, bottom: 15, left: 5, right: 5),
                   child: CustomAutoSizeTextMontserrat(
-                    text: "California",
+                    text: courseSearchModel2.stateName,
                     fontSize: 14,
                     textColor: ThemeConstants.TextColor,
                   ),
@@ -170,7 +177,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Fresno",
+                      text: courseSearchModel1.cityName,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -182,7 +189,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Fresno",
+                      text: courseSearchModel2.cityName,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -211,7 +218,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Bachelor of Science in Computer Engineering",
+                      text: courseSearchModel1.courseName,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -223,7 +230,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Bachelor of Science in Computer Engineering",
+                      text: courseSearchModel2.courseName,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -252,7 +259,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Bachelor",
+                      text: courseSearchModel1.courseLevel,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -264,7 +271,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Bachelor",
+                      text: courseSearchModel1.courseLevel,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -293,7 +300,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "4 year",
+                      text: "${courseSearchModel1.durationYear!} Year",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -305,7 +312,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "4 year",
+                      text: "${courseSearchModel1.durationYear!} Year",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -334,7 +341,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "YES",
+                      text: courseSearchModel1.scholarship,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -346,7 +353,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "YES",
+                      text: courseSearchModel2.scholarship,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -375,7 +382,8 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "16089 USD [11901586 Inr]",
+                      text:
+                          "${courseSearchModel1.annualTutionFees!} ${courseSearchModel1.currencyCode!}\n${courseSearchModel1.annualTutionFeesInr ?? ""} INR",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -387,7 +395,8 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "16089 USD [11901586 Inr]",
+                      text:
+                          "${courseSearchModel2.annualTutionFees!} ${courseSearchModel2.currencyCode!}\n${courseSearchModel2.annualTutionFeesInr ?? ""} INR",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -416,7 +425,8 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: " 16089 USD [11901586 Inr] ",
+                      text:
+                          "${courseSearchModel1.totalFees} ${courseSearchModel1.currencyCode!}\n${courseSearchModel1.totalFeesInr ?? ""} INR",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -428,7 +438,8 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: " 16089 USD [11901586 Inr] ",
+                      text:
+                          "${courseSearchModel2.totalFees} ${courseSearchModel2.currencyCode!}\n${courseSearchModel2.totalFeesInr ?? ""} INR",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -457,7 +468,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "16089 USD [11901586 Inr]",
+                      text: courseSearchModel1.isApplicationFee ?? "",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -469,7 +480,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "16089 USD [11901586 Inr]",
+                      text: courseSearchModel1.isApplicationFee,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -484,11 +495,14 @@ class Comparing extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 5, right: 5),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Intake Month and Year-",
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.bold,
+                        child: Container(
+                          height: 60,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Intake Month and Year-",
+                            fontSize: 14,
+                            textColor: ThemeConstants.blackcolor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     )),
@@ -498,7 +512,9 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Aug|Jan|Sep",
+                      text: courseSearchModel1.IntakeMonth.toString()
+                          .replaceAll("[", "")
+                          .replaceAll("]", ""),
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -512,7 +528,9 @@ class Comparing extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomAutoSizeTextMontserrat(
-                          text: "Aug|Jan|Sep",
+                          text: courseSearchModel2.IntakeMonth.toString()
+                              .replaceAll("[", "")
+                              .replaceAll("]", ""),
                           fontSize: 14,
                           textColor: ThemeConstants.TextColor,
                         ),
@@ -543,7 +561,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "IELTS-6.0",
+                      text: courseSearchModel1.englishProficiency,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -555,7 +573,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "IELTS-6.0",
+                      text: courseSearchModel2.englishProficiency,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
