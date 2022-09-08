@@ -240,8 +240,8 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  setCompare(bool data) {
-    compareApply.value = data;
+  setCompare(RxBool data) {
+    compareApply = data;
     update();
   }
 }

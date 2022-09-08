@@ -108,14 +108,14 @@ class _CourseSearchState extends State<CourseSearch> {
                               elevation: 0,
                               onPressed: () {
                                 if (controller1.compareApply.value == false) {
-                                  controller1.setCompare(true);
+                                  controller1.setCompare(true.obs);
                                   Navigator.push(context,
                                       new MaterialPageRoute<void>(
                                           builder: (context) {
                                     return new CourseSearch();
                                   }));
                                 } else {
-                                  controller1.setCompare(false);
+                                  controller1.setCompare(false.obs);
                                   Navigator.push(context,
                                       new MaterialPageRoute<void>(
                                           builder: (context) {
