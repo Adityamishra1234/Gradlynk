@@ -1,12 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io' as io;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
-import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -258,10 +257,10 @@ class UploadDocument extends StatelessWidget {
                                                       fontSize: 20,
                                                     ),
                                                   ),
-                                                  Spacer(),
+                                                  const Spacer(),
                                                   Row(
                                                     children: [
-                                                      Spacer(),
+                                                      const Spacer(),
                                                       FlatButton(
                                                         onPressed: () => {},
                                                         color: ThemeConstants
@@ -344,10 +343,10 @@ class UploadDocument extends StatelessWidget {
                                                           ],
                                                         ),
                                                       ),
-                                                      Spacer(),
+                                                      const Spacer(),
                                                     ],
                                                   ),
-                                                  Spacer()
+                                                  const Spacer()
                                                 ],
                                               ),
                                             ));

@@ -2,12 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/basemixin.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/userHistory.dart';
-import 'package:studentpanel/utils/endpoint.dart';
 
 class DetailController extends BaseController {
   ApiServices apiServices = ApiServices();

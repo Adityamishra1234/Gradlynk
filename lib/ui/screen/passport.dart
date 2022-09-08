@@ -63,7 +63,7 @@ class Passport extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -100,7 +100,7 @@ class Passport extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -137,7 +137,7 @@ class Passport extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -173,7 +173,7 @@ class Passport extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -209,7 +209,7 @@ class Passport extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field

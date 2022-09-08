@@ -28,7 +28,7 @@ class _CustomExpansiontileState extends State<CustomExpansiontile> {
     return ConfigurableExpansionTile(
       borderColorEnd: Colors.black,
       bottomBorderOn: true,
-      header: Container(
+      header: SizedBox(
         width: 220,
         height: 40,
         child: Row(
@@ -40,7 +40,7 @@ class _CustomExpansiontileState extends State<CustomExpansiontile> {
                 style: Constants.textstyle,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             const Icon(Icons.keyboard_arrow_down),
           ],
         ),

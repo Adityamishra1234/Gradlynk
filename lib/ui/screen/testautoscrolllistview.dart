@@ -6,6 +6,8 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class TestAutoScrollListView extends StatefulWidget {
   static const routeNamed = '/TestAutoScrollListView';
+
+  const TestAutoScrollListView({Key? key}) : super(key: key);
   @override
   _TestAutoScrollListViewState createState() => _TestAutoScrollListViewState();
 }
@@ -37,7 +39,7 @@ class _TestAutoScrollListViewState extends State<TestAutoScrollListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test"),
+        title: const Text("Test"),
       ),
       body: SizedBox(
         height: 70,
@@ -87,7 +89,7 @@ class _TestAutoScrollListViewState extends State<TestAutoScrollListView> {
       floatingActionButton: FloatingActionButton(
         onPressed: _scrollToIndex,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

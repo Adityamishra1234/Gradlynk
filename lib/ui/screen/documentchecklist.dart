@@ -1,8 +1,5 @@
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -55,7 +52,7 @@ class _DocumentCheckListState extends State<DocumentCheckList> {
         Card(
           elevation: 5,
           child: ConfigurableExpansionTile(
-            header: Container(
+            header: SizedBox(
               width: MediaQuery.of(context).size.width - 10,
               height: 40,
               child: Row(

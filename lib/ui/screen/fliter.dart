@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -33,7 +31,7 @@ class _FilterState extends State<Filter> {
                   text: "Filter",
                   textColor: ThemeConstants.orangeColor,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 SvgPicture.asset(
@@ -261,10 +259,10 @@ class _FilterState extends State<Filter> {
                 ),
                 SizedBox(
                     height: MediaQuery.of(context).size.height - 220,
-                    child: VerticalDivider()),
+                    child: const VerticalDivider()),
                 Padding(
                   padding: const EdgeInsets.only(right: 9),
-                  child: Container(
+                  child: SizedBox(
                       height: MediaQuery.of(context).size.height - 220,
                       width: MediaQuery.of(context).size.width / 2 - 10,
                       child: MultiSelectDropDown(
@@ -282,27 +280,26 @@ class _FilterState extends State<Filter> {
             color: ThemeConstants.whitecolor,
             child: Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                     style: ButtonStyle(
                         foregroundColor: MaterialStateProperty.all<Color>(
                             ThemeConstants.whitecolor),
                         backgroundColor: MaterialStateProperty.all<Color>(
                             ThemeConstants.whitecolor),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                    side: BorderSide(
-                                        color: ThemeConstants.TextColor)))),
+                        shape: MaterialStateProperty
+                            .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                side: BorderSide(
+                                    color: ThemeConstants.TextColor)))),
                     onPressed: () => null,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Clear Filter ",
                       fontWeight: FontWeight.bold,
                       textColor: ThemeConstants.TextColor,
                     )),
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                     style: ButtonStyle(
                         foregroundColor: MaterialStateProperty.all<Color>(
@@ -312,8 +309,8 @@ class _FilterState extends State<Filter> {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                                    borderRadius: const BorderRadius.all(
+                                        const Radius.circular(10)),
                                     side: BorderSide(
                                         color: ThemeConstants.bluecolor)))),
                     onPressed: () => null,
@@ -322,7 +319,7 @@ class _FilterState extends State<Filter> {
                       fontWeight: FontWeight.bold,
                       textColor: ThemeConstants.whitecolor,
                     )),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           )

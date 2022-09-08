@@ -1,18 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
-import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/drawerfilter.dart';
-import 'package:new_version/new_version.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -34,7 +32,7 @@ class CustomTab extends StatelessWidget {
                               .value ==
                           false
                       ? Colors.grey
-                      : Color(0xFF1940BC),
+                      : const Color(0xFF1940BC),
                 ),
               ),
               SizedBox(
@@ -47,7 +45,7 @@ class CustomTab extends StatelessWidget {
                               .value ==
                           true
                       ? Colors.grey
-                      : Color(0xFF1940BC),
+                      : const Color(0xFF1940BC),
                 ),
               ),
             ]));

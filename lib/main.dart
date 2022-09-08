@@ -8,7 +8,6 @@ import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
-import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
@@ -80,7 +79,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: CourseSearch.routeNamed,
+      initialRoute: Login.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -115,7 +114,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ProfilePageCopy.routeNamed,
           transition: Transition.fade,
-          page: () => ProfilePageCopy(),
+          page: () => const ProfilePageCopy(),
         ),
 
         //AnimationaPhonepe

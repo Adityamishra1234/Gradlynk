@@ -1,6 +1,5 @@
 import 'package:checkbox_grouped/checkbox_grouped.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
 class CustomgroupCheckBox extends StatefulWidget {
   List<String>? data;

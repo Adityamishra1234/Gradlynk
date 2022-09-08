@@ -3,18 +3,10 @@ import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 
 import 'package:studentpanel/ui/models/courseseach.dart';
-import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
-import 'package:studentpanel/ui/models/upcomingevent.dart';
-import 'package:studentpanel/ui/models/upcomingholiday.dart';
-import 'package:studentpanel/ui/models/userHistory.dart';
-import 'package:studentpanel/ui/models/usermodel.dart';
-import 'package:date_format/date_format.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/ui/screen/coursesearch.dart';
 
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();

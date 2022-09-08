@@ -16,8 +16,8 @@ class ProfilePageHorizontal extends StatefulWidget {
 
 class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
   List<Color> selectButton = [
-    Color(0xFF1940BC),
-    Color(0xFF6366F1),
+    const Color(0xFF1940BC),
+    const Color(0xFF6366F1),
   ];
   List<Color> unSelectButton = [
     Colors.transparent,
@@ -43,9 +43,9 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
           child: ListView(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
                   height: 50,
@@ -243,7 +243,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -281,7 +281,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -319,7 +319,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -357,7 +357,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -395,7 +395,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -433,7 +433,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -471,7 +471,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -509,7 +509,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -547,7 +547,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -585,7 +585,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -623,7 +623,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 200,
@@ -647,9 +647,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                         ),
                       );
                     } else if (controller.chooseIndex!.value == 1) {
-                      return Container(
-                        child: Text("Mandatory Info."),
-                      );
+                      return const Text("Mandatory Info.");
                     } else {
                       return Container();
                     }

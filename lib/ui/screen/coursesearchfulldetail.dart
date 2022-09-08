@@ -122,7 +122,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 15),
                               child: Row(
                                 children: [
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 80,
                                     width: 170,
@@ -133,7 +133,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     ),
                                     child: Column(
                                       children: [
-                                        Spacer(),
+                                        const Spacer(),
                                         CustomAutoSizeTextMontserrat(
                                           text: "Course Duration",
                                           maxLines: 2,
@@ -147,11 +147,11 @@ class CourseSearchFullDetail extends StatelessWidget {
                                           maxLines: 2,
                                           textColor: ThemeConstants.blackcolor,
                                         ),
-                                        Spacer()
+                                        const Spacer()
                                       ],
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 80,
                                     width: 170,
@@ -162,7 +162,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     ),
                                     child: Column(
                                       children: [
-                                        Spacer(),
+                                        const Spacer(),
                                         CustomAutoSizeTextMontserrat(
                                           text: "Total Tutions Fees",
                                           maxLines: 2,
@@ -177,11 +177,11 @@ class CourseSearchFullDetail extends StatelessWidget {
                                           fontSize: 14,
                                           textColor: ThemeConstants.blackcolor,
                                         ),
-                                        Spacer()
+                                        const Spacer()
                                       ],
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                 ],
                               ),
                             ),
@@ -191,7 +191,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 80,
                                     width: 170,
@@ -202,7 +202,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     ),
                                     child: Column(
                                       children: [
-                                        Spacer(),
+                                        const Spacer(),
                                         CustomAutoSizeTextMontserrat(
                                           text: "Course Level",
                                           maxLines: 2,
@@ -216,11 +216,11 @@ class CourseSearchFullDetail extends StatelessWidget {
                                           fontSize: 14,
                                           textColor: ThemeConstants.blackcolor,
                                         ),
-                                        Spacer()
+                                        const Spacer()
                                       ],
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 80,
                                     width: 170,
@@ -231,7 +231,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     ),
                                     child: Column(
                                       children: [
-                                        Spacer(),
+                                        const Spacer(),
                                         CustomAutoSizeTextMontserrat(
                                           text: "Avaliable Intake",
                                           fontWeight: FontWeight.bold,
@@ -244,11 +244,11 @@ class CourseSearchFullDetail extends StatelessWidget {
                                           textColor: ThemeConstants.blackcolor,
                                           fontSize: 14,
                                         ),
-                                        Spacer()
+                                        const Spacer()
                                       ],
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                 ],
                               ),
                             ),
@@ -286,21 +286,21 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     maxLines: 2,
                                     fontSize: 14,
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   CustomAutoSizeTextMontserrat(
                                     text:
                                         "Times:${completeCourseDetail![0].timesRank ?? ""}",
                                     maxLines: 2,
                                     fontSize: 14,
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   CustomAutoSizeTextMontserrat(
                                     text:
                                         "US News:${completeCourseDetail![0].usNewsRank ?? ""}",
                                     maxLines: 2,
                                     fontSize: 14,
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   CustomAutoSizeTextMontserrat(
                                     text:
                                         "QS World:${completeCourseDetail![0].qsWorldRank ?? ""}",

@@ -1,7 +1,6 @@
 import 'package:back_pressed/back_pressed.dart';
 import 'package:studentpanel/ui/controllers/detailcontroller.dart';
 
-import 'package:studentpanel/widgets/customdropdownbutton.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
@@ -149,13 +148,13 @@ class _DetialScreenState extends State<DetialScreen>
                             }),
                       );
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                   }),
               SizedBox(
                   height: 80,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  child: Text("aman")
+                  child: const Text("aman")
                   // CustomDropDown(
                   //   model: const [
                   //     "India",
@@ -181,12 +180,12 @@ class _DetialScreenState extends State<DetialScreen>
     if (hr.split('.')[0].toString() == 0.toString()) {
       time = "";
     } else {
-      time = hr.split('.')[0].toString() + " " + "hr";
+      time = "${hr.split('.')[0]} hr";
     }
     if (min.split('.')[0].toString() == 0.toString()) {
-      time = time + "";
+      time = time;
     } else {
-      time = time + min.split('.')[0].toString() + " " + "min";
+      time = "$time${min.split('.')[0]} min";
     }
     if (hr.split('.')[0].toString() == 0.toString() &&
         min.split('.')[0].toString() == 0.toString()) {

@@ -7,7 +7,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customtab.dart';
 
 class TestDetail extends StatefulWidget {
-  TestDetail({Key? key}) : super(key: key);
+  const TestDetail({Key? key}) : super(key: key);
 
   @override
   State<TestDetail> createState() => _TestDetailState();
@@ -38,7 +38,7 @@ class _TestDetailState extends State<TestDetail> {
                         height: MediaQuery.of(context).size.height - 290,
                         width: MediaQuery.of(context).size.width,
                         child: ListView(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           children: [
                             Align(
                               alignment: AlignmentDirectional.topStart,
@@ -66,7 +66,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       width: 150,
                                       // custom Text field
@@ -106,7 +106,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       width: 150,
                                       // custom Text field
@@ -145,7 +145,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 150,
@@ -188,7 +188,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 150,
@@ -231,7 +231,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 150,
@@ -258,7 +258,8 @@ class _TestDetailState extends State<TestDetail> {
                                   child: ListTile(
                                     minLeadingWidth: 0.0,
                                     minVerticalPadding: 0.0,
-                                    contentPadding: EdgeInsets.only(left: 0),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 0),
                                     title: const Text('Tentative'),
                                     leading: Radio<BestTutorSite>(
                                       autofocus: true,
@@ -275,7 +276,8 @@ class _TestDetailState extends State<TestDetail> {
                                 SizedBox(
                                   width: 170,
                                   child: ListTile(
-                                    contentPadding: EdgeInsets.only(left: 0),
+                                    contentPadding:
+                                        const EdgeInsets.only(left: 0),
                                     title: const Text('Definite'),
                                     leading: Radio<BestTutorSite>(
                                       value: BestTutorSite.Definite,
@@ -306,7 +308,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 150,
@@ -357,7 +359,7 @@ class _TestDetailState extends State<TestDetail> {
                                                     textColor: Colors.grey,
                                                   ),
                                                 ),
-                                                Spacer(),
+                                                const Spacer(),
                                                 SizedBox(
                                                   height: 40,
                                                   width: 50,
@@ -369,12 +371,11 @@ class _TestDetailState extends State<TestDetail> {
                                                     child:
                                                         CustomAutoSizeTextMontserrat(
                                                       text: Get.find<
-                                                                  DashboardController>()
-                                                              .studentPanel
-                                                              .testDetails!
-                                                              .listening
-                                                              .toString() ??
-                                                          "",
+                                                              DashboardController>()
+                                                          .studentPanel
+                                                          .testDetails!
+                                                          .listening
+                                                          .toString(),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -411,7 +412,7 @@ class _TestDetailState extends State<TestDetail> {
                                                     textColor: Colors.grey,
                                                   ),
                                                 ),
-                                                Spacer(),
+                                                const Spacer(),
                                                 SizedBox(
                                                   height: 40,
                                                   width: 50,
@@ -423,12 +424,11 @@ class _TestDetailState extends State<TestDetail> {
                                                     child:
                                                         CustomAutoSizeTextMontserrat(
                                                       text: Get.find<
-                                                                  DashboardController>()
-                                                              .studentPanel
-                                                              .testDetails!
-                                                              .writing
-                                                              .toString() ??
-                                                          "",
+                                                              DashboardController>()
+                                                          .studentPanel
+                                                          .testDetails!
+                                                          .writing
+                                                          .toString(),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -474,7 +474,7 @@ class _TestDetailState extends State<TestDetail> {
                                                     textColor: Colors.grey,
                                                   ),
                                                 ),
-                                                Spacer(),
+                                                const Spacer(),
                                                 SizedBox(
                                                   height: 40,
                                                   width: 50,
@@ -486,12 +486,11 @@ class _TestDetailState extends State<TestDetail> {
                                                     child:
                                                         CustomAutoSizeTextMontserrat(
                                                       text: Get.find<
-                                                                  DashboardController>()
-                                                              .studentPanel
-                                                              .testDetails!
-                                                              .reading
-                                                              .toString() ??
-                                                          "",
+                                                              DashboardController>()
+                                                          .studentPanel
+                                                          .testDetails!
+                                                          .reading
+                                                          .toString(),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -528,7 +527,7 @@ class _TestDetailState extends State<TestDetail> {
                                                     textColor: Colors.grey,
                                                   ),
                                                 ),
-                                                Spacer(),
+                                                const Spacer(),
                                                 SizedBox(
                                                   height: 40,
                                                   width: 50,
@@ -540,12 +539,11 @@ class _TestDetailState extends State<TestDetail> {
                                                     child:
                                                         CustomAutoSizeTextMontserrat(
                                                       text: Get.find<
-                                                                  DashboardController>()
-                                                              .studentPanel
-                                                              .testDetails!
-                                                              .speaking
-                                                              .toString() ??
-                                                          "",
+                                                              DashboardController>()
+                                                          .studentPanel
+                                                          .testDetails!
+                                                          .speaking
+                                                          .toString(),
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -603,7 +601,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 150,
@@ -644,7 +642,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 150,
@@ -684,7 +682,7 @@ class _TestDetailState extends State<TestDetail> {
                                         textColor: Colors.grey,
                                       ),
                                     ),
-                                    Spacer(),
+                                    const Spacer(),
                                     SizedBox(
                                       height: 40,
                                       width: 100,

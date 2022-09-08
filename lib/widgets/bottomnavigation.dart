@@ -101,7 +101,7 @@ class BottomNavigation extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
-                    child: Container(
+                    child: SizedBox(
                       height: 46,
                       width: 60,
                       child: InkWell(

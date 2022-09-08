@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
-import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
@@ -36,7 +33,7 @@ class MandatoryInformation extends StatelessWidget {
                         text: "Branch Type",
                         textColor: Colors.grey,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 200,
                         // custom Text field
@@ -72,7 +69,7 @@ class MandatoryInformation extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 200,
                         // custom Text field
@@ -126,7 +123,7 @@ class MandatoryInformation extends StatelessWidget {
                                 textColor: Colors.grey,
                               ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 200,
                         // custom Text field
@@ -165,7 +162,7 @@ class MandatoryInformation extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -204,7 +201,7 @@ class MandatoryInformation extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -239,7 +236,7 @@ class MandatoryInformation extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -277,7 +274,7 @@ class MandatoryInformation extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field

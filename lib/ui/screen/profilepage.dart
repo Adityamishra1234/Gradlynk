@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,15 +9,8 @@ import 'package:studentpanel/ui/screen/passport.dart';
 import 'package:studentpanel/ui/screen/personalinformation.dart';
 import 'package:studentpanel/ui/screen/testdetail.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
-import 'package:studentpanel/widgets/customautosizetext.dart';
-import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownbutton.dart';
-import 'package:studentpanel/widgets/customtab.dart';
-import 'package:studentpanel/widgets/customtextfield.dart';
-import 'package:container_tab_indicator/container_tab_indicator.dart' as tabbar;
 
 enum BestTutorSite { Tentative, Definite }
 
@@ -59,10 +51,10 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Container(
         color: Colors.white,
         height: MediaQuery.of(context).size.height * 0.85,
-        child: Column(
+        child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 color: Colors.white,
                 height: 40,
@@ -205,7 +197,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   } else if (controller.chooseIndex!.value == 1) {
                     return MandatoryInformation();
                   } else if (controller.chooseIndex!.value == 2) {
-                    return TestDetail();
+                    return const TestDetail();
                   } else if (controller.chooseIndex!.value == 3) {
                     return const CourseChoose();
                   } else {

@@ -139,11 +139,11 @@ class AddtionalDetail {
       );
 
   Map<String?, dynamic> toJson() => {
-        "branch_type": branchType ?? null,
-        "branch_name": branchName ?? null,
-        "service_name": serviceName ?? null,
-        "sub_service": subService ?? null,
-        "country_name": countryName ?? null,
+        "branch_type": branchType,
+        "branch_name": branchName,
+        "service_name": serviceName,
+        "sub_service": subService,
+        "country_name": countryName,
       };
 }
 
@@ -182,21 +182,21 @@ class PassportDetail {
   String? expiryDate;
 
   factory PassportDetail.fromJson(Map<String?, dynamic> json) => PassportDetail(
-        citizenOf: json["citizen_of"] ?? null,
-        countryOfIssue: json["country_of_issue"] ?? null,
-        passportNumber: json["passport_number"] ?? null,
-        placeOfIssue: json["place_of_issue"] ?? null,
-        dateOfIssue: json["date_of_issue"] ?? null,
-        expiryDate: json["expiry_date"] ?? null,
+        citizenOf: json["citizen_of"],
+        countryOfIssue: json["country_of_issue"],
+        passportNumber: json["passport_number"],
+        placeOfIssue: json["place_of_issue"],
+        dateOfIssue: json["date_of_issue"],
+        expiryDate: json["expiry_date"],
       );
 
   Map<String?, dynamic> toJson() => {
-        "citizen_of": citizenOf ?? null,
-        "country_of_issue": countryOfIssue ?? null,
-        "passport_number": passportNumber ?? null,
-        "place_of_issue": placeOfIssue ?? null,
-        "date_of_issue": dateOfIssue ?? null,
-        "expiry_date": expiryDate ?? null,
+        "citizen_of": citizenOf,
+        "country_of_issue": countryOfIssue,
+        "passport_number": passportNumber,
+        "place_of_issue": placeOfIssue,
+        "date_of_issue": dateOfIssue,
+        "expiry_date": expiryDate,
       };
 }
 

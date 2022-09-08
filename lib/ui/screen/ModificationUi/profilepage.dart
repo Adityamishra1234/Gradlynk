@@ -29,7 +29,7 @@ class ProfilePageCopy extends StatelessWidget {
                       child: Container(
                         width: 80,
                         height: 80,
-                        decoration: new BoxDecoration(
+                        decoration: BoxDecoration(
                           color: ThemeConstants.IconColor,
                           shape: BoxShape.circle,
                         ),
@@ -72,9 +72,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -85,7 +85,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -108,9 +108,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -121,7 +121,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -144,9 +144,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -157,7 +157,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -180,9 +180,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -193,7 +193,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -216,9 +216,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -229,7 +229,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -252,9 +252,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -265,7 +265,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -288,9 +288,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -301,7 +301,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -324,9 +324,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -337,7 +337,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -360,9 +360,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -373,7 +373,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
@@ -396,9 +396,9 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        print("click");
+                        debugPrint("click");
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 40,
                         child: Row(
                           children: [
@@ -416,7 +416,7 @@ class ProfilePageCopy extends StatelessWidget {
                                 height: 20,
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),

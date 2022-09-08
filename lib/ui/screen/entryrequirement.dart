@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';

@@ -275,7 +275,7 @@ class _DashBoardState extends State<DashBoard> {
                                   width: 50,
                                   child: SvgPicture.asset(
                                     "assets/icons/calender.svg",
-                                    color: Color(0xFF6F61FF),
+                                    color: const Color(0xFF6F61FF),
                                     height: 50,
                                     width: 40,
                                   ),
@@ -291,7 +291,7 @@ class _DashBoardState extends State<DashBoard> {
                                       BulletedList(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        bullet: MyBullet(),
+                                        bullet: const MyBullet(),
                                         listItems: [
                                           CustomAutoSizeText(
                                               text:
@@ -355,6 +355,8 @@ class _DashBoardState extends State<DashBoard> {
 }
 
 class MyBullet extends StatelessWidget {
+  const MyBullet({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

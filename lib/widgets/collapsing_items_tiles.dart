@@ -9,11 +9,13 @@ class CollapsingItemTiles extends StatefulWidget {
   final VoidCallback? onTap;
 
   CollapsingItemTiles(
-      {this.onTap,
+      {Key? key,
+      this.onTap,
       this.animationController,
       required this.title,
       required this.icon,
-      this.isSelected = false});
+      this.isSelected = false})
+      : super(key: key);
 
   @override
   _CollapsingItemTilesState createState() => _CollapsingItemTilesState();

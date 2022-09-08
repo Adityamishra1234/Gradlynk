@@ -1,7 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/binding/coursesearch.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
@@ -55,7 +56,7 @@ class _CourseSearchState extends State<CourseSearch> {
                           true)
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             RaisedButton(
                               elevation: 0,
                               onPressed: () {},
@@ -80,7 +81,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                 ],
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             RaisedButton(
                               elevation: 0,
                               onPressed: () {},
@@ -105,23 +106,23 @@ class _CourseSearchState extends State<CourseSearch> {
                                 ],
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             RaisedButton(
                               elevation: 0,
                               onPressed: () {
                                 if (controller1.compareApply.value == false) {
                                   controller1.setCompare(true.obs);
                                   Navigator.push(context,
-                                      new MaterialPageRoute<void>(
+                                      MaterialPageRoute<void>(
                                           builder: (context) {
-                                    return new CourseSearch();
+                                    return CourseSearch();
                                   }));
                                 } else {
                                   controller1.setCompare(false.obs);
                                   Navigator.push(context,
-                                      new MaterialPageRoute<void>(
+                                      MaterialPageRoute<void>(
                                           builder: (context) {
-                                    return new CourseSearch();
+                                    return CourseSearch();
                                   }));
                                 }
                               },
@@ -146,7 +147,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                 ],
                               ),
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
                       if (Get.find<CourseSearchController>()
@@ -186,7 +187,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                         index)
                                       Row(
                                         children: [
-                                          Spacer(),
+                                          const Spacer(),
                                           if (controller1.courseSearchPages
                                                   .currentPage !=
                                               1)
@@ -224,24 +225,24 @@ class _CourseSearchState extends State<CourseSearch> {
                                                               .toString());
                                                       if (temp == true) {
                                                         Navigator.push(context,
-                                                            new MaterialPageRoute<
+                                                            MaterialPageRoute<
                                                                     void>(
                                                                 builder:
                                                                     (context) {
-                                                          return new CourseSearch();
+                                                          return CourseSearch();
                                                         }));
                                                       }
                                                     },
                                                     child: Row(
                                                       children: [
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         SvgPicture.asset(
                                                           "assets/icons/previous-icon.svg",
                                                           height: 15,
                                                           color: ThemeConstants
                                                               .bluegreycolor,
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           width: 5,
                                                         ),
                                                         CustomAutoSizeTextMontserrat(
@@ -250,7 +251,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                                               ThemeConstants
                                                                   .bluegreycolor,
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                       ],
                                                     )),
                                               ),
@@ -290,11 +291,11 @@ class _CourseSearchState extends State<CourseSearch> {
                                                               .toString());
                                                       if (temp == true) {
                                                         Navigator.push(context,
-                                                            new MaterialPageRoute<
+                                                            MaterialPageRoute<
                                                                     void>(
                                                                 builder:
                                                                     (context) {
-                                                          return new CourseSearch();
+                                                          return CourseSearch();
                                                         }));
                                                       }
                                                       // // Api call
@@ -306,14 +307,14 @@ class _CourseSearchState extends State<CourseSearch> {
                                                     },
                                                     child: Row(
                                                       children: [
-                                                        Spacer(),
+                                                        const Spacer(),
                                                         CustomAutoSizeTextMontserrat(
                                                           text: "Next",
                                                           textColor:
                                                               ThemeConstants
                                                                   .whitecolor,
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           width: 5,
                                                         ),
                                                         SvgPicture.asset(
@@ -322,12 +323,12 @@ class _CourseSearchState extends State<CourseSearch> {
                                                           color: ThemeConstants
                                                               .whitecolor,
                                                         ),
-                                                        Spacer(),
+                                                        const Spacer(),
                                                       ],
                                                     )),
                                               ),
                                             ),
-                                          Spacer(),
+                                          const Spacer(),
                                         ],
                                       )
                                   ],
@@ -353,20 +354,21 @@ class _CourseSearchState extends State<CourseSearch> {
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 color: ThemeConstants.bluecolor,
-                                borderRadius: BorderRadiusDirectional.only(
+                                borderRadius:
+                                    const BorderRadiusDirectional.only(
                                   topStart: Radius.circular(20.0),
                                   topEnd: Radius.circular(20.0),
                                 )),
                             child: Center(
                               child: Row(
                                 children: [
-                                  Spacer(),
+                                  const Spacer(),
                                   SvgPicture.asset(
                                     "assets/icons/compare.svg",
                                     height: 30,
                                     color: ThemeConstants.whitecolor,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   CustomAutoSizeTextMontserrat(
@@ -374,7 +376,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                     fontSize: 20,
                                     textColor: ThemeConstants.whitecolor,
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                 ],
                               ),
                             ),

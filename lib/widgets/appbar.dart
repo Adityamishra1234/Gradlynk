@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 

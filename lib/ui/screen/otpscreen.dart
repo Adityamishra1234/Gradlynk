@@ -94,7 +94,7 @@ class OTPScreen extends StatelessWidget {
                               textFieldAlignment: MainAxisAlignment.spaceAround,
                               fieldStyle: FieldStyle.underline,
                               onCompleted: (pin) {
-                                print("Completed: " + pin);
+                                debugPrint("Completed: $pin");
                               },
                             ),
                           ),

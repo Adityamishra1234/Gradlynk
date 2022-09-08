@@ -1,4 +1,3 @@
-import 'package:studentpanel/utils/endpoint.dart';
 import 'package:flutter/material.dart';
 
 class Logout extends StatelessWidget {

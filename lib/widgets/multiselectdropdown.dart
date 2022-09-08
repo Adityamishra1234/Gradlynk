@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:multi_select_flutter/util/multi_select_item.dart';
-import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class MultiSelectDropDown extends StatefulWidget {
   Function callbackFunction;
