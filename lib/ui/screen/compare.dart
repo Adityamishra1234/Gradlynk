@@ -495,7 +495,7 @@ class Comparing extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 5, right: 5),
-                        child: Container(
+                        child: SizedBox(
                           height: 60,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Intake Month and Year-",

@@ -13,9 +13,9 @@ class NewsAndUpdate {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['title'] = this.title;
-    data['created_at'] = this.createdAt;
+    data['id'] = id;
+    data['title'] = title;
+    data['created_at'] = createdAt;
     return data;
   }
 }

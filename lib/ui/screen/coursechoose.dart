@@ -26,7 +26,7 @@ class CourseChoose extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -63,7 +63,7 @@ class CourseChoose extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field
@@ -100,7 +100,7 @@ class CourseChoose extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(
                         width: 150,
                         // custom Text field

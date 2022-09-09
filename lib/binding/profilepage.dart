@@ -1,4 +1,3 @@
-import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 

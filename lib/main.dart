@@ -8,6 +8,7 @@ import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
@@ -166,12 +167,17 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: TestAutoScrollListView.routeNamed,
           transition: Transition.fade,
-          page: () => TestAutoScrollListView(),
+          page: () => const TestAutoScrollListView(),
         ),
         GetPage(
           name: TrackApplication.routeNamed,
           transition: Transition.fade,
           page: () => const TrackApplication(),
+        ),
+        GetPage(
+          name: TrackApplicationCopy.routeNamed,
+          transition: Transition.fade,
+          page: () => const TrackApplicationCopy(),
         ),
         GetPage(
           name: LunchingPage.routeNamed,

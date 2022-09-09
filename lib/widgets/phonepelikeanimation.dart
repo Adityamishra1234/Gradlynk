@@ -18,9 +18,9 @@ class _AnimationaPhonepeState extends State<AnimationaPhonepe>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Test"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("Test"),
+      // ),
       body: NotificationListener<UserScrollNotification>(
         onNotification: (notification) {
           setState(() {
@@ -43,9 +43,7 @@ class _AnimationaPhonepeState extends State<AnimationaPhonepe>
                 itemCount: 200,
                 //   controller: _scrollController,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text('Item $index'),
-                  );
+                  return ListTile();
                 },
               ),
             ),

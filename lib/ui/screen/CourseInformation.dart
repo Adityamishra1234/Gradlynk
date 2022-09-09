@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -15,7 +13,7 @@ class CourseInformation extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: ListView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 5),
@@ -148,8 +146,7 @@ class CourseInformation extends StatelessWidget {
                   ),
                   CustomAutoSizeTextMontserrat(
                     text: completeCourseDetail[0].averageSalary ??
-                        "" +
-                            "(${completeCourseDetail[0].averageSalaryInr ?? ""}INR)",
+                        "" "(${completeCourseDetail[0].averageSalaryInr ?? ""}INR)",
                     maxLines: 3,
                   ),
                 ]),

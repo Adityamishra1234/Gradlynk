@@ -15,13 +15,14 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
-class CourseSearchFullDetail extends StatelessWidget {
+class CourseSearchFullDetailCopy extends StatelessWidget {
   List<CompleteCourseDetail>? completeCourseDetail;
-  CourseSearchFullDetail({Key? key, this.completeCourseDetail})
+  CourseSearchFullDetailCopy({Key? key, this.completeCourseDetail})
       : super(key: key);
 
-  static const routeNamed = '/CourseSearchFullDetail';
+  static const routeNamed = '/CourseSearchFullDetailCopy';
   var controller = Get.put(CompleteCourseDetailController());
 
   @override
@@ -318,217 +319,233 @@ class CourseSearchFullDetail extends StatelessWidget {
                 ),
               ];
             },
-            body: GetBuilder<CompleteCourseDetailController>(
-                builder: (_) => Column(
+            body: ListView(
+              children: [
+                InkWell(
+                  highlightColor: ThemeConstants.whitecolor,
+                  onTap: () {
+                    debugPrint("click");
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
                       children: [
-                        SafeArea(
-                          minimum: const EdgeInsets.only(top: 35, bottom: 0),
-                          maintainBottomViewPadding: true,
-                          child: SizedBox(
-                            height: 40,
-                            child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 40,
-                                      width: 170,
-                                      decoration: BoxDecoration(
-                                        color: _.index.value == 0
-                                            ? ThemeConstants.bluecolor
-                                            : ThemeConstants.whitecolor,
-                                        border: Border.all(
-                                            color: _.index.value == 0
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.TextColor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          controller.setIndex(0);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "About Institute",
-                                          maxLines: 1,
-                                          textColor: _.index.value == 0
-                                              ? ThemeConstants.whitecolor
-                                              : ThemeConstants.TextColor,
-                                        ),
-                                      )),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 40,
-                                      width: 170,
-                                      decoration: BoxDecoration(
-                                        color: _.index.value == 1
-                                            ? ThemeConstants.bluecolor
-                                            : ThemeConstants.whitecolor,
-                                        border: Border.all(
-                                            color: _.index.value == 1
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.TextColor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          controller.setIndex(1);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Course Information",
-                                          maxLines: 1,
-                                          textColor: _.index.value == 1
-                                              ? ThemeConstants.whitecolor
-                                              : ThemeConstants.TextColor,
-                                        ),
-                                      )),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 40,
-                                      width: 170,
-                                      decoration: BoxDecoration(
-                                        color: _.index.value == 2
-                                            ? ThemeConstants.bluecolor
-                                            : ThemeConstants.whitecolor,
-                                        border: Border.all(
-                                            color: _.index.value == 2
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.TextColor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          controller.setIndex(2);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Entry Requirement",
-                                          maxLines: 1,
-                                          textColor: _.index.value == 2
-                                              ? ThemeConstants.whitecolor
-                                              : ThemeConstants.TextColor,
-                                        ),
-                                      )),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 40,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                        color: _.index.value == 3
-                                            ? ThemeConstants.bluecolor
-                                            : ThemeConstants.whitecolor,
-                                        border: Border.all(
-                                            color: _.index.value == 3
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.TextColor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          controller.setIndex(3);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Steps To Admissions",
-                                          maxLines: 1,
-                                          textColor: _.index.value == 3
-                                              ? ThemeConstants.whitecolor
-                                              : ThemeConstants.TextColor,
-                                        ),
-                                      )),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 40,
-                                      width: 120,
-                                      decoration: BoxDecoration(
-                                        color: _.index.value == 4
-                                            ? ThemeConstants.bluecolor
-                                            : ThemeConstants.whitecolor,
-                                        border: Border.all(
-                                            color: _.index.value == 4
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.TextColor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          controller.setIndex(4);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Steps To Visa",
-                                          maxLines: 1,
-                                          textColor: _.index.value == 4
-                                              ? ThemeConstants.whitecolor
-                                              : ThemeConstants.TextColor,
-                                        ),
-                                      )),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                      height: 40,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        color: _.index.value == 5
-                                            ? ThemeConstants.bluecolor
-                                            : ThemeConstants.whitecolor,
-                                        border: Border.all(
-                                            color: _.index.value == 5
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.TextColor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () {
-                                          controller.setIndex(5);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "About USA",
-                                          maxLines: 1,
-                                          textColor: _.index.value == 5
-                                              ? ThemeConstants.whitecolor
-                                              : ThemeConstants.TextColor,
-                                        ),
-                                      )),
-                                  const SizedBox(
-                                    width: 40,
-                                  )
-                                ]),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "About Institute",
+                            fontWeight: FontWeight.bold,
+                            textColor: ThemeConstants.bluecolor,
                           ),
                         ),
-                        if (_.index.value == 0)
-                          AboutInstitute(
-                              completeCourseDetail: completeCourseDetail!),
-                        if (_.index.value == 1)
-                          CourseInformation(
-                              completeCourseDetail: completeCourseDetail!),
-                        if (_.index.value == 2)
-                          EntryRequirement(
-                              completeCourseDetail: completeCourseDetail!),
-                        if (_.index.value == 3)
-                          StepsToAdmissions(
-                              completeCourseDetail: completeCourseDetail!),
-                        if (_.index.value == 4)
-                          StepsToVisa(
-                              completeCourseDetail: completeCourseDetail!),
-                        if (_.index.value == 5)
-                          AboutCourse(
-                              completeCourseDetail: completeCourseDetail!)
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, top: 10),
+                          child: SvgPicture.asset(
+                            "assets/icons/nextscreen_arrow.svg",
+                            color: ThemeConstants.bluecolor,
+                            height: 20,
+                          ),
+                        ),
                       ],
-                    )),
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
+                  ),
+                ),
+                InkWell(
+                  highlightColor: ThemeConstants.whitecolor,
+                  onTap: () {
+                    debugPrint("click");
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Course Information",
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, top: 10),
+                          child: SvgPicture.asset(
+                            "assets/icons/nextscreen_arrow.svg",
+                            color: ThemeConstants.bluecolor,
+                            height: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
+                  ),
+                ),
+                InkWell(
+                  highlightColor: ThemeConstants.whitecolor,
+                  onTap: () {
+                    debugPrint("click");
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Entry Requirement",
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, top: 10),
+                          child: SvgPicture.asset(
+                            "assets/icons/nextscreen_arrow.svg",
+                            color: ThemeConstants.bluecolor,
+                            height: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
+                  ),
+                ),
+                InkWell(
+                  highlightColor: ThemeConstants.whitecolor,
+                  onTap: () {
+                    debugPrint("click");
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Steps To Admission",
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, top: 10),
+                          child: SvgPicture.asset(
+                            "assets/icons/nextscreen_arrow.svg",
+                            color: ThemeConstants.bluecolor,
+                            height: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
+                  ),
+                ),
+                InkWell(
+                  highlightColor: ThemeConstants.whitecolor,
+                  onTap: () {
+                    debugPrint("click");
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Steps To Visa",
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, top: 10),
+                          child: SvgPicture.asset(
+                            "assets/icons/nextscreen_arrow.svg",
+                            color: ThemeConstants.bluecolor,
+                            height: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
+                  ),
+                ),
+                InkWell(
+                  highlightColor: ThemeConstants.whitecolor,
+                  hoverColor: ThemeConstants.whitecolor,
+                  onTap: () {
+                    debugPrint("click");
+                  },
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20, top: 10),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "About USA",
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 30, top: 10),
+                          child: SvgPicture.asset(
+                            "assets/icons/nextscreen_arrow.svg",
+                            color: ThemeConstants.bluecolor,
+                            height: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+                  child: Divider(
+                    height: 5,
+                    thickness: 1,
+                  ),
+                ),
+              ],
+            ),
           ),
         )
       ],

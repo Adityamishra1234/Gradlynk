@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
@@ -209,7 +210,7 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
-                          Get.toNamed(TrackApplication.routeNamed);
+                          Get.toNamed(TrackApplicationCopy.routeNamed);
                         },
                         child: Column(
                           children: [

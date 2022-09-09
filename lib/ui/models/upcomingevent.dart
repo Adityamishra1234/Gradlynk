@@ -10,9 +10,9 @@ class UpcomingEvent {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['campaign_name'] = this.campaignName;
-    data['campaign_date'] = this.campaignDate;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['campaign_name'] = campaignName;
+    data['campaign_date'] = campaignDate;
     return data;
   }
 }
