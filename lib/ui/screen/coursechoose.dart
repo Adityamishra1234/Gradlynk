@@ -32,10 +32,14 @@ class CourseChoose extends StatelessWidget {
                         // custom Text field
                         child: CustomAutoSizeTextMontserrat(
                           text: Get.find<DashboardController>()
+                                      .studentPanel
+                                      .courseChoice !=
+                                  null
+                              ? Get.find<DashboardController>()
                                   .studentPanel
                                   .courseChoice![0]
-                                  .courseLevel ??
-                              "",
+                                  .courseLevel
+                              : "",
                           maxLines: 2,
                           fontWeight: FontWeight.w600,
                         ),
@@ -69,10 +73,14 @@ class CourseChoose extends StatelessWidget {
                         // custom Text field
                         child: CustomAutoSizeTextMontserrat(
                           text: Get.find<DashboardController>()
+                                      .studentPanel
+                                      .courseChoice !=
+                                  null
+                              ? Get.find<DashboardController>()
                                   .studentPanel
                                   .courseChoice![0]
-                                  .broadFieldName ??
-                              "",
+                                  .broadFieldName
+                              : "",
                           maxLines: 2,
                           fontWeight: FontWeight.w600,
                         ),
@@ -106,10 +114,14 @@ class CourseChoose extends StatelessWidget {
                         // custom Text field
                         child: CustomAutoSizeTextMontserrat(
                           text: Get.find<DashboardController>()
+                                      .studentPanel
+                                      .courseChoice !=
+                                  null
+                              ? Get.find<DashboardController>()
                                   .studentPanel
                                   .courseChoice![0]
-                                  .narrowFieldName ??
-                              "",
+                                  .narrowFieldName
+                              : "",
                           maxLines: 2,
                           fontWeight: FontWeight.w600,
                         ),
