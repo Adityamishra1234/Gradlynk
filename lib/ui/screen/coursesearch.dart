@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/completecoursedetailcopy.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -31,11 +32,6 @@ class _CourseSearchState extends State<CourseSearch> {
   GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
   bool size = false;
   bool isApplyCompare = false;
-  @override
-  void didUpdateWidget(covariant CourseSearch oldWidget) {
-    setCompare;
-    super.didUpdateWidget(oldWidget);
-  }
 
   @override
   Widget build(BuildContext context) {
