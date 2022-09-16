@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -46,7 +47,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   @override
   void initState() {
     courseSearchModel = widget.courseSearchModel;
-    isCompare = widget.iscompare;
+
     index = widget.index;
 
     controller =
@@ -325,28 +326,34 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           TableCell(
                             child: Container(
                               constraints: const BoxConstraints(
-                                minHeight: 60, //minimum height
+                                minHeight: 70, //minimum height
                               ),
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightVioletColor,
                                   border: Border.all(
+                                      width: 0.5,
                                       color: ThemeConstants.VioletColor),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
+                                      Radius.circular(10))),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
-                                    text: "Total Tuition Fees:",
+                                    text: "Total Tuition Fees -",
                                     textColor: ThemeConstants.VioletColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  const SizedBox(
+                                    height: 3,
+                                  ),
                                   CustomAutoSizeTextMontserrat(
                                     text:
                                         "${courseSearchModel.totalFees}${courseSearchModel.currencyCode} (${courseSearchModel.totalFeesInr}INR)",
-                                    textColor: Colors.grey,
+                                    textColor:
+                                        ThemeConstants.bluelightgreycolor,
                                     fontSize: 12,
+                                    fontWeight: FontWeight.w600,
                                   )
                                 ],
                               ),
@@ -358,28 +365,37 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   const EdgeInsets.only(left: 10, right: 5),
                               child: Container(
                                 constraints: const BoxConstraints(
-                                  minHeight: 60, //minimum height
+                                  minHeight: 70, //minimum height
                                 ),
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightYellow,
                                     border: Border.all(
+                                        width: 0.5,
                                         color: ThemeConstants.yellow),
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(20))),
-                                child: Column(
-                                  children: [
-                                    CustomAutoSizeTextMontserrat(
-                                      text: "Conditional Offer:",
-                                      textColor: ThemeConstants.yellow,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                    CustomAutoSizeTextMontserrat(
-                                      text: courseSearchModel.conditionalOffer,
-                                      textColor: Colors.grey,
-                                      fontSize: 12,
-                                    ),
-                                  ],
+                                        Radius.circular(10))),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      CustomAutoSizeTextMontserrat(
+                                        text: "Conditional Offer -",
+                                        textColor: ThemeConstants.yellow,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                      const SizedBox(
+                                        height: 3,
+                                      ),
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            courseSearchModel.conditionalOffer,
+                                        textColor:
+                                            ThemeConstants.bluelightgreycolor,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -391,28 +407,35 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           TableCell(
                             child: Container(
                               constraints: const BoxConstraints(
-                                minHeight: 60, //minimum height
+                                minHeight: 70, //minimum height
                               ),
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightgreentColor,
                                   border: Border.all(
+                                      width: 0.5,
                                       color: ThemeConstants.GreenColor),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
+                                      Radius.circular(10))),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
-                                    text: "English test Requirement:",
+                                    text: "English test Req. -",
                                     textColor: ThemeConstants.GreenColor,
                                     fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  const SizedBox(
+                                    height: 3,
                                   ),
                                   CustomAutoSizeTextMontserrat(
                                     text: courseSearchModel.englishProficiency
                                         .toString()
                                         .split("|")[0],
-                                    textColor: Colors.grey,
+                                    textColor:
+                                        ThemeConstants.bluelightgreycolor,
                                     fontSize: 12,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ],
                               ),
@@ -424,27 +447,33 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   const EdgeInsets.only(left: 10, right: 5),
                               child: Container(
                                 constraints: const BoxConstraints(
-                                  minHeight: 60, //minimum height
+                                  minHeight: 70, //minimum height
                                 ),
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightSkyblue,
                                     border: Border.all(
+                                        width: 0.5,
                                         color: ThemeConstants.skycolor),
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(20))),
+                                        Radius.circular(10))),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomAutoSizeTextMontserrat(
-                                      text: "Scholarship:",
+                                      text: "Scholarship -",
                                       textColor: ThemeConstants.skycolor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
                                     ),
+                                    const SizedBox(
+                                      height: 3,
+                                    ),
                                     CustomAutoSizeTextMontserrat(
                                       text: courseSearchModel.scholarship ?? "",
-                                      textColor: Colors.grey,
+                                      textColor:
+                                          ThemeConstants.bluelightgreycolor,
                                       fontSize: 12,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ],
                                 ),
@@ -477,28 +506,34 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           TableCell(
                             child: Container(
                               constraints: const BoxConstraints(
-                                minHeight: 60, //minimum height
+                                minHeight: 70, //minimum height
                               ),
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightbrow,
                                   border: Border.all(
+                                      width: 0.5,
                                       color: ThemeConstants.browcolor),
                                   borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
+                                      Radius.circular(10))),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
-                                    text: "Academic Requirement:",
+                                    text: "Academic Req.  -",
                                     textColor: ThemeConstants.browcolor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
                                   ),
+                                  const SizedBox(
+                                    height: 3,
+                                  ),
                                   CustomAutoSizeTextMontserrat(
                                     text:
                                         courseSearchModel.academicRequire ?? "",
-                                    textColor: Colors.grey,
+                                    textColor:
+                                        ThemeConstants.bluelightgreycolor,
                                     fontSize: 12,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ],
                               ),
@@ -510,27 +545,32 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   const EdgeInsets.only(left: 10, right: 5),
                               child: Container(
                                 constraints: const BoxConstraints(
-                                  minHeight: 60, //minimum height
+                                  minHeight: 70, //minimum height
                                 ),
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightRed,
-                                    border:
-                                        Border.all(color: ThemeConstants.red),
+                                    border: Border.all(
+                                        width: 0.5, color: ThemeConstants.red),
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(20))),
+                                        Radius.circular(10))),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomAutoSizeTextMontserrat(
-                                      text: "Offer TAT:",
+                                      text: "Offer TAT -",
                                       textColor: ThemeConstants.red,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
+                                    const SizedBox(
+                                      height: 3,
+                                    ),
                                     CustomAutoSizeTextMontserrat(
                                       text: courseSearchModel.offerTat ?? "",
-                                      textColor: Colors.grey,
+                                      textColor:
+                                          ThemeConstants.bluelightgreycolor,
                                       fontSize: 12,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ],
                                 ),
@@ -603,6 +643,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           ],
                         ),
                       ),
+
                     if (courseSearchModel.nearByIntake != null)
                       MediaQuery.removePadding(
                           context: context,
@@ -721,7 +762,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
-            if (isCompare == true) AddedButtonShow(),
+            if (widget.iscompare == true) AddedButtonShow(),
             // if ((addCompare == false || addCompare == null) &&
             //     isCompare == true &&
             //     )
@@ -811,11 +852,13 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               .courseSearchModelCompare2
                               .id !=
                           null) {
-                    Get.bottomSheet(SizedBox(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width,
-                      child: const Text("data"),
-                    ));
+                    showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                              contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              content: BottomSheetRemoveCourse(),
+                              insetPadding: EdgeInsets.only(left: 5, right: 5),
+                            ));
                   } else {
                     setState(() {
                       addCompare = true;

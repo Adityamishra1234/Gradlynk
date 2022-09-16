@@ -7,13 +7,16 @@ import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/lunchingpage.dart';
+import 'package:studentpanel/ui/screen/mydocument.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -96,6 +99,16 @@ class _MyAppState extends State<MyApp> {
             transition: Transition.fade,
             binding: LoginBinding()),
         GetPage(
+          name: MyDocument.routeNamed,
+          page: () => const MyDocument(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: CourseShortList.routeNamed,
+          page: () => const CourseShortList(),
+          transition: Transition.fade,
+        ),
+        GetPage(
           name: DashBoard.routeNamed,
           transition: Transition.fade,
           binding: DashBoardBinding(),
@@ -146,9 +159,9 @@ class _MyAppState extends State<MyApp> {
           page: () => CourseSearch(),
         ),
         GetPage(
-          name: Test.routeNamed,
+          name: BottomSheetRemoveCourse.routeNamed,
           transition: Transition.fade,
-          page: () => const Test(),
+          page: () => const BottomSheetRemoveCourse(),
         ),
         GetPage(
           name: Test1.routeNamed,
@@ -183,6 +196,11 @@ class _MyAppState extends State<MyApp> {
           name: LunchingPage.routeNamed,
           transition: Transition.cupertino,
           page: () => LunchingPage(),
+        ),
+        GetPage(
+          name: ContactInformationCopy.routeNamed,
+          transition: Transition.cupertino,
+          page: () => ContactInformationCopy(),
         ),
       ],
     );

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customexpansionplanelist.dart';
 
@@ -14,68 +17,270 @@ class AboutCourse extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 10, left: 10),
+          padding: const EdgeInsets.only(top: 10, right: 10),
           child: Table(
             children: [
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Country ",
-                  fontWeight: FontWeight.bold,
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightgreentColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.GreenColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].universityName != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Country",
+                            maxLines: 2,
+                            textColor: ThemeConstants.GreenColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "completeCourseDetail[0].",
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 5,
+                        ),
+                      ),
+                    ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
                 ),
-                CustomAutoSizeTextMontserrat(
-                  text: "Currency Code",
-                  fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 10,
                 ),
               ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "completeCourseDetail[0].countryCapital",
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.bluecolor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Currency Code",
+                            maxLines: 2,
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: completeCourseDetail[0].countryCurrencyCode,
+                            textColor: ThemeConstants.TextColor,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
                 ),
-                CustomAutoSizeTextMontserrat(
-                  text: completeCourseDetail[0].countryCurrencyCode,
+                SizedBox(
+                  height: 10,
                 ),
               ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightorangeColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.orangeColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Capital City",
+                            maxLines: 2,
+                            textColor: ThemeConstants.orangeColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: completeCourseDetail[0].countryCapital,
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightVioletColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.VioletColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "INR value",
+                            maxLines: 2,
+                            textColor: ThemeConstants.VioletColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                          child: HtmlWidget(
+                        completeCourseDetail[0].countryInrValue != null
+                            ? double.parse(
+                                    completeCourseDetail[0].countryInrValue!)
+                                .toStringAsFixed(2)
+                            : "",
+                        textStyle: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w500,
+                          color: ThemeConstants.TextColor,
+                          fontSize: 16.0,
+                        ),
+                      )),
+                    ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.Lightcian,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.cianColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Language",
+                            maxLines: 2,
+                            textColor: ThemeConstants.cianColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                          child: HtmlWidget(
+                        completeCourseDetail[0].countryLanguage!,
+                        textStyle: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w500,
+                          color: ThemeConstants.TextColor,
+                          fontSize: 16.0,
+                        ),
+                      )),
+                    ),
+                  ]),
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5, left: 10),
-          child: Table(
-            children: [
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Capital City",
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "INR value",
-                  fontWeight: FontWeight.bold,
-                ),
-              ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: completeCourseDetail[0].countryCapital,
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: completeCourseDetail[0].annualTutionFeesInr.toString(),
-                ),
-              ]),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5, left: 10),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Language",
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: CustomAutoSizeTextMontserrat(
-            text: completeCourseDetail[0].countryLanguage,
-          ),
-        ),
+
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 10, left: 10),
+        //   child: Table(
+        //     children: [
+
+        //       TableRow(children: [
+        //         CustomAutoSizeTextMontserrat(
+        //           text: "Country ",
+        //           fontWeight: FontWeight.bold,
+        //         ),
+        //         CustomAutoSizeTextMontserrat(
+        //           text: "Currency Code",
+        //           fontWeight: FontWeight.bold,
+        //         ),
+        //       ]),
+        //       TableRow(children: [
+        //         CustomAutoSizeTextMontserrat(
+        //           text: "completeCourseDetail[0].countryCapital",
+        //         ),
+        //         CustomAutoSizeTextMontserrat(
+        //           text: completeCourseDetail[0].countryCurrencyCode,
+        //         ),
+        //       ]),
+        //     ],
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 5, left: 10),
+        //   child: Table(
+        //     children: [
+        //       TableRow(children: [
+        //         CustomAutoSizeTextMontserrat(
+        //           text: "Capital City",
+        //           fontWeight: FontWeight.bold,
+        //         ),
+        //         CustomAutoSizeTextMontserrat(
+        //           text: "INR value",
+        //           fontWeight: FontWeight.bold,
+        //         ),
+        //       ]),
+        //       TableRow(children: [
+        //         CustomAutoSizeTextMontserrat(
+        //           text: completeCourseDetail[0].countryCapital,
+        //         ),
+        //         CustomAutoSizeTextMontserrat(
+        //           text: completeCourseDetail[0].annualTutionFeesInr.toString(),
+        //         ),
+        //       ]),
+        //     ],
+        //   ),
+        // ),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 5, left: 10),
+        //   child: CustomAutoSizeTextMontserrat(
+        //     text: "Language",
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
+
+        //
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 10),
+        //   child: CustomAutoSizeTextMontserrat(
+        //     text: completeCourseDetail[0].countryLanguage,
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: CustomExpansionPlanList(

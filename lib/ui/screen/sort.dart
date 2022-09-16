@@ -5,163 +5,142 @@ import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-enum BestTutorSite { Ascending, Deascending }
-
-class Test extends StatefulWidget {
-  const Test({Key? key}) : super(key: key);
+class BottomSheetRemoveCourse extends StatefulWidget {
+  const BottomSheetRemoveCourse({Key? key}) : super(key: key);
   static const routeNamed = '/Test';
 
   @override
-  State<Test> createState() => _TestState();
+  State<BottomSheetRemoveCourse> createState() =>
+      _BottomSheetRemoveCourseState();
 }
 
-class _TestState extends State<Test> {
-  late BestTutorSite _site = BestTutorSite.Ascending;
+class _BottomSheetRemoveCourseState extends State<BottomSheetRemoveCourse> {
+  bool _value = false;
+  bool _valu = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-            onPressed: () {
-              Get.bottomSheet(Container(
-                width: MediaQuery.of(context).size.width,
-                height: 250,
-                color: ThemeConstants.whitecolor,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, right: 5, left: 5),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.lightblueColor,
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10)),
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      child: Container(
+        color: ThemeConstants.whitecolor,
+        width: MediaQuery.of(context).size.width,
+        height: 380,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: CustomAutoSizeTextMontserrat(
+                text: "You can compare up to 2 courses at time",
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            CheckboxListTile(
+              controlAffinity: ListTileControlAffinity.leading,
+              title: CustomAutoSizeTextMontserrat(
+                text: "Bachelor of Business-Economics and Finance",
+                textColor: ThemeConstants.bluecolor,
+                fontWeight: FontWeight.bold,
+              ),
+              subtitle: CustomAutoSizeTextMontserrat(
+                text:
+                    "Australia, Victoria,Melbourne | RMIt University |Melbourne City Campus",
+                textColor: ThemeConstants.TextColor,
+              ),
+              autofocus: false,
+              activeColor: ThemeConstants.bluecolor,
+              checkColor: Colors.white,
+              selected: _value,
+              dense: true,
+              value: _value,
+              onChanged: (bool? value) {
+                setState(() {
+                  _value = value!;
+                });
+              },
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+              child: Divider(
+                height: 5,
+                thickness: 1,
+              ),
+            ),
+            CheckboxListTile(
+              controlAffinity: ListTileControlAffinity.leading,
+              title: CustomAutoSizeTextMontserrat(
+                text: "Bachelor of Business-Economics and Finance",
+                textColor: ThemeConstants.bluecolor,
+                fontWeight: FontWeight.bold,
+              ),
+              subtitle: CustomAutoSizeTextMontserrat(
+                text:
+                    "Australia, Victoria,Melbourne | RMIt University |Melbourne City Campus",
+                textColor: ThemeConstants.TextColor,
+              ),
+              autofocus: false,
+              activeColor: ThemeConstants.bluecolor,
+              checkColor: Colors.white,
+              selected: _value,
+              dense: true,
+              value: _value,
+              onChanged: (bool? value) {
+                setState(() {
+                  _value = value!;
+                });
+              },
+            ),
+            Row(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 20, top: 20, bottom: 20),
+                  child: SizedBox(
+                    width: 150,
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          side: BorderSide(color: ThemeConstants.bluegreycolor),
+                          primary: ThemeConstants.whitecolor, // background
+                          onPrimary: ThemeConstants.whitecolor, // foreground
                         ),
-                        height: 40,
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            CustomAutoSizeTextMontserrat(
-                              text: "Sort By",
-                              textColor: ThemeConstants.bluecolor,
-                              fontSize: 20,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            SvgPicture.asset(
-                              "assets/icons/sort.svg",
-                              height: 20,
-                              color: ThemeConstants.bluecolor,
-                            ),
-                            const Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "Budget",
-                                      )),
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "%Range",
-                                      )),
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "Times Ranking",
-                                      )),
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width / 2,
-                                child: Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: TextButton(
-                                      onPressed: () {},
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "QR World Ranking",
-                                      )),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 200,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  height: 40,
-                                  child: ListTile(
-                                    title: const Text('Ascending'),
-                                    leading: Radio<BestTutorSite>(
-                                      autofocus: true,
-                                      value: BestTutorSite.Ascending,
-                                      groupValue: _site,
-                                      onChanged: (BestTutorSite? value) {
-                                        setState(() {
-                                          _site = value!;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  height: 40,
-                                  child: ListTile(
-                                    title: const Text('Deascending'),
-                                    leading: Radio<BestTutorSite>(
-                                      value: BestTutorSite.Deascending,
-                                      groupValue: _site,
-                                      onChanged: (BestTutorSite? value) {
-                                        setState(() {
-                                          _site = value!;
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                        onPressed: () {},
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Cancel",
+                          textColor: ThemeConstants.bluegreycolor,
+                        )),
+                  ),
                 ),
-              ));
-            },
-            child: const Text("Click")),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 20, top: 20, bottom: 20),
+                  child: SizedBox(
+                    width: 150,
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: ThemeConstants.bluecolor, // background
+                          onPrimary: ThemeConstants.bluecolor, // foreground
+                        ),
+                        onPressed: () {},
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Remove",
+                          textColor: ThemeConstants.whitecolor,
+                        )),
+                  ),
+                ),
+                const Spacer(),
+              ],
+            )
+          ],
+        ), //Center
       ),
     );
+//SizedBox
+    //MaterialApp
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class StepsToAdmissions extends StatelessWidget {
@@ -14,39 +15,118 @@ class StepsToAdmissions extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
           child: Table(
             children: [
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Is Application Fee",
-                  fontWeight: FontWeight.bold,
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightgreentColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.GreenColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].universityName != null)
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Is Application Fee",
+                            maxLines: 2,
+                            textColor: ThemeConstants.GreenColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: completeCourseDetail[0].applicationFee,
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 5,
+                        ),
+                      ),
+                    ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
                 ),
-                CustomAutoSizeTextMontserrat(
-                  text: "Fee Waiver",
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "Offer TAT",
-                  fontWeight: FontWeight.bold,
+                SizedBox(
+                  height: 10,
                 ),
               ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "No",
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.bluecolor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Fee Waiver",
+                            maxLines: 2,
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: completeCourseDetail[0].feeWaiver,
+                            textColor: ThemeConstants.TextColor,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
                 ),
-                CustomAutoSizeTextMontserrat(
-                  text: "No",
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "28Days",
+                SizedBox(
+                  height: 10,
                 ),
               ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightorangeColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.orangeColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Offer TAT",
+                            maxLines: 2,
+                            textColor: ThemeConstants.orangeColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: completeCourseDetail[0].offerTat,
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ),
+                  ]),
             ],
           ),
-        ),
-        CustomAutoSizeTextMontserrat(
-          text: "Steps to Application",
         ),
       ],
     ));

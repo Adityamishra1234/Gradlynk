@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -14,130 +16,339 @@ class EntryRequirement extends StatelessWidget {
         child: ListView(
       physics: BouncingScrollPhysics(),
       children: [
-        CustomAutoSizeTextMontserrat(
-          text: "Academic Requirement",
-        ),
         Padding(
-          padding: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 10, right: 10),
           child: Table(
-            children: [
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Country",
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "Level of study",
-                  fontWeight: FontWeight.bold,
-                ),
-              ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "India",
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "class 12",
-                ),
-              ]),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: Table(
-            children: [
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Min. Percentage",
-                  fontWeight: FontWeight.bold,
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "Min. Grade",
-                  fontWeight: FontWeight.bold,
-                ),
-              ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "65.00",
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "",
-                ),
-              ]),
-            ],
-          ),
-        ),
-        CustomAutoSizeTextMontserrat(
-          text: "Mandatory Subject",
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 5),
-          child: Table(
-            border: TableBorder.all(
-              color: Colors.black,
-              //style: BorderStyle.solid,
-              width: 0.5,
-            ),
             children: [
               TableRow(
-                  decoration:
-                      BoxDecoration(color: ThemeConstants.lightblueColor),
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightgreentColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.GreenColor),
+                  ),
                   children: [
-                    CustomAutoSizeTextMontserrat(
-                      text: "Subject",
-                      fontWeight: FontWeight.bold,
-                    ),
-                    CustomAutoSizeTextMontserrat(
-                      text: "Percentage",
-                      fontWeight: FontWeight.bold,
-                    ),
-                    CustomAutoSizeTextMontserrat(
-                      text: "Grade",
-                      fontWeight: FontWeight.bold,
+                    if (completeCourseDetail[0].universityName != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Country",
+                            maxLines: 2,
+                            textColor: ThemeConstants.GreenColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "completeCourseDetail[0]",
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 5,
+                        ),
+                      ),
                     ),
                   ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "",
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
                 ),
-                CustomAutoSizeTextMontserrat(
-                  text: "",
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "",
+                SizedBox(
+                  height: 10,
                 ),
               ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.bluecolor),
+                  ),
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Level of study",
+                          maxLines: 2,
+                          textColor: ThemeConstants.bluecolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "completeCourseDetail[0]",
+                            textColor: ThemeConstants.TextColor,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightorangeColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.orangeColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Min Percentage",
+                            maxLines: 2,
+                            textColor: ThemeConstants.orangeColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: completeCourseDetail[0].minPercentage,
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ),
+                  ]),
+              const TableRow(children: [
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ]),
+              TableRow(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightVioletColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                    border: Border.all(color: ThemeConstants.VioletColor),
+                  ),
+                  children: [
+                    if (completeCourseDetail[0].instituteType != null)
+                      SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Min. Grade",
+                            maxLines: 2,
+                            textColor: ThemeConstants.VioletColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      height: 50,
+                      child: Center(
+                          child: HtmlWidget(
+                        completeCourseDetail[0].minGrade ?? "",
+                        textStyle: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w500,
+                          color: ThemeConstants.TextColor,
+                          fontSize: 16.0,
+                        ),
+                      )),
+                    ),
+                  ]),
             ],
           ),
-        ),
-        CustomAutoSizeTextMontserrat(
-          text: "English proficiency Requirement",
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 5),
+          padding: const EdgeInsets.only(top: 15, left: 10),
+          child: CustomAutoSizeTextMontserrat(
+            text: "Mandatory Subject ",
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            textColor: ThemeConstants.bluecolor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: Table(
+            border: TableBorder.all(),
             children: [
+              TableRow(
+                  decoration: const BoxDecoration(color: Color(0xFFECF0FB)),
+                  children: [
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Subject",
+                      ),
+                    )),
+                    TableCell(
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Percentage",
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Grade",
+                      ),
+                    )),
+                  ]),
               TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "test Type",
-                  fontWeight: FontWeight.bold,
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: completeCourseDetail[0].mandatorySubjectName,
+                  ),
+                )),
+                TableCell(
+                  child: Center(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: completeCourseDetail[0]
+                          .minPercentageForMandatorySubject,
+                    ),
+                  ),
                 ),
-                CustomAutoSizeTextMontserrat(
-                  text: "MIN.Grade",
-                  fontWeight: FontWeight.bold,
-                ),
-              ]),
-              TableRow(children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "TOEFL",
-                ),
-                CustomAutoSizeTextMontserrat(
-                  text: "",
-                ),
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: completeCourseDetail[0].minGradeForMandatorySubject,
+                  ),
+                )),
               ]),
             ],
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.only(top: 15, left: 10),
+          child: CustomAutoSizeTextMontserrat(
+            text: "English Test Requirement",
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            textColor: ThemeConstants.bluecolor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Table(
+            border: TableBorder.all(),
+            children: [
+              TableRow(
+                  decoration: const BoxDecoration(color: Color(0xFFECF0FB)),
+                  children: [
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Test Type",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )),
+                    TableCell(
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Listening",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Reading",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )),
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Writing",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )),
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Speaking",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )),
+                    TableCell(
+                        child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Overall",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                    )),
+                  ]),
+              TableRow(children: [
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "",
+                  ),
+                )),
+                TableCell(
+                  child: Center(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "",
+                    ),
+                  ),
+                ),
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "",
+                  ),
+                )),
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "",
+                  ),
+                )),
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "",
+                  ),
+                )),
+                TableCell(
+                    child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "",
+                  ),
+                )),
+              ]),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 15, left: 10),
+          child: CustomAutoSizeTextMontserrat(
+            text: "Others Test Requirement",
+            fontSize: 18,
+            textColor: ThemeConstants.bluecolor,
+            fontWeight: FontWeight.bold,
+          ),
+        )
       ],
     ));
   }

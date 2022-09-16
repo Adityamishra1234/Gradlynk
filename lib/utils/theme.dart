@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ThemeConstants {
   static TextStyle defaultTextStyle = const TextStyle(
       color: Colors.white70, fontSize: 20, fontWeight: FontWeight.w600);
   static TextStyle selectedTextStyle = const TextStyle(
       color: Colors.teal, fontSize: 20, fontWeight: FontWeight.w600);
+
+  static TextStyle montserrattextstyle = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle montserrattextstyle2 = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
 
   static Color selectedColor = const Color(0xff4ac8ae);
   static Color drawerBackgroundColor = const Color(0xff272d34);
@@ -27,10 +39,12 @@ class ThemeConstants {
   static Color lightYellow = const Color(0xFFFFEFD8);
   static Color lightSkyblue = const Color(0xFFe7fbfc);
   static Color lightbrow = const Color(0xFFfbefde);
-  static Color browcolor = const Color(0xFFf0d3a9);
+  static Color browcolor = const Color(0xFFBC7B1D);
   static Color lightRed = const Color(0xFFffe2e2);
-  static Color red = const Color(0xFFeda8a8);
-  static Color yellow = const Color(0xFFfad8a7);
-  static Color skycolor = const Color(0xFFacebee);
+  static Color red = const Color(0xFFcf3b3b);
+  static Color yellow = Color.fromARGB(255, 241, 164, 55);
+  static Color skycolor = Color.fromARGB(255, 36, 197, 206);
   static Color bluelightgreycolor2 = Color.fromARGB(255, 164, 178, 202);
+  static Color Lightcian = const Color(0xFFE9FEFF);
+  static Color cianColor = const Color(0xFF0EB0B5);
 }

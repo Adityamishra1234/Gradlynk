@@ -19,89 +19,172 @@ class AboutInstitute extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 10, right: 10),
               child: Table(
                 children: [
-                  TableRow(children: [
-                    if (completeCourseDetail[0].universityName != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: "Institute Name",
-                        maxLines: 2,
-                        fontWeight: FontWeight.bold,
+                  TableRow(
+                      decoration: BoxDecoration(
+                        color: ThemeConstants.lightgreentColor,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(color: ThemeConstants.GreenColor),
                       ),
-                    if (completeCourseDetail[0].instituteType != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: "Institute Type",
-                        maxLines: 2,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      children: [
+                        if (completeCourseDetail[0].universityName != null)
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Institute Name",
+                                maxLines: 2,
+                                textColor: ThemeConstants.GreenColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        if (completeCourseDetail[0].universityName != null)
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: completeCourseDetail[0].universityName,
+                                textColor: ThemeConstants.TextColor,
+                                maxLines: 5,
+                              ),
+                            ),
+                          ),
+                      ]),
+                  const TableRow(children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ]),
-                  TableRow(children: [
-                    if (completeCourseDetail[0].universityName != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: completeCourseDetail[0].universityName,
-                        maxLines: 5,
+                  TableRow(
+                      decoration: BoxDecoration(
+                        color: ThemeConstants.lightblueColor,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(color: ThemeConstants.bluecolor),
                       ),
-                    if (completeCourseDetail[0].instituteType != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: completeCourseDetail[0].instituteType,
-                        maxLines: 2,
-                      ),
+                      children: [
+                        if (completeCourseDetail[0].instituteType != null)
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Institute Type",
+                                maxLines: 2,
+                                textColor: ThemeConstants.bluecolor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        if (completeCourseDetail[0].instituteType != null)
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: completeCourseDetail[0].instituteType,
+                                textColor: ThemeConstants.TextColor,
+                                maxLines: 2,
+                              ),
+                            ),
+                          ),
+                      ]),
+                  const TableRow(children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                   ]),
+                  TableRow(
+                      decoration: BoxDecoration(
+                        color: ThemeConstants.lightorangeColor,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(color: ThemeConstants.orangeColor),
+                      ),
+                      children: [
+                        if (completeCourseDetail[0].instituteType != null)
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Campus",
+                                maxLines: 2,
+                                textColor: ThemeConstants.orangeColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        SizedBox(
+                          height: 50,
+                          child: Center(
+                            child: CustomAutoSizeTextMontserrat(
+                              text: completeCourseDetail[0].campusName,
+                              textColor: ThemeConstants.TextColor,
+                              maxLines: 2,
+                            ),
+                          ),
+                        ),
+                      ]),
+                  const TableRow(children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ]),
+                  TableRow(
+                      decoration: BoxDecoration(
+                        color: ThemeConstants.lightVioletColor,
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(color: ThemeConstants.VioletColor),
+                      ),
+                      children: [
+                        if (completeCourseDetail[0].instituteType != null)
+                          SizedBox(
+                            height: 50,
+                            child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Institute Address",
+                                maxLines: 2,
+                                textColor: ThemeConstants.VioletColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        SizedBox(
+                          height: 50,
+                          child: Center(
+                              child: HtmlWidget(
+                            completeCourseDetail[0].campusAddress!,
+                            textStyle: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w500,
+                              color: ThemeConstants.TextColor,
+                              fontSize: 16.0,
+                            ),
+                          )),
+                        ),
+                      ]),
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: Table(
-                children: [
-                  TableRow(children: [
-                    if (completeCourseDetail[0].campusName != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: "Campus",
-                        maxLines: 2,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    if (completeCourseDetail[0].campusAddress != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: "Institute Address",
-                        maxLines: 2,
-                        fontWeight: FontWeight.bold,
-                      ),
-                  ]),
-                  TableRow(children: [
-                    if (completeCourseDetail[0].campusName != null)
-                      CustomAutoSizeTextMontserrat(
-                        text: completeCourseDetail[0].campusName,
-                        maxLines: 2,
-                      ),
-                    if (completeCourseDetail[0].campusAddress != null)
-                      HtmlWidget(
-                        completeCourseDetail[0].campusAddress!,
-                        textStyle: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                          fontSize: 16.0,
-                        ),
-                      )
-                  ]),
-                ],
+              padding: const EdgeInsets.only(top: 10),
+              child: CustomAutoSizeTextMontserrat(
+                text: "About Institute",
+                textColor: ThemeConstants.bluecolor,
+                fontWeight: FontWeight.bold,
               ),
             ),
             if (completeCourseDetail[0].aboutUniv != null)
-              Row(
-                children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "About Institute",
-                    maxLines: 2,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const Spacer(),
-                ],
-              ),
-            if (completeCourseDetail[0].aboutUniv != null)
               CustomAutoSizeTextMontserrat(
                 text: completeCourseDetail[0].aboutUniv,
+                textColor: ThemeConstants.TextColor,
               ),
             if (completeCourseDetail[0].sIECRepresented != null)
               Row(
@@ -111,6 +194,7 @@ class AboutInstitute extends StatelessWidget {
                     child: CustomAutoSizeTextMontserrat(
                       text: "SIEC Represented",
                       maxLines: 2,
+                      textColor: ThemeConstants.GreenColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -120,6 +204,7 @@ class AboutInstitute extends StatelessWidget {
             if (completeCourseDetail[0].sIECRepresented != null)
               CustomAutoSizeTextMontserrat(
                 text: completeCourseDetail[0].sIECRepresented ?? "",
+                textColor: ThemeConstants.TextColor,
               ),
             Padding(
               padding: const EdgeInsets.only(top: 15),
@@ -149,10 +234,12 @@ class AboutInstitute extends StatelessWidget {
                   TableRow(children: [
                     CustomAutoSizeTextMontserrat(
                       text: "258",
+                      textColor: ThemeConstants.TextColor,
                       maxLines: 2,
                     ),
                     CustomAutoSizeTextMontserrat(
                       text: "144",
+                      textColor: ThemeConstants.TextColor,
                       maxLines: 2,
                     ),
                   ]),

@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/completedetaildetailcontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/screen/CourseInformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/about_institute.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/steps_visa.dart';
 import 'package:studentpanel/ui/screen/about_course.dart';
 import 'package:studentpanel/ui/screen/about_institute.dart';
 import 'package:studentpanel/ui/screen/entryrequirement.dart';
-
 import 'package:studentpanel/ui/screen/steps_admissions.dart';
 import 'package:studentpanel/ui/screen/steps_visa.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -324,7 +325,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                 InkWell(
                   highlightColor: ThemeConstants.whitecolor,
                   onTap: () {
-                    debugPrint("click");
+                    Get.to(AboutInstituteCopy(
+                        completeCourseDetail: completeCourseDetail!));
                   },
                   child: SizedBox(
                     height: 40,
@@ -361,7 +363,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                 InkWell(
                   highlightColor: ThemeConstants.whitecolor,
                   onTap: () {
-                    debugPrint("click");
+                    Get.to(CourseInformation(
+                        completeCourseDetail: completeCourseDetail!));
                   },
                   child: SizedBox(
                     height: 40,
@@ -472,7 +475,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                 InkWell(
                   highlightColor: ThemeConstants.whitecolor,
                   onTap: () {
-                    debugPrint("click");
+                    Get.to(StepsToVisaCopy(
+                        completeCourseDetail: completeCourseDetail!));
                   },
                   child: SizedBox(
                     height: 40,

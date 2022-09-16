@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
+import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/completecoursedetailcopy.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
+import 'package:studentpanel/ui/screen/courseshortlist.dart';
+import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/multiselectdropdown.dart';
+
+enum BestTutorSite { Ascending, Deascending }
 
 class CourseSearch extends StatefulWidget {
   CourseSearch({Key? key}) : super(key: key);
@@ -32,6 +37,7 @@ class _CourseSearchState extends State<CourseSearch> {
   GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
   bool size = false;
   bool isApplyCompare = false;
+  late BestTutorSite _site = BestTutorSite.Ascending;
 
   @override
   Widget build(BuildContext context) {
@@ -50,101 +56,321 @@ class _CourseSearchState extends State<CourseSearch> {
                               .loadingCourseSearchDetail
                               .value ==
                           true)
-                        Row(
-                          children: [
-                            const Spacer(),
-                            RaisedButton(
-                              elevation: 0,
-                              onPressed: () {},
-                              color: ThemeConstants.lightblueColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  CustomAutoSizeTextMontserrat(
-                                      text: "Sort By",
-                                      textColor: ThemeConstants.bluecolor),
-                                  const SizedBox(
-                                    width: 5,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 15, bottom: 15),
+                          child: Row(
+                            children: [
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Get.bottomSheet(Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 250,
+                                    color: ThemeConstants.whitecolor,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 10, right: 5, left: 5),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  ThemeConstants.lightblueColor,
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
+                                            ),
+                                            height: 40,
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Sort By",
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                  fontSize: 20,
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/icons/sort.svg",
+                                                  height: 20,
+                                                  color:
+                                                      ThemeConstants.bluecolor,
+                                                ),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          child: Row(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            2,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .topStart,
+                                                      child: TextButton(
+                                                          onPressed: () {},
+                                                          child:
+                                                              CustomAutoSizeTextMontserrat(
+                                                            text: "Budget",
+                                                          )),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            2,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .topStart,
+                                                      child: TextButton(
+                                                          onPressed: () {},
+                                                          child:
+                                                              CustomAutoSizeTextMontserrat(
+                                                            text: "%Range",
+                                                          )),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            2,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .topStart,
+                                                      child: TextButton(
+                                                          onPressed: () {},
+                                                          child:
+                                                              CustomAutoSizeTextMontserrat(
+                                                            text:
+                                                                "Times Ranking",
+                                                          )),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            2,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional
+                                                              .topStart,
+                                                      child: TextButton(
+                                                          onPressed: () {},
+                                                          child:
+                                                              CustomAutoSizeTextMontserrat(
+                                                            text:
+                                                                "QR World Ranking",
+                                                          )),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 200,
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2,
+                                                      height: 40,
+                                                      child: ListTile(
+                                                        title: const Text(
+                                                            'Ascending'),
+                                                        leading: Radio<
+                                                            BestTutorSite>(
+                                                          autofocus: true,
+                                                          value: BestTutorSite
+                                                              .Ascending,
+                                                          groupValue: _site,
+                                                          onChanged:
+                                                              (BestTutorSite?
+                                                                  value) {
+                                                            setState(() {
+                                                              _site = value!;
+                                                            });
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              2,
+                                                      height: 40,
+                                                      child: ListTile(
+                                                        title: const Text(
+                                                            'Deascending'),
+                                                        leading: Radio<
+                                                            BestTutorSite>(
+                                                          value: BestTutorSite
+                                                              .Deascending,
+                                                          groupValue: _site,
+                                                          onChanged:
+                                                              (BestTutorSite?
+                                                                  value) {
+                                                            setState(() {
+                                                              _site = value!;
+                                                            });
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ));
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.whitecolor,
+                                      border: Border.all(
+                                          color: ThemeConstants
+                                              .bluelightgreycolor),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, right: 5),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Sort",
+                                          fontSize: 12,
+                                          textColor: ThemeConstants
+                                              .bluelightgreycolor),
+                                    ),
                                   ),
-                                  SvgPicture.asset(
-                                    "assets/icons/sort.svg",
-                                    height: 15,
-                                    color: ThemeConstants.bluecolor,
-                                  )
-                                ],
+                                ),
                               ),
-                            ),
-                            const Spacer(),
-                            RaisedButton(
-                              elevation: 0,
-                              onPressed: () {},
-                              color: ThemeConstants.lightorangeColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  CustomAutoSizeTextMontserrat(
-                                      text: "Filter ",
-                                      textColor: ThemeConstants.orangeColor),
-                                  const SizedBox(
-                                    width: 5,
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(Filter.routeNamed);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.whitecolor,
+                                      border: Border.all(
+                                          color: ThemeConstants
+                                              .bluelightgreycolor),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, right: 5),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Filter",
+                                          fontSize: 12,
+                                          textColor: ThemeConstants
+                                              .bluelightgreycolor),
+                                    ),
                                   ),
-                                  SvgPicture.asset(
-                                    "assets/icons/filter.svg",
-                                    height: 15,
-                                    color: ThemeConstants.orangeColor,
-                                  )
-                                ],
+                                ),
                               ),
-                            ),
-                            const Spacer(),
-                            RaisedButton(
-                              elevation: 0,
-                              onPressed: () {
-                                if (controller1.compareApply.value == false) {
-                                  controller1.setCompare(true.obs);
-                                  Navigator.push(context,
-                                      MaterialPageRoute<void>(
-                                          builder: (context) {
-                                    return CourseSearch();
-                                  }));
-                                } else {
-                                  controller1.setCompare(false.obs);
-                                  Navigator.push(context,
-                                      MaterialPageRoute<void>(
-                                          builder: (context) {
-                                    return CourseSearch();
-                                  }));
-                                }
-                              },
-                              color: ThemeConstants.lightgreentColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  CustomAutoSizeTextMontserrat(
-                                      text: "Compare",
-                                      textColor: ThemeConstants.GreenColor),
-                                  const SizedBox(
-                                    width: 5,
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  if (controller1.compareApply.value == false) {
+                                    controller1.setCompare(true.obs);
+                                  } else {
+                                    controller1.setCompare(false.obs);
+                                  }
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.whitecolor,
+                                      border: Border.all(
+                                          color: ThemeConstants
+                                              .bluelightgreycolor),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, right: 5),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Compare",
+                                          fontSize: 12,
+                                          textColor: ThemeConstants
+                                              .bluelightgreycolor),
+                                    ),
                                   ),
-                                  SvgPicture.asset(
-                                    "assets/icons/sort.svg",
-                                    height: 15,
-                                    color: ThemeConstants.GreenColor,
-                                  )
-                                ],
+                                ),
                               ),
-                            ),
-                            const Spacer(),
-                          ],
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(CourseShortList.routeNamed);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.whitecolor,
+                                      border: Border.all(
+                                          color: ThemeConstants
+                                              .bluelightgreycolor),
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 5, right: 5),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Course Shortlist",
+                                          fontSize: 12,
+                                          textColor: ThemeConstants
+                                              .bluelightgreycolor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
                         ),
                       if (Get.find<CourseSearchController>()
                               .loadingCourseSearchDetail
@@ -346,7 +572,7 @@ class _CourseSearchState extends State<CourseSearch> {
                             );
                           },
                           child: Container(
-                            height: 80,
+                            height: 60,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                                 color: ThemeConstants.bluecolor,
@@ -665,16 +891,9 @@ class _CourseSearchState extends State<CourseSearch> {
         endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            return CourseSearchFullDetail(
-              completeCourseDetail: res,
-            );
-          },
-        ),
-      );
+      Get.to(CourseSearchFullDetail(
+        completeCourseDetail: res,
+      ));
     }
   }
 
