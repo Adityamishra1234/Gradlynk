@@ -10,6 +10,7 @@ class CompleteCourseDetailController extends BaseController {
   RxBool showAnimation = false.obs;
   RxBool firstTimeAnimation = false.obs;
   RxBool scroll = true.obs;
+  RxBool moreChoosse = false.obs;
 
   // Model Create
 
@@ -27,6 +28,11 @@ class CompleteCourseDetailController extends BaseController {
 
   setScroll(bool data) {
     scroll.value = data;
+    update();
+  }
+
+  setMore(bool data) {
+    moreChoosse.value = data;
     update();
   }
 

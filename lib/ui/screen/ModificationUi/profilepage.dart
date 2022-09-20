@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -72,7 +74,7 @@ class ProfilePageCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
                       onTap: () {
-                        debugPrint("click");
+                        Get.toString();
                       },
                       child: SizedBox(
                         height: 40,
@@ -143,9 +145,7 @@ class ProfilePageCopy extends StatelessWidget {
                     ),
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
+                      onTap: () {},
                       child: SizedBox(
                         height: 40,
                         child: Row(

@@ -28,8 +28,8 @@ class EntryRequirement extends StatelessWidget {
                   ),
                   children: [
                     if (completeCourseDetail[0].universityName != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Country",
@@ -39,8 +39,8 @@ class EntryRequirement extends StatelessWidget {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "completeCourseDetail[0]",
@@ -65,8 +65,8 @@ class EntryRequirement extends StatelessWidget {
                     border: Border.all(color: ThemeConstants.bluecolor),
                   ),
                   children: [
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "Level of study",
@@ -77,8 +77,8 @@ class EntryRequirement extends StatelessWidget {
                       ),
                     ),
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "completeCourseDetail[0]",
@@ -104,8 +104,8 @@ class EntryRequirement extends StatelessWidget {
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Min Percentage",
@@ -115,8 +115,8 @@ class EntryRequirement extends StatelessWidget {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].minPercentage,
@@ -142,8 +142,8 @@ class EntryRequirement extends StatelessWidget {
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Min. Grade",
@@ -153,8 +153,8 @@ class EntryRequirement extends StatelessWidget {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                           child: HtmlWidget(
                         completeCourseDetail[0].minGrade ?? "",

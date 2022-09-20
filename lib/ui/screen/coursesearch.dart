@@ -8,7 +8,7 @@ import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/completecoursedetailcopy.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
-import 'package:studentpanel/ui/screen/courseshortlist.dart';
+import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -342,7 +342,9 @@ class _CourseSearchState extends State<CourseSearch> {
                               const Spacer(),
                               InkWell(
                                 onTap: () {
-                                  Get.toNamed(CourseShortList.routeNamed);
+                                  Get.to(ReviewShortList(
+                                    controller1: controller1,
+                                  ));
                                 },
                                 child: Container(
                                   height: 30,

@@ -11,7 +11,7 @@ import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/courseshortlist.dart';
+import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Login.routeNamed,
+      initialRoute: ContactInformationCopy.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -104,8 +104,8 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
         ),
         GetPage(
-          name: CourseShortList.routeNamed,
-          page: () => const CourseShortList(),
+          name: ReviewShortList.routeNamed,
+          page: () => ReviewShortList(),
           transition: Transition.fade,
         ),
         GetPage(

@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customprofilepagefield.dart';
 
-class ContactInformationCopy extends StatelessWidget {
+class ContactInformationCopy extends StatefulWidget {
   const ContactInformationCopy({Key? key}) : super(key: key);
   static const routeNamed = '/ContactInformationCopy';
 
+  @override
+  State<ContactInformationCopy> createState() => _ContactInformationCopyState();
+}
+
+class _ContactInformationCopyState extends State<ContactInformationCopy> {
+  bool saveAndEdit = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +45,30 @@ class ContactInformationCopy extends StatelessWidget {
                     textColor: ThemeConstants.TextColor,
                   ),
                   Spacer(),
-                  TextButton(
-                      onPressed: () {},
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "edit",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        textColor: ThemeConstants.bluecolor,
-                      ))
+                  if (saveAndEdit == false)
+                    TextButton(
+                        onPressed: () {
+                          saveAndEdit = true;
+                          setState(() {});
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "edit",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          textColor: ThemeConstants.bluecolor,
+                        )),
+                  if (saveAndEdit)
+                    TextButton(
+                        onPressed: () {
+                          saveAndEdit = false;
+                          setState(() {});
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "save",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          textColor: ThemeConstants.bluecolor,
+                        ))
                 ],
               ),
             ),
@@ -53,6 +76,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Mobile Number",
                 filled: true,
@@ -80,6 +105,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your email",
                 filled: true,
@@ -107,6 +134,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Whatsapp Number",
                 filled: true,
@@ -134,6 +163,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Secondary Number",
                 filled: true,
@@ -161,6 +192,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Secondary Email",
                 filled: true,
@@ -188,6 +221,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Example",
                 filled: true,
@@ -215,6 +250,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Delhi",
                 filled: true,
@@ -242,6 +279,8 @@ class ContactInformationCopy extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              textInputAction: TextInputAction.done,
+              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "New Delhi",
                 filled: true,

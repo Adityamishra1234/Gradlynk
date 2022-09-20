@@ -19,7 +19,7 @@ class AboutInstitute extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 10, right: 10),
+              padding: const EdgeInsets.only(right: 10),
               child: Table(
                 children: [
                   TableRow(
@@ -30,8 +30,8 @@ class AboutInstitute extends StatelessWidget {
                       ),
                       children: [
                         if (completeCourseDetail[0].universityName != null)
-                          SizedBox(
-                            height: 50,
+                          Container(
+                            constraints: BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Institute Name",
@@ -42,8 +42,8 @@ class AboutInstitute extends StatelessWidget {
                             ),
                           ),
                         if (completeCourseDetail[0].universityName != null)
-                          SizedBox(
-                            height: 50,
+                          Container(
+                            constraints: BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].universityName,
@@ -69,8 +69,8 @@ class AboutInstitute extends StatelessWidget {
                       ),
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
-                          SizedBox(
-                            height: 50,
+                          Container(
+                            constraints: BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Institute Type",
@@ -81,8 +81,8 @@ class AboutInstitute extends StatelessWidget {
                             ),
                           ),
                         if (completeCourseDetail[0].instituteType != null)
-                          SizedBox(
-                            height: 50,
+                          Container(
+                            constraints: BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].instituteType,
@@ -108,8 +108,8 @@ class AboutInstitute extends StatelessWidget {
                       ),
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
-                          SizedBox(
-                            height: 50,
+                          Container(
+                            constraints: BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Campus",
@@ -119,8 +119,8 @@ class AboutInstitute extends StatelessWidget {
                               ),
                             ),
                           ),
-                        SizedBox(
-                          height: 50,
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: completeCourseDetail[0].campusName,
@@ -146,8 +146,8 @@ class AboutInstitute extends StatelessWidget {
                       ),
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
-                          SizedBox(
-                            height: 50,
+                          Container(
+                            constraints: BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Institute Address",
@@ -157,8 +157,8 @@ class AboutInstitute extends StatelessWidget {
                               ),
                             ),
                           ),
-                        SizedBox(
-                          height: 50,
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50),
                           child: Center(
                               child: HtmlWidget(
                             completeCourseDetail[0].campusAddress!,

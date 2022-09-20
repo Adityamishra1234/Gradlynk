@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CourseInformation extends StatelessWidget {
@@ -16,52 +20,154 @@ class CourseInformation extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 10, right: 10),
             child: Table(
               children: [
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Course Name",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                TableRow(
+                    decoration: BoxDecoration(
+                      color: ThemeConstants.lightgreentColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: ThemeConstants.GreenColor),
+                    ),
+                    children: [
+                      if (completeCourseDetail[0].universityName != null)
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50),
+                          child: Center(
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Course Name",
+                              maxLines: 2,
+                              textColor: ThemeConstants.GreenColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: completeCourseDetail[0].courseName,
+                            textColor: ThemeConstants.TextColor,
+                            maxLines: 5,
+                          ),
+                        ),
+                      ),
+                    ]),
+                const TableRow(children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                 ]),
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: completeCourseDetail[0].courseName ?? "",
-                    maxLines: 3,
+                TableRow(
+                    decoration: BoxDecoration(
+                      color: ThemeConstants.lightblueColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: ThemeConstants.bluecolor),
+                    ),
+                    children: [
+                      if (completeCourseDetail[0].instituteType != null)
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50),
+                          child: Center(
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Course Level",
+                              maxLines: 2,
+                              textColor: ThemeConstants.bluecolor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: completeCourseDetail[0].courseLevel,
+                            textColor: ThemeConstants.TextColor,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
+                    ]),
+                const TableRow(children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                 ]),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Table(
-              children: [
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Course Level",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                TableRow(
+                    decoration: BoxDecoration(
+                      color: ThemeConstants.lightorangeColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: ThemeConstants.orangeColor),
+                    ),
+                    children: [
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Bachelors",
+                            maxLines: 2,
+                            textColor: ThemeConstants.orangeColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "completeCourseDetail[0].b",
+                            textColor: ThemeConstants.TextColor,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
+                    ]),
+                const TableRow(children: [
+                  SizedBox(
+                    height: 10,
                   ),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Bachelors",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(
+                    height: 10,
                   ),
                 ]),
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: completeCourseDetail[0].courseLevel,
-                    maxLines: 3,
-                  ),
-                  //hard code
-                  CustomAutoSizeTextMontserrat(
-                    text: "Information technology",
-                    maxLines: 3,
-                  ),
-                ]),
+                TableRow(
+                    decoration: BoxDecoration(
+                      color: ThemeConstants.lightVioletColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(color: ThemeConstants.VioletColor),
+                    ),
+                    children: [
+                      if (completeCourseDetail[0].instituteType != null)
+                        Container(
+                          constraints: BoxConstraints(minHeight: 50),
+                          child: Center(
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Specialization",
+                              maxLines: 2,
+                              textColor: ThemeConstants.VioletColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Center(
+                            child: HtmlWidget(
+                          completeCourseDetail[0].specialEntryRequirement ?? "",
+                          textStyle: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w500,
+                            color: ThemeConstants.TextColor,
+                            fontSize: 16.0,
+                          ),
+                        )),
+                      ),
+                    ]),
               ],
             ),
           ),
@@ -76,36 +182,6 @@ class CourseInformation extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                   CustomAutoSizeTextMontserrat(
-                    text: "Specialization",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ]),
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: completeCourseDetail[0].narrowFieldName,
-                    maxLines: 3,
-                  ),
-                  CustomAutoSizeTextMontserrat(
-                    text: "",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ]),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Table(
-              children: [
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Specialization Des",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  CustomAutoSizeTextMontserrat(
                     text: "Job Industry",
                     maxLines: 3,
                     fontWeight: FontWeight.bold,
@@ -113,8 +189,7 @@ class CourseInformation extends StatelessWidget {
                 ]),
                 TableRow(children: [
                   CustomAutoSizeTextMontserrat(
-                    text:
-                        completeCourseDetail[0].specializationDescription ?? "",
+                    text: completeCourseDetail[0].narrowFieldName,
                   ),
                   CustomAutoSizeTextMontserrat(
                     text: completeCourseDetail[0].jobIndustry,
@@ -210,6 +285,44 @@ class CourseInformation extends StatelessWidget {
               children: [
                 TableRow(children: [
                   CustomAutoSizeTextMontserrat(
+                    text: "Specialization Descripition",
+                    maxLines: 3,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ]),
+                TableRow(children: [
+                  CustomAutoSizeTextMontserrat(
+                    text: completeCourseDetail[0].specializationDescription,
+                  ),
+                ]),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: Table(
+              children: [
+                TableRow(children: [
+                  CustomAutoSizeTextMontserrat(
+                    text: "Course Descripition",
+                    maxLines: 3,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ]),
+                TableRow(children: [
+                  CustomAutoSizeTextMontserrat(
+                    text: completeCourseDetail[0].description,
+                  ),
+                ]),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: Table(
+              children: [
+                TableRow(children: [
+                  CustomAutoSizeTextMontserrat(
                     text: "NACES Evaluation Required",
                     maxLines: 3,
                     fontWeight: FontWeight.bold,
@@ -263,63 +376,133 @@ class CourseInformation extends StatelessWidget {
               ],
             ),
           ),
+          CustomAutoSizeTextMontserrat(
+            text: "Intakes",
+            fontSize: 18,
+            textColor: ThemeConstants.bluecolor,
+            fontWeight: FontWeight.bold,
+          ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Table(
+            padding: const EdgeInsets.only(top: 15),
+            child: Row(
               children: [
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Avaliable Intake",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  height: 80,
+                  width: 170,
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Early Appl. Deadline",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      CustomAutoSizeTextMontserrat(
+                        text: "Avaliable Intake",
+                        maxLines: 2,
+                        textColor: ThemeConstants.bluecolor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      CustomAutoSizeTextMontserrat(
+                        text: completeCourseDetail[0].intakeFromYear,
+                        fontSize: 14,
+                        maxLines: 2,
+                        textColor: ThemeConstants.blackcolor,
+                      ),
+                      const Spacer()
+                    ],
                   ),
-                ]),
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Computer Science",
-                    maxLines: 3,
+                ),
+                const Spacer(),
+                Container(
+                  height: 80,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightorangeColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  CustomAutoSizeTextMontserrat(
-                    text:
-                        completeCourseDetail[0].earlyApplicationDeadline ?? "",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      CustomAutoSizeTextMontserrat(
+                        text: "Early Appli. Deadline",
+                        maxLines: 2,
+                        textColor: ThemeConstants.orangeColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      CustomAutoSizeTextMontserrat(
+                        text: completeCourseDetail[0].earlyApplicationDeadline,
+                        maxLines: 2,
+                        fontSize: 14,
+                        textColor: ThemeConstants.blackcolor,
+                      ),
+                      const Spacer()
+                    ],
                   ),
-                ]),
+                ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Table(
+            padding: const EdgeInsets.only(
+              top: 10,
+            ),
+            child: Row(
               children: [
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "regular Appl. Deadline",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  height: 80,
+                  width: 180,
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Course Duration",
-                    maxLines: 3,
-                    fontWeight: FontWeight.bold,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      CustomAutoSizeTextMontserrat(
+                        text: "Regular Appli. Deadline",
+                        maxLines: 2,
+                        textColor: ThemeConstants.bluecolor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      CustomAutoSizeTextMontserrat(
+                        text: "completeCourseDetail![0].",
+                        maxLines: 2,
+                        fontSize: 14,
+                        textColor: ThemeConstants.blackcolor,
+                      ),
+                      const Spacer()
+                    ],
                   ),
-                ]),
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "",
-                    maxLines: 3,
+                ),
+                const Spacer(),
+                Container(
+                  height: 80,
+                  width: 170,
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightorangeColor,
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  CustomAutoSizeTextMontserrat(
-                    text: completeCourseDetail[0].courseDuration ?? "",
-                    maxLines: 3,
+                  child: Column(
+                    children: [
+                      const Spacer(),
+                      CustomAutoSizeTextMontserrat(
+                        text: "Course Duration",
+                        fontWeight: FontWeight.bold,
+                        maxLines: 2,
+                        fontSize: 14,
+                        textColor: ThemeConstants.orangeColor,
+                      ),
+                      CustomAutoSizeTextMontserrat(
+                        text: completeCourseDetail[0].courseDuration,
+                        maxLines: 2,
+                        textColor: ThemeConstants.blackcolor,
+                        fontSize: 12,
+                      ),
+                      const Spacer()
+                    ],
                   ),
-                ]),
+                ),
               ],
             ),
           ),

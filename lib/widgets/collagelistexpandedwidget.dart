@@ -159,11 +159,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             var temp =
                                 "${courseSearchModel.universityId},${courseSearchModel.courseId},${courseSearchModel.id}";
                             widget.callbackFunction(temp);
-                            // Get.toNamed(CourseSearchFullDetail.routeNamed,
-                            //     arguments: [
-                            //       {"first": courseSearchModel!.id},
-                            //       {"second": courseSearchModel!.universityId}
-                            //     ]);
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: courseSearchModel.courseName ?? "",
@@ -298,18 +293,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         ],
                       ),
                     ),
-                    // if (resize == true)
-                    //   Padding(
-                    //     padding: const EdgeInsets.only(
-                    //         left: 10, right: 10, top: 5),
-                    //     child: DottedLine(
-                    //       dashLength: 12,
-                    //       dashGapLength: 7,
-                    //       lineThickness: 2,
-                    //       dashColor: ThemeConstants.lightgreycolor,
-                    //       dashGapColor: ThemeConstants.whitecolor,
-                    //     ),
-                    //   ),
                   ],
                 ),
               ],
@@ -339,7 +322,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
-                                    text: "Total Tuition Fees -",
+                                    text: "Total Tuition Fees ",
                                     textColor: ThemeConstants.VioletColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -378,7 +361,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   child: Column(
                                     children: [
                                       CustomAutoSizeTextMontserrat(
-                                        text: "Conditional Offer -",
+                                        text: "Conditional Offer ",
                                         textColor: ThemeConstants.yellow,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14,
@@ -420,7 +403,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
-                                    text: "English test Req. -",
+                                    text: "English test Req. ",
                                     textColor: ThemeConstants.GreenColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -460,7 +443,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomAutoSizeTextMontserrat(
-                                      text: "Scholarship -",
+                                      text: "Scholarship ",
                                       textColor: ThemeConstants.skycolor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
@@ -481,25 +464,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             ),
                           )
                         ]),
-                        // TableRow(children: [
-                        //   // TableCell(
-                        //   //   child: CustomAutoSizeTextMontserrat(
-                        //   //     text: courseSearchModel!.englishProficiency
-                        //   //         .toString()
-                        //   //         .split("|")[0],
-                        //   //     textColor: Colors.grey,
-                        //   //     fontSize: 12,
-                        //   //   ),
-                        //   // ),
-
-                        //   TableCell(
-                        //     child: CustomAutoSizeTextMontserrat(
-                        //       text: courseSearchModel!.scholarship ?? "",
-                        //       textColor: Colors.grey,
-                        //       fontSize: 12,
-                        //     ),
-                        //   )
-                        // ]),
 
                         rowSpacer,
                         TableRow(children: [
@@ -519,7 +483,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
-                                    text: "Academic Req.  -",
+                                    text: "Academic Req. ",
                                     textColor: ThemeConstants.browcolor,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -557,7 +521,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomAutoSizeTextMontserrat(
-                                      text: "Offer TAT -",
+                                      text: "Offer TAT ",
                                       textColor: ThemeConstants.red,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -762,7 +726,38 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
-            if (widget.iscompare == true) AddedButtonShow(),
+            Row(
+              children: [
+                Spacer(),
+                Container(
+                  height: 30,
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: Center(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Add to ShortList",
+                      fontSize: 12,
+                      textColor: ThemeConstants.bluegreycolor,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                Container(
+                  height: 30,
+                  decoration: BoxDecoration(border: Border.all()),
+                  child: Center(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Add to ShortList",
+                      fontSize: 12,
+                      textColor: ThemeConstants.bluegreycolor,
+                    ),
+                  ),
+                ),
+                Spacer(),
+                if (widget.iscompare == true) AddedButtonShow(),
+                Spacer(),
+              ],
+            ),
+            // if (widget.iscompare == true) AddedButtonShow(),
             // if ((addCompare == false || addCompare == null) &&
             //     isCompare == true &&
             //     )
@@ -835,8 +830,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
-            width: 190,
-            height: 40,
+            width: 155,
+            height: 30,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   side: BorderSide(color: ThemeConstants.bluegreycolor),
@@ -880,6 +875,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     CustomAutoSizeTextMontserrat(
                       text: "Add to Compare",
                       textColor: ThemeConstants.bluegreycolor,
+                      fontSize: 12,
                     ),
                     const Spacer(),
                   ],

@@ -27,20 +27,19 @@ class AboutCourse extends StatelessWidget {
                     border: Border.all(color: ThemeConstants.GreenColor),
                   ),
                   children: [
-                    if (completeCourseDetail[0].universityName != null)
-                      SizedBox(
-                        height: 50,
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Country",
-                            maxLines: 2,
-                            textColor: ThemeConstants.GreenColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Country",
+                          maxLines: 2,
+                          textColor: ThemeConstants.GreenColor,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    ),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "completeCourseDetail[0].",
@@ -65,21 +64,20 @@ class AboutCourse extends StatelessWidget {
                     border: Border.all(color: ThemeConstants.bluecolor),
                   ),
                   children: [
-                    if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Currency Code",
-                            maxLines: 2,
-                            textColor: ThemeConstants.bluecolor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
+                      child: Center(
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Currency Code",
+                          maxLines: 2,
+                          textColor: ThemeConstants.bluecolor,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
+                    ),
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: completeCourseDetail[0].countryCurrencyCode,
@@ -105,8 +103,8 @@ class AboutCourse extends StatelessWidget {
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Capital City",
@@ -116,8 +114,8 @@ class AboutCourse extends StatelessWidget {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].countryCapital,
@@ -143,8 +141,8 @@ class AboutCourse extends StatelessWidget {
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "INR value",
@@ -154,8 +152,8 @@ class AboutCourse extends StatelessWidget {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                           child: HtmlWidget(
                         completeCourseDetail[0].countryInrValue != null
@@ -187,8 +185,8 @@ class AboutCourse extends StatelessWidget {
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
-                      SizedBox(
-                        height: 50,
+                      Container(
+                        constraints: BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Language",
@@ -198,8 +196,8 @@ class AboutCourse extends StatelessWidget {
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      constraints: BoxConstraints(minHeight: 50),
                       child: Center(
                           child: HtmlWidget(
                         completeCourseDetail[0].countryLanguage!,
@@ -214,73 +212,6 @@ class AboutCourse extends StatelessWidget {
             ],
           ),
         ),
-
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 10, left: 10),
-        //   child: Table(
-        //     children: [
-
-        //       TableRow(children: [
-        //         CustomAutoSizeTextMontserrat(
-        //           text: "Country ",
-        //           fontWeight: FontWeight.bold,
-        //         ),
-        //         CustomAutoSizeTextMontserrat(
-        //           text: "Currency Code",
-        //           fontWeight: FontWeight.bold,
-        //         ),
-        //       ]),
-        //       TableRow(children: [
-        //         CustomAutoSizeTextMontserrat(
-        //           text: "completeCourseDetail[0].countryCapital",
-        //         ),
-        //         CustomAutoSizeTextMontserrat(
-        //           text: completeCourseDetail[0].countryCurrencyCode,
-        //         ),
-        //       ]),
-        //     ],
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 5, left: 10),
-        //   child: Table(
-        //     children: [
-        //       TableRow(children: [
-        //         CustomAutoSizeTextMontserrat(
-        //           text: "Capital City",
-        //           fontWeight: FontWeight.bold,
-        //         ),
-        //         CustomAutoSizeTextMontserrat(
-        //           text: "INR value",
-        //           fontWeight: FontWeight.bold,
-        //         ),
-        //       ]),
-        //       TableRow(children: [
-        //         CustomAutoSizeTextMontserrat(
-        //           text: completeCourseDetail[0].countryCapital,
-        //         ),
-        //         CustomAutoSizeTextMontserrat(
-        //           text: completeCourseDetail[0].annualTutionFeesInr.toString(),
-        //         ),
-        //       ]),
-        //     ],
-        //   ),
-        // ),
-        // Padding(
-        //   padding: const EdgeInsets.only(top: 5, left: 10),
-        //   child: CustomAutoSizeTextMontserrat(
-        //     text: "Language",
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
-
-        //
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 10),
-        //   child: CustomAutoSizeTextMontserrat(
-        //     text: completeCourseDetail[0].countryLanguage,
-        //   ),
-        // ),
         Padding(
           padding: const EdgeInsets.only(top: 5),
           child: CustomExpansionPlanList(
