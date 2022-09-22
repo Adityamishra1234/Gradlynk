@@ -17,6 +17,18 @@ class ThemeConstants {
     fontSize: 14,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle montserrattextstyle3 = GoogleFonts.montserrat(
+    color: bluecolor,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+
+  static getTextStyle(bool sizechange) {
+    return GoogleFonts.montserrat(
+        color: TextColor,
+        fontSize: sizechange == false ? 16 : 12,
+        fontWeight: FontWeight.w600);
+  }
 
   static Color selectedColor = const Color(0xff4ac8ae);
   static Color drawerBackgroundColor = const Color(0xff272d34);

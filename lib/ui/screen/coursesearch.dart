@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -613,7 +614,7 @@ class _CourseSearchState extends State<CourseSearch> {
                               //Select Country
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 20, right: 10, top: 0),
+                                    left: 20, right: 10, top: 20),
                                 child: MultiSelectDropDown(
                                   title: "Select Country",
                                   listdata: controller1.countryList,
@@ -633,9 +634,7 @@ class _CourseSearchState extends State<CourseSearch> {
 
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 10,
-                                ),
+                                    left: 20, right: 10, top: 15),
                                 child: MultiSelectDropDown(
                                   title: "Select State",
                                   listdata: controller1.stateList,
@@ -655,9 +654,7 @@ class _CourseSearchState extends State<CourseSearch> {
 
                               Padding(
                                   padding: const EdgeInsets.only(
-                                    left: 20,
-                                    right: 10,
-                                  ),
+                                      left: 20, right: 10, top: 10),
                                   child: MultiSelectDropDown(
                                     title: "Select City",
                                     listdata: controller1.cityList,
@@ -675,9 +672,7 @@ class _CourseSearchState extends State<CourseSearch> {
 
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 10,
-                                ),
+                                    left: 20, right: 10, top: 15),
                                 child: MultiSelectDropDown(
                                   title: "Select Course Level",
                                   listdata: controller1.courseLevelList,
@@ -696,9 +691,7 @@ class _CourseSearchState extends State<CourseSearch> {
 
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 10,
-                                ),
+                                    left: 20, right: 10, top: 15),
                                 child: MultiSelectDropDown(
                                   title: "Course Board Field",
                                   listdata: controller1.courseBoardList,
@@ -717,9 +710,7 @@ class _CourseSearchState extends State<CourseSearch> {
 
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 20,
-                                  right: 10,
-                                ),
+                                    left: 20, right: 10, top: 15),
                                 child: MultiSelectDropDown(
                                   title: "Course Narrow Field",
                                   listdata: controller1.courseNarrowList,
@@ -830,18 +821,25 @@ class _CourseSearchState extends State<CourseSearch> {
                                         padding:
                                             const EdgeInsets.only(right: 20),
                                         child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              primary: ThemeConstants
-                                                  .whitecolor, // background
-                                              onPrimary: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
+                                            style: ButtonStyle(
+                                                elevation: MaterialStateProperty
+                                                    .all<double>(0),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all<Color>(
+                                                        Colors.white),
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<Color>(
+                                                        Colors.white),
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5.0),
+                                                        side: BorderSide(color: ThemeConstants.TextColor)))),
                                             onPressed: () {},
-                                            child: Text(
-                                              "Clean",
-                                              style: TextStyle(
-                                                  color: ThemeConstants
-                                                      .blackcolor),
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Clear",
+                                              textColor:
+                                                  ThemeConstants.TextColor,
                                             )),
                                       ),
                                       Padding(
@@ -849,6 +847,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                             const EdgeInsets.only(right: 20),
                                         child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
+                                              elevation: 0.0,
                                               primary: ThemeConstants
                                                   .bluecolor, // background
                                               onPrimary: ThemeConstants
@@ -862,11 +861,10 @@ class _CourseSearchState extends State<CourseSearch> {
                                                   controller.selectCourseCode
                                                       .toString());
                                             },
-                                            child: Text(
-                                              "Search",
-                                              style: TextStyle(
-                                                  color: ThemeConstants
-                                                      .whitecolor),
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Search",
+                                              textColor:
+                                                  ThemeConstants.whitecolor,
                                             )),
                                       ),
                                     ],

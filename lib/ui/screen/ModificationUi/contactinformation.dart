@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
 import 'package:studentpanel/widgets/customprofilepagefield.dart';
 
 class ContactInformationCopy extends StatefulWidget {
@@ -52,7 +53,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           setState(() {});
                         },
                         child: CustomAutoSizeTextMontserrat(
-                          text: "edit",
+                          text: "save",
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           textColor: ThemeConstants.bluecolor,
@@ -64,7 +65,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           setState(() {});
                         },
                         child: CustomAutoSizeTextMontserrat(
-                          text: "save",
+                          text: "edit",
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           textColor: ThemeConstants.bluecolor,
@@ -218,21 +219,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Example",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+          SizedBox(
+            height: 60,
+            child: CustomDropDownProfilePage(
+              text: "test1",
+              callbackFunction: callback,
+              hint: 'Test',
+              model: ["1", "2", "3"],
+              choosefieldtype: saveAndEdit,
             ),
           ),
           Padding(
@@ -247,21 +241,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Delhi",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+          SizedBox(
+            height: 60,
+            child: CustomDropDownProfilePage(
+              text: "test1",
+              callbackFunction: callback,
+              hint: 'Test',
+              model: ["1", "2", "3"],
+              choosefieldtype: saveAndEdit,
             ),
           ),
           Padding(
@@ -276,25 +263,25 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              textInputAction: TextInputAction.done,
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "New Delhi",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+          SizedBox(
+            height: 60,
+            child: CustomDropDownProfilePage(
+              text: "test1",
+              callbackFunction: callback,
+              hint: 'Test',
+              model: ["1", "2", "3"],
+              choosefieldtype: saveAndEdit,
             ),
           ),
         ],
       ),
     );
+  }
+
+  // Funcation
+  callback(varTopic) {
+    // controller.setLoadingHighestQualification(true);
+
+    // dashboardcontroller.setdropdown1(varTopic);
   }
 }

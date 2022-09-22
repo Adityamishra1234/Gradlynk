@@ -190,12 +190,14 @@ class EntryRequirement extends StatelessWidget {
                         child: Center(
                       child: CustomAutoSizeTextMontserrat(
                         text: "Subject",
+                        fontWeight: FontWeight.bold,
                       ),
                     )),
                     TableCell(
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "Percentage",
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -203,6 +205,7 @@ class EntryRequirement extends StatelessWidget {
                         child: Center(
                       child: CustomAutoSizeTextMontserrat(
                         text: "Grade",
+                        fontWeight: FontWeight.bold,
                       ),
                     )),
                   ]),
@@ -348,7 +351,153 @@ class EntryRequirement extends StatelessWidget {
             textColor: ThemeConstants.bluecolor,
             fontWeight: FontWeight.bold,
           ),
-        )
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, top: 10),
+          child: Row(
+            children: [
+              Center(
+                child: Container(
+                  height: 40,
+                  width: 180,
+                  decoration: BoxDecoration(
+                      color: ThemeConstants.bluecolor,
+                      borderRadius: BorderRadiusDirectional.circular(10)),
+                  child: Center(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "SAT Components",
+                      fontWeight: FontWeight.bold,
+                      textColor: ThemeConstants.whitecolor,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5, left: 10),
+          child: Table(
+            children: [
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "Math",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "Reading + Writing And Language",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ]),
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "0",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "0",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+              ]),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5, left: 10),
+          child: Table(
+            children: [
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "Eassay(Optional)",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "Overrall Score",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ]),
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "0",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "0",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+              ]),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: CustomAutoSizeTextMontserrat(
+            text: "Special Entry Requirement",
+            textColor: ThemeConstants.bluecolor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5, left: 10),
+          child: Table(
+            children: [
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "Flexible ",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "Baclogs Acceptable",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ]),
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "No",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "Yes",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+              ]),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5, left: 10),
+          child: Table(
+            children: [
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "Number",
+                  maxLines: 2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ]),
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "4",
+                  textColor: ThemeConstants.TextColor,
+                  maxLines: 2,
+                ),
+              ]),
+            ],
+          ),
+        ),
       ],
     ));
   }

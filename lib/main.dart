@@ -27,10 +27,12 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
+
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
+import 'package:studentpanel/widgets/scrolltabbar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -83,7 +85,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: ContactInformationCopy.routeNamed,
+      initialRoute: Login.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -201,6 +203,11 @@ class _MyAppState extends State<MyApp> {
           name: ContactInformationCopy.routeNamed,
           transition: Transition.cupertino,
           page: () => ContactInformationCopy(),
+        ),
+        GetPage(
+          name: ScrollTabBar.routeNamed,
+          transition: Transition.cupertino,
+          page: () => ScrollTabBar(),
         ),
       ],
     );

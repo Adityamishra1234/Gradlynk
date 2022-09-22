@@ -253,23 +253,24 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             width: 80,
                             child: Row(
                               children: [
-                                const Spacer(),
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFF2FAF5E),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(7))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: SvgPicture.asset(
-                                      "assets/icons/list.svg",
-                                      color: ThemeConstants.whitecolor,
-                                      height: 25,
-                                    ),
-                                  ),
-                                ),
+                                // const Spacer(),
+                                // Container(
+                                //   height: 30,
+                                //   width: 30,
+                                //   decoration: const BoxDecoration(
+                                //       color: Color(0xFF2FAF5E),
+                                //       borderRadius:
+                                //           BorderRadius.all(Radius.circular(7))),
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.all(3),
+                                //     child: SvgPicture.asset(
+                                //       "assets/icons/list.svg",
+                                //       color: ThemeConstants.whitecolor,
+                                //       height: 25,
+                                //     ),
+                                //   ),
+                                // ),
+
                                 const Spacer(),
                                 Container(
                                   height: 30,
@@ -727,36 +728,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 ),
               ),
             Row(
-              children: [
-                Spacer(),
-                Container(
-                  height: 30,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: Center(
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Add to ShortList",
-                      fontSize: 12,
-                      textColor: ThemeConstants.bluegreycolor,
-                    ),
-                  ),
-                ),
-                Spacer(),
-                Container(
-                  height: 30,
-                  decoration: BoxDecoration(border: Border.all()),
-                  child: Center(
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Add to ShortList",
-                      fontSize: 12,
-                      textColor: ThemeConstants.bluegreycolor,
-                    ),
-                  ),
-                ),
-                Spacer(),
-                if (widget.iscompare == true) AddedButtonShow(),
-                Spacer(),
-              ],
+              children: [],
             ),
+            if (widget.iscompare == true) AddedButtonShow(),
             // if (widget.iscompare == true) AddedButtonShow(),
             // if ((addCompare == false || addCompare == null) &&
             //     isCompare == true &&
@@ -830,8 +804,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
-            width: 155,
-            height: 30,
+            width: 190,
+            height: 40,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   side: BorderSide(color: ThemeConstants.bluegreycolor),
@@ -875,7 +849,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     CustomAutoSizeTextMontserrat(
                       text: "Add to Compare",
                       textColor: ThemeConstants.bluegreycolor,
-                      fontSize: 12,
                     ),
                     const Spacer(),
                   ],
