@@ -2,27 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
-import 'package:studentpanel/ui/screen/compare.dart';
+import 'package:studentpanel/ui/controllers/finalshortlistcontroller.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
-import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-class ReviewShortList extends StatelessWidget {
-  ReviewShortList({Key? key}) : super(key: key);
-  static const routeNamed = '/CourseShortList';
+class FinalShortList extends StatelessWidget {
+  FinalShortList({Key? key}) : super(key: key);
+  static const routeNamed = '/FinalShortList';
 
-  var controller1 = Get.put(ReviewShortListController());
+  var controller1 = Get.put(FinalShortListController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
-        body: GetBuilder<ReviewShortListController>(
+        body: GetBuilder<FinalShortListController>(
           builder: (_) => Column(
             children: [
               if (_.loadingCourseShortList.value == true)
@@ -31,7 +31,7 @@ class ReviewShortList extends StatelessWidget {
                     const Spacer(),
                     InkWell(
                       onTap: () {
-                        // Get.toNamed(ReviewShortList.routeNamed);
+                        // Get.toNamed(FinalShortList.routeNamed);
                       },
                       child: Container(
                         height: 30,
@@ -81,11 +81,11 @@ class ReviewShortList extends StatelessWidget {
                     const Spacer(),
                     InkWell(
                       onTap: () {
-                        if (controller1.compareApply.value == false) {
-                          controller1.setCompare(true.obs);
-                        } else {
-                          controller1.setCompare(false.obs);
-                        }
+                        // if (controller1.compareApply.value == false) {
+                        //   controller1.setCompare(true.obs);
+                        // } else {
+                        //   controller1.setCompare(false.obs);
+                        // }
                       },
                       child: Container(
                         height: 30,
@@ -110,8 +110,7 @@ class ReviewShortList extends StatelessWidget {
                     const Spacer(),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(FinalShortList.routeNamed);
-                        Get.snackbar("Final ShortList", "Test",
+                        Get.snackbar("Review ShortList", "Test",
                             snackPosition: SnackPosition.BOTTOM);
                       },
                       child: Container(
@@ -294,52 +293,6 @@ class ReviewShortList extends StatelessWidget {
                           ],
                         );
                       }),
-                ),
-              if (controller1.compareApply.value == true)
-                InkWell(
-                  onTap: () {
-                    Get.to(
-                      Comparing(
-                        courseSearchModel1:
-                            Get.find<ReviewShortListController>()
-                                .courseSearchModelCompare1,
-                        courseSearchModel2:
-                            Get.find<ReviewShortListController>()
-                                .courseSearchModelCompare2,
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: 60,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: ThemeConstants.bluecolor,
-                        borderRadius: const BorderRadiusDirectional.only(
-                          topStart: Radius.circular(20.0),
-                          topEnd: Radius.circular(20.0),
-                        )),
-                    child: Center(
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          SvgPicture.asset(
-                            "assets/icons/compare.svg",
-                            height: 30,
-                            color: ThemeConstants.whitecolor,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          CustomAutoSizeTextMontserrat(
-                            text: "Compare",
-                            fontSize: 20,
-                            textColor: ThemeConstants.whitecolor,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
-                  ),
                 ),
               if (_.loadingCourseShortList.value == false)
                 const CircularProgressIndicator()

@@ -10,7 +10,11 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
+import 'package:studentpanel/ui/screen/applicantdetail.dart';
+import 'package:studentpanel/ui/screen/applicationdetail.dart';
+import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
@@ -85,7 +89,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Login.routeNamed,
+      initialRoute: CourseSearch.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -94,7 +98,6 @@ class _MyAppState extends State<MyApp> {
             page: () => const LoginCopy(),
             transition: Transition.fade,
             binding: LoginBinding()),
-
         GetPage(
             name: Login.routeNamed,
             page: () => const Login(),
@@ -208,6 +211,21 @@ class _MyAppState extends State<MyApp> {
           name: ScrollTabBar.routeNamed,
           transition: Transition.cupertino,
           page: () => ScrollTabBar(),
+        ),
+        GetPage(
+          name: ApplicationSummary.routeNamed,
+          transition: Transition.cupertino,
+          page: () => ApplicationSummary(),
+        ),
+        GetPage(
+          name: ApplicationDetail.routeNamed,
+          transition: Transition.cupertino,
+          page: () => ApplicationDetail(),
+        ),
+        GetPage(
+          name: FinalShortList.routeNamed,
+          transition: Transition.cupertino,
+          page: () => FinalShortList(),
         ),
       ],
     );

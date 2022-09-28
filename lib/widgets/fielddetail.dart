@@ -12,7 +12,7 @@ class FieldDetail extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20, right: 10, top: 10),
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
           child: SizedBox(
             child: Row(
               children: [

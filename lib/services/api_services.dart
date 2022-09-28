@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
+import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 
 import 'package:studentpanel/ui/models/courseseach.dart';
@@ -7,6 +8,8 @@ import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:studentpanel/ui/screen/applicationsummary.dart';
+import 'package:studentpanel/utils/endpoint.dart';
 
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
@@ -285,10 +288,64 @@ class ApiServices extends StudentPanelBase {
       print("object");
       return completeCourseDetail;
     }
+
     // } catch (e) {
     //   debugPrint(e.toString());
     // }
   }
+
+  setShortListCourse(String? id, String? enq_id) async {
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
+    if (response != null) {
+      Get.snackbar("Course ShortList", response.body,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  setFinalShortListCourse(String? id, String? enq_id) async {
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
+    if (response != null) {
+      Get.snackbar("Course ShortList", response.body,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  courseShortlistDetail(String? enq_id) async {
+    CourseSearchPages courseSearchPages = CourseSearchPages();
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      courseSearchPages = CourseSearchPages.fromJson(jsondata);
+    }
+    return courseSearchPages;
+  }
+
+  getApplicationSummaryList(String enq_id) async {
+    List<ApplicationSummaryModel> applicationSummaryModel = [];
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
+    if (response != null) {
+      applicationSummaryModel = List<ApplicationSummaryModel>.from(json
+          .decode(response.body)
+          .map((x) => ApplicationSummaryModel.fromJson(x)));
+    }
+    return applicationSummaryModel;
+  }
+
+  getFinalShortlist(String enq_id) async {
+    CourseSearchPages courseSearchPages = CourseSearchPages();
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.finalShortListDetail}enq_id=$enq_id");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      courseSearchPages = CourseSearchPages.fromJson(jsondata);
+    }
+    return courseSearchPages;
+  }
+
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   //   var jsonData = {"token": sharedPreferences.getString("token")};

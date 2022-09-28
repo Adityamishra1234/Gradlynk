@@ -35,6 +35,7 @@ class CourseSearchController extends BaseController {
   List<CompleteCourseDetail> completeCourseDetail = [];
   ApiServices apiservices = ApiServices();
   CourseSearchPages courseSearchPages = CourseSearchPages();
+  CourseSearchPages courseSearchPages2 = CourseSearchPages();
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
@@ -48,6 +49,7 @@ class CourseSearchController extends BaseController {
   RxBool loadingCourseNarrowField = false.obs;
   RxBool loadingNextAndPrevious = false.obs;
   RxBool compareApply = false.obs;
+  RxBool loadingCourseShortList = false.obs;
 
   @override
   void onInit() {
@@ -243,5 +245,13 @@ class CourseSearchController extends BaseController {
   setCompare(RxBool data) {
     compareApply = data;
     update();
+  }
+
+  courseShortList(String? id, String enq_id) {
+    apiservices.setShortListCourse(id, enq_id);
+  }
+
+  courseFinalShortlist(String? id, String enq_id) {
+    apiservices.setFinalShortListCourse(id, enq_id);
   }
 }

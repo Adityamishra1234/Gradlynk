@@ -158,8 +158,10 @@ class CourseSearchModel {
       this.yearOfEducation});
 
   CourseSearchModel.fromJson(Map<String, dynamic> json) {
+    /// done
     id = json['id'].toString();
     courseId = json['course_id'].toString();
+    //not
     shortList = json['shortlist_added'].toString();
     courseName = json['course_name'];
     intakeFromYear = json['IntakeFrom_Year'];
@@ -193,7 +195,7 @@ class CourseSearchModel {
     gapsAccepted = json['gaps_accepted'].toString();
     instSubCategory = json['inst_sub_category'];
     instituteType = json['institute_type'];
-    isApplicationFee = json['is_application_fee'].toString();
+    isApplicationFee = json['is_application_fee'];
     minWorkExp = json['min_work_exp'];
     naces = json['naces'];
     offerTat = json['offer_tat'];

@@ -6,6 +6,8 @@ import 'package:studentpanel/widgets/fielddetail.dart';
 class ApplicationDetail extends StatelessWidget {
   const ApplicationDetail({Key? key}) : super(key: key);
 
+  static const routeNamed = '/ApplicationDetail';
+
   @override
   Widget build(BuildContext context) {
     return Expanded(

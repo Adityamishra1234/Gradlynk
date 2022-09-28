@@ -1,12 +1,8 @@
 // ignore_for_file: deprecated_member_use
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
-import 'package:studentpanel/ui/models/completecoursedetail.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/completecoursedetailcopy.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
@@ -343,9 +339,7 @@ class _CourseSearchState extends State<CourseSearch> {
                               const Spacer(),
                               InkWell(
                                 onTap: () {
-                                  Get.to(ReviewShortList(
-                                    controller1: controller1,
-                                  ));
+                                  Get.toNamed(ReviewShortList.routeNamed);
                                 },
                                 child: Container(
                                   height: 30,
@@ -393,6 +387,10 @@ class _CourseSearchState extends State<CourseSearch> {
                                       CollagelistExpandedWidget(
                                         index: index,
                                         callbackCompare: callbackCompare,
+                                        callbackShortListButton:
+                                            CallbackShortListButton,
+                                        callbackFinalShortListButton:
+                                            CallbackFinalShortListButton,
                                         iscompare:
                                             controller1.compareApply.value,
                                         currentPage: controller1
@@ -996,5 +994,14 @@ class _CourseSearchState extends State<CourseSearch> {
   setCompare(bool data) {
     isApplyCompare = data;
     setState(() {});
+  }
+
+  CallbackShortListButton(id) {
+    controller.courseShortList(id, "78623");
+  }
+
+  CallbackFinalShortListButton(id) {
+    controller.courseFinalShortlist(id, "78623");
+    // courseShortList(id, "78623");
   }
 }

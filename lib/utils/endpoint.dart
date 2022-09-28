@@ -22,4 +22,9 @@ class Endpoints {
   static String? completeCoursePart1 = 'get-course-details?university_id=';
   static String? completeCoursePart2 = '&course_id=';
   static String? completeCoursePart3 = '&institute_course_id=';
+  static String? courseShortList = 'edit-course-shortlist?';
+  static String? finalCourseShortList = 'edit-course-final-shortlist?';
+  static String? courseShortListDetail = 'get-shortlist-course?';
+  static String? applicationSummary = 'get-application?';
+  static String? finalShortListDetail = 'get-shortlist-course?is_final=1&';
 }
