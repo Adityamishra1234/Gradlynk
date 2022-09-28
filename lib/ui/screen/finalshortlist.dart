@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/controllers/finalshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
@@ -81,11 +82,11 @@ class FinalShortList extends StatelessWidget {
                     const Spacer(),
                     InkWell(
                       onTap: () {
-                        // if (controller1.compareApply.value == false) {
-                        //   controller1.setCompare(true.obs);
-                        // } else {
-                        //   controller1.setCompare(false.obs);
-                        // }
+                        if (controller1.compareApply.value == false) {
+                          controller1.setCompare(true.obs);
+                        } else {
+                          controller1.setCompare(false.obs);
+                        }
                       },
                       child: Container(
                         height: 30,
@@ -150,6 +151,11 @@ class FinalShortList extends StatelessWidget {
                                 index)
                               CollagelistExpandedWidget(
                                 index: index,
+                                courseSearchModelCompare1Id:
+                                    controller1.courseSearchModelCompare1.id,
+                                courseSearchModelCompare2Id:
+                                    controller1.courseSearchModelCompare2.id,
+                                callbackForModelCompare: callbackModelCompare,
                                 callbackCompare: callbackCompare,
                                 //done
                                 iscompare: controller1!.compareApply.value,
@@ -294,6 +300,52 @@ class FinalShortList extends StatelessWidget {
                         );
                       }),
                 ),
+              if (controller1.compareApply.value == true)
+                InkWell(
+                  onTap: () {
+                    Get.to(
+                      Comparing(
+                        courseSearchModel1:
+                            Get.find<ReviewShortListController>()
+                                .courseSearchModelCompare1,
+                        courseSearchModel2:
+                            Get.find<ReviewShortListController>()
+                                .courseSearchModelCompare2,
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.bluecolor,
+                        borderRadius: const BorderRadiusDirectional.only(
+                          topStart: Radius.circular(20.0),
+                          topEnd: Radius.circular(20.0),
+                        )),
+                    child: Center(
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          SvgPicture.asset(
+                            "assets/icons/compare.svg",
+                            height: 30,
+                            color: ThemeConstants.whitecolor,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          CustomAutoSizeTextMontserrat(
+                            text: "Compare",
+                            fontSize: 20,
+                            textColor: ThemeConstants.whitecolor,
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               if (_.loadingCourseShortList.value == false)
                 const CircularProgressIndicator()
             ],
@@ -336,6 +388,15 @@ class FinalShortList extends StatelessWidget {
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));
+    }
+  }
+
+  callbackModelCompare(varTopic) {
+    print(varTopic);
+    if (varTopic == "Model1") {
+      controller1.courseSearchModelCompare1 = CourseSearchModel();
+    } else {
+      controller1.courseSearchModelCompare2 = CourseSearchModel();
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
@@ -151,6 +152,11 @@ class ReviewShortList extends StatelessWidget {
                                 index)
                               CollagelistExpandedWidget(
                                 index: index,
+                                courseSearchModelCompare1Id:
+                                    controller1.courseSearchModelCompare1.id,
+                                courseSearchModelCompare2Id:
+                                    controller1.courseSearchModelCompare2.id,
+                                callbackForModelCompare: callbackModelCompare,
                                 callbackCompare: callbackCompare,
                                 //done
                                 iscompare: controller1!.compareApply.value,
@@ -383,6 +389,15 @@ class ReviewShortList extends StatelessWidget {
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));
+    }
+  }
+
+  callbackModelCompare(varTopic) {
+    print(varTopic);
+    if (varTopic == "Model1") {
+      controller1.courseSearchModelCompare1 = CourseSearchModel();
+    } else {
+      controller1.courseSearchModelCompare2 = CourseSearchModel();
     }
   }
 }

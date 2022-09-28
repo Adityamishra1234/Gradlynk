@@ -300,7 +300,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "${courseSearchModel1.durationYear!} Year",
+                      text: "${courseSearchModel1.durationYear ?? ""} Year",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -312,7 +312,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "${courseSearchModel1.durationYear!} Year",
+                      text: "${courseSearchModel1.durationYear ?? ""} Year",
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),

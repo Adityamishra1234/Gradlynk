@@ -108,11 +108,7 @@ class _MyAppState extends State<MyApp> {
           page: () => const MyDocument(),
           transition: Transition.fade,
         ),
-        GetPage(
-          name: ReviewShortList.routeNamed,
-          page: () => ReviewShortList(),
-          transition: Transition.fade,
-        ),
+
         GetPage(
           name: DashBoard.routeNamed,
           transition: Transition.fade,
@@ -226,6 +222,11 @@ class _MyAppState extends State<MyApp> {
           name: FinalShortList.routeNamed,
           transition: Transition.cupertino,
           page: () => FinalShortList(),
+        ),
+        GetPage(
+          name: ReviewShortList.routeNamed,
+          page: () => ReviewShortList(),
+          transition: Transition.fade,
         ),
       ],
     );

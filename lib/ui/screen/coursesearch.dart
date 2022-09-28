@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
@@ -386,6 +387,12 @@ class _CourseSearchState extends State<CourseSearch> {
                                         index)
                                       CollagelistExpandedWidget(
                                         index: index,
+                                        courseSearchModelCompare1Id: controller1
+                                            .courseSearchModelCompare1.id,
+                                        courseSearchModelCompare2Id: controller1
+                                            .courseSearchModelCompare2.id,
+                                        callbackForModelCompare:
+                                            callbackModelCompare,
                                         callbackCompare: callbackCompare,
                                         callbackShortListButton:
                                             CallbackShortListButton,
@@ -971,6 +978,14 @@ class _CourseSearchState extends State<CourseSearch> {
 
   callback(varTopic) {
     // controller.setdropdown1(varTopic);
+  }
+  callbackModelCompare(varTopic) {
+    print(varTopic);
+    if (varTopic == "Model1") {
+      controller.courseSearchModelCompare1 = CourseSearchModel();
+    } else {
+      controller.courseSearchModelCompare2 = CourseSearchModel();
+    }
   }
 
   callbackCourseBoardField(data) {

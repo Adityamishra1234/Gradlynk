@@ -11,8 +11,8 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CollagelistExpandedWidget extends StatefulWidget {
-  // String? CourseSearchModelCompare1Id;
-  // String? CourseSearchModelCompare2Id;
+  String? courseSearchModelCompare1Id;
+  String? courseSearchModelCompare2Id;
   bool? shortList = false;
   bool? finalShortList = false;
   String? currentPage;
@@ -22,12 +22,15 @@ class CollagelistExpandedWidget extends StatefulWidget {
   final Function callbackCompare;
   final Function? callbackShortListButton;
   final Function? callbackFinalShortListButton;
+  final Function? callbackForModelCompare;
+
   bool? iscompare;
   int? index;
   CollagelistExpandedWidget(
       {Key? key,
-      // this.CourseSearchModelCompare1Id,
-      // this.CourseSearchModelCompare2Id,
+      required this.callbackForModelCompare,
+      this.courseSearchModelCompare1Id,
+      this.courseSearchModelCompare2Id,
       required this.iscompare,
       required this.courseSearchModel,
       required this.callbackFunction,
@@ -46,6 +49,8 @@ class CollagelistExpandedWidget extends StatefulWidget {
 
 class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
     with TickerProviderStateMixin {
+  String? courseSearchModelCompare1Id;
+  String? courseSearchModelCompare2Id;
   CourseSearchModel courseSearchModel = CourseSearchModel();
   bool resize = false;
   bool delayresize = false;
@@ -63,6 +68,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
     shortlist = widget.shortList!;
     finalShortList = widget.finalShortList!;
     index = widget.index;
+    courseSearchModelCompare1Id = widget.courseSearchModelCompare1Id;
+    courseSearchModelCompare2Id = widget.courseSearchModelCompare2Id;
 
     controller =
         AnimationController(duration: const Duration(seconds: 0), vsync: this);
@@ -887,10 +894,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   AddedButtonShow() {
     // add compare in both
     if (addCompare == null) {
-      if (Get.find<CourseSearchController>().courseSearchModelCompare1.id ==
-              courseSearchModel.id ||
-          Get.find<CourseSearchController>().courseSearchModelCompare2.id ==
-              courseSearchModel.id) {
+      if (courseSearchModelCompare1Id == courseSearchModel.id ||
+          courseSearchModelCompare2Id == courseSearchModel.id) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
@@ -903,18 +908,14 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 ),
                 onPressed: () {
                   addCompare = false;
-                  // widget.callbackCompare(false);
 
-                  if (Get.find<CourseSearchController>()
-                          .courseSearchModelCompare1
-                          .id ==
-                      courseSearchModel.id) {
-                    Get.find<CourseSearchController>()
-                        .courseSearchModelCompare1 = CourseSearchModel();
+                  // Remove Course Search model
+                  if (courseSearchModelCompare1Id == courseSearchModel.id) {
+                    widget.callbackForModelCompare!("Model1");
                   } else {
-                    Get.find<CourseSearchController>()
-                        .courseSearchModelCompare2 = CourseSearchModel();
+                    widget.callbackForModelCompare!("Model2");
                   }
+
                   setState(() {});
                 },
                 child: CustomAutoSizeTextMontserrat(
@@ -924,12 +925,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 )),
           ),
         );
-      } else if (Get.find<CourseSearchController>()
-                  .courseSearchModelCompare1
-                  .id !=
-              courseSearchModel.id &&
-          Get.find<CourseSearchController>().courseSearchModelCompare2.id !=
-              courseSearchModel.id) {
+      } else if (courseSearchModelCompare1Id != courseSearchModel.id &&
+          courseSearchModelCompare2Id != courseSearchModel.id) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
@@ -942,14 +939,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   onPrimary: ThemeConstants.whitecolor, // foreground
                 ),
                 onPressed: () {
-                  if (Get.find<CourseSearchController>()
-                              .courseSearchModelCompare1
-                              .id !=
-                          null &&
-                      Get.find<CourseSearchController>()
-                              .courseSearchModelCompare2
-                              .id !=
-                          null) {
+                  if (courseSearchModelCompare1Id != null &&
+                      courseSearchModelCompare2Id != null) {
                     showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
@@ -989,15 +980,11 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 addCompare = false;
                 // widget.callbackCompare(false);
 
-                if (Get.find<CourseSearchController>()
-                        .courseSearchModelCompare1
-                        .id ==
-                    courseSearchModel.id) {
-                  Get.find<CourseSearchController>().courseSearchModelCompare1 =
-                      CourseSearchModel();
+// Remove Course Search model
+                if (courseSearchModelCompare1Id == courseSearchModel.id) {
+                  widget.callbackForModelCompare!("Model1");
                 } else {
-                  Get.find<CourseSearchController>().courseSearchModelCompare2 =
-                      CourseSearchModel();
+                  widget.callbackForModelCompare!("Model2");
                 }
                 setState(() {});
               },
@@ -1022,14 +1009,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 onPrimary: ThemeConstants.whitecolor, // foreground
               ),
               onPressed: () {
-                if (Get.find<CourseSearchController>()
-                            .courseSearchModelCompare1
-                            .id !=
-                        null &&
-                    Get.find<CourseSearchController>()
-                            .courseSearchModelCompare2
-                            .id !=
-                        null) {
+                if (courseSearchModelCompare1Id != null &&
+                    courseSearchModelCompare2Id != null) {
                   Get.bottomSheet(SizedBox(
                     height: 40,
                     width: MediaQuery.of(context).size.width,
