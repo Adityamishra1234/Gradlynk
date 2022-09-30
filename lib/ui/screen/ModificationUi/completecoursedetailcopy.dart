@@ -7,16 +7,10 @@ import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/screen/CourseInformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/about_institute.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/steps_visa.dart';
-import 'package:studentpanel/ui/screen/about_course.dart';
-import 'package:studentpanel/ui/screen/about_institute.dart';
-import 'package:studentpanel/ui/screen/entryrequirement.dart';
-import 'package:studentpanel/ui/screen/steps_admissions.dart';
-import 'package:studentpanel/ui/screen/steps_visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 
 class CourseSearchFullDetailCopy extends StatelessWidget {
   List<CompleteCourseDetail>? completeCourseDetail;

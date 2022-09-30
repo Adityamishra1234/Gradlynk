@@ -14,7 +14,7 @@ class EntryRequirement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10, right: 10),
@@ -29,7 +29,7 @@ class EntryRequirement extends StatelessWidget {
                   children: [
                     if (completeCourseDetail[0].universityName != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Country",
@@ -40,7 +40,7 @@ class EntryRequirement extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "completeCourseDetail[0]",
@@ -66,7 +66,7 @@ class EntryRequirement extends StatelessWidget {
                   ),
                   children: [
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "Level of study",
@@ -78,7 +78,7 @@ class EntryRequirement extends StatelessWidget {
                     ),
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "completeCourseDetail[0]",
@@ -105,7 +105,7 @@ class EntryRequirement extends StatelessWidget {
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Min Percentage",
@@ -116,7 +116,7 @@ class EntryRequirement extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].minPercentage,
@@ -143,7 +143,7 @@ class EntryRequirement extends StatelessWidget {
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Min. Grade",
@@ -154,7 +154,7 @@ class EntryRequirement extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                           child: HtmlWidget(
                         completeCourseDetail[0].minGrade ?? "",

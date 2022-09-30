@@ -390,7 +390,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                     ),
                   ),
                   if (_.moreChoosse.value == true)
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                   if (_.moreChoosse.value == true)
@@ -398,7 +398,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                       height: 40,
                       child: Row(
                         children: [
-                          Spacer(),
+                          const Spacer(),
                           Container(
                               height: 40,
                               width: 100,
@@ -514,7 +514,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                       : ThemeConstants.TextColor,
                                 ),
                               )),
-                          Spacer(),
+                          const Spacer(),
                         ],
                       ),
                     ),

@@ -23,7 +23,7 @@ class VisaDetail extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Card(
@@ -70,7 +70,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -85,7 +85,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -124,7 +124,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -139,7 +139,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -267,7 +267,7 @@ class VisaDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Align(
@@ -355,7 +355,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -370,7 +370,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -409,7 +409,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -424,7 +424,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -584,7 +584,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -599,7 +599,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -728,7 +728,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -743,7 +743,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -862,7 +862,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -877,7 +877,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -916,7 +916,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -931,7 +931,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -970,7 +970,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -985,7 +985,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -1114,7 +1114,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -1129,7 +1129,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -1205,7 +1205,7 @@ class VisaDetail extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Align(
@@ -1229,7 +1229,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.GreenColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(
@@ -1244,7 +1244,7 @@ class VisaDetail extends StatelessWidget {
                         textColor: ThemeConstants.bluecolor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     ElevatedButton(

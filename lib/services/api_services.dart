@@ -29,7 +29,7 @@ class ApiServices extends StudentPanelBase {
       Get.snackbar("", response.body);
     }
     if (response != null) {
-      // print(response);
+      // debugPrint(response);
       // SharedPreferences sharedPreferences =
       //     await SharedPreferences.getInstance();
       // final formattedStr = formatDate(
@@ -69,7 +69,7 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -83,7 +83,7 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -97,7 +97,7 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -112,7 +112,7 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -122,7 +122,7 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -183,7 +183,7 @@ class ApiServices extends StudentPanelBase {
                 "Jan") {
               temp =
                   "01-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-              print(temp);
+              debugPrint(temp);
             }
             if (courseSearchPages.courseSearchModel![i].listIntake![j]
                     .toString()
@@ -198,7 +198,7 @@ class ApiServices extends StudentPanelBase {
                 "Mar") {
               temp =
                   "03-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-              print(temp);
+              debugPrint(temp);
             }
             if (courseSearchPages.courseSearchModel![i].listIntake![j]
                     .toString()
@@ -272,23 +272,23 @@ class ApiServices extends StudentPanelBase {
   }
 
   completeCourseDetail(String baseUrl, String endpoint) async {
-    print(endpoint);
+    debugPrint(endpoint);
     // try {
     var response = await httpPostNullBody(baseUrl + endpoint);
     if (response != null) {
       var jsondata = json.decode(response.body);
-      print("object");
+      debugPrint("object");
       List<CompleteCourseDetail> completeCourseDetail =
           List<CompleteCourseDetail>.from(json
               .decode(response.body)
               .map((x) => CompleteCourseDetail.fromJson(x)));
 
-      print("object");
+      debugPrint("object");
       return completeCourseDetail;
     }
 
     // } catch (e) {
-    //   debugPrint(e.toString());
+    //   debugdebugPrint(e.toString());
     // }
   }
 
@@ -353,7 +353,7 @@ class ApiServices extends StudentPanelBase {
   //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
   //   } catch (e) {
   //     if (kDebugMode) {
-  //       print(e);
+  //       debugPrint(e);
   //     }
   //   }
   //   if (response != null) {
@@ -385,7 +385,7 @@ class ApiServices extends StudentPanelBase {
   //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
   //   } catch (e) {
   //     if (kDebugMode) {
-  //       print(e);
+  //       debugPrint(e);
   //     }
   //   }
 
@@ -414,7 +414,7 @@ class ApiServices extends StudentPanelBase {
   //     }
   //   } catch (e) {
   //     if (kDebugMode) {
-  //       print(e);
+  //       debugPrint(e);
   //     }
   //   }
   // }
@@ -429,7 +429,7 @@ class ApiServices extends StudentPanelBase {
   //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
   //   } catch (e) {
   //     if (kDebugMode) {
-  //       print(e);
+  //       debugPrint(e);
   //     }
   //   }
 
@@ -453,7 +453,7 @@ class ApiServices extends StudentPanelBase {
   //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
   //   } catch (e) {
   //     if (kDebugMode) {
-  //       print(e);
+  //       debugPrint(e);
   //     }
   //   }
 
@@ -478,7 +478,7 @@ class ApiServices extends StudentPanelBase {
   //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
   //   } catch (e) {
   //     if (kDebugMode) {
-  //       print(e);
+  //       debugPrint(e);
   //     }
   //   }
 

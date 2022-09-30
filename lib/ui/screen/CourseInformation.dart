@@ -32,7 +32,7 @@ class CourseInformation extends StatelessWidget {
                     children: [
                       if (completeCourseDetail[0].universityName != null)
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Course Name",
@@ -43,7 +43,7 @@ class CourseInformation extends StatelessWidget {
                           ),
                         ),
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: completeCourseDetail[0].courseName,
@@ -70,7 +70,7 @@ class CourseInformation extends StatelessWidget {
                     children: [
                       if (completeCourseDetail[0].instituteType != null)
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Course Level",
@@ -81,7 +81,7 @@ class CourseInformation extends StatelessWidget {
                           ),
                         ),
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: completeCourseDetail[0].courseLevel,
@@ -107,7 +107,7 @@ class CourseInformation extends StatelessWidget {
                     ),
                     children: [
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Bachelors",
@@ -118,7 +118,7 @@ class CourseInformation extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "completeCourseDetail[0].b",
@@ -145,7 +145,7 @@ class CourseInformation extends StatelessWidget {
                     children: [
                       if (completeCourseDetail[0].instituteType != null)
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Specialization",
@@ -156,7 +156,7 @@ class CourseInformation extends StatelessWidget {
                           ),
                         ),
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                             child: HtmlWidget(
                           completeCourseDetail[0].specialEntryRequirement ?? "",

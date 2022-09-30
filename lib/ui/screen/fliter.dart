@@ -293,7 +293,7 @@ class _FilterState extends State<Filter> {
                                     const BorderRadius.all(Radius.circular(10)),
                                 side: BorderSide(
                                     color: ThemeConstants.TextColor)))),
-                    onPressed: () => null,
+                    onPressed: () {},
                     child: CustomAutoSizeTextMontserrat(
                       text: "Clear Filter ",
                       fontWeight: FontWeight.bold,
@@ -306,14 +306,13 @@ class _FilterState extends State<Filter> {
                             ThemeConstants.bluecolor),
                         backgroundColor: MaterialStateProperty.all<Color>(
                             ThemeConstants.bluecolor),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: const BorderRadius.all(
-                                        const Radius.circular(10)),
-                                    side: BorderSide(
-                                        color: ThemeConstants.bluecolor)))),
-                    onPressed: () => null,
+                        shape: MaterialStateProperty
+                            .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                                side: BorderSide(
+                                    color: ThemeConstants.bluecolor)))),
+                    onPressed: () {},
                     child: CustomAutoSizeTextMontserrat(
                       text: "Apply  Filter ",
                       fontWeight: FontWeight.bold,

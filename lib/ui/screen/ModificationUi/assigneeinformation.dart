@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
-import 'package:studentpanel/widgets/customprofilepagefield.dart';
 
 class AssigneeInformationCopy extends StatefulWidget {
   const AssigneeInformationCopy({Key? key}) : super(key: key);

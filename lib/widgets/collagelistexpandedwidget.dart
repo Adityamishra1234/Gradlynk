@@ -753,7 +753,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               ),
             Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 if (shortlist == true)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -813,7 +813,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ),
                     ),
                   ),
-                Spacer(),
+                const Spacer(),
                 if (finalShortList == true)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -874,9 +874,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ),
                     ),
                   ),
-                Spacer(),
+                const Spacer(),
                 if (widget.iscompare == true) AddedButtonShow(),
-                Spacer(),
+                const Spacer(),
               ],
             ),
 
@@ -943,9 +943,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       courseSearchModelCompare2Id != null) {
                     showDialog(
                         context: context,
-                        builder: (_) => AlertDialog(
+                        builder: (_) => const AlertDialog(
                               contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              content: BottomSheetRemoveCourse(),
+                              content: const BottomSheetRemoveCourse(),
                               insetPadding: EdgeInsets.only(left: 5, right: 5),
                             ));
                   } else {

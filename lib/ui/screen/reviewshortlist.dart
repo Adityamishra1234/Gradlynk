@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
-import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
@@ -385,7 +384,7 @@ class ReviewShortList extends StatelessWidget {
   }
 
   callbackModelCompare(varTopic) {
-    print(varTopic);
+    debugPrint(varTopic);
     if (varTopic == "Model1") {
       controller1.courseSearchModelCompare1 = CourseSearchModel();
     } else {

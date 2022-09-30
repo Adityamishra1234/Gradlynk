@@ -27,7 +27,7 @@ class MyDocument extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Expanded(

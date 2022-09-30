@@ -13,7 +13,6 @@ import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
-import 'package:studentpanel/ui/screen/applicantdetail.dart';
 import 'package:studentpanel/ui/screen/applicationcompletedetail.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
@@ -35,7 +34,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
-
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';

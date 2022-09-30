@@ -3,7 +3,6 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
-import 'package:studentpanel/widgets/customprofilepagefield.dart';
 
 class ContactInformationCopy extends StatefulWidget {
   const ContactInformationCopy({Key? key}) : super(key: key);
@@ -45,7 +44,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     fontWeight: FontWeight.bold,
                     textColor: ThemeConstants.TextColor,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   if (saveAndEdit == false)
                     TextButton(
                         onPressed: () {

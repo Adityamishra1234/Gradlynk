@@ -33,16 +33,16 @@ class ApplicationSummaryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['courseId'] = this.courseId;
-    data['university_name'] = this.universityName;
-    data['country_name'] = this.countryName;
-    data['course_level'] = this.courseLevel;
-    data['course_name'] = this.courseName;
-    data['campus_name'] = this.campusName;
-    data['stageId'] = this.stageId;
-    data['statusId'] = this.statusId;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['courseId'] = courseId;
+    data['university_name'] = universityName;
+    data['country_name'] = countryName;
+    data['course_level'] = courseLevel;
+    data['course_name'] = courseName;
+    data['campus_name'] = campusName;
+    data['stageId'] = stageId;
+    data['statusId'] = statusId;
     return data;
   }
 }

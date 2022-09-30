@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,9 +5,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -92,7 +88,7 @@ class _DashBoardState extends State<DashBoard> {
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
@@ -106,7 +102,7 @@ class _DashBoardState extends State<DashBoard> {
                         height: 340,
                         decoration: BoxDecoration(
                           color: ThemeConstants.whitecolor,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(15.0),
                               topLeft: Radius.circular(15.0)),
                         ),
@@ -190,7 +186,7 @@ class _DashBoardState extends State<DashBoard> {
                       textColor: ThemeConstants.bluecolor,
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(color: ThemeConstants.orangeColor),
@@ -202,7 +198,7 @@ class _DashBoardState extends State<DashBoard> {
                         height: 340,
                         decoration: BoxDecoration(
                           color: ThemeConstants.whitecolor,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(15.0),
                               topLeft: Radius.circular(15.0)),
                         ),
@@ -286,12 +282,12 @@ class _DashBoardState extends State<DashBoard> {
                       textColor: ThemeConstants.orangeColor,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               InkWell(
@@ -537,7 +533,7 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
             ],
