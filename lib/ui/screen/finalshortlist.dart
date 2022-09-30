@@ -158,7 +158,7 @@ class FinalShortList extends StatelessWidget {
                                 callbackForModelCompare: callbackModelCompare,
                                 callbackCompare: callbackCompare,
                                 //done
-                                iscompare: controller1!.compareApply.value,
+                                iscompare: controller1.compareApply.value,
                                 currentPage: controller1
                                     .courseSearchPages.currentPage
                                     .toString(),
@@ -194,7 +194,7 @@ class FinalShortList extends StatelessWidget {
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () async {
-                                              var temp = await controller1!.nextpage(
+                                              var temp = await controller1.nextpage(
                                                   controller1.courseSearchPages
                                                       .endpoint
                                                       .toString(),
@@ -249,7 +249,7 @@ class FinalShortList extends StatelessWidget {
                                                   .bluecolor, // foreground
                                             ),
                                             onPressed: () async {
-                                              var temp = await controller1!.nextpage(
+                                              var temp = await controller1.nextpage(
                                                   controller1.courseSearchPages
                                                       .endpoint
                                                       .toString(),
@@ -357,17 +357,17 @@ class FinalShortList extends StatelessWidget {
   callbackCompare(varTopic) async {
     // Add To Compare  For Comparing
     if (varTopic.toString().split(",")[0].toString() == true.toString()) {
-      if (controller1!.courseSearchModelCompare1.id == null) {
-        controller1!.courseSearchModelCompare1 = controller1!.courseSearchPages
+      if (controller1.courseSearchModelCompare1.id == null) {
+        controller1.courseSearchModelCompare1 = controller1.courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
-        controller1!
+        controller1
             .courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
-      } else if (controller1!.courseSearchModelCompare2.id == null) {
-        controller1!.courseSearchModelCompare2 = controller1!.courseSearchPages
+      } else if (controller1.courseSearchModelCompare2.id == null) {
+        controller1.courseSearchModelCompare2 = controller1.courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
-        controller1!
+        controller1
             .courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
@@ -381,8 +381,8 @@ class FinalShortList extends StatelessWidget {
   callbackCompleteDetailCourse(varTopic) async {
     List<String> endpoint = varTopic.toString().split(',');
 
-    var res = await controller1!
-        .completeCourseDetailMethod(endpoint[0], endpoint[1], endpoint[2]);
+    var res = await controller1.completeCourseDetailMethod(
+        endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
       Get.to(CourseSearchFullDetail(

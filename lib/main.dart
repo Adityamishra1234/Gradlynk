@@ -7,10 +7,14 @@ import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/applicantdetail.dart';
+import 'package:studentpanel/ui/screen/applicationcompletedetail.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
@@ -35,6 +39,7 @@ import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
+import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
@@ -89,7 +94,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: CourseSearch.routeNamed,
+      initialRoute: QualificationDetailsCopy.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -108,7 +113,6 @@ class _MyAppState extends State<MyApp> {
           page: () => const MyDocument(),
           transition: Transition.fade,
         ),
-
         GetPage(
           name: DashBoard.routeNamed,
           transition: Transition.fade,
@@ -131,7 +135,6 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
           page: () => const ProfilePageCopy(),
         ),
-
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,
@@ -201,7 +204,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ContactInformationCopy.routeNamed,
           transition: Transition.cupertino,
-          page: () => ContactInformationCopy(),
+          page: () => const ContactInformationCopy(),
         ),
         GetPage(
           name: ScrollTabBar.routeNamed,
@@ -216,7 +219,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ApplicationDetail.routeNamed,
           transition: Transition.cupertino,
-          page: () => ApplicationDetail(),
+          page: () => const ApplicationDetail(),
         ),
         GetPage(
           name: FinalShortList.routeNamed,
@@ -226,6 +229,31 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ReviewShortList.routeNamed,
           page: () => ReviewShortList(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: ApplicationCompleteDetails.routeNamed,
+          page: () => const ApplicationCompleteDetails(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: VisaDetail.routeNamed,
+          page: () => const VisaDetail(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: AssigneeInformationCopy.routeNamed,
+          page: () => const AssigneeInformationCopy(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: CourseInformationCopy.routeNamed,
+          page: () => const CourseInformationCopy(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: QualificationDetailsCopy.routeNamed,
+          page: () => const QualificationDetailsCopy(),
           transition: Transition.fade,
         ),
       ],

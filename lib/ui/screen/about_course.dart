@@ -14,7 +14,7 @@ class AboutCourse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10, right: 10),
@@ -28,7 +28,7 @@ class AboutCourse extends StatelessWidget {
                   ),
                   children: [
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "Country",
@@ -39,7 +39,7 @@ class AboutCourse extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "completeCourseDetail[0].",
@@ -65,7 +65,7 @@ class AboutCourse extends StatelessWidget {
                   ),
                   children: [
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: "Currency Code",
@@ -77,7 +77,7 @@ class AboutCourse extends StatelessWidget {
                     ),
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: completeCourseDetail[0].countryCurrencyCode,
@@ -104,7 +104,7 @@ class AboutCourse extends StatelessWidget {
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Capital City",
@@ -115,7 +115,7 @@ class AboutCourse extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].countryCapital,
@@ -142,7 +142,7 @@ class AboutCourse extends StatelessWidget {
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "INR value",
@@ -153,7 +153,7 @@ class AboutCourse extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                           child: HtmlWidget(
                         completeCourseDetail[0].countryInrValue != null
@@ -186,7 +186,7 @@ class AboutCourse extends StatelessWidget {
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
-                        constraints: BoxConstraints(minHeight: 50),
+                        constraints: const BoxConstraints(minHeight: 50),
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: "Language",
@@ -197,7 +197,7 @@ class AboutCourse extends StatelessWidget {
                         ),
                       ),
                     Container(
-                      constraints: BoxConstraints(minHeight: 50),
+                      constraints: const BoxConstraints(minHeight: 50),
                       child: Center(
                           child: HtmlWidget(
                         completeCourseDetail[0].countryLanguage!,

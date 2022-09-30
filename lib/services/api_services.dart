@@ -2,13 +2,11 @@ import 'dart:convert';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
-
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class ApiServices extends StudentPanelBase {

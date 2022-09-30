@@ -31,7 +31,7 @@ class AboutInstitute extends StatelessWidget {
                       children: [
                         if (completeCourseDetail[0].universityName != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Institute Name",
@@ -43,7 +43,7 @@ class AboutInstitute extends StatelessWidget {
                           ),
                         if (completeCourseDetail[0].universityName != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].universityName,
@@ -70,7 +70,7 @@ class AboutInstitute extends StatelessWidget {
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Institute Type",
@@ -82,7 +82,7 @@ class AboutInstitute extends StatelessWidget {
                           ),
                         if (completeCourseDetail[0].instituteType != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].instituteType,
@@ -109,7 +109,7 @@ class AboutInstitute extends StatelessWidget {
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Campus",
@@ -120,7 +120,7 @@ class AboutInstitute extends StatelessWidget {
                             ),
                           ),
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: completeCourseDetail[0].campusName,
@@ -147,7 +147,7 @@ class AboutInstitute extends StatelessWidget {
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Institute Address",
@@ -158,7 +158,7 @@ class AboutInstitute extends StatelessWidget {
                             ),
                           ),
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Center(
                               child: HtmlWidget(
                             completeCourseDetail[0].campusAddress!,
