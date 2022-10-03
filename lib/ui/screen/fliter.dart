@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/multiselectdropdown.dart';
+import 'package:studentpanel/widgets/customgroupcheckbox.dart';
 
 class Filter extends StatefulWidget {
-  const Filter({Key? key}) : super(key: key);
+  CourseModelFilter courseModelFilter = CourseModelFilter();
+  Filter({Key? key, required this.courseModelFilter}) : super(key: key);
   static const routeNamed = '/Filter';
 
   @override
@@ -14,6 +16,15 @@ class Filter extends StatefulWidget {
 }
 
 class _FilterState extends State<Filter> {
+  CourseModelFilter courseModelFilter = CourseModelFilter();
+  int choosefilter = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    courseModelFilter = widget.courseModelFilter;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +71,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 0;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "University Name",
                                 )),
@@ -71,7 +85,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 1;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Intake Month",
                                 )),
@@ -82,7 +99,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 2;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Intake Year",
                                 )),
@@ -93,7 +113,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 3;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Academic %",
                                 )),
@@ -104,7 +127,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 4;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Budget",
                                 )),
@@ -115,7 +141,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 5;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Country Name",
                                 )),
@@ -126,7 +155,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 6;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Select Ranking",
                                 )),
@@ -137,7 +169,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 60,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 17;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Institute -public/private",
                                 )),
@@ -148,7 +183,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 7;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Institute Level",
                                 )),
@@ -159,7 +197,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 8;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Scholarship",
                                 )),
@@ -170,7 +211,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 9;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "SIEC Priority",
                                 )),
@@ -181,7 +225,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 10;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Conditional Offer",
                                 )),
@@ -192,7 +239,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 11;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Backlog Acceptabe",
                                 )),
@@ -203,7 +253,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 12;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Application Fee",
                                 )),
@@ -214,7 +267,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 13;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Offer TAT(In days)",
                                 )),
@@ -225,7 +281,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 14;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Visa TAT(In days)",
                                 )),
@@ -236,7 +295,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 60,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 15;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Placement/Sandwich year",
                                 )),
@@ -247,7 +309,10 @@ class _FilterState extends State<Filter> {
                           child: SizedBox(
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  choosefilter = 16;
+                                  setState(() {});
+                                },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "SIEC Represented",
                                 )),
@@ -265,11 +330,7 @@ class _FilterState extends State<Filter> {
                   child: SizedBox(
                       height: MediaQuery.of(context).size.height - 220,
                       width: MediaQuery.of(context).size.width / 2 - 10,
-                      child: MultiSelectDropDown(
-                        callbackFunction: () {},
-                        listdata: ["choose 1", "choose 2", "choose 3"],
-                        title: "Test",
-                      )),
+                      child: getFilterOption(choosefilter)),
                 ),
               ],
             ),
@@ -324,6 +385,55 @@ class _FilterState extends State<Filter> {
           )
         ],
       ),
+    );
+  }
+
+  // Function
+  Widget getFilterOption(int i) {
+    return ListView(
+      children: [
+        if (i == 1)
+          CustomgroupCheckBox(
+            data: courseModelFilter.filterModel.universityname,
+          ),
+
+        // Institute -Public/Private
+        if (i == 17)
+          CustomgroupCheckBox(
+            data: ["Public", "Private"],
+          ),
+
+//Scholarship
+        if (i == 8)
+          CustomgroupCheckBox(
+            data: ["Yes", "No"],
+          ),
+        //Siec Priority
+        if (i == 9)
+          CustomgroupCheckBox(
+            data: ["Yes", "No"],
+          ),
+        //backlog acceptable
+        if (i == 11)
+          CustomgroupCheckBox(
+            data: ["Yes", "No"],
+          ),
+        //Application Fee
+        if (i == 12)
+          CustomgroupCheckBox(
+            data: ["Yes", "No"],
+          ),
+        //Placement/Sandwich Years
+        if (i == 15)
+          CustomgroupCheckBox(
+            data: ["Yes", "No"],
+          ),
+        //SIEC Represented
+        if (i == 16)
+          CustomgroupCheckBox(
+            data: ["Yes", "No"],
+          ),
+      ],
     );
   }
 }

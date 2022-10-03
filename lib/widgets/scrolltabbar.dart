@@ -10,7 +10,7 @@ class ScrollTabBar extends StatelessWidget {
   void _animateToIndex(int index) {
     _controller.animateTo(
       index * _height,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       curve: Curves.fastOutSlowIn,
     );
   }
@@ -40,7 +40,7 @@ class ScrollTabBar extends StatelessWidget {
                       onPressed: () {
                         _animateToIndex(1);
                       },
-                      icon: Icon(Icons.keyboard_double_arrow_left_sharp)),
+                      icon: const Icon(Icons.keyboard_double_arrow_left_sharp)),
                 ),
               ),
               Expanded(
@@ -64,7 +64,7 @@ class ScrollTabBar extends StatelessWidget {
                             onPressed: () {},
                             child: CustomAutoSizeTextMontserrat(text: "Tesst"),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                             child: Card(
                               child: Center(child: Text("choose 2")),
@@ -82,14 +82,14 @@ class ScrollTabBar extends StatelessWidget {
                   height: 100,
                   decoration: BoxDecoration(
                       color: ThemeConstants.bluecolor,
-                      borderRadius: BorderRadius.horizontal(
+                      borderRadius: const BorderRadius.horizontal(
                         left: Radius.circular(50.0),
                       )),
                   child: IconButton(
                       onPressed: () {
                         _animateToIndex(10);
                       },
-                      icon: Icon(Icons.double_arrow_rounded)),
+                      icon: const Icon(Icons.double_arrow_rounded)),
                 ),
               ),
             ],

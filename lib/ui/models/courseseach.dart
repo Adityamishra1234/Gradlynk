@@ -1,36 +1,7 @@
-class CourseSearchPages {
-  int? currentPage;
-  List<CourseSearchModel>? courseSearchModel;
-  int? lastPage;
-  String? endpoint;
-
-  CourseSearchPages({this.currentPage, this.courseSearchModel, this.lastPage});
-
-  CourseSearchPages.fromJson(Map<String, dynamic> json) {
-    currentPage = json['current_page'];
-    if (json['data'] != null) {
-      courseSearchModel = <CourseSearchModel>[];
-      json['data'].forEach((v) {
-        courseSearchModel!.add(CourseSearchModel.fromJson(v));
-      });
-    }
-    lastPage = json['last_page'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['current_page'] = currentPage;
-    if (courseSearchModel != null) {
-      data['data'] = courseSearchModel!.map((v) => v.toJson()).toList();
-    }
-    data['last_page'] = lastPage;
-    return data;
-  }
-}
-
 class CourseSearchModel {
   bool? isSelected = false;
   List<String>? listIntake = [];
+  String? finalList;
   String? nearByIntake;
   String? durationYear;
   String? id;
@@ -98,6 +69,8 @@ class CourseSearchModel {
 
   CourseSearchModel(
       {this.id,
+      this.nearByIntake,
+      this.finalList,
       this.shortList,
       this.courseId,
       this.courseName,
@@ -159,6 +132,8 @@ class CourseSearchModel {
 
   CourseSearchModel.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
+    nearByIntake = json['near_by_intake'].toString();
+    finalList = json['is_in_final'].toString();
     courseId = json['course_id'].toString();
     shortList = json['shortlist_added'].toString();
     courseName = json['course_name'];
@@ -223,6 +198,7 @@ class CourseSearchModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['shortlist_added'] = shortList;
+    data['is_in_final'] = finalList;
     data['course_id'] = courseId;
     data['course_name'] = courseName;
     data['IntakeFrom_Year'] = intakeFromYear;

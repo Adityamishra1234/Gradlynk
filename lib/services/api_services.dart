@@ -3,6 +3,7 @@ import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -126,149 +127,142 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getCourseSearch(String baseUrl, String endpoint) async {
-    CourseSearchPages courseSearchPages = CourseSearchPages();
+  getCourseSearch(String baseUrl, String endpoint, String enq_id) async {
+    FilterModel filterModel = FilterModel();
+    CourseModelFilter courseModelFilter = CourseModelFilter();
 
-    var response = await httpPostNullBody(baseUrl + endpoint);
+    List<CourseSearchModel> courseSearchModel = [];
+    print(baseUrl + endpoint + "&enq_id=" + enq_id);
+
+    var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
     var jsondata = json.decode(response.body);
-    courseSearchPages = CourseSearchPages.fromJson(jsondata);
-    // courseSearchModel = jsondata.map(( CourseSearchModel data) {
-    //   CourseSearchModel.fromJson(data);
-    // }).toList();
+    courseSearchModel = List<CourseSearchModel>.from(
+        json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+    courseSearchModel.forEach((element) {
+      filterModel.universityname!.add(element.universityName ?? "");
+      filterModel.instituteLevel!.add(element.instituteType ?? "");
+      filterModel.academicPercentage!.add(element.academicRequire ?? "");
+      filterModel.budget!.add(element.allFeesInr ?? "");
+      filterModel.offerTAT!.add(element.offerTat ?? "");
+      filterModel.visaTAT!.add(element.visaTat ?? "");
+      filterModel.countryName!.add(element.countryName ?? "");
+    });
+    filterModel.universityname = filterModel.universityname!.toSet().toList();
+    filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
+    filterModel.academicPercentage =
+        filterModel.academicPercentage!.toSet().toList();
+    filterModel.budget = filterModel.budget!.toSet().toList();
+    filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
+    filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
+    filterModel.countryName = filterModel.countryName!.toSet().toList();
+
+    print(filterModel.universityname);
 
     //For Duration In Year
-    if (courseSearchPages.courseSearchModel!.isNotEmpty) {
-      courseSearchPages.endpoint = endpoint;
-      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-        if (courseSearchPages.courseSearchModel![i].courseDuration != null) {
-          courseSearchPages.courseSearchModel![i].durationYear = ((int.parse(
-                      courseSearchPages.courseSearchModel![i].courseDuration!) /
-                  12)
-              .toStringAsFixed(1));
-        }
-      }
+    // if (courseSearchModel!.isNotEmpty) {
+    //   endpoint = endpoint;
+    //   for (var i = 0; i < courseSearchModel!.length; i++) {
+    //     if (courseSearchModel![i].courseDuration != null) {
+    //       courseSearchModel![i].durationYear =
+    //           ((int.parse(courseSearchModel![i].courseDuration!) / 12)
+    //               .toStringAsFixed(1));
+    //     }
+    //   }
 
-      //Intake
-      if (courseSearchPages.courseSearchModel!.isNotEmpty) {
-        for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-          if (courseSearchPages.courseSearchModel![i].intakeFromYear != null) {
-            if (courseSearchPages.courseSearchModel![i].intakeFromYear!
-                .contains("|")) {
-              courseSearchPages.courseSearchModel![i].listIntake!.addAll(
-                  courseSearchPages.courseSearchModel![i].intakeFromYear!
-                      .split("|"));
-            } else {
-              courseSearchPages.courseSearchModel![i].listIntake!.add(
-                  courseSearchPages.courseSearchModel![i].intakeFromYear
-                      .toString());
-            }
-          }
-        }
-      }
-      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-        courseSearchPages.courseSearchModel![i].listIntake = courseSearchPages
-            .courseSearchModel![i].listIntake!
-            .toSet()
-            .toList();
-      }
-      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-          String temp = "";
-          for (var j = 0;
-              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
-              j++) {
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Jan") {
-              temp =
-                  "01-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-              debugPrint(temp);
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Feb") {
-              temp =
-                  "02-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Mar") {
-              temp =
-                  "03-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-              debugPrint(temp);
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Apr") {
-              temp =
-                  "04-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "May") {
-              temp =
-                  "05-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Jun") {
-              temp =
-                  "06-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Jul") {
-              temp =
-                  "07-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Aug") {
-              temp =
-                  "08-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Sep") {
-              temp =
-                  "09-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Oct") {
-              temp =
-                  "10-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Nov") {
-              temp =
-                  "11-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            if (courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .toString()
-                    .split("-")[0] ==
-                "Dec") {
-              temp =
-                  "12-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchPages.courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-            }
-            courseSearchPages.courseSearchModel![i].listIntake![j] = temp;
-          }
-        }
-      }
-    }
-    return courseSearchPages;
+    //   //Intake
+    //   if (courseSearchModel!.isNotEmpty) {
+    //     for (var i = 0; i < courseSearchModel!.length; i++) {
+    //       if (courseSearchModel![i].intakeFromYear != null) {
+    //         if (courseSearchModel![i].intakeFromYear!.contains("|")) {
+    //           courseSearchModel![i]
+    //               .listIntake!
+    //               .addAll(courseSearchModel![i].intakeFromYear!.split("|"));
+    //         } else {
+    //           courseSearchModel![i]
+    //               .listIntake!
+    //               .add(courseSearchModel![i].intakeFromYear.toString());
+    //         }
+    //       }
+    //     }
+    //   }
+    //   for (var i = 0; i < courseSearchModel!.length; i++) {
+    //     courseSearchModel![i].listIntake =
+    //         courseSearchModel![i].listIntake!.toSet().toList();
+    //   }
+    //   for (var i = 0; i < courseSearchModel!.length; i++) {
+    //     if (courseSearchModel![i].listIntake!.isNotEmpty) {
+    //       String temp = "";
+    //       for (var j = 0; j < courseSearchModel![i].listIntake!.length; j++) {
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Jan") {
+    //           temp =
+    //               "01-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //           debugPrint(temp);
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Feb") {
+    //           temp =
+    //               "02-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Mar") {
+    //           temp =
+    //               "03-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //           debugPrint(temp);
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Apr") {
+    //           temp =
+    //               "04-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "May") {
+    //           temp =
+    //               "05-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Jun") {
+    //           temp =
+    //               "06-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Jul") {
+    //           temp =
+    //               "07-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Aug") {
+    //           temp =
+    //               "08-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Sep") {
+    //           temp =
+    //               "09-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Oct") {
+    //           temp =
+    //               "10-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Nov") {
+    //           temp =
+    //               "11-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
+    //             "Dec") {
+    //           temp =
+    //               "12-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
+    //         }
+    //         courseSearchModel![i].listIntake![j] = temp;
+    //       }
+    //     }
+    //   }
+    // }
+    courseModelFilter.courseSearchList = courseSearchModel;
+    courseModelFilter.filterModel = filterModel;
+    return courseModelFilter;
   }
 
   completeCourseDetail(String baseUrl, String endpoint) async {
@@ -311,14 +305,15 @@ class ApiServices extends StudentPanelBase {
   }
 
   courseShortlistDetail(String? enq_id) async {
-    CourseSearchPages courseSearchPages = CourseSearchPages();
+    List<CourseSearchModel> courseSearchModel = [];
     var response = await httpPostNullBody(
         "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
     if (response != null) {
       var jsondata = json.decode(response.body);
-      courseSearchPages = CourseSearchPages.fromJson(jsondata);
+      courseSearchModel = List<CourseSearchModel>.from(
+          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
     }
-    return courseSearchPages;
+    return courseSearchModel;
   }
 
   getApplicationSummaryList(String enq_id) async {
@@ -334,14 +329,15 @@ class ApiServices extends StudentPanelBase {
   }
 
   getFinalShortlist(String enq_id) async {
-    CourseSearchPages courseSearchPages = CourseSearchPages();
+    List<CourseSearchModel> courseSearchModel = [];
     var response = await httpPostNullBody(
         "${Endpoints.baseUrl!}${Endpoints.finalShortListDetail}enq_id=$enq_id");
     if (response != null) {
       var jsondata = json.decode(response.body);
-      courseSearchPages = CourseSearchPages.fromJson(jsondata);
+      courseSearchModel = List<CourseSearchModel>.from(
+          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
     }
-    return courseSearchPages;
+    return courseSearchModel;
   }
 
   // logout(String baseUrl, String endpoint) async {

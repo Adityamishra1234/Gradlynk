@@ -17,7 +17,7 @@ class ReviewShortListController extends BaseController {
 
   List<CompleteCourseDetail> completeCourseDetail = [];
 
-  CourseSearchPages courseSearchPages = CourseSearchPages();
+  List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
@@ -33,46 +33,46 @@ class ReviewShortListController extends BaseController {
   }
 
 // Check
-  nextpage(String endpoint, String pageNumber) async {
-    if (loadingNextAndPrevious.value == true) {
-      loadingNextAndPrevious = false.obs;
-      update();
-    }
-    var now = DateTime.now();
-    var formatterYear = DateFormat('yyyy');
-    var formatterMonth = DateFormat('MM');
+  // nextpage(String endpoint, String pageNumber) async {
+  //   if (loadingNextAndPrevious.value == true) {
+  //     loadingNextAndPrevious = false.obs;
+  //     update();
+  //   }
+  //   var now = DateTime.now();
+  //   var formatterYear = DateFormat('yyyy');
+  //   var formatterMonth = DateFormat('MM');
 
-    debugPrint("$endpoint&page=$pageNumber");
-    var res = await apiservices.getCourseSearch(
-        Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
-    if (res != null) {
-      courseSearchPages = res;
+  //   debugPrint("$endpoint&page=$pageNumber");
+  //   var res = await apiservices.getCourseSearch(
+  //       Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
+  //   if (res != null) {
+  //     courseSearchPages = res;
 
-      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-          for (var j = 0;
-              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
-              j++) {
-            if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .split("-")[1]) >=
-                int.parse(formatterYear.format(now))) {
-              if (int.parse(courseSearchPages
-                      .courseSearchModel![i].listIntake![j]
-                      .split("-")[0]) >=
-                  int.parse(formatterMonth.format(now))) {
-                courseSearchPages.courseSearchModel![i].nearByIntake =
-                    courseSearchPages.courseSearchModel![i].listIntake![j];
-              }
-            }
-          }
-        }
-      }
-      courseSearchPages.courseSearchModel!;
-      return loadingNextAndPrevious.value = true;
-    } else {
-      return loadingNextAndPrevious.value = false;
-    }
-  }
+  //     for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+  //       if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
+  //         for (var j = 0;
+  //             j < courseSearchPages.courseSearchModel![i].listIntake!.length;
+  //             j++) {
+  //           if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
+  //                   .split("-")[1]) >=
+  //               int.parse(formatterYear.format(now))) {
+  //             if (int.parse(courseSearchPages
+  //                     .courseSearchModel![i].listIntake![j]
+  //                     .split("-")[0]) >=
+  //                 int.parse(formatterMonth.format(now))) {
+  //               courseSearchPages.courseSearchModel![i].nearByIntake =
+  //                   courseSearchPages.courseSearchModel![i].listIntake![j];
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     courseSearchPages.courseSearchModel!;
+  //     return loadingNextAndPrevious.value = true;
+  //   } else {
+  //     return loadingNextAndPrevious.value = false;
+  //   }
+  // }
 
   completeCourseDetailMethod(
       String universityId, String courseId, String instituteCourseId) async {
@@ -93,7 +93,7 @@ class ReviewShortListController extends BaseController {
   GetCourseShortList(String? enq_id) async {
     var response = await apiservices.courseShortlistDetail(enq_id);
     if (response != null) {
-      courseSearchPages = response;
+      courseSearchModel = response;
       loadingCourseShortList = true.obs;
       update();
     }

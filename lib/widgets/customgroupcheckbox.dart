@@ -23,6 +23,7 @@ class _CustomgroupCheckBoxState extends State<CustomgroupCheckBox> {
   Widget build(BuildContext context) {
     return SimpleGroupedCheckbox(
       itemsTitle: data!,
+      isLeading: true,
       controller: chipsController,
       values: List.generate(data!.length, (index) => index),
       onItemSelected: (values) {},

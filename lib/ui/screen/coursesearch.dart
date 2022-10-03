@@ -278,7 +278,10 @@ class _CourseSearchState extends State<CourseSearch> {
                               const Spacer(),
                               InkWell(
                                 onTap: () {
-                                  Get.toNamed(Filter.routeNamed);
+                                  Get.to(Filter(
+                                    courseModelFilter:
+                                        controller.courseModelFilter,
+                                  ));
                                 },
                                 child: Container(
                                   height: 30,
@@ -376,192 +379,31 @@ class _CourseSearchState extends State<CourseSearch> {
                           true)
                         Expanded(
                           child: ListView.builder(
-                              itemCount: controller1.courseSearchPages
-                                      .courseSearchModel!.length +
-                                  1,
+                              itemCount: controller1.courseSearchModel.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return Column(
-                                  children: [
-                                    if (controller1.courseSearchPages
-                                            .courseSearchModel!.length !=
-                                        index)
-                                      CollagelistExpandedWidget(
-                                        index: index,
-                                        courseSearchModelCompare1Id: controller1
-                                            .courseSearchModelCompare1.id,
-                                        courseSearchModelCompare2Id: controller1
-                                            .courseSearchModelCompare2.id,
-                                        callbackForModelCompare:
-                                            callbackModelCompare,
-                                        callbackCompare: callbackCompare,
-                                        callbackShortListButton:
-                                            CallbackShortListButton,
-                                        callbackFinalShortListButton:
-                                            CallbackFinalShortListButton,
-                                        iscompare:
-                                            controller1.compareApply.value,
-                                        currentPage: controller1
-                                            .courseSearchPages.currentPage
-                                            .toString(),
-                                        lastPage: controller1
-                                            .courseSearchPages.lastPage
-                                            .toString(),
-                                        courseSearchModel: controller1
-                                            .courseSearchPages
-                                            .courseSearchModel![index],
-                                        callbackFunction:
-                                            callbackCompleteDetailCourse,
-                                      ),
-                                    if (controller1.courseSearchPages
-                                            .courseSearchModel!.length ==
-                                        index)
-                                      Row(
-                                        children: [
-                                          const Spacer(),
-                                          if (controller1.courseSearchPages
-                                                  .currentPage !=
-                                              1)
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 20,
-                                                  top: 20,
-                                                  bottom: 20),
-                                              child: SizedBox(
-                                                width: 160,
-                                                height: 50,
-                                                child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      side: BorderSide(
-                                                          color: ThemeConstants
-                                                              .bluegreycolor),
-                                                      primary: ThemeConstants
-                                                          .whitecolor, // background
-                                                      onPrimary: ThemeConstants
-                                                          .whitecolor, // foreground
-                                                    ),
-                                                    onPressed: () async {
-                                                      print(controller1
-                                                          .courseSearchPages
-                                                          .currentPage);
-                                                      var temp = await controller1.nextpage(
-                                                          controller1
-                                                              .courseSearchPages
-                                                              .endpoint
-                                                              .toString(),
-                                                          (controller1.courseSearchPages
-                                                                      .currentPage! -
-                                                                  1)
-                                                              .toString());
-                                                      if (temp == true) {
-                                                        Navigator.push(context,
-                                                            MaterialPageRoute<
-                                                                    void>(
-                                                                builder:
-                                                                    (context) {
-                                                          return CourseSearch();
-                                                        }));
-                                                      }
-                                                    },
-                                                    child: Row(
-                                                      children: [
-                                                        const Spacer(),
-                                                        SvgPicture.asset(
-                                                          "assets/icons/previous-icon.svg",
-                                                          height: 15,
-                                                          color: ThemeConstants
-                                                              .bluegreycolor,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 5,
-                                                        ),
-                                                        CustomAutoSizeTextMontserrat(
-                                                          text: "Previous",
-                                                          textColor:
-                                                              ThemeConstants
-                                                                  .bluegreycolor,
-                                                        ),
-                                                        const Spacer(),
-                                                      ],
-                                                    )),
-                                              ),
-                                            ),
-                                          if (controller1.courseSearchPages
-                                                  .currentPage !=
-                                              controller1
-                                                  .courseSearchPages.lastPage)
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 20,
-                                                  top: 20,
-                                                  bottom: 20),
-                                              child: SizedBox(
-                                                width: 160,
-                                                height: 50,
-                                                child: ElevatedButton(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                      primary: ThemeConstants
-                                                          .bluecolor, // background
-                                                      onPrimary: ThemeConstants
-                                                          .bluecolor, // foreground
-                                                    ),
-                                                    onPressed: () async {
-                                                      print(controller1
-                                                          .courseSearchPages
-                                                          .currentPage);
-                                                      var temp = await controller1.nextpage(
-                                                          controller1
-                                                              .courseSearchPages
-                                                              .endpoint
-                                                              .toString(),
-                                                          (controller1.courseSearchPages
-                                                                      .currentPage! +
-                                                                  1)
-                                                              .toString());
-                                                      if (temp == true) {
-                                                        Navigator.push(context,
-                                                            MaterialPageRoute<
-                                                                    void>(
-                                                                builder:
-                                                                    (context) {
-                                                          return CourseSearch();
-                                                        }));
-                                                      }
-                                                      // // Api call
-                                                      // controller1.courseSearch(
-                                                      //     controller.selectCountryCode
-                                                      //         .toString(),
-                                                      //     controller.selectCourseCode
-                                                      //         .toString());
-                                                    },
-                                                    child: Row(
-                                                      children: [
-                                                        const Spacer(),
-                                                        CustomAutoSizeTextMontserrat(
-                                                          text: "Next",
-                                                          textColor:
-                                                              ThemeConstants
-                                                                  .whitecolor,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 5,
-                                                        ),
-                                                        SvgPicture.asset(
-                                                          "assets/icons/next-icon.svg",
-                                                          height: 15,
-                                                          color: ThemeConstants
-                                                              .whitecolor,
-                                                        ),
-                                                        const Spacer(),
-                                                      ],
-                                                    )),
-                                              ),
-                                            ),
-                                          const Spacer(),
-                                        ],
-                                      )
-                                  ],
+                                return CollagelistExpandedWidget(
+                                  index: index,
+                                  courseSearchModelCompare1Id:
+                                      controller1.courseSearchModelCompare1.id,
+                                  courseSearchModelCompare2Id:
+                                      controller1.courseSearchModelCompare2.id,
+                                  callbackForModelCompare: callbackModelCompare,
+                                  callbackCompare: callbackCompare,
+                                  callbackShortListButton:
+                                      CallbackShortListButton,
+                                  callbackFinalShortListButton:
+                                      CallbackFinalShortListButton,
+                                  iscompare: controller1.compareApply.value,
+                                  // currentPage: controller1
+                                  //     .currentPage
+                                  //     .toString(),
+                                  // lastPage: controller1
+                                  //     .lastPage
+                                  //     .toString(),
+                                  courseSearchModel:
+                                      controller1.courseSearchModel[index],
+                                  callbackFunction:
+                                      callbackCompleteDetailCourse,
                                 );
                               }),
                         ),
@@ -864,7 +706,8 @@ class _CourseSearchState extends State<CourseSearch> {
                                                   controller.selectCountryCode
                                                       .toString(),
                                                   controller.selectCourseCode
-                                                      .toString());
+                                                      .toString(),
+                                                  "78623");
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Search",
@@ -906,17 +749,15 @@ class _CourseSearchState extends State<CourseSearch> {
     // Add To Compare  For Comparing
     if (varTopic.toString().split(",")[0].toString() == true.toString()) {
       if (controller.courseSearchModelCompare1.id == null) {
-        controller.courseSearchModelCompare1 = controller.courseSearchPages
+        controller.courseSearchModelCompare1 = controller
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
         controller
-            .courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else if (controller.courseSearchModelCompare2.id == null) {
-        controller.courseSearchModelCompare2 = controller.courseSearchPages
+        controller.courseSearchModelCompare2 = controller
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
         controller
-            .courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else {

@@ -5,6 +5,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseSearchController extends BaseController {
@@ -34,8 +35,8 @@ class CourseSearchController extends BaseController {
 // Model Create
   List<CompleteCourseDetail> completeCourseDetail = [];
   ApiServices apiservices = ApiServices();
-  CourseSearchPages courseSearchPages = CourseSearchPages();
-  CourseSearchPages courseSearchPages2 = CourseSearchPages();
+  CourseModelFilter courseModelFilter = CourseModelFilter();
+  List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
@@ -143,48 +144,48 @@ class CourseSearchController extends BaseController {
     update();
   }
 
-  nextpage(String endpoint, String pageNumber) async {
-    if (loadingNextAndPrevious.value == true) {
-      loadingNextAndPrevious = false.obs;
-      update();
-    }
-    var now = DateTime.now();
-    var formatterYear = DateFormat('yyyy');
-    var formatterMonth = DateFormat('MM');
+  // nextpage(String endpoint, String pageNumber) async {
+  //   if (loadingNextAndPrevious.value == true) {
+  //     loadingNextAndPrevious = false.obs;
+  //     update();
+  //   }
+  //   var now = DateTime.now();
+  //   var formatterYear = DateFormat('yyyy');
+  //   var formatterMonth = DateFormat('MM');
 
-    debugPrint("$endpoint&page=$pageNumber");
-    var res = await apiservices.getCourseSearch(
-        Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
-    if (res != null) {
-      courseSearchPages = res;
+  //   debugPrint("$endpoint&page=$pageNumber");
+  //   var res = await apiservices.getCourseSearch(
+  //       Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
+  //   if (res != null) {
+  //     courseSearchPages = res;
 
-      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-          for (var j = 0;
-              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
-              j++) {
-            if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .split("-")[1]) >=
-                int.parse(formatterYear.format(now))) {
-              if (int.parse(courseSearchPages
-                      .courseSearchModel![i].listIntake![j]
-                      .split("-")[0]) >=
-                  int.parse(formatterMonth.format(now))) {
-                courseSearchPages.courseSearchModel![i].nearByIntake =
-                    courseSearchPages.courseSearchModel![i].listIntake![j];
-              }
-            }
-          }
-        }
-      }
-      courseSearchPages.courseSearchModel!;
-      return loadingNextAndPrevious.value = true;
-    } else {
-      return loadingNextAndPrevious.value = false;
-    }
-  }
+  //     for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
+  //       if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
+  //         for (var j = 0;
+  //             j < courseSearchPages.courseSearchModel![i].listIntake!.length;
+  //             j++) {
+  //           if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
+  //                   .split("-")[1]) >=
+  //               int.parse(formatterYear.format(now))) {
+  //             if (int.parse(courseSearchPages
+  //                     .courseSearchModel![i].listIntake![j]
+  //                     .split("-")[0]) >=
+  //                 int.parse(formatterMonth.format(now))) {
+  //               courseSearchPages.courseSearchModel![i].nearByIntake =
+  //                   courseSearchPages.courseSearchModel![i].listIntake![j];
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //     courseSearchPages.courseSearchModel!;
+  //     return loadingNextAndPrevious.value = true;
+  //   } else {
+  //     return loadingNextAndPrevious.value = false;
+  //   }
+  // }
 
-  courseSearch(String country, String courseLevel) async {
+  courseSearch(String country, String courseLevel, String enq_id) async {
     var now = DateTime.now();
     var formatterYear = DateFormat('yyyy');
     var formatterMonth = DateFormat('MM');
@@ -196,31 +197,27 @@ class CourseSearchController extends BaseController {
         temp2 +
         Endpoints.courseSearchPart2! +
         temp4;
-
-    var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
+    var res =
+        await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint, enq_id);
     if (res != null) {
-      courseSearchPages = res;
-
-      for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-        if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-          for (var j = 0;
-              j < courseSearchPages.courseSearchModel![i].listIntake!.length;
-              j++) {
-            if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
-                    .split("-")[1]) >=
+      courseModelFilter = res;
+      courseSearchModel = courseModelFilter.courseSearchList;
+      for (var i = 0; i < courseSearchModel!.length; i++) {
+        if (courseSearchModel![i].listIntake!.isNotEmpty) {
+          for (var j = 0; j < courseSearchModel![i].listIntake!.length; j++) {
+            if (int.parse(courseSearchModel![i].listIntake![j].split("-")[1]) >=
                 int.parse(formatterYear.format(now))) {
-              if (int.parse(courseSearchPages
-                      .courseSearchModel![i].listIntake![j]
-                      .split("-")[0]) >=
+              if (int.parse(
+                      courseSearchModel![i].listIntake![j].split("-")[0]) >=
                   int.parse(formatterMonth.format(now))) {
-                courseSearchPages.courseSearchModel![i].nearByIntake =
-                    courseSearchPages.courseSearchModel![i].listIntake![j];
+                courseSearchModel![i].nearByIntake =
+                    courseSearchModel![i].listIntake![j];
               }
             }
           }
         }
       }
-      courseSearchPages.courseSearchModel!;
+      courseSearchModel!;
       loadingCourseSearchDetail = true.obs;
       update();
     }

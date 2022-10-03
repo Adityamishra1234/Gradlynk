@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: QualificationDetailsCopy.routeNamed,
+      initialRoute: Login.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -170,11 +170,11 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
           page: () => const Test1(),
         ),
-        GetPage(
-          name: Filter.routeNamed,
-          transition: Transition.fade,
-          page: () => const Filter(),
-        ),
+        // GetPage(
+        //   name: Filter.routeNamed,
+        //   transition: Transition.fade,
+        //   page: () => const Filter(),
+        // ),
         // GetPage(
         //   name: CourseSearchFullDetail.routeNamed,
         //   page: () => CourseSearchFullDetail(),

@@ -140,15 +140,11 @@ class ReviewShortList extends StatelessWidget {
               if (_.loadingCourseShortList.value == true)
                 Expanded(
                   child: ListView.builder(
-                      itemCount: controller1
-                              .courseSearchPages.courseSearchModel!.length +
-                          1,
+                      itemCount: controller1.courseSearchModel!.length + 1,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
-                            if (controller1.courseSearchPages.courseSearchModel!
-                                    .length !=
-                                index)
+                            if (controller1.courseSearchModel!.length != index)
                               CollagelistExpandedWidget(
                                 index: index,
                                 courseSearchModelCompare1Id:
@@ -159,135 +155,135 @@ class ReviewShortList extends StatelessWidget {
                                 callbackCompare: callbackCompare,
                                 //done
                                 iscompare: controller1.compareApply.value,
-                                currentPage: controller1
-                                    .courseSearchPages.currentPage
-                                    .toString(),
-                                lastPage: controller1.courseSearchPages.lastPage
-                                    .toString(),
-                                courseSearchModel: controller1.courseSearchPages
-                                    .courseSearchModel![index],
+                                // currentPage: controller1
+                                //     .currentPage
+                                //     .toString(),
+                                // lastPage: controller1.courseSearchPages.lastPage
+                                //     .toString(),
+                                courseSearchModel:
+                                    controller1.courseSearchModel![index],
                                 callbackFunction: callbackCompleteDetailCourse,
                               ),
-                            if (controller1.courseSearchPages.courseSearchModel!
-                                    .length ==
-                                index)
-                              Row(
-                                children: [
-                                  const Spacer(),
-                                  if (controller1
-                                          .courseSearchPages.currentPage !=
-                                      1)
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 20, top: 20, bottom: 20),
-                                      child: SizedBox(
-                                        width: 160,
-                                        height: 50,
-                                        child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              side: BorderSide(
-                                                  color: ThemeConstants
-                                                      .bluegreycolor),
-                                              primary: ThemeConstants
-                                                  .whitecolor, // background
-                                              onPrimary: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () async {
-                                              var temp = await controller1.nextpage(
-                                                  controller1.courseSearchPages
-                                                      .endpoint
-                                                      .toString(),
-                                                  (controller1.courseSearchPages
-                                                              .currentPage! -
-                                                          1)
-                                                      .toString());
-                                              if (temp == true) {
-                                                Get.to(ReviewShortList());
-                                              }
-                                            },
-                                            child: Row(
-                                              children: [
-                                                const Spacer(),
-                                                SvgPicture.asset(
-                                                  "assets/icons/previous-icon.svg",
-                                                  height: 15,
-                                                  color: ThemeConstants
-                                                      .bluegreycolor,
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                CustomAutoSizeTextMontserrat(
-                                                  text: "Previous",
-                                                  textColor: ThemeConstants
-                                                      .bluegreycolor,
-                                                ),
-                                                const Spacer(),
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  if (controller1
-                                          .courseSearchPages.currentPage !=
-                                      controller1.courseSearchPages.lastPage)
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 20, top: 20, bottom: 20),
-                                      child: SizedBox(
-                                        width: 160,
-                                        height: 50,
-                                        child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              primary: ThemeConstants
-                                                  .bluecolor, // background
-                                              onPrimary: ThemeConstants
-                                                  .bluecolor, // foreground
-                                            ),
-                                            onPressed: () async {
-                                              var temp = await controller1.nextpage(
-                                                  controller1.courseSearchPages
-                                                      .endpoint
-                                                      .toString(),
-                                                  (controller1.courseSearchPages
-                                                              .currentPage! +
-                                                          1)
-                                                      .toString());
-                                              if (temp == true) {
-                                                Get.to(ReviewShortList());
-                                              }
-                                              // // Api call
-                                              // controller1.courseSearch(
-                                              //     controller.selectCountryCode
-                                              //         .toString(),
-                                              //     controller.selectCourseCode
-                                              //         .toString());
-                                            },
-                                            child: Row(
-                                              children: [
-                                                const Spacer(),
-                                                CustomAutoSizeTextMontserrat(
-                                                  text: "Next",
-                                                  textColor:
-                                                      ThemeConstants.whitecolor,
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                SvgPicture.asset(
-                                                  "assets/icons/next-icon.svg",
-                                                  height: 15,
-                                                  color:
-                                                      ThemeConstants.whitecolor,
-                                                ),
-                                                const Spacer(),
-                                              ],
-                                            )),
-                                      ),
-                                    ),
-                                  const Spacer(),
-                                ],
-                              )
+                            // if (controller1.courseSearchModel!
+                            //         .length ==
+                            //     index)
+                            // Row(
+                            //   children: [
+                            //     const Spacer(),
+                            //     if (controller1
+                            //             .courseSearchPages.currentPage !=
+                            //         1)
+                            //       Padding(
+                            //         padding: const EdgeInsets.only(
+                            //             right: 20, top: 20, bottom: 20),
+                            //         child: SizedBox(
+                            //           width: 160,
+                            //           height: 50,
+                            //           child: ElevatedButton(
+                            //               style: ElevatedButton.styleFrom(
+                            //                 side: BorderSide(
+                            //                     color: ThemeConstants
+                            //                         .bluegreycolor),
+                            //                 primary: ThemeConstants
+                            //                     .whitecolor, // background
+                            //                 onPrimary: ThemeConstants
+                            //                     .whitecolor, // foreground
+                            //               ),
+                            //               onPressed: () async {
+                            //                 var temp = await controller1.nextpage(
+                            //                     controller1.courseSearchPages
+                            //                         .endpoint
+                            //                         .toString(),
+                            //                     (controller1.courseSearchPages
+                            //                                 .currentPage! -
+                            //                             1)
+                            //                         .toString());
+                            //                 if (temp == true) {
+                            //                   Get.to(ReviewShortList());
+                            //                 }
+                            //               },
+                            //               child: Row(
+                            //                 children: [
+                            //                   const Spacer(),
+                            //                   SvgPicture.asset(
+                            //                     "assets/icons/previous-icon.svg",
+                            //                     height: 15,
+                            //                     color: ThemeConstants
+                            //                         .bluegreycolor,
+                            //                   ),
+                            //                   const SizedBox(
+                            //                     width: 5,
+                            //                   ),
+                            //                   CustomAutoSizeTextMontserrat(
+                            //                     text: "Previous",
+                            //                     textColor: ThemeConstants
+                            //                         .bluegreycolor,
+                            //                   ),
+                            //                   const Spacer(),
+                            //                 ],
+                            //               )),
+                            //         ),
+                            //       ),
+                            //     if (controller1
+                            //             .courseSearchPages.currentPage !=
+                            //         controller1.courseSearchPages.lastPage)
+                            //       Padding(
+                            //         padding: const EdgeInsets.only(
+                            //             right: 20, top: 20, bottom: 20),
+                            //         child: SizedBox(
+                            //           width: 160,
+                            //           height: 50,
+                            //           child: ElevatedButton(
+                            //               style: ElevatedButton.styleFrom(
+                            //                 primary: ThemeConstants
+                            //                     .bluecolor, // background
+                            //                 onPrimary: ThemeConstants
+                            //                     .bluecolor, // foreground
+                            //               ),
+                            //               onPressed: () async {
+                            //                 var temp = await controller1.nextpage(
+                            //                     controller1.courseSearchPages
+                            //                         .endpoint
+                            //                         .toString(),
+                            //                     (controller1.courseSearchPages
+                            //                                 .currentPage! +
+                            //                             1)
+                            //                         .toString());
+                            //                 if (temp == true) {
+                            //                   Get.to(ReviewShortList());
+                            //                 }
+                            //                 // // Api call
+                            //                 // controller1.courseSearch(
+                            //                 //     controller.selectCountryCode
+                            //                 //         .toString(),
+                            //                 //     controller.selectCourseCode
+                            //                 //         .toString());
+                            //               },
+                            //               child: Row(
+                            //                 children: [
+                            //                   const Spacer(),
+                            //                   CustomAutoSizeTextMontserrat(
+                            //                     text: "Next",
+                            //                     textColor:
+                            //                         ThemeConstants.whitecolor,
+                            //                   ),
+                            //                   const SizedBox(
+                            //                     width: 5,
+                            //                   ),
+                            //                   SvgPicture.asset(
+                            //                     "assets/icons/next-icon.svg",
+                            //                     height: 15,
+                            //                     color:
+                            //                         ThemeConstants.whitecolor,
+                            //                   ),
+                            //                   const Spacer(),
+                            //                 ],
+                            //               )),
+                            //         ),
+                            //       ),
+                            //     const Spacer(),
+                            //   ],
+                            // )
                           ],
                         );
                       }),
@@ -350,17 +346,15 @@ class ReviewShortList extends StatelessWidget {
     // Add To Compare  For Comparing
     if (varTopic.toString().split(",")[0].toString() == true.toString()) {
       if (controller1.courseSearchModelCompare1.id == null) {
-        controller1.courseSearchModelCompare1 = controller1.courseSearchPages
+        controller1.courseSearchModelCompare1 = controller1
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
         controller1
-            .courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else if (controller1.courseSearchModelCompare2.id == null) {
-        controller1.courseSearchModelCompare2 = controller1.courseSearchPages
+        controller1.courseSearchModelCompare2 = controller1
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
         controller1
-            .courseSearchPages
             .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else {

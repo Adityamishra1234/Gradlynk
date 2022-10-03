@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:studentpanel/services/api_services.dart';
-import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -586,7 +584,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ],
                     ),
                     //NearBy Intake
-                    if (courseSearchModel.nearByIntake != null)
+                    if (courseSearchModel.nearByIntake!.isNotEmpty ||
+                        courseSearchModel.nearByIntake != "")
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Align(
@@ -597,7 +596,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           ),
                         ),
                       ),
-                    if (courseSearchModel.nearByIntake != null)
+                    if (courseSearchModel.nearByIntake!.isNotEmpty ||
+                        courseSearchModel.nearByIntake != "")
                       Padding(
                         padding: const EdgeInsets.only(
                           right: 20,
@@ -633,7 +633,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         ),
                       ),
 
-                    if (courseSearchModel.nearByIntake != null)
+                    if (courseSearchModel.nearByIntake!.isNotEmpty ||
+                        courseSearchModel.nearByIntake != "")
                       MediaQuery.removePadding(
                           context: context,
                           removeTop: true,
@@ -652,7 +653,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                       text:
                                           courseSearchModel.nearByIntake != null
                                               ? courseSearchModel.nearByIntake!
-                                                  .split("-")[0]
+                                                  .split("-")[1]
                                               : "",
                                       textColor: Colors.grey,
                                     ),
@@ -663,7 +664,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                         text: courseSearchModel.nearByIntake !=
                                                 null
                                             ? courseSearchModel.nearByIntake!
-                                                .split("-")[1]
+                                                .split("-")[0]
                                             : "",
                                         textColor: Colors.grey,
                                       ),
@@ -754,7 +755,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             Row(
               children: [
                 const Spacer(),
-                if (shortlist == true)
+                if (shortlist == true ||
+                    courseSearchModel.shortList.toString() == "1")
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
@@ -783,7 +785,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ),
                     ),
                   ),
-                if (shortlist == false)
+                if (courseSearchModel.shortList.toString() == "null" ||
+                    courseSearchModel.shortList.toString() == "0")
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
