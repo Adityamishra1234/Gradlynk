@@ -1,10 +1,13 @@
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class ApplicationCompleteDetails extends StatelessWidget {
-  const ApplicationCompleteDetails({Key? key}) : super(key: key);
+  ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
+  ApplicationCompleteDetails({Key? key, required this.applicationDetailModel})
+      : super(key: key);
   static const routeNamed = '/ApplicationCompleteDetails';
 
   @override

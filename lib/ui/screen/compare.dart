@@ -512,9 +512,7 @@ class Comparing extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 5, right: 5),
                     child: CustomAutoSizeTextMontserrat(
-                      text: courseSearchModel1.IntakeMonth.toString()
-                          .replaceAll("[", "")
-                          .replaceAll("]", ""),
+                      text: courseSearchModel1.intakeMonth,
                       fontSize: 14,
                       textColor: ThemeConstants.TextColor,
                     ),
@@ -528,9 +526,7 @@ class Comparing extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomAutoSizeTextMontserrat(
-                          text: courseSearchModel2.IntakeMonth.toString()
-                              .replaceAll("[", "")
-                              .replaceAll("]", ""),
+                          text: courseSearchModel2.intakeMonth,
                           fontSize: 14,
                           textColor: ThemeConstants.TextColor,
                         ),

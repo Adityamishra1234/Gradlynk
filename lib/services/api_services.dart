@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:studentpanel/services/baseservice.dart';
+import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
@@ -135,17 +137,66 @@ class ApiServices extends StudentPanelBase {
     print(baseUrl + endpoint + "&enq_id=" + enq_id);
 
     var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
+
     var jsondata = json.decode(response.body);
+
     courseSearchModel = List<CourseSearchModel>.from(
         json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
     courseSearchModel.forEach((element) {
-      filterModel.universityname!.add(element.universityName ?? "");
-      filterModel.instituteLevel!.add(element.instituteType ?? "");
-      filterModel.academicPercentage!.add(element.academicRequire ?? "");
-      filterModel.budget!.add(element.allFeesInr ?? "");
-      filterModel.offerTAT!.add(element.offerTat ?? "");
-      filterModel.visaTAT!.add(element.visaTat ?? "");
-      filterModel.countryName!.add(element.countryName ?? "");
+      if (element.intakeMonth != null && element.intakeMonth != "") {
+        filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
+      }
+      if (element.intakeYear != null && element.intakeYear != "") {
+        filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
+      }
+      if (element.academicRequire != null && element.academicRequire != "") {
+        filterModel.academicPercentage!
+            .add(element.academicRequire!.split("-")[1]);
+      }
+      if (element.universityName != null && element.universityName != "") {
+        filterModel.universityname!.add(element.universityName ?? "");
+      }
+      if (element.instituteType != null && element.instituteType != "") {
+        filterModel.instituteLevel!.add(element.instituteType ?? "");
+      }
+      if (element.academicRequire != null) {
+        filterModel.academicPercentage!.add(element.academicRequire ?? "");
+      }
+      if (element.allFeesInr != null && element.allFeesInr != "") {
+        filterModel.budget!.add(element.allFeesInr ?? "");
+      }
+      if (element.offerTat != null && element.offerTat != "") {
+        filterModel.offerTAT!.add(element.offerTat ?? "");
+      }
+      if (element.visaTat != null && element.visaTat != "") {
+        filterModel.visaTAT!.add(element.visaTat ?? "");
+      }
+
+      if (element.countryName != null && element.countryName != "") {
+        filterModel.countryName!.add(element.countryName ?? "");
+      }
+
+      // Yes No
+      if (element.scholarship != null && element.scholarship != "") {
+        filterModel.scholarship!.add(element.scholarship ?? "");
+      }
+      if (element.siecPriority != null && element.siecPriority != "") {
+        filterModel.siecPriority!.add(element.siecPriority ?? "");
+      }
+      if (element.conditionalOffer != null && element.conditionalOffer != "") {
+        filterModel.conditionalOffer!.add(element.conditionalOffer ?? "");
+      }
+      if (element.backlogsAcceptable != null &&
+          element.backlogsAcceptable != "") {
+        filterModel.backlogAcceptable!.add(element.backlogsAcceptable ?? "");
+      }
+      if (element.isApplicationFee != null && element.isApplicationFee != "") {
+        filterModel.applicationfee!.add(element.isApplicationFee ?? "");
+      }
+      if (element.siecRep != null && element.siecRep != "") {
+        filterModel.siecRep!.add(element.siecRep ?? "");
+      }
+      // filterModel.placementSandwich!.add(element.place)
     });
     filterModel.universityname = filterModel.universityname!.toSet().toList();
     filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
@@ -155,6 +206,20 @@ class ApiServices extends StudentPanelBase {
     filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
     filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
     filterModel.countryName = filterModel.countryName!.toSet().toList();
+    filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
+    filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
+    filterModel.academicPercentage =
+        filterModel.academicPercentage!.toSet().toList();
+
+    //Yes No
+    filterModel.scholarship = filterModel.scholarship!.toSet().toList();
+    filterModel.siecPriority = filterModel.siecPriority!.toSet().toList();
+    filterModel.conditionalOffer =
+        filterModel.conditionalOffer!.toSet().toList();
+    filterModel.backlogAcceptable =
+        filterModel.backlogAcceptable!.toSet().toList();
+    filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
+    filterModel.siecRep = filterModel.siecRep!.toSet().toList();
 
     print(filterModel.universityname);
 
@@ -328,10 +393,10 @@ class ApiServices extends StudentPanelBase {
     return applicationSummaryModel;
   }
 
-  getFinalShortlist(String enq_id) async {
+  getFinalShortlist(String? endpoints, String enq_id) async {
     List<CourseSearchModel> courseSearchModel = [];
     var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.finalShortListDetail}enq_id=$enq_id");
+        "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
     if (response != null) {
       var jsondata = json.decode(response.body);
       courseSearchModel = List<CourseSearchModel>.from(
@@ -340,6 +405,16 @@ class ApiServices extends StudentPanelBase {
     return courseSearchModel;
   }
 
+  getApplicationDetails(String? endpoints, String? apli_id) async {
+    ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
+    var response =
+        await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
+      return applicationDetailModel;
+    }
+  }
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   //   var jsonData = {"token": sharedPreferences.getString("token")};

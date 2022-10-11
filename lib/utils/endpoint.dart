@@ -27,4 +27,5 @@ class Endpoints {
   static String? courseShortListDetail = 'get-shortlist-course?';
   static String? applicationSummary = 'get-application?';
   static String? finalShortListDetail = 'get-shortlist-course?is_final=1&';
+  static String? applicationDetail = 'get-application-detail?apli_id=';
 }

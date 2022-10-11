@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Login.routeNamed,
+      initialRoute: DashBoard.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -217,7 +217,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ApplicationDetail.routeNamed,
           transition: Transition.cupertino,
-          page: () => const ApplicationDetail(),
+          page: () => ApplicationDetail(),
         ),
         GetPage(
           name: FinalShortList.routeNamed,
@@ -229,11 +229,11 @@ class _MyAppState extends State<MyApp> {
           page: () => ReviewShortList(),
           transition: Transition.fade,
         ),
-        GetPage(
-          name: ApplicationCompleteDetails.routeNamed,
-          page: () => const ApplicationCompleteDetails(),
-          transition: Transition.fade,
-        ),
+        // GetPage(
+        //   name: ApplicationCompleteDetails.routeNamed,
+        //   page: () => const ApplicationCompleteDetails(),
+        //   transition: Transition.fade,
+        // ),
         GetPage(
           name: VisaDetail.routeNamed,
           page: () => const VisaDetail(),

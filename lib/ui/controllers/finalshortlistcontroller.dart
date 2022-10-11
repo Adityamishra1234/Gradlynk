@@ -91,7 +91,8 @@ class FinalShortListController extends BaseController {
   }
 
   getFinalShortlist(String? enq_id) async {
-    var response = await apiservices.getFinalShortlist(enq_id!);
+    var response = await apiservices.getFinalShortlist(
+        Endpoints.finalShortListDetail, enq_id!);
     if (response != null) {
       courseSearchModel = response;
       loadingCourseShortList = true.obs;

@@ -55,7 +55,7 @@ class _TrackApplicationState extends State<TrackApplication> {
       case 1:
         return const CourseDetail();
       case 2:
-        return const ApplicationDetail();
+        return ApplicationDetail();
       case 3:
         return const DocumentCheckList();
 

@@ -63,13 +63,14 @@ class CourseSearchModel {
   String? workExpRequired;
   String? yearOfEducation;
   String? shortList;
-  List<dynamic>? IntakeMonth = [];
-  List<dynamic>? IntakeYear = [];
-  List<dynamic>? admission = [];
+  String? intakeMonth;
+  String? intakeYear;
 
   CourseSearchModel(
       {this.id,
       this.nearByIntake,
+      this.intakeMonth,
+      this.intakeYear,
       this.finalList,
       this.shortList,
       this.courseId,
@@ -133,6 +134,8 @@ class CourseSearchModel {
   CourseSearchModel.fromJson(Map<String, dynamic> json) {
     id = json['id'].toString();
     nearByIntake = json['near_by_intake'].toString();
+    intakeMonth = json['intake_month'];
+    intakeYear = json['intake_year'];
     finalList = json['is_in_final'].toString();
     courseId = json['course_id'].toString();
     shortList = json['shortlist_added'].toString();
