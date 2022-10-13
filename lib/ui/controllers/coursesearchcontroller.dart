@@ -202,22 +202,22 @@ class CourseSearchController extends BaseController {
     if (res != null) {
       courseModelFilter = res;
       courseSearchModel = courseModelFilter.courseSearchList;
-      for (var i = 0; i < courseSearchModel!.length; i++) {
-        if (courseSearchModel![i].listIntake!.isNotEmpty) {
-          for (var j = 0; j < courseSearchModel![i].listIntake!.length; j++) {
-            if (int.parse(courseSearchModel![i].listIntake![j].split("-")[1]) >=
+      for (var i = 0; i < courseSearchModel.length; i++) {
+        if (courseSearchModel[i].listIntake!.isNotEmpty) {
+          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
+            if (int.parse(courseSearchModel[i].listIntake![j].split("-")[1]) >=
                 int.parse(formatterYear.format(now))) {
               if (int.parse(
-                      courseSearchModel![i].listIntake![j].split("-")[0]) >=
+                      courseSearchModel[i].listIntake![j].split("-")[0]) >=
                   int.parse(formatterMonth.format(now))) {
-                courseSearchModel![i].nearByIntake =
-                    courseSearchModel![i].listIntake![j];
+                courseSearchModel[i].nearByIntake =
+                    courseSearchModel[i].listIntake![j];
               }
             }
           }
         }
       }
-      courseSearchModel!;
+      courseSearchModel;
       loadingCourseSearchDetail = true.obs;
       update();
     }

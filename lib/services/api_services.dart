@@ -175,6 +175,21 @@ class ApiServices extends StudentPanelBase {
       if (element.countryName != null && element.countryName != "") {
         filterModel.countryName!.add(element.countryName ?? "");
       }
+      if (element.instSubCategory != null && element.instSubCategory != "") {
+        filterModel.institutePrivatePublic!.add(element.instSubCategory ?? "");
+      }
+      if (element.arwuRank != null && element.arwuRank != "") {
+        filterModel.arwuNewsRanking!.add(element.arwuRank ?? "");
+      }
+      if (element.timesRank != null && element.timesRank != "") {
+        filterModel.timesRanking!.add(element.timesRank ?? "");
+      }
+      if (element.usNewsRank != null && element.usNewsRank != "") {
+        filterModel.usNewsRanking!.add(element.usNewsRank ?? "");
+      }
+      if (element.qsWorldRank != null && element.qsWorldRank != "") {
+        filterModel.qsWorldRanking!.add(element.qsWorldRank ?? "");
+      }
 
       // Yes No
       if (element.scholarship != null && element.scholarship != "") {
@@ -210,6 +225,8 @@ class ApiServices extends StudentPanelBase {
     filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
     filterModel.academicPercentage =
         filterModel.academicPercentage!.toSet().toList();
+    filterModel.institutePrivatePublic =
+        filterModel.institutePrivatePublic!.toSet().toList();
 
     //Yes No
     filterModel.scholarship = filterModel.scholarship!.toSet().toList();
@@ -220,6 +237,32 @@ class ApiServices extends StudentPanelBase {
         filterModel.backlogAcceptable!.toSet().toList();
     filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
     filterModel.siecRep = filterModel.siecRep!.toSet().toList();
+    filterModel.timesRanking = filterModel.timesRanking!.toSet().toList();
+    if (filterModel.timesRanking != null) {
+      filterModel.timesRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
+
+    if (filterModel.arwuNewsRanking != null) {
+      filterModel.arwuNewsRanking =
+          filterModel.arwuNewsRanking!.toSet().toList();
+      filterModel.arwuNewsRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
+    if (filterModel.usNewsRanking != null) {
+      filterModel.usNewsRanking = filterModel.usNewsRanking!.toSet().toList();
+      filterModel.usNewsRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
+    if (filterModel.qsWorldRanking != null) {
+      filterModel.qsWorldRanking = filterModel.qsWorldRanking!.toSet().toList();
+      filterModel.qsWorldRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
 
     print(filterModel.universityname);
 

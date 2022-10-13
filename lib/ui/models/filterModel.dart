@@ -16,6 +16,10 @@ class FilterModel {
   List<String>? offerTAT = [];
   List<String>? visaTAT = [];
   List<String>? countryName = [];
+  List<String>? timesRanking = [];
+  List<String>? arwuNewsRanking = [];
+  List<String>? usNewsRanking = [];
+  List<String>? qsWorldRanking = [];
 
   //
   List<String>? selectRanking = [];

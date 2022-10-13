@@ -25,11 +25,235 @@ class FilterController extends BaseController {
   List<String>? siecRepresent;
   List<String>? countryName;
   List<String>? institutePublicPrivate;
+  List<String>? academicpercentage;
+  List<String>? budget;
 
   // Academic % ,  Budget , Select Ranking
 
   //Loading
   RxBool loadingfuncation = true.obs;
+
+  // writen some code
+  getBudget(String? data) async {
+    List<CourseSearchModel> courseSearchModel2 = [];
+    loadingfuncation.value = false;
+    bool more_30 = false;
+    bool between_15_30 = false;
+    bool between_7_15 = false;
+    bool less_7 = false;
+    update();
+    filterModel = FilterModel();
+    budget = data!.split(",");
+    budget!.removeAt(0);
+    const ["30 lac or more", "15-30 lac", "7-15 lac", "below 7lac"];
+    budget!.forEach((element) {
+      if (element.toString() == "15-30 lac") {
+        between_15_30 = true;
+      } else if (element.toString() == "7-15 lac") {
+        between_7_15 = true;
+      } else if (element.toString() == "below 7lac") {
+        less_7 = true;
+      } else if (element.toString() == "30 lac or more") {
+        more_30 = true;
+      }
+    });
+
+    for (int i = 0; i < budget!.length; i++) {
+      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+        // three condition
+        if (courseModelFilter.courseSearchList[j].annualTutionFeesInr != null ||
+            courseModelFilter.courseSearchList[j].annualTutionFeesInr != "") {
+          if (between_15_30 == true) {
+            if (double.parse(courseModelFilter
+                        .courseSearchList[j].annualTutionFeesInr!
+                        .toString()) >
+                    1700000 ||
+                double.parse(courseModelFilter
+                        .courseSearchList[j].annualTutionFeesInr!) <
+                    3000000) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+          if (less_7 == true) {
+            if (double.parse(courseModelFilter
+                    .courseSearchList[j].annualTutionFeesInr!
+                    .toString()) <
+                700000) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+          if (more_30 == true) {
+            if (double.parse(courseModelFilter
+                    .courseSearchList[j].annualTutionFeesInr!
+                    .toString()) >
+                3000000) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+          if (between_7_15 == true) {
+            if (double.parse(courseModelFilter
+                        .courseSearchList[j].annualTutionFeesInr!
+                        .toString()) >
+                    700000 ||
+                double.parse(courseModelFilter
+                        .courseSearchList[j].annualTutionFeesInr!
+                        .toString()) <
+                    1500000) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+        }
+      }
+    }
+
+    courseSearchModel = courseSearchModel2;
+    await setModificationFilter(courseSearchModel2);
+  }
+
+  getAcademic(String? data) async {
+    List<CourseSearchModel> courseSearchModel2 = [];
+    loadingfuncation.value = false;
+    bool between_60_70 = false;
+    bool between_50_60 = false;
+    bool between_50 = false;
+    update();
+    filterModel = FilterModel();
+    academicpercentage = data!.split(",");
+    academicpercentage!.removeAt(0);
+
+    academicpercentage!.forEach((element) {
+      if (element.toString() == "between 60-70") {
+        between_60_70 = true;
+      } else if (element.toString() == "between 50-60") {
+        between_50_60 = true;
+      } else if (element.toString() == "between 50") {
+        between_50 = true;
+      }
+    });
+
+    for (int i = 0; i < academicpercentage!.length; i++) {
+      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+        // three condition
+        if (courseModelFilter.courseSearchList[j].academicRequire != null ||
+            courseModelFilter.courseSearchList[j].academicRequire != "") {
+          if (between_50_60 == true) {
+            if (double.parse(courseModelFilter
+                        .courseSearchList[j].academicRequire!
+                        .split("-")[2]
+                        .toString()) >
+                    49 ||
+                double.parse(courseModelFilter
+                        .courseSearchList[j].academicRequire!
+                        .split("-")[2]) <
+                    60) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+          if (between_50 == true) {
+            if (double.parse(courseModelFilter
+                    .courseSearchList[j].academicRequire!
+                    .split("-")[2]
+                    .toString()) <
+                50) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+          if (between_60_70 == true) {
+            if (double.parse(courseModelFilter
+                        .courseSearchList[j].academicRequire!
+                        .split("-")[2]
+                        .toString()) >
+                    60 ||
+                double.parse(courseModelFilter
+                        .courseSearchList[j].academicRequire!
+                        .split("-")[2]
+                        .toString()) <
+                    70) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+        }
+      }
+    }
+    courseSearchModel = courseSearchModel2;
+    await setModificationFilter(courseSearchModel2);
+  }
+
+  getRanking(
+      int? indexSelect, int? firstIndexValue, int? secondIndexValue) async {
+    List<CourseSearchModel> courseSearchModel2 = [];
+    loadingfuncation.value = false;
+
+    update();
+    filterModel = FilterModel();
+
+    switch (indexSelect) {
+      case 0:
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].timesRank != null &&
+              courseModelFilter.courseSearchList[j].timesRank != "") {
+            if (int.parse(courseModelFilter.courseSearchList[j].timesRank
+                        .toString()) >
+                    firstIndexValue! ||
+                int.parse(courseModelFilter.courseSearchList[j].timesRank
+                        .toString()) <
+                    secondIndexValue!) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+        }
+        break;
+      case 1:
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].timesRank != null &&
+              courseModelFilter.courseSearchList[j].timesRank != "") {
+            if (int.parse(courseModelFilter.courseSearchList[j].arwuRank
+                        .toString()) >
+                    firstIndexValue! ||
+                int.parse(courseModelFilter.courseSearchList[j].arwuRank
+                        .toString()) <
+                    secondIndexValue!) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+        }
+        break;
+      case 2:
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].timesRank != null &&
+              courseModelFilter.courseSearchList[j].timesRank != "") {
+            if (int.parse(courseModelFilter.courseSearchList[j].usNewsRank
+                        .toString()) >
+                    firstIndexValue! ||
+                int.parse(courseModelFilter.courseSearchList[j].usNewsRank
+                        .toString()) <
+                    secondIndexValue!) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+        }
+        break;
+      case 3:
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].timesRank != null &&
+              courseModelFilter.courseSearchList[j].timesRank != "") {
+            if (int.parse(courseModelFilter.courseSearchList[j].qsWorldRank
+                        .toString()) >
+                    firstIndexValue! ||
+                int.parse(courseModelFilter.courseSearchList[j].qsWorldRank
+                        .toString()) <
+                    secondIndexValue!) {
+              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+            }
+          }
+        }
+        break;
+      default:
+    }
+
+    courseSearchModel = courseSearchModel2;
+    await setModificationFilter(courseSearchModel2);
+  }
 
   getUniversity(String? data) async {
     List<CourseSearchModel> courseSearchModel2 = [];
@@ -346,6 +570,7 @@ class FilterController extends BaseController {
       if (element.universityName != null && element.universityName != "") {
         filterModel.universityname!.add(element.universityName ?? "");
       }
+
       if (element.instituteType != null && element.instituteType != "") {
         filterModel.instituteLevel!.add(element.instituteType ?? "");
       }
@@ -364,6 +589,9 @@ class FilterController extends BaseController {
 
       if (element.countryName != null && element.countryName != "") {
         filterModel.countryName!.add(element.countryName ?? "");
+      }
+      if (element.instSubCategory != null && element.instSubCategory != "") {
+        filterModel.institutePrivatePublic!.add(element.instSubCategory ?? "");
       }
 
       // Yes No
@@ -386,6 +614,18 @@ class FilterController extends BaseController {
       if (element.siecRep != null && element.siecRep != "") {
         filterModel.siecRep!.add(element.siecRep ?? "");
       }
+      if (element.arwuRank != null && element.arwuRank != "") {
+        filterModel.arwuNewsRanking!.add(element.arwuRank ?? "");
+      }
+      if (element.timesRank != null && element.timesRank != "") {
+        filterModel.timesRanking!.add(element.timesRank ?? "");
+      }
+      if (element.usNewsRank != null && element.usNewsRank != "") {
+        filterModel.usNewsRanking!.add(element.usNewsRank ?? "");
+      }
+      if (element.qsWorldRank != null && element.qsWorldRank != "") {
+        filterModel.qsWorldRanking!.add(element.qsWorldRank ?? "");
+      }
       // filterModel.placementSandwich!.add(element.place)
     });
     filterModel.universityname = filterModel.universityname!.toSet().toList();
@@ -400,6 +640,14 @@ class FilterController extends BaseController {
     filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
     filterModel.academicPercentage =
         filterModel.academicPercentage!.toSet().toList();
+    filterModel.institutePrivatePublic =
+        filterModel.institutePrivatePublic!.toSet().toList();
+    filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
+    filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
+    filterModel.academicPercentage =
+        filterModel.academicPercentage!.toSet().toList();
+    filterModel.institutePrivatePublic =
+        filterModel.institutePrivatePublic!.toSet().toList();
 
     //Yes No
     filterModel.scholarship = filterModel.scholarship!.toSet().toList();
@@ -410,6 +658,32 @@ class FilterController extends BaseController {
         filterModel.backlogAcceptable!.toSet().toList();
     filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
     filterModel.siecRep = filterModel.siecRep!.toSet().toList();
+
+    if (filterModel.timesRanking != null) {
+      filterModel.timesRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
+
+    if (filterModel.arwuNewsRanking != null) {
+      filterModel.arwuNewsRanking =
+          filterModel.arwuNewsRanking!.toSet().toList();
+      filterModel.arwuNewsRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
+    if (filterModel.usNewsRanking != null) {
+      filterModel.usNewsRanking = filterModel.usNewsRanking!.toSet().toList();
+      filterModel.usNewsRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
+    if (filterModel.qsWorldRanking != null) {
+      filterModel.qsWorldRanking = filterModel.qsWorldRanking!.toSet().toList();
+      filterModel.qsWorldRanking!.sort((a, b) {
+        return int.parse(a).compareTo(int.parse(b));
+      });
+    }
 
     print(filterModel.universityname);
 
