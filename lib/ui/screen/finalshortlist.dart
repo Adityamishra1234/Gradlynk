@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/controllers/finalshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
-import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -13,11 +12,27 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-class FinalShortList extends StatelessWidget {
-  FinalShortList({Key? key}) : super(key: key);
+class FinalShortList extends StatefulWidget {
+  CourseModelFilter? courseModelFilter = CourseModelFilter();
+  FinalShortList({Key? key, this.courseModelFilter}) : super(key: key);
   static const routeNamed = '/FinalShortList';
 
+  @override
+  State<FinalShortList> createState() => _FinalShortListState();
+}
+
+class _FinalShortListState extends State<FinalShortList> {
   var controller1 = Get.put(FinalShortListController());
+
+  @override
+  void initState() {
+    if (widget.courseModelFilter == null) {
+      controller1.getFinalShortlist("78623");
+    } else {
+      controller1.courseModelFilter = widget.courseModelFilter!;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +72,10 @@ class FinalShortList extends StatelessWidget {
                     const Spacer(),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(Filter.routeNamed);
+                        Get.to(Filter(
+                          previousRoute: FinalShortList.routeNamed,
+                          courseModelFilter: controller1.courseModelFilter,
+                        ));
                       },
                       child: Container(
                         height: 30,
@@ -140,11 +158,15 @@ class FinalShortList extends StatelessWidget {
               if (_.loadingCourseShortList.value == true)
                 Expanded(
                   child: ListView.builder(
-                      itemCount: controller1.courseSearchModel!.length + 1,
+                      itemCount: controller1
+                              .courseModelFilter.courseSearchList.length +
+                          1,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
-                            if (controller1.courseSearchModel!.length != index)
+                            if (controller1.courseModelFilter.courseSearchList
+                                    .length !=
+                                index)
                               CollagelistExpandedWidget(
                                 index: index,
                                 courseSearchModelCompare1Id:
@@ -160,8 +182,8 @@ class FinalShortList extends StatelessWidget {
                                 //     .toString(),
                                 // lastPage: controller1.lastPage
                                 //     .toString(),
-                                courseSearchModel:
-                                    controller1.courseSearchModel![index],
+                                courseSearchModel: controller1
+                                    .courseModelFilter.courseSearchList[index],
                                 callbackFunction: callbackCompleteDetailCourse,
                               ),
                             // if (controller1.courseSearchModel!.length == index)
@@ -297,12 +319,10 @@ class FinalShortList extends StatelessWidget {
                   onTap: () {
                     Get.to(
                       Comparing(
-                        courseSearchModel1:
-                            Get.find<ReviewShortListController>()
-                                .courseSearchModelCompare1,
-                        courseSearchModel2:
-                            Get.find<ReviewShortListController>()
-                                .courseSearchModelCompare2,
+                        courseSearchModel1: Get.find<FinalShortListController>()
+                            .courseSearchModelCompare1,
+                        courseSearchModel2: Get.find<FinalShortListController>()
+                            .courseSearchModelCompare2,
                       ),
                     );
                   },
@@ -350,16 +370,18 @@ class FinalShortList extends StatelessWidget {
     // Add To Compare  For Comparing
     if (varTopic.toString().split(",")[0].toString() == true.toString()) {
       if (controller1.courseSearchModelCompare1.id == null) {
-        controller1.courseSearchModelCompare1 = controller1
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+        controller1.courseSearchModelCompare1 = controller1.courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
         controller1
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+            .courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else if (controller1.courseSearchModelCompare2.id == null) {
-        controller1.courseSearchModelCompare2 = controller1
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+        controller1.courseSearchModelCompare2 = controller1.courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
         controller1
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+            .courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else {
         debugPrint(varTopic);

@@ -6,7 +6,6 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 class FilterController extends BaseController {
   CourseModelFilter courseModelFilter = CourseModelFilter();
   List<CourseSearchModel> courseSearchModel = [];
-
   FilterModel filterModel = FilterModel();
 
   // List of Filter Fields
@@ -723,7 +722,7 @@ class FilterController extends BaseController {
     // filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
 
     // Placement / Sandwich , Ranking, budget
-    loadingfuncation!.value = true;
+    loadingfuncation.value = true;
     update();
 
     courseModelFilter.courseSearchList = courseSearchModel;

@@ -217,9 +217,7 @@ class CourseSearchController extends BaseController {
           }
         }
       }
-      courseSearchModel;
-      loadingCourseSearchDetail = true.obs;
-      update();
+      return courseModelFilter;
     }
   }
 

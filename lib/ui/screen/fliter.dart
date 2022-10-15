@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/filtercontroller.dart';
 import 'package:studentpanel/ui/models/checkbox.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/ui/screen/courseshortlist.dart';
+import 'package:studentpanel/ui/screen/finalshortlist.dart';
+import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -12,7 +15,9 @@ import 'package:studentpanel/widgets/test.dart';
 
 class Filter extends StatefulWidget {
   CourseModelFilter courseModelFilter = CourseModelFilter();
-  Filter({Key? key, required this.courseModelFilter}) : super(key: key);
+  String? previousRoute;
+  Filter({Key? key, required this.courseModelFilter, this.previousRoute})
+      : super(key: key);
   static const routeNamed = '/Filter';
 
   @override
@@ -109,6 +114,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 0;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -128,6 +134,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 1;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -147,6 +154,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 2;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -167,6 +175,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 3;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -185,6 +194,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 4;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -204,6 +214,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 5;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -223,6 +234,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 17;
+
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -243,6 +255,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 6;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -263,6 +276,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 7;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -282,6 +296,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 8;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -301,6 +316,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 9;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -321,6 +337,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 10;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -341,6 +358,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 11;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -361,6 +379,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 12;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -380,6 +399,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 13;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -398,6 +418,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 14;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -418,6 +439,7 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 15;
+                                          indexRanking = 4;
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -436,6 +458,8 @@ class _FilterState extends State<Filter> {
                                     child: TextButton(
                                         onPressed: () async {
                                           choosefilter = 16;
+                                          indexRanking = 4;
+
                                           if (itemsSelected != null) {
                                             await loadingFilter();
                                           }
@@ -504,7 +528,33 @@ class _FilterState extends State<Filter> {
                                           Radius.circular(10)),
                                       side: BorderSide(
                                           color: ThemeConstants.bluecolor)))),
-                          onPressed: () {},
+                          onPressed: () async {
+                            if (itemsSelected != null) {
+                              await loadingFilter();
+                            }
+                            if (controller1.loadingfuncation.value == true) {
+                              if (widget.previousRoute ==
+                                  FinalShortList.routeNamed) {
+                                Get.to(FinalShortList(
+                                  courseModelFilter:
+                                      controller1.courseModelFilter,
+                                ));
+                              }
+                              if (widget.previousRoute ==
+                                  ReviewShortList.routeNamed) {
+                                Get.to(ReviewShortList(
+                                  courseModelFilter:
+                                      controller1.courseModelFilter,
+                                ));
+                              }
+                              if (widget.previousRoute ==
+                                  CourseSearchList.routeNamed) {
+                                Get.to(CourseSearchList(
+                                  courseModelFilter: courseModelFilter,
+                                ));
+                              }
+                            }
+                          },
                           child: CustomAutoSizeTextMontserrat(
                             text: "Apply  Filter ",
                             fontWeight: FontWeight.bold,
@@ -605,13 +655,15 @@ class _FilterState extends State<Filter> {
             hint: "Ranking",
             border: true,
           ),
-        const SizedBox(
-          height: 10,
-        ),
-        CustomAutoSizeTextMontserrat(
-          text: "Selected Highest Ranking",
-          fontWeight: FontWeight.w500,
-        ),
+        if (i == 17)
+          const SizedBox(
+            height: 10,
+          ),
+        if (i == 17)
+          CustomAutoSizeTextMontserrat(
+            text: "Selected Highest Ranking",
+            fontWeight: FontWeight.w500,
+          ),
         if (indexRanking == 0)
           CustomDropDown(
             callbackFunction: callbackFirstRanking,
@@ -640,13 +692,15 @@ class _FilterState extends State<Filter> {
             hint: "QS world Ranking",
             border: true,
           ),
-        const SizedBox(
-          height: 10,
-        ),
-        CustomAutoSizeTextMontserrat(
-          text: "Select Lowest ranking",
-          fontWeight: FontWeight.w500,
-        ),
+        if (i == 17)
+          const SizedBox(
+            height: 10,
+          ),
+        if (i == 17)
+          CustomAutoSizeTextMontserrat(
+            text: "Select Lowest ranking",
+            fontWeight: FontWeight.w500,
+          ),
         if (indexRanking == 0)
           CustomDropDown(
             callbackFunction: callbackSecondRanking,

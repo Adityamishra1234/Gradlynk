@@ -130,7 +130,6 @@ class ApiServices extends StudentPanelBase {
   }
 
   getCourseSearch(String baseUrl, String endpoint, String enq_id) async {
-    FilterModel filterModel = FilterModel();
     CourseModelFilter courseModelFilter = CourseModelFilter();
 
     List<CourseSearchModel> courseSearchModel = [];
@@ -142,7 +141,112 @@ class ApiServices extends StudentPanelBase {
 
     courseSearchModel = List<CourseSearchModel>.from(
         json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
-    courseSearchModel.forEach((element) {
+    if (courseSearchModel.isNotEmpty) {
+      courseModelFilter.courseSearchList = courseSearchModel;
+      courseModelFilter.filterModel = await createFilter(courseModelFilter);
+    }
+    courseModelFilter.courseSearchList = courseSearchModel;
+
+    return courseModelFilter;
+  }
+
+  completeCourseDetail(String baseUrl, String endpoint) async {
+    debugPrint(endpoint);
+    // try {
+    var response = await httpPostNullBody(baseUrl + endpoint);
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      debugPrint("object");
+      List<CompleteCourseDetail> completeCourseDetail =
+          List<CompleteCourseDetail>.from(json
+              .decode(response.body)
+              .map((x) => CompleteCourseDetail.fromJson(x)));
+
+      debugPrint("object");
+      return completeCourseDetail;
+    }
+
+    // } catch (e) {
+    //   debugdebugPrint(e.toString());
+    // }
+  }
+
+  setShortListCourse(String? id, String? enq_id) async {
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
+    if (response != null) {
+      Get.snackbar("Course ShortList", response.body,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  setFinalShortListCourse(String? id, String? enq_id) async {
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
+    if (response != null) {
+      Get.snackbar("Course ShortList", response.body,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  courseShortlistDetail(String? enq_id) async {
+    CourseModelFilter courseModelFilter = CourseModelFilter();
+
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
+          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+      if (courseModelFilter.courseSearchList.isNotEmpty) {
+        courseModelFilter.filterModel = await createFilter(courseModelFilter);
+      }
+    }
+    return courseModelFilter;
+  }
+
+  getApplicationSummaryList(String enq_id) async {
+    List<ApplicationSummaryModel> applicationSummaryModel = [];
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
+    if (response != null) {
+      applicationSummaryModel = List<ApplicationSummaryModel>.from(json
+          .decode(response.body)
+          .map((x) => ApplicationSummaryModel.fromJson(x)));
+    }
+    return applicationSummaryModel;
+  }
+
+  getFinalShortlist(String? endpoints, String enq_id) async {
+    CourseModelFilter courseModelFilter = CourseModelFilter();
+    List<CourseSearchModel> courseSearchModel = [];
+    var response = await httpPostNullBody(
+        "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
+          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+      if (courseModelFilter.courseSearchList.isNotEmpty) {
+        courseModelFilter.filterModel = await createFilter(courseModelFilter);
+      }
+    }
+    return courseModelFilter;
+  }
+
+  getApplicationDetails(String? endpoints, String? apli_id) async {
+    ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
+    var response =
+        await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
+      return applicationDetailModel;
+    }
+  }
+
+  createFilter(CourseModelFilter courseModelFilter) {
+    FilterModel filterModel = FilterModel();
+    courseModelFilter.courseSearchList.forEach((element) {
       if (element.intakeMonth != null && element.intakeMonth != "") {
         filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
       }
@@ -264,199 +368,7 @@ class ApiServices extends StudentPanelBase {
       });
     }
 
-    print(filterModel.universityname);
-
-    //For Duration In Year
-    // if (courseSearchModel!.isNotEmpty) {
-    //   endpoint = endpoint;
-    //   for (var i = 0; i < courseSearchModel!.length; i++) {
-    //     if (courseSearchModel![i].courseDuration != null) {
-    //       courseSearchModel![i].durationYear =
-    //           ((int.parse(courseSearchModel![i].courseDuration!) / 12)
-    //               .toStringAsFixed(1));
-    //     }
-    //   }
-
-    //   //Intake
-    //   if (courseSearchModel!.isNotEmpty) {
-    //     for (var i = 0; i < courseSearchModel!.length; i++) {
-    //       if (courseSearchModel![i].intakeFromYear != null) {
-    //         if (courseSearchModel![i].intakeFromYear!.contains("|")) {
-    //           courseSearchModel![i]
-    //               .listIntake!
-    //               .addAll(courseSearchModel![i].intakeFromYear!.split("|"));
-    //         } else {
-    //           courseSearchModel![i]
-    //               .listIntake!
-    //               .add(courseSearchModel![i].intakeFromYear.toString());
-    //         }
-    //       }
-    //     }
-    //   }
-    //   for (var i = 0; i < courseSearchModel!.length; i++) {
-    //     courseSearchModel![i].listIntake =
-    //         courseSearchModel![i].listIntake!.toSet().toList();
-    //   }
-    //   for (var i = 0; i < courseSearchModel!.length; i++) {
-    //     if (courseSearchModel![i].listIntake!.isNotEmpty) {
-    //       String temp = "";
-    //       for (var j = 0; j < courseSearchModel![i].listIntake!.length; j++) {
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Jan") {
-    //           temp =
-    //               "01-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //           debugPrint(temp);
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Feb") {
-    //           temp =
-    //               "02-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Mar") {
-    //           temp =
-    //               "03-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //           debugPrint(temp);
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Apr") {
-    //           temp =
-    //               "04-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "May") {
-    //           temp =
-    //               "05-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Jun") {
-    //           temp =
-    //               "06-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Jul") {
-    //           temp =
-    //               "07-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Aug") {
-    //           temp =
-    //               "08-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Sep") {
-    //           temp =
-    //               "09-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Oct") {
-    //           temp =
-    //               "10-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Nov") {
-    //           temp =
-    //               "11-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         if (courseSearchModel![i].listIntake![j].toString().split("-")[0] ==
-    //             "Dec") {
-    //           temp =
-    //               "12-${courseSearchModel![i].listIntake![j].toString().split("-")[1]}-${courseSearchModel![i].listIntake![j].toString().split("-")[2]}";
-    //         }
-    //         courseSearchModel![i].listIntake![j] = temp;
-    //       }
-    //     }
-    //   }
-    // }
-    courseModelFilter.courseSearchList = courseSearchModel;
-    courseModelFilter.filterModel = filterModel;
-    return courseModelFilter;
-  }
-
-  completeCourseDetail(String baseUrl, String endpoint) async {
-    debugPrint(endpoint);
-    // try {
-    var response = await httpPostNullBody(baseUrl + endpoint);
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      debugPrint("object");
-      List<CompleteCourseDetail> completeCourseDetail =
-          List<CompleteCourseDetail>.from(json
-              .decode(response.body)
-              .map((x) => CompleteCourseDetail.fromJson(x)));
-
-      debugPrint("object");
-      return completeCourseDetail;
-    }
-
-    // } catch (e) {
-    //   debugdebugPrint(e.toString());
-    // }
-  }
-
-  setShortListCourse(String? id, String? enq_id) async {
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
-    if (response != null) {
-      Get.snackbar("Course ShortList", response.body,
-          snackPosition: SnackPosition.BOTTOM);
-    }
-  }
-
-  setFinalShortListCourse(String? id, String? enq_id) async {
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
-    if (response != null) {
-      Get.snackbar("Course ShortList", response.body,
-          snackPosition: SnackPosition.BOTTOM);
-    }
-  }
-
-  courseShortlistDetail(String? enq_id) async {
-    List<CourseSearchModel> courseSearchModel = [];
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      courseSearchModel = List<CourseSearchModel>.from(
-          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
-    }
-    return courseSearchModel;
-  }
-
-  getApplicationSummaryList(String enq_id) async {
-    List<ApplicationSummaryModel> applicationSummaryModel = [];
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
-    if (response != null) {
-      applicationSummaryModel = List<ApplicationSummaryModel>.from(json
-          .decode(response.body)
-          .map((x) => ApplicationSummaryModel.fromJson(x)));
-    }
-    return applicationSummaryModel;
-  }
-
-  getFinalShortlist(String? endpoints, String enq_id) async {
-    List<CourseSearchModel> courseSearchModel = [];
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      courseSearchModel = List<CourseSearchModel>.from(
-          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
-    }
-    return courseSearchModel;
-  }
-
-  getApplicationDetails(String? endpoints, String? apli_id) async {
-    ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
-    var response =
-        await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
-      return applicationDetailModel;
-    }
+    return filterModel;
   }
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

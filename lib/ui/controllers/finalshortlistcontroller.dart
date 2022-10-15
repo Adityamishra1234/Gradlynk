@@ -5,6 +5,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class FinalShortListController extends BaseController {
@@ -17,15 +18,16 @@ class FinalShortListController extends BaseController {
 
   List<CompleteCourseDetail> completeCourseDetail = [];
 
+  CourseModelFilter courseModelFilter = CourseModelFilter();
   List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
-  @override
-  void onInit() {
-    super.onInit();
-    getFinalShortlist("78623");
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   getFinalShortlist("78623");
+  // }
 
   setCompare(RxBool data) {
     compareApply = data;
@@ -94,7 +96,7 @@ class FinalShortListController extends BaseController {
     var response = await apiservices.getFinalShortlist(
         Endpoints.finalShortListDetail, enq_id!);
     if (response != null) {
-      courseSearchModel = response;
+      courseModelFilter = response;
       loadingCourseShortList = true.obs;
       update();
     }

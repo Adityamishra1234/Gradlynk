@@ -3,10 +3,9 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
-import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ReviewShortListController extends BaseController {
+class CourseShortListController extends BaseController {
   ApiServices apiservices = ApiServices();
 
   // Loading
@@ -16,7 +15,6 @@ class ReviewShortListController extends BaseController {
 
   List<CompleteCourseDetail> completeCourseDetail = [];
 
-  CourseModelFilter courseModelFilter = CourseModelFilter();
   List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
@@ -24,7 +22,7 @@ class ReviewShortListController extends BaseController {
   // @override
   // void onInit() {
   //   super.onInit();
-  //   GetCourseShortList("78623");
+  //   // GetCourseShortList("78623");
   // }
 
   setCompare(RxBool data) {
@@ -74,6 +72,10 @@ class ReviewShortListController extends BaseController {
   //   }
   // }
 
+  courseShortList(String? id, String enq_id) {
+    apiservices.setShortListCourse(id, enq_id);
+  }
+
   completeCourseDetailMethod(
       String universityId, String courseId, String instituteCourseId) async {
     String endpoint = Endpoints.completeCoursePart1! +
@@ -93,8 +95,7 @@ class ReviewShortListController extends BaseController {
   GetCourseShortList(String? enq_id) async {
     var response = await apiservices.courseShortlistDetail(enq_id);
     if (response != null) {
-      courseModelFilter = response;
-      courseSearchModel = courseModelFilter.courseSearchList;
+      courseSearchModel = response;
       loadingCourseShortList = true.obs;
       update();
     }
