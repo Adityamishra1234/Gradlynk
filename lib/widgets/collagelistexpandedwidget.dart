@@ -4,11 +4,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/screen/courseshortlist.dart';
+import 'package:studentpanel/ui/screen/finalshortlist.dart';
+import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CollagelistExpandedWidget extends StatefulWidget {
+  String? previousRoute;
+  bool? finalShortListFirst;
+  bool? courseShortListFirst;
   String? courseSearchModelCompare1Id;
   String? courseSearchModelCompare2Id;
   bool? shortList = false;
@@ -21,13 +27,16 @@ class CollagelistExpandedWidget extends StatefulWidget {
   final Function? callbackShortListButton;
   final Function? callbackFinalShortListButton;
   final Function? callbackForModelCompare;
-
   bool? iscompare;
   int? index;
   CollagelistExpandedWidget(
       {Key? key,
+      this.previousRoute,
+      required this.finalShortListFirst,
+      required this.courseShortListFirst,
       required this.callbackForModelCompare,
       this.courseSearchModelCompare1Id,
+      this.finalShortList,
       this.courseSearchModelCompare2Id,
       required this.iscompare,
       required this.courseSearchModel,
@@ -64,7 +73,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   void initState() {
     courseSearchModel = widget.courseSearchModel;
     shortlist = widget.shortList!;
-    finalShortList = widget.finalShortList!;
+    if (widget.finalShortList != null) {
+      finalShortList = widget.finalShortList!;
+    }
     index = widget.index;
     courseSearchModelCompare1Id = widget.courseSearchModelCompare1Id;
     courseSearchModelCompare2Id = widget.courseSearchModelCompare2Id;
@@ -136,34 +147,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 Positioned(
                     top: 8,
                     right: 10,
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          if (resize == false) {
-                            onStartIconPress(context);
-                          } else {
-                            onEndIconPress(context);
-                          }
-                        });
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: Container(
-                              height: 30,
-                              width: 30,
-                              decoration: const BoxDecoration(
-                                  color: Color(0xFFECF0FB),
-                                  shape: BoxShape.circle),
-                              child: Center(
-                                  child: Padding(
-                                padding: const EdgeInsets.all(8),
-                                child:
-                                    SvgPicture.asset("assets/icons/arrow.svg"),
-                              ))),
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: SvgPicture.asset(
+                        "assets/icons/star.svg",
+                        color: ThemeConstants.orangeColor,
+                        height: 20,
                       ),
                     )),
                 Column(
@@ -214,7 +203,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 10, right: 10, bottom: 10),
+                        left: 10,
+                        right: 10,
+                      ),
                       child: Row(
                         children: [
                           SvgPicture.asset(
@@ -261,58 +252,59 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
                           if (courseSearchModel.annualTutionFees != null)
-                            IconButton(
-                                onPressed: () {},
-                                icon: SvgPicture.asset(
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 7, bottom: 10),
+                              child: InkWell(
+                                onTap: () {},
+                                child: SvgPicture.asset(
                                   "assets/icons/i.svg",
-                                  height: 20,
-                                  width: 20,
+                                  height: 18,
+                                  width: 18,
                                   color: ThemeConstants.bluecolor,
-                                )),
-                          const Spacer(),
-                          SizedBox(
-                            height: 30,
-                            width: 80,
-                            child: Row(
-                              children: [
-                                // const Spacer(),
-                                // Container(
-                                //   height: 30,
-                                //   width: 30,
-                                //   decoration: const BoxDecoration(
-                                //       color: Color(0xFF2FAF5E),
-                                //       borderRadius:
-                                //           BorderRadius.all(Radius.circular(7))),
-                                //   child: Padding(
-                                //     padding: const EdgeInsets.all(3),
-                                //     child: SvgPicture.asset(
-                                //       "assets/icons/list.svg",
-                                //       color: ThemeConstants.whitecolor,
-                                //       height: 25,
-                                //     ),
-                                //   ),
-                                // ),
-
-                                const Spacer(),
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFFF97316),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(7))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: SvgPicture.asset(
-                                      "assets/icons/star.svg",
-                                      color: ThemeConstants.whitecolor,
-                                      height: 20,
-                                    ),
-                                  ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                          const Spacer(),
+                          // Row(
+                          //   children: [
+                          //     // const Spacer(),
+                          //     // Container(
+                          //     //   height: 30,
+                          //     //   width: 30,
+                          //     //   decoration: const BoxDecoration(
+                          //     //       color: Color(0xFF2FAF5E),
+                          //     //       borderRadius:
+                          //     //           BorderRadius.all(Radius.circular(7))),
+                          //     //   child: Padding(
+                          //     //     padding: const EdgeInsets.all(3),
+                          //     //     child: SvgPicture.asset(
+                          //     //       "assets/icons/list.svg",
+                          //     //       color: ThemeConstants.whitecolor,
+                          //     //       height: 25,
+                          //     //     ),
+                          //     //   ),
+                          //     // ),
+
+                          //     // const Spacer(),
+                          //     // Container(
+                          //     //   height: 30,
+                          //     //   width: 30,
+                          //     //   decoration: const BoxDecoration(
+                          //     //       color: Color(0xFFF97316),
+                          //     //       borderRadius:
+                          //     //           BorderRadius.all(Radius.circular(7))),
+                          //     //   child: Padding(
+                          //     //     padding: const EdgeInsets.all(5),
+                          //     //     child: SvgPicture.asset(
+                          //     //       "assets/icons/star.svg",
+                          //     //       color: ThemeConstants.whitecolor,
+                          //     //       height: 20,
+                          //     //     ),
+                          //     //   ),
+                          //     // ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -320,6 +312,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 ),
               ],
             ),
+            // Expanded Details
             if (delayresize == true)
               Padding(
                 padding: const EdgeInsets.only(left: 5),
@@ -336,9 +329,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightVioletColor,
-                                  border: Border.all(
-                                      width: 0.5,
-                                      color: ThemeConstants.VioletColor),
+                                  // border: Border.all(
+                                  //     width: 0.5,
+                                  //     color: ThemeConstants.VioletColor),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
                               child: Column(
@@ -375,9 +368,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 ),
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightYellow,
-                                    border: Border.all(
-                                        width: 0.5,
-                                        color: ThemeConstants.yellow),
+                                    // border: Border.all(
+                                    //     width: 0.5,
+                                    //     color: ThemeConstants.yellow),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10))),
                                 child: Center(
@@ -417,9 +410,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightgreentColor,
-                                  border: Border.all(
-                                      width: 0.5,
-                                      color: ThemeConstants.GreenColor),
+                                  // border: Border.all(
+                                  //     width: 0.5,
+                                  //     color: ThemeConstants.GreenColor),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
                               child: Column(
@@ -457,9 +450,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 ),
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightSkyblue,
-                                    border: Border.all(
-                                        width: 0.5,
-                                        color: ThemeConstants.skycolor),
+                                    // border: Border.all(
+                                    //     width: 0.5,
+                                    //     color: ThemeConstants.skycolor),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10))),
                                 child: Column(
@@ -497,9 +490,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightbrow,
-                                  border: Border.all(
-                                      width: 0.5,
-                                      color: ThemeConstants.browcolor),
+                                  // border: Border.all(
+                                  //     width: 0.5,
+                                  //     color: ThemeConstants.browcolor),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10))),
                               child: Column(
@@ -536,8 +529,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 ),
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightRed,
-                                    border: Border.all(
-                                        width: 0.5, color: ThemeConstants.red),
+                                    // border: Border.all(
+                                    //     width: 0.5, color: ThemeConstants.red),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10))),
                                 child: Column(
@@ -592,9 +585,16 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: " NearBy Intake:",
-                            textColor: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            textColor: Colors.black,
+                            fontSize: 14,
                           ),
                         ),
+                      ),
+                    if (courseSearchModel.nearByIntake!.isNotEmpty ||
+                        courseSearchModel.nearByIntake != "")
+                      const SizedBox(
+                        height: 10,
                       ),
                     if (courseSearchModel.nearByIntake!.isNotEmpty ||
                         courseSearchModel.nearByIntake != "")
@@ -687,30 +687,32 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             ),
                           )),
                     // Ranking
-                    Padding(
-                      padding: const EdgeInsets.only(),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            "assets/icons/star.svg",
-                            height: 15,
-                            color: const Color(0xFFF97316),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Ranking",
-                              textColor: ThemeConstants.bluelightgreycolor,
-                              fontSize: 14,
-                            ),
-                          )
-                        ],
+                    if (courseSearchModel.arwuRank != null ||
+                        courseSearchModel.timesRank != null ||
+                        courseSearchModel.usNewsRank != null ||
+                        courseSearchModel.qsWorldRank != null)
+                      Padding(
+                        padding: const EdgeInsets.only(),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Ranking",
+                                fontWeight: FontWeight.bold,
+                                textColor: ThemeConstants.bluelightgreycolor,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
 
                     Padding(
-                      padding:
-                          const EdgeInsets.only(right: 10, top: 5, bottom: 10),
+                      padding: const EdgeInsets.only(
+                        right: 10,
+                        top: 5,
+                      ),
                       child: Row(
                         children: [
                           if (courseSearchModel.arwuRank != null)
@@ -752,72 +754,25 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
+
+            // Button List
             Row(
               children: [
-                const Spacer(),
-                if (shortlist == true ||
-                    courseSearchModel.shortList.toString() == "1")
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: InkWell(
-                      onTap: (() {
-                        shortlist = false;
-                        widget.callbackShortListButton!(courseSearchModel.id);
-                        setState(() {});
-                      }),
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ThemeConstants.TextColor,
-                            ),
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Remove ShortList",
-                              textColor: ThemeConstants.TextColor,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                if (courseSearchModel.shortList.toString() == "null" ||
-                    courseSearchModel.shortList.toString() == "0")
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: InkWell(
-                      onTap: (() {
-                        shortlist = true;
-                        widget.callbackShortListButton!(
-                            courseSearchModel.courseId);
-                        setState(() {});
-                      }),
-                      child: Container(
-                        height: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ThemeConstants.TextColor,
-                            ),
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Add to ShortList",
-                              textColor: ThemeConstants.TextColor,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                const Spacer(),
-                if (finalShortList == true)
+                if (widget.previousRoute != ReviewShortList.routeNamed)
+                  SpacerFlex(),
+                if (widget.iscompare == true) const Spacer(),
+                if (widget.iscompare == true) AddedButtonShow(),
+                if (widget.iscompare == true) const Spacer(),
+                // const Spacer(),
+                if (widget.previousRoute != FinalShortList.routeNamed)
+                  const Spacer(),
+                if (widget.previousRoute != FinalShortList.routeNamed)
+                  AddToShortList(),
+                if (widget.previousRoute != FinalShortList.routeNamed)
+                  const Spacer(),
+
+                if (finalShortList == true &&
+                    widget.finalShortListFirst == true)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
@@ -828,26 +783,32 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         setState(() {});
                       }),
                       child: Container(
-                        height: 40,
+                        height: 35,
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: ThemeConstants.TextColor,
                             ),
                             borderRadius: BorderRadius.circular(5.0)),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          padding: const EdgeInsets.only(left: 3, right: 3),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: "Remove Final ShortList",
                               textColor: ThemeConstants.TextColor,
-                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 8,
                             ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                if (finalShortList == false)
+
+                if (finalShortList == true &&
+                    widget.finalShortListFirst == true)
+                  const Spacer(),
+                if (finalShortList == false &&
+                    widget.finalShortListFirst == true)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: InkWell(
@@ -858,7 +819,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         setState(() {});
                       }),
                       child: Container(
-                        height: 40,
+                        height: 35,
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: ThemeConstants.TextColor,
@@ -866,11 +827,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             borderRadius: BorderRadius.circular(5.0)),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
+                            padding: const EdgeInsets.only(left: 3, right: 3),
                             child: CustomAutoSizeTextMontserrat(
                               text: "Add to Final ShortList",
                               textColor: ThemeConstants.TextColor,
-                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 8,
                             ),
                           ),
                         ),
@@ -878,7 +840,49 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     ),
                   ),
                 const Spacer(),
-                if (widget.iscompare == true) AddedButtonShow(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: InkWell(
+                    onTap: (() {
+                      setState(() {
+                        if (resize == false) {
+                          onStartIconPress(context);
+                        } else {
+                          onEndIconPress(context);
+                        }
+                      });
+                    }),
+                    child: Container(
+                      height: 35,
+                      decoration: BoxDecoration(
+                          color: ThemeConstants.lightblueColor,
+                          // border: Border.all(
+                          //   color: ThemeConstants.bluecolor,
+                          // ),
+                          borderRadius: BorderRadius.circular(5.0)),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_downward,
+                                size: 15,
+                                color: ThemeConstants.bluecolor,
+                              ),
+                              CustomAutoSizeTextMontserrat(
+                                text: "Course Details",
+                                textColor: ThemeConstants.bluecolor,
+                                fontSize: 8,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 const Spacer(),
               ],
             ),
@@ -903,7 +907,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
             width: 90,
-            height: 40,
+            height: 35,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: ThemeConstants.bluecolor, // background
@@ -933,22 +937,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: SizedBox(
-            width: 90,
-            height: 40,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  side: BorderSide(color: ThemeConstants.bluegreycolor),
-                  primary: ThemeConstants.whitecolor, // background
-                  onPrimary: ThemeConstants.whitecolor, // foreground
-                ),
-                onPressed: () {
+              width: 90,
+              height: 35,
+              child: InkWell(
+                onTap: () {
                   if (courseSearchModelCompare1Id != null &&
                       courseSearchModelCompare2Id != null) {
                     showDialog(
                         context: context,
                         builder: (_) => const AlertDialog(
                               contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              content: const BottomSheetRemoveCourse(),
+                              content: BottomSheetRemoveCourse(),
                               insetPadding: EdgeInsets.only(left: 5, right: 5),
                             ));
                   } else {
@@ -958,12 +957,19 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     });
                   }
                 },
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Compare",
-                  fontSize: 12,
-                  textColor: ThemeConstants.bluegreycolor,
-                )),
-          ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: ThemeConstants.TextColor),
+                      borderRadius: BorderRadius.all(Radius.circular(5))),
+                  child: Center(
+                      child: CustomAutoSizeTextMontserrat(
+                    text: "Compare",
+                    fontSize: 8,
+                    fontWeight: FontWeight.w600,
+                    textColor: ThemeConstants.TextColor,
+                  )),
+                ),
+              )),
         );
       }
     }
@@ -973,7 +979,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         padding: const EdgeInsets.only(bottom: 10),
         child: SizedBox(
           width: 90,
-          height: 40,
+          height: 35,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: ThemeConstants.bluecolor, // background
@@ -1003,15 +1009,10 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
       return Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: SizedBox(
-          width: 90,
-          height: 40,
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                side: BorderSide(color: ThemeConstants.bluegreycolor),
-                primary: ThemeConstants.whitecolor, // background
-                onPrimary: ThemeConstants.whitecolor, // foreground
-              ),
-              onPressed: () {
+            width: 90,
+            height: 35,
+            child: InkWell(
+              onTap: () {
                 if (courseSearchModelCompare1Id != null &&
                     courseSearchModelCompare2Id != null) {
                   Get.bottomSheet(SizedBox(
@@ -1026,13 +1027,183 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   });
                 }
               },
-              child: CustomAutoSizeTextMontserrat(
-                text: "Compare",
-                fontSize: 12,
-                textColor: ThemeConstants.bluegreycolor,
-              )),
-        ),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: ThemeConstants.TextColor),
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                child: Center(
+                    child: CustomAutoSizeTextMontserrat(
+                  text: "Compare",
+                  fontSize: 8,
+                  fontWeight: FontWeight.w600,
+                  textColor: ThemeConstants.TextColor,
+                )),
+              ),
+            )),
       );
+    }
+  }
+
+  AddToShortList() {
+    if (widget.iscompare == true) {
+      if (widget.previousRoute == ReviewShortList.routeNamed) {
+        return Container();
+      } else {
+        if ((shortlist == true ||
+                courseSearchModel.shortList.toString() == "1") &&
+            widget.courseShortListFirst == true) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: InkWell(
+              onTap: (() {
+                shortlist = false;
+                widget.callbackShortListButton!(
+                    "$index,${courseSearchModel.id!}");
+                setState(() {});
+              }),
+              child: Container(
+                height: 35,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: ThemeConstants.TextColor,
+                    ),
+                    borderRadius: BorderRadius.circular(5.0)),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 3, right: 3),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Remove ShortList",
+                      textColor: ThemeConstants.TextColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 8,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+        if ((courseSearchModel.shortList.toString() == "null" ||
+                courseSearchModel.shortList.toString() == "0") &&
+            widget.courseShortListFirst == true &&
+            shortlist == false) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: InkWell(
+              onTap: (() {
+                shortlist = true;
+                widget.callbackShortListButton!(
+                    "$index,${courseSearchModel.id!}");
+                setState(() {});
+              }),
+              child: Container(
+                height: 35,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: ThemeConstants.TextColor,
+                    ),
+                    borderRadius: BorderRadius.circular(5.0)),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 3, right: 3),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Add to ShortList",
+                      textColor: ThemeConstants.TextColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 8,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+      }
+    } else {
+      if ((shortlist == true ||
+              courseSearchModel.shortList.toString() == "1") &&
+          widget.courseShortListFirst == true) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: InkWell(
+            onTap: (() {
+              shortlist = false;
+              widget
+                  .callbackShortListButton!("$index,${courseSearchModel.id!}");
+              setState(() {});
+            }),
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: ThemeConstants.TextColor,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Remove ShortList",
+                    textColor: ThemeConstants.TextColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      }
+      if ((courseSearchModel.shortList.toString() == "null" ||
+              courseSearchModel.shortList.toString() == "0") &&
+          widget.courseShortListFirst == true &&
+          shortlist == false) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: InkWell(
+            onTap: (() {
+              shortlist = true;
+              widget
+                  .callbackShortListButton!("$index,${courseSearchModel.id!}");
+              setState(() {});
+            }),
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: ThemeConstants.TextColor,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 3, right: 3),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Add to ShortList",
+                    textColor: ThemeConstants.TextColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      } else {
+        return Container();
+      }
+    }
+  }
+
+  SpacerFlex() {
+    if (widget.iscompare == false) {
+      if (widget.previousRoute == CourseSearchList.routeNamed ||
+          widget.previousRoute == FinalShortList.routeNamed) {
+        return const Spacer(
+          flex: 15,
+        );
+      }
+    } else {
+      return Container();
     }
   }
 }

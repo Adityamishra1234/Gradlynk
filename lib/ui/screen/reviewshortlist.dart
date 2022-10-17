@@ -16,7 +16,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class ReviewShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   ReviewShortList({Key? key, this.courseModelFilter}) : super(key: key);
-  static const routeNamed = '/CourseShortList';
+  static const routeNamed = '/ReviewShortlist';
 
   @override
   State<ReviewShortList> createState() => _ReviewShortListState();
@@ -42,34 +42,38 @@ class _ReviewShortListState extends State<ReviewShortList> {
         body: GetBuilder<ReviewShortListController>(
           builder: (_) => Column(
             children: [
+              const SizedBox(
+                height: 10,
+              ),
               if (_.loadingCourseShortList.value == true)
                 Row(
                   children: [
-                    const Spacer(),
-                    InkWell(
-                      onTap: () {
-                        // Get.toNamed(ReviewShortList.routeNamed);
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 60,
-                        decoration: BoxDecoration(
-                            color: ThemeConstants.whitecolor,
-                            border: Border.all(
-                                color: ThemeConstants.bluelightgreycolor),
-                            borderRadius:
-                                BorderRadiusDirectional.circular(5.0)),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 5),
-                            child: CustomAutoSizeTextMontserrat(
-                                text: "Sort",
-                                fontSize: 12,
-                                textColor: ThemeConstants.bluelightgreycolor),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // const Spacer(),
+                    // InkWell(
+                    //   onTap: () {
+                    //     // Get.toNamed(ReviewShortList.routeNamed);
+                    //   },
+                    //   child: Container(
+                    //     height: 30,
+                    //     width: 60,
+                    //     decoration: BoxDecoration(
+                    //         color: ThemeConstants.whitecolor,
+                    //         border: Border.all(
+                    //             color: ThemeConstants.bluelightgreycolor),
+                    //         borderRadius:
+                    //             BorderRadiusDirectional.circular(5.0)),
+                    //     child: Center(
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.only(left: 5, right: 5),
+                    //         child: CustomAutoSizeTextMontserrat(
+                    //             text: "Sort",
+                    //             fontSize: 12,
+                    //             textColor: ThemeConstants.bluelightgreycolor),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+
                     const Spacer(),
                     InkWell(
                       onTap: () {
@@ -78,11 +82,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                       },
                       child: Container(
                         height: 30,
-                        width: 60,
                         decoration: BoxDecoration(
-                            color: ThemeConstants.whitecolor,
-                            border: Border.all(
-                                color: ThemeConstants.bluelightgreycolor),
+                            color: ThemeConstants.lightorangeColor,
                             borderRadius:
                                 BorderRadiusDirectional.circular(5.0)),
                         child: Center(
@@ -90,8 +91,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                             padding: const EdgeInsets.only(left: 5, right: 5),
                             child: CustomAutoSizeTextMontserrat(
                                 text: "Filter",
-                                fontSize: 12,
-                                textColor: ThemeConstants.bluelightgreycolor),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                textColor: ThemeConstants.orangeColor),
                           ),
                         ),
                       ),
@@ -107,11 +109,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                       },
                       child: Container(
                         height: 30,
-                        width: 70,
                         decoration: BoxDecoration(
-                            color: ThemeConstants.whitecolor,
-                            border: Border.all(
-                                color: ThemeConstants.bluelightgreycolor),
+                            color: ThemeConstants.lightgreentColor,
                             borderRadius:
                                 BorderRadiusDirectional.circular(5.0)),
                         child: Center(
@@ -119,8 +118,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                             padding: const EdgeInsets.only(left: 5, right: 5),
                             child: CustomAutoSizeTextMontserrat(
                                 text: "Compare",
-                                fontSize: 12,
-                                textColor: ThemeConstants.bluelightgreycolor),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                textColor: ThemeConstants.GreenColor),
                           ),
                         ),
                       ),
@@ -134,11 +134,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                       },
                       child: Container(
                         height: 30,
-                        width: 120,
                         decoration: BoxDecoration(
-                            color: ThemeConstants.whitecolor,
-                            border: Border.all(
-                                color: ThemeConstants.bluelightgreycolor),
+                            color: ThemeConstants.lightVioletColor,
                             borderRadius:
                                 BorderRadiusDirectional.circular(5.0)),
                         child: Center(
@@ -146,8 +143,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                             padding: const EdgeInsets.only(left: 5, right: 5),
                             child: CustomAutoSizeTextMontserrat(
                                 text: "Final Shortlist",
-                                fontSize: 12,
-                                textColor: ThemeConstants.bluelightgreycolor),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                textColor: ThemeConstants.VioletColor),
                           ),
                         ),
                       ),
@@ -155,6 +153,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                     const Spacer(),
                   ],
                 ),
+              const SizedBox(
+                height: 10,
+              ),
               if (_.loadingCourseShortList.value == true)
                 Expanded(
                   child: ListView.builder(
@@ -166,7 +167,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                           children: [
                             if (controller1.courseSearchModel.length != index)
                               CollagelistExpandedWidget(
+                                previousRoute: ReviewShortList.routeNamed,
                                 index: index,
+                                courseShortListFirst: true,
                                 courseSearchModelCompare1Id:
                                     controller1.courseSearchModelCompare1.id,
                                 courseSearchModelCompare2Id:
@@ -178,6 +181,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                 courseSearchModel:
                                     controller1.courseSearchModel[index],
                                 callbackFunction: callbackCompleteDetailCourse,
+                                finalShortListFirst: true,
                               ),
                           ],
                         );

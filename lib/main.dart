@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: Login.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -231,7 +231,7 @@ class _MyAppState extends State<MyApp> {
         ),
         // GetPage(
         //   name: ApplicationCompleteDetails.routeNamed,
-        //   page: () => const ApplicationCompleteDetails(),
+        //   page: () => ApplicationCompleteDetails(),
         //   transition: Transition.fade,
         // ),
         GetPage(
