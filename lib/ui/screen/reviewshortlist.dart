@@ -182,6 +182,10 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                     controller1.courseSearchModel[index],
                                 callbackFunction: callbackCompleteDetailCourse,
                                 finalShortListFirst: true,
+                                callbackShortListButton:
+                                    CallbackShortListButton,
+                                callbackFinalShortListButton:
+                                    CallbackFinalShortList,
                               ),
                           ],
                         );
@@ -243,25 +247,32 @@ class _ReviewShortListState extends State<ReviewShortList> {
   // Function
   callbackCompare(varTopic) async {
     // Add To Compare  For Comparing
-    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
-      if (controller1.courseSearchModelCompare1.id == null) {
-        controller1.courseSearchModelCompare1 = controller1
-            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])];
-        controller1
-            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-      } else if (controller1.courseSearchModelCompare2.id == null) {
-        controller1.courseSearchModelCompare2 = controller1
-            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])];
-        controller1
-            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-      } else {
-        debugPrint(varTopic);
-      }
-      // Added Button For Comparing
-    } else {}
+    if (varTopic != false) {
+      controller1.compare(varTopic);
+    }
   }
+
+  // callbackCompare(varTopic) async {
+  //   // Add To Compare  For Comparing
+  //   if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+  //     if (controller1.courseSearchModelCompare1.id == null) {
+  //       controller1.courseSearchModelCompare1 = controller1
+  //           .courseSearchModel[int.parse(varTopic.toString().split(",")[1])];
+  //       controller1
+  //           .courseSearchModel[int.parse(varTopic.toString().split(",")[1])]
+  //           .isSelected = true;
+  //     } else if (controller1.courseSearchModelCompare2.id == null) {
+  //       controller1.courseSearchModelCompare2 = controller1
+  //           .courseSearchModel[int.parse(varTopic.toString().split(",")[1])];
+  //       controller1
+  //           .courseSearchModel[int.parse(varTopic.toString().split(",")[1])]
+  //           .isSelected = true;
+  //     } else {
+  //       debugPrint(varTopic);
+  //     }
+  //     // Added Button For Comparing
+  //   } else {}
+  // }
 
   callbackCompleteDetailCourse(varTopic) async {
     List<String> endpoint = varTopic.toString().split(',');
@@ -283,5 +294,39 @@ class _ReviewShortListState extends State<ReviewShortList> {
     } else {
       controller1.courseSearchModelCompare2 = CourseSearchModel();
     }
+  }
+
+  CallbackShortListButton(data) {
+    int? courseIndex;
+    String? id;
+    courseIndex = int.parse(data.toString().split(",")[0]);
+    id = data.toString().split(",")[1];
+
+    if (controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
+        "0") {
+      controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
+          "1";
+    } else {
+      controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
+          "0";
+    }
+    controller1.courseShortList(id, "78623");
+  }
+
+  CallbackFinalShortList(data) {
+    int? courseIndex;
+    String? id;
+    courseIndex = int.parse(data.toString().split(",")[0]);
+    id = data.toString().split(",")[1];
+
+    if (controller1.courseModelFilter.courseSearchList[courseIndex].finalList ==
+        "") {
+      controller1.courseModelFilter.courseSearchList[courseIndex].finalList ==
+          "Final";
+    } else {
+      controller1.courseModelFilter.courseSearchList[courseIndex].finalList ==
+          "";
+    }
+    controller1.courseFinalShortlist(id, "78623");
   }
 }

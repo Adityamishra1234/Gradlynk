@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseShortListController extends BaseController {
@@ -15,7 +17,7 @@ class CourseShortListController extends BaseController {
 
   List<CompleteCourseDetail> completeCourseDetail = [];
 
-  List<CourseSearchModel> courseSearchModel = [];
+  CourseModelFilter courseModelFilter = CourseModelFilter();
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
@@ -95,8 +97,41 @@ class CourseShortListController extends BaseController {
   GetCourseShortList(String? enq_id) async {
     var response = await apiservices.courseShortlistDetail(enq_id);
     if (response != null) {
-      courseSearchModel = response;
+      courseModelFilter = response;
       loadingCourseShortList = true.obs;
+      update();
+    }
+  }
+
+  compare(String? varTopic) {
+    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+      if (courseSearchModelCompare1.id == null) {
+        courseSearchModelCompare1 = courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+        courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+        update();
+      } else if (courseSearchModelCompare2.id == null) {
+        courseSearchModelCompare2 = courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+        courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+        update();
+      } else {
+        debugPrint(varTopic);
+      }
+      // Added Button For Comparing
+    } else {}
+  }
+
+  callbackModelCompare(varTopic) async {
+    if (varTopic == "Model1") {
+      courseSearchModelCompare1 = CourseSearchModel();
+      update();
+    } else {
+      courseSearchModelCompare2 = CourseSearchModel();
       update();
     }
   }

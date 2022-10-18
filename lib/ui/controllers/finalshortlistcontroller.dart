@@ -101,4 +101,35 @@ class FinalShortListController extends BaseController {
       update();
     }
   }
+
+  courseShortList(String? id, String enq_id) {
+    apiservices.setShortListCourse(id, enq_id);
+  }
+
+  courseFinalShortlist(String? id, String enq_id) {
+    apiservices.setFinalShortListCourse(id, enq_id);
+  }
+
+  compare(String? varTopic) {
+    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+      if (courseSearchModelCompare1.id == null) {
+        courseSearchModelCompare1 = courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+        courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+        update();
+      } else if (courseSearchModelCompare2.id == null) {
+        courseSearchModelCompare2 = courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+        courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+        update();
+      } else {
+        debugPrint(varTopic);
+      }
+      // Added Button For Comparing
+    } else {}
+  }
 }

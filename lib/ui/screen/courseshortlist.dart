@@ -24,6 +24,7 @@ class CourseSearchList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller1.courseModelFilter = courseModelFilter;
     return Scaffold(
         appBar: CustomAppBar("title"),
         body: GetBuilder<CourseShortListController>(
@@ -159,9 +160,9 @@ class CourseSearchList extends StatelessWidget {
                               index: index,
                               courseShortListFirst: true,
                               courseSearchModelCompare1Id:
-                                  controller1.courseSearchModelCompare1.id,
+                                  _.courseSearchModelCompare1.id,
                               courseSearchModelCompare2Id:
-                                  controller1.courseSearchModelCompare2.id,
+                                  _.courseSearchModelCompare2.id,
                               callbackForModelCompare: callbackModelCompare,
                               callbackCompare: callbackCompare,
                               //done
@@ -234,24 +235,14 @@ class CourseSearchList extends StatelessWidget {
   // Function
   callbackCompare(varTopic) async {
     // Add To Compare  For Comparing
-    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
-      if (controller1.courseSearchModelCompare1.id == null) {
-        controller1.courseSearchModelCompare1 = courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
-        courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-      } else if (controller1.courseSearchModelCompare2.id == null) {
-        controller1.courseSearchModelCompare2 = courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
-        courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-      } else {
-        debugPrint(varTopic);
-      }
-      // Added Button For Comparing
-    } else {}
+    if (varTopic != false) {
+      controller1.compare(varTopic);
+    }
+  }
+
+  callbackModelCompare(varTopic) async {
+    print(varTopic);
+    await controller1.callbackModelCompare(varTopic);
   }
 
   callbackCompleteDetailCourse(varTopic) async {
@@ -264,15 +255,6 @@ class CourseSearchList extends StatelessWidget {
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));
-    }
-  }
-
-  callbackModelCompare(varTopic) {
-    debugPrint(varTopic);
-    if (varTopic == "Model1") {
-      controller1.courseSearchModelCompare1 = CourseSearchModel();
-    } else {
-      controller1.courseSearchModelCompare2 = CourseSearchModel();
     }
   }
 

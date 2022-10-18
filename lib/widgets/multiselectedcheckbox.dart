@@ -49,9 +49,8 @@ class _MultiSelectionExampleState extends State<MultiSelectionExample> {
 
                         for (var i = 0; i < widget.checkBoxModel.length; i++) {
                           if (widget.checkBoxModel[i].isSelected == true) {
-                            selecteditems = selecteditems! +
-                                "," +
-                                widget.checkBoxModel[i].checkBoxModelName;
+                            selecteditems =
+                                "${selecteditems!},${widget.checkBoxModel[i].checkBoxModelName}";
                           }
                         }
                         widget.callbackItemSelected!(selecteditems);

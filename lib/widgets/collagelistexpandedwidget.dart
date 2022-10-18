@@ -770,75 +770,13 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   AddToShortList(),
                 if (widget.previousRoute != FinalShortList.routeNamed)
                   const Spacer(),
+                FinalButton(),
 
-                if (finalShortList == true &&
-                    widget.finalShortListFirst == true)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: InkWell(
-                      onTap: (() {
-                        finalShortList = false;
-                        widget.callbackFinalShortListButton!(
-                            courseSearchModel.id);
-                        setState(() {});
-                      }),
-                      child: Container(
-                        height: 35,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ThemeConstants.TextColor,
-                            ),
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 3, right: 3),
-                          child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Remove Final ShortList",
-                              textColor: ThemeConstants.TextColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 8,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                if (finalShortList == true &&
-                    widget.finalShortListFirst == true)
+                if ((finalShortList == true ||
+                        widget.finalShortListFirst == true) &&
+                    courseSearchModel.finalList == "")
                   const Spacer(),
-                if (finalShortList == false &&
-                    widget.finalShortListFirst == true)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: InkWell(
-                      onTap: (() {
-                        finalShortList = true;
-                        widget.callbackFinalShortListButton!(
-                            courseSearchModel.id);
-                        setState(() {});
-                      }),
-                      child: Container(
-                        height: 35,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ThemeConstants.TextColor,
-                            ),
-                            borderRadius: BorderRadius.circular(5.0)),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 3, right: 3),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Add to Final ShortList",
-                              textColor: ThemeConstants.TextColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 8,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                // FinalButton(),
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
@@ -865,11 +803,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           padding: const EdgeInsets.only(left: 5, right: 5),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.arrow_downward,
-                                size: 15,
-                                color: ThemeConstants.bluecolor,
-                              ),
+                              resize == false
+                                  ? Icon(
+                                      Icons.arrow_downward,
+                                      size: 15,
+                                      color: ThemeConstants.bluecolor,
+                                    )
+                                  : Icon(
+                                      Icons.arrow_upward,
+                                      size: 15,
+                                      color: ThemeConstants.bluecolor,
+                                    ),
                               CustomAutoSizeTextMontserrat(
                                 text: "Course Details",
                                 textColor: ThemeConstants.bluecolor,
@@ -890,7 +834,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             // if (widget.iscompare == true) AddedButtonShow(),
             // if ((addCompare == false || addCompare == null) &&
             //     isCompare == true &&
-            //     )
+            //     ),
           ],
         ),
       ),
@@ -923,7 +867,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     widget.callbackForModelCompare!("Model2");
                   }
 
-                  setState(() {});
+                  // setState(() {});
                 },
                 child: CustomAutoSizeTextMontserrat(
                   text: "Added",
@@ -941,8 +885,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               height: 35,
               child: InkWell(
                 onTap: () {
-                  if (courseSearchModelCompare1Id != null &&
-                      courseSearchModelCompare2Id != null) {
+                  if (widget.courseSearchModelCompare1Id != null &&
+                      widget.courseSearchModelCompare2Id != null) {
                     showDialog(
                         context: context,
                         builder: (_) => const AlertDialog(
@@ -985,15 +929,19 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 primary: ThemeConstants.bluecolor, // background
                 onPrimary: ThemeConstants.bluecolor, // foreground
               ),
-              onPressed: () {
+              onPressed: () async {
                 addCompare = false;
-                // widget.callbackCompare(false);
 
 // Remove Course Search model
                 if (courseSearchModelCompare1Id == courseSearchModel.id) {
-                  widget.callbackForModelCompare!("Model1");
+                  courseSearchModelCompare1Id = null;
+                  print("Model1");
+                  await widget.callbackForModelCompare!("Model1");
                 } else {
-                  widget.callbackForModelCompare!("Model2");
+                  print("Model2");
+                  courseSearchModelCompare2Id = null;
+
+                  await widget.callbackForModelCompare!("Model2");
                 }
                 setState(() {});
               },
@@ -1049,18 +997,20 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
       if (widget.previousRoute == ReviewShortList.routeNamed) {
         return Container();
       } else {
-        if ((shortlist == true ||
+        // Remove ShortList
+        if ((widget.shortList == true ||
                 courseSearchModel.shortList.toString() == "1") &&
             widget.courseShortListFirst == true) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: InkWell(
-              onTap: (() {
-                shortlist = false;
+              onTap: () {
+                widget.shortList = false;
+                courseSearchModel.shortList = "0";
                 widget.callbackShortListButton!(
                     "$index,${courseSearchModel.id!}");
                 setState(() {});
-              }),
+              },
               child: Container(
                 height: 35,
                 decoration: BoxDecoration(
@@ -1083,15 +1033,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             ),
           );
         }
+        // Add to ShortList
         if ((courseSearchModel.shortList.toString() == "null" ||
                 courseSearchModel.shortList.toString() == "0") &&
             widget.courseShortListFirst == true &&
-            shortlist == false) {
+            widget.shortList == false) {
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: InkWell(
               onTap: (() {
-                shortlist = true;
+                widget.shortList = true;
+                courseSearchModel.shortList = "1";
                 widget.callbackShortListButton!(
                     "$index,${courseSearchModel.id!}");
                 setState(() {});
@@ -1120,18 +1072,20 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         }
       }
     } else {
-      if ((shortlist == true ||
+      // Remove Shortlist
+      if ((widget.shortList == true ||
               courseSearchModel.shortList.toString() == "1") &&
           widget.courseShortListFirst == true) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: InkWell(
-            onTap: (() {
-              shortlist = false;
+            onTap: () {
+              courseSearchModel.shortList = "0";
+              widget.shortList = false;
               widget
                   .callbackShortListButton!("$index,${courseSearchModel.id!}");
               setState(() {});
-            }),
+            },
             child: Container(
               height: 35,
               decoration: BoxDecoration(
@@ -1154,15 +1108,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           ),
         );
       }
+
+      // Add to Shortlist
       if ((courseSearchModel.shortList.toString() == "null" ||
               courseSearchModel.shortList.toString() == "0") &&
           widget.courseShortListFirst == true &&
-          shortlist == false) {
+          widget.shortList == false) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: InkWell(
             onTap: (() {
-              shortlist = true;
+              widget.shortList = true;
+              courseSearchModel.shortList = "1";
               widget
                   .callbackShortListButton!("$index,${courseSearchModel.id!}");
               setState(() {});
@@ -1204,6 +1161,111 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
       }
     } else {
       return Container();
+    }
+  }
+
+  FinalButton() {
+    if (courseSearchModel.finalList == "Final") {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: InkWell(
+          onTap: (() {
+            finalShortList = false;
+            courseSearchModel.finalList = "";
+            widget.callbackFinalShortListButton!(
+                "$index,${courseSearchModel.id!}");
+            setState(() {});
+          }),
+          child: Container(
+            height: 35,
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: ThemeConstants.TextColor,
+                ),
+                borderRadius: BorderRadius.circular(5.0)),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 3, right: 3),
+              child: Center(
+                child: CustomAutoSizeTextMontserrat(
+                  text: "Remove Final ShortList",
+                  textColor: ThemeConstants.TextColor,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 8,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      if (finalShortList == false && widget.finalShortListFirst == true) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: InkWell(
+            onTap: (() {
+              finalShortList = true;
+              courseSearchModel.finalList = "Final";
+              widget.callbackFinalShortListButton!(
+                  "$index,${courseSearchModel.id!}");
+              setState(() {});
+            }),
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: ThemeConstants.TextColor,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 3, right: 3),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Add to Final ShortList",
+                    textColor: ThemeConstants.TextColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      } else if ((finalShortList == true &&
+          widget.finalShortListFirst == true)) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: InkWell(
+            onTap: (() {
+              courseSearchModel.finalList = "";
+              finalShortList = false;
+              widget.callbackFinalShortListButton!(
+                  "$index,${courseSearchModel.id!}");
+              setState(() {});
+            }),
+            child: Container(
+              height: 35,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: ThemeConstants.TextColor,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 3, right: 3),
+                child: Center(
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Remove Final ShortList",
+                    textColor: ThemeConstants.TextColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 8,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      } else {
+        return Container();
+      }
     }
   }
 }

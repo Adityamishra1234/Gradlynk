@@ -200,8 +200,12 @@ class ApiServices extends StudentPanelBase {
           json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
       if (courseModelFilter.courseSearchList.isNotEmpty) {
         courseModelFilter.filterModel = await createFilter(courseModelFilter);
+        for (var i = 0; i < courseModelFilter.courseSearchList.length; i++) {
+          courseModelFilter.courseSearchList[i].shortList = "1";
+        }
       }
     }
+    print("aman");
     return courseModelFilter;
   }
 

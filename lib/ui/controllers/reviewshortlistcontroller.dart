@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -74,6 +75,29 @@ class ReviewShortListController extends BaseController {
   //   }
   // }
 
+  compare(String? varTopic) {
+    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+      if (courseSearchModelCompare1.id == null) {
+        courseSearchModelCompare1 = courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+        courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+        update();
+      } else if (courseSearchModelCompare2.id == null) {
+        courseSearchModelCompare2 = courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+        courseModelFilter
+            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+            .isSelected = true;
+        update();
+      } else {
+        debugPrint(varTopic);
+      }
+      // Added Button For Comparing
+    } else {}
+  }
+
   completeCourseDetailMethod(
       String universityId, String courseId, String instituteCourseId) async {
     String endpoint = Endpoints.completeCoursePart1! +
@@ -98,5 +122,13 @@ class ReviewShortListController extends BaseController {
       loadingCourseShortList = true.obs;
       update();
     }
+  }
+
+  courseShortList(String? id, String enq_id) {
+    apiservices.setShortListCourse(id, enq_id);
+  }
+
+  courseFinalShortlist(String? id, String enq_id) {
+    apiservices.setFinalShortListCourse(id, enq_id);
   }
 }
