@@ -10,6 +10,8 @@ import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:studentpanel/ui/models/visadetail.dart';
+import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class ApiServices extends StudentPanelBase {
@@ -205,7 +207,7 @@ class ApiServices extends StudentPanelBase {
         }
       }
     }
-    print("aman");
+
     return courseModelFilter;
   }
 
@@ -373,6 +375,16 @@ class ApiServices extends StudentPanelBase {
     }
 
     return filterModel;
+  }
+
+  getVisaDetail(String? endpoint) async {
+    VisaDetailModel visaDetailModel = VisaDetailModel();
+    var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      visaDetailModel = VisaDetailModel.fromJson(jsondata);
+      return visaDetailModel;
+    }
   }
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

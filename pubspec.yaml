@@ -103,7 +103,7 @@ flutter_icons:
   name: "Gradlynk"
   android: true
   ios: true
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/logotest1.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

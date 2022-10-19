@@ -92,7 +92,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Login.routeNamed,
+      initialRoute: VisaDetail.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -236,7 +236,7 @@ class _MyAppState extends State<MyApp> {
         // ),
         GetPage(
           name: VisaDetail.routeNamed,
-          page: () => const VisaDetail(),
+          page: () => VisaDetail(),
           transition: Transition.fade,
         ),
         GetPage(

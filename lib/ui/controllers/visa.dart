@@ -1,0 +1,30 @@
+import 'package:get/get.dart';
+import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/visadetail.dart';
+
+class VisaDetailController extends BaseController {
+  //Model
+  ApiServices apiServices = ApiServices();
+  VisaDetailModel visaDetailModel = VisaDetailModel();
+
+  //Loading
+  RxBool loadingVisaDetails = false.obs;
+
+  @override
+  void onInit() {
+    getVisDetail();
+    super.onInit();
+  }
+
+  getVisDetail() async {
+    // String? enqId, String? visaId
+    var response = await apiServices
+        .getVisaDetail("get-visa-details?enq_id=78623&apli_id=5");
+    if (response != null) {
+      visaDetailModel = response;
+      loadingVisaDetails.value = true;
+      update();
+    }
+  }
+}

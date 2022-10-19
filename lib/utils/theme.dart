@@ -34,7 +34,7 @@ class ThemeConstants {
   static Color drawerBackgroundColor = const Color(0xff272d34);
   static Color bluecolor = const Color(0xFF1940B3);
   static Color whitecolor = const Color(0xFFFFFFFF);
-  static Color blackcolor = const Color(0xFF000000);
+  static Color blackcolor = const Color(0xFF0c0c0c);
   static Color lightgreycolor = const Color(0xFFD3D3D3);
   static Color bluegreycolor = const Color(0xFF525863);
   static Color bluelightgreycolor = const Color(0xFF525863);
