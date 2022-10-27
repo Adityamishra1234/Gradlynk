@@ -78,7 +78,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                     InkWell(
                       onTap: () {
                         Get.to(Filter(
-                            courseModelFilter: controller1.courseModelFilter));
+                          courseModelFilter: controller1.courseModelFilter,
+                          previousRoute: ReviewShortList.routeNamed,
+                        ));
                       },
                       child: Container(
                         height: 30,

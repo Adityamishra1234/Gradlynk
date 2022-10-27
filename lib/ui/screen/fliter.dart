@@ -25,6 +25,7 @@ class Filter extends StatefulWidget {
 }
 
 class _FilterState extends State<Filter> {
+  String? previousRoute;
   List<String>? selectedUniversitylist = [];
   List<String>? selectedintakeMonth = [];
   List<String>? selectedUintakeYear = [];
@@ -56,6 +57,7 @@ class _FilterState extends State<Filter> {
     courseModelFilter = widget.courseModelFilter;
     controller.courseModelFilter = courseModelFilter;
     controller.filterModel = courseModelFilter.filterModel;
+    previousRoute = widget.previousRoute;
     super.initState();
   }
 
@@ -533,21 +535,19 @@ class _FilterState extends State<Filter> {
                               await loadingFilter();
                             }
                             if (controller1.loadingfuncation.value == true) {
-                              if (widget.previousRoute ==
-                                  FinalShortList.routeNamed) {
+                              if (previousRoute == FinalShortList.routeNamed) {
                                 Get.to(FinalShortList(
                                   courseModelFilter:
                                       controller1.courseModelFilter,
                                 ));
                               }
-                              if (widget.previousRoute ==
-                                  ReviewShortList.routeNamed) {
+                              if (previousRoute == ReviewShortList.routeNamed) {
                                 Get.to(ReviewShortList(
                                   courseModelFilter:
                                       controller1.courseModelFilter,
                                 ));
                               }
-                              if (widget.previousRoute ==
+                              if (previousRoute ==
                                   CourseSearchList.routeNamed) {
                                 Get.to(CourseSearchList(
                                   courseModelFilter: courseModelFilter,

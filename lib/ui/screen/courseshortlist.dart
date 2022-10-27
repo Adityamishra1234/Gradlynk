@@ -65,7 +65,10 @@ class CourseSearchList extends StatelessWidget {
                     // const Spacer(),
                     InkWell(
                       onTap: () {
-                        Get.to(Filter(courseModelFilter: courseModelFilter));
+                        Get.to(Filter(
+                          courseModelFilter: courseModelFilter,
+                          previousRoute: CourseSearchList.routeNamed,
+                        ));
                       },
                       child: Container(
                         height: 30,

@@ -26,9 +26,6 @@ class FilterController extends BaseController {
   List<String>? institutePublicPrivate;
   List<String>? academicpercentage;
   List<String>? budget;
-
-  // Academic % ,  Budget , Select Ranking
-
   //Loading
   RxBool loadingfuncation = true.obs;
 
@@ -275,7 +272,7 @@ class FilterController extends BaseController {
   }
 
   getOfferTAT(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -312,7 +309,7 @@ class FilterController extends BaseController {
   }
 
   getIntakeMonth(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -338,7 +335,7 @@ class FilterController extends BaseController {
   }
 
   getIntakeYear(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -364,7 +361,7 @@ class FilterController extends BaseController {
   }
 
   getInstituteLevel(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -384,7 +381,7 @@ class FilterController extends BaseController {
   }
 
   getScholarship(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -403,7 +400,7 @@ class FilterController extends BaseController {
   }
 
   getSiecPriority(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -422,7 +419,7 @@ class FilterController extends BaseController {
   }
 
   getConditionalOffer(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -441,7 +438,7 @@ class FilterController extends BaseController {
   }
 
   getBackLogAcceptable(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -460,7 +457,7 @@ class FilterController extends BaseController {
   }
 
   getApplicationFee(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -479,7 +476,7 @@ class FilterController extends BaseController {
   }
 
   getplacementSandwich(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -498,7 +495,7 @@ class FilterController extends BaseController {
   }
 
   getSiecRepresent(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -517,7 +514,7 @@ class FilterController extends BaseController {
   }
 
   getCountryName(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
@@ -536,7 +533,7 @@ class FilterController extends BaseController {
   }
 
   getInstitutePublicPrivate(String? data) async {
-    loadingfuncation!.value = false;
+    loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
