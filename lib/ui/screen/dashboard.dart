@@ -93,13 +93,15 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      shadowColor: ThemeConstants.lightblueColor,
                       side: BorderSide(color: ThemeConstants.bluecolor),
                       primary: ThemeConstants.whitecolor, // background
                       onPrimary: ThemeConstants.whitecolor, // foreground
                     ),
                     onPressed: () async {
                       Get.bottomSheet(Container(
-                        height: 340,
+                        height: 345,
                         decoration: BoxDecoration(
                           color: ThemeConstants.whitecolor,
                           borderRadius: const BorderRadius.only(
@@ -111,7 +113,7 @@ class _DashBoardState extends State<DashBoard> {
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: Container(
-                                height: 40,
+                                height: 50,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.lightblueColor,
@@ -121,6 +123,8 @@ class _DashBoardState extends State<DashBoard> {
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Schedule an Expert call",
                                     textColor: ThemeConstants.bluecolor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
@@ -133,7 +137,10 @@ class _DashBoardState extends State<DashBoard> {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: CustomAutoSizeTextMontserrat(
-                                    text: "Select your Counsellor"),
+                                  text: "Select your Counsellor",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                             Padding(
@@ -183,12 +190,15 @@ class _DashBoardState extends State<DashBoard> {
                     child: CustomAutoSizeTextMontserrat(
                       text: "Schedule expert call",
                       fontSize: 12,
+                      fontWeight: FontWeight.bold,
                       textColor: ThemeConstants.bluecolor,
                     ),
                   ),
                   const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      shadowColor: ThemeConstants.lightorangeColor,
                       side: BorderSide(color: ThemeConstants.orangeColor),
                       primary: ThemeConstants.whitecolor, // background
                       onPrimary: ThemeConstants.whitecolor, // foreground
@@ -280,6 +290,7 @@ class _DashBoardState extends State<DashBoard> {
                       text: "Book an appointment",
                       fontSize: 12,
                       textColor: ThemeConstants.orangeColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(

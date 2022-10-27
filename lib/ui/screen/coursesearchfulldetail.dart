@@ -39,23 +39,27 @@ class CourseSearchFullDetail extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10, top: 10),
                 child: CustomAutoSizeTextMontserrat(
                   text: completeCourseDetail![0].courseName,
                   maxLines: 5,
-                  fontSize: 26,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   textColor: ThemeConstants.bluecolor,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10),
+                padding: const EdgeInsets.only(left: 10, top: 8),
                 child: Row(
                   children: [
                     SvgPicture.asset(
                       "assets/icons/university.svg",
                       height: 20,
                       width: 20,
+                      color: ThemeConstants.bluegreycolor,
+                    ),
+                    const SizedBox(
+                      width: 5,
                     ),
                     Expanded(
                       child: Align(
@@ -64,6 +68,9 @@ class CourseSearchFullDetail extends StatelessWidget {
                           children: [
                             CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail![0].universityName,
+                                textColor: ThemeConstants.bluegreycolor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
                                 maxLines: 2),
                           ],
                         ),
@@ -77,7 +84,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                   top: 15,
                 ),
                 child: Card(
-                  elevation: 5,
+                  elevation: 2,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                         color: ThemeConstants.bluelightgreycolor, width: 0.5),
@@ -123,7 +130,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                               height: 80,
                               width: 170,
                               decoration: BoxDecoration(
-                                color: ThemeConstants.lightorangeColor,
+                                color: ThemeConstants.lightgreentColor,
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(10)),
                               ),
@@ -133,7 +140,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                   CustomAutoSizeTextMontserrat(
                                     text: "Total Tutions Fees",
                                     maxLines: 2,
-                                    textColor: ThemeConstants.orangeColor,
+                                    textColor: ThemeConstants.GreenColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   CustomAutoSizeTextMontserrat(
@@ -163,7 +170,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                               height: 80,
                               width: 170,
                               decoration: BoxDecoration(
-                                color: ThemeConstants.lightblueColor,
+                                color: ThemeConstants.lightorangeColor,
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(10)),
                               ),
@@ -173,7 +180,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                   CustomAutoSizeTextMontserrat(
                                     text: "Course Level",
                                     maxLines: 2,
-                                    textColor: ThemeConstants.bluecolor,
+                                    textColor: ThemeConstants.orangeColor,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   CustomAutoSizeTextMontserrat(
@@ -191,7 +198,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                               height: 80,
                               width: 170,
                               decoration: BoxDecoration(
-                                color: ThemeConstants.lightorangeColor,
+                                color: ThemeConstants.lightVioletColor,
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(10)),
                               ),
@@ -202,7 +209,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     text: "Avaliable Intake",
                                     fontWeight: FontWeight.bold,
                                     maxLines: 2,
-                                    textColor: ThemeConstants.orangeColor,
+                                    textColor: ThemeConstants.VioletColor,
                                   ),
                                   CustomAutoSizeTextMontserrat(
                                     text: "Aug-2022|Jan-2023",
@@ -220,22 +227,24 @@ class CourseSearchFullDetail extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                          left: 10,
+                          left: 15,
                           top: 10,
                         ),
                         child: Row(
                           children: [
                             SvgPicture.asset(
                               "assets/icons/star.svg",
-                              height: 20,
-                              width: 20,
+                              height: 15,
+                              width: 15,
+                              color: ThemeConstants.orangeColor,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 5),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Worlds Ranking",
                                 maxLines: 2,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
                             )
                           ],
@@ -243,35 +252,43 @@ class CourseSearchFullDetail extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 10, right: 10, bottom: 10, top: 10),
+                            left: 15, right: 10, bottom: 15, top: 10),
                         child: Row(
                           children: [
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "ARWU:${completeCourseDetail![0].arwuRank ?? ""}",
                               maxLines: 2,
-                              fontSize: 14,
+                              fontSize: 12,
+                              textColor: ThemeConstants.bluegreycolor,
+                              fontWeight: FontWeight.w600,
                             ),
                             const Spacer(),
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "Times:${completeCourseDetail![0].timesRank ?? ""}",
                               maxLines: 2,
-                              fontSize: 14,
+                              fontSize: 12,
+                              textColor: ThemeConstants.bluegreycolor,
+                              fontWeight: FontWeight.w600,
                             ),
                             const Spacer(),
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "US News:${completeCourseDetail![0].usNewsRank ?? ""}",
                               maxLines: 2,
-                              fontSize: 14,
+                              textColor: ThemeConstants.bluegreycolor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
                             ),
                             const Spacer(),
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "QS World:${completeCourseDetail![0].qsWorldRank ?? ""}",
                               maxLines: 2,
-                              fontSize: 14,
+                              textColor: ThemeConstants.bluegreycolor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
                             ),
                           ],
                         ),

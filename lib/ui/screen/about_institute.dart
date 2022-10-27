@@ -10,6 +10,15 @@ class AboutInstitute extends StatelessWidget {
   AboutInstitute({Key? key, required this.completeCourseDetail})
       : super(key: key);
 
+  final rowSpacer = const TableRow(children: [
+    SizedBox(
+      height: 5,
+    ),
+    SizedBox(
+      height: 5,
+    )
+  ]);
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -26,7 +35,8 @@ class AboutInstitute extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: ThemeConstants.lightgreentColor,
                         borderRadius: BorderRadius.circular(10.0),
-                        border: Border.all(color: ThemeConstants.GreenColor),
+                        border: Border.all(
+                            color: ThemeConstants.GreenColor, width: 0.5),
                       ),
                       children: [
                         if (completeCourseDetail[0].universityName != null)
@@ -47,7 +57,9 @@ class AboutInstitute extends StatelessWidget {
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].universityName,
-                                textColor: ThemeConstants.TextColor,
+                                fontSize: 14,
+                                textColor: ThemeConstants.blackcolor,
+                                fontWeight: FontWeight.w600,
                                 maxLines: 5,
                               ),
                             ),
@@ -65,7 +77,8 @@ class AboutInstitute extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: ThemeConstants.lightblueColor,
                         borderRadius: BorderRadius.circular(10.0),
-                        border: Border.all(color: ThemeConstants.bluecolor),
+                        border: Border.all(
+                            color: ThemeConstants.bluecolor, width: 0.5),
                       ),
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
@@ -86,7 +99,9 @@ class AboutInstitute extends StatelessWidget {
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].instituteType,
-                                textColor: ThemeConstants.TextColor,
+                                textColor: ThemeConstants.blackcolor,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                                 maxLines: 2,
                               ),
                             ),
@@ -104,7 +119,8 @@ class AboutInstitute extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: ThemeConstants.lightorangeColor,
                         borderRadius: BorderRadius.circular(10.0),
-                        border: Border.all(color: ThemeConstants.orangeColor),
+                        border: Border.all(
+                            color: ThemeConstants.orangeColor, width: 0.5),
                       ),
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
@@ -124,7 +140,9 @@ class AboutInstitute extends StatelessWidget {
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text: completeCourseDetail[0].campusName,
-                              textColor: ThemeConstants.TextColor,
+                              textColor: ThemeConstants.blackcolor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
                               maxLines: 2,
                             ),
                           ),
@@ -142,7 +160,8 @@ class AboutInstitute extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: ThemeConstants.lightVioletColor,
                         borderRadius: BorderRadius.circular(10.0),
-                        border: Border.all(color: ThemeConstants.VioletColor),
+                        border: Border.all(
+                            color: ThemeConstants.VioletColor, width: 0.5),
                       ),
                       children: [
                         if (completeCourseDetail[0].instituteType != null)
@@ -163,9 +182,9 @@ class AboutInstitute extends StatelessWidget {
                               child: HtmlWidget(
                             completeCourseDetail[0].campusAddress!,
                             textStyle: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w500,
-                              color: ThemeConstants.TextColor,
-                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              color: ThemeConstants.blackcolor,
+                              fontSize: 14.0,
                             ),
                           )),
                         ),
@@ -174,16 +193,20 @@ class AboutInstitute extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 20),
               child: CustomAutoSizeTextMontserrat(
                 text: "About Institute",
                 textColor: ThemeConstants.bluecolor,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(
+              height: 5,
+            ),
             if (completeCourseDetail[0].aboutUniv != null)
               CustomAutoSizeTextMontserrat(
                 text: completeCourseDetail[0].aboutUniv,
+                fontSize: 14,
                 textColor: ThemeConstants.TextColor,
               ),
             if (completeCourseDetail[0].sIECRepresented != null)
@@ -221,24 +244,31 @@ class AboutInstitute extends StatelessWidget {
                 children: [
                   TableRow(children: [
                     CustomAutoSizeTextMontserrat(
-                      text: "No of Internation students",
+                      text: "No of International students",
                       maxLines: 2,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                     CustomAutoSizeTextMontserrat(
                       text: "No of indian Student",
                       maxLines: 2,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                   ]),
+                  rowSpacer,
                   TableRow(children: [
                     CustomAutoSizeTextMontserrat(
                       text: "258",
                       textColor: ThemeConstants.TextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                       maxLines: 2,
                     ),
                     CustomAutoSizeTextMontserrat(
                       text: "144",
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                       textColor: ThemeConstants.TextColor,
                       maxLines: 2,
                     ),

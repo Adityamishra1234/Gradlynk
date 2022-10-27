@@ -28,7 +28,7 @@ class _CustomExpansionPlanListState extends State<CustomExpansionPlanList> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 0,
       child: ConfigurableExpansionTile(
         header: SizedBox(
           width: MediaQuery.of(context).size.width - 10,
@@ -57,7 +57,7 @@ class _CustomExpansionPlanListState extends State<CustomExpansionPlanList> {
               textStyle: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w500,
                 color: ThemeConstants.TextColor,
-                fontSize: 16.0,
+                fontSize: 14.0,
               ),
             ),
           )

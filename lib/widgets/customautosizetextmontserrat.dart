@@ -30,7 +30,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
         maxLines: maxLines ?? 100000,
         overflow: TextOverflow.ellipsis,
         style: GoogleFonts.montserrat(
-          fontWeight: fontWeight ?? FontWeight.w500,
+          fontWeight: fontWeight ?? FontWeight.w600,
           color: textColor ?? Colors.black,
           fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
           decoration: underline != null

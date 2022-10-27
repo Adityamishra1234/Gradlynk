@@ -22,7 +22,8 @@ class StepsToAdmissions extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: ThemeConstants.lightgreentColor,
                     borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(color: ThemeConstants.GreenColor),
+                    border: Border.all(
+                        color: ThemeConstants.GreenColor, width: 0.5),
                   ),
                   children: [
                     if (completeCourseDetail[0].universityName != null)
@@ -42,7 +43,9 @@ class StepsToAdmissions extends StatelessWidget {
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].applicationFee,
-                          textColor: ThemeConstants.TextColor,
+                          textColor: ThemeConstants.blackcolor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                           maxLines: 5,
                         ),
                       ),
@@ -60,7 +63,8 @@ class StepsToAdmissions extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: ThemeConstants.lightblueColor,
                     borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(color: ThemeConstants.bluecolor),
+                    border:
+                        Border.all(color: ThemeConstants.bluecolor, width: 0.5),
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
@@ -81,7 +85,9 @@ class StepsToAdmissions extends StatelessWidget {
                         child: Center(
                           child: CustomAutoSizeTextMontserrat(
                             text: completeCourseDetail[0].feeWaiver,
-                            textColor: ThemeConstants.TextColor,
+                            textColor: ThemeConstants.blackcolor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
                             maxLines: 2,
                           ),
                         ),
@@ -99,7 +105,8 @@ class StepsToAdmissions extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: ThemeConstants.lightorangeColor,
                     borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(color: ThemeConstants.orangeColor),
+                    border: Border.all(
+                        color: ThemeConstants.orangeColor, width: 0.5),
                   ),
                   children: [
                     if (completeCourseDetail[0].instituteType != null)
@@ -119,7 +126,9 @@ class StepsToAdmissions extends StatelessWidget {
                       child: Center(
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].offerTat,
-                          textColor: ThemeConstants.TextColor,
+                          textColor: ThemeConstants.blackcolor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
                           maxLines: 2,
                         ),
                       ),
