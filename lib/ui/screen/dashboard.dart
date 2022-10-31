@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -13,6 +14,7 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/test.dart';
 
 class DashBoard extends StatefulWidget {
@@ -38,6 +40,7 @@ class _DashBoardState extends State<DashBoard> {
 
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
+      drawer: CustomDrawer(),
       body: Container(
         color: Colors.white,
         child: SizedBox(
@@ -308,7 +311,7 @@ class _DashBoardState extends State<DashBoard> {
                   //   "Create your profile",
                   //   snackPosition: SnackPosition.BOTTOM,
                   // );
-                  Get.toNamed(ProfilePageCopy.routeNamed, parameters: {
+                  Get.toNamed(ProfilePage.routeNamed, parameters: {
                     "studentPanelModel":
                         dashboardController.studentPanel.toString()
                   });

@@ -208,6 +208,7 @@ class AboutInstitute extends StatelessWidget {
                 text: completeCourseDetail[0].aboutUniv,
                 fontSize: 14,
                 textColor: ThemeConstants.TextColor,
+                fontWeight: FontWeight.w500,
               ),
             if (completeCourseDetail[0].sIECRepresented != null)
               Row(
