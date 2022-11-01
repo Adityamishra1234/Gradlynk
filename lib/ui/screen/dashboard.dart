@@ -306,11 +306,6 @@ class _DashBoardState extends State<DashBoard> {
               ),
               InkWell(
                 onTap: () {
-                  // Get.snackbar(
-                  //   "DashBoard",
-                  //   "Create your profile",
-                  //   snackPosition: SnackPosition.BOTTOM,
-                  // );
                   Get.toNamed(ProfilePage.routeNamed, parameters: {
                     "studentPanelModel":
                         dashboardController.studentPanel.toString()

@@ -7,6 +7,7 @@ class FilterController extends BaseController {
   CourseModelFilter courseModelFilter = CourseModelFilter();
   List<CourseSearchModel> courseSearchModel = [];
   FilterModel filterModel = FilterModel();
+  CourseModelFilter previouscourseModelFilter = CourseModelFilter();
 
   // List of Filter Fields
   List<String>? university;
@@ -681,47 +682,58 @@ class FilterController extends BaseController {
       });
     }
 
-    print(filterModel.universityname);
+    courseModelFilter.filterModel.filterSelected.academicPercentageSelected =
+        academicpercentage;
+    courseModelFilter.filterModel.filterSelected.applicationfeeSelected =
+        applicationfee;
+    //  courseModelFilter.filterModel.filterSelected.arwuNewsRankingSelected =
+    // ;
+    courseModelFilter.filterModel.filterSelected.backlogAcceptableSelected =
+        backlogAcceptable;
+    courseModelFilter.filterModel.filterSelected.academicPercentageSelected =
+        academicpercentage;
+    courseModelFilter.filterModel.filterSelected.backlogAcceptableSelected =
+        backlogAcceptable;
+    courseModelFilter.filterModel.filterSelected.budgetSelected = budget;
+    courseModelFilter.filterModel.filterSelected.conditionalOfferSelected =
+        conditionaloffer;
+    courseModelFilter.filterModel.filterSelected.countryNameSelected =
+        countryName;
+    //     courseModelFilter.filterModel.filterSelected.instSubCategorySelected =
+    // countryName;
+    courseModelFilter.filterModel.filterSelected.instituteLevelSelected =
+        instituteLevel;
+    courseModelFilter.filterModel.filterSelected
+        .institutePrivatePublicSelected = institutePublicPrivate;
+    courseModelFilter.filterModel.filterSelected.intakeMonthSelected =
+        intakeMonth;
+    courseModelFilter.filterModel.filterSelected.intakeYearSelected =
+        intakeYear;
+    courseModelFilter.filterModel.filterSelected.offerTATSelected = offerTAT;
+    courseModelFilter.filterModel.filterSelected.placementSandwichSelected =
+        placementSandwichYear;
+    // courseModelFilter.filterModel.filterSelected.qsWorldRankingSelected = q;
+    courseModelFilter.filterModel.filterSelected.scholarshipSelected =
+        scholarship;
+    courseModelFilter.filterModel.filterSelected.universitynameSelected =
+        university;
 
-    //   filterModel.intakeMonth!.add(element.intakeMonth ?? "");
-    //   filterModel.intakeYear!.add(element.intakeYear ?? "");
-    //   filterModel.universityname!.add(element.universityName ?? "");
-    //   filterModel.instituteLevel!.add(element.instituteType ?? "");
-    //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
-    //   filterModel.budget!.add(element.allFeesInr ?? "");
-    //   filterModel.offerTAT!.add(element.offerTat ?? "");
-    //   filterModel.visaTAT!.add(element.visaTat ?? "");
-    //   filterModel.countryName!.add(element.countryName ?? "");
-    //   filterModel.scholarship!.add(element.scholarship ?? "");
-    //   filterModel.siecPriority!.add(element.siecPriority ?? "");
-    //   filterModel.conditionalOffer!.add(element.conditionalOffer ?? "");
-    //   filterModel.backlogAcceptable!.add(element.backlogsAcceptable ?? "");
-    //   filterModel.applicationfee!.add(element.isApplicationFee ?? "");
-    //   // Placement / Sandwich , Ranking, budget
-    // });
-    // print(filterModel.universityname);
-    // filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
-    // filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
-    // filterModel.universityname = filterModel.universityname!.toSet().toList();
-    // filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
-    // filterModel.academicPercentage =
-    //     filterModel.academicPercentage!.toSet().toList();
-    // filterModel.budget = filterModel.budget!.toSet().toList();
-    // filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
-    // filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
-    // filterModel.countryName = filterModel.countryName!.toSet().toList();
-    // filterModel.scholarship = filterModel.scholarship!.toSet().toList();
-    // filterModel.siecPriority = filterModel.siecPriority!.toSet().toList();
-    // filterModel.conditionalOffer =
-    //     filterModel.conditionalOffer!.toSet().toList();
-    // filterModel.backlogAcceptable =
-    //     filterModel.backlogAcceptable!.toSet().toList();
-    // filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
-
-    // Placement / Sandwich , Ranking, budget
     loadingfuncation.value = true;
     update();
 
     courseModelFilter.courseSearchList = courseSearchModel;
+  }
+
+  getRemoveFilter() {
+    previouscourseModelFilter.courseSearchList.forEach((element) {
+      for (var i = 0;
+          i <
+              courseModelFilter
+                  .filterModel.filterSelected.universitynameSelected!.length;
+          i++) {
+        if (element.universityName ==
+            filterModel.filterSelected.universitynameSelected![i].toString()) {}
+      }
+    });
   }
 }

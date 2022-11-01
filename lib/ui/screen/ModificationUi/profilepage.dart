@@ -2,443 +2,512 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class ProfilePageCopy extends StatelessWidget {
-  const ProfilePageCopy({Key? key}) : super(key: key);
+  ProfilePageCopy({Key? key}) : super(key: key);
   static const routeNamed = '/ProfilePageCopy';
+  ScrollController controller = ScrollController();
+  ScrollPhysics scrollPhysics = ScrollPhysics();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: CustomAppBar("title"),
       body: Container(
           color: ThemeConstants.whitecolor,
           child: Column(
             children: [
-              Card(
-                color: ThemeConstants.lightVioletColor,
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 85,
+                child: Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20, bottom: 20),
-                      child: Container(
-                        width: 80,
-                        height: 80,
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.IconColor,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Nishant Bhardwaj",
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Male",
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "12/02/2001",
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                    ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 2,
+                        controller: controller,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == 0) {
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Stack(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 100,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Personal ",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                                const Icon(Icons.abc_outlined),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Container(
+                                            width: 100,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Course Info.",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                                const Icon(Icons.abc_outlined),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Container(
+                                            width: 110,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Qualification",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                                const Icon(Icons.abc_outlined),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 110,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Work History",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                                const Icon(Icons.abc_outlined),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Container(
+                                            width: 110,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "English Test.",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                                const Icon(Icons.abc_outlined),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Container(
+                                            width: 110,
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Row(
+                                              children: [
+                                                const Spacer(),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Other Text",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                                const Icon(Icons.abc_outlined),
+                                                const Spacer(),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Positioned(
+                                    right: 0,
+                                    child: Opacity(
+                                      opacity: 0.5,
+                                      child: InkWell(
+                                        onTap: () {
+                                          final position = controller
+                                              .position.maxScrollExtent;
+                                          controller.animateTo(
+                                            position,
+                                            duration:
+                                                const Duration(seconds: 1),
+                                            curve: Curves.easeOut,
+                                          );
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            // gradient: LinearGradient(
+                                            //   colors: [
+                                            //     Colors.transparent,
+                                            //     ThemeConstants.lightgreycolor,
+                                            //   ],
+                                            // ),
+                                            color: ThemeConstants.whitecolor,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(100),
+                                              bottomLeft: Radius.circular(100),
+                                            ),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black,
+                                                blurRadius: 2.0,
+                                                spreadRadius: 0.0,
+                                                offset: Offset(2.0,
+                                                    2.0), // shadow direction: bottom right
+                                              )
+                                            ],
+                                          ),
+                                          height: 80,
+                                          width: 35,
+                                          child: Center(
+                                            child: SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: RotationTransition(
+                                                turns:
+                                                    const AlwaysStoppedAnimation(
+                                                        180 / 360),
+                                                child: SvgPicture.asset(
+                                                  "assets/icons/nextscreen_arrow.svg",
+                                                  color:
+                                                      ThemeConstants.blackcolor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else if (index == 1) {
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Stack(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Container(
+                                              width: 100,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                children: [
+                                                  const Spacer(),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "Personal",
+                                                    fontSize: 12,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                  const Icon(
+                                                      Icons.abc_outlined),
+                                                  const Spacer(),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Container(
+                                              width: 100,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                children: [
+                                                  const Spacer(),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "Course Info.",
+                                                    fontSize: 12,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                  const Icon(
+                                                      Icons.abc_outlined),
+                                                  const Spacer(),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Container(
+                                              width: 110,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                children: [
+                                                  const Spacer(),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "Qualification",
+                                                    fontSize: 12,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                  const Icon(
+                                                      Icons.abc_outlined),
+                                                  const Spacer(),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              width: 110,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                children: [
+                                                  const Spacer(),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "Work History",
+                                                    fontSize: 12,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                  const Icon(
+                                                      Icons.abc_outlined),
+                                                  const Spacer(),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Container(
+                                              width: 110,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                children: [
+                                                  const Spacer(),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "English Test.",
+                                                    fontSize: 12,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                  const Icon(
+                                                      Icons.abc_outlined),
+                                                  const Spacer(),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 8,
+                                            ),
+                                            Container(
+                                              width: 110,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0)),
+                                              child: Row(
+                                                children: [
+                                                  const Spacer(),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "Other Text",
+                                                    fontSize: 12,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                  const Icon(
+                                                      Icons.abc_outlined),
+                                                  const Spacer(),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 0,
+                                    child: Opacity(
+                                      opacity: 0.5,
+                                      child: InkWell(
+                                        onTap: () {
+                                          final position = controller
+                                              .position.minScrollExtent;
+                                          controller.animateTo(
+                                            position,
+                                            duration:
+                                                const Duration(seconds: 1),
+                                            curve: Curves.easeOut,
+                                          );
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: ThemeConstants.whitecolor,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topRight: Radius.circular(100),
+                                              bottomRight: Radius.circular(100),
+                                            ),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black,
+                                                blurRadius: 2.0,
+                                                spreadRadius: 0.0,
+                                                offset: Offset(2.0,
+                                                    2.0), // shadow direction: bottom right
+                                              )
+                                            ],
+                                          ),
+                                          height: 85,
+                                          width: 35,
+                                          child: Center(
+                                            child: SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: SvgPicture.asset(
+                                                "assets/icons/nextscreen_arrow.svg",
+                                                color:
+                                                    ThemeConstants.blackcolor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }),
                   ],
                 ),
               ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        Get.toString();
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Personal Information",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Official Information",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {},
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Contact Information",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Country and Course Information",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Qualification Details",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Work History",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Applicant English Test Details",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Spouse English test Details",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Applicant other Test Details",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: ThemeConstants.TextColor,
-                      onTap: () {
-                        debugPrint("click");
-                      },
-                      child: SizedBox(
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20, top: 10),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Spouse Other Test Details",
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-                      child: Divider(
-                        height: 5,
-                        thickness: 1,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+
+              SizedBox(
+                  height: MediaQuery.of(context).size.height - 175,
+                  child: const ContactInformationCopy()),
+
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height - 175,
+              //   child: const CourseInformationCopy(),
+              // ),
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height - 175,
+              //   child: const QualificationDetailsCopy(),
+              // ),
             ],
           )),
     );

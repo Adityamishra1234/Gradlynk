@@ -41,6 +41,8 @@ import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
+import 'ui/screen/ModificationUi/workhistory.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
@@ -92,7 +94,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: ProfilePageCopy.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -131,7 +133,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ProfilePageCopy.routeNamed,
           transition: Transition.fade,
-          page: () => const ProfilePageCopy(),
+          page: () => ProfilePageCopy(),
         ),
         //AnimationaPhonepe
         GetPage(
@@ -252,6 +254,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: QualificationDetailsCopy.routeNamed,
           page: () => const QualificationDetailsCopy(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: WorkHistoryCopy.routeNamed,
+          page: () => const WorkHistoryCopy(),
           transition: Transition.fade,
         ),
       ],

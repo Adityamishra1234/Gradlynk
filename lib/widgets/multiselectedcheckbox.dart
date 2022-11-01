@@ -32,6 +32,19 @@ class _MultiSelectionExampleState extends State<MultiSelectionExample> {
             onTap: () {
               widget.checkBoxModel[index].isSelected =
                   !widget.checkBoxModel[index].isSelected;
+
+              String? selecteditems = widget.indexSelected;
+              // widget.checkBoxModel[index].isSelected =
+              //     !widget.checkBoxModel[index].isSelected;
+
+              for (var i = 0; i < widget.checkBoxModel.length; i++) {
+                if (widget.checkBoxModel[i].isSelected == true) {
+                  selecteditems =
+                      "${selecteditems!},${widget.checkBoxModel[i].checkBoxModelName}";
+                }
+              }
+              widget.callbackItemSelected!(selecteditems);
+
               setState(() {});
             },
             child: Container(
@@ -42,20 +55,7 @@ class _MultiSelectionExampleState extends State<MultiSelectionExample> {
                 children: <Widget>[
                   Checkbox(
                       value: widget.checkBoxModel[index].isSelected,
-                      onChanged: (s) {
-                        String? selecteditems = widget.indexSelected;
-                        widget.checkBoxModel[index].isSelected =
-                            !widget.checkBoxModel[index].isSelected;
-
-                        for (var i = 0; i < widget.checkBoxModel.length; i++) {
-                          if (widget.checkBoxModel[i].isSelected == true) {
-                            selecteditems =
-                                "${selecteditems!},${widget.checkBoxModel[i].checkBoxModelName}";
-                          }
-                        }
-                        widget.callbackItemSelected!(selecteditems);
-                        setState(() {});
-                      }),
+                      onChanged: (s) {}),
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 2 - 60,
                     child: CustomAutoSizeTextMontserrat(

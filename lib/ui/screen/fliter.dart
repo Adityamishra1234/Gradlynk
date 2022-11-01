@@ -580,7 +580,8 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.universityname,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedUniversitylist,
+            itemSelectedlist: courseModelFilter
+                .filterModel.filterSelected.universitynameSelected,
             indexSelected: "0",
           ),
 
@@ -589,7 +590,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.intakeMonth,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedintakeMonth,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.intakeMonthSelected ??
+                [],
             indexSelected: "1",
           ),
         // Intake year
@@ -597,7 +600,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.intakeYear,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedUintakeYear,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.intakeYearSelected ??
+                [],
             indexSelected: "2",
           ),
 
@@ -606,7 +611,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: const ["between 60-70", "between 50-60", "between 50"],
             callbackItemSelected: callback,
-            itemSelectedlist: selectedacademic,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.academicPercentageSelected ??
+                [],
             indexSelected: "3",
           ),
 
@@ -620,7 +627,9 @@ class _FilterState extends State<Filter> {
               "below 7lac"
             ],
             callbackItemSelected: callback,
-            itemSelectedlist: [],
+            itemSelectedlist:
+                courseModelFilter.filterModel.filterSelected.budgetSelected ??
+                    [],
             indexSelected: "4",
           ),
 
@@ -629,7 +638,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.countryName,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedCountryName,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.countryNameSelected ??
+                [],
             indexSelected: "5",
           ),
 
@@ -742,7 +753,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.institutePrivatePublic,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedInstitutePublicPrivate,
+            itemSelectedlist: courseModelFilter.filterModel.filterSelected
+                    .institutePrivatePublicSelected ??
+                [],
             indexSelected: "6",
           ),
 
@@ -750,7 +763,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.instituteLevel,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedInstituteLevel,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.instituteLevelSelected ??
+                [],
             indexSelected: "7",
           ),
 
@@ -759,7 +774,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.scholarship,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedScholarship,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.scholarshipSelected ??
+                [],
             indexSelected: "8",
           ),
         //Siec Priority
@@ -767,7 +784,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.siecPriority,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedSIECPriority,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.siecPrioritySelected ??
+                [],
             indexSelected: "9",
           ),
 
@@ -776,7 +795,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.conditionalOffer,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedConditionalOffer,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.conditionalOfferSelected ??
+                [],
             indexSelected: "10",
           ),
 
@@ -785,7 +806,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.backlogAcceptable,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedBacklogAcceptable,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.backlogAcceptableSelected ??
+                [],
             indexSelected: "11",
           ),
         //Application Fee
@@ -793,14 +816,18 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.applicationfee,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedApplicationFee,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.applicationfeeSelected ??
+                [],
             indexSelected: "12",
           ),
         if (i == 13)
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.offerTAT,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedOfferTAT,
+            itemSelectedlist:
+                courseModelFilter.filterModel.filterSelected.offerTATSelected ??
+                    [],
             indexSelected: "13",
           ),
 
@@ -808,7 +835,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.visaTAT,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedVisaTAT,
+            itemSelectedlist:
+                courseModelFilter.filterModel.filterSelected.visaTATSelected ??
+                    [],
             indexSelected: "14",
           ),
 
@@ -818,7 +847,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: const ["Yes", "No"],
             callbackItemSelected: callback,
-            itemSelectedlist: selectedPlacementSandwichYear,
+            itemSelectedlist: courseModelFilter
+                    .filterModel.filterSelected.placementSandwichSelected ??
+                [],
             indexSelected: "15",
           ),
         //SIEC Represented
@@ -826,7 +857,9 @@ class _FilterState extends State<Filter> {
           CustomgroupCheckBoxCallBack(
             data: courseModelFilter.filterModel.siecRep,
             callbackItemSelected: callback,
-            itemSelectedlist: selectedSIECRepresented,
+            itemSelectedlist:
+                courseModelFilter.filterModel.filterSelected.siecRepSelected ??
+                    [],
             indexSelected: "16",
           ),
       ],
@@ -836,6 +869,7 @@ class _FilterState extends State<Filter> {
   List<CheckBoxModel> favoriteMovies = [];
 
   callback(varTopic) {
+    print(varTopic);
     if (varTopic != null) itemsSelected = varTopic;
   }
 
