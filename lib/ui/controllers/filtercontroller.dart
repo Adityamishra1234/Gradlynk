@@ -725,14 +725,59 @@ class FilterController extends BaseController {
   }
 
   getRemoveFilter() {
+    List<CourseSearchModel> courseSearchModel = [];
     previouscourseModelFilter.courseSearchList.forEach((element) {
-      for (var i = 0;
-          i <
-              courseModelFilter
-                  .filterModel.filterSelected.universitynameSelected!.length;
-          i++) {
-        if (element.universityName ==
-            filterModel.filterSelected.universitynameSelected![i].toString()) {}
+      if (courseModelFilter.filterModel.filterSelected.universitynameSelected !=
+          null) {
+        String temp = "0";
+        for (var i = 0;
+            i <
+                courseModelFilter
+                    .filterModel.filterSelected.universitynameSelected!.length;
+            i++) {
+          temp =
+              ",${courseModelFilter.filterModel.filterSelected.universitynameSelected![i]}";
+        }
+        getUniversity(temp);
+      }
+      if (courseModelFilter.filterModel.filterSelected.universitynameSelected !=
+          null) {
+        String temp = "0";
+        for (var i = 0;
+            i <
+                courseModelFilter
+                    .filterModel.filterSelected.universitynameSelected!.length;
+            i++) {
+          temp =
+              ",${courseModelFilter.filterModel.filterSelected.universitynameSelected![i]}";
+        }
+        getUniversity(temp);
+      }
+      if (courseModelFilter.filterModel.filterSelected.offerTATSelected !=
+          null) {
+        String temp = "0";
+        for (var i = 0;
+            i <
+                courseModelFilter
+                    .filterModel.filterSelected.offerTATSelected!.length;
+            i++) {
+          temp =
+              ",${courseModelFilter.filterModel.filterSelected.offerTATSelected![i]}";
+        }
+        getOfferTAT(temp);
+      }
+      if (courseModelFilter.filterModel.filterSelected.offerTATSelected !=
+          null) {
+        String temp = "0";
+        for (var i = 0;
+            i <
+                courseModelFilter
+                    .filterModel.filterSelected.offerTATSelected!.length;
+            i++) {
+          temp =
+              ",${courseModelFilter.filterModel.filterSelected.offerTATSelected![i]}";
+        }
+        getOfferTAT(temp);
       }
     });
   }

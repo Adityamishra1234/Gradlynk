@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class CustomDropDownProfilePage extends StatelessWidget {
+  bool? searchBox;
   bool? choosefieldtype;
   List<String>? model;
   bool? underline;
@@ -17,6 +18,7 @@ class CustomDropDownProfilePage extends StatelessWidget {
   CustomDropDownProfilePage({
     Key? key,
     this.text,
+    this.searchBox,
     required this.callbackFunction,
     required this.model,
     required this.hint,
@@ -42,7 +44,8 @@ class CustomDropDownProfilePage extends StatelessWidget {
                 height: 60,
                 decoration: BoxDecoration(
                     color: ThemeConstants.lightblueColor,
-                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(15.0))),
                 child: DropdownSearch<String>(
                   dropdownDecoratorProps: DropDownDecoratorProps(
                     baseStyle: GoogleFonts.montserrat(
@@ -62,7 +65,7 @@ class CustomDropDownProfilePage extends StatelessWidget {
                         : InputDecoration(border: InputBorder.none),
                   ),
                   popupProps: PopupProps.menu(
-                    showSearchBox: true,
+                    showSearchBox: searchBox ?? true,
                     title: Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Text(

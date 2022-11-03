@@ -16,6 +16,8 @@ import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/test.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -306,7 +308,7 @@ class _DashBoardState extends State<DashBoard> {
               ),
               InkWell(
                 onTap: () {
-                  Get.toNamed(ProfilePage.routeNamed, parameters: {
+                  Get.toNamed(ProfilePageCopy.routeNamed, parameters: {
                     "studentPanelModel":
                         dashboardController.studentPanel.toString()
                   });
@@ -554,10 +556,13 @@ class _DashBoardState extends State<DashBoard> {
       floatingActionButton: Visibility(
         visible: showFab,
         child: FloatingActionButton(
-            tooltip: "Action",
+            tooltip: "SVO",
             backgroundColor: ThemeConstants.bluecolor,
-            onPressed: () {},
-            // isExtended: true,
+            onPressed: () async {
+              // SVO Join Code
+              await _launchURL();
+              // isExtended: true,
+            },
             child: SvgPicture.asset(
               "assets/icons/video-call.svg",
               height: 30,
@@ -571,6 +576,18 @@ class _DashBoardState extends State<DashBoard> {
   }
 
   callbackDropDownButton(varTopic) {}
+
+  _launchURL() async {
+    const url =
+        'https://us04web.zoom.us/j/73812227646?pwd=JYb2LRrfiaZFuuBV3BTIzY4OT52QYr.1';
+    // ignore: deprecated_member_use
+    if (await canLaunch(url)) {
+      // ignore: deprecated_member_use
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
 
 class MyBullet extends StatelessWidget {

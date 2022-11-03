@@ -77,6 +77,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                     const Spacer(),
                     InkWell(
                       onTap: () {
+                        controller1.courseModelFilter.previousCourseSearchList =
+                            controller1.courseModelFilter.courseSearchList;
                         Get.to(Filter(
                           courseModelFilter: controller1.courseModelFilter,
                           previousRoute: ReviewShortList.routeNamed,

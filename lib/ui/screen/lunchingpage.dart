@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/lunchingpagecontroller.dart';
+import 'package:studentpanel/ui/screen/login%20copy.dart';
 
 class LunchingPage extends StatefulWidget {
   LunchingPage({Key? key}) : super(key: key);
@@ -13,16 +14,23 @@ class LunchingPage extends StatefulWidget {
 class _LunchingPageState extends State<LunchingPage> {
   bool temp = false;
 
-  @override
-  void initState() {
-    controller.startTimer();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   controller.startTimer();
+  //   super.initState();
+  // }
 
   var controller = Get.put(LunchingPageController());
+  void startTimer() {
+    Future.delayed(const Duration(milliseconds: 5400), () {
+      Get.toNamed(LoginCopy.routeNamed);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    startTimer();
+
     return Scaffold(
       body: Container(
         height: MediaQuery.of(context).size.height,

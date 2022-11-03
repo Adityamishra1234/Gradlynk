@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
+import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
 
@@ -14,38 +16,98 @@ class ContactInformationCopy extends StatefulWidget {
 
 class _ContactInformationCopyState extends State<ContactInformationCopy> {
   bool saveAndEdit = true;
+  TextEditingController firstName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController mobileNumber = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController whatsappNumber = TextEditingController();
+  TextEditingController secondaryNumber = TextEditingController();
+  TextEditingController secondaryEmail = TextEditingController();
+  TextEditingController street = TextEditingController();
+  TextEditingController zipCode = TextEditingController();
+  TextEditingController instagramId = TextEditingController();
+  TextEditingController facebookId = TextEditingController();
+  TextEditingController snapchatId = TextEditingController();
+  var controller = Get.put(ContactInformationController());
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 10),
-        //   child: Align(
-        //     alignment: AlignmentDirectional.topStart,
-        //     child: CustomAutoSizeTextMontserrat(
-        //       text: "Contact Information",
-        //       textColor: ThemeConstants.bluecolor,
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 24,
-        //     ),
-        //   ),
-        // ),
-
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
           child: Align(
             alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "First Name",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+            child: Row(
+              children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "First Name",
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                const Spacer(),
+                if (saveAndEdit == false)
+                  TextButton(
+                      onPressed: () {
+                        saveAndEdit = true;
+                        PersonalInformationModel personalInformationModel =
+                            PersonalInformationModel();
+                        // personalInformationModel.id=controller.
+                        // personalInformationModel.gender = gender;
+                        personalInformationModel.enquiryName = firstName.text;
+                        personalInformationModel.familyName = lastName.text;
+                        personalInformationModel.email = email.text;
+                        personalInformationModel.secondaryEmail =
+                            secondaryEmail.text;
+                        personalInformationModel.mobile =
+                            int.parse(mobileNumber.text);
+                        // personalInformationModel.maritalStatus=
+                        // personalInformationModel.childrenCount
+                        personalInformationModel.whatsappNumber =
+                            int.parse(whatsappNumber.text);
+                        // personalInformationModel.alternateNumber=int.parse(al)
+                        personalInformationModel.countryId =
+                            controller.personalInformationModel.countryId;
+                        personalInformationModel.stateId =
+                            controller.personalInformationModel.stateId;
+                        personalInformationModel.cityId =
+                            controller.personalInformationModel.cityId;
+                        personalInformationModel.street = street.text;
+                        personalInformationModel.zipCode =
+                            int.parse(zipCode.text);
+                        personalInformationModel.instagramId = instagramId.text;
+                        personalInformationModel.facebookId = facebookId.text;
+                        personalInformationModel.snapchatId = snapchatId.text;
+
+                        controller.updateData(personalInformationModel);
+                        setState(() {});
+                      },
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "save",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        textColor: ThemeConstants.bluecolor,
+                      )),
+                if (saveAndEdit)
+                  TextButton(
+                      onPressed: () {
+                        saveAndEdit = false;
+                        setState(() {});
+                      },
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "edit",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        textColor: ThemeConstants.bluecolor,
+                      ))
+              ],
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: firstName,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -75,6 +137,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: lastName,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -134,9 +197,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           height: 60,
           child: CustomDropDownProfilePage(
             text: "Gender",
-            callbackFunction: callback,
+            callbackFunction: callbackGender,
             hint: 'Gender',
-            model: ["1", "2", "3"],
+            searchBox: false,
+            model: const ["Male", "Female", "Other"],
             choosefieldtype: saveAndEdit,
           ),
         ),
@@ -156,9 +220,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           height: 60,
           child: CustomDropDownProfilePage(
             text: "Marital status",
-            callbackFunction: callback,
+            callbackFunction: callbackMaritalStatus,
             hint: 'Marital status',
-            model: ["1", "2", "3"],
+            model: const [
+              "Married",
+              "Unmarried",
+              "Divorced",
+              "Live-in",
+              "Annulled Marriage"
+            ],
             choosefieldtype: saveAndEdit,
           ),
         ),
@@ -178,57 +248,28 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           height: 60,
           child: CustomDropDownProfilePage(
             text: "Children Count",
-            callbackFunction: callback,
+            callbackFunction: callbackChildrenCount,
             hint: 'Children Count',
-            model: ["1", "2", "3"],
+            model: const ["0", "1", "2", "3", "4"],
             choosefieldtype: saveAndEdit,
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
           child: Align(
             alignment: AlignmentDirectional.topStart,
-            child: Row(
-              children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Mobile Number",
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  textColor: ThemeConstants.TextColor,
-                ),
-                const Spacer(),
-                if (saveAndEdit == false)
-                  TextButton(
-                      onPressed: () {
-                        saveAndEdit = true;
-                        setState(() {});
-                      },
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "save",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        textColor: ThemeConstants.bluecolor,
-                      )),
-                if (saveAndEdit)
-                  TextButton(
-                      onPressed: () {
-                        saveAndEdit = false;
-                        setState(() {});
-                      },
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "edit",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        textColor: ThemeConstants.bluecolor,
-                      ))
-              ],
+            child: CustomAutoSizeTextMontserrat(
+              text: "Mobile Number",
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              textColor: ThemeConstants.TextColor,
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: mobileNumber,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -258,6 +299,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: email,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -287,6 +329,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: whatsappNumber,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -345,6 +388,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: secondaryEmail,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -375,9 +419,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           height: 60,
           child: CustomDropDownProfilePage(
             text: "test1",
-            callbackFunction: callback,
+            callbackFunction: callbackCountryStateCity,
             hint: 'Test',
-            model: ["1", "2", "3"],
+            model: controller.countryList ?? [],
             choosefieldtype: saveAndEdit,
           ),
         ),
@@ -397,9 +441,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           height: 60,
           child: CustomDropDownProfilePage(
             text: "test1",
-            callbackFunction: callback,
+            callbackFunction: callbackCountryStateCity,
             hint: 'Test',
-            model: ["1", "2", "3"],
+            model: Get.find<ContactInformationController>().stateList ?? [],
             choosefieldtype: saveAndEdit,
           ),
         ),
@@ -419,9 +463,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           height: 60,
           child: CustomDropDownProfilePage(
             text: "test1",
-            callbackFunction: callback,
+            callbackFunction: callbackCountryStateCity,
             hint: 'Test',
-            model: ["1", "2", "3"],
+            model: Get.find<ContactInformationController>().cityList ?? [],
             choosefieldtype: saveAndEdit,
           ),
         ),
@@ -440,6 +484,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: street,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -469,6 +514,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: zipCode,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -483,19 +529,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             style: ThemeConstants.montserrattextstyle,
           ),
         ),
-        Container(
-          child: CheckboxListTile(
-            title: CustomAutoSizeTextMontserrat(
-                text: "Are you available on Social Media"),
-            value: true,
-            onChanged: (newValue) {
-              setState(() {
-                // checkedValue = newValue;
-              });
-            },
-            controlAffinity:
-                ListTileControlAffinity.leading, //  <-- leading Checkbox
-          ),
+        CheckboxListTile(
+          title: CustomAutoSizeTextMontserrat(
+              text: "Are you available on Social Media"),
+          value: true,
+          onChanged: (newValue) {
+            setState(() {
+              // checkedValue = newValue;
+            });
+          },
+          controlAffinity:
+              ListTileControlAffinity.leading, //  <-- leading Checkbox
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -512,6 +556,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: instagramId,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -541,6 +586,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: facebookId,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -570,6 +616,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
+            controller: snapchatId,
             textInputAction: TextInputAction.next,
             readOnly: saveAndEdit,
             decoration: InputDecoration(
@@ -584,7 +631,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             style: ThemeConstants.montserrattextstyle,
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
           child: Align(
@@ -601,7 +647,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             textInputAction: TextInputAction.next,
-            readOnly: saveAndEdit,
+            readOnly: false,
             decoration: InputDecoration(
               hintText: "Shreya IT",
               filled: true,
@@ -630,7 +676,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             textInputAction: TextInputAction.next,
-            readOnly: saveAndEdit,
+            readOnly: false,
             decoration: InputDecoration(
               hintText: "West Delhi",
               filled: true,
@@ -659,7 +705,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             textInputAction: TextInputAction.next,
-            readOnly: saveAndEdit,
+            readOnly: false,
             decoration: InputDecoration(
               hintText: "Student Visa",
               filled: true,
@@ -688,7 +734,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             textInputAction: TextInputAction.next,
-            readOnly: saveAndEdit,
+            readOnly: false,
             decoration: InputDecoration(
               hintText: "Australia",
               filled: true,
@@ -717,7 +763,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             textInputAction: TextInputAction.next,
-            readOnly: saveAndEdit,
+            readOnly: false,
             decoration: InputDecoration(
               hintText: "Canada,Ireland,USA",
               filled: true,
@@ -730,7 +776,92 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             style: ThemeConstants.montserrattextstyle,
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: Row(
+            children: [
+              Spacer(),
+              if (saveAndEdit)
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: SizedBox(
+                    width: 100,
+                    height: 35,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: BorderSide(color: ThemeConstants.bluecolor),
+                        primary: ThemeConstants.whitecolor, // background
+                        onPrimary: ThemeConstants.whitecolor, // foreground
+                      ),
+                      onPressed: () {
+                        saveAndEdit = false;
+                        setState(() {});
+                      },
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Edit",
+                        textColor: ThemeConstants.bluecolor,
+                      ),
+                    ),
+                  ),
+                ),
+              if (saveAndEdit == false)
+                Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: SizedBox(
+                    width: 100,
+                    height: 35,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: BorderSide(color: ThemeConstants.bluecolor),
+                        primary: ThemeConstants.whitecolor, // background
+                        onPrimary: ThemeConstants.whitecolor, // foreground
+                      ),
+                      onPressed: () {
+                        saveAndEdit = true;
 
+                        PersonalInformationModel personalInformationModel =
+                            PersonalInformationModel();
+                        // personalInformationModel.id=controller.
+                        // personalInformationModel.gender = gender;
+                        personalInformationModel.enquiryName = firstName.text;
+                        personalInformationModel.familyName = lastName.text;
+                        personalInformationModel.email = email.text;
+                        personalInformationModel.secondaryEmail =
+                            secondaryEmail.text;
+                        personalInformationModel.mobile =
+                            int.parse(mobileNumber.text);
+                        // personalInformationModel.maritalStatus=
+                        // personalInformationModel.childrenCount
+                        personalInformationModel.whatsappNumber =
+                            int.parse(whatsappNumber.text);
+                        // personalInformationModel.alternateNumber=int.parse(al)
+                        personalInformationModel.countryId =
+                            controller.personalInformationModel.countryId;
+                        personalInformationModel.stateId =
+                            controller.personalInformationModel.stateId;
+                        personalInformationModel.cityId =
+                            controller.personalInformationModel.cityId;
+                        personalInformationModel.street = street.text;
+                        personalInformationModel.zipCode =
+                            int.parse(zipCode.text);
+                        personalInformationModel.instagramId = instagramId.text;
+                        personalInformationModel.facebookId = facebookId.text;
+                        personalInformationModel.snapchatId = snapchatId.text;
+
+                        controller.updateData(personalInformationModel);
+
+                        setState(() {});
+                      },
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Save",
+                        textColor: ThemeConstants.bluecolor,
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
         const SizedBox(
           height: 300,
         ),
@@ -739,9 +870,55 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   }
 
   // Funcation
-  callback(varTopic) {
-    // controller.setLoadingHighestQualification(true);
+  callbackCountryStateCity(varTopic) {
+    if (Get.find<ContactInformationController>().loadingCountry.value == true &&
+        Get.find<ContactInformationController>().loadingState.value == false) {
+      for (var i = 0; i < controller.countryList.length; i++) {
+        if (controller.countryList[i] == varTopic) {
+          controller.personalInformationModel.countryId =
+              int.parse(controller.countryCode[i]);
+          controller.getState("[${controller.countryCode[i]}]");
+        }
+      }
+    } else if (Get.find<ContactInformationController>().loadingCountry.value ==
+            true &&
+        Get.find<ContactInformationController>().loadingState.value == true &&
+        Get.find<ContactInformationController>().loadingCity.value == false) {
+      for (var i = 0; i < controller.stateList.length; i++) {
+        if (controller.stateList[i] == varTopic) {
+          controller.personalInformationModel.stateId =
+              int.parse(controller.stateCode[i]);
+          controller.getCity("[${controller.stateCode[i]}]");
+        }
+      }
+    } else {}
+  }
 
-    // dashboardcontroller.setdropdown1(varTopic);
+  callbackGender(varTopic) {
+    List<String> temp = ["Male", "Female", "Other"];
+    for (var i = 0; i < temp.length; i++) {
+      if (temp[i] == varTopic) {
+        controller.personalInformationModel.genderId = i;
+      }
+    }
+  }
+
+  callbackMaritalStatus(varTopic) {
+    List<String> temp = [
+      "Married",
+      "Unmarried",
+      "Divorced",
+      "Live-in",
+      "Annulled Marriage"
+    ];
+    for (var i = 0; i < temp.length; i++) {
+      if (temp[i] == varTopic) {
+        controller.personalInformationModel.maritalStatusId = i;
+      }
+    }
+  }
+
+  callbackChildrenCount(varTopic) {
+    controller.personalInformationModel.childrenCount = int.parse(varTopic);
   }
 }

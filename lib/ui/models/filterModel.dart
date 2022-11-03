@@ -2,6 +2,8 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 
 class CourseModelFilter {
   List<CourseSearchModel> courseSearchList = [];
+  List<CourseSearchModel> previousCourseSearchList = [];
+
   FilterModel filterModel = FilterModel();
 }
 

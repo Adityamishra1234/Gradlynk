@@ -246,7 +246,7 @@ class ProfilePageCopy extends StatelessWidget {
                                               child: RotationTransition(
                                                 turns:
                                                     const AlwaysStoppedAnimation(
-                                                        180 / 360),
+                                                        0 / 360),
                                                 child: SvgPicture.asset(
                                                   "assets/icons/nextscreen_arrow.svg",
                                                   color:
@@ -285,7 +285,7 @@ class ProfilePageCopy extends StatelessWidget {
                                                 children: [
                                                   const Spacer(),
                                                   CustomAutoSizeTextMontserrat(
-                                                    text: "Personal",
+                                                    text: "Passport",
                                                     fontSize: 12,
                                                     textColor: ThemeConstants
                                                         .TextColor,
@@ -300,7 +300,7 @@ class ProfilePageCopy extends StatelessWidget {
                                               width: 8,
                                             ),
                                             Container(
-                                              width: 100,
+                                              width: 120,
                                               height: 35,
                                               decoration: BoxDecoration(
                                                   border: Border.all(),
@@ -311,7 +311,7 @@ class ProfilePageCopy extends StatelessWidget {
                                                 children: [
                                                   const Spacer(),
                                                   CustomAutoSizeTextMontserrat(
-                                                    text: "Course Info.",
+                                                    text: "Travel History",
                                                     fontSize: 12,
                                                     textColor: ThemeConstants
                                                         .TextColor,
@@ -337,7 +337,7 @@ class ProfilePageCopy extends StatelessWidget {
                                                 children: [
                                                   const Spacer(),
                                                   CustomAutoSizeTextMontserrat(
-                                                    text: "Qualification",
+                                                    text: "Relative Info.",
                                                     fontSize: 12,
                                                     textColor: ThemeConstants
                                                         .TextColor,
@@ -352,85 +352,6 @@ class ProfilePageCopy extends StatelessWidget {
                                         ),
                                         const SizedBox(
                                           height: 8,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              width: 110,
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0)),
-                                              child: Row(
-                                                children: [
-                                                  const Spacer(),
-                                                  CustomAutoSizeTextMontserrat(
-                                                    text: "Work History",
-                                                    fontSize: 12,
-                                                    textColor: ThemeConstants
-                                                        .TextColor,
-                                                  ),
-                                                  const Icon(
-                                                      Icons.abc_outlined),
-                                                  const Spacer(),
-                                                ],
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 8,
-                                            ),
-                                            Container(
-                                              width: 110,
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0)),
-                                              child: Row(
-                                                children: [
-                                                  const Spacer(),
-                                                  CustomAutoSizeTextMontserrat(
-                                                    text: "English Test.",
-                                                    fontSize: 12,
-                                                    textColor: ThemeConstants
-                                                        .TextColor,
-                                                  ),
-                                                  const Icon(
-                                                      Icons.abc_outlined),
-                                                  const Spacer(),
-                                                ],
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 8,
-                                            ),
-                                            Container(
-                                              width: 110,
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0)),
-                                              child: Row(
-                                                children: [
-                                                  const Spacer(),
-                                                  CustomAutoSizeTextMontserrat(
-                                                    text: "Other Text",
-                                                    fontSize: 12,
-                                                    textColor: ThemeConstants
-                                                        .TextColor,
-                                                  ),
-                                                  const Icon(
-                                                      Icons.abc_outlined),
-                                                  const Spacer(),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ],
                                     ),
@@ -468,16 +389,21 @@ class ProfilePageCopy extends StatelessWidget {
                                               )
                                             ],
                                           ),
-                                          height: 85,
+                                          height: 80,
                                           width: 35,
                                           child: Center(
                                             child: SizedBox(
                                               height: 20,
                                               width: 20,
-                                              child: SvgPicture.asset(
-                                                "assets/icons/nextscreen_arrow.svg",
-                                                color:
-                                                    ThemeConstants.blackcolor,
+                                              child: RotationTransition(
+                                                turns:
+                                                    const AlwaysStoppedAnimation(
+                                                        180 / 360),
+                                                child: SvgPicture.asset(
+                                                  "assets/icons/nextscreen_arrow.svg",
+                                                  color:
+                                                      ThemeConstants.blackcolor,
+                                                ),
                                               ),
                                             ),
                                           ),

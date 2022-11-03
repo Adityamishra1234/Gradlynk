@@ -52,6 +52,9 @@ class _FinalShortListState extends State<FinalShortList> {
                       const Spacer(),
                       InkWell(
                         onTap: () {
+                          controller1
+                                  .courseModelFilter.previousCourseSearchList =
+                              controller1.courseModelFilter.courseSearchList;
                           Get.to(Filter(
                             previousRoute: FinalShortList.routeNamed,
                             courseModelFilter: controller1.courseModelFilter,
