@@ -61,3 +61,8 @@ class FilterSelected {
   List<String>? applicationfeeSelected = [];
   List<String>? placementSandwichSelected = [];
 }
+
+class Budget {
+  String? budgetValue;
+  bool? trueFalse;
+}

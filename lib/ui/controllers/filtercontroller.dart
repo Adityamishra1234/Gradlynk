@@ -8,6 +8,7 @@ class FilterController extends BaseController {
   List<CourseSearchModel> courseSearchModel = [];
   FilterModel filterModel = FilterModel();
   CourseModelFilter previouscourseModelFilter = CourseModelFilter();
+  List<CourseSearchModel> courseSearchModel2 = [];
 
   // List of Filter Fields
   List<String>? university;
@@ -252,43 +253,24 @@ class FilterController extends BaseController {
     await setModificationFilter(courseSearchModel2);
   }
 
-  getUniversity(String? data) async {
+  getUniversity(String? data) {
     List<CourseSearchModel> courseSearchModel2 = [];
     loadingfuncation.value = false;
     update();
     filterModel = FilterModel();
     university = data!.split(",");
     university!.removeAt(0);
-    for (int i = 0; i < university!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].universityName ==
-            university![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
-  getOfferTAT(String? data) async {
+  getOfferTAT(String? data) {
     loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
     offerTAT = data!.split(",");
     offerTAT!.removeAt(0);
-    for (int i = 0; i < offerTAT!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].offerTat == offerTAT![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getVisaTAT(String? data) {
@@ -298,67 +280,27 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     visaTAT = data!.split(",");
     visaTAT!.removeAt(0);
-    for (int i = 0; i < visaTAT!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].visaTat == visaTAT![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    setModificationFilter(courseSearchModel2);
+    filter();
   }
 
-  getIntakeMonth(String? data) async {
+  getIntakeMonth(String? data) {
     loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
     intakeMonth = data!.split(",");
     intakeMonth!.removeAt(0);
-    for (int i = 0; i < intakeMonth!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].intakeMonth != null) {
-          List<String>? temp =
-              courseModelFilter.courseSearchList[j].intakeMonth!.split("|");
-          temp = temp.toSet().toList();
-          for (var k = 0; k < temp.length; k++) {
-            if (temp[k].toString() == intakeMonth![i].toString()) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-        }
-      }
-    }
-
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
-  getIntakeYear(String? data) async {
+  getIntakeYear(String? data) {
     loadingfuncation.value = false;
     update();
     List<CourseSearchModel> courseSearchModel2 = [];
     filterModel = FilterModel();
     intakeYear = data!.split(",");
     intakeYear!.removeAt(0);
-    for (int i = 0; i < intakeYear!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].intakeYear != null) {
-          List<String>? temp =
-              courseModelFilter.courseSearchList[j].intakeYear!.split("|");
-          temp = temp.toSet().toList();
-          for (var k = 0; k < temp.length; k++) {
-            if (temp[k].toString() == intakeYear![i].toString()) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-        }
-      }
-    }
-
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getInstituteLevel(String? data) async {
@@ -368,17 +310,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     instituteLevel = data!.split(",");
     instituteLevel!.removeAt(0);
-    for (int i = 0; i < instituteLevel!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].instituteType ==
-            instituteLevel![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getScholarship(String? data) async {
@@ -388,16 +320,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     scholarship = data!.split(",");
     scholarship!.removeAt(0);
-    for (int i = 0; i < scholarship!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].scholarship ==
-            scholarship![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getSiecPriority(String? data) async {
@@ -407,16 +330,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     siecPriority = data!.split(",");
     siecPriority!.removeAt(0);
-    for (int i = 0; i < siecPriority!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].siecPriority ==
-            siecPriority![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getConditionalOffer(String? data) async {
@@ -426,16 +340,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     conditionaloffer = data!.split(",");
     conditionaloffer!.removeAt(0);
-    for (int i = 0; i < conditionaloffer!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].conditionalOffer ==
-            conditionaloffer![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getBackLogAcceptable(String? data) async {
@@ -445,16 +350,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     backlogAcceptable = data!.split(",");
     backlogAcceptable!.removeAt(0);
-    for (int i = 0; i < backlogAcceptable!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].backlogsAcceptable ==
-            backlogAcceptable![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getApplicationFee(String? data) async {
@@ -464,16 +360,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     applicationfee = data!.split(",");
     applicationfee!.removeAt(0);
-    for (int i = 0; i < applicationfee!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].isApplicationFee ==
-            applicationfee![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getplacementSandwich(String? data) async {
@@ -483,16 +370,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     placementSandwichYear = data!.split(",");
     placementSandwichYear!.removeAt(0);
-    for (int i = 0; i < placementSandwichYear!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].isApplicationFee ==
-            placementSandwichYear![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getSiecRepresent(String? data) async {
@@ -502,16 +380,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     siecRepresent = data!.split(",");
     siecRepresent!.removeAt(0);
-    for (int i = 0; i < siecRepresent!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].siecRep ==
-            siecRepresent![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getCountryName(String? data) async {
@@ -521,16 +390,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     countryName = data!.split(",");
     countryName!.removeAt(0);
-    for (int i = 0; i < countryName!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].countryName ==
-            countryName![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getInstitutePublicPrivate(String? data) async {
@@ -540,16 +400,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     institutePublicPrivate = data!.split(",");
     institutePublicPrivate!.removeAt(0);
-    for (int i = 0; i < institutePublicPrivate!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        if (courseModelFilter.courseSearchList[j].instSubCategory ==
-            institutePublicPrivate![i]) {
-          courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-        }
-      }
-    }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   setModificationFilter(List<CourseSearchModel>? courseSearchModellist) {
@@ -724,61 +575,201 @@ class FilterController extends BaseController {
     courseModelFilter.courseSearchList = courseSearchModel;
   }
 
-  getRemoveFilter() {
-    List<CourseSearchModel> courseSearchModel = [];
-    previouscourseModelFilter.courseSearchList.forEach((element) {
-      if (courseModelFilter.filterModel.filterSelected.universitynameSelected !=
-          null) {
-        String temp = "0";
-        for (var i = 0;
-            i <
-                courseModelFilter
-                    .filterModel.filterSelected.universitynameSelected!.length;
-            i++) {
-          temp =
-              ",${courseModelFilter.filterModel.filterSelected.universitynameSelected![i]}";
+  filter() async {
+    if (university != null) {
+      courseSearchModel2 = [];
+      for (int i = 0; i < university!.length; i++) {
+        for (int j = 0;
+            j < courseModelFilter.previousCourseSearchList.length;
+            j++) {
+          if (courseModelFilter.previousCourseSearchList[j].universityName ==
+              university![i]) {
+            courseSearchModel2
+                .add(courseModelFilter.previousCourseSearchList[j]);
+          }
         }
-        getUniversity(temp);
       }
-      if (courseModelFilter.filterModel.filterSelected.universitynameSelected !=
-          null) {
-        String temp = "0";
-        for (var i = 0;
-            i <
-                courseModelFilter
-                    .filterModel.filterSelected.universitynameSelected!.length;
-            i++) {
-          temp =
-              ",${courseModelFilter.filterModel.filterSelected.universitynameSelected![i]}";
+      courseSearchModel = courseSearchModel2;
+    } else {
+      courseSearchModel = courseModelFilter.previousCourseSearchList;
+    }
+    if (offerTAT != null) {
+      courseSearchModel2 = [];
+      for (int i = 0; i < offerTAT!.length; i++) {
+        for (int j = 0; j < courseSearchModel.length; j++) {
+          if (courseSearchModel[j].offerTat == offerTAT![i]) {
+            courseSearchModel2.add(courseSearchModel[j]);
+          }
         }
-        getUniversity(temp);
       }
-      if (courseModelFilter.filterModel.filterSelected.offerTATSelected !=
-          null) {
-        String temp = "0";
-        for (var i = 0;
-            i <
-                courseModelFilter
-                    .filterModel.filterSelected.offerTATSelected!.length;
-            i++) {
-          temp =
-              ",${courseModelFilter.filterModel.filterSelected.offerTATSelected![i]}";
+      courseSearchModel = courseSearchModel2;
+    }
+    if (visaTAT != null) {
+      courseSearchModel2 = [];
+      for (int i = 0; i < visaTAT!.length; i++) {
+        for (int j = 0; j < courseSearchModel.length; j++) {
+          if (courseSearchModel[j].visaTat == visaTAT![i]) {
+            courseSearchModel2.add(courseSearchModel[j]);
+          }
         }
-        getOfferTAT(temp);
       }
-      if (courseModelFilter.filterModel.filterSelected.offerTATSelected !=
-          null) {
-        String temp = "0";
-        for (var i = 0;
-            i <
-                courseModelFilter
-                    .filterModel.filterSelected.offerTATSelected!.length;
-            i++) {
-          temp =
-              ",${courseModelFilter.filterModel.filterSelected.offerTATSelected![i]}";
+      courseSearchModel = courseSearchModel2;
+    }
+    if (intakeMonth != null) {
+      courseSearchModel2 = [];
+      List<int> indexSelected = [];
+      for (int i = 0; i < intakeMonth!.length; i++) {
+        for (int j = 0; j < courseSearchModel.length; j++) {
+          if (courseSearchModel[j].intakeMonth != null) {
+            List<String>? temp = courseSearchModel[j].intakeMonth!.split("|");
+            temp = temp.toSet().toList();
+
+            for (var k = 0; k < temp.length; k++) {
+              if (temp[k].toString() == intakeMonth![i].toString()) {
+                indexSelected.add(j);
+              }
+            }
+          }
         }
-        getOfferTAT(temp);
       }
-    });
+      indexSelected = indexSelected.toSet().toList();
+      for (var i = 0; i < indexSelected.length; i++) {
+        courseSearchModel2.add(courseSearchModel[indexSelected[i]]);
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (intakeYear != null) {
+      courseSearchModel2 = [];
+      List<int> indexSelected = [];
+      for (int i = 0; i < intakeYear!.length; i++) {
+        for (int j = 0; j < courseSearchModel.length; j++) {
+          if (courseSearchModel[j].intakeYear != null) {
+            List<String>? temp = courseSearchModel[j].intakeYear!.split("|");
+            temp = temp.toSet().toList();
+            for (var k = 0; k < temp.length; k++) {
+              if (temp[k].toString() == intakeYear![i].toString()) {
+                indexSelected.add(j);
+              }
+            }
+          }
+        }
+      }
+      indexSelected = indexSelected.toSet().toList();
+      for (var i = 0; i < indexSelected.length; i++) {
+        courseSearchModel2.add(courseSearchModel[indexSelected[i]]);
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (instituteLevel != null) {
+      for (int i = 0; i < instituteLevel!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].instituteType ==
+              instituteLevel![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (scholarship != null) {
+      for (int i = 0; i < scholarship!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].scholarship ==
+              scholarship![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (siecPriority != null) {
+      for (int i = 0; i < siecPriority!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].siecPriority ==
+              siecPriority![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (conditionaloffer != null) {
+      for (int i = 0; i < conditionaloffer!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].conditionalOffer ==
+              conditionaloffer![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (backlogAcceptable != null) {
+      for (int i = 0; i < backlogAcceptable!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].backlogsAcceptable ==
+              backlogAcceptable![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (applicationfee != null) {
+      for (int i = 0; i < applicationfee!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].isApplicationFee ==
+              applicationfee![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (placementSandwichYear != null) {
+      for (int i = 0; i < placementSandwichYear!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].isApplicationFee ==
+              placementSandwichYear![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (siecRepresent != null) {
+      for (int i = 0; i < siecRepresent!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].siecRep ==
+              siecRepresent![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (countryName != null) {
+      for (int i = 0; i < countryName!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].countryName ==
+              countryName![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    if (instituteLevel != null) {
+      for (int i = 0; i < institutePublicPrivate!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          if (courseModelFilter.courseSearchList[j].instSubCategory ==
+              institutePublicPrivate![i]) {
+            courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+    await setModificationFilter(courseSearchModel2);
   }
 }

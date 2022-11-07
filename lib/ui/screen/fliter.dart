@@ -67,508 +67,575 @@ class _FilterState extends State<Filter> {
     return Scaffold(
         appBar: CustomAppBar("title"),
         body: GetBuilder<FilterController>(
-          builder: (controller1) => Column(
-            children: [
-              if (controller1.loadingfuncation.value == true)
-                Container(
-                  height: 40,
-                  width: MediaQuery.of(context).size.width,
-                  color: ThemeConstants.lightorangeColor,
-                  child: Row(
+            builder: (controller1) => controller1.loadingfuncation.value == true
+                ? Column(
                     children: [
-                      const Spacer(),
-                      CustomAutoSizeTextMontserrat(
-                        text: "Filter",
-                        textColor: ThemeConstants.orangeColor,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      SvgPicture.asset(
-                        "assets/icons/filter.svg",
-                        color: ThemeConstants.orangeColor,
-                        height: 14,
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              if (controller1.loadingfuncation.value == true)
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height - 220,
-                          width: MediaQuery.of(context).size.width / 2 - 10,
-                          color: ThemeConstants.whitecolor,
-                          child: ListView(
+                      if (controller1.loadingfuncation.value == true)
+                        Container(
+                          height: 40,
+                          width: MediaQuery.of(context).size.width,
+                          color: ThemeConstants.lightorangeColor,
+                          child: Row(
                             children: [
-                              if (courseModelFilter
-                                      .filterModel.universityname !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 0;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "University Name",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.intakeMonth !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 1;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Intake Month",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.intakeYear !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 2;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Intake Year",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.academicPercentage !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 3;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Academic %",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.budget != null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 4;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Budget",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.countryName !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 5;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Country Name",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.selectRanking !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 17;
-
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Select Ranking",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.institutePrivatePublic !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 60,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 6;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Institute -public/private",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.instituteLevel !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 7;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Institute Level",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.scholarship !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 8;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Scholarship",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.siecPriority !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 9;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "SIEC Priority",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.conditionalOffer !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 10;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Conditional Offer",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.backlogAcceptable !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 11;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Backlog Acceptabe",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.applicationfee !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 12;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Application Fee",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.offerTAT !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 13;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Offer TAT(In days)",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.visaTAT != null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 14;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Visa TAT(In days)",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter
-                                      .filterModel.placementSandwich !=
-                                  null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 60,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 15;
-                                          indexRanking = 4;
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Placement/Sandwich year",
-                                        )),
-                                  ),
-                                ),
-                              if (courseModelFilter.filterModel.siecRep != null)
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: TextButton(
-                                        onPressed: () async {
-                                          choosefilter = 16;
-                                          indexRanking = 4;
-
-                                          if (itemsSelected != null) {
-                                            await loadingFilter();
-                                          }
-                                          setState(() {});
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "SIEC Represented",
-                                        )),
-                                  ),
-                                ),
+                              const Spacer(),
+                              CustomAutoSizeTextMontserrat(
+                                text: "Filter",
+                                textColor: ThemeConstants.orangeColor,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              SvgPicture.asset(
+                                "assets/icons/filter.svg",
+                                color: ThemeConstants.orangeColor,
+                                height: 14,
+                              ),
+                              const Spacer(),
                             ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height - 220,
-                          child: const VerticalDivider()),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 9),
-                        child: SizedBox(
-                            height: MediaQuery.of(context).size.height - 220,
-                            width: MediaQuery.of(context).size.width / 2 - 10,
-                            child: getFilterOption(choosefilter)),
-                      ),
+                      if (controller1.loadingfuncation.value == true)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height - 220,
+                                  width: MediaQuery.of(context).size.width / 2 -
+                                      10,
+                                  color: ThemeConstants.whitecolor,
+                                  child: ListView(
+                                    children: [
+                                      if (courseModelFilter
+                                              .filterModel.universityname !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 0;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "University Name",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.intakeMonth !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 1;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Intake Month",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.intakeYear !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 2;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Intake Year",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.academicPercentage !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 3;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Academic %",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.budget !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 4;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Budget",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.countryName !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 5;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Country Name",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.selectRanking !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 17;
+
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Select Ranking",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter.filterModel
+                                              .institutePrivatePublic !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 60,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 6;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Institute -public/private",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.instituteLevel !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 7;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Institute Level",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.scholarship !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 8;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Scholarship",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.siecPriority !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 9;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "SIEC Priority",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.conditionalOffer !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 10;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Conditional Offer",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.backlogAcceptable !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 11;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Backlog Acceptabe",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.applicationfee !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 12;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Application Fee",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.offerTAT !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 13;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Offer TAT(In days)",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.visaTAT !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 14;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Visa TAT(In days)",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.placementSandwich !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 60,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 15;
+                                                  indexRanking = 4;
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Placement/Sandwich year",
+                                                )),
+                                          ),
+                                        ),
+                                      if (courseModelFilter
+                                              .filterModel.siecRep !=
+                                          null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () async {
+                                                  choosefilter = 16;
+                                                  indexRanking = 4;
+
+                                                  if (itemsSelected != null) {
+                                                    await loadingFilter();
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "SIEC Represented",
+                                                )),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height - 220,
+                                  child: const VerticalDivider()),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 9),
+                                child: SizedBox(
+                                    height: MediaQuery.of(context).size.height -
+                                        220,
+                                    width:
+                                        MediaQuery.of(context).size.width / 2 -
+                                            10,
+                                    child: getFilterOption(choosefilter)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (controller1.loadingfuncation.value == true)
+                        Container(
+                          height: 80,
+                          width: MediaQuery.of(context).size.width,
+                          color: ThemeConstants.whitecolor,
+                          child: Row(
+                            children: [
+                              const Spacer(),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              ThemeConstants.whitecolor),
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              ThemeConstants.whitecolor),
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
+                                              side: BorderSide(
+                                                  color: ThemeConstants
+                                                      .TextColor)))),
+                                  onPressed: () {},
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Clear Filter ",
+                                    fontWeight: FontWeight.bold,
+                                    textColor: ThemeConstants.TextColor,
+                                  )),
+                              const Spacer(),
+                              ElevatedButton(
+                                  style: ButtonStyle(
+                                      foregroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              ThemeConstants.bluecolor),
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              ThemeConstants.bluecolor),
+                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
+                                              side: BorderSide(
+                                                  color: ThemeConstants
+                                                      .bluecolor)))),
+                                  onPressed: () async {
+                                    if (itemsSelected != null) {
+                                      await loadingFilter();
+                                    }
+                                    if (controller1.loadingfuncation.value ==
+                                        true) {
+                                      if (previousRoute ==
+                                          FinalShortList.routeNamed) {
+                                        Get.to(FinalShortList(
+                                          courseModelFilter:
+                                              controller1.courseModelFilter,
+                                        ));
+                                      }
+                                      if (previousRoute ==
+                                          ReviewShortList.routeNamed) {
+                                        Get.to(ReviewShortList(
+                                          courseModelFilter:
+                                              controller1.courseModelFilter,
+                                        ));
+                                      }
+                                      if (previousRoute ==
+                                          CourseSearchList.routeNamed) {
+                                        Get.to(CourseSearchList(
+                                          courseModelFilter: courseModelFilter,
+                                        ));
+                                      }
+                                    }
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Apply  Filter ",
+                                    fontWeight: FontWeight.bold,
+                                    textColor: ThemeConstants.whitecolor,
+                                  )),
+                              const Spacer(),
+                            ],
+                          ),
+                        ),
+                      if (controller1.loadingfuncation.value == false)
+                        const Center(child: CircularProgressIndicator()),
                     ],
-                  ),
-                ),
-              if (controller1.loadingfuncation.value == true)
-                Container(
-                  height: 80,
-                  width: MediaQuery.of(context).size.width,
-                  color: ThemeConstants.whitecolor,
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      ElevatedButton(
-                          style: ButtonStyle(
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  ThemeConstants.whitecolor),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  ThemeConstants.whitecolor),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10)),
-                                      side: BorderSide(
-                                          color: ThemeConstants.TextColor)))),
-                          onPressed: () {},
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Clear Filter ",
-                            fontWeight: FontWeight.bold,
-                            textColor: ThemeConstants.TextColor,
-                          )),
-                      const Spacer(),
-                      ElevatedButton(
-                          style: ButtonStyle(
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  ThemeConstants.bluecolor),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  ThemeConstants.bluecolor),
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10)),
-                                      side: BorderSide(
-                                          color: ThemeConstants.bluecolor)))),
-                          onPressed: () async {
-                            if (itemsSelected != null) {
-                              await loadingFilter();
-                            }
-                            if (controller1.loadingfuncation.value == true) {
-                              if (previousRoute == FinalShortList.routeNamed) {
-                                Get.to(FinalShortList(
-                                  courseModelFilter:
-                                      controller1.courseModelFilter,
-                                ));
-                              }
-                              if (previousRoute == ReviewShortList.routeNamed) {
-                                Get.to(ReviewShortList(
-                                  courseModelFilter:
-                                      controller1.courseModelFilter,
-                                ));
-                              }
-                              if (previousRoute ==
-                                  CourseSearchList.routeNamed) {
-                                Get.to(CourseSearchList(
-                                  courseModelFilter: courseModelFilter,
-                                ));
-                              }
-                            }
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Apply  Filter ",
-                            fontWeight: FontWeight.bold,
-                            textColor: ThemeConstants.whitecolor,
-                          )),
-                      const Spacer(),
-                    ],
-                  ),
-                ),
-              if (controller1.loadingfuncation.value == false)
-                const Center(child: CircularProgressIndicator()),
-            ],
-          ),
-        ));
+                  )
+                : const CircularProgressIndicator()));
   }
 
   // Function

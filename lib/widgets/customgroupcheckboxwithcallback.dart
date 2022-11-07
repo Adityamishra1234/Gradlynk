@@ -39,20 +39,5 @@ class CustomgroupCheckBoxCallBack extends StatelessWidget {
       callbackItemSelected: callbackItemSelected,
       indexSelected: indexSelected,
     );
-
-    // SimpleGroupedCheckbox(
-    //   itemsTitle: data!,
-    //   isLeading: true,
-    //   controller: controller,
-    //   values: List.generate(data!.length, (index) => index),
-    //   onItemSelected: (values) {
-    //     String? collectionItemSelected = indexSelected;
-    //     for (int i = 0; i < values.length; i++) {
-    //       collectionItemSelected =
-    //           "${collectionItemSelected!},${data![values[i]]}";
-    //     }
-    //     callbackItemSelected!(collectionItemSelected);
-    //   },
-    // );
   }
 }

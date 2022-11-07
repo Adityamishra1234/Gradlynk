@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/lunchingpagecontroller.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 
 class LunchingPage extends StatefulWidget {
@@ -22,8 +23,8 @@ class _LunchingPageState extends State<LunchingPage> {
 
   var controller = Get.put(LunchingPageController());
   void startTimer() {
-    Future.delayed(const Duration(milliseconds: 5400), () {
-      Get.toNamed(LoginCopy.routeNamed);
+    Future.delayed(const Duration(milliseconds: 4550), () {
+      Get.to(DashBoard());
     });
   }
 
