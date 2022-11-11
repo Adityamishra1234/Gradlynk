@@ -17,21 +17,8 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Work History",
-                textColor: ThemeConstants.bluecolor,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
@@ -39,7 +26,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               child: Row(
                 children: [
                   CustomAutoSizeTextMontserrat(
-                    text: "Mobile Number",
+                    text: "Name of Last Organisation",
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     textColor: ThemeConstants.TextColor,
@@ -79,7 +66,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               textInputAction: TextInputAction.next,
               readOnly: saveAndEdit,
               decoration: InputDecoration(
-                hintText: "Mobile Number",
+                hintText: "Enter name of last organisation",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -95,7 +82,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Email",
+                text: "Working From",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -108,7 +95,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               textInputAction: TextInputAction.next,
               readOnly: saveAndEdit,
               decoration: InputDecoration(
-                hintText: "Enter your email",
+                hintText: "Enter working from date",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -124,7 +111,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Whatsapp Number",
+                text: "Working Till",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -137,7 +124,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               textInputAction: TextInputAction.next,
               readOnly: saveAndEdit,
               decoration: InputDecoration(
-                hintText: "Enter your Whatsapp Number",
+                hintText: "Enter working till date",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -153,7 +140,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Secondary Number",
+                text: "Industry",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -166,7 +153,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               textInputAction: TextInputAction.next,
               readOnly: saveAndEdit,
               decoration: InputDecoration(
-                hintText: "Enter your Secondary Number",
+                hintText: "Drop down Field",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -182,7 +169,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Secondary Email",
+                text: "Designation",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -195,7 +182,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               textInputAction: TextInputAction.next,
               readOnly: saveAndEdit,
               decoration: InputDecoration(
-                hintText: "Enter your Secondary Email",
+                hintText: "Enter your DEsignation",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -211,65 +198,51 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Country of residence",
+                text: "Employement Type",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          SizedBox(
-            height: 60,
-            child: CustomDropDownProfilePage(
-              text: "test1",
-              callbackFunction: callback,
-              hint: 'Test',
-              model: ["1", "2", "3"],
-              choosefieldtype: saveAndEdit,
-            ),
-          ),
+
+          // SizedBox(
+          //   height: 60,
+          //   child: CustomDropDownProfilePage(
+          //     text: "test1",
+          //     callbackFunction: callback,
+          //     hint: 'Test',
+          //     model: ["1", "2", "3"],
+          //     choosefieldtype: saveAndEdit,
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Select State",
+                text: "Income As per ITR",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-          ),
-          SizedBox(
-            height: 60,
-            child: CustomDropDownProfilePage(
-              text: "test1",
-              callbackFunction: callback,
-              hint: 'Test',
-              model: ["1", "2", "3"],
-              choosefieldtype: saveAndEdit,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Select City",
-                textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              textInputAction: TextInputAction.next,
+              readOnly: saveAndEdit,
+              decoration: InputDecoration(
+                hintText: "Enter Income",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
-            ),
-          ),
-          SizedBox(
-            height: 60,
-            child: CustomDropDownProfilePage(
-              text: "test1",
-              callbackFunction: callback,
-              hint: 'Test',
-              model: ["1", "2", "3"],
-              choosefieldtype: saveAndEdit,
+              style: ThemeConstants.montserrattextstyle,
             ),
           ),
         ],

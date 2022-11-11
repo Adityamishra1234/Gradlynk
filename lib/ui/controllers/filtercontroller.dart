@@ -28,153 +28,72 @@ class FilterController extends BaseController {
   List<String>? institutePublicPrivate;
   List<String>? academicpercentage;
   List<String>? budget;
+
+  bool more_30 = false;
+  bool between_15_30 = false;
+  bool between_7_15 = false;
+  bool less_7 = false;
+
+  bool between_60_70 = false;
+  bool between_50_60 = false;
+  bool between_50 = false;
+  bool more_70 = false;
+
   //Loading
   RxBool loadingfuncation = true.obs;
 
-  // writen some code
   getBudget(String? data) async {
     List<CourseSearchModel> courseSearchModel2 = [];
     loadingfuncation.value = false;
-    bool more_30 = false;
-    bool between_15_30 = false;
-    bool between_7_15 = false;
-    bool less_7 = false;
     update();
     filterModel = FilterModel();
     budget = data!.split(",");
     budget!.removeAt(0);
-    const ["30 lac or more", "15-30 lac", "7-15 lac", "below 7lac"];
-    budget!.forEach((element) {
-      if (element.toString() == "15-30 lac") {
-        between_15_30 = true;
-      } else if (element.toString() == "7-15 lac") {
-        between_7_15 = true;
-      } else if (element.toString() == "below 7lac") {
-        less_7 = true;
-      } else if (element.toString() == "30 lac or more") {
-        more_30 = true;
-      }
-    });
 
-    for (int i = 0; i < budget!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        // three condition
-        if (courseModelFilter.courseSearchList[j].annualTutionFeesInr != null ||
-            courseModelFilter.courseSearchList[j].annualTutionFeesInr != "") {
-          if (between_15_30 == true) {
-            if (double.parse(courseModelFilter
-                        .courseSearchList[j].annualTutionFeesInr!
-                        .toString()) >
-                    1700000 ||
-                double.parse(courseModelFilter
-                        .courseSearchList[j].annualTutionFeesInr!) <
-                    3000000) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-          if (less_7 == true) {
-            if (double.parse(courseModelFilter
-                    .courseSearchList[j].annualTutionFeesInr!
-                    .toString()) <
-                700000) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-          if (more_30 == true) {
-            if (double.parse(courseModelFilter
-                    .courseSearchList[j].annualTutionFeesInr!
-                    .toString()) >
-                3000000) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-          if (between_7_15 == true) {
-            if (double.parse(courseModelFilter
-                        .courseSearchList[j].annualTutionFeesInr!
-                        .toString()) >
-                    700000 ||
-                double.parse(courseModelFilter
-                        .courseSearchList[j].annualTutionFeesInr!
-                        .toString()) <
-                    1500000) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
+    if (budget != null) {
+      for (var i = 0; i < budget!.length; i++) {
+        if (budget![i] == "15-30 lac") {
+          between_15_30 = true;
+        } else if (budget![i] == "7-15 Lac") {
+          between_7_15 = true;
+        } else if (budget![i] == "Below 7 Lac") {
+          less_7 = true;
+        } else if (budget![i] == "30 Lac or More") {
+          more_30 = true;
         }
       }
     }
-
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
+  // writen some code
   getAcademic(String? data) async {
     List<CourseSearchModel> courseSearchModel2 = [];
     loadingfuncation.value = false;
-    bool between_60_70 = false;
-    bool between_50_60 = false;
-    bool between_50 = false;
+
     update();
     filterModel = FilterModel();
     academicpercentage = data!.split(",");
     academicpercentage!.removeAt(0);
 
-    academicpercentage!.forEach((element) {
-      if (element.toString() == "between 60-70") {
-        between_60_70 = true;
-      } else if (element.toString() == "between 50-60") {
-        between_50_60 = true;
-      } else if (element.toString() == "between 50") {
-        between_50 = true;
-      }
-    });
-
-    for (int i = 0; i < academicpercentage!.length; i++) {
-      for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
-        // three condition
-        if (courseModelFilter.courseSearchList[j].academicRequire != null ||
-            courseModelFilter.courseSearchList[j].academicRequire != "") {
-          if (between_50_60 == true) {
-            if (double.parse(courseModelFilter
-                        .courseSearchList[j].academicRequire!
-                        .split("-")[2]
-                        .toString()) >
-                    49 ||
-                double.parse(courseModelFilter
-                        .courseSearchList[j].academicRequire!
-                        .split("-")[2]) <
-                    60) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-          if (between_50 == true) {
-            if (double.parse(courseModelFilter
-                    .courseSearchList[j].academicRequire!
-                    .split("-")[2]
-                    .toString()) <
-                50) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
-          if (between_60_70 == true) {
-            if (double.parse(courseModelFilter
-                        .courseSearchList[j].academicRequire!
-                        .split("-")[2]
-                        .toString()) >
-                    60 ||
-                double.parse(courseModelFilter
-                        .courseSearchList[j].academicRequire!
-                        .split("-")[2]
-                        .toString()) <
-                    70) {
-              courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
-            }
-          }
+    // bool between_60_70 = false;
+    // bool between_50_60 = false;
+    // bool between_50 = false;
+    // bool more_70 = false;
+    if (academicpercentage != null) {
+      for (var i = 0; i < academicpercentage!.length; i++) {
+        if (academicpercentage![i] == "60%-70%") {
+          between_60_70 = true;
+        } else if (academicpercentage![i] == "50%-60%") {
+          between_50_60 = true;
+        } else if (academicpercentage![i] == "between 50") {
+          between_50 = true;
+        } else if (academicpercentage![i] == "70+") {
+          more_70 = true;
         }
       }
     }
-    courseSearchModel = courseSearchModel2;
-    await setModificationFilter(courseSearchModel2);
+    filter();
   }
 
   getRanking(
@@ -256,10 +175,15 @@ class FilterController extends BaseController {
   getUniversity(String? data) {
     List<CourseSearchModel> courseSearchModel2 = [];
     loadingfuncation.value = false;
+    List<String> temp = [];
     update();
     filterModel = FilterModel();
-    university = data!.split(",");
-    university!.removeAt(0);
+    temp = data!.split(",");
+    temp.removeAt(0);
+    if (temp.isNotEmpty) {
+      university = temp;
+    }
+    print(university);
     filter();
   }
 
@@ -411,9 +335,21 @@ class FilterController extends BaseController {
       if (element.intakeYear != null && element.intakeYear != "") {
         filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
       }
-      if (element.academicRequire != null && element.academicRequire != "") {
-        filterModel.academicPercentage!
-            .add(element.academicRequire!.split("-")[1]);
+      if (element.annualTutionFeesInr != null &&
+          element.annualTutionFeesInr != "" &&
+          element.annualTutionFeesInr != "null") {
+        if (double.parse(element.annualTutionFeesInr!) < 700000) {
+          filterModel.budget[3].update("Below 7 Lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
+            double.parse(element.annualTutionFeesInr!) < 1500000) {
+          filterModel.budget[2].update("7-15 Lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
+            double.parse(element.annualTutionFeesInr!) < 3000000) {
+          filterModel.budget[1].update("15-30 lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
+          filterModel.budget[0].update("30 Lac or More", (value) => true);
+        }
+        // !.add(element.allFeesInr ?? "");
       }
       if (element.universityName != null && element.universityName != "") {
         filterModel.universityname!.add(element.universityName ?? "");
@@ -422,11 +358,22 @@ class FilterController extends BaseController {
       if (element.instituteType != null && element.instituteType != "") {
         filterModel.instituteLevel!.add(element.instituteType ?? "");
       }
-      if (element.academicRequire != null) {
-        filterModel.academicPercentage!.add(element.academicRequire ?? "");
-      }
-      if (element.allFeesInr != null && element.allFeesInr != "") {
-        filterModel.budget!.add(element.allFeesInr ?? "");
+
+      if (element.annualTutionFeesInr != null &&
+          element.annualTutionFeesInr != "" &&
+          element.annualTutionFeesInr != "null") {
+        if (double.parse(element.annualTutionFeesInr!) < 700000) {
+          filterModel.budget[3].update("Below 7 Lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
+            double.parse(element.annualTutionFeesInr!) < 1500000) {
+          filterModel.budget[2].update("7-15 Lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
+            double.parse(element.annualTutionFeesInr!) < 3000000) {
+          filterModel.budget[1].update("15-30 lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
+          filterModel.budget[0].update("30 Lac or More", (value) => true);
+        }
+        // !.add(element.allFeesInr ?? "");
       }
       if (element.offerTat != null && element.offerTat != "") {
         filterModel.offerTAT!.add(element.offerTat ?? "");
@@ -478,22 +425,17 @@ class FilterController extends BaseController {
     });
     filterModel.universityname = filterModel.universityname!.toSet().toList();
     filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
-    filterModel.academicPercentage =
-        filterModel.academicPercentage!.toSet().toList();
-    filterModel.budget = filterModel.budget!.toSet().toList();
+
     filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
     filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
     filterModel.countryName = filterModel.countryName!.toSet().toList();
     filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
     filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
-    filterModel.academicPercentage =
-        filterModel.academicPercentage!.toSet().toList();
+
     filterModel.institutePrivatePublic =
         filterModel.institutePrivatePublic!.toSet().toList();
     filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
     filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
-    filterModel.academicPercentage =
-        filterModel.academicPercentage!.toSet().toList();
     filterModel.institutePrivatePublic =
         filterModel.institutePrivatePublic!.toSet().toList();
 
@@ -506,13 +448,11 @@ class FilterController extends BaseController {
         filterModel.backlogAcceptable!.toSet().toList();
     filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
     filterModel.siecRep = filterModel.siecRep!.toSet().toList();
-
     if (filterModel.timesRanking != null) {
       filterModel.timesRanking!.sort((a, b) {
         return int.parse(a).compareTo(int.parse(b));
       });
     }
-
     if (filterModel.arwuNewsRanking != null) {
       filterModel.arwuNewsRanking =
           filterModel.arwuNewsRanking!.toSet().toList();
@@ -533,46 +473,46 @@ class FilterController extends BaseController {
       });
     }
 
-    courseModelFilter.filterModel.filterSelected.academicPercentageSelected =
-        academicpercentage;
-    courseModelFilter.filterModel.filterSelected.applicationfeeSelected =
-        applicationfee;
+    filterModel.filterSelected.applicationfeeSelected = applicationfee;
     //  courseModelFilter.filterModel.filterSelected.arwuNewsRankingSelected =
     // ;
-    courseModelFilter.filterModel.filterSelected.backlogAcceptableSelected =
-        backlogAcceptable;
-    courseModelFilter.filterModel.filterSelected.academicPercentageSelected =
-        academicpercentage;
-    courseModelFilter.filterModel.filterSelected.backlogAcceptableSelected =
-        backlogAcceptable;
-    courseModelFilter.filterModel.filterSelected.budgetSelected = budget;
-    courseModelFilter.filterModel.filterSelected.conditionalOfferSelected =
-        conditionaloffer;
-    courseModelFilter.filterModel.filterSelected.countryNameSelected =
-        countryName;
+    filterModel.filterSelected.backlogAcceptableSelected = backlogAcceptable;
+
+    filterModel.filterSelected.backlogAcceptableSelected = backlogAcceptable;
+    for (var i = 0; i < courseModelFilter.filterModel.budget.length; i++) {
+      if (courseModelFilter.filterModel.budget[i].entries.first.value == true) {
+        filterModel.filterSelected.budgetSelected
+            .add(filterModel.budget[i].entries.first.key.toString());
+      }
+    }
+    for (var i = 0;
+        i < courseModelFilter.filterModel.academicPercentage.length;
+        i++) {
+      if (courseModelFilter
+              .filterModel.academicPercentage[i].entries.first.value ==
+          true) {
+        filterModel.filterSelected.academicPercentageSelected
+            .add(filterModel.budget[i].entries.first.key.toString());
+      }
+    }
+    filterModel.filterSelected.conditionalOfferSelected = conditionaloffer;
+    filterModel.filterSelected.countryNameSelected = countryName;
     //     courseModelFilter.filterModel.filterSelected.instSubCategorySelected =
     // countryName;
-    courseModelFilter.filterModel.filterSelected.instituteLevelSelected =
-        instituteLevel;
-    courseModelFilter.filterModel.filterSelected
-        .institutePrivatePublicSelected = institutePublicPrivate;
-    courseModelFilter.filterModel.filterSelected.intakeMonthSelected =
-        intakeMonth;
-    courseModelFilter.filterModel.filterSelected.intakeYearSelected =
-        intakeYear;
-    courseModelFilter.filterModel.filterSelected.offerTATSelected = offerTAT;
-    courseModelFilter.filterModel.filterSelected.placementSandwichSelected =
+    filterModel.filterSelected.instituteLevelSelected = instituteLevel;
+    filterModel.filterSelected.institutePrivatePublicSelected =
+        institutePublicPrivate;
+    filterModel.filterSelected.intakeMonthSelected = intakeMonth;
+    filterModel.filterSelected.intakeYearSelected = intakeYear;
+    filterModel.filterSelected.offerTATSelected = offerTAT;
+    filterModel.filterSelected.placementSandwichSelected =
         placementSandwichYear;
     // courseModelFilter.filterModel.filterSelected.qsWorldRankingSelected = q;
-    courseModelFilter.filterModel.filterSelected.scholarshipSelected =
-        scholarship;
-    courseModelFilter.filterModel.filterSelected.universitynameSelected =
-        university;
-
+    filterModel.filterSelected.scholarshipSelected = scholarship;
+    filterModel.filterSelected.universitynameSelected = university;
+    courseModelFilter.courseSearchList = courseSearchModel;
     loadingfuncation.value = true;
     update();
-
-    courseModelFilter.courseSearchList = courseSearchModel;
   }
 
   filter() async {
@@ -661,6 +601,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (instituteLevel != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < instituteLevel!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].instituteType ==
@@ -672,6 +613,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (scholarship != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < scholarship!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].scholarship ==
@@ -683,6 +625,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (siecPriority != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < siecPriority!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].siecPriority ==
@@ -694,6 +637,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (conditionaloffer != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < conditionaloffer!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].conditionalOffer ==
@@ -705,6 +649,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (backlogAcceptable != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < backlogAcceptable!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].backlogsAcceptable ==
@@ -716,6 +661,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (applicationfee != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < applicationfee!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].isApplicationFee ==
@@ -727,6 +673,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (placementSandwichYear != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < placementSandwichYear!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].isApplicationFee ==
@@ -738,6 +685,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (siecRepresent != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < siecRepresent!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].siecRep ==
@@ -749,6 +697,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (countryName != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < countryName!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].countryName ==
@@ -760,6 +709,7 @@ class FilterController extends BaseController {
       courseSearchModel = courseSearchModel2;
     }
     if (instituteLevel != null) {
+      courseSearchModel2 = [];
       for (int i = 0; i < institutePublicPrivate!.length; i++) {
         for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
           if (courseModelFilter.courseSearchList[j].instSubCategory ==
@@ -770,6 +720,110 @@ class FilterController extends BaseController {
       }
       courseSearchModel = courseSearchModel2;
     }
+    if (budget != null) {
+      courseSearchModel2 = [];
+      for (int i = 0; i < budget!.length; i++) {
+        print(courseModelFilter.courseSearchList.length);
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          // three condition
+          print(j);
+          if (courseModelFilter.courseSearchList[j].annualTutionFeesInr !=
+                  "null" &&
+              courseModelFilter.courseSearchList[j].annualTutionFeesInr != "") {
+            if (between_15_30 == true) {
+              if (double.parse(courseModelFilter
+                          .courseSearchList[j].annualTutionFeesInr!
+                          .toString()) >
+                      1700000 ||
+                  double.parse(courseModelFilter
+                          .courseSearchList[j].annualTutionFeesInr!) <
+                      3000000) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+            if (less_7 == true) {
+              if (double.parse(courseModelFilter
+                      .courseSearchList[j].annualTutionFeesInr!
+                      .toString()) <
+                  700000) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+            if (more_30 == true) {
+              if (double.parse(courseModelFilter
+                      .courseSearchList[j].annualTutionFeesInr!
+                      .toString()) >
+                  3000000) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+            if (between_7_15 == true) {
+              if (double.parse(courseModelFilter
+                          .courseSearchList[j].annualTutionFeesInr!
+                          .toString()) >
+                      700000 ||
+                  double.parse(courseModelFilter
+                          .courseSearchList[j].annualTutionFeesInr!
+                          .toString()) <
+                      1500000) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+
+    if (academicpercentage != null) {
+      courseSearchModel2 = [];
+      for (int i = 0; i < academicpercentage!.length; i++) {
+        for (int j = 0; j < courseModelFilter.courseSearchList.length; j++) {
+          // three condition
+          if (courseModelFilter.courseSearchList[j].academicRequire != null ||
+              courseModelFilter.courseSearchList[j].academicRequire != "") {
+            if (between_50_60 == true) {
+              if (double.parse(courseModelFilter
+                          .courseSearchList[j].academicRequire!
+                          .split("-")[2]
+                          .toString()) >
+                      49 ||
+                  double.parse(courseModelFilter
+                          .courseSearchList[j].academicRequire!
+                          .split("-")[2]) <
+                      60) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+            if (between_50 == true) {
+              if (double.parse(courseModelFilter
+                      .courseSearchList[j].academicRequire!
+                      .split("-")[2]
+                      .toString()) <
+                  50) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+            if (between_60_70 == true) {
+              if (double.parse(courseModelFilter
+                          .courseSearchList[j].academicRequire!
+                          .split("-")[2]
+                          .toString()) >
+                      60 ||
+                  double.parse(courseModelFilter
+                          .courseSearchList[j].academicRequire!
+                          .split("-")[2]
+                          .toString()) <
+                      70) {
+                courseSearchModel2.add(courseModelFilter.courseSearchList[j]);
+              }
+            }
+          }
+        }
+      }
+      courseSearchModel = courseSearchModel2;
+    }
+
     await setModificationFilter(courseSearchModel2);
   }
 }

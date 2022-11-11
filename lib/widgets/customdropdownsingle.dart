@@ -1,0 +1,180 @@
+import 'package:flutter/material.dart';
+import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+
+class CustomDropDownSingle extends StatefulWidget {
+  bool? choosefieldtype;
+  List<String>? model;
+  String? initialSelectedValue;
+  final Function callbackFunction;
+  CustomDropDownSingle({
+    Key? key,
+    required this.model,
+    required this.callbackFunction,
+    required this.choosefieldtype,
+    required this.initialSelectedValue,
+  }) : super(key: key);
+
+  @override
+  _CustomDropDownSingleState createState() => _CustomDropDownSingleState();
+}
+
+class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.choosefieldtype == false
+        ? Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Container(
+              height: 55,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                  color: ThemeConstants.lightblueColor,
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: DropdownButton(
+                  elevation: 0,
+                  underline: const SizedBox(),
+                  // Initial Value
+                  value: widget.initialSelectedValue,
+                  alignment: AlignmentDirectional.bottomEnd,
+                  // Down Arrow Icon
+                  icon: Icon(
+                    Icons.keyboard_arrow_down,
+                    color: ThemeConstants.blackcolor,
+                  ),
+                  iconEnabledColor: ThemeConstants.whitecolor,
+
+                  // Array list of items
+                  items: widget.model!.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width - 70,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: items,
+                            textColor: ThemeConstants.TextColor,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      widget.initialSelectedValue = newValue!;
+                      widget.callbackFunction(newValue);
+                    });
+                  },
+                ),
+              ),
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              maxLines: 1,
+              textInputAction: TextInputAction.next,
+              readOnly: true,
+              decoration: InputDecoration(
+                hintText: widget.initialSelectedValue,
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              style: ThemeConstants.montserrattextstyle,
+            ),
+          );
+  }
+}
+
+// class CustomDropDownSingle extends StatelessWidget {
+//   bool? choosefieldtype;
+//   List<String>? model;
+//   String? initialSelectedValue;
+//   final Function callbackFunction;
+//   CustomDropDownSingle({
+//     Key? key,
+//     required this.model,
+//     required this.callbackFunction,
+//     required this.choosefieldtype,
+//     required this.initialSelectedValue,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return choosefieldtype == false
+//         ? Padding(
+//             padding: const EdgeInsets.only(left: 10, right: 10),
+//             child: Container(
+//               height: 55,
+//               width: MediaQuery.of(context).size.width,
+//               decoration: BoxDecoration(
+//                   color: ThemeConstants.lightblueColor,
+//                   borderRadius: BorderRadius.circular(10.0)),
+//               child: Row(
+//                 children: [
+//                   SizedBox(
+//                     width: MediaQuery.of(context).size.width - 65,
+//                     child: DropdownButton(
+//                       elevation: 0,
+//                       underline: const SizedBox(),
+//                       // Initial Value
+//                       value: initialSelectedValue,
+//                       alignment: AlignmentDirectional.bottomEnd,
+//                       // Down Arrow Icon
+//                       // icon: const Icon(Icons.keyboard_arrow_down),
+//                       iconEnabledColor: ThemeConstants.whitecolor,
+
+//                       // Array list of items
+//                       items: model!.map((String items) {
+//                         return DropdownMenuItem(
+//                           value: items,
+//                           child: CustomAutoSizeTextMontserrat(
+//                             text: items,
+//                             textColor: ThemeConstants.TextColor,
+//                           ),
+//                         );
+//                       }).toList(),
+
+//                       onChanged: (String? newValue) {
+//                         initialSelectedValue = newValue!;
+//                         callbackFunction(newValue);
+//                       },
+//                     ),
+//                   ),
+//                   const Spacer(),
+//                   const Padding(
+//                     padding: EdgeInsets.only(right: 20),
+//                     child: Icon(Icons.keyboard_arrow_down),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           )
+//         : Padding(
+//             padding: const EdgeInsets.only(left: 10, right: 10),
+//             child: TextField(
+//               maxLines: 1,
+//               textInputAction: TextInputAction.next,
+//               readOnly: true,
+//               decoration: InputDecoration(
+//                 hintText: initialSelectedValue,
+//                 filled: true,
+//                 fillColor: ThemeConstants.lightblueColor,
+//                 border: OutlineInputBorder(
+//                   borderSide: BorderSide.none,
+//                   borderRadius: BorderRadius.circular(15.0),
+//                 ),
+//               ),
+//               style: ThemeConstants.montserrattextstyle,
+//             ),
+//           );
+//   }
+// }

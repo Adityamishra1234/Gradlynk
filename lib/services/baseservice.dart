@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -32,18 +34,19 @@ class StudentPanelBase {
   }
 
   httpPost(String url, var jsonData) async {
-    String? token = await getToken();
+    // String? token = await getToken();
+    print("object");
     try {
       var response = await http.post(Uri.parse(url),
           headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded",
-            'Authorization': 'Bearer $token',
+            "Content-Type": "application/json",
+            // 'Authorization': 'Bearer $token',
           },
           body: jsonData);
       if (response.statusCode == 200) {
         return response;
       } else {
+        print(response.statusCode);
         return null;
       }
     } catch (e) {

@@ -22,10 +22,12 @@ class CustomgroupCheckBoxCallBack extends StatelessWidget {
     checkboxlist!.forEach((element) {
       favoriteMovies.add(CheckBoxModel(element, false));
     });
-    for (var i = 0; i < itemSelectedlist!.length; i++) {
-      for (var j = 0; j < favoriteMovies.length; j++) {
-        if (favoriteMovies[j].checkBoxModelName == itemSelectedlist[i]) {
-          favoriteMovies[j].isSelected = true;
+    if (itemSelectedlist != null) {
+      for (var i = 0; i < itemSelectedlist!.length; i++) {
+        for (var j = 0; j < favoriteMovies.length; j++) {
+          if (favoriteMovies[j].checkBoxModelName == itemSelectedlist[i]) {
+            favoriteMovies[j].isSelected = true;
+          }
         }
       }
     }

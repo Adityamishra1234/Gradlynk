@@ -175,7 +175,7 @@ packages:
       name: dropdown_search
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.2"
+    version: "5.0.3"
   easy_search_bar:
     dependency: "direct main"
     description:

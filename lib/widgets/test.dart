@@ -4,37 +4,37 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyButtons extends StatelessWidget {
-  final String topic;
-  final Function callbackFunction;
-  const MyButtons(
-      {Key? key, required this.topic, required this.callbackFunction})
-      : super(key: key);
+// class MyButtons extends StatelessWidget {
+//   final String topic;
+//   final Function callbackFunction;
+//   const MyButtons(
+//       {Key? key, required this.topic, required this.callbackFunction})
+//       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        callbackFunction(topic);
-      },
-      child: Container(
-        width: double.maxFinite,
-        height: 70,
-        margin: const EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 20),
-        decoration: BoxDecoration(
-            color: Colors.lightBlue, borderRadius: BorderRadius.circular(20)),
-        child: Center(
-          child: Text(
-            topic,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () {
+//         callbackFunction(topic);
+//       },
+//       child: Container(
+//         width: double.maxFinite,
+//         height: 70,
+//         margin: const EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 20),
+//         decoration: BoxDecoration(
+//             color: Colors.lightBlue, borderRadius: BorderRadius.circular(20)),
+//         child: Center(
+//           child: Text(
+//             topic,
+//             style: const TextStyle(fontSize: 20, color: Colors.white),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-// dropdown
+// // dropdown
 
 class CustomDropDown extends StatelessWidget {
   List<String>? model;

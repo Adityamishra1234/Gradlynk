@@ -1,64 +1,65 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class CustomDropDown extends StatelessWidget {
-  List<String>? model;
-  bool? underline;
-  // String? text;
-  int? maxLines, fontSize;
-  FontWeight? fontWeight;
-  Color? textColor;
-  final Function callbackFunction;
-  String? hint;
-  bool? border;
-  CustomDropDown({
-    Key? key,
-    required this.callbackFunction,
-    required this.model,
-    required this.hint,
-    this.border,
-    this.fontSize,
-    this.fontWeight,
-    this.maxLines,
-    this.textColor,
-    // this.text,
-    this.underline,
-  }) : super(key: key);
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:studentpanel/utils/theme.dart';
+
+class CustomDropDown extends StatefulWidget {
+  Function callbackFunction;
+  String? title;
+  List<dynamic>? listdata;
+  CustomDropDown(
+      {Key? key, this.listdata, this.title, required this.callbackFunction})
+      : super(key: key);
 
   @override
+  State<CustomDropDown> createState() => _CustomDropDownState();
+}
+
+class _CustomDropDownState extends State<CustomDropDown> {
+  bool resize = false;
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(),
-      child: DropdownSearch<String>(
-        dropdownDecoratorProps: DropDownDecoratorProps(
-          baseStyle: GoogleFonts.montserrat(
-            fontWeight: fontWeight ?? FontWeight.w500,
-            color: textColor ?? Colors.black,
-            fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-            decoration: underline != null
-                ? underline == true
-                    ? TextDecoration.underline
-                    : TextDecoration.none
-                : TextDecoration.none,
-          ),
-          dropdownSearchDecoration:
-              border == true ? null : InputDecoration(border: InputBorder.none),
-        ),
-        popupProps: PopupProps.menu(
-          showSearchBox: true,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              hint!,
-            ),
-          ),
-        ),
-        items: model!,
-        onChanged: ((value) {
-          callbackFunction(value);
-        }),
+    var items =
+        widget.listdata!.map((data) => MultiSelectItem(data, data)).toList();
+    return MultiSelectDialogField(
+      onSelectionChanged: (p0) {
+        if (p0.isEmpty) {
+          resize = false;
+        } else {
+          resize = true;
+        }
+        print(p0.length);
+      },
+      chipDisplay: MultiSelectChipDisplay(
+        // onTap: ((p0) {
+
+        // }),
+
+        textStyle: ThemeConstants.montserrattextstyle3,
+        chipColor: ThemeConstants.lightblueColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
+      dialogHeight: 180,
+      buttonIcon: const Icon(Icons.keyboard_arrow_down),
+      decoration: const BoxDecoration(
+        color: Colors.transparent,
+      ),
+      listType: MultiSelectListType.LIST,
+      searchable: true,
+      buttonText: Text(
+        widget.title!,
+        style: ThemeConstants.getTextStyle(resize),
+        // style: TextStyle(
+        //     fontSize: resize == false ? 18 : 12,
+        //     fontWeight: FontWeight.w500,
+        //     fontFamily: "Montserra"),
+      ),
+      title: Text(widget.title!),
+      items: items,
+      onConfirm: (values) {
+        widget.callbackFunction(values);
+      },
     );
   }
 }

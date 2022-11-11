@@ -640,6 +640,13 @@ class _FilterState extends State<Filter> {
 
   // Function
   Widget getFilterOption(int i) {
+    List<String> budgetlist = [];
+    for (var i = 0; i < courseModelFilter.filterModel.budget.length; i++) {
+      if (courseModelFilter.filterModel.budget[i].entries.first.value == true) {
+        budgetlist
+            .add(courseModelFilter.filterModel.budget[i].entries.first.key);
+      }
+    }
     return ListView(
       children: [
         //University Name
@@ -687,12 +694,7 @@ class _FilterState extends State<Filter> {
         // Budget
         if (i == 4)
           CustomgroupCheckBoxCallBack(
-            data: const [
-              "30 lac or more",
-              "15-30 lac",
-              "7-15 lac",
-              "below 7lac"
-            ],
+            data: budgetlist,
             callbackItemSelected: callback,
             itemSelectedlist:
                 courseModelFilter.filterModel.filterSelected.budgetSelected ??

@@ -5,7 +5,7 @@ class PersonalInformationModel {
   String? familyName;
   String? email;
   String? secondaryEmail;
-  int? mobile;
+  String? mobile;
   int? maritalStatusId;
   int? childrenCount;
   int? whatsappNumber;
@@ -18,9 +18,11 @@ class PersonalInformationModel {
   String? instagramId;
   String? facebookId;
   String? snapchatId;
+  String? dateOfBirth;
 
   PersonalInformationModel(
       {this.id,
+      this.dateOfBirth,
       this.genderId,
       this.enquiryName,
       this.familyName,
@@ -42,6 +44,7 @@ class PersonalInformationModel {
 
   PersonalInformationModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    dateOfBirth = json['date_of_birth'];
     genderId = json['gender'];
     enquiryName = json['enquiry_name'];
     familyName = json['family_name'];
@@ -50,13 +53,13 @@ class PersonalInformationModel {
     mobile = json['mobile'];
     maritalStatusId = json['marital_status'];
     childrenCount = json['children_count'];
-    whatsappNumber = json['whatsapp_number'];
-    alternateNumber = json['alternate_number'];
-    countryId = json['country_id'];
+    whatsappNumber = json['whatsup_no'];
+    alternateNumber = json['secondary_mobile'];
+    countryId = json['country_live_in'];
     stateId = json['state_id'];
     cityId = json['city_id'];
     street = json['street'];
-    zipCode = json['zip_code'];
+    zipCode = json['pincode'];
     instagramId = json['instagram_id'];
     facebookId = json['facebook_id'];
     snapchatId = json['snapchat_id'];
@@ -65,6 +68,7 @@ class PersonalInformationModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
+    data['date_of_birth'] = dateOfBirth;
     data['gender'] = genderId;
     data['enquiry_name'] = enquiryName;
     data['family_name'] = familyName;
@@ -73,13 +77,13 @@ class PersonalInformationModel {
     data['mobile'] = mobile;
     data['marital_status'] = maritalStatusId;
     data['children_count'] = childrenCount;
-    data['whatsapp_number'] = whatsappNumber;
-    data['alternate_number'] = alternateNumber;
-    data['country_id'] = countryId;
+    data['whatsup_no'] = whatsappNumber;
+    data['secondary_mobile'] = alternateNumber;
+    data['country_live_in'] = countryId;
     data['state_id'] = stateId;
     data['city_id'] = cityId;
     data['street'] = street;
-    data['zip_code'] = zipCode;
+    data['pincode'] = zipCode;
     data['instagram_id'] = instagramId;
     data['facebook_id'] = facebookId;
     data['snapchat_id'] = snapchatId;

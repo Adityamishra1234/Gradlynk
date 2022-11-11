@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/applicationsummary.dart';
+import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/linearprogress.dart';
@@ -130,7 +133,9 @@ class CustomDrawer extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: InkWell(
                         highlightColor: ThemeConstants.whitecolor,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(ApplicationSummary.routeNamed);
+                        },
                         child: SizedBox(
                           height: 30,
                           width: MediaQuery.of(context).size.width,
@@ -168,7 +173,9 @@ class CustomDrawer extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: InkWell(
                         highlightColor: ThemeConstants.whitecolor,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(VisaDetail.routeNamed);
+                        },
                         child: SizedBox(
                           height: 30,
                           width: MediaQuery.of(context).size.width,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
+import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class ContactInformationCopy extends StatefulWidget {
   const ContactInformationCopy({Key? key}) : super(key: key);
@@ -28,6 +30,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   TextEditingController instagramId = TextEditingController();
   TextEditingController facebookId = TextEditingController();
   TextEditingController snapchatId = TextEditingController();
+  int? genderId, maritalStatusId, childrenCount, countryId, stateId, cityId;
+  String? initialSelectedGender,
+      initialSelectedMaritalStatus,
+      initialSelectedChildCount,
+      initialSelectedCountry,
+      initialSelectedState,
+      initialSelectedCity;
   var controller = Get.put(ContactInformationController());
   @override
   Widget build(BuildContext context) {
@@ -49,38 +58,27 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                 if (saveAndEdit == false)
                   TextButton(
                       onPressed: () {
-                        saveAndEdit = true;
-                        PersonalInformationModel personalInformationModel =
-                            PersonalInformationModel();
-                        // personalInformationModel.id=controller.
-                        // personalInformationModel.gender = gender;
-                        personalInformationModel.enquiryName = firstName.text;
-                        personalInformationModel.familyName = lastName.text;
-                        personalInformationModel.email = email.text;
-                        personalInformationModel.secondaryEmail =
-                            secondaryEmail.text;
-                        personalInformationModel.mobile =
-                            int.parse(mobileNumber.text);
-                        // personalInformationModel.maritalStatus=
-                        // personalInformationModel.childrenCount
-                        personalInformationModel.whatsappNumber =
-                            int.parse(whatsappNumber.text);
-                        // personalInformationModel.alternateNumber=int.parse(al)
-                        personalInformationModel.countryId =
-                            controller.personalInformationModel.countryId;
-                        personalInformationModel.stateId =
-                            controller.personalInformationModel.stateId;
-                        personalInformationModel.cityId =
-                            controller.personalInformationModel.cityId;
-                        personalInformationModel.street = street.text;
-                        personalInformationModel.zipCode =
-                            int.parse(zipCode.text);
-                        personalInformationModel.instagramId = instagramId.text;
-                        personalInformationModel.facebookId = facebookId.text;
-                        personalInformationModel.snapchatId = snapchatId.text;
-
-                        controller.updateData(personalInformationModel);
-                        setState(() {});
+                        updatePesonalDetail(
+                            78623,
+                            firstName.text,
+                            lastName.text,
+                            "12/13/1990",
+                            genderId!,
+                            maritalStatusId!,
+                            childrenCount!,
+                            mobileNumber.text,
+                            email.text,
+                            int.parse(whatsappNumber.text),
+                            // int.parse(secondaryNumber.text),
+                            countryId!,
+                            stateId!,
+                            cityId!,
+                            street.text,
+                            int.parse(zipCode.text),
+                            facebookId.text,
+                            snapchatId.text,
+                            instagramId.text,
+                            secondaryEmail.text);
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "save",
@@ -193,16 +191,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
         ),
-        SizedBox(
-          height: 60,
-          child: CustomDropDownProfilePage(
-            text: "Gender",
-            callbackFunction: callbackGender,
-            hint: 'Gender',
-            searchBox: false,
-            model: const ["Male", "Female", "Other"],
-            choosefieldtype: saveAndEdit,
-          ),
+        CustomDropDownSingle(
+          model: const ["Male", "Female", "Other"],
+          callbackFunction: callbackGender,
+          initialSelectedValue: initialSelectedGender ?? "Male",
+          choosefieldtype: saveAndEdit,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -216,21 +209,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
         ),
-        SizedBox(
-          height: 60,
-          child: CustomDropDownProfilePage(
-            text: "Marital status",
-            callbackFunction: callbackMaritalStatus,
-            hint: 'Marital status',
-            model: const [
-              "Married",
-              "Unmarried",
-              "Divorced",
-              "Live-in",
-              "Annulled Marriage"
-            ],
-            choosefieldtype: saveAndEdit,
-          ),
+        CustomDropDownSingle(
+          model: const [
+            "Married",
+            "Unmarried",
+            "Divorced",
+            "Live-in",
+            "Annulled Marriage"
+          ],
+          callbackFunction: callbackMaritalStatus,
+          initialSelectedValue: initialSelectedMaritalStatus ?? "Married",
+          choosefieldtype: saveAndEdit,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -244,15 +233,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
         ),
-        SizedBox(
-          height: 60,
-          child: CustomDropDownProfilePage(
-            text: "Children Count",
-            callbackFunction: callbackChildrenCount,
-            hint: 'Children Count',
-            model: const ["0", "1", "2", "3", "4"],
-            choosefieldtype: saveAndEdit,
-          ),
+        CustomDropDownSingle(
+          model: const ["0", "1", "2", "3", "4"],
+          callbackFunction: callbackChildrenCount,
+          initialSelectedValue: initialSelectedChildCount ?? "0",
+          choosefieldtype: saveAndEdit,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -415,15 +400,12 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
         ),
-        SizedBox(
-          height: 60,
-          child: CustomDropDownProfilePage(
-            text: "test1",
-            callbackFunction: callbackCountryStateCity,
-            hint: 'Test',
-            model: controller.countryList ?? [],
-            choosefieldtype: saveAndEdit,
-          ),
+        CustomDropDownSingle(
+          model: controller.countryList ?? const [""],
+          callbackFunction: callbackCountry,
+          initialSelectedValue:
+              controller.countryList.isNotEmpty ? initialSelectedCountry : "",
+          choosefieldtype: saveAndEdit,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -437,15 +419,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
         ),
-        SizedBox(
-          height: 60,
-          child: CustomDropDownProfilePage(
-            text: "test1",
-            callbackFunction: callbackCountryStateCity,
-            hint: 'Test',
-            model: Get.find<ContactInformationController>().stateList ?? [],
-            choosefieldtype: saveAndEdit,
-          ),
+        GetBuilder<ContactInformationController>(
+          builder: (_) => _.loadingState.value == true
+              ? CustomDropDownSingle(
+                  model:
+                      _.loadingState.value == true ? _.stateList : const [""],
+                  callbackFunction: calllbackState,
+                  initialSelectedValue:
+                      _.loadingState.value == true ? initialSelectedState : "",
+                  choosefieldtype: saveAndEdit,
+                )
+              : Container(),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -459,15 +443,16 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
         ),
-        SizedBox(
-          height: 60,
-          child: CustomDropDownProfilePage(
-            text: "test1",
-            callbackFunction: callbackCountryStateCity,
-            hint: 'Test',
-            model: Get.find<ContactInformationController>().cityList ?? [],
-            choosefieldtype: saveAndEdit,
-          ),
+        GetBuilder<ContactInformationController>(
+          builder: (_) => _.loadingCity.value == true
+              ? CustomDropDownSingle(
+                  model: _.cityList ?? const [""],
+                  callbackFunction: callbackCity,
+                  initialSelectedValue:
+                      _.cityList.isNotEmpty ? initialSelectedCity : "",
+                  choosefieldtype: saveAndEdit,
+                )
+              : Container(),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -817,40 +802,28 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         onPrimary: ThemeConstants.whitecolor, // foreground
                       ),
                       onPressed: () {
-                        saveAndEdit = true;
-
-                        PersonalInformationModel personalInformationModel =
-                            PersonalInformationModel();
-                        // personalInformationModel.id=controller.
-                        // personalInformationModel.gender = gender;
-                        personalInformationModel.enquiryName = firstName.text;
-                        personalInformationModel.familyName = lastName.text;
-                        personalInformationModel.email = email.text;
-                        personalInformationModel.secondaryEmail =
-                            secondaryEmail.text;
-                        personalInformationModel.mobile =
-                            int.parse(mobileNumber.text);
-                        // personalInformationModel.maritalStatus=
-                        // personalInformationModel.childrenCount
-                        personalInformationModel.whatsappNumber =
-                            int.parse(whatsappNumber.text);
-                        // personalInformationModel.alternateNumber=int.parse(al)
-                        personalInformationModel.countryId =
-                            controller.personalInformationModel.countryId;
-                        personalInformationModel.stateId =
-                            controller.personalInformationModel.stateId;
-                        personalInformationModel.cityId =
-                            controller.personalInformationModel.cityId;
-                        personalInformationModel.street = street.text;
-                        personalInformationModel.zipCode =
-                            int.parse(zipCode.text);
-                        personalInformationModel.instagramId = instagramId.text;
-                        personalInformationModel.facebookId = facebookId.text;
-                        personalInformationModel.snapchatId = snapchatId.text;
-
-                        controller.updateData(personalInformationModel);
-
-                        setState(() {});
+                        // Id and Dob const
+                        updatePesonalDetail(
+                            78623,
+                            firstName.text,
+                            lastName.text,
+                            "12/13/1990",
+                            genderId!,
+                            maritalStatusId!,
+                            childrenCount!,
+                            mobileNumber.text,
+                            email.text,
+                            int.parse(whatsappNumber.text),
+                            // int.parse(secondaryNumber.text),
+                            countryId!,
+                            stateId!,
+                            cityId!,
+                            street.text,
+                            int.parse(zipCode.text),
+                            facebookId.text,
+                            snapchatId.text,
+                            instagramId.text,
+                            secondaryEmail.text);
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "Save",
@@ -870,40 +843,53 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   }
 
   // Funcation
-  callbackCountryStateCity(varTopic) {
-    if (Get.find<ContactInformationController>().loadingCountry.value == true &&
-        Get.find<ContactInformationController>().loadingState.value == false) {
-      for (var i = 0; i < controller.countryList.length; i++) {
-        if (controller.countryList[i] == varTopic) {
-          controller.personalInformationModel.countryId =
-              int.parse(controller.countryCode[i]);
-          controller.getState("[${controller.countryCode[i]}]");
-        }
+
+  callbackCity(varTopic) {
+    initialSelectedCity = varTopic;
+    for (var i = 0; i < controller.cityList.length; i++) {
+      if (controller.cityList[i] == varTopic) {
+        cityId = int.parse(controller.cityCode[i]);
+        controller.getCity("[${controller.cityCode[i]}]");
       }
-    } else if (Get.find<ContactInformationController>().loadingCountry.value ==
-            true &&
-        Get.find<ContactInformationController>().loadingState.value == true &&
-        Get.find<ContactInformationController>().loadingCity.value == false) {
-      for (var i = 0; i < controller.stateList.length; i++) {
-        if (controller.stateList[i] == varTopic) {
-          controller.personalInformationModel.stateId =
-              int.parse(controller.stateCode[i]);
-          controller.getCity("[${controller.stateCode[i]}]");
-        }
+    }
+    setState(() {});
+  }
+
+  calllbackState(varTopic) {
+    initialSelectedState = varTopic;
+    for (var i = 0; i < controller.stateList.length; i++) {
+      if (controller.stateList[i] == varTopic) {
+        stateId = int.parse(controller.stateCode[i]);
+        controller.getCity("[${controller.stateCode[i]}]");
       }
-    } else {}
+    }
+    setState(() {});
+  }
+
+  callbackCountry(varTopic) {
+    initialSelectedCountry = varTopic;
+    for (var i = 0; i < controller.countryList.length; i++) {
+      if (controller.countryList[i] == varTopic) {
+        countryId = int.parse(controller.countryCode[i]);
+        controller.getState("[${controller.countryCode[i]}]");
+      }
+    }
+    setState(() {});
   }
 
   callbackGender(varTopic) {
+    initialSelectedGender = varTopic;
     List<String> temp = ["Male", "Female", "Other"];
     for (var i = 0; i < temp.length; i++) {
-      if (temp[i] == varTopic) {
-        controller.personalInformationModel.genderId = i;
+      if (temp[i].toString() == varTopic.toString()) {
+        genderId = i + 1;
       }
     }
+    setState(() {});
   }
 
   callbackMaritalStatus(varTopic) {
+    initialSelectedMaritalStatus = varTopic;
     List<String> temp = [
       "Married",
       "Unmarried",
@@ -911,14 +897,66 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       "Live-in",
       "Annulled Marriage"
     ];
-    for (var i = 0; i < temp.length; i++) {
-      if (temp[i] == varTopic) {
-        controller.personalInformationModel.maritalStatusId = i;
+    for (var i = 1; i < temp.length; i++) {
+      if (temp[i].toString() == varTopic.toString()) {
+        maritalStatusId = i + 1;
       }
     }
+    setState(() {});
   }
 
   callbackChildrenCount(varTopic) {
-    controller.personalInformationModel.childrenCount = int.parse(varTopic);
+    initialSelectedChildCount = varTopic;
+    childrenCount = int.parse(varTopic);
+    setState(() {});
+  }
+
+  updatePesonalDetail(
+      @required int id,
+      @required String firstName,
+      @required String lastName,
+      @required dateOfBirth,
+      @required int genderId,
+      @required int maritalStatusId,
+      int childCount,
+      @required String mobile,
+      @required String email,
+      int whatsappNumber,
+      // int secondaryNumber,
+      @required int countryId,
+      @required int stateId,
+      @required int cityId,
+      String street,
+      @required int pincode,
+      String facebookId,
+      String snapchatId,
+      String instagramId,
+      String secondaryEmail) {
+    PersonalInformationModel personalInformationModel =
+        PersonalInformationModel(
+            id: id,
+            dateOfBirth: dateOfBirth,
+            genderId: genderId,
+            enquiryName: firstName,
+            familyName: lastName,
+            email: email,
+            secondaryEmail: secondaryEmail,
+            mobile: mobile,
+            maritalStatusId: maritalStatusId,
+            childrenCount: childCount,
+            whatsappNumber: whatsappNumber,
+            // alternateNumber: secondaryNumber,
+            countryId: countryId,
+            stateId: stateId,
+            cityId: cityId,
+            street: street,
+            zipCode: pincode,
+            instagramId: instagramId,
+            facebookId: facebookId,
+            snapchatId: snapchatId);
+    controller.updateData(personalInformationModel);
+
+    // saveAndEdit = true;
+    // setState(() {});
   }
 }

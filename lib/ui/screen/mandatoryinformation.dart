@@ -34,18 +34,18 @@ class MandatoryInformation extends StatelessWidget {
                         textColor: Colors.grey,
                       ),
                       const Spacer(),
-                      SizedBox(
-                        width: 200,
-                        // custom Text field
-                        child: Padding(
-                            padding: const EdgeInsets.only(),
-                            child: CustomDropDown(
-                              hint: "Branch Type",
-                              model: Get.find<DashboardController>()
-                                  .createModelForDropdown(),
-                              callbackFunction: callback,
-                            )),
-                      )
+                      // SizedBox(
+                      //   width: 200,
+                      //   // custom Text field
+                      //   child: Padding(
+                      //       padding: const EdgeInsets.only(),
+                      //       child: CustomDropDown(
+                      //         hint: "Branch Type",
+                      //         model: Get.find<DashboardController>()
+                      //             .createModelForDropdown(),
+                      //         callbackFunction: callback,
+                      //       )),
+                      // )
                     ],
                   ),
                 ),
@@ -70,25 +70,25 @@ class MandatoryInformation extends StatelessWidget {
                         ),
                       ),
                       const Spacer(),
-                      SizedBox(
-                        width: 200,
-                        // custom Text field
-                        child: controller.loadingBranchname.value == true
-                            ? CustomDropDown(
-                                hint: controller.dropdown1!.value,
-                                model: Get.find<DashboardController>()
-                                    .createDropDownData(
-                                        controller.dropdown1!.value),
-                                callbackFunction: callback,
-                              )
-                            : Padding(
-                                padding: const EdgeInsets.only(top: 15),
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Branch Name",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                      ),
+                      //   SizedBox(
+                      //     width: 200,
+                      //     // custom Text field
+                      //     child: controller.loadingBranchname.value == true
+                      //         ? CustomDropDown(
+                      //             hint: controller.dropdown1!.value,
+                      //             model: Get.find<DashboardController>()
+                      //                 .createDropDownData(
+                      //                     controller.dropdown1!.value),
+                      //             callbackFunction: callback,
+                      //           )
+                      //         : Padding(
+                      //             padding: const EdgeInsets.only(top: 15),
+                      //             child: CustomAutoSizeTextMontserrat(
+                      //               text: "Branch Name",
+                      //               fontWeight: FontWeight.w600,
+                      //             ),
+                      //           ),
+                      //   ),
                     ],
                   ),
                 ),
@@ -105,24 +105,25 @@ class MandatoryInformation extends StatelessWidget {
                 child: SizedBox(
                   child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Get.find<DashboardController>()
-                                    .loadingServiceName
-                                    .value ==
-                                true
-                            ? CustomDropDown(
-                                hint: controller.dropdown1!.value,
-                                model: Get.find<DashboardController>()
-                                    .createDropDownData(
-                                        controller.dropdown1!.value),
-                                callbackFunction: callback,
-                              )
-                            : CustomAutoSizeTextMontserrat(
-                                text: "Service Name",
-                                textColor: Colors.grey,
-                              ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 10),
+                      //   child: Get.find<DashboardController>()
+                      //               .loadingServiceName
+                      //               .value ==
+                      //           true
+                      //       ? CustomDropDown(
+                      //           hint: controller.dropdown1!.value,
+                      //           model: Get.find<DashboardController>()
+                      //               .createDropDownData(
+                      //                   controller.dropdown1!.value),
+                      //           callbackFunction: callback,
+                      //         )
+                      //       : CustomAutoSizeTextMontserrat(
+                      //           text: "Service Name",
+                      //           textColor: Colors.grey,
+                      //         ),
+                      // ),
+
                       const Spacer(),
                       SizedBox(
                         width: 200,

@@ -13,8 +13,18 @@ class FilterModel {
   List<String>? intakeYear = [];
   List<String>? instSubCategory = [];
   List<String>? instituteLevel = [];
-  List<String>? academicPercentage = [];
-  List<String>? budget = [];
+  List<Map<String, bool>> academicPercentage = [
+    {"70+ %": false},
+    {"60%-70%": false},
+    {"50%-60%": false},
+    {"Between 50%": false}
+  ];
+  List<Map<String, bool>> budget = [
+    {"30 Lac or More": false},
+    {"15-30 lac": false},
+    {"7-15 Lac": false},
+    {"Below 7 Lac": false}
+  ];
   List<String>? offerTAT = [];
   List<String>? visaTAT = [];
   List<String>? countryName = [];
@@ -41,8 +51,8 @@ class FilterSelected {
   List<String>? intakeYearSelected = [];
   List<String>? instSubCategorySelected = [];
   List<String>? instituteLevelSelected = [];
-  List<String>? academicPercentageSelected = [];
-  List<String>? budgetSelected = [];
+  List<String> academicPercentageSelected = [];
+  List<String> budgetSelected = [];
   List<String>? offerTATSelected = [];
   List<String>? visaTATSelected = [];
   List<String>? countryNameSelected = [];
@@ -60,9 +70,4 @@ class FilterSelected {
   List<String>? backlogAcceptableSelected = [];
   List<String>? applicationfeeSelected = [];
   List<String>? placementSandwichSelected = [];
-}
-
-class Budget {
-  String? budgetValue;
-  bool? trueFalse;
 }

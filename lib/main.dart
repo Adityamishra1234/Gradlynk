@@ -39,6 +39,7 @@ import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/ui/screen/visa.dart';
+import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
@@ -262,6 +263,11 @@ class _MyAppState extends State<MyApp> {
           page: () => const WorkHistoryCopy(),
           transition: Transition.fade,
         ),
+        // GetPage(
+        //   name: CustomDropDownSingle.routeNamed,
+        //   page: () => const CustomDropDownSingle(),
+        //   transition: Transition.fade,
+        // ),
       ],
     );
   }

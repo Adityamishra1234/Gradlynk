@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
+import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
@@ -261,21 +262,54 @@ class ApiServices extends StudentPanelBase {
       if (element.intakeYear != null && element.intakeYear != "") {
         filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
       }
-      if (element.academicRequire != null && element.academicRequire != "") {
-        filterModel.academicPercentage!
-            .add(element.academicRequire!.split("-")[1]);
+
+      if (element.academicRequire != null &&
+          element.academicRequire != "" &&
+          element.academicRequire != "null") {
+        if (double.parse(element.academicRequire!.split("-")[1]) >= 70) {
+          filterModel.academicPercentage[0].update("70+ %", (value) => true);
+        } else if (double.parse(element.academicRequire!.split("-")[1]) >= 60 &&
+            double.parse(element.academicRequire!.split("-")[1]) < 70) {
+          filterModel.academicPercentage[1].update("60%-70%", (value) => true);
+        } else if (double.parse(element.academicRequire!.split("-")[1]) >= 50 &&
+            double.parse(element.academicRequire!.split("-")[1]) < 60) {
+          filterModel.budget[1].update("50%-60%", (value) => true);
+        } else if (double.parse(element.academicRequire!.split("-")[1]) < 50) {
+          filterModel.budget[0].update("Between 50%", (value) => true);
+        }
       }
+
+      //   // !.add(element.allFeesInr ?? "");
+      // }
+      // if (element.academicRequire != null && element.academicRequire != "") {
+      //   filterModel.academicPercentage!
+      //       .add(element.academicRequire!.split("-")[1]);
+      // }
       if (element.universityName != null && element.universityName != "") {
         filterModel.universityname!.add(element.universityName ?? "");
       }
       if (element.instituteType != null && element.instituteType != "") {
         filterModel.instituteLevel!.add(element.instituteType ?? "");
       }
-      if (element.academicRequire != null) {
-        filterModel.academicPercentage!.add(element.academicRequire ?? "");
-      }
-      if (element.allFeesInr != null && element.allFeesInr != "") {
-        filterModel.budget!.add(element.allFeesInr ?? "");
+      // if (element.academicRequire != null) {
+      //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
+      // }
+
+      if (element.annualTutionFeesInr != null &&
+          element.annualTutionFeesInr != "" &&
+          element.annualTutionFeesInr != "null") {
+        if (double.parse(element.annualTutionFeesInr!) < 700000) {
+          filterModel.budget[3].update("Below 7 Lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
+            double.parse(element.annualTutionFeesInr!) < 1500000) {
+          filterModel.budget[2].update("7-15 Lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
+            double.parse(element.annualTutionFeesInr!) < 3000000) {
+          filterModel.budget[1].update("15-30 lac", (value) => true);
+        } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
+          filterModel.budget[0].update("30 Lac or More", (value) => true);
+        }
+        // !.add(element.allFeesInr ?? "");
       }
       if (element.offerTat != null && element.offerTat != "") {
         filterModel.offerTAT!.add(element.offerTat ?? "");
@@ -327,16 +361,16 @@ class ApiServices extends StudentPanelBase {
     });
     filterModel.universityname = filterModel.universityname!.toSet().toList();
     filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
-    filterModel.academicPercentage =
-        filterModel.academicPercentage!.toSet().toList();
-    filterModel.budget = filterModel.budget!.toSet().toList();
+    // filterModel.academicPercentage =
+    //     filterModel.academicPercentage!.toSet().toList();
+    filterModel.budget = filterModel.budget.toSet().toList();
     filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
     filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
     filterModel.countryName = filterModel.countryName!.toSet().toList();
     filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
     filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
-    filterModel.academicPercentage =
-        filterModel.academicPercentage!.toSet().toList();
+    // filterModel.academicPercentage =
+    //     filterModel.academicPercentage.toSet().toList();
     filterModel.institutePrivatePublic =
         filterModel.institutePrivatePublic!.toSet().toList();
 
@@ -392,14 +426,19 @@ class ApiServices extends StudentPanelBase {
   personalInformationDataUpdate(
       PersonalInformationModel personalInformationModel,
       String? endpoint) async {
-    var jsonData = json.encode(personalInformationModel);
-    print(jsonData);
+    String jsonData = json.encode(personalInformationModel);
     var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
     if (response != null) {
       var jsondata = json.decode(response.body);
+      DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+
+      Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
+          snackPosition: SnackPosition.BOTTOM);
+
       return jsondata;
     }
   }
+
   // logout(String baseUrl, String endpoint) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   //   var jsonData = {"token": sharedPreferences.getString("token")};

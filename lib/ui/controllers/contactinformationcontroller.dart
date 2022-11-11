@@ -6,8 +6,8 @@ import 'package:studentpanel/utils/endpoint.dart';
 
 class ContactInformationController extends BaseController {
   ApiServices apiServices = ApiServices();
-  PersonalInformationModel personalInformationModel =
-      PersonalInformationModel();
+
+  //
 
   List<String> countryList = [];
   List<String> countryCode = [];
@@ -87,6 +87,6 @@ class ContactInformationController extends BaseController {
 
   updateData(PersonalInformationModel personalInformationModel) {
     apiServices.personalInformationDataUpdate(
-        personalInformationModel, "endpoint");
+        personalInformationModel, Endpoints.personalDetailUpdate);
   }
 }

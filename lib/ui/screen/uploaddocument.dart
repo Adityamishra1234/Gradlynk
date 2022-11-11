@@ -183,15 +183,15 @@ class UploadDocument extends StatelessWidget {
                             textColor: Colors.grey,
                           ),
                           const Spacer(),
-                          SizedBox(
-                            width: 200,
-                            child: CustomDropDown(
-                              model: const ["1", "2", "3"],
-                              callbackFunction: callback,
-                              hint: "Highest Qualification",
-                              textColor: Colors.black,
-                            ),
-                          ),
+                          // SizedBox(
+                          //   width: 200,
+                          //   child: CustomDropDown(
+                          //     model: const ["1", "2", "3"],
+                          //     callbackFunction: callback,
+                          //     hint: "Highest Qualification",
+                          //     textColor: Colors.black,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

@@ -62,7 +62,7 @@ class CustomDropDownProfilePage extends StatelessWidget {
                     ),
                     dropdownSearchDecoration: border == true
                         ? null
-                        : InputDecoration(border: InputBorder.none),
+                        : const InputDecoration(border: InputBorder.none),
                   ),
                   popupProps: PopupProps.menu(
                     showSearchBox: searchBox ?? true,
