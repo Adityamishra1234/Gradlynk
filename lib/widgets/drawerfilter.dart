@@ -15,7 +15,7 @@ class DrawerFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         width: 220,
-        child: ListView(children: [
+        child: ListView(controller: ScrollController(), children: [
           //University Name
           Padding(
             padding: const EdgeInsets.only(top: 20),

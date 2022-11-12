@@ -17,6 +17,7 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      controller: ScrollController(),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/screen/applicationcompletedetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ApplicationSummary extends StatelessWidget {
   ApplicationSummary({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class ApplicationSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
         body: GetBuilder<ApplicationSummaryController>(
           builder: (_) => Column(
             children: [
@@ -37,6 +39,7 @@ class ApplicationSummary extends StatelessWidget {
               if (_.loadingApplicationSummary.value == true)
                 Expanded(
                   child: ListView.builder(
+                      controller: ScrollController(),
                       itemCount: controller.applicationSummaryModel.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Card(

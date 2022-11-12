@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/controllers/visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class VisaDetail extends StatelessWidget {
   VisaDetail({Key? key}) : super(key: key);
@@ -32,12 +33,14 @@ class VisaDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
         body: GetBuilder<VisaDetailController>(
             builder: (controller1) => controller1.loadingVisaDetails.value ==
                     true
                 ? Container(
                     color: ThemeConstants.whitecolor,
                     child: ListView(
+                      controller: ScrollController(),
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 10, top: 20),

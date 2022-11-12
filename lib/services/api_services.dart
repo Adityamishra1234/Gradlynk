@@ -255,6 +255,7 @@ class ApiServices extends StudentPanelBase {
 
   createFilter(CourseModelFilter courseModelFilter) {
     FilterModel filterModel = FilterModel();
+
     courseModelFilter.courseSearchList.forEach((element) {
       if (element.intakeMonth != null && element.intakeMonth != "") {
         filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
@@ -266,16 +267,17 @@ class ApiServices extends StudentPanelBase {
       if (element.academicRequire != null &&
           element.academicRequire != "" &&
           element.academicRequire != "null") {
-        if (double.parse(element.academicRequire!.split("-")[1]) >= 70) {
+        if (double.parse(element.academicRequire!.split("-")[2]) >= 70) {
           filterModel.academicPercentage[0].update("70+ %", (value) => true);
-        } else if (double.parse(element.academicRequire!.split("-")[1]) >= 60 &&
-            double.parse(element.academicRequire!.split("-")[1]) < 70) {
+        } else if (double.parse(element.academicRequire!.split("-")[2]) >= 60 &&
+            double.parse(element.academicRequire!.split("-")[2]) < 70) {
           filterModel.academicPercentage[1].update("60%-70%", (value) => true);
-        } else if (double.parse(element.academicRequire!.split("-")[1]) >= 50 &&
-            double.parse(element.academicRequire!.split("-")[1]) < 60) {
-          filterModel.budget[1].update("50%-60%", (value) => true);
-        } else if (double.parse(element.academicRequire!.split("-")[1]) < 50) {
-          filterModel.budget[0].update("Between 50%", (value) => true);
+        } else if (double.parse(element.academicRequire!.split("-")[2]) >= 50 &&
+            double.parse(element.academicRequire!.split("-")[2]) < 60) {
+          filterModel.academicPercentage[2].update("50%-60%", (value) => true);
+        } else if (double.parse(element.academicRequire!.split("-")[2]) < 50) {
+          filterModel.academicPercentage[3]
+              .update("Between 50%", (value) => true);
         }
       }
 
@@ -359,6 +361,7 @@ class ApiServices extends StudentPanelBase {
       }
       // filterModel.placementSandwich!.add(element.place)
     });
+
     filterModel.universityname = filterModel.universityname!.toSet().toList();
     filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
     // filterModel.academicPercentage =

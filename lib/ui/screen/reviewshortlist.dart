@@ -12,6 +12,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ReviewShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
@@ -39,6 +40,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
         body: GetBuilder<ReviewShortListController>(
           builder: (_) => Column(
             children: [
@@ -162,38 +164,45 @@ class _ReviewShortListState extends State<ReviewShortList> {
               ),
               if (_.loadingCourseShortList.value == true)
                 Expanded(
-                  child: ListView.builder(
-                      itemCount: widget.courseModelFilter == null
-                          ? (controller1.courseSearchModel.length + 1)
-                          : widget.courseModelFilter!.courseSearchList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            if (controller1.courseSearchModel.length != index)
-                              CollagelistExpandedWidget(
-                                previousRoute: ReviewShortList.routeNamed,
-                                index: index,
-                                courseShortListFirst: true,
-                                courseSearchModelCompare1Id:
-                                    controller1.courseSearchModelCompare1.id,
-                                courseSearchModelCompare2Id:
-                                    controller1.courseSearchModelCompare2.id,
-                                callbackForModelCompare: callbackModelCompare,
-                                callbackCompare: callbackCompare,
-                                //done
-                                iscompare: controller1.compareApply.value,
-                                courseSearchModel:
-                                    controller1.courseSearchModel[index],
-                                callbackFunction: callbackCompleteDetailCourse,
-                                finalShortListFirst: true,
-                                callbackShortListButton:
-                                    CallbackShortListButton,
-                                callbackFinalShortListButton:
-                                    CallbackFinalShortList,
-                              ),
-                          ],
-                        );
-                      }),
+                  child: Scrollbar(
+                    isAlwaysShown: true,
+                    controller: ScrollController(
+                        keepScrollOffset: true, initialScrollOffset: 2.0),
+                    child: ListView.builder(
+                        controller: ScrollController(),
+                        itemCount: widget.courseModelFilter == null
+                            ? (controller1.courseSearchModel.length + 1)
+                            : widget.courseModelFilter!.courseSearchList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              if (controller1.courseSearchModel.length != index)
+                                CollagelistExpandedWidget(
+                                  previousRoute: ReviewShortList.routeNamed,
+                                  index: index,
+                                  courseShortListFirst: true,
+                                  courseSearchModelCompare1Id:
+                                      controller1.courseSearchModelCompare1.id,
+                                  courseSearchModelCompare2Id:
+                                      controller1.courseSearchModelCompare2.id,
+                                  callbackForModelCompare: callbackModelCompare,
+                                  callbackCompare: callbackCompare,
+                                  //done
+                                  iscompare: controller1.compareApply.value,
+                                  courseSearchModel:
+                                      controller1.courseSearchModel[index],
+                                  callbackFunction:
+                                      callbackCompleteDetailCourse,
+                                  finalShortListFirst: true,
+                                  callbackShortListButton:
+                                      CallbackShortListButton,
+                                  callbackFinalShortListButton:
+                                      CallbackFinalShortList,
+                                ),
+                            ],
+                          );
+                        }),
+                  ),
                 ),
               if (controller1.compareApply.value == true)
                 InkWell(

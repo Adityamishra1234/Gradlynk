@@ -11,6 +11,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class FinalShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
@@ -38,6 +39,7 @@ class _FinalShortListState extends State<FinalShortList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
         body: GetBuilder<FinalShortListController>(
           builder: (_) => Container(
             color: ThemeConstants.whitecolor,
@@ -135,174 +137,180 @@ class _FinalShortListState extends State<FinalShortList> {
                       const Spacer(),
                     ],
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 if (_.loadingCourseShortList.value == true)
                   Expanded(
-                    child: ListView.builder(
-                        itemCount: controller1
-                                .courseModelFilter.courseSearchList.length +
-                            1,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              if (controller1.courseModelFilter.courseSearchList
-                                      .length !=
-                                  index)
-                                CollagelistExpandedWidget(
-                                  previousRoute: FinalShortList.routeNamed,
-                                  index: index,
-                                  courseShortListFirst: false,
-                                  courseSearchModelCompare1Id:
-                                      controller1.courseSearchModelCompare1.id,
-                                  courseSearchModelCompare2Id:
-                                      controller1.courseSearchModelCompare2.id,
-                                  callbackForModelCompare: callbackModelCompare,
-                                  callbackCompare: callbackCompare,
-                                  //done
-                                  iscompare: controller1.compareApply.value,
-                                  // currentPage: controller1
-                                  //     .currentPage
-                                  //     .toString(),
-                                  // lastPage: controller1.lastPage
-                                  //     .toString(),
-                                  courseSearchModel: controller1
-                                      .courseModelFilter
-                                      .courseSearchList[index],
-                                  callbackFunction:
-                                      callbackCompleteDetailCourse,
-                                  finalShortListFirst: true,
-                                  callbackFinalShortListButton:
-                                      CallbackFinalShortList,
-                                ),
-                              // if (controller1.courseSearchModel!.length == index)
-                              //   Row(
-                              //     children: [
-                              //       const Spacer(),
-                              //       if (controller1.currentPage != 1)
-                              //         Padding(
-                              //           padding: const EdgeInsets.only(
-                              //               right: 20, top: 20, bottom: 20),
-                              //           child: SizedBox(
-                              //             width: 160,
-                              //             height: 50,
-                              //             child: ElevatedButton(
-                              //                 style: ElevatedButton.styleFrom(
-                              //                   side: BorderSide(
-                              //                       color: ThemeConstants
-                              //                           .bluegreycolor),
-                              //                   primary: ThemeConstants
-                              //                       .whitecolor, // background
-                              //                   onPrimary: ThemeConstants
-                              //                       .whitecolor, // foreground
-                              //                 ),
-                              //                 onPressed: () async {
-                              //                   var temp = await controller1
-                              //                       .nextpage(
-                              //                           controller1.endpoint
-                              //                               .toString(),
-                              //                           (controller1.currentPage! -
-                              //                                   1)
-                              //                               .toString());
-                              //                   if (temp == true) {
-                              //                     Navigator.push(context,
-                              //                         MaterialPageRoute<void>(
-                              //                             builder: (context) {
-                              //                       return CourseSearch();
-                              //                     }));
-                              //                   }
-                              //                 },
-                              //                 child: Row(
-                              //                   children: [
-                              //                     const Spacer(),
-                              //                     SvgPicture.asset(
-                              //                       "assets/icons/previous-icon.svg",
-                              //                       height: 15,
-                              //                       color: ThemeConstants
-                              //                           .bluegreycolor,
-                              //                     ),
-                              //                     const SizedBox(
-                              //                       width: 5,
-                              //                     ),
-                              //                     CustomAutoSizeTextMontserrat(
-                              //                       text: "Previous",
-                              //                       textColor: ThemeConstants
-                              //                           .bluegreycolor,
-                              //                     ),
-                              //                     const Spacer(),
-                              //                   ],
-                              //                 )),
-                              //           ),
-                              //         ),
-                              //       // if (controller1
-                              //       //         .currentPage !=
-                              //       //     controller1.lastPage)
-                              //       //   Padding(
-                              //       //     padding: const EdgeInsets.only(
-                              //       //         right: 20, top: 20, bottom: 20),
-                              //       //     child: SizedBox(
-                              //       //       width: 160,
-                              //       //       height: 50,
-                              //       //       child: ElevatedButton(
-                              //       //           style: ElevatedButton.styleFrom(
-                              //       //             primary: ThemeConstants
-                              //       //                 .bluecolor, // background
-                              //       //             onPrimary: ThemeConstants
-                              //       //                 .bluecolor, // foreground
-                              //       //           ),
-                              //       //           onPressed: () async {
-                              //       //             var temp = await controller1.nextpage(
-                              //       //                 controller1.courseSearchPages
-                              //       //                     .endpoint
-                              //       //                     .toString(),
-                              //       //                 (controller1.courseSearchPages
-                              //       //                             .currentPage! +
-                              //       //                         1)
-                              //       //                     .toString());
-                              //       //             if (temp == true) {
-                              //       //               Navigator.push(context,
-                              //       //                   MaterialPageRoute<void>(
-                              //       //                       builder: (context) {
-                              //       //                 return CourseSearch();
-                              //       //               }));
-                              //       //             }
-                              //       //             // // Api call
-                              //       //             // controller1.courseSearch(
-                              //       //             //     controller.selectCountryCode
-                              //       //             //         .toString(),
-                              //       //             //     controller.selectCourseCode
-                              //       //             //         .toString());
-                              //       //           },
-                              //       //           child: Row(
-                              //       //             children: [
-                              //       //               const Spacer(),
-                              //       //               CustomAutoSizeTextMontserrat(
-                              //       //                 text: "Next",
-                              //       //                 textColor:
-                              //       //                     ThemeConstants.whitecolor,
-                              //       //               ),
-                              //       //               const SizedBox(
-                              //       //                 width: 5,
-                              //       //               ),
-                              //       //               SvgPicture.asset(
-                              //       //                 "assets/icons/next-icon.svg",
-                              //       //                 height: 15,
-                              //       //                 color:
-                              //       //                     ThemeConstants.whitecolor,
-                              //       //               ),
-                              //       //               const Spacer(),
-                              //       //             ],
-                              //       //           )),
-                              //       //     ),
-                              //       //   ),
+                    child: Scrollbar(
+                      isAlwaysShown: true,
+                      controller: ScrollController(
+                          keepScrollOffset: true, initialScrollOffset: 2.0),
+                      child: ListView.builder(
+                          itemCount: controller1
+                                  .courseModelFilter.courseSearchList.length +
+                              1,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              children: [
+                                if (controller1.courseModelFilter
+                                        .courseSearchList.length !=
+                                    index)
+                                  CollagelistExpandedWidget(
+                                    previousRoute: FinalShortList.routeNamed,
+                                    index: index,
+                                    courseShortListFirst: false,
+                                    courseSearchModelCompare1Id: controller1
+                                        .courseSearchModelCompare1.id,
+                                    courseSearchModelCompare2Id: controller1
+                                        .courseSearchModelCompare2.id,
+                                    callbackForModelCompare:
+                                        callbackModelCompare,
+                                    callbackCompare: callbackCompare,
+                                    //done
+                                    iscompare: controller1.compareApply.value,
+                                    // currentPage: controller1
+                                    //     .currentPage
+                                    //     .toString(),
+                                    // lastPage: controller1.lastPage
+                                    //     .toString(),
+                                    courseSearchModel: controller1
+                                        .courseModelFilter
+                                        .courseSearchList[index],
+                                    callbackFunction:
+                                        callbackCompleteDetailCourse,
+                                    finalShortListFirst: true,
+                                    callbackFinalShortListButton:
+                                        CallbackFinalShortList,
+                                  ),
+                                // if (controller1.courseSearchModel!.length == index)
+                                //   Row(
+                                //     children: [
+                                //       const Spacer(),
+                                //       if (controller1.currentPage != 1)
+                                //         Padding(
+                                //           padding: const EdgeInsets.only(
+                                //               right: 20, top: 20, bottom: 20),
+                                //           child: SizedBox(
+                                //             width: 160,
+                                //             height: 50,
+                                //             child: ElevatedButton(
+                                //                 style: ElevatedButton.styleFrom(
+                                //                   side: BorderSide(
+                                //                       color: ThemeConstants
+                                //                           .bluegreycolor),
+                                //                   primary: ThemeConstants
+                                //                       .whitecolor, // background
+                                //                   onPrimary: ThemeConstants
+                                //                       .whitecolor, // foreground
+                                //                 ),
+                                //                 onPressed: () async {
+                                //                   var temp = await controller1
+                                //                       .nextpage(
+                                //                           controller1.endpoint
+                                //                               .toString(),
+                                //                           (controller1.currentPage! -
+                                //                                   1)
+                                //                               .toString());
+                                //                   if (temp == true) {
+                                //                     Navigator.push(context,
+                                //                         MaterialPageRoute<void>(
+                                //                             builder: (context) {
+                                //                       return CourseSearch();
+                                //                     }));
+                                //                   }
+                                //                 },
+                                //                 child: Row(
+                                //                   children: [
+                                //                     const Spacer(),
+                                //                     SvgPicture.asset(
+                                //                       "assets/icons/previous-icon.svg",
+                                //                       height: 15,
+                                //                       color: ThemeConstants
+                                //                           .bluegreycolor,
+                                //                     ),
+                                //                     const SizedBox(
+                                //                       width: 5,
+                                //                     ),
+                                //                     CustomAutoSizeTextMontserrat(
+                                //                       text: "Previous",
+                                //                       textColor: ThemeConstants
+                                //                           .bluegreycolor,
+                                //                     ),
+                                //                     const Spacer(),
+                                //                   ],
+                                //                 )),
+                                //           ),
+                                //         ),
+                                //       // if (controller1
+                                //       //         .currentPage !=
+                                //       //     controller1.lastPage)
+                                //       //   Padding(
+                                //       //     padding: const EdgeInsets.only(
+                                //       //         right: 20, top: 20, bottom: 20),
+                                //       //     child: SizedBox(
+                                //       //       width: 160,
+                                //       //       height: 50,
+                                //       //       child: ElevatedButton(
+                                //       //           style: ElevatedButton.styleFrom(
+                                //       //             primary: ThemeConstants
+                                //       //                 .bluecolor, // background
+                                //       //             onPrimary: ThemeConstants
+                                //       //                 .bluecolor, // foreground
+                                //       //           ),
+                                //       //           onPressed: () async {
+                                //       //             var temp = await controller1.nextpage(
+                                //       //                 controller1.courseSearchPages
+                                //       //                     .endpoint
+                                //       //                     .toString(),
+                                //       //                 (controller1.courseSearchPages
+                                //       //                             .currentPage! +
+                                //       //                         1)
+                                //       //                     .toString());
+                                //       //             if (temp == true) {
+                                //       //               Navigator.push(context,
+                                //       //                   MaterialPageRoute<void>(
+                                //       //                       builder: (context) {
+                                //       //                 return CourseSearch();
+                                //       //               }));
+                                //       //             }
+                                //       //             // // Api call
+                                //       //             // controller1.courseSearch(
+                                //       //             //     controller.selectCountryCode
+                                //       //             //         .toString(),
+                                //       //             //     controller.selectCourseCode
+                                //       //             //         .toString());
+                                //       //           },
+                                //       //           child: Row(
+                                //       //             children: [
+                                //       //               const Spacer(),
+                                //       //               CustomAutoSizeTextMontserrat(
+                                //       //                 text: "Next",
+                                //       //                 textColor:
+                                //       //                     ThemeConstants.whitecolor,
+                                //       //               ),
+                                //       //               const SizedBox(
+                                //       //                 width: 5,
+                                //       //               ),
+                                //       //               SvgPicture.asset(
+                                //       //                 "assets/icons/next-icon.svg",
+                                //       //                 height: 15,
+                                //       //                 color:
+                                //       //                     ThemeConstants.whitecolor,
+                                //       //               ),
+                                //       //               const Spacer(),
+                                //       //             ],
+                                //       //           )),
+                                //       //     ),
+                                //       //   ),
 
-                              //       // const Spacer(),
-                              //     ],
-                              //   )
-                            ],
-                          );
-                        }),
+                                //       // const Spacer(),
+                                //     ],
+                                //   )
+                              ],
+                            );
+                          }),
+                    ),
                   ),
                 if (controller1.compareApply.value == true)
                   InkWell(

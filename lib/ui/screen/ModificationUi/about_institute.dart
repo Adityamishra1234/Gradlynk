@@ -19,6 +19,7 @@ class AboutInstituteCopy extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: ListView(
+            controller: ScrollController(),
             physics: const BouncingScrollPhysics(),
             children: [
               CustomAutoSizeTextMontserrat(

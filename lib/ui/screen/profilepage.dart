@@ -52,6 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
         color: Colors.white,
         height: MediaQuery.of(context).size.height * 0.85,
         child: ListView(
+          controller: ScrollController(),
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10),
@@ -62,6 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     init: ProfilePageController(),
                     builder: (controller) {
                       return ListView(
+                        controller: ScrollController(),
                         scrollDirection: Axis.horizontal,
                         children: [
                           Padding(

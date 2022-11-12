@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 
@@ -28,13 +29,14 @@ class UploadDocument extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar(UploadDocument.routeNamed),
-        drawer: DrawerFilter(),
+        drawer: CustomDrawer(),
         body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             color: Colors.white,
             child: GetBuilder<UploadDocumentController>(
               builder: (_) => ListView(
+                controller: ScrollController(),
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 10),

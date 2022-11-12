@@ -14,6 +14,7 @@ class EntryRequirement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
+      controller: ScrollController(),
       physics: const BouncingScrollPhysics(),
       children: [
         Padding(
@@ -31,18 +32,23 @@ class EntryRequirement extends StatelessWidget {
                     if (completeCourseDetail[0].universityName != null)
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Country",
-                            maxLines: 2,
-                            textColor: ThemeConstants.GreenColor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Country",
+                              maxLines: 2,
+                              textColor: ThemeConstants.GreenColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     Container(
                       constraints: const BoxConstraints(minHeight: 50),
-                      child: Center(
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "completeCourseDetail[0]",
                           fontSize: 14,
@@ -71,19 +77,24 @@ class EntryRequirement extends StatelessWidget {
                   children: [
                     Container(
                       constraints: const BoxConstraints(minHeight: 50),
-                      child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Level of study",
-                          maxLines: 2,
-                          textColor: ThemeConstants.bluecolor,
-                          fontWeight: FontWeight.bold,
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Level of study",
+                            maxLines: 2,
+                            textColor: ThemeConstants.bluecolor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "completeCourseDetail[0]",
                             fontSize: 14,
@@ -113,18 +124,23 @@ class EntryRequirement extends StatelessWidget {
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Min Percentage",
-                            maxLines: 2,
-                            textColor: ThemeConstants.orangeColor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Min Percentage",
+                              maxLines: 2,
+                              textColor: ThemeConstants.orangeColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     Container(
                       constraints: const BoxConstraints(minHeight: 50),
-                      child: Center(
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].minPercentage,
                           fontSize: 14,
@@ -154,12 +170,16 @@ class EntryRequirement extends StatelessWidget {
                     if (completeCourseDetail[0].instituteType != null)
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Min. Grade",
-                            maxLines: 2,
-                            textColor: ThemeConstants.VioletColor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Min. Grade",
+                              maxLines: 2,
+                              textColor: ThemeConstants.VioletColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),

@@ -15,6 +15,7 @@ class _DocumentCheckListState extends State<DocumentCheckList> {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
+      controller: ScrollController(),
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10, bottom: 5, left: 10),

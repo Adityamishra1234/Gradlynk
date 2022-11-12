@@ -12,6 +12,7 @@ class StepsToAdmissions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
+      controller: ScrollController(),
       physics: BouncingScrollPhysics(),
       children: [
         Padding(
@@ -29,18 +30,23 @@ class StepsToAdmissions extends StatelessWidget {
                     if (completeCourseDetail[0].universityName != null)
                       Container(
                         constraints: BoxConstraints(minHeight: 50),
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Is Application Fee",
-                            maxLines: 2,
-                            textColor: ThemeConstants.GreenColor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Is Application Fee",
+                              maxLines: 2,
+                              textColor: ThemeConstants.GreenColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     Container(
                       constraints: BoxConstraints(minHeight: 50),
-                      child: Center(
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].applicationFee,
                           textColor: ThemeConstants.blackcolor,
@@ -70,19 +76,24 @@ class StepsToAdmissions extends StatelessWidget {
                     if (completeCourseDetail[0].instituteType != null)
                       SizedBox(
                         height: 50,
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Fee Waiver",
-                            maxLines: 2,
-                            textColor: ThemeConstants.bluecolor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Fee Waiver",
+                              maxLines: 2,
+                              textColor: ThemeConstants.bluecolor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     if (completeCourseDetail[0].instituteType != null)
                       SizedBox(
                         height: 50,
-                        child: Center(
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: completeCourseDetail[0].feeWaiver,
                             textColor: ThemeConstants.blackcolor,
@@ -112,18 +123,23 @@ class StepsToAdmissions extends StatelessWidget {
                     if (completeCourseDetail[0].instituteType != null)
                       SizedBox(
                         height: 50,
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Offer TAT",
-                            maxLines: 2,
-                            textColor: ThemeConstants.orangeColor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Offer TAT",
+                              maxLines: 2,
+                              textColor: ThemeConstants.orangeColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     SizedBox(
                       height: 50,
-                      child: Center(
+                      child: Align(
+                        alignment: AlignmentDirectional.centerStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: completeCourseDetail[0].offerTat,
                           textColor: ThemeConstants.blackcolor,

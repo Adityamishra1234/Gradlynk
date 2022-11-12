@@ -92,7 +92,7 @@ class ApplicationDetailModel {
     rejectionDoc = json['rejection_doc'];
     currencyCode = json['currencyCode'];
     conditionalOfferDoc = json['conditional_offer_doc'];
-    totalfees = json['totalfees'];
+    totalfees = json['totalfees'].toString();
     totalfeesInr = json['totalfeesInr'].toString();
     annualTutionFees = json['annualTutionFees'].toString();
     annualTutionFeesInr = json['annualTutionFeesInr'].toString();
@@ -100,9 +100,9 @@ class ApplicationDetailModel {
     acceptanceDate = json['acceptance_date'].toString();
     acceptanceStage = json['acceptance_stage'];
     paymentOption = json['payment_option'].toString();
-    amountPaid = json['amount_paid'];
-    dateOfPayment = json['date_of_payment'];
-    paidBy = json['paidBy'];
+    amountPaid = json['amount_paid'].toString();
+    dateOfPayment = json['date_of_payment'].toString();
+    paidBy = json['paidBy'].toString();
     modeOfPayment = json['mode_of_payment'].toString();
     balanceFee = json['balance_fee'].toString();
     paymentReceipt = json['payment_receipt'];

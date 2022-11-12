@@ -19,6 +19,7 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
     return Scaffold(
       appBar: CustomAppBar("title"),
       body: ListView(
+        controller: ScrollController(),
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10),

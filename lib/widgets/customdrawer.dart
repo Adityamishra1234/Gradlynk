@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
+import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -18,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height - 60,
-              child: ListView(children: [
+              child: ListView(controller: ScrollController(), children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Image.asset(
@@ -95,7 +98,9 @@ class CustomDrawer extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: InkWell(
                         highlightColor: ThemeConstants.whitecolor,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(DashBoard.routeNamed);
+                        },
                         child: SizedBox(
                           height: 30,
                           width: MediaQuery.of(context).size.width,
@@ -114,7 +119,9 @@ class CustomDrawer extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: InkWell(
                         highlightColor: ThemeConstants.whitecolor,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(ProfilePageCopy.routeNamed);
+                        },
                         child: SizedBox(
                           height: 30,
                           width: MediaQuery.of(context).size.width,
@@ -154,7 +161,9 @@ class CustomDrawer extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: InkWell(
                         highlightColor: ThemeConstants.whitecolor,
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(CourseSearch.routeNamed);
+                        },
                         child: SizedBox(
                           height: 30,
                           width: MediaQuery.of(context).size.width,

@@ -41,6 +41,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
         body: Container(
           color: Colors.white,
           child: ListView(
+            controller: ScrollController(),
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -53,6 +54,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                       init: ProfilePageController(),
                       builder: (controller) {
                         return ListView(
+                          controller: ScrollController(),
                           scrollDirection: Axis.horizontal,
                           children: [
                             Padding(
@@ -211,6 +213,7 @@ class _ProfilePageHorizontalState extends State<ProfilePageHorizontal> {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height - 205,
                         child: ListView(
+                          controller: ScrollController(),
                           children: [
                             Container(
                               height: 76,

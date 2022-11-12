@@ -3,6 +3,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class Comparing extends StatelessWidget {
   CourseSearchModel courseSearchModel1,
@@ -18,7 +19,9 @@ class Comparing extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar("title"),
+      drawer: CustomDrawer(),
       body: ListView(
+        controller: ScrollController(),
         children: [
           Table(
             defaultVerticalAlignment: TableCellVerticalAlignment.middle,

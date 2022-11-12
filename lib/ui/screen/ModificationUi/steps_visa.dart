@@ -15,6 +15,7 @@ class StepsToVisaCopy extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: ListView(
+          controller: ScrollController(),
           physics: const BouncingScrollPhysics(),
           children: [
             Padding(

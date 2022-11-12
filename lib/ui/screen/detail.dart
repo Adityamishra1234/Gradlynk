@@ -72,6 +72,7 @@ class _DetialScreenState extends State<DetialScreen>
                       return SizedBox(
                         height: MediaQuery.of(context).size.height * 0.5,
                         child: ListView.builder(
+                            controller: ScrollController(),
                             itemCount: detailController.userHistoryList!.length,
                             itemBuilder: (BuildContext context, index) {
                               String logintime = detailController

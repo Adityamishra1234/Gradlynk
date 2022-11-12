@@ -14,6 +14,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/multiselectdropdown.dart';
 
 enum BestTutorSite { Ascending, Deascending }
@@ -43,6 +44,7 @@ class _CourseSearchState extends State<CourseSearch> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar("title"),
+      drawer: CustomDrawer(),
       body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,

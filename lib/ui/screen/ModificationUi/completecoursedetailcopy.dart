@@ -315,6 +315,7 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
               ];
             },
             body: ListView(
+              controller: ScrollController(),
               children: [
                 InkWell(
                   highlightColor: ThemeConstants.whitecolor,

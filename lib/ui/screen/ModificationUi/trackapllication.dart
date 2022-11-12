@@ -68,6 +68,7 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
     return Scaffold(
       appBar: CustomAppBar("title"),
       body: ListView(
+        controller: ScrollController(),
         children: [
           SizedBox(
             height: 60,

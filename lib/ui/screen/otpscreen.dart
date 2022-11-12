@@ -20,6 +20,7 @@ class OTPScreen extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(color: ThemeConstants.bluecolor),
           child: ListView(
+            controller: ScrollController(),
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,

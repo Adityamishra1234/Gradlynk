@@ -110,6 +110,7 @@ class _LoginState extends State<Login> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(color: ThemeConstants.bluecolor),
           child: ListView(
+            controller: ScrollController(),
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 30),

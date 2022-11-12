@@ -32,6 +32,7 @@ class MyDocument extends StatelessWidget {
               ),
               Expanded(
                 child: ListView(
+                  controller: ScrollController(),
                   children: [
                     InkWell(
                       highlightColor: ThemeConstants.TextColor,

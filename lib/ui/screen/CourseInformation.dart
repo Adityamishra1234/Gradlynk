@@ -17,6 +17,7 @@ class CourseInformation extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: ListView(
+        controller: ScrollController(),
         physics: const BouncingScrollPhysics(),
         children: [
           Padding(
@@ -34,18 +35,23 @@ class CourseInformation extends StatelessWidget {
                       if (completeCourseDetail[0].universityName != null)
                         Container(
                           constraints: const BoxConstraints(minHeight: 50),
-                          child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Course Name",
-                              maxLines: 2,
-                              textColor: ThemeConstants.GreenColor,
-                              fontWeight: FontWeight.bold,
+                          child: Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Course Name",
+                                maxLines: 2,
+                                textColor: ThemeConstants.GreenColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 8, bottom: 8),
                             child: CustomAutoSizeTextMontserrat(
@@ -78,27 +84,29 @@ class CourseInformation extends StatelessWidget {
                       if (completeCourseDetail[0].instituteType != null)
                         Container(
                           constraints: const BoxConstraints(minHeight: 50),
-                          child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Course Level",
-                              maxLines: 2,
-                              textColor: ThemeConstants.bluecolor,
-                              fontWeight: FontWeight.bold,
+                          child: Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Course Level",
+                                maxLines: 2,
+                                textColor: ThemeConstants.bluecolor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: completeCourseDetail[0].courseLevel,
-                              fontSize: 14,
-                              textColor: ThemeConstants.blackcolor,
-                              fontWeight: FontWeight.w600,
-                              maxLines: 2,
-                            ),
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: completeCourseDetail[0].courseLevel,
+                            fontSize: 14,
+                            textColor: ThemeConstants.blackcolor,
+                            fontWeight: FontWeight.w600,
+                            maxLines: 2,
                           ),
                         ),
                       ),
@@ -121,18 +129,23 @@ class CourseInformation extends StatelessWidget {
                     children: [
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Bachelors",
-                            maxLines: 2,
-                            textColor: ThemeConstants.orangeColor,
-                            fontWeight: FontWeight.bold,
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Bachelors",
+                              maxLines: 2,
+                              textColor: ThemeConstants.orangeColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
+                        child: Align(
+                          alignment: AlignmentDirectional.centerStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "completeCourseDetail[0].b",
                             fontSize: 14,
@@ -162,26 +175,31 @@ class CourseInformation extends StatelessWidget {
                       if (completeCourseDetail[0].instituteType != null)
                         Container(
                           constraints: const BoxConstraints(minHeight: 50),
-                          child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Specialization",
-                              maxLines: 2,
-                              textColor: ThemeConstants.VioletColor,
-                              fontWeight: FontWeight.bold,
+                          child: Align(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Specialization",
+                                maxLines: 2,
+                                textColor: ThemeConstants.VioletColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
                       Container(
                         constraints: const BoxConstraints(minHeight: 50),
-                        child: Center(
+                        child: Align(
+                            alignment: AlignmentDirectional.centerStart,
                             child: HtmlWidget(
-                          completeCourseDetail[0].specialEntryRequirement ?? "",
-                          textStyle: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w600,
-                            color: ThemeConstants.blackcolor,
-                            fontSize: 14.0,
-                          ),
-                        )),
+                              completeCourseDetail[0].specialEntryRequirement ??
+                                  "",
+                              textStyle: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.w600,
+                                color: ThemeConstants.blackcolor,
+                                fontSize: 14.0,
+                              ),
+                            )),
                       ),
                     ]),
               ],

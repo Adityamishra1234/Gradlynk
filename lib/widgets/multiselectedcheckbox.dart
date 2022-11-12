@@ -26,6 +26,7 @@ class _MultiSelectionExampleState extends State<MultiSelectionExample> {
       height: MediaQuery.of(context).size.height - 220,
       width: MediaQuery.of(context).size.width / 2 - 10,
       child: ListView.builder(
+        controller: ScrollController(),
         itemBuilder: (ctx, index) {
           return GestureDetector(
             behavior: HitTestBehavior.opaque,

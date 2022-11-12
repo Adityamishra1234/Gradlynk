@@ -13,6 +13,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class CourseSearchList extends StatelessWidget {
   static const routeNamed = '/CourseSearchList';
@@ -27,6 +28,7 @@ class CourseSearchList extends StatelessWidget {
     controller1.courseModelFilter = courseModelFilter;
     return Scaffold(
         appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
         body: GetBuilder<CourseShortListController>(
           builder: (_) => Container(
             color: ThemeConstants.whitecolor,
@@ -154,34 +156,41 @@ class CourseSearchList extends StatelessWidget {
                 ),
                 // if (_.loadingCourseShortList.value == true)
                 Expanded(
-                  child: ListView.builder(
-                      itemCount: courseModelFilter.courseSearchList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            // if (controller1.courseSearchModel.length != index)
-                            CollagelistExpandedWidget(
-                              previousRoute: CourseSearchList.routeNamed,
-                              index: index,
-                              courseShortListFirst: true,
-                              courseSearchModelCompare1Id:
-                                  _.courseSearchModelCompare1.id,
-                              courseSearchModelCompare2Id:
-                                  _.courseSearchModelCompare2.id,
-                              callbackForModelCompare: callbackModelCompare,
-                              callbackCompare: callbackCompare,
-                              //done
-                              iscompare: controller1.compareApply.value,
+                  child: Scrollbar(
+                    isAlwaysShown: true,
+                    showTrackOnHover: true,
+                    radius: Radius.circular(12.0),
+                    controller: ScrollController(),
+                    child: ListView.builder(
+                        itemCount: courseModelFilter.courseSearchList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            children: [
+                              // if (controller1.courseSearchModel.length != index)
+                              CollagelistExpandedWidget(
+                                previousRoute: CourseSearchList.routeNamed,
+                                index: index,
+                                courseShortListFirst: true,
+                                courseSearchModelCompare1Id:
+                                    _.courseSearchModelCompare1.id,
+                                courseSearchModelCompare2Id:
+                                    _.courseSearchModelCompare2.id,
+                                callbackForModelCompare: callbackModelCompare,
+                                callbackCompare: callbackCompare,
+                                //done
+                                iscompare: controller1.compareApply.value,
 
-                              courseSearchModel:
-                                  courseModelFilter.courseSearchList[index],
-                              callbackFunction: callbackCompleteDetailCourse,
-                              callbackShortListButton: CallbackShortListButton,
-                              finalShortListFirst: false,
-                            ),
-                          ],
-                        );
-                      }),
+                                courseSearchModel:
+                                    courseModelFilter.courseSearchList[index],
+                                callbackFunction: callbackCompleteDetailCourse,
+                                callbackShortListButton:
+                                    CallbackShortListButton,
+                                finalShortListFirst: false,
+                              ),
+                            ],
+                          );
+                        }),
+                  ),
                 ),
                 if (controller1.compareApply.value == true)
                   InkWell(

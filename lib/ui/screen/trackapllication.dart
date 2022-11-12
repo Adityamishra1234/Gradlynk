@@ -82,6 +82,7 @@ class _TrackApplicationState extends State<TrackApplication> {
               SizedBox(
                 height: 60,
                 child: ListView(
+                  // controller: ScrollController(),
                   scrollDirection: scrollDirection,
                   controller: scrollcontroller,
                   children: <Widget>[
@@ -157,127 +158,130 @@ class _TrackApplicationState extends State<TrackApplication> {
               minimum: const EdgeInsets.only(top: 35),
               child: SizedBox(
                 height: 40,
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                      height: 40,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        color: controller1.chooseIndex.value == 0
-                            ? ThemeConstants.bluecolor
-                            : ThemeConstants.whitecolor,
-                        border: Border.all(
+                child: ListView(
+                    controller: ScrollController(),
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                          height: 40,
+                          width: 170,
+                          decoration: BoxDecoration(
                             color: controller1.chooseIndex.value == 0
                                 ? ThemeConstants.bluecolor
-                                : ThemeConstants.TextColor),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                                : ThemeConstants.whitecolor,
+                            border: Border.all(
+                                color: controller1.chooseIndex.value == 0
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.TextColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              controller.setIndex(0);
+                            },
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Applicant Detail",
+                              maxLines: 1,
+                              textColor: controller1.chooseIndex.value == 0
+                                  ? ThemeConstants.whitecolor
+                                  : ThemeConstants.TextColor,
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 10,
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          controller.setIndex(0);
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Applicant Detail",
-                          maxLines: 1,
-                          textColor: controller1.chooseIndex.value == 0
-                              ? ThemeConstants.whitecolor
-                              : ThemeConstants.TextColor,
-                        ),
-                      )),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                      height: 40,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        color: controller1.chooseIndex.value == 1
-                            ? ThemeConstants.bluecolor
-                            : ThemeConstants.whitecolor,
-                        border: Border.all(
+                      Container(
+                          height: 40,
+                          width: 170,
+                          decoration: BoxDecoration(
                             color: controller1.chooseIndex.value == 1
                                 ? ThemeConstants.bluecolor
-                                : ThemeConstants.TextColor),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                                : ThemeConstants.whitecolor,
+                            border: Border.all(
+                                color: controller1.chooseIndex.value == 1
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.TextColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              controller.setIndex(1);
+                            },
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Course Detail",
+                              maxLines: 1,
+                              textColor: controller1.chooseIndex.value == 1
+                                  ? ThemeConstants.whitecolor
+                                  : ThemeConstants.TextColor,
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 10,
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          controller.setIndex(1);
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Course Detail",
-                          maxLines: 1,
-                          textColor: controller1.chooseIndex.value == 1
-                              ? ThemeConstants.whitecolor
-                              : ThemeConstants.TextColor,
-                        ),
-                      )),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                      height: 40,
-                      width: 170,
-                      decoration: BoxDecoration(
-                        color: controller1.chooseIndex.value == 2
-                            ? ThemeConstants.bluecolor
-                            : ThemeConstants.whitecolor,
-                        border: Border.all(
+                      Container(
+                          height: 40,
+                          width: 170,
+                          decoration: BoxDecoration(
                             color: controller1.chooseIndex.value == 2
                                 ? ThemeConstants.bluecolor
-                                : ThemeConstants.TextColor),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                                : ThemeConstants.whitecolor,
+                            border: Border.all(
+                                color: controller1.chooseIndex.value == 2
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.TextColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              controller.setIndex(2);
+                            },
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Application Detail",
+                              maxLines: 1,
+                              textColor: controller1.chooseIndex.value == 2
+                                  ? ThemeConstants.whitecolor
+                                  : ThemeConstants.TextColor,
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 10,
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          controller.setIndex(2);
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Application Detail",
-                          maxLines: 1,
-                          textColor: controller1.chooseIndex.value == 2
-                              ? ThemeConstants.whitecolor
-                              : ThemeConstants.TextColor,
-                        ),
-                      )),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                      height: 40,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: controller1.chooseIndex.value == 3
-                            ? ThemeConstants.bluecolor
-                            : ThemeConstants.whitecolor,
-                        border: Border.all(
+                      Container(
+                          height: 40,
+                          width: 200,
+                          decoration: BoxDecoration(
                             color: controller1.chooseIndex.value == 3
                                 ? ThemeConstants.bluecolor
-                                : ThemeConstants.TextColor),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
+                                : ThemeConstants.whitecolor,
+                            border: Border.all(
+                                color: controller1.chooseIndex.value == 3
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.TextColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              controller.setIndex(3);
+                            },
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Document checkList",
+                              maxLines: 1,
+                              textColor: controller1.chooseIndex.value == 3
+                                  ? ThemeConstants.whitecolor
+                                  : ThemeConstants.TextColor,
+                            ),
+                          )),
+                      const SizedBox(
+                        width: 10,
                       ),
-                      child: TextButton(
-                        onPressed: () {
-                          controller.setIndex(3);
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Document checkList",
-                          maxLines: 1,
-                          textColor: controller1.chooseIndex.value == 3
-                              ? ThemeConstants.whitecolor
-                              : ThemeConstants.TextColor,
-                        ),
-                      )),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                ]),
+                    ]),
               ),
             ),
           ),

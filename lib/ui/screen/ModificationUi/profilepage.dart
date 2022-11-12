@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/ModificationUi/workhistory.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ProfilePageCopy extends StatelessWidget {
   ProfilePageCopy({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class ProfilePageCopy extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
         body: GetBuilder<ProfilePageController>(
           builder: (_) => Container(
               color: ThemeConstants.whitecolor,

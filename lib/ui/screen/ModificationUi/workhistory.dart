@@ -18,6 +18,7 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        controller: ScrollController(),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

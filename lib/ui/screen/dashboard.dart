@@ -49,11 +49,12 @@ class _DashBoardState extends State<DashBoard> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: ListView(
+            controller: ScrollController(),
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SizedBox(
-                  height: 100,
+                  height: 105,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [

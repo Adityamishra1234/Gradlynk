@@ -10,6 +10,7 @@ class CourseDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
+        controller: ScrollController(),
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10, top: 15),

@@ -18,6 +18,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
       appBar: CustomAppBar("title"),
       drawer: CustomDrawer(),
       body: ListView(
+        controller: ScrollController(),
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10, top: 10),

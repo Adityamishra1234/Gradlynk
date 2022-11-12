@@ -14,6 +14,7 @@ class ApplicationDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
+        controller: ScrollController(),
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10),

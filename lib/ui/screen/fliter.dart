@@ -25,6 +25,7 @@ class Filter extends StatefulWidget {
 }
 
 class _FilterState extends State<Filter> {
+  // List<CheckBoxModel> favoriteMovies = [];
   String? previousRoute;
   List<String>? selectedUniversitylist = [];
   List<String>? selectedintakeMonth = [];
@@ -108,6 +109,7 @@ class _FilterState extends State<Filter> {
                                       10,
                                   color: ThemeConstants.whitecolor,
                                   child: ListView(
+                                    controller: ScrollController(),
                                     children: [
                                       if (courseModelFilter
                                               .filterModel.universityname !=
@@ -258,6 +260,7 @@ class _FilterState extends State<Filter> {
                                             child: TextButton(
                                                 onPressed: () async {
                                                   choosefilter = 17;
+                                                  indexRanking = 0;
 
                                                   if (itemsSelected != null) {
                                                     await loadingFilter();
@@ -641,13 +644,30 @@ class _FilterState extends State<Filter> {
   // Function
   Widget getFilterOption(int i) {
     List<String> budgetlist = [];
+    List<String> academicPercentage = [];
+
+    // create budget filter
     for (var i = 0; i < courseModelFilter.filterModel.budget.length; i++) {
       if (courseModelFilter.filterModel.budget[i].entries.first.value == true) {
         budgetlist
             .add(courseModelFilter.filterModel.budget[i].entries.first.key);
       }
     }
+
+// create academic Percentage filter
+    for (var i = 0;
+        i < courseModelFilter.filterModel.academicPercentage.length;
+        i++) {
+      if (courseModelFilter
+              .filterModel.academicPercentage[i].entries.first.value ==
+          true) {
+        academicPercentage.add(courseModelFilter
+            .filterModel.academicPercentage[i].entries.first.key);
+      }
+    }
+
     return ListView(
+      controller: ScrollController(),
       children: [
         //University Name
         if (i == 0)
@@ -683,7 +703,7 @@ class _FilterState extends State<Filter> {
 //Academic Percentage
         if (i == 3)
           CustomgroupCheckBoxCallBack(
-            data: const ["between 60-70", "between 50-60", "between 50"],
+            data: academicPercentage,
             callbackItemSelected: callback,
             itemSelectedlist: courseModelFilter
                     .filterModel.filterSelected.academicPercentageSelected ??
@@ -714,102 +734,7 @@ class _FilterState extends State<Filter> {
           ),
 
         //Select Ranking
-        if (i == 17)
-          CustomAutoSizeTextMontserrat(
-            text: "Ranking",
-            fontWeight: FontWeight.w500,
-          ),
-        const SizedBox(
-          height: 10,
-        ),
-        if (i == 17)
-          CustomDropDown(
-            text: "Ranking",
-            callbackFunction: callbackRanking,
-            model: const [
-              "Times Ranking",
-              "ARWU Ranking",
-              "US News Ranking",
-              "QS world Ranking"
-            ],
-            hint: "Ranking",
-            border: true,
-          ),
-        if (i == 17)
-          const SizedBox(
-            height: 10,
-          ),
-        if (i == 17)
-          CustomAutoSizeTextMontserrat(
-            text: "Selected Highest Ranking",
-            fontWeight: FontWeight.w500,
-          ),
-        if (indexRanking == 0)
-          CustomDropDown(
-            callbackFunction: callbackFirstRanking,
-            model: courseModelFilter.filterModel.timesRanking,
-            hint: "Times Ranking",
-            border: true,
-          ),
-        if (indexRanking == 1)
-          CustomDropDown(
-            callbackFunction: callbackFirstRanking,
-            model: courseModelFilter.filterModel.arwuNewsRanking,
-            hint: "ARWU News Ranking",
-            border: true,
-          ),
-        if (indexRanking == 2)
-          CustomDropDown(
-            callbackFunction: callbackFirstRanking,
-            model: courseModelFilter.filterModel.usNewsRanking,
-            hint: "US News Ranking",
-            border: true,
-          ),
-        if (indexRanking == 3)
-          CustomDropDown(
-            callbackFunction: callbackFirstRanking,
-            model: courseModelFilter.filterModel.qsWorldRanking,
-            hint: "QS world Ranking",
-            border: true,
-          ),
-        if (i == 17)
-          const SizedBox(
-            height: 10,
-          ),
-        if (i == 17)
-          CustomAutoSizeTextMontserrat(
-            text: "Select Lowest ranking",
-            fontWeight: FontWeight.w500,
-          ),
-        if (indexRanking == 0)
-          CustomDropDown(
-            callbackFunction: callbackSecondRanking,
-            model: courseModelFilter.filterModel.timesRanking,
-            hint: "Times Ranking",
-            border: true,
-          ),
-        if (indexRanking == 1)
-          CustomDropDown(
-            callbackFunction: callbackSecondRanking,
-            model: courseModelFilter.filterModel.arwuNewsRanking,
-            hint: "ARWU News Ranking",
-            border: true,
-          ),
-        if (indexRanking == 2)
-          CustomDropDown(
-            callbackFunction: callbackSecondRanking,
-            model: courseModelFilter.filterModel.usNewsRanking,
-            hint: "US News Ranking",
-            border: true,
-          ),
-        if (indexRanking == 3)
-          CustomDropDown(
-            callbackFunction: callbackSecondRanking,
-            model: courseModelFilter.filterModel.qsWorldRanking,
-            hint: "QS world Ranking",
-            border: true,
-          ),
-
+        if (i == 17) getRankingFilter(indexRanking),
         //   CustomgroupCheckBoxCallBack(
         //   data: courseModelFilter.filterModel.countryName,
         //               callbackItemSelected: callback,
@@ -935,7 +860,104 @@ class _FilterState extends State<Filter> {
     );
   }
 
-  List<CheckBoxModel> favoriteMovies = [];
+  Widget getRankingFilter(int i) {
+    return Column(
+      children: [
+        CustomAutoSizeTextMontserrat(
+          text: "Ranking",
+          fontWeight: FontWeight.w500,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        CustomDropDown(
+          text: "Ranking",
+          callbackFunction: callbackRanking,
+          model: const [
+            "Times Ranking",
+            "ARWU Ranking",
+            "US News Ranking",
+            "QS world Ranking"
+          ],
+          hint: "Ranking",
+          border: true,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        CustomAutoSizeTextMontserrat(
+          text: "Selected Highest Ranking",
+          fontWeight: FontWeight.w500,
+        ),
+        // Select Ranking
+        if (i == 0)
+          CustomDropDown(
+            callbackFunction: callbackFirstRanking,
+            model: courseModelFilter.filterModel.timesRanking,
+            hint: "Times Ranking",
+            border: true,
+          ),
+        if (i == 1)
+          CustomDropDown(
+            callbackFunction: callbackFirstRanking,
+            model: courseModelFilter.filterModel.arwuNewsRanking,
+            hint: "ARWU News Ranking",
+            border: true,
+          ),
+        if (i == 2)
+          CustomDropDown(
+            callbackFunction: callbackFirstRanking,
+            model: courseModelFilter.filterModel.usNewsRanking,
+            hint: "US News Ranking",
+            border: true,
+          ),
+        if (i == 3)
+          CustomDropDown(
+            callbackFunction: callbackFirstRanking,
+            model: courseModelFilter.filterModel.qsWorldRanking,
+            hint: "QS world Ranking",
+            border: true,
+          ),
+        const SizedBox(
+          height: 10,
+        ),
+        CustomAutoSizeTextMontserrat(
+          text: "Select Lowest ranking",
+          fontWeight: FontWeight.w500,
+        ),
+        if (i == 0)
+          CustomDropDown(
+            callbackFunction: callbackSecondRanking,
+            model: courseModelFilter.filterModel.timesRanking,
+            hint: "Times Ranking",
+            border: true,
+          ),
+        if (i == 1)
+          CustomDropDown(
+            callbackFunction: callbackSecondRanking,
+            model: courseModelFilter.filterModel.arwuNewsRanking,
+            hint: "ARWU News Ranking",
+            border: true,
+          ),
+        if (i == 2)
+          CustomDropDown(
+            callbackFunction: callbackSecondRanking,
+            model: courseModelFilter.filterModel.usNewsRanking,
+            hint: "US News Ranking",
+            border: true,
+          ),
+        if (i == 3)
+          CustomDropDown(
+            callbackFunction: callbackSecondRanking,
+            model: courseModelFilter.filterModel.qsWorldRanking,
+            hint: "QS world Ranking",
+            border: true,
+          ),
+      ],
+    );
+
+    //   CustomgroupCheckBoxCallBack(
+  }
 
   callback(varTopic) {
     print(varTopic);
