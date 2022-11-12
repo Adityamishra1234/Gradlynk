@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
@@ -50,7 +51,7 @@ class FilterController extends BaseController {
     update();
     filterModel = FilterModel();
     budget = data!.split(",");
-    budget!.removeAt(0);
+    budget.removeAt(0);
 
     more_30 = false;
     between_15_30 = false;
@@ -58,14 +59,14 @@ class FilterController extends BaseController {
     less_7 = false;
 
     if (budget.isNotEmpty) {
-      for (var i = 0; i < budget!.length; i++) {
-        if (budget![i] == "15-30 lac") {
+      for (var i = 0; i < budget.length; i++) {
+        if (budget[i] == "15-30 lac") {
           between_15_30 = true;
-        } else if (budget![i] == "7-15 Lac") {
+        } else if (budget[i] == "7-15 Lac") {
           between_7_15 = true;
-        } else if (budget![i] == "Below 7 Lac") {
+        } else if (budget[i] == "Below 7 Lac") {
           less_7 = true;
-        } else if (budget![i] == "30 Lac or More") {
+        } else if (budget[i] == "30 Lac or More") {
           more_30 = true;
         }
       }
@@ -80,21 +81,21 @@ class FilterController extends BaseController {
     update();
     filterModel = FilterModel();
     academicpercentage = data!.split(",");
-    academicpercentage!.removeAt(0);
+    academicpercentage.removeAt(0);
 
     between_60_70 = false;
     between_50_60 = false;
     between_50 = false;
     more_70 = false;
     if (academicpercentage.isNotEmpty) {
-      for (var i = 0; i < academicpercentage!.length; i++) {
-        if (academicpercentage![i] == "60%-70%") {
+      for (var i = 0; i < academicpercentage.length; i++) {
+        if (academicpercentage[i] == "60%-70%") {
           between_60_70 = true;
-        } else if (academicpercentage![i] == "50%-60%") {
+        } else if (academicpercentage[i] == "50%-60%") {
           between_50_60 = true;
-        } else if (academicpercentage![i] == "between 50") {
+        } else if (academicpercentage[i] == "between 50") {
           between_50 = true;
-        } else if (academicpercentage![i] == "70+") {
+        } else if (academicpercentage[i] == "70+") {
           more_70 = true;
         }
       }
@@ -104,7 +105,6 @@ class FilterController extends BaseController {
 
   getRanking(
       int? indexSelect, int? firstIndexValue, int? secondIndexValue) async {
-    List<CourseSearchModel> courseSearchModel2 = [];
     loadingfuncation.value = false;
     update();
     loadingRanking = true;
@@ -116,7 +116,6 @@ class FilterController extends BaseController {
   }
 
   getUniversity(String? data) {
-    List<CourseSearchModel> courseSearchModel2 = [];
     loadingfuncation.value = false;
     List<String> temp = [];
     update();
@@ -126,147 +125,149 @@ class FilterController extends BaseController {
 
     university = temp;
 
-    print(university);
+    if (kDebugMode) {
+      print(university);
+    }
     filter();
   }
 
   getOfferTAT(String? data) {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     offerTAT = data!.split(",");
-    offerTAT!.removeAt(0);
+    offerTAT.removeAt(0);
     filter();
   }
 
   getVisaTAT(String? data) {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     visaTAT = data!.split(",");
-    visaTAT!.removeAt(0);
+    visaTAT.removeAt(0);
     filter();
   }
 
   getIntakeMonth(String? data) {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     intakeMonth = data!.split(",");
-    intakeMonth!.removeAt(0);
+    intakeMonth.removeAt(0);
     filter();
   }
 
   getIntakeYear(String? data) {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     intakeYear = data!.split(",");
-    intakeYear!.removeAt(0);
+    intakeYear.removeAt(0);
     filter();
   }
 
   getInstituteLevel(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     instituteLevel = data!.split(",");
-    instituteLevel!.removeAt(0);
+    instituteLevel.removeAt(0);
     filter();
   }
 
   getScholarship(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     scholarship = data!.split(",");
-    scholarship!.removeAt(0);
+    scholarship.removeAt(0);
     filter();
   }
 
   getSiecPriority(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     siecPriority = data!.split(",");
-    siecPriority!.removeAt(0);
+    siecPriority.removeAt(0);
     filter();
   }
 
   getConditionalOffer(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     conditionaloffer = data!.split(",");
-    conditionaloffer!.removeAt(0);
+    conditionaloffer.removeAt(0);
     filter();
   }
 
   getBackLogAcceptable(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     backlogAcceptable = data!.split(",");
-    backlogAcceptable!.removeAt(0);
+    backlogAcceptable.removeAt(0);
     filter();
   }
 
   getApplicationFee(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     applicationfee = data!.split(",");
-    applicationfee!.removeAt(0);
+    applicationfee.removeAt(0);
     filter();
   }
 
   getplacementSandwich(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     placementSandwichYear = data!.split(",");
-    placementSandwichYear!.removeAt(0);
+    placementSandwichYear.removeAt(0);
     filter();
   }
 
   getSiecRepresent(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     siecRepresent = data!.split(",");
-    siecRepresent!.removeAt(0);
+    siecRepresent.removeAt(0);
     filter();
   }
 
   getCountryName(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     countryName = data!.split(",");
-    countryName!.removeAt(0);
+    countryName.removeAt(0);
     filter();
   }
 
   getInstitutePublicPrivate(String? data) async {
     loadingfuncation.value = false;
     update();
-    List<CourseSearchModel> courseSearchModel2 = [];
+
     filterModel = FilterModel();
     institutePublicPrivate = data!.split(",");
-    institutePublicPrivate!.removeAt(0);
+    institutePublicPrivate.removeAt(0);
     filter();
   }
 
@@ -463,12 +464,12 @@ class FilterController extends BaseController {
   filter() async {
     if (university.isNotEmpty) {
       courseSearchModel2 = [];
-      for (int i = 0; i < university!.length; i++) {
+      for (int i = 0; i < university.length; i++) {
         for (int j = 0;
             j < courseModelFilter.previousCourseSearchList.length;
             j++) {
           if (courseModelFilter.previousCourseSearchList[j].universityName ==
-              university![i]) {
+              university[i]) {
             courseSearchModel2
                 .add(courseModelFilter.previousCourseSearchList[j]);
           }
@@ -481,9 +482,9 @@ class FilterController extends BaseController {
     }
     if (offerTAT.isNotEmpty && offerTAT != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < offerTAT!.length; i++) {
+      for (int i = 0; i < offerTAT.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].offerTat == offerTAT![i]) {
+          if (courseSearchModel[j].offerTat == offerTAT[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -492,9 +493,9 @@ class FilterController extends BaseController {
     }
     if (visaTAT.isNotEmpty && visaTAT != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < visaTAT!.length; i++) {
+      for (int i = 0; i < visaTAT.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].visaTat == visaTAT![i]) {
+          if (courseSearchModel[j].visaTat == visaTAT[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -504,14 +505,14 @@ class FilterController extends BaseController {
     if (intakeMonth.isNotEmpty && intakeMonth != []) {
       courseSearchModel2 = [];
       List<int> indexSelected = [];
-      for (int i = 0; i < intakeMonth!.length; i++) {
+      for (int i = 0; i < intakeMonth.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
           if (courseSearchModel[j].intakeMonth != null) {
             List<String>? temp = courseSearchModel[j].intakeMonth!.split("|");
             temp = temp.toSet().toList();
 
             for (var k = 0; k < temp.length; k++) {
-              if (temp[k].toString() == intakeMonth![i].toString()) {
+              if (temp[k].toString() == intakeMonth[i].toString()) {
                 indexSelected.add(j);
               }
             }
@@ -527,13 +528,13 @@ class FilterController extends BaseController {
     if (intakeYear.isNotEmpty && intakeMonth != []) {
       courseSearchModel2 = [];
       List<int> indexSelected = [];
-      for (int i = 0; i < intakeYear!.length; i++) {
+      for (int i = 0; i < intakeYear.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
           if (courseSearchModel[j].intakeYear != null) {
             List<String>? temp = courseSearchModel[j].intakeYear!.split("|");
             temp = temp.toSet().toList();
             for (var k = 0; k < temp.length; k++) {
-              if (temp[k].toString() == intakeYear![i].toString()) {
+              if (temp[k].toString() == intakeYear[i].toString()) {
                 indexSelected.add(j);
               }
             }
@@ -548,9 +549,9 @@ class FilterController extends BaseController {
     }
     if (instituteLevel.isNotEmpty && instituteLevel != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < instituteLevel!.length; i++) {
+      for (int i = 0; i < instituteLevel.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].instituteType == instituteLevel![i]) {
+          if (courseSearchModel[j].instituteType == instituteLevel[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -559,9 +560,9 @@ class FilterController extends BaseController {
     }
     if (scholarship.isNotEmpty && scholarship != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < scholarship!.length; i++) {
+      for (int i = 0; i < scholarship.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].scholarship == scholarship![i]) {
+          if (courseSearchModel[j].scholarship == scholarship[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -570,9 +571,9 @@ class FilterController extends BaseController {
     }
     if (siecPriority.isNotEmpty && siecPriority != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < siecPriority!.length; i++) {
+      for (int i = 0; i < siecPriority.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].siecPriority == siecPriority![i]) {
+          if (courseSearchModel[j].siecPriority == siecPriority[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -581,9 +582,9 @@ class FilterController extends BaseController {
     }
     if (conditionaloffer.isNotEmpty && conditionaloffer != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < conditionaloffer!.length; i++) {
+      for (int i = 0; i < conditionaloffer.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].conditionalOffer == conditionaloffer![i]) {
+          if (courseSearchModel[j].conditionalOffer == conditionaloffer[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -592,10 +593,9 @@ class FilterController extends BaseController {
     }
     if (backlogAcceptable.isNotEmpty && backlogAcceptable != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < backlogAcceptable!.length; i++) {
+      for (int i = 0; i < backlogAcceptable.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].backlogsAcceptable ==
-              backlogAcceptable![i]) {
+          if (courseSearchModel[j].backlogsAcceptable == backlogAcceptable[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -604,9 +604,9 @@ class FilterController extends BaseController {
     }
     if (applicationfee.isNotEmpty && applicationfee != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < applicationfee!.length; i++) {
+      for (int i = 0; i < applicationfee.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].isApplicationFee == applicationfee![i]) {
+          if (courseSearchModel[j].isApplicationFee == applicationfee[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -615,10 +615,10 @@ class FilterController extends BaseController {
     }
     if (placementSandwichYear.isNotEmpty && placementSandwichYear != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < placementSandwichYear!.length; i++) {
+      for (int i = 0; i < placementSandwichYear.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
           if (courseSearchModel[j].isApplicationFee ==
-              placementSandwichYear![i]) {
+              placementSandwichYear[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -627,9 +627,9 @@ class FilterController extends BaseController {
     }
     if (siecRepresent.isNotEmpty && siecRepresent != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < siecRepresent!.length; i++) {
+      for (int i = 0; i < siecRepresent.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].siecRep == siecRepresent![i]) {
+          if (courseSearchModel[j].siecRep == siecRepresent[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -638,9 +638,9 @@ class FilterController extends BaseController {
     }
     if (countryName.isNotEmpty && countryName != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < countryName!.length; i++) {
+      for (int i = 0; i < countryName.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].countryName == countryName![i]) {
+          if (courseSearchModel[j].countryName == countryName[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -650,10 +650,10 @@ class FilterController extends BaseController {
     if (institutePublicPrivate.isNotEmpty && institutePublicPrivate != []) {
       courseSearchModel2 = [];
 
-      for (int i = 0; i < institutePublicPrivate!.length; i++) {
+      for (int i = 0; i < institutePublicPrivate.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
           if (courseSearchModel[j].instSubCategory ==
-              institutePublicPrivate![i]) {
+              institutePublicPrivate[i]) {
             courseSearchModel2.add(courseSearchModel[j]);
           }
         }
@@ -662,10 +662,10 @@ class FilterController extends BaseController {
     }
     if (budget.isNotEmpty && budget != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < budget!.length; i++) {
+      for (int i = 0; i < budget.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
           // three condition
-          print(j);
+
           if (courseSearchModel[j].annualTutionFeesInr != "null" &&
               courseSearchModel[j].annualTutionFeesInr != "") {
             if (between_15_30 == true) {
@@ -712,7 +712,7 @@ class FilterController extends BaseController {
 
     if (academicpercentage.isNotEmpty && academicpercentage != []) {
       courseSearchModel2 = [];
-      for (int i = 0; i < academicpercentage!.length; i++) {
+      for (int i = 0; i < academicpercentage.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
           if (courseSearchModel[j].academicRequire != null &&
               courseSearchModel[j].academicRequire != "") {

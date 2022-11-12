@@ -23,7 +23,7 @@ class CustomgroupCheckBoxCallBack extends StatelessWidget {
       favoriteMovies.add(CheckBoxModel(element, false));
     });
     if (itemSelectedlist != null) {
-      for (var i = 0; i < itemSelectedlist!.length; i++) {
+      for (var i = 0; i < itemSelectedlist.length; i++) {
         for (var j = 0; j < favoriteMovies.length; j++) {
           if (favoriteMovies[j].checkBoxModelName == itemSelectedlist[i]) {
             favoriteMovies[j].isSelected = true;

@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -35,7 +31,9 @@ class StudentPanelBase {
 
   httpPost(String url, var jsonData) async {
     // String? token = await getToken();
-    print("object");
+    if (kDebugMode) {
+      print("object");
+    }
     try {
       var response = await http.post(Uri.parse(url),
           headers: {
@@ -46,7 +44,9 @@ class StudentPanelBase {
       if (response.statusCode == 200) {
         return response;
       } else {
-        print(response.statusCode);
+        if (kDebugMode) {
+          print(response.statusCode);
+        }
         return null;
       }
     } catch (e) {

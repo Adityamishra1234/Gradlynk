@@ -1,18 +1,13 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
-import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
-import 'package:studentpanel/ui/screen/reviewshortlist.dart';
-import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
-import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/multiselectdropdown.dart';
@@ -756,15 +751,15 @@ class _CourseSearchState extends State<CourseSearch> {
     if (varTopic.toString().split(",")[0].toString() == true.toString()) {
       if (controller.courseSearchModelCompare1.id == null) {
         controller.courseSearchModelCompare1 = controller
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])];
         controller
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else if (controller.courseSearchModelCompare2.id == null) {
         controller.courseSearchModelCompare2 = controller
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])];
+            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])];
         controller
-            .courseSearchModel![int.parse(varTopic.toString().split(",")[1])]
+            .courseSearchModel[int.parse(varTopic.toString().split(",")[1])]
             .isSelected = true;
       } else {
         debugPrint(varTopic);
@@ -827,7 +822,6 @@ class _CourseSearchState extends State<CourseSearch> {
     // controller.setdropdown1(varTopic);
   }
   callbackModelCompare(varTopic) {
-    print(varTopic);
     if (varTopic == "Model1") {
       controller.courseSearchModelCompare1 = CourseSearchModel();
     } else {

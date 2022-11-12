@@ -13,8 +13,6 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:studentpanel/ui/models/visadetail.dart';
-import 'package:studentpanel/ui/screen/personalinformation.dart';
-import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class ApiServices extends StudentPanelBase {

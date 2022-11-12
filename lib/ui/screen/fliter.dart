@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/filtercontroller.dart';
-import 'package:studentpanel/ui/models/checkbox.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
@@ -180,9 +179,8 @@ class _FilterState extends State<Filter> {
                                                 )),
                                           ),
                                         ),
-                                      if (courseModelFilter
-                                              .filterModel.academicPercentage !=
-                                          null)
+                                      if (courseModelFilter.filterModel
+                                          .academicPercentage.isNotEmpty)
                                         Align(
                                           alignment:
                                               AlignmentDirectional.topStart,
@@ -204,8 +202,7 @@ class _FilterState extends State<Filter> {
                                           ),
                                         ),
                                       if (courseModelFilter
-                                              .filterModel.budget !=
-                                          null)
+                                          .filterModel.budget.isNotEmpty)
                                         Align(
                                           alignment:
                                               AlignmentDirectional.topStart,
@@ -960,7 +957,6 @@ class _FilterState extends State<Filter> {
   }
 
   callback(varTopic) {
-    print(varTopic);
     if (varTopic != null) itemsSelected = varTopic;
   }
 

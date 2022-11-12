@@ -1,4 +1,3 @@
-import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/detailcontroller.dart';
 
