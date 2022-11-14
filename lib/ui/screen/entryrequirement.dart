@@ -14,7 +14,6 @@ class EntryRequirement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
-      controller: ScrollController(),
       physics: const BouncingScrollPhysics(),
       children: [
         Padding(

@@ -11,7 +11,6 @@ class StepsToVisa extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
-      controller: ScrollController(),
       physics: BouncingScrollPhysics(),
       children: [
         Padding(

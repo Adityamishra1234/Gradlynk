@@ -17,7 +17,6 @@ class CourseInformation extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: ListView(
-        controller: ScrollController(),
         physics: const BouncingScrollPhysics(),
         children: [
           Padding(

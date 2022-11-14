@@ -16,7 +16,6 @@ class AboutCourse extends StatelessWidget {
         child: Container(
       color: ThemeConstants.whitecolor,
       child: ListView(
-        controller: ScrollController(),
         physics: const BouncingScrollPhysics(),
         children: [
           Padding(
