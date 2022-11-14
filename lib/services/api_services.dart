@@ -12,6 +12,7 @@ import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
@@ -434,6 +435,65 @@ class ApiServices extends StudentPanelBase {
       DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
       Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
+          snackPosition: SnackPosition.BOTTOM);
+
+      return jsondata;
+    }
+  }
+
+  getCourseNarrowProfile(String baseUrl, String endpoint) async {
+    var response;
+
+    try {
+      response = await httpPostNullBody(baseUrl + endpoint);
+      var jsondata = json.decode(response.body);
+
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  getCourseBroadFiledByNarrowField(String baseUrl, String endpoint) async {
+    var response;
+
+    try {
+      response = await httpPostNullBody(baseUrl + endpoint);
+      var jsondata = json.decode(response.body);
+
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  getCourseInformation(String baseUrl, String endpoint) async {
+    var response;
+
+    try {
+      response = await httpPostNullBody(baseUrl + endpoint);
+
+      if (response != null && response != "") {
+        List<ViewCourseInformation> viewCourseInformationList =
+            List<ViewCourseInformation>.from(json
+                .decode(response.body)
+                .map((x) => ViewCourseInformation.fromJson(x)));
+        return viewCourseInformationList;
+      } else {
+        return "";
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  courseInformationupdate(String baseUrl, String endpoint) async {
+    var response = await httpPostNullBody(baseUrl + endpoint);
+    if (response != null) {
+      var jsondata = json.decode(response.body);
+      DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+
+      Get.snackbar("Course detail added", dataUpdateStatus.status.toString(),
           snackPosition: SnackPosition.BOTTOM);
 
       return jsondata;

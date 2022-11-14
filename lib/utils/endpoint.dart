@@ -29,4 +29,14 @@ class Endpoints {
   static String? finalShortListDetail = 'get-shortlist-course?is_final=1&';
   static String? applicationDetail = 'get-application-detail?apli_id=';
   static String? personalDetailUpdate = 'update-personal-details';
+  static String? courseNarrowFieldProfile = 'get-all-course-narrow-field';
+  static String? courseBroadFieldByNarrowField =
+      'get-course-broad-field-by-narrow-field?narrow_field_id=';
+  static String? viewCourseInformation = 'view-course-information?enq_id=';
+  static String? addCourseInformationPart1 = "add-course-information?enq_id=";
+  static String? addCourseInformationPart2 = "&course_level=";
+}
+
+getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
+  return "&added_courses[$index][course_broad_id]=$courseBroadId&added_courses[$index][course_narrow_id]=$courseNarrowId";
 }

@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/courseinformationview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
@@ -260,8 +261,8 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
         ),
         // GetPage(
-        //   name: CustomDropDownSingle.routeNamed,
-        //   page: () => const CustomDropDownSingle(),
+        //   name: CourseInformationView.routeNamed,
+        //   page: () => const CourseInformationView(),
         //   transition: Transition.fade,
         // ),
       ],

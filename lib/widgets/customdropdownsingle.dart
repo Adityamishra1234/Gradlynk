@@ -4,7 +4,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomDropDownSingle extends StatefulWidget {
   bool? choosefieldtype;
-  List<String>? model;
+  List? model;
   String? initialSelectedValue;
   final Function callbackFunction;
   CustomDropDownSingle({
@@ -47,7 +47,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                   iconEnabledColor: ThemeConstants.whitecolor,
 
                   // Array list of items
-                  items: widget.model!.map((String items) {
+                  items: widget.model!.map((dynamic items) {
                     return DropdownMenuItem(
                       value: items,
                       child: Padding(
@@ -63,7 +63,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                     );
                   }).toList(),
 
-                  onChanged: (String? newValue) {
+                  onChanged: (dynamic? newValue) {
                     setState(() {
                       widget.initialSelectedValue = newValue!;
                       widget.callbackFunction(newValue);
