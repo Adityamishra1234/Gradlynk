@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
+import 'package:studentpanel/ui/controllers/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetailsview.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -33,6 +33,7 @@ class QualificationDetailsCopy extends StatelessWidget {
         builder: (controller1) => controller1.addedQualification.value == true
             ? QualificationDetailView(
                 callbackAddQualification: callback,
+                model: controller1.qualificationDetailsView,
               )
             : SingleChildScrollView(
                 reverse: true,
@@ -44,7 +45,8 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.bottomEnd,
                         child: TextButton(
                             onPressed: () {
-                              controller1.setaddedQualification(true);
+                              if (controller1.loadingViewQualification.value ==
+                                  true) controller1.setaddedQualification(true);
                             },
                             child: CustomAutoSizeTextMontserrat(
                               text: "View Details",

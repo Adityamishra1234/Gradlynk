@@ -1,11 +1,15 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
+import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class QualificationDetailsController extends BaseController {
   ApiServices apiServices = ApiServices();
+  QualificationDetailsViewModel qualificationDetailsView =
+      QualificationDetailsViewModel();
 
   //create dropdown field list / code list
   List highestQualificationList = [];
@@ -34,6 +38,7 @@ class QualificationDetailsController extends BaseController {
   RxBool loadingCity = false.obs;
   RxBool loadingAffiliation = false.obs;
   RxBool loadingInstitution = false.obs;
+  RxBool loadingViewQualification = false.obs;
 
   // set view Qualification/Add Qualification
   RxBool addedQualification = false.obs;
@@ -173,7 +178,15 @@ class QualificationDetailsController extends BaseController {
 
   addQualification() {}
 
-  viewQualification() {}
+  viewQualification() async {
+    var res = await apiServices.getQualificationDetails(
+        Endpoints.baseUrl!, Endpoints.viewQualificationDetails!);
+    if (res != null) {
+      qualificationDetailsView = res;
+      loadingViewQualification.value = true;
+      update();
+    }
+  }
 
   setaddedQualification(bool data) {
     addedQualification.value = data;

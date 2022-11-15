@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
@@ -584,7 +585,19 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getQualificationDetails() {}
+  getQualificationDetails(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      List<QualificationDetailsViewModel> qualificationDetailsView =
+          List<QualificationDetailsViewModel>.from(json
+              .decode(response.body)
+              .map((x) => QualificationDetailsViewModel.fromJson(x)));
+      return qualificationDetailsView;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   addQualificationDetails() {}
 }

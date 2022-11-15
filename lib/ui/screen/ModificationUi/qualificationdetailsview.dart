@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class QualificationDetailView extends StatelessWidget {
   Function callbackAddQualification;
-  QualificationDetailView({Key? key, required this.callbackAddQualification})
+  QualificationDetailsViewModel model = QualificationDetailsViewModel();
+  QualificationDetailView(
+      {Key? key, required this.callbackAddQualification, required this.model})
       : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
