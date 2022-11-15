@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -94,6 +95,16 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  getState2(String baseUrl, String endpoint) async {
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoint);
+      var jsondata = json.decode(response.body);
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
   getCity(String baseUrl, String endpoint, String statedata) async {
     var temp = statedata.split('[');
     var temp2 = temp[1].split(']')[0];
@@ -101,6 +112,19 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
+      var jsondata = json.decode(response.body);
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  getCity2(
+    String baseUrl,
+    String endpoint,
+  ) async {
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoint);
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
@@ -500,155 +524,67 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  // logout(String baseUrl, String endpoint) async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   var jsonData = {"token": sharedPreferences.getString("token")};
-  //   var response;
+  getHighestQualification(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      var jsondata = json.decode(response.body);
 
-  //   try {
-  //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       debugPrint(e);
-  //     }
-  //   }
-  //   if (response != null) {
-  //     return response.body;
-  //   } else {
-  //     return "Error";
-  //   }
-  // }
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
-  // updateUserHistory(String baseUrl, String endpoint, String reason) async {
-  //   // Cache Data
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   final formattedStr = formatDate(
-  //       DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
+  getStream(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      List<StreamDropDown> streamDropDown = List<StreamDropDown>.from(
+          json.decode(response.body).map((x) => StreamDropDown.fromJson(x)));
+      return streamDropDown;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
-  //   var jsondata =
-  //       json.decode(sharedPreferences.getString("UserModel").toString());
-  //   UserModel userModel = UserModel.fromJson(jsondata);
-  //   var response;
+  getEducationStatus(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      var jsondata = json.decode(response.body);
 
-  //   // Api Call
-  //   var jsonData = {
-  //     "user_id": userModel.user.id.toString(),
-  //     "login_time": sharedPreferences.getString("login_time"),
-  //     "logout_time": formattedStr,
-  //     "reason": reason
-  //   };
-  //   try {
-  //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       debugPrint(e);
-  //     }
-  //   }
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
-  //   if (response != null) {
-  //     return response.body;
-  //   } else {
-  //     return "Error";
-  //   }
-  // }
+  getAffiliation(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      var jsondata = json.decode(response.body);
 
-  // getUserHistory(String baseUrl, String endpoint) async {
-  //   List<UserHistory>? userHistoryList;
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   var jsonData = {"user_id": sharedPreferences.getString("id")};
-  //   var response;
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
-  //   try {
-  //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
-  //     if (response != null) {
-  //       List jsonResponse = json.decode(response.body);
-  //       userHistoryList =
-  //           jsonResponse.map((job) => UserHistory.fromJson(job)).toList();
-  //       return userHistoryList;
-  //     } else {
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       debugPrint(e);
-  //     }
-  //   }
-  // }
+  getInstitute(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      var jsondata = json.decode(response.body);
 
-  // newAndUpdates(String baseUrl, String endpoint) async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   List<NewsAndUpdate> newsAndUpdatelist;
-  //   var jsonData = {"user_id": sharedPreferences.getString("id")};
-  //   var response;
+      return jsondata;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
-  //   try {
-  //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       debugPrint(e);
-  //     }
-  //   }
+  getQualificationDetails() {}
 
-  //   if (response != null) {
-  //     List jsonResponse = json.decode(response.body);
-  //     newsAndUpdatelist =
-  //         jsonResponse.map((job) => NewsAndUpdate.fromJson(job)).toList();
-  //     return newsAndUpdatelist;
-  //   } else {
-  //     Get.snackbar("Dashboard Page Alert ", response.body);
-  //     return null;
-  //   }
-  // }
-
-  // upcomingEvents(String baseUrl, String endpoint) async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   var jsonData = {"user_id": sharedPreferences.getString("id")};
-  //   var response;
-
-  //   try {
-  //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       debugPrint(e);
-  //     }
-  //   }
-
-  //   List<UpcomingEvent> upcomingList;
-  //   if (response != null) {
-  //     List jsonResponse = json.decode(response.body);
-  //     upcomingList =
-  //         jsonResponse.map((job) => UpcomingEvent.fromJson(job)).toList();
-  //     return upcomingList;
-  //   } else {
-  //     Get.snackbar("Dashboard Page Alert ", response.body);
-  //     return null;
-  //   }
-  // }
-
-  // upcomingholidays(String baseUrl, String endpoint) async {
-  //   List<UpcomingHoliday> upComingHolidayList;
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   var jsonData = {"user_id": sharedPreferences.getString("id")};
-  //   var response;
-  //   try {
-  //     response = await crmBase!.httpPost(baseUrl + endpoint, jsonData);
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       debugPrint(e);
-  //     }
-  //   }
-
-  //   if (response != null) {
-  //     List jsonResponse = json.decode(response.body);
-  //     upComingHolidayList =
-  //         jsonResponse.map((job) => UpcomingHoliday.fromJson(job)).toList();
-  //     return upComingHolidayList;
-  //   } else {
-  //     Get.snackbar("Dashboard Page Alert ", response.body);
-  //     return null;
-  //   }
-  // }
-
-  // Notification For User is pending
-
+  addQualificationDetails() {}
 }

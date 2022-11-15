@@ -3,6 +3,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
+import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class WorkHistoryCopy extends StatefulWidget {
   const WorkHistoryCopy({Key? key}) : super(key: key);
@@ -21,43 +22,27 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
         controller: ScrollController(),
         children: [
           Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: TextButton(
+                  onPressed: () {},
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "View Details",
+                    fontSize: 14,
+                    textColor: ThemeConstants.orangeColor,
+                  )),
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
               alignment: AlignmentDirectional.topStart,
-              child: Row(
-                children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Name of Last Organisation",
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    textColor: ThemeConstants.TextColor,
-                  ),
-                  Spacer(),
-                  if (saveAndEdit == false)
-                    TextButton(
-                        onPressed: () {
-                          saveAndEdit = true;
-                          setState(() {});
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "save",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          textColor: ThemeConstants.bluecolor,
-                        )),
-                  if (saveAndEdit)
-                    TextButton(
-                        onPressed: () {
-                          saveAndEdit = false;
-                          setState(() {});
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "edit",
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          textColor: ThemeConstants.bluecolor,
-                        ))
-                ],
+              child: CustomAutoSizeTextMontserrat(
+                text: "Name of Last Organisation",
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                textColor: ThemeConstants.TextColor,
               ),
             ),
           ),
@@ -65,7 +50,6 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter name of last organisation",
                 filled: true,
@@ -94,7 +78,6 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter working from date",
                 filled: true,
@@ -123,7 +106,6 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter working till date",
                 filled: true,
@@ -148,21 +130,13 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Drop down Field",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+          SizedBox(
+            height: 50,
+            child: CustomDropDownSingle(
+              model: ["1", "2", "3"],
+              initialSelectedValue: "1",
+              choosefieldtype: false,
+              callbackFunction: callback,
             ),
           ),
           Padding(
@@ -181,7 +155,6 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your DEsignation",
                 filled: true,
@@ -206,17 +179,15 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
               ),
             ),
           ),
-
-          // SizedBox(
-          //   height: 60,
-          //   child: CustomDropDownProfilePage(
-          //     text: "test1",
-          //     callbackFunction: callback,
-          //     hint: 'Test',
-          //     model: ["1", "2", "3"],
-          //     choosefieldtype: saveAndEdit,
-          //   ),
-          // ),
+          SizedBox(
+            height: 50,
+            child: CustomDropDownSingle(
+              model: ["1", "2", "3"],
+              initialSelectedValue: "1",
+              choosefieldtype: false,
+              callbackFunction: callback,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
@@ -233,7 +204,6 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               textInputAction: TextInputAction.next,
-              readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter Income",
                 filled: true,
@@ -244,6 +214,33 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
                 ),
               ),
               style: ThemeConstants.montserrattextstyle,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Row(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, right: 20),
+                  child: SizedBox(
+                    width: 90,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          primary: ThemeConstants.bluecolor, // background
+                          onPrimary: ThemeConstants.bluecolor, // foreground
+                        ),
+                        onPressed: () async {
+                          // Api call
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Added",
+                          textColor: ThemeConstants.whitecolor,
+                        )),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

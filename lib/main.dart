@@ -250,11 +250,11 @@ class _MyAppState extends State<MyApp> {
           page: () => const CourseInformationCopy(),
           transition: Transition.fade,
         ),
-        GetPage(
-          name: QualificationDetailsCopy.routeNamed,
-          page: () => const QualificationDetailsCopy(),
-          transition: Transition.fade,
-        ),
+        // GetPage(
+        //   name: QualificationDetailsCopy.routeNamed,
+        //   page: () => const QualificationDetailsCopy(),
+        //   transition: Transition.fade,
+        // ),
         GetPage(
           name: WorkHistoryCopy.routeNamed,
           page: () => const WorkHistoryCopy(),

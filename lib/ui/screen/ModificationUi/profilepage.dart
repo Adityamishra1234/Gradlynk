@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/courseinformationview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/workhistory.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -520,7 +519,7 @@ class ProfilePageCopy extends StatelessWidget {
     // if (index == 0) {
     //   return SizedBox(
     //       height: MediaQuery.of(context).size.height - 175,
-    //       child: CourseInformationView());
+    //       child: const QualificationDetailView());
     // }
 
     if (index == 1) {
@@ -533,7 +532,7 @@ class ProfilePageCopy extends StatelessWidget {
     if (index == 2) {
       return SizedBox(
         height: MediaQuery.of(context).size.height - 175,
-        child: const QualificationDetailsCopy(),
+        child: QualificationDetailsCopy(),
       );
     }
 

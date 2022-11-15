@@ -35,8 +35,36 @@ class Endpoints {
   static String? viewCourseInformation = 'view-course-information?enq_id=';
   static String? addCourseInformationPart1 = "add-course-information?enq_id=";
   static String? addCourseInformationPart2 = "&course_level=";
+  static String? highestQualification = "get-course-level";
+  static String? viewCourseStream = "view-course-stream";
+  static String? instituteForCity = "get-institute-for-city?city_id=";
+  static String? affiliationForCountry =
+      "get-affiliation-for-country?country_id=";
+  static String? viewQualificationDetails =
+      "view-qualification-details?enq_id=";
+  static String? addQualification = "add-qualification-details/?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
   return "&added_courses[$index][course_broad_id]=$courseBroadId&added_courses[$index][course_narrow_id]=$courseNarrowId";
+}
+
+getAddQualificationPart2(
+  int index,
+  int? qualificationId,
+  String? courseName,
+  int cityId,
+  int stateId,
+  int countryId,
+  int reapperCount,
+  int grade,
+  int multiplier,
+  int percentage,
+  int paasingInstId,
+  int streamId,
+  int affiliationId,
+  String educationStatus,
+  int yearOfPassing,
+) {
+  return "&added_qualification[$index][qualification_id]=$qualificationId&added_qualification[$index][course_name]=$courseName&added_qualification[$index][city_id]=$cityId&added_qualification[$index][state_id]$stateId&added_qualification[$index][country_id]=$countryId&added_qualification[$index][reapper_count]=$reapperCount&added_qualification[$index][grade]=$grade&added_qualification[$index][multiplier]=$multiplier&added_qualification[$index][percentage]=$percentage&added_qualification[$index][passing_inst_id]=$paasingInstId&added_qualification[$index][stream_id]=$streamId&added_qualification[$index][affiliation_id]=$affiliationId&added_qualification[$index][education_status]=$educationStatus&added_qualification[$index][year_of_passing]=$yearOfPassing";
 }
