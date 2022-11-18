@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/englishtestdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/passportdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/relativeinformation.dart';
@@ -234,27 +235,33 @@ class ProfilePageCopy extends StatelessWidget {
                                               const SizedBox(
                                                 width: 8,
                                               ),
-                                              Container(
-                                                width: 110,
-                                                height: 35,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0)),
-                                                child: Row(
-                                                  children: [
-                                                    const Spacer(),
-                                                    CustomAutoSizeTextMontserrat(
-                                                      text: "English Test.",
-                                                      fontSize: 12,
-                                                      textColor: ThemeConstants
-                                                          .TextColor,
-                                                    ),
-                                                    const Icon(
-                                                        Icons.abc_outlined),
-                                                    const Spacer(),
-                                                  ],
+                                              InkWell(
+                                                onTap: () {
+                                                  _.getChooseIndex(4.obs);
+                                                },
+                                                child: Container(
+                                                  width: 110,
+                                                  height: 35,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  child: Row(
+                                                    children: [
+                                                      const Spacer(),
+                                                      CustomAutoSizeTextMontserrat(
+                                                        text: "English Test.",
+                                                        fontSize: 12,
+                                                        textColor:
+                                                            ThemeConstants
+                                                                .TextColor,
+                                                      ),
+                                                      const Icon(
+                                                          Icons.abc_outlined),
+                                                      const Spacer(),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                               const SizedBox(
@@ -622,7 +629,13 @@ class ProfilePageCopy extends StatelessWidget {
     if (index == 3) {
       return SizedBox(
         height: MediaQuery.of(context).size.height - 175,
-        child: const WorkHistoryCopy(),
+        child: WorkHistoryCopy(),
+      );
+    }
+    if (index == 4) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height - 175,
+        child: const EnglishTestDetails(),
       );
     }
     if (index == 6) {

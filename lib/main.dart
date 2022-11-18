@@ -255,11 +255,11 @@ class _MyAppState extends State<MyApp> {
         //   page: () => const QualificationDetailsCopy(),
         //   transition: Transition.fade,
         // ),
-        GetPage(
-          name: WorkHistoryCopy.routeNamed,
-          page: () => const WorkHistoryCopy(),
-          transition: Transition.fade,
-        ),
+        // GetPage(
+        //   name: WorkHistoryCopy.routeNamed,
+        //   page: () => const WorkHistoryCopy(),
+        //   transition: Transition.fade,
+        // ),
         // GetPage(
         //   name: CourseInformationView.routeNamed,
         //   page: () => const CourseInformationView(),

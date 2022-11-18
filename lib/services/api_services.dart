@@ -18,6 +18,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
+import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/workhistoryview.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
 
@@ -835,6 +837,84 @@ class ApiServices extends StudentPanelBase {
               .decode(response.body)
               .map((x) => QualificationDetailsViewModel.fromJson(x)));
       return qualificationDetailsView;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  // gender(String baseUrl, String endpoints) async {
+  //   var response;
+  //   try {
+  //     response = await httpPostNullBody(baseUrl + endpoints);
+  //     var jsondata = json.decode(response.body);
+
+  //     return jsondata;
+  //   } catch (e) {
+  //     Fluttertoast.showToast(
+  //         msg: e.toString(),
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: ThemeConstants.whitecolor,
+  //         textColor: ThemeConstants.blackcolor,
+  //         fontSize: 16.0);
+  //   }
+  // }
+
+  // otherTestDetails(String baseUrl, String endpoints) async {
+  //   var response;
+  //   try {
+  //     response = await httpPostNullBody(baseUrl + endpoints);
+  //     var jsondata = json.decode(response.body);
+
+  //     return jsondata;
+  //   } catch (e) {
+  //     Fluttertoast.showToast(
+  //         msg: e.toString(),
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: ThemeConstants.whitecolor,
+  //         textColor: ThemeConstants.blackcolor,
+  //         fontSize: 16.0);
+  //   }
+  // }
+
+  dropDown1(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      var jsondata = json.decode(response.body);
+
+      return jsondata;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getWorkHistoryView(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      List<WorkHistoryViewModel> workHistoryViewModel =
+          List<WorkHistoryViewModel>.from(json
+              .decode(response.body)
+              .map((x) => WorkHistoryViewModel.fromJson(x)));
+      return workHistoryViewModel;
     } catch (e) {
       Fluttertoast.showToast(
           msg: e.toString(),

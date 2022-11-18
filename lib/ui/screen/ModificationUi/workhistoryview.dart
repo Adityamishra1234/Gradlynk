@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/models/workhistoryview.dart';
 
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class WorkHistoryView extends StatelessWidget {
-  // Function callbackAddQualification;
-  // List<QualificationDetailsViewModel> model = [];
-  WorkHistoryView({
-    Key? key,
-    // required this.callbackAddQualification,
-  }) : super(key: key);
+  Function callbackAddWorkHistory;
+  List<WorkHistoryViewModel> model = [];
+  WorkHistoryView(
+      {Key? key, required this.callbackAddWorkHistory, required this.model})
+      : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
       height: 3,
@@ -31,10 +31,10 @@ class WorkHistoryView extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: TextButton(
                 onPressed: () {
-                  // callbackAddQualification(true);
+                  callbackAddWorkHistory(false);
                 },
                 child: CustomAutoSizeTextMontserrat(
-                  text: "Added Qualification",
+                  text: "Added WorkHistory",
                   fontSize: 12,
                   textColor: ThemeConstants.bluecolor,
                   fontWeight: FontWeight.bold,
@@ -44,7 +44,7 @@ class WorkHistoryView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height - 225,
           child: ListView.builder(
-              itemCount: 5,
+              itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(
@@ -79,7 +79,7 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].courseLevel",
+                                    text: model[index].applicantType.toString(),
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -94,7 +94,7 @@ class WorkHistoryView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Name of Last Organisation",
+                                      text: "Name of Last \n Organisation",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -105,7 +105,7 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].countryName",
+                                    text: model[index].organisationName,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -131,7 +131,7 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].streamName",
+                                    text: model[index].workingTill,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -157,7 +157,7 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      "model[index].countryName ?? " "",
+                                      model[index].jobIndustryName ?? "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -183,7 +183,7 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      "model[index].stateName ?? " "",
+                                      model[index].jobRole ?? "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -209,33 +209,7 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      "model[index].affiliationName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
-                              ]),
-                              rowSpacer,
-                              TableRow(children: [
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "City",
-                                      maxLines: 2,
-                                      textColor: ThemeConstants.blackcolor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].cityName ?? " "",
+                                      model[index].jobType ?? "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -261,7 +235,9 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      "model[index].universityName ?? " "",
+                                      model[index].income != null
+                                          ? model[index].income.toString()
+                                          : "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,

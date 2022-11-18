@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/workhistory.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/workhistoryview.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
-class WorkHistoryCopy extends StatefulWidget {
-  const WorkHistoryCopy({Key? key}) : super(key: key);
-  static const routeNamed = '/WorkHistoryCopy';
+class WorkHistoryCopy extends StatelessWidget {
+  WorkHistoryCopy({Key? key}) : super(key: key);
+  var controller = Get.put(WorkHistoryController());
 
-  @override
-  State<WorkHistoryCopy> createState() => _WorkHistoryCopyState();
-}
-
-class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
-  bool viewDetails = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: viewDetails == true
-          ? WorkHistoryView()
+    return GetBuilder<WorkHistoryController>(
+      builder: (_) => _.viewDetails.value == true
+          ? WorkHistoryView(
+              callbackAddWorkHistory: callbackViewDetails,
+              model: _.workHistoryViewModelList,
+            )
           : ListView(
               controller: ScrollController(),
               children: [
@@ -29,7 +26,9 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
                   child: Align(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _.setViewDetails(true);
+                        },
                         child: CustomAutoSizeTextMontserrat(
                           text: "View Details",
                           fontSize: 14,
@@ -136,10 +135,10 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
                 SizedBox(
                   height: 50,
                   child: CustomDropDownSingle(
-                    model: ["1", "2", "3"],
-                    initialSelectedValue: "1",
+                    model: _.industriesList,
+                    initialSelectedValue: _.industriesList[0],
                     choosefieldtype: false,
-                    callbackFunction: callback,
+                    callbackFunction: callbackIndustry,
                   ),
                 ),
                 Padding(
@@ -185,10 +184,10 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
                 SizedBox(
                   height: 50,
                   child: CustomDropDownSingle(
-                    model: ["1", "2", "3"],
-                    initialSelectedValue: "1",
+                    model: _.employmentTypeList,
+                    initialSelectedValue: _.employmentTypeList[0],
                     choosefieldtype: false,
-                    callbackFunction: callback,
+                    callbackFunction: callbackEmployementType,
                   ),
                 ),
                 Padding(
@@ -254,7 +253,18 @@ class _WorkHistoryCopyState extends State<WorkHistoryCopy> {
 
   // Funcation
   callback(varTopic) {
-    viewDetails = false;
-    setState(() {});
+    controller.setViewDetails(true);
+  }
+
+  callbackIndustry(varTopic) {
+    // controller.setViewDetails(true);
+  }
+
+  callbackEmployementType(varTopic) {
+    // controller.setViewDetails(true);
+  }
+
+  callbackViewDetails(varTopic) {
+    controller.setViewDetails(varTopic);
   }
 }

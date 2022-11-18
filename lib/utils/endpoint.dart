@@ -43,6 +43,21 @@ class Endpoints {
   static String? viewQualificationDetails =
       "view-qualification-details?enq_id=";
   static String? addQualification = "add-qualification-details/?enq_id=";
+  //
+  static String? gender = "get-gender";
+  static String? otherTestDetails = "get-other-exam-name";
+  static String? examName = "get-exam-name";
+  static String? examStatus = "get-exam-status";
+  static String? employmentType = "get-employement-type";
+  static String? yearofpassing = "get-year-of-passing";
+  static String? educationStatus = "get-education-status";
+  static String? maritalStatus = "get-marital-status";
+  static String? jobInstitute = "get-job-institute";
+  static String? viewEnglishTestDetails = "view-english-test-details?enq_id=";
+  static String? viewOtherTestDetails = "view-other-test-details?enq_id=";
+  static String? viewWorkHistoryDetails = "view-work-history-details?enq_id=";
+  static String? addworkHistoryDetailsPart1 =
+      "add-work-history-details?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
@@ -67,4 +82,15 @@ getAddQualificationPart2(
   int yearOfPassing,
 ) {
   return "&added_qualification[$index][qualification_id]=$qualificationId&added_qualification[$index][course_name]=$courseName&added_qualification[$index][city_id]=$cityId&added_qualification[$index][state_id]$stateId&added_qualification[$index][country_id]=$countryId&added_qualification[$index][reapper_count]=$reapperCount&added_qualification[$index][grade]=$grade&added_qualification[$index][multiplier]=$multiplier&added_qualification[$index][percentage]=$percentage&added_qualification[$index][passing_inst_id]=$paasingInstId&added_qualification[$index][stream_id]=$streamId&added_qualification[$index][affiliation_id]=$affiliationId&added_qualification[$index][education_status]=$educationStatus&added_qualification[$index][year_of_passing]=$yearOfPassing";
+}
+
+addWorkHistoryPart2(
+    String? workingFrom,
+    String? workingTill,
+    String? jobType,
+    String? organisationName,
+    String? jobRole,
+    String? jobIndustriesId,
+    String? income) {
+  return "&added_work_history[0][working_from]=$workingFrom&added_work_history[0][working_till]=$workingTill&added_work_history[0][job_type]=$jobType&added_work_history[0][organisation_name]=$organisationName&added_work_history[0][job_role]=$jobRole&added_work_history[0][job_industry_id]=$jobIndustriesId&added_work_history[0][income]=$income";
 }
