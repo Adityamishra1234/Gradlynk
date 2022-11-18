@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:studentpanel/ui/models/qualificationdetailview.dart';
+
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-class QualificationDetailView extends StatelessWidget {
-  Function callbackAddQualification;
-  List<QualificationDetailsViewModel> model = [];
-  QualificationDetailView(
-      {Key? key, required this.callbackAddQualification, required this.model})
-      : super(key: key);
+class TravingHistoryView extends StatelessWidget {
+  // Function callbackAddQualification;
+  // List<QualificationDetailsViewModel> model = [];
+  TravingHistoryView({
+    Key? key,
+    // required this.callbackAddQualification,
+  }) : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
       height: 3,
@@ -30,7 +31,7 @@ class QualificationDetailView extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: TextButton(
                 onPressed: () {
-                  callbackAddQualification(true);
+                  // callbackAddQualification(true);
                 },
                 child: CustomAutoSizeTextMontserrat(
                   text: "Added Qualification",
@@ -43,7 +44,7 @@ class QualificationDetailView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height - 225,
           child: ListView.builder(
-              itemCount: model.length,
+              itemCount: 5,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(
@@ -67,7 +68,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Highest Qualification",
+                                      text: "Action",
                                       maxLines: 2,
                                       fontSize: 12,
                                       textColor: ThemeConstants.blackcolor,
@@ -78,7 +79,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: model[index].courseLevel,
+                                    text: "model[index].courseLevel",
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -93,7 +94,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Qualification Name",
+                                      text: "Travel Status",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -104,7 +105,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: model[index].countryName,
+                                    text: "model[index].countryName",
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -119,7 +120,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Stream",
+                                      text: "Country",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -130,7 +131,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: model[index].streamName,
+                                    text: "model[index].streamName",
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -145,7 +146,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Country Of Education",
+                                      text: "Type Of Visa",
                                       maxLines: 2,
                                       fontSize: 12,
                                       textColor: ThemeConstants.blackcolor,
@@ -156,7 +157,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].countryName ?? "",
+                                      "model[index].countryName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -171,7 +172,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "State",
+                                      text: "Visa Status",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -182,7 +183,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].stateName ?? "",
+                                      "model[index].stateName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -197,7 +198,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Affiliation",
+                                      text: "Visa Number",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -208,7 +209,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].affiliationName ?? "",
+                                      "model[index].affiliationName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -223,7 +224,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "City",
+                                      text: "Application Number",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -234,7 +235,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].cityName ?? "",
+                                      "model[index].cityName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -249,7 +250,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Name of the Institution",
+                                      text: "Date of Application",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -260,7 +261,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].universityName ?? "",
+                                      "model[index].universityName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -275,10 +276,10 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Education status",
+                                      text: "Date of rejection",
                                       maxLines: 2,
-                                      fontSize: 12,
                                       textColor: ThemeConstants.blackcolor,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -286,7 +287,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].educationStatus ?? "",
+                                      "model[index].universityName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -301,7 +302,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Year of Passing/Incomplete",
+                                      text: "Reason Of rejection",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -312,11 +313,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].yearOfPassing != null
-                                          ? model[index]
-                                              .yearOfPassing
-                                              .toString()
-                                          : "",
+                                      "model[index].universityName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,
@@ -331,7 +328,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Percentage",
+                                      text: "Proof Available",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -342,37 +339,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: HtmlWidget(
-                                      model[index].yearOfPassing != null
-                                          ? model[index].percentage.toString()
-                                          : "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
-                              ]),
-                              rowSpacer,
-                              TableRow(children: [
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Re-appears/Blacklogs",
-                                      fontSize: 12,
-                                      maxLines: 2,
-                                      textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].yearOfPassing != null
-                                          ? model[index].reapperCount.toString()
-                                          : "",
+                                      "model[index].universityName ?? " "",
                                       textStyle: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w600,
                                         color: ThemeConstants.TextColor,

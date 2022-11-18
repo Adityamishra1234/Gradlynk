@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -25,7 +26,7 @@ class CourseInformationView extends StatelessWidget {
                     callbackFunction(true);
                   },
                   child: CustomAutoSizeTextMontserrat(
-                    text: " Course Added",
+                    text: "Course Added",
                     textColor: ThemeConstants.orangeColor,
                   )),
             ),
@@ -131,6 +132,7 @@ class CourseInformationView extends StatelessWidget {
                                       ),
                                       onPressed: () async {
                                         // Api call
+                                        Get.bottomSheet(Container());
                                       },
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Edit",

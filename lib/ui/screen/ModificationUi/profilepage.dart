@@ -4,7 +4,11 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/passportdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/relativeinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/travinghistory.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/travinghistoryview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/workhistory.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -194,6 +198,14 @@ class ProfilePageCopy extends StatelessWidget {
                                                   width: 110,
                                                   height: 35,
                                                   decoration: BoxDecoration(
+                                                      color:
+                                                          _.chooseIndex!
+                                                                      .value ==
+                                                                  3
+                                                              ? ThemeConstants
+                                                                  .bluecolor
+                                                              : ThemeConstants
+                                                                  .whitecolor,
                                                       border: Border.all(),
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -204,12 +216,16 @@ class ProfilePageCopy extends StatelessWidget {
                                                       CustomAutoSizeTextMontserrat(
                                                         text: "Work History",
                                                         fontSize: 12,
-                                                        textColor:
-                                                            ThemeConstants
+                                                        textColor: _.chooseIndex!
+                                                                    .value ==
+                                                                3
+                                                            ? ThemeConstants
+                                                                .whitecolor
+                                                            : ThemeConstants
                                                                 .TextColor,
                                                       ),
-                                                      const Icon(
-                                                          Icons.abc_outlined),
+                                                      // const Icon(
+                                                      //     Icons.abc_outlined),
                                                       const Spacer(),
                                                     ],
                                                   ),
@@ -272,61 +288,73 @@ class ProfilePageCopy extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      Positioned(
-                                        right: 0,
-                                        child: Opacity(
-                                          opacity: 0.5,
-                                          child: InkWell(
-                                            onTap: () {
-                                              final position = controller
-                                                  .position.maxScrollExtent;
-                                              controller.animateTo(
-                                                position,
-                                                duration:
-                                                    const Duration(seconds: 1),
-                                                curve: Curves.easeOut,
-                                              );
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                // gradient: LinearGradient(
-                                                //   colors: [
-                                                //     Colors.transparent,
-                                                //     ThemeConstants.lightgreycolor,
-                                                //   ],
-                                                // ),
-                                                color:
-                                                    ThemeConstants.whitecolor,
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topLeft: Radius.circular(100),
-                                                  bottomLeft:
-                                                      Radius.circular(100),
+                                      if (_.iconSwipe.value == false &&
+                                          _.iconSwipetrue.value == true)
+                                        Positioned(
+                                          right: 0,
+                                          child: Opacity(
+                                            opacity: 0.5,
+                                            child: InkWell(
+                                              onTap: () {
+                                                final position = controller
+                                                    .position.maxScrollExtent;
+                                                controller.animateTo(
+                                                  position,
+                                                  duration: const Duration(
+                                                      seconds: 1),
+                                                  curve: Curves.easeOut,
+                                                );
+                                                _.setIconSwipeTrue(false);
+                                                Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 1050),
+                                                    () {
+                                                  _.setIconSwipe(true);
+                                                  _.setIconSwipeTrue(true);
+                                                });
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  // gradient: LinearGradient(
+                                                  //   colors: [
+                                                  //     Colors.transparent,
+                                                  //     ThemeConstants.lightgreycolor,
+                                                  //   ],
+                                                  // ),
+                                                  color:
+                                                      ThemeConstants.whitecolor,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(100),
+                                                    bottomLeft:
+                                                        Radius.circular(100),
+                                                  ),
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black,
+                                                      blurRadius: 2.0,
+                                                      spreadRadius: 0.0,
+                                                      offset: Offset(2.0,
+                                                          2.0), // shadow direction: bottom right
+                                                    )
+                                                  ],
                                                 ),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                    color: Colors.black,
-                                                    blurRadius: 2.0,
-                                                    spreadRadius: 0.0,
-                                                    offset: Offset(2.0,
-                                                        2.0), // shadow direction: bottom right
-                                                  )
-                                                ],
-                                              ),
-                                              height: 80,
-                                              width: 35,
-                                              child: Center(
-                                                child: SizedBox(
-                                                  height: 20,
-                                                  width: 20,
-                                                  child: RotationTransition(
-                                                    turns:
-                                                        const AlwaysStoppedAnimation(
-                                                            0 / 360),
-                                                    child: SvgPicture.asset(
-                                                      "assets/icons/nextscreen_arrow.svg",
-                                                      color: ThemeConstants
-                                                          .blackcolor,
+                                                height: 80,
+                                                width: 35,
+                                                child: Center(
+                                                  child: SizedBox(
+                                                    height: 20,
+                                                    width: 20,
+                                                    child: RotationTransition(
+                                                      turns:
+                                                          const AlwaysStoppedAnimation(
+                                                              0 / 360),
+                                                      child: SvgPicture.asset(
+                                                        "assets/icons/nextscreen_arrow.svg",
+                                                        color: ThemeConstants
+                                                            .blackcolor,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -334,7 +362,6 @@ class ProfilePageCopy extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 );
@@ -350,82 +377,128 @@ class ProfilePageCopy extends StatelessWidget {
                                           children: [
                                             Row(
                                               children: [
-                                                Container(
-                                                  width: 100,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Passport",
-                                                        fontSize: 12,
-                                                        textColor:
-                                                            ThemeConstants
-                                                                .TextColor,
-                                                      ),
-                                                      const Icon(
-                                                          Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
+                                                InkWell(
+                                                  onTap: () {
+                                                    _.getChooseIndex(6.obs);
+                                                  },
+                                                  child: Container(
+                                                    width: 100,
+                                                    height: 35,
+                                                    decoration: BoxDecoration(
+                                                        color: _
+                                                                    .chooseIndex!
+                                                                    .value ==
+                                                                6
+                                                            ? ThemeConstants
+                                                                .bluecolor
+                                                            : ThemeConstants
+                                                                .whitecolor,
+                                                        border: Border.all(),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    10.0)),
+                                                    child: Row(
+                                                      children: [
+                                                        const Spacer(),
+                                                        CustomAutoSizeTextMontserrat(
+                                                          text: "Passport",
+                                                          fontSize: 12,
+                                                          textColor:
+                                                              _.chooseIndex!
+                                                                          .value ==
+                                                                      6
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
+                                                        ),
+                                                        // const Icon(
+                                                        //     Icons.abc_outlined),
+                                                        const Spacer(),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 const SizedBox(
                                                   width: 8,
                                                 ),
-                                                Container(
-                                                  width: 120,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Travel History",
-                                                        fontSize: 12,
-                                                        textColor:
-                                                            ThemeConstants
-                                                                .TextColor,
-                                                      ),
-                                                      const Icon(
-                                                          Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
+                                                InkWell(
+                                                  onTap: () {
+                                                    _.getChooseIndex(7.obs);
+                                                  },
+                                                  child: Container(
+                                                    width: 120,
+                                                    height: 35,
+                                                    decoration: BoxDecoration(
+                                                        color: _
+                                                                    .chooseIndex!
+                                                                    .value ==
+                                                                7
+                                                            ? ThemeConstants
+                                                                .bluecolor
+                                                            : ThemeConstants
+                                                                .whitecolor,
+                                                        border: Border.all(),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    10.0)),
+                                                    child: Row(
+                                                      children: [
+                                                        const Spacer(),
+                                                        CustomAutoSizeTextMontserrat(
+                                                          text:
+                                                              "Travel History",
+                                                          fontSize: 12,
+                                                          textColor:
+                                                              _.chooseIndex!
+                                                                          .value ==
+                                                                      7
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
+                                                        ),
+                                                        // const Icon(
+                                                        //     Icons.abc_outlined),
+                                                        const Spacer(),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                                 const SizedBox(
                                                   width: 8,
                                                 ),
-                                                Container(
-                                                  width: 110,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Relative Info.",
-                                                        fontSize: 12,
-                                                        textColor:
-                                                            ThemeConstants
-                                                                .TextColor,
-                                                      ),
-                                                      const Icon(
-                                                          Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
+                                                InkWell(
+                                                  onTap: () {
+                                                    _.getChooseIndex(8.obs);
+                                                  },
+                                                  child: Container(
+                                                    width: 110,
+                                                    height: 35,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    10.0)),
+                                                    child: Row(
+                                                      children: [
+                                                        const Spacer(),
+                                                        CustomAutoSizeTextMontserrat(
+                                                          text:
+                                                              "Relative Info.",
+                                                          fontSize: 12,
+                                                          textColor:
+                                                              ThemeConstants
+                                                                  .TextColor,
+                                                        ),
+                                                        const Icon(
+                                                            Icons.abc_outlined),
+                                                        const Spacer(),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -436,56 +509,67 @@ class ProfilePageCopy extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Positioned(
-                                        left: 0,
-                                        child: Opacity(
-                                          opacity: 0.5,
-                                          child: InkWell(
-                                            onTap: () {
-                                              final position = controller
-                                                  .position.minScrollExtent;
-                                              controller.animateTo(
-                                                position,
-                                                duration:
-                                                    const Duration(seconds: 1),
-                                                curve: Curves.easeOut,
-                                              );
-                                            },
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    ThemeConstants.whitecolor,
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topRight:
-                                                      Radius.circular(100),
-                                                  bottomRight:
-                                                      Radius.circular(100),
+                                      if (_.iconSwipe.value == true &&
+                                          _.iconSwipetrue.value == true)
+                                        Positioned(
+                                          left: 0,
+                                          child: Opacity(
+                                            opacity: 0.5,
+                                            child: InkWell(
+                                              onTap: () {
+                                                final position = controller
+                                                    .position.minScrollExtent;
+                                                controller.animateTo(
+                                                  position,
+                                                  duration: const Duration(
+                                                      seconds: 1),
+                                                  curve: Curves.easeOut,
+                                                );
+                                                _.setIconSwipeTrue(false);
+                                                Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 1050),
+                                                    () {
+                                                  _.setIconSwipe(false);
+                                                  _.setIconSwipeTrue(true);
+                                                });
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      ThemeConstants.whitecolor,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(100),
+                                                    bottomRight:
+                                                        Radius.circular(100),
+                                                  ),
+                                                  boxShadow: const [
+                                                    BoxShadow(
+                                                      color: Colors.black,
+                                                      blurRadius: 2.0,
+                                                      spreadRadius: 0.0,
+                                                      offset: Offset(2.0,
+                                                          2.0), // shadow direction: bottom right
+                                                    )
+                                                  ],
                                                 ),
-                                                boxShadow: const [
-                                                  BoxShadow(
-                                                    color: Colors.black,
-                                                    blurRadius: 2.0,
-                                                    spreadRadius: 0.0,
-                                                    offset: Offset(2.0,
-                                                        2.0), // shadow direction: bottom right
-                                                  )
-                                                ],
-                                              ),
-                                              height: 80,
-                                              width: 35,
-                                              child: Center(
-                                                child: SizedBox(
-                                                  height: 20,
-                                                  width: 20,
-                                                  child: RotationTransition(
-                                                    turns:
-                                                        const AlwaysStoppedAnimation(
-                                                            180 / 360),
-                                                    child: SvgPicture.asset(
-                                                      "assets/icons/nextscreen_arrow.svg",
-                                                      color: ThemeConstants
-                                                          .blackcolor,
+                                                height: 80,
+                                                width: 35,
+                                                child: Center(
+                                                  child: SizedBox(
+                                                    height: 20,
+                                                    width: 20,
+                                                    child: RotationTransition(
+                                                      turns:
+                                                          const AlwaysStoppedAnimation(
+                                                              180 / 360),
+                                                      child: SvgPicture.asset(
+                                                        "assets/icons/nextscreen_arrow.svg",
+                                                        color: ThemeConstants
+                                                            .blackcolor,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -493,7 +577,6 @@ class ProfilePageCopy extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                      ),
                                     ],
                                   ),
                                 );
@@ -540,6 +623,24 @@ class ProfilePageCopy extends StatelessWidget {
       return SizedBox(
         height: MediaQuery.of(context).size.height - 175,
         child: const WorkHistoryCopy(),
+      );
+    }
+    if (index == 6) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height - 175,
+        child: PassportDetails(),
+      );
+    }
+    if (index == 7) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height - 175,
+        child: TravingHistoryView(),
+      );
+    }
+    if (index == 8) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height - 175,
+        child: RelativeInformation(),
       );
     }
   }

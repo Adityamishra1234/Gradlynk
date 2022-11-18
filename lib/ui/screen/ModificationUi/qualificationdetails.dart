@@ -81,7 +81,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                                 ? controller1.highestQualificationList[0]
                                 : "No data",
                         choosefieldtype: false,
-                        callbackFunction: callback,
+                        callbackFunction: callbackHighestQualification,
                       ),
                     ),
                     Padding(
@@ -137,7 +137,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                                 ? controller1.streamList[0]
                                 : "No data",
                         choosefieldtype: false,
-                        callbackFunction: callback,
+                        callbackFunction: callbackStream,
                       ),
                     ),
                     Padding(
@@ -299,7 +299,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                                 ? controller1.countryList[0]
                                 : "No data",
                         choosefieldtype: false,
-                        callbackFunction: callback,
+                        callbackFunction: callbackCountry,
                       ),
                     ),
                     Padding(
@@ -326,7 +326,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                                 ? controller1.stateList[0]
                                 : "No data",
                         choosefieldtype: false,
-                        callbackFunction: callback,
+                        callbackFunction: callbackState,
                       ),
                     ),
                     Padding(
@@ -481,12 +481,67 @@ class QualificationDetailsCopy extends StatelessWidget {
     controller.setaddedQualification(false);
   }
 
-  callbackHighestQualification(varTopic) {}
-  callbackStream(varTopic) {}
-  callbackEducationStatus(varTopic) {}
+  callbackHighestQualification(varTopic) {
+    for (var i = 0; i < controller.highestQualificationList.length; i++) {
+      if (controller.highestQualificationList[i] == varTopic) {
+        highestQualificationSelected = controller.highestQualificationList[i];
+        highestQualificationSelectedID =
+            int.parse(controller.highestQualificationCode[i]);
+      }
+    }
+  }
+
+  callbackStream(varTopic) {
+    for (var i = 0; i < controller.streamList.length; i++) {
+      if (controller.streamList[i] == varTopic) {
+        highestQualificationSelected = controller.streamList[i];
+        highestQualificationSelectedID =
+            int.parse(controller.streamCode[i].toString());
+      }
+    }
+  }
+
+  // callbackEducationStatus(varTopic) {
+  //   for (var i = 0; i < controller.streamList.length; i++) {
+  //     if (controller.streamList[i] == varTopic) {
+  //       highestQualificationSelected = controller.streamList[i];
+  //       highestQualificationSelectedID =
+  //           int.parse(controller.streamCode[i].toString());
+  //     }
+  //   }
+  // }
+
   callbackYearOfPassing(varTopic) {}
-  callbackCountry(varTopic) {}
-  callbackState(varTopic) {}
-  callbackCity(varTopic) {}
+  callbackCountry(varTopic) {
+    for (var i = 0; i < controller.countryList.length; i++) {
+      if (controller.countryList[i] == varTopic) {
+        countrySelected = controller.countryList[i];
+        countrySelectedID = int.parse(controller.countryCode[i]);
+      }
+    }
+    controller.getState(countrySelectedID.toString());
+    controller.getAffiliation(countrySelectedID!);
+  }
+
+  callbackState(varTopic) {
+    for (var i = 0; i < controller.stateList.length; i++) {
+      if (controller.stateList[i] == varTopic) {
+        stateSelected = controller.stateList[i];
+        stateSelectedID = int.parse(controller.stateCode[i]);
+      }
+    }
+    controller.getCity(stateSelectedID!);
+  }
+
+  callbackCity(varTopic) {
+    for (var i = 0; i < controller.cityList.length; i++) {
+      if (controller.cityList == varTopic) {
+        citySelected = controller.cityList[i];
+        citySelectedID = controller.cityCode[i];
+      }
+    }
+    controller.geInstitution(citySelectedID!);
+  }
+
   callbackInstitution(varTopic) {}
 }

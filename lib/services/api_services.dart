@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:studentpanel/services/baseservice.dart';
+import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
@@ -17,41 +19,42 @@ import 'package:http/http.dart' as http;
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/theme.dart';
 
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
 
   login(String baseUrl, String endpoint, String number) async {
-    StudentPanel studentPanel;
-    var response;
-    var jsonData = {"mobile_number": number};
     try {
-      response = await http.post(Uri.parse(baseUrl + endpoint),
-
-          // Api Call
-          headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: jsonData);
+      StudentPanel studentPanel;
+      var response;
+      var jsonData = {"mobile_number": number};
+      response = await httpPost(baseUrl + endpoint, jsonData);
+      if (response != null) {
+        // debugPrint(response);
+        // SharedPreferences sharedPreferences =
+        //     await SharedPreferences.getInstance();
+        // final formattedStr = formatDate(
+        //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
+        // sharedPreferences.setString('UserModel', response.body);
+        var jsondata = json.decode(response.body);
+        studentPanel = StudentPanel.fromJson(jsondata);
+        // sharedPreferences.setString('token', userModel.token);
+        // sharedPreferences.setString("login_time", formattedStr);
+        // sharedPreferences.setString("id", userModel.user.id.toString());
+        return studentPanel;
+      } else {
+        return false;
+      }
     } catch (e) {
-      Get.snackbar("", response.body);
-    }
-    if (response != null) {
-      // debugPrint(response);
-      // SharedPreferences sharedPreferences =
-      //     await SharedPreferences.getInstance();
-      // final formattedStr = formatDate(
-      //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
-      // sharedPreferences.setString('UserModel', response.body);
-      var jsondata = json.decode(response.body);
-      studentPanel = StudentPanel.fromJson(jsondata);
-      // sharedPreferences.setString('token', userModel.token);
-      // sharedPreferences.setString("login_time", formattedStr);
-      // sharedPreferences.setString("id", userModel.user.id.toString());
-      return studentPanel;
-    } else {
-      return false;
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -65,7 +68,14 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -78,7 +88,14 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -92,7 +109,14 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -102,7 +126,14 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -116,7 +147,14 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -129,7 +167,14 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -144,7 +189,14 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -154,315 +206,438 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response.body);
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   getCourseSearch(String baseUrl, String endpoint, String enq_id) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
-
     List<CourseSearchModel> courseSearchModel = [];
-    print(baseUrl + endpoint + "&enq_id=" + enq_id);
+    try {
+      var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
 
-    var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
+      var jsondata = json.decode(response.body);
 
-    var jsondata = json.decode(response.body);
-
-    courseSearchModel = List<CourseSearchModel>.from(
-        json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
-    if (courseSearchModel.isNotEmpty) {
+      courseSearchModel = List<CourseSearchModel>.from(
+          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+      if (courseSearchModel.isNotEmpty) {
+        courseModelFilter.courseSearchList = courseSearchModel;
+        courseModelFilter.filterModel = await createFilter(courseModelFilter);
+      }
       courseModelFilter.courseSearchList = courseSearchModel;
-      courseModelFilter.filterModel = await createFilter(courseModelFilter);
-    }
-    courseModelFilter.courseSearchList = courseSearchModel;
 
-    return courseModelFilter;
+      return courseModelFilter;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
   }
 
   completeCourseDetail(String baseUrl, String endpoint) async {
     debugPrint(endpoint);
-    // try {
-    var response = await httpPostNullBody(baseUrl + endpoint);
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      debugPrint("object");
-      List<CompleteCourseDetail> completeCourseDetail =
-          List<CompleteCourseDetail>.from(json
-              .decode(response.body)
-              .map((x) => CompleteCourseDetail.fromJson(x)));
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoint);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
 
-      debugPrint("object");
-      return completeCourseDetail;
+        List<CompleteCourseDetail> completeCourseDetail =
+            List<CompleteCourseDetail>.from(json
+                .decode(response.body)
+                .map((x) => CompleteCourseDetail.fromJson(x)));
+
+        debugPrint("object");
+        return completeCourseDetail;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
-
-    // } catch (e) {
-    //   debugdebugPrint(e.toString());
-    // }
   }
 
   setShortListCourse(String? id, String? enq_id) async {
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
-    if (response != null) {
-      Get.snackbar("Course ShortList", response.body,
-          snackPosition: SnackPosition.BOTTOM);
+    try {
+      var response = await httpPostNullBody(
+          "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
+      if (response != null) {
+        Get.snackbar("Course ShortList", response.body,
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   setFinalShortListCourse(String? id, String? enq_id) async {
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
-    if (response != null) {
-      Get.snackbar("Course ShortList", response.body,
-          snackPosition: SnackPosition.BOTTOM);
+    try {
+      var response = await httpPostNullBody(
+          "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
+      if (response != null) {
+        Get.snackbar("Course ShortList", response.body,
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   courseShortlistDetail(String? enq_id) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
-
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
-          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
-      if (courseModelFilter.courseSearchList.isNotEmpty) {
-        courseModelFilter.filterModel = await createFilter(courseModelFilter);
-        for (var i = 0; i < courseModelFilter.courseSearchList.length; i++) {
-          courseModelFilter.courseSearchList[i].shortList = "1";
+    try {
+      var response = await httpPostNullBody(
+          "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        courseModelFilter.courseSearchList = List<CourseSearchModel>.from(json
+            .decode(response.body)
+            .map((x) => CourseSearchModel.fromJson(x)));
+        if (courseModelFilter.courseSearchList.isNotEmpty) {
+          courseModelFilter.filterModel = await createFilter(courseModelFilter);
+          for (var i = 0; i < courseModelFilter.courseSearchList.length; i++) {
+            courseModelFilter.courseSearchList[i].shortList = "1";
+          }
         }
       }
-    }
 
-    return courseModelFilter;
+      return courseModelFilter;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
   }
 
   getApplicationSummaryList(String enq_id) async {
-    List<ApplicationSummaryModel> applicationSummaryModel = [];
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
-    if (response != null) {
-      applicationSummaryModel = List<ApplicationSummaryModel>.from(json
-          .decode(response.body)
-          .map((x) => ApplicationSummaryModel.fromJson(x)));
+    try {
+      List<ApplicationSummaryModel> applicationSummaryModel = [];
+      var response = await httpPostNullBody(
+          "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
+      if (response != null) {
+        applicationSummaryModel = List<ApplicationSummaryModel>.from(json
+            .decode(response.body)
+            .map((x) => ApplicationSummaryModel.fromJson(x)));
+      }
+      return applicationSummaryModel;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
-    return applicationSummaryModel;
   }
 
   getFinalShortlist(String? endpoints, String enq_id) async {
-    CourseModelFilter courseModelFilter = CourseModelFilter();
-    List<CourseSearchModel> courseSearchModel = [];
-    var response = await httpPostNullBody(
-        "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
-          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
-      if (courseModelFilter.courseSearchList.isNotEmpty) {
-        courseModelFilter.filterModel = await createFilter(courseModelFilter);
+    try {
+      CourseModelFilter courseModelFilter = CourseModelFilter();
+      List<CourseSearchModel> courseSearchModel = [];
+      var response = await httpPostNullBody(
+          "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        courseModelFilter.courseSearchList = List<CourseSearchModel>.from(json
+            .decode(response.body)
+            .map((x) => CourseSearchModel.fromJson(x)));
+        if (courseModelFilter.courseSearchList.isNotEmpty) {
+          courseModelFilter.filterModel = await createFilter(courseModelFilter);
+        }
       }
+      return courseModelFilter;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
-    return courseModelFilter;
   }
 
   getApplicationDetails(String? endpoints, String? apli_id) async {
-    ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
-    var response =
-        await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
-      return applicationDetailModel;
+    try {
+      ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
+      var response =
+          await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
+        return applicationDetailModel;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   createFilter(CourseModelFilter courseModelFilter) {
-    FilterModel filterModel = FilterModel();
+    try {
+      FilterModel filterModel = FilterModel();
 
-    courseModelFilter.courseSearchList.forEach((element) {
-      if (element.intakeMonth != null && element.intakeMonth != "") {
-        filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
-      }
-      if (element.intakeYear != null && element.intakeYear != "") {
-        filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
-      }
-
-      if (element.academicRequire != null &&
-          element.academicRequire != "" &&
-          element.academicRequire != "null") {
-        if (double.parse(element.academicRequire!.split("-")[2]) >= 70) {
-          filterModel.academicPercentage[0].update("70+ %", (value) => true);
-        } else if (double.parse(element.academicRequire!.split("-")[2]) >= 60 &&
-            double.parse(element.academicRequire!.split("-")[2]) < 70) {
-          filterModel.academicPercentage[1].update("60%-70%", (value) => true);
-        } else if (double.parse(element.academicRequire!.split("-")[2]) >= 50 &&
-            double.parse(element.academicRequire!.split("-")[2]) < 60) {
-          filterModel.academicPercentage[2].update("50%-60%", (value) => true);
-        } else if (double.parse(element.academicRequire!.split("-")[2]) < 50) {
-          filterModel.academicPercentage[3]
-              .update("Between 50%", (value) => true);
+      courseModelFilter.courseSearchList.forEach((element) {
+        if (element.intakeMonth != null && element.intakeMonth != "") {
+          filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
         }
-      }
-
-      //   // !.add(element.allFeesInr ?? "");
-      // }
-      // if (element.academicRequire != null && element.academicRequire != "") {
-      //   filterModel.academicPercentage!
-      //       .add(element.academicRequire!.split("-")[1]);
-      // }
-      if (element.universityName != null && element.universityName != "") {
-        filterModel.universityname!.add(element.universityName ?? "");
-      }
-      if (element.instituteType != null && element.instituteType != "") {
-        filterModel.instituteLevel!.add(element.instituteType ?? "");
-      }
-      // if (element.academicRequire != null) {
-      //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
-      // }
-
-      if (element.annualTutionFeesInr != null &&
-          element.annualTutionFeesInr != "" &&
-          element.annualTutionFeesInr != "null") {
-        if (double.parse(element.annualTutionFeesInr!) < 700000) {
-          filterModel.budget[3].update("Below 7 Lac", (value) => true);
-        } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
-            double.parse(element.annualTutionFeesInr!) < 1500000) {
-          filterModel.budget[2].update("7-15 Lac", (value) => true);
-        } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
-            double.parse(element.annualTutionFeesInr!) < 3000000) {
-          filterModel.budget[1].update("15-30 lac", (value) => true);
-        } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
-          filterModel.budget[0].update("30 Lac or More", (value) => true);
+        if (element.intakeYear != null && element.intakeYear != "") {
+          filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
         }
-        // !.add(element.allFeesInr ?? "");
-      }
-      if (element.offerTat != null && element.offerTat != "") {
-        filterModel.offerTAT!.add(element.offerTat ?? "");
-      }
-      if (element.visaTat != null && element.visaTat != "") {
-        filterModel.visaTAT!.add(element.visaTat ?? "");
-      }
 
-      if (element.countryName != null && element.countryName != "") {
-        filterModel.countryName!.add(element.countryName ?? "");
-      }
-      if (element.instSubCategory != null && element.instSubCategory != "") {
-        filterModel.institutePrivatePublic!.add(element.instSubCategory ?? "");
-      }
-      if (element.arwuRank != null && element.arwuRank != "") {
-        filterModel.arwuNewsRanking!.add(element.arwuRank ?? "");
-      }
-      if (element.timesRank != null && element.timesRank != "") {
-        filterModel.timesRanking!.add(element.timesRank ?? "");
-      }
-      if (element.usNewsRank != null && element.usNewsRank != "") {
-        filterModel.usNewsRanking!.add(element.usNewsRank ?? "");
-      }
-      if (element.qsWorldRank != null && element.qsWorldRank != "") {
-        filterModel.qsWorldRanking!.add(element.qsWorldRank ?? "");
-      }
+        if (element.academicRequire != null &&
+            element.academicRequire != "" &&
+            element.academicRequire != "null") {
+          if (double.parse(element.academicRequire!.split("-")[2]) >= 70) {
+            filterModel.academicPercentage[0].update("70+ %", (value) => true);
+          } else if (double.parse(element.academicRequire!.split("-")[2]) >=
+                  60 &&
+              double.parse(element.academicRequire!.split("-")[2]) < 70) {
+            filterModel.academicPercentage[1]
+                .update("60%-70%", (value) => true);
+          } else if (double.parse(element.academicRequire!.split("-")[2]) >=
+                  50 &&
+              double.parse(element.academicRequire!.split("-")[2]) < 60) {
+            filterModel.academicPercentage[2]
+                .update("50%-60%", (value) => true);
+          } else if (double.parse(element.academicRequire!.split("-")[2]) <
+              50) {
+            filterModel.academicPercentage[3]
+                .update("Between 50%", (value) => true);
+          }
+        }
 
-      // Yes No
-      if (element.scholarship != null && element.scholarship != "") {
-        filterModel.scholarship!.add(element.scholarship ?? "");
-      }
-      if (element.siecPriority != null && element.siecPriority != "") {
-        filterModel.siecPriority!.add(element.siecPriority ?? "");
-      }
-      if (element.conditionalOffer != null && element.conditionalOffer != "") {
-        filterModel.conditionalOffer!.add(element.conditionalOffer ?? "");
-      }
-      if (element.backlogsAcceptable != null &&
-          element.backlogsAcceptable != "") {
-        filterModel.backlogAcceptable!.add(element.backlogsAcceptable ?? "");
-      }
-      if (element.isApplicationFee != null && element.isApplicationFee != "") {
-        filterModel.applicationfee!.add(element.isApplicationFee ?? "");
-      }
-      if (element.siecRep != null && element.siecRep != "") {
-        filterModel.siecRep!.add(element.siecRep ?? "");
-      }
-      // filterModel.placementSandwich!.add(element.place)
-    });
+        //   // !.add(element.allFeesInr ?? "");
+        // }
+        // if (element.academicRequire != null && element.academicRequire != "") {
+        //   filterModel.academicPercentage!
+        //       .add(element.academicRequire!.split("-")[1]);
+        // }
+        if (element.universityName != null && element.universityName != "") {
+          filterModel.universityname!.add(element.universityName ?? "");
+        }
+        if (element.instituteType != null && element.instituteType != "") {
+          filterModel.instituteLevel!.add(element.instituteType ?? "");
+        }
+        // if (element.academicRequire != null) {
+        //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
+        // }
 
-    filterModel.universityname = filterModel.universityname!.toSet().toList();
-    filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
-    // filterModel.academicPercentage =
-    //     filterModel.academicPercentage!.toSet().toList();
-    filterModel.budget = filterModel.budget.toSet().toList();
-    filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
-    filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
-    filterModel.countryName = filterModel.countryName!.toSet().toList();
-    filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
-    filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
-    // filterModel.academicPercentage =
-    //     filterModel.academicPercentage.toSet().toList();
-    filterModel.institutePrivatePublic =
-        filterModel.institutePrivatePublic!.toSet().toList();
+        if (element.annualTutionFeesInr != null &&
+            element.annualTutionFeesInr != "" &&
+            element.annualTutionFeesInr != "null") {
+          if (double.parse(element.annualTutionFeesInr!) < 700000) {
+            filterModel.budget[3].update("Below 7 Lac", (value) => true);
+          } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
+              double.parse(element.annualTutionFeesInr!) < 1500000) {
+            filterModel.budget[2].update("7-15 Lac", (value) => true);
+          } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
+              double.parse(element.annualTutionFeesInr!) < 3000000) {
+            filterModel.budget[1].update("15-30 lac", (value) => true);
+          } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
+            filterModel.budget[0].update("30 Lac or More", (value) => true);
+          }
+          // !.add(element.allFeesInr ?? "");
+        }
+        if (element.offerTat != null && element.offerTat != "") {
+          filterModel.offerTAT!.add(element.offerTat ?? "");
+        }
+        if (element.visaTat != null && element.visaTat != "") {
+          filterModel.visaTAT!.add(element.visaTat ?? "");
+        }
 
-    //Yes No
-    filterModel.scholarship = filterModel.scholarship!.toSet().toList();
-    filterModel.siecPriority = filterModel.siecPriority!.toSet().toList();
-    filterModel.conditionalOffer =
-        filterModel.conditionalOffer!.toSet().toList();
-    filterModel.backlogAcceptable =
-        filterModel.backlogAcceptable!.toSet().toList();
-    filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
-    filterModel.siecRep = filterModel.siecRep!.toSet().toList();
-    filterModel.timesRanking = filterModel.timesRanking!.toSet().toList();
-    if (filterModel.timesRanking != null) {
-      filterModel.timesRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
+        if (element.countryName != null && element.countryName != "") {
+          filterModel.countryName!.add(element.countryName ?? "");
+        }
+        if (element.instSubCategory != null && element.instSubCategory != "") {
+          filterModel.institutePrivatePublic!
+              .add(element.instSubCategory ?? "");
+        }
+        if (element.arwuRank != null && element.arwuRank != "") {
+          filterModel.arwuNewsRanking!.add(element.arwuRank ?? "");
+        }
+        if (element.timesRank != null && element.timesRank != "") {
+          filterModel.timesRanking!.add(element.timesRank ?? "");
+        }
+        if (element.usNewsRank != null && element.usNewsRank != "") {
+          filterModel.usNewsRanking!.add(element.usNewsRank ?? "");
+        }
+        if (element.qsWorldRank != null && element.qsWorldRank != "") {
+          filterModel.qsWorldRanking!.add(element.qsWorldRank ?? "");
+        }
+
+        // Yes No
+        if (element.scholarship != null && element.scholarship != "") {
+          filterModel.scholarship!.add(element.scholarship ?? "");
+        }
+        if (element.siecPriority != null && element.siecPriority != "") {
+          filterModel.siecPriority!.add(element.siecPriority ?? "");
+        }
+        if (element.conditionalOffer != null &&
+            element.conditionalOffer != "") {
+          filterModel.conditionalOffer!.add(element.conditionalOffer ?? "");
+        }
+        if (element.backlogsAcceptable != null &&
+            element.backlogsAcceptable != "") {
+          filterModel.backlogAcceptable!.add(element.backlogsAcceptable ?? "");
+        }
+        if (element.isApplicationFee != null &&
+            element.isApplicationFee != "") {
+          filterModel.applicationfee!.add(element.isApplicationFee ?? "");
+        }
+        if (element.siecRep != null && element.siecRep != "") {
+          filterModel.siecRep!.add(element.siecRep ?? "");
+        }
+        // filterModel.placementSandwich!.add(element.place)
       });
-    }
 
-    if (filterModel.arwuNewsRanking != null) {
-      filterModel.arwuNewsRanking =
-          filterModel.arwuNewsRanking!.toSet().toList();
-      filterModel.arwuNewsRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
-      });
-    }
-    if (filterModel.usNewsRanking != null) {
-      filterModel.usNewsRanking = filterModel.usNewsRanking!.toSet().toList();
-      filterModel.usNewsRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
-      });
-    }
-    if (filterModel.qsWorldRanking != null) {
-      filterModel.qsWorldRanking = filterModel.qsWorldRanking!.toSet().toList();
-      filterModel.qsWorldRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
-      });
-    }
+      filterModel.universityname = filterModel.universityname!.toSet().toList();
+      filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
+      // filterModel.academicPercentage =
+      //     filterModel.academicPercentage!.toSet().toList();
+      filterModel.budget = filterModel.budget.toSet().toList();
+      filterModel.offerTAT = filterModel.offerTAT!.toSet().toList();
+      filterModel.visaTAT = filterModel.visaTAT!.toSet().toList();
+      filterModel.countryName = filterModel.countryName!.toSet().toList();
+      filterModel.intakeMonth = filterModel.intakeMonth!.toSet().toList();
+      filterModel.intakeYear = filterModel.intakeYear!.toSet().toList();
+      // filterModel.academicPercentage =
+      //     filterModel.academicPercentage.toSet().toList();
+      filterModel.institutePrivatePublic =
+          filterModel.institutePrivatePublic!.toSet().toList();
 
-    return filterModel;
+      //Yes No
+      filterModel.scholarship = filterModel.scholarship!.toSet().toList();
+      filterModel.siecPriority = filterModel.siecPriority!.toSet().toList();
+      filterModel.conditionalOffer =
+          filterModel.conditionalOffer!.toSet().toList();
+      filterModel.backlogAcceptable =
+          filterModel.backlogAcceptable!.toSet().toList();
+      filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
+      filterModel.siecRep = filterModel.siecRep!.toSet().toList();
+      filterModel.timesRanking = filterModel.timesRanking!.toSet().toList();
+      if (filterModel.timesRanking != null) {
+        filterModel.timesRanking!.sort((a, b) {
+          return int.parse(a).compareTo(int.parse(b));
+        });
+      }
+
+      if (filterModel.arwuNewsRanking != null) {
+        filterModel.arwuNewsRanking =
+            filterModel.arwuNewsRanking!.toSet().toList();
+        filterModel.arwuNewsRanking!.sort((a, b) {
+          return int.parse(a).compareTo(int.parse(b));
+        });
+      }
+      if (filterModel.usNewsRanking != null) {
+        filterModel.usNewsRanking = filterModel.usNewsRanking!.toSet().toList();
+        filterModel.usNewsRanking!.sort((a, b) {
+          return int.parse(a).compareTo(int.parse(b));
+        });
+      }
+      if (filterModel.qsWorldRanking != null) {
+        filterModel.qsWorldRanking =
+            filterModel.qsWorldRanking!.toSet().toList();
+        filterModel.qsWorldRanking!.sort((a, b) {
+          return int.parse(a).compareTo(int.parse(b));
+        });
+      }
+
+      return filterModel;
+    } catch (e) {
+      throw Exception("Try after some time");
+    }
   }
 
   getVisaDetail(String? endpoint) async {
-    VisaDetailModel visaDetailModel = VisaDetailModel();
-    var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      visaDetailModel = VisaDetailModel.fromJson(jsondata);
-      return visaDetailModel;
+    try {
+      VisaDetailModel visaDetailModel = VisaDetailModel();
+      var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        visaDetailModel = VisaDetailModel.fromJson(jsondata);
+        return visaDetailModel;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   personalInformationDataUpdate(
       PersonalInformationModel personalInformationModel,
       String? endpoint) async {
-    String jsonData = json.encode(personalInformationModel);
-    var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+    try {
+      String jsonData = json.encode(personalInformationModel);
+      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
-      Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
-          snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
 
-      return jsondata;
+        return jsondata;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -475,7 +650,14 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -488,7 +670,14 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -497,31 +686,46 @@ class ApiServices extends StudentPanelBase {
 
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
-
       if (response != null && response != "") {
         List<ViewCourseInformation> viewCourseInformationList =
             List<ViewCourseInformation>.from(json
                 .decode(response.body)
                 .map((x) => ViewCourseInformation.fromJson(x)));
         return viewCourseInformationList;
-      } else {
-        return "";
       }
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   courseInformationupdate(String baseUrl, String endpoint) async {
-    var response = await httpPostNullBody(baseUrl + endpoint);
-    if (response != null) {
-      var jsondata = json.decode(response.body);
-      DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoint);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
-      Get.snackbar("Course detail added", dataUpdateStatus.status.toString(),
-          snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar("Course detail added", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
 
-      return jsondata;
+        return jsondata;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -533,7 +737,14 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -545,7 +756,14 @@ class ApiServices extends StudentPanelBase {
           json.decode(response.body).map((x) => StreamDropDown.fromJson(x)));
       return streamDropDown;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -557,7 +775,14 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -565,11 +790,20 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      var jsondata = json.decode(response.body);
-
-      return jsondata;
+      List<AffiliationDropDownModel> affiliationDropDown =
+          List<AffiliationDropDownModel>.from(json
+              .decode(response.body)
+              .map((x) => AffiliationDropDownModel.fromJson(x)));
+      return affiliationDropDown;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -581,7 +815,14 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
@@ -595,11 +836,16 @@ class ApiServices extends StudentPanelBase {
               .map((x) => QualificationDetailsViewModel.fromJson(x)));
       return qualificationDetailsView;
     } catch (e) {
-      debugPrint(e.toString());
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 
   addQualificationDetails() {}
 }
-// aman test
-

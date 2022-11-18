@@ -8,6 +8,9 @@ class ProfilePageController extends GetxController with StateMixin<UserModel> {
   //Create Local Screen Variable
   DropDownModel? dropDownModel;
 
+  RxBool iconSwipe = false.obs;
+  RxBool iconSwipetrue = true.obs;
+
   //Using For Loading Progress
   RxString? swipeDirection = "left".obs;
   RxInt? chooseIndex = 0.obs;
@@ -33,6 +36,15 @@ class ProfilePageController extends GetxController with StateMixin<UserModel> {
     update();
   }
 
+  setIconSwipe(bool data) {
+    iconSwipe.value = data;
+    update();
+  }
+
+  setIconSwipeTrue(bool data) {
+    iconSwipetrue.value = data;
+    update();
+  }
   // setdropdown1(String? data) {
   //   dropdown1 = data!.obs;
   //   update();

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
@@ -8,8 +9,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 
 class QualificationDetailsController extends BaseController {
   ApiServices apiServices = ApiServices();
-  QualificationDetailsViewModel qualificationDetailsView =
-      QualificationDetailsViewModel();
+  List<QualificationDetailsViewModel> qualificationDetailsView = [];
 
   //create dropdown field list / code list
   List highestQualificationList = [];
@@ -48,6 +48,7 @@ class QualificationDetailsController extends BaseController {
     getHighestQualification();
     getStream();
     getCountryOfEducation();
+    viewQualification("78623");
     super.onInit();
   }
 
@@ -105,6 +106,8 @@ class QualificationDetailsController extends BaseController {
   }
 
   getState(String countryId) async {
+    stateList = [];
+    stateCode = [];
     var res = await apiServices.getState2(
         Endpoints.baseUrl!, Endpoints.state! + countryId);
     if (res != null) {
@@ -141,19 +144,19 @@ class QualificationDetailsController extends BaseController {
   }
 
   getAffiliation(int countryId) async {
+    affiliationList = [];
+    affiliationCode = [];
+    List<AffiliationDropDownModel> affiliationDropDown = [];
     var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
         Endpoints.affiliationForCountry! + countryId.toString());
     if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        affiliationList.add(element);
+      affiliationDropDown = res;
+      affiliationDropDown.forEach((element) {
+        affiliationList.add(element.affiliationName);
+        affiliationCode.add(element.id);
+        loadingAffiliation = true.obs;
       });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        affiliationCode.add(element.toString());
-      });
-      loadingAffiliation = true.obs;
+
       update();
     }
   }
@@ -178,9 +181,9 @@ class QualificationDetailsController extends BaseController {
 
   addQualification() {}
 
-  viewQualification() async {
+  viewQualification(String enq_id) async {
     var res = await apiServices.getQualificationDetails(
-        Endpoints.baseUrl!, Endpoints.viewQualificationDetails!);
+        Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enq_id);
     if (res != null) {
       qualificationDetailsView = res;
       loadingViewQualification.value = true;

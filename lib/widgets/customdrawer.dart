@@ -5,10 +5,11 @@ import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/finalshortlist.dart';
+import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/linearprogress.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({Key? key}) : super(key: key);
@@ -169,6 +170,48 @@ class CustomDrawer extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Search",
+                          ),
+                        ),
+                      )),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: InkWell(
+                        highlightColor: ThemeConstants.whitecolor,
+                        onTap: () {
+                          Get.toNamed(ReviewShortList.routeNamed);
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          width: MediaQuery.of(context).size.width,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Review Course",
+                          ),
+                        ),
+                      )),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: InkWell(
+                        highlightColor: ThemeConstants.whitecolor,
+                        onTap: () {
+                          Get.toNamed(FinalShortList.routeNamed);
+                        },
+                        child: SizedBox(
+                          height: 30,
+                          width: MediaQuery.of(context).size.width,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Final Course",
                           ),
                         ),
                       )),

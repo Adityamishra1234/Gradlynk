@@ -124,10 +124,15 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
                                   onPrimary: ThemeConstants.whitecolor,
                                   // foreground
                                 ),
-                                onPressed: () {
-                                  viewDetails = true;
-                                  setState(() {});
-                                },
+                                onPressed: controller1
+                                            .loadingViewCourseInformation
+                                            .value ==
+                                        true
+                                    ? () {
+                                        viewDetails = true;
+                                        setState(() {});
+                                      }
+                                    : null,
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "View Detail",
                                   textColor: ThemeConstants.TextColor,

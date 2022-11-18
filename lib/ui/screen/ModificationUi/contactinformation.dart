@@ -40,7 +40,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      reverse: true,
+      reverse: false,
       child: Column(
         children: [
           Padding(

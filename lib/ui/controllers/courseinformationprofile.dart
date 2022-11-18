@@ -101,6 +101,8 @@ class CourseInformationProfileController extends BaseController {
     print(endpoint);
     var res = await apiServices.courseInformationupdate(
         Endpoints.baseUrl!, endpoint!);
+    loadingViewCourseInformation.value = true;
+    update();
   }
 
   callbackCourseLevel(String? data) {
