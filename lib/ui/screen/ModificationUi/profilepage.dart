@@ -11,6 +11,7 @@ import 'package:studentpanel/ui/screen/ModificationUi/relativeinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/travinghistory.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/travinghistoryview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/workhistory.dart';
+import 'package:studentpanel/ui/screen/othertestdetails.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -243,6 +244,14 @@ class ProfilePageCopy extends StatelessWidget {
                                                   width: 110,
                                                   height: 35,
                                                   decoration: BoxDecoration(
+                                                      color:
+                                                          _.chooseIndex!
+                                                                      .value ==
+                                                                  4
+                                                              ? ThemeConstants
+                                                                  .bluecolor
+                                                              : ThemeConstants
+                                                                  .whitecolor,
                                                       border: Border.all(),
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -253,12 +262,16 @@ class ProfilePageCopy extends StatelessWidget {
                                                       CustomAutoSizeTextMontserrat(
                                                         text: "English Test.",
                                                         fontSize: 12,
-                                                        textColor:
-                                                            ThemeConstants
+                                                        textColor: _.chooseIndex!
+                                                                    .value ==
+                                                                4
+                                                            ? ThemeConstants
+                                                                .whitecolor
+                                                            : ThemeConstants
                                                                 .TextColor,
                                                       ),
-                                                      const Icon(
-                                                          Icons.abc_outlined),
+                                                      // const Icon(
+                                                      //     Icons.abc_outlined),
                                                       const Spacer(),
                                                     ],
                                                   ),
@@ -267,27 +280,45 @@ class ProfilePageCopy extends StatelessWidget {
                                               const SizedBox(
                                                 width: 8,
                                               ),
-                                              Container(
-                                                width: 110,
-                                                height: 35,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0)),
-                                                child: Row(
-                                                  children: [
-                                                    const Spacer(),
-                                                    CustomAutoSizeTextMontserrat(
-                                                      text: "Other Text",
-                                                      fontSize: 12,
-                                                      textColor: ThemeConstants
-                                                          .TextColor,
-                                                    ),
-                                                    const Icon(
-                                                        Icons.abc_outlined),
-                                                    const Spacer(),
-                                                  ],
+                                              InkWell(
+                                                onTap: () {
+                                                  _.getChooseIndex(5.obs);
+                                                },
+                                                child: Container(
+                                                  width: 110,
+                                                  height: 35,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          _.chooseIndex!
+                                                                      .value ==
+                                                                  5
+                                                              ? ThemeConstants
+                                                                  .bluecolor
+                                                              : ThemeConstants
+                                                                  .whitecolor,
+                                                      border: Border.all(),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  child: Row(
+                                                    children: [
+                                                      const Spacer(),
+                                                      CustomAutoSizeTextMontserrat(
+                                                        text: "Other Test",
+                                                        fontSize: 12,
+                                                        textColor: _.chooseIndex!
+                                                                    .value ==
+                                                                5
+                                                            ? ThemeConstants
+                                                                .whitecolor
+                                                            : ThemeConstants
+                                                                .TextColor,
+                                                      ),
+                                                      // const Icon(
+                                                      //     Icons.abc_outlined),
+                                                      const Spacer(),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                               const Spacer(),
@@ -308,14 +339,13 @@ class ProfilePageCopy extends StatelessWidget {
                                                 controller.animateTo(
                                                   position,
                                                   duration: const Duration(
-                                                      seconds: 1),
+                                                      milliseconds: 300),
                                                   curve: Curves.easeOut,
                                                 );
                                                 _.setIconSwipeTrue(false);
                                                 Future.delayed(
                                                     const Duration(
-                                                        milliseconds: 1050),
-                                                    () {
+                                                        milliseconds: 305), () {
                                                   _.setIconSwipe(true);
                                                   _.setIconSwipeTrue(true);
                                                 });
@@ -485,6 +515,14 @@ class ProfilePageCopy extends StatelessWidget {
                                                     width: 110,
                                                     height: 35,
                                                     decoration: BoxDecoration(
+                                                        color: _
+                                                                    .chooseIndex!
+                                                                    .value ==
+                                                                8
+                                                            ? ThemeConstants
+                                                                .bluecolor
+                                                            : ThemeConstants
+                                                                .whitecolor,
                                                         border: Border.all(),
                                                         borderRadius:
                                                             BorderRadius
@@ -498,11 +536,16 @@ class ProfilePageCopy extends StatelessWidget {
                                                               "Relative Info.",
                                                           fontSize: 12,
                                                           textColor:
-                                                              ThemeConstants
-                                                                  .TextColor,
+                                                              _.chooseIndex!
+                                                                          .value ==
+                                                                      8
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
                                                         ),
-                                                        const Icon(
-                                                            Icons.abc_outlined),
+                                                        // const Icon(
+                                                        //     Icons.abc_outlined),
                                                         const Spacer(),
                                                       ],
                                                     ),
@@ -529,14 +572,13 @@ class ProfilePageCopy extends StatelessWidget {
                                                 controller.animateTo(
                                                   position,
                                                   duration: const Duration(
-                                                      seconds: 1),
+                                                      milliseconds: 305),
                                                   curve: Curves.easeOut,
                                                 );
                                                 _.setIconSwipeTrue(false);
                                                 Future.delayed(
                                                     const Duration(
-                                                        milliseconds: 1050),
-                                                    () {
+                                                        milliseconds: 305), () {
                                                   _.setIconSwipe(false);
                                                   _.setIconSwipeTrue(true);
                                                 });
@@ -606,11 +648,6 @@ class ProfilePageCopy extends StatelessWidget {
           height: MediaQuery.of(context).size.height - 175,
           child: const ContactInformationCopy());
     }
-    // if (index == 0) {
-    //   return SizedBox(
-    //       height: MediaQuery.of(context).size.height - 175,
-    //       child: const QualificationDetailView());
-    // }
 
     if (index == 1) {
       return SizedBox(
@@ -635,7 +672,13 @@ class ProfilePageCopy extends StatelessWidget {
     if (index == 4) {
       return SizedBox(
         height: MediaQuery.of(context).size.height - 175,
-        child: const EnglishTestDetails(),
+        child: EnglishTestDetails(),
+      );
+    }
+    if (index == 5) {
+      return SizedBox(
+        height: MediaQuery.of(context).size.height - 175,
+        child: OtherTestDetails(),
       );
     }
     if (index == 6) {

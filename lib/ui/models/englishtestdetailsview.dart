@@ -1,8 +1,8 @@
-class EnglishTestDetailsView {
-  int? id;
-  int? enqId;
-  int? applicantType;
-  String? examStatus;
+class EnglishTestDetailsViewModel {
+  String? id;
+  String? enqId;
+  String? applicantType;
+  String? examStatusID;
   String? examType;
   String? testBook;
   String? dateOfExam;
@@ -10,36 +10,36 @@ class EnglishTestDetailsView {
   String? tentativeExamDate;
   String? resultDate;
   String? expirationDate;
-  int? reading;
-  int? writing;
-  int? listening;
-  int? speaking;
-  int? math;
-  int? english;
-  int? science;
-  int? verbalReasoning;
-  int? analyticalWriting;
-  int? integratedReasoning;
-  int? quantitativeApptitude;
-  int? essay;
-  double? overAll;
-  int? isActive;
-  int? createdBy;
+  String? reading;
+  String? writing;
+  String? listening;
+  String? speaking;
+  String? math;
+  String? english;
+  String? science;
+  String? verbalReasoning;
+  String? analyticalWriting;
+  String? StringegratedReasoning;
+  String? quantitativeApptitude;
+  String? essay;
+  String? overAll;
+  String? isActive;
+  String? createdBy;
   String? createdAt;
-  int? updatedBy;
+  String? updatedBy;
   String? updatedAt;
   String? assumptiveProficiency;
   String? scoreType;
-  int? literacy;
-  int? comprehension;
-  int? conversation;
-  int? production;
+  String? literacy;
+  String? comprehension;
+  String? conversation;
+  String? production;
 
-  EnglishTestDetailsView(
+  EnglishTestDetailsViewModel(
       {this.id,
       this.enqId,
       this.applicantType,
-      this.examStatus,
+      this.examStatusID,
       this.examType,
       this.testBook,
       this.dateOfExam,
@@ -56,7 +56,7 @@ class EnglishTestDetailsView {
       this.science,
       this.verbalReasoning,
       this.analyticalWriting,
-      this.integratedReasoning,
+      this.StringegratedReasoning,
       this.quantitativeApptitude,
       this.essay,
       this.overAll,
@@ -72,42 +72,42 @@ class EnglishTestDetailsView {
       this.conversation,
       this.production});
 
-  EnglishTestDetailsView.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    enqId = json['enq_Id'];
-    applicantType = json['applicant_type'];
-    examStatus = json['exam_status'];
-    examType = json['exam_type'];
-    testBook = json['test_book'];
-    dateOfExam = json['date_of_exam'];
-    examName = json['exam_name'];
-    tentativeExamDate = json['tentative_exam_date'];
-    resultDate = json['result_date'];
-    expirationDate = json['expiration_date'];
-    reading = json['reading'];
-    writing = json['writing'];
-    listening = json['listening'];
-    speaking = json['speaking'];
-    math = json['math'];
-    english = json['english'];
-    science = json['science'];
-    verbalReasoning = json['verbal_reasoning'];
-    analyticalWriting = json['analytical_writing'];
-    integratedReasoning = json['integrated_reasoning'];
-    quantitativeApptitude = json['quantitative_apptitude'];
-    essay = json['essay'];
-    overAll = json['over_all'];
-    isActive = json['is_active'];
-    createdBy = json['created_by'];
-    createdAt = json['created_at'];
-    updatedBy = json['updated_by'];
-    updatedAt = json['updated_at'];
-    assumptiveProficiency = json['assumptive_proficiency'];
-    scoreType = json['score_type'];
-    literacy = json['literacy'];
-    comprehension = json['comprehension'];
-    conversation = json['conversation'];
-    production = json['production'];
+  EnglishTestDetailsViewModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'].toString();
+    enqId = json['enq_Id'].toString();
+    applicantType = json['applicant_type'].toString();
+    examStatusID = json['exam_status'].toString();
+    examType = json['exam_type'].toString();
+    testBook = json['test_book'].toString();
+    dateOfExam = json['date_of_exam'].toString();
+    examName = json['exam_name'].toString();
+    tentativeExamDate = json['tentative_exam_date'].toString();
+    resultDate = json['result_date'].toString();
+    expirationDate = json['expiration_date'].toString();
+    reading = json['reading'].toString();
+    writing = json['writing'].toString();
+    listening = json['listening'].toString();
+    speaking = json['speaking'].toString();
+    math = json['math'].toString();
+    english = json['english'].toString();
+    science = json['science'].toString();
+    verbalReasoning = json['verbal_reasoning'].toString();
+    analyticalWriting = json['analytical_writing'].toString();
+    StringegratedReasoning = json['Stringegrated_reasoning'].toString();
+    quantitativeApptitude = json['quantitative_apptitude'].toString();
+    essay = json['essay'].toString();
+    overAll = json['over_all'].toString();
+    isActive = json['is_active'].toString();
+    createdBy = json['created_by'].toString();
+    createdAt = json['created_at'].toString();
+    updatedBy = json['updated_by'].toString();
+    updatedAt = json['updated_at'].toString();
+    assumptiveProficiency = json['assumptive_proficiency'].toString();
+    scoreType = json['score_type'].toString();
+    literacy = json['literacy'].toString();
+    comprehension = json['comprehension'].toString();
+    conversation = json['conversation'].toString();
+    production = json['production'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -115,7 +115,7 @@ class EnglishTestDetailsView {
     data['id'] = id;
     data['enq_Id'] = enqId;
     data['applicant_type'] = applicantType;
-    data['exam_status'] = examStatus;
+    data['exam_status'] = examStatusID;
     data['exam_type'] = examType;
     data['test_book'] = testBook;
     data['date_of_exam'] = dateOfExam;
@@ -132,7 +132,7 @@ class EnglishTestDetailsView {
     data['science'] = science;
     data['verbal_reasoning'] = verbalReasoning;
     data['analytical_writing'] = analyticalWriting;
-    data['integrated_reasoning'] = integratedReasoning;
+    data['Stringegrated_reasoning'] = StringegratedReasoning;
     data['quantitative_apptitude'] = quantitativeApptitude;
     data['essay'] = essay;
     data['over_all'] = overAll;

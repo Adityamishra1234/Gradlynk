@@ -8,7 +8,9 @@ import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
+import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
@@ -707,29 +709,29 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  courseInformationupdate(String baseUrl, String endpoint) async {
-    try {
-      var response = await httpPostNullBody(baseUrl + endpoint);
-      if (response != null) {
-        var jsondata = json.decode(response.body);
-        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+  // courseInformationupdate(String baseUrl, String endpoint) async {
+  //   try {
+  //     var response = await httpPostNullBody(baseUrl + endpoint);
+  //     if (response != null) {
+  //       var jsondata = json.decode(response.body);
+  //       DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
-        Get.snackbar("Course detail added", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+  //       Get.snackbar("Course detail added", dataUpdateStatus.status.toString(),
+  //           snackPosition: SnackPosition.BOTTOM);
 
-        return jsondata;
-      }
-    } catch (e) {
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
-    }
-  }
+  //       return jsondata;
+  //     }
+  //   } catch (e) {
+  //     Fluttertoast.showToast(
+  //         msg: e.toString(),
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: ThemeConstants.whitecolor,
+  //         textColor: ThemeConstants.blackcolor,
+  //         fontSize: 16.0);
+  //   }
+  // }
 
   getHighestQualification(String baseUrl, String endpoints) async {
     var response;
@@ -849,44 +851,6 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  // gender(String baseUrl, String endpoints) async {
-  //   var response;
-  //   try {
-  //     response = await httpPostNullBody(baseUrl + endpoints);
-  //     var jsondata = json.decode(response.body);
-
-  //     return jsondata;
-  //   } catch (e) {
-  //     Fluttertoast.showToast(
-  //         msg: e.toString(),
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: ThemeConstants.whitecolor,
-  //         textColor: ThemeConstants.blackcolor,
-  //         fontSize: 16.0);
-  //   }
-  // }
-
-  // otherTestDetails(String baseUrl, String endpoints) async {
-  //   var response;
-  //   try {
-  //     response = await httpPostNullBody(baseUrl + endpoints);
-  //     var jsondata = json.decode(response.body);
-
-  //     return jsondata;
-  //   } catch (e) {
-  //     Fluttertoast.showToast(
-  //         msg: e.toString(),
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.BOTTOM,
-  //         timeInSecForIosWeb: 1,
-  //         backgroundColor: ThemeConstants.whitecolor,
-  //         textColor: ThemeConstants.blackcolor,
-  //         fontSize: 16.0);
-  //   }
-  // }
-
   dropDown1(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -927,5 +891,84 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  addQualificationDetails() {}
+  addProfileModule(
+      String baseUrl, String endpoints, String snakbarTitle) async {
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoints);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+
+        Fluttertoast.showToast(
+            msg: "Work History Added ${dataUpdateStatus.status}",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: ThemeConstants.whitecolor,
+            textColor: ThemeConstants.blackcolor,
+            fontSize: 16.0);
+
+        return dataUpdateStatus;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  viewEnglishTestDetails(
+    String baseUrl,
+    String endpoints,
+  ) async {
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoints);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        EnglishTestDetailsViewModel englishTestDetailsViewModel =
+            EnglishTestDetailsViewModel.fromJson(jsondata);
+
+        return englishTestDetailsViewModel;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  viewOtherTestDetails(
+    String baseUrl,
+    String endpoints,
+  ) async {
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoints);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        OtherTestDetailsViewModel englishTestDetailsViewModel =
+            OtherTestDetailsViewModel.fromJson(jsondata);
+
+        return englishTestDetailsViewModel;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
 }

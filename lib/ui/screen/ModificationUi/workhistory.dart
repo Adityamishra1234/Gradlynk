@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/workhistory.dart';
+import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/workhistoryview.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -9,6 +10,13 @@ import 'package:studentpanel/widgets/customdropdownsingle.dart';
 class WorkHistoryCopy extends StatelessWidget {
   WorkHistoryCopy({Key? key}) : super(key: key);
   var controller = Get.put(WorkHistoryController());
+  final lastOrganisation = TextEditingController();
+  final workingFrom = TextEditingController();
+  final workingTill = TextEditingController();
+  final designation = TextEditingController();
+  final income = TextEditingController();
+  String? industryNameSelected, employementTypeSelected;
+  int? industryNameCode, employementTypeCode;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +59,7 @@ class WorkHistoryCopy extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
+                    controller: lastOrganisation,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       hintText: "Enter name of last organisation",
@@ -79,6 +88,7 @@ class WorkHistoryCopy extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
+                    controller: workingFrom,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       hintText: "Enter working from date",
@@ -107,6 +117,7 @@ class WorkHistoryCopy extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
+                    controller: workingTill,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       hintText: "Enter working till date",
@@ -135,8 +146,12 @@ class WorkHistoryCopy extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: CustomDropDownSingle(
-                    model: _.industriesList,
-                    initialSelectedValue: _.industriesList[0],
+                    model: _.loadingIndustries.value == true
+                        ? _.industriesList
+                        : ["No data"],
+                    initialSelectedValue: _.loadingIndustries.value == true
+                        ? _.industriesList[0]
+                        : "No data",
                     choosefieldtype: false,
                     callbackFunction: callbackIndustry,
                   ),
@@ -156,9 +171,10 @@ class WorkHistoryCopy extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
+                    controller: designation,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                      hintText: "Enter your DEsignation",
+                      hintText: "Enter your Designation",
                       filled: true,
                       fillColor: ThemeConstants.lightblueColor,
                       border: OutlineInputBorder(
@@ -184,8 +200,12 @@ class WorkHistoryCopy extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: CustomDropDownSingle(
-                    model: _.employmentTypeList,
-                    initialSelectedValue: _.employmentTypeList[0],
+                    model: _.loadingEmploymentType.value == true
+                        ? _.employmentTypeList
+                        : ["No Data"],
+                    initialSelectedValue: _.loadingEmploymentType.value == true
+                        ? _.employmentTypeList[0]
+                        : "No Data",
                     choosefieldtype: false,
                     callbackFunction: callbackEmployementType,
                   ),
@@ -205,6 +225,7 @@ class WorkHistoryCopy extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
+                    controller: income,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
                       hintText: "Enter Income",
@@ -235,7 +256,20 @@ class WorkHistoryCopy extends StatelessWidget {
                                     ThemeConstants.bluecolor, // foreground
                               ),
                               onPressed: () async {
-                                // Api call
+                                _.workHistoryViewModelList
+                                    .add(WorkHistoryViewModel(
+                                  applicantType: employementTypeCode,
+                                  enqId: 78623,
+                                  organisationName: lastOrganisation.text,
+                                  jobType: "part times",
+                                  jobRole: designation.text,
+                                  jobIndustryId: industryNameCode,
+                                  workingFrom: "01-08-2022",
+                                  workingTill: "01-10-2022",
+                                  income: int.parse(income.text),
+                                  jobIndustryName: industryNameSelected,
+                                ));
+                                controller.updatedWorkHistory();
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Added",
@@ -257,11 +291,21 @@ class WorkHistoryCopy extends StatelessWidget {
   }
 
   callbackIndustry(varTopic) {
-    // controller.setViewDetails(true);
+    for (var i = 0; i < controller.industriesList.length; i++) {
+      if (controller.industriesList[i] == varTopic) {
+        industryNameSelected = controller.industriesList[i];
+        industryNameCode = int.parse(controller.industriesCode[i]);
+      }
+    }
   }
 
   callbackEmployementType(varTopic) {
-    // controller.setViewDetails(true);
+    for (var i = 0; i < controller.employmentTypeList.length; i++) {
+      if (controller.employmentTypeList[i] == varTopic) {
+        employementTypeSelected = controller.employmentTypeList[i];
+        employementTypeCode = i + 1;
+      }
+    }
   }
 
   callbackViewDetails(varTopic) {

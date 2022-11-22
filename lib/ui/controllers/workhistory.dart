@@ -19,6 +19,7 @@ class WorkHistoryController extends BaseController {
   RxBool loadingIndustries = false.obs;
   RxBool loadingEmploymentType = false.obs;
   RxBool loadingWorkHistory = false.obs;
+  RxBool loadingWorkUpdate = false.obs;
 
   @override
   void onInit() {
@@ -60,6 +61,27 @@ class WorkHistoryController extends BaseController {
       loadingWorkHistory.value = true;
       update();
     }
+  }
+
+  updatedWorkHistory() async {
+    String? endpoint;
+    endpoint = "${Endpoints.addworkHistoryDetailsPart1!}78623";
+    for (var i = 0; i < workHistoryViewModelList.length; i++) {
+      endpoint = endpoint! +
+          addWorkHistoryPart2(
+              workHistoryViewModelList[i].workingFrom,
+              workHistoryViewModelList[i].workingTill,
+              workHistoryViewModelList[i].jobType,
+              workHistoryViewModelList[i].organisationName,
+              workHistoryViewModelList[i].jobRole,
+              workHistoryViewModelList[i].jobIndustryId.toString(),
+              workHistoryViewModelList[i].income.toString(),
+              i);
+    }
+    var res = await apiServices.addProfileModule(
+        Endpoints.baseUrl!, endpoint!, "Work History");
+    loadingWorkUpdate.value = true;
+    update();
   }
 
   setViewDetails(bool data) {

@@ -99,8 +99,8 @@ class CourseInformationProfileController extends BaseController {
               viewCourseInformationList[i].courseNarrowId!);
     }
     print(endpoint);
-    var res = await apiServices.courseInformationupdate(
-        Endpoints.baseUrl!, endpoint!);
+    var res = await apiServices.addProfileModule(
+        Endpoints.baseUrl!, endpoint!, "Course Information");
     loadingViewCourseInformation.value = true;
     update();
   }

@@ -45,7 +45,7 @@ class Endpoints {
   static String? addQualification = "add-qualification-details/?enq_id=";
   //
   static String? gender = "get-gender";
-  static String? otherTestDetails = "get-other-exam-name";
+  static String? examNameOtherTest = "get-other-exam-name";
   static String? examName = "get-exam-name";
   static String? examStatus = "get-exam-status";
   static String? employmentType = "get-employement-type";
@@ -91,6 +91,7 @@ addWorkHistoryPart2(
     String? organisationName,
     String? jobRole,
     String? jobIndustriesId,
-    String? income) {
-  return "&added_work_history[0][working_from]=$workingFrom&added_work_history[0][working_till]=$workingTill&added_work_history[0][job_type]=$jobType&added_work_history[0][organisation_name]=$organisationName&added_work_history[0][job_role]=$jobRole&added_work_history[0][job_industry_id]=$jobIndustriesId&added_work_history[0][income]=$income";
+    String? income,
+    int index) {
+  return "&added_work_history[$index][working_from]=$workingFrom&added_work_history[$index][working_till]=$workingTill&added_work_history[$index][job_type]=$jobType&added_work_history[$index][organisation_name]=$organisationName&added_work_history[$index][job_role]=$jobRole&added_work_history[$index][job_industry_id]=$jobIndustriesId&added_work_history[$index][income]=$income";
 }
