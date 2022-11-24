@@ -28,6 +28,7 @@ class EnglishTestController extends BaseController {
   RxBool duolingo = false.obs;
   RxBool loadingViewEnglishTestDetails = false.obs;
   RxBool editSave = true.obs;
+  RxBool loadingFirstTime = false.obs;
 
 //Field for Storing Data with API
   List examStatusList = [];
@@ -84,5 +85,11 @@ class EnglishTestController extends BaseController {
       loadingViewEnglishTestDetails.value = true;
       update();
     }
+  }
+
+  updateEnglishTestDetaisl(String enq_id,
+      EnglishTestDetailsViewModel englishTestDetailsViewModel) async {
+    await apiServices.updateEnglishTestDetails(this.englishTestDetailsViewModel,
+        Endpoints.updateEnglishTesttDetails! + enq_id);
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class Constants {
@@ -23,4 +25,17 @@ class Constants {
       TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w500);
   static const textstyle3 =
       TextStyle(fontSize: 35, color: Colors.black, fontWeight: FontWeight.bold);
+}
+
+//Null check
+bool getNUllChecker(String? data) {
+  if (data == null) {
+    return true;
+  } else if (data == "null") {
+    return true;
+  } else if (data == "") {
+    return true;
+  } else {
+    return false;
+  }
 }

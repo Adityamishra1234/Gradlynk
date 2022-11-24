@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/englishtest.dart';
+import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 import 'package:studentpanel/utils/theme.dart';
@@ -15,126 +18,163 @@ class EnglishTestDetails extends StatelessWidget {
   final reading = TextEditingController();
   final speaking = TextEditingController();
   final overallScoreController = TextEditingController();
+  final dateOfExam = TextEditingController();
+  final dateOfTestReport = TextEditingController();
+  final testScoreExpirationDate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return GetBuilder<EnglishTestController>(builder: (_) {
-      if (controller.loadingExamName.value = true &&
-          controller.loadingExamStaus.value == true &&
-          controller.loadingViewEnglishTestDetails.value == true) {
-        viewCondition();
+      if (controller.loadingFirstTime.value == false) {
+        if (controller.loadingExamName.value = true &&
+            controller.loadingExamStaus.value == true &&
+            controller.loadingViewEnglishTestDetails.value == true) {
+          viewCondition();
+        }
       }
-      return Column(
-        children: [
-          Expanded(
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-                  child: Align(
-                    alignment: AlignmentDirectional.topStart,
-                    child: Row(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Exam Status",
-                          textColor: ThemeConstants.TextColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        Spacer(),
-                        if (controller.editSave.value == true)
-                          TextButton(
-                              onPressed: () {
-                                controller.editSave.value = false;
-                                controller.update();
-                              },
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "edit",
-                                textColor: ThemeConstants.bluecolor,
-                              )),
-                        if (controller.editSave.value == false)
-                          TextButton(
-                              onPressed: () {
-                                controller.editSave.value = true;
-                                controller.update();
-                              },
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "save",
-                                textColor: ThemeConstants.bluecolor,
-                              )),
-                      ],
-                    ),
+
+      return ListView(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+            child: Align(
+              alignment: AlignmentDirectional.topStart,
+              child: Row(
+                children: [
+                  CustomAutoSizeTextMontserrat(
+                    text: "Exam Status",
+                    textColor: ThemeConstants.TextColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                SizedBox(
-                  height: 50,
-                  child: CustomDropDownSingle(
-                    model: _.loadingExamStaus.value == true
-                        ? _.examStatusList
-                        : ["No Data"],
-                    initialSelectedValue: _.loadingExamStaus.value == true
-                        ? _.examStatusList[0]
-                        : "No Data",
-                    choosefieldtype:
-                        controller.editSave.value == true ? true : false,
-                    callbackFunction: callbackExamStatus,
-                  ),
-                ),
-                if (_.examStatusCodeSelected == 1) ...registered(),
-                if (_.examStatusCodeSelected == 2) ...notYetRegistered(),
-                if (_.examStatusCodeSelected == 3) ...testAllReadyTaken(),
-                if (_.examStatusCodeSelected == 3 && _.tentative.value == true)
-                  ...tentative(),
-                if (_.examStatusCodeSelected == 3 &&
-                    _.tentative.value == false &&
-                    _.duolingo.value == false)
-                  ...definite(),
-                if (_.examStatusCodeSelected == 3 &&
-                    _.tentative.value == false &&
-                    _.duolingo.value == true)
-                  ...duolingo(),
-                Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20, right: 20),
-                    child: SizedBox(
-                      width: 90,
-                      child: controller.editSave.value == false
-                          ? ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary: ThemeConstants.bluecolor, // background
-                                onPrimary:
-                                    ThemeConstants.bluecolor, // foreground
-                              ),
-                              onPressed: () async {
-                                controller.editSave.value = true;
-                                controller.update();
-                              },
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Save",
-                                textColor: ThemeConstants.whitecolor,
-                              ))
-                          : ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary: ThemeConstants.bluecolor, // background
-                                onPrimary:
-                                    ThemeConstants.bluecolor, // foreground
-                              ),
-                              onPressed: () async {
-                                controller.editSave.value = false;
-                                controller.update();
-                              },
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Edit",
-                                textColor: ThemeConstants.whitecolor,
-                              )),
-                    ),
-                  ),
-                ),
-              ],
+                  const Spacer(),
+                  if (controller.editSave.value == true)
+                    TextButton(
+                        onPressed: () {
+                          controller.editSave.value = false;
+                          controller.update();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "edit",
+                          textColor: ThemeConstants.bluecolor,
+                        )),
+                  if (controller.editSave.value == false)
+                    TextButton(
+                        onPressed: () {
+                          controller.editSave.value = true;
+                          controller.update();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "save",
+                          textColor: ThemeConstants.bluecolor,
+                        )),
+                ],
+              ),
             ),
+          ),
+          SizedBox(
+            height: 50,
+            child: CustomDropDownSingle(
+              model: _.loadingExamStaus.value == true
+                  ? _.examStatusList
+                  : ["No Data"],
+              initialSelectedValue: _.loadingExamStaus.value == true
+                  ? getNUllChecker(_.examStatusSelected) == true
+                      ? _.examStatusList[0]
+                      : _.examStatusSelected.toString()
+                  : "No Data",
+              choosefieldtype: controller.editSave.value == true ? true : false,
+              callbackFunction: callbackExamStatus,
+            ),
+          ),
+          if (getNUllChecker(_.examStatusSelected) == false)
+            if (_.examStatusCodeSelected == 1) ...registered(context),
+          if (_.examStatusCodeSelected == 2) ...notYetRegistered(context),
+          if (_.examStatusCodeSelected == 3) ...testAllReadyTaken(context),
+          if (_.examStatusCodeSelected == 3 && _.tentative.value == true)
+            ...tentative(context),
+          if (_.examStatusCodeSelected == 3 &&
+              _.tentative.value == false &&
+              _.duolingo.value == false)
+            ...definite(context),
+          if (_.examStatusCodeSelected == 3 &&
+              _.tentative.value == false &&
+              _.duolingo.value == true)
+            ...duolingo(context),
+          Align(
+            alignment: AlignmentDirectional.topEnd,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, right: 20),
+              child: SizedBox(
+                width: 90,
+                child: controller.editSave.value == false
+                    ? ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          primary: ThemeConstants.bluecolor, // background
+                          onPrimary: ThemeConstants.bluecolor, // foreground
+                        ),
+                        onPressed: () async {
+                          //Book test
+                          //Specify_exam_name
+                          //already_given_exam_name
+                          EnglishTestDetailsViewModel
+                              englishTestDetailsViewModel =
+                              EnglishTestDetailsViewModel();
+                          englishTestDetailsViewModel =
+                              controller.englishTestDetailsViewModel;
+                          englishTestDetailsViewModel.examStatusID =
+                              controller.examStatusCodeSelected.toString();
+                          englishTestDetailsViewModel.dateOfExam =
+                              dateOfExam.text;
+
+                          englishTestDetailsViewModel.resultDate =
+                              dateOfTestReport.text;
+                          englishTestDetailsViewModel.expirationDate =
+                              testScoreExpirationDate.text;
+                          englishTestDetailsViewModel.tentativeExamDate =
+                              controller.tentativeExamDateSelcted;
+                          englishTestDetailsViewModel.reading = reading.text;
+                          englishTestDetailsViewModel.writing = writing.text;
+                          englishTestDetailsViewModel.listening =
+                              listening.text;
+                          englishTestDetailsViewModel.speaking = speaking.text;
+                          englishTestDetailsViewModel.literacy = listening.text;
+                          englishTestDetailsViewModel.comprehension =
+                              writing.text;
+                          englishTestDetailsViewModel.conversation =
+                              reading.text;
+                          englishTestDetailsViewModel.production = writing.text;
+                          englishTestDetailsViewModel.overAll =
+                              overallScoreController.text;
+                          updateEnglishTestDetails(englishTestDetailsViewModel);
+                          controller.editSave.value = true;
+                          controller.update();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Save",
+                          textColor: ThemeConstants.whitecolor,
+                        ))
+                    : ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 0.0,
+                          primary: ThemeConstants.bluecolor, // background
+                          onPrimary: ThemeConstants.bluecolor, // foreground
+                        ),
+                        onPressed: () async {
+                          controller.editSave.value = false;
+                          controller.update();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Edit",
+                          textColor: ThemeConstants.whitecolor,
+                        )),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 60,
           ),
         ],
       );
@@ -177,7 +217,7 @@ class EnglishTestDetails extends StatelessWidget {
   }
 
 // Widget Funcation
-  List<Widget> registered() {
+  List<Widget> registered(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -198,7 +238,9 @@ class EnglishTestDetails extends StatelessWidget {
               ? controller.examNameList
               : ["No Data"],
           initialSelectedValue: controller.loadingExamName.value == true
-              ? controller.examNameList[0]
+              ? getNUllChecker(controller.examNameSelected) == true
+                  ? controller.examNameList[0]
+                  : controller.examNameSelected.toString()
               : "No Data",
           choosefieldtype: controller.editSave.value == true ? true : false,
           callbackFunction: callbackExamName,
@@ -216,19 +258,33 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: ["Date", "No"],
-          initialSelectedValue: "Date",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callback,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: TextField(
+          controller: dateOfExam,
+          readOnly: controller.editSave.value == true ? true : false,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          decoration: InputDecoration(
+            hintText: getNUllChecker(
+                        controller.englishTestDetailsViewModel.dateOfExam) ==
+                    true
+                ? "Enter Contact Of Relative"
+                : controller.englishTestDetailsViewModel.dateOfExam.toString(),
+            filled: true,
+            fillColor: ThemeConstants.lightblueColor,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+          style: ThemeConstants.montserrattextstyle,
         ),
       ),
     ];
   }
 
-  List<Widget> notYetRegistered() {
+  List<Widget> notYetRegistered(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -287,7 +343,8 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Date",
             filled: true,
@@ -303,7 +360,7 @@ class EnglishTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> testAllReadyTaken() {
+  List<Widget> testAllReadyTaken(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -324,7 +381,9 @@ class EnglishTestDetails extends StatelessWidget {
               ? controller.examNameList
               : ["No Data"],
           initialSelectedValue: controller.loadingExamName.value == true
-              ? controller.examNameList[0]
+              ? getNUllChecker(controller.examNameSelected) == true
+                  ? controller.examNameList[0]
+                  : controller.examNameSelected.toString()
               : "No Data",
           choosefieldtype: controller.editSave.value == true ? true : false,
           callbackFunction: callbackExamName,
@@ -342,13 +401,26 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: ["Date", "No"],
-          initialSelectedValue: "Date",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callback,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: TextField(
+          readOnly: controller.editSave.value == true ? true : false,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          decoration: InputDecoration(
+            hintText: getNUllChecker(
+                        controller.englishTestDetailsViewModel.dateOfExam) ==
+                    true
+                ? "Enter Contact Of Relative"
+                : controller.englishTestDetailsViewModel.dateOfExam.toString(),
+            filled: true,
+            fillColor: ThemeConstants.lightblueColor,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+          ),
+          style: ThemeConstants.montserrattextstyle,
         ),
       ),
       Padding(
@@ -366,10 +438,14 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
+          controller: dateOfTestReport,
           readOnly: controller.editSave.value == true ? true : false,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
-            hintText: "Enter Contact Of Relative",
+            hintText: controller.englishTestDetailsViewModel.resultDate == null
+                ? "Enter Contact Of Relative"
+                : controller.englishTestDetailsViewModel.resultDate.toString(),
             filled: true,
             fillColor: ThemeConstants.lightblueColor,
             border: OutlineInputBorder(
@@ -395,10 +471,16 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
+          controller: testScoreExpirationDate,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           readOnly: controller.editSave.value == true ? true : false,
-          textInputAction: TextInputAction.next,
           decoration: InputDecoration(
-            hintText: "Enter Contact Of Relative",
+            hintText:
+                controller.englishTestDetailsViewModel.expirationDate == null
+                    ? "Enter Contact Of Relative"
+                    : controller.englishTestDetailsViewModel.expirationDate
+                        .toString(),
             filled: true,
             fillColor: ThemeConstants.lightblueColor,
             border: OutlineInputBorder(
@@ -424,7 +506,7 @@ class EnglishTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> tentative() {
+  List<Widget> tentative(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -441,11 +523,26 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
+          onTap: (() {
+            Fluttertoast.showToast(
+                msg: "Overall Scroe will autofill",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: ThemeConstants.whitecolor,
+                textColor: ThemeConstants.blackcolor,
+                fontSize: 16.0);
+          }),
           readOnly: controller.editSave.value == true ? true : false,
           controller: overallScoreController,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
-            hintText: "Overall Score",
+            hintText: getNUllChecker(
+                        controller.englishTestDetailsViewModel.overAll) ==
+                    true
+                ? "Overall Score"
+                : controller.englishTestDetailsViewModel.overAll,
             filled: true,
             fillColor: ThemeConstants.lightblueColor,
             border: OutlineInputBorder(
@@ -459,7 +556,7 @@ class EnglishTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> definite() {
+  List<Widget> definite(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -477,14 +574,19 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: listening,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           onChanged: (value) {
             controller.chooseField.value = 1;
             getValidation(value);
             controller.update();
           },
           decoration: InputDecoration(
-            hintText: "Listening",
+            hintText: getNUllChecker(
+                        controller.englishTestDetailsViewModel.listening) ==
+                    true
+                ? "Listening"
+                : controller.englishTestDetailsViewModel.listening.toString(),
             filled: true,
             fillColor: ThemeConstants.lightblueColor,
             border: OutlineInputBorder(
@@ -515,7 +617,8 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextField(
           readOnly: controller.editSave.value == true ? true : false,
           controller: writing,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
@@ -551,7 +654,8 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextField(
           readOnly: controller.editSave.value == true ? true : false,
           controller: reading,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
@@ -587,7 +691,8 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextField(
           readOnly: controller.editSave.value == true ? true : false,
           controller: speaking,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
@@ -606,11 +711,11 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       if (controller.chooseField.value == 4) getValidationError(),
-      ...overallScore(),
+      ...overallScore(context),
     ];
   }
 
-  List<Widget> duolingo() {
+  List<Widget> duolingo(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -628,7 +733,8 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: listening,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Listening",
             filled: true,
@@ -663,7 +769,8 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: writing,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
@@ -698,7 +805,8 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: reading,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
@@ -733,7 +841,8 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: speaking,
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
@@ -752,7 +861,7 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       if (controller.chooseField.value == 4) getValidationError(),
-      ...overallScore(),
+      ...overallScore(context),
     ];
   }
 
@@ -930,7 +1039,7 @@ class EnglishTestDetails extends StatelessWidget {
     }
   }
 
-  List<Widget> overallScore() {
+  List<Widget> overallScore(BuildContext context) {
     double temp = 0;
     if (controller.examNameSelected == "TOEFL") {
       if (listening.text.isNotEmpty &&
@@ -961,8 +1070,9 @@ class EnglishTestDetails extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             controller: overallScoreController,
-            readOnly: controller.editSave.value == true ? true : false,
-            textInputAction: TextInputAction.next,
+            readOnly: true,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
               hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
               filled: true,
@@ -1005,8 +1115,9 @@ class EnglishTestDetails extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             controller: overallScoreController,
-            readOnly: controller.editSave.value == true ? true : false,
-            textInputAction: TextInputAction.next,
+            readOnly: true,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
               hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
               filled: true,
@@ -1039,14 +1150,24 @@ class EnglishTestDetails extends StatelessWidget {
     if (controller.englishTestDetailsViewModel.examName == "Duolingo") {
       controller.duolingo.value = true;
     } else {
+      controller.examNameSelected =
+          controller.englishTestDetailsViewModel.examName;
       controller.duolingo.value = false;
     }
     //tentative / Definite
-    if (controller.englishTestDetailsViewModel.writing != "" ||
-        controller.englishTestDetailsViewModel.writing != "null" ||
-        controller.englishTestDetailsViewModel.writing != null) {
-      controller.tentative.value = false;
+    if (getNUllChecker(controller.englishTestDetailsViewModel.listening) ||
+        getNUllChecker(controller.englishTestDetailsViewModel.writing) ||
+        getNUllChecker(controller.englishTestDetailsViewModel.literacy) ||
+        getNUllChecker(
+            controller.englishTestDetailsViewModel.analyticalWriting)) {
+      controller.tentative.value = true;
     }
+    controller.loadingFirstTime.value = true;
     controller.update();
+  }
+
+  updateEnglishTestDetails(
+      EnglishTestDetailsViewModel englishTestDetailsViewModel) {
+    controller.updateEnglishTestDetaisl("78623", englishTestDetailsViewModel);
   }
 }

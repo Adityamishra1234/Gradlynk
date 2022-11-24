@@ -141,7 +141,8 @@ class TravingHistory extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
-            textInputAction: TextInputAction.next,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
               hintText: "Enter date of application",
               filled: true,
@@ -169,7 +170,8 @@ class TravingHistory extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
-            textInputAction: TextInputAction.next,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
               hintText: "Enter date of reject",
               filled: true,
@@ -197,7 +199,8 @@ class TravingHistory extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
-            textInputAction: TextInputAction.next,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
               hintText: "Enter reason of rejection",
               filled: true,

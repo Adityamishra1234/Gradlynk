@@ -48,7 +48,8 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Australia",
@@ -77,7 +78,8 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "West Delhi",
@@ -106,7 +108,8 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Student Visa",
@@ -135,7 +138,8 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "UK, USA",
@@ -166,7 +170,8 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
             child: TextField(
               minLines: 1,
               maxLines: 10,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText:

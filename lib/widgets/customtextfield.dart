@@ -25,7 +25,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: TextFormField(
-        textInputAction: TextInputAction.next,
+        scrollPadding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).viewInsets.bottom + 30),
         controller: widget._controller,
         keyboardType: widget.keybord,
         cursorColor: Theme.of(context).primaryColor,

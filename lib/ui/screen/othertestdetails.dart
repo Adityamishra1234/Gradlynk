@@ -62,19 +62,21 @@ class OtherTestDetails extends StatelessWidget {
                         ),
                       ),
                       if (_.examStatusCodeSelected == 1) ...registered(),
-                      if (_.examStatusCodeSelected == 2) ...notYetRegistered(),
-                      if (_.examStatusCodeSelected == 3) ...testAllReadyTaken(),
+                      if (_.examStatusCodeSelected == 2)
+                        ...notYetRegistered(context),
+                      if (_.examStatusCodeSelected == 3)
+                        ...testAllReadyTaken(context),
                       if (_.examStatusCodeSelected == 3 &&
                           _.tentative.value == true)
-                        ...tentative(),
+                        ...tentative(context),
                       if (_.examStatusCodeSelected == 3 &&
                           _.tentative.value == false &&
                           _.duolingo.value == false)
-                        ...definite(),
+                        ...definite(context),
                       if (_.examStatusCodeSelected == 3 &&
                           _.tentative.value == false &&
                           _.duolingo.value == true)
-                        ...duolingo(),
+                        ...duolingo(context),
                       Align(
                         alignment: AlignmentDirectional.topEnd,
                         child: Padding(
@@ -190,7 +192,7 @@ class OtherTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> notYetRegistered() {
+  List<Widget> notYetRegistered(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -249,7 +251,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Date",
             filled: true,
@@ -265,7 +268,7 @@ class OtherTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> testAllReadyTaken() {
+  List<Widget> testAllReadyTaken(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -328,7 +331,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Enter Contact Of Relative",
             filled: true,
@@ -356,7 +360,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Enter Contact Of Relative",
             filled: true,
@@ -384,7 +389,7 @@ class OtherTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> tentative() {
+  List<Widget> tentative(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -401,7 +406,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Overall Score",
             filled: true,
@@ -417,7 +423,7 @@ class OtherTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> definite() {
+  List<Widget> definite(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -434,7 +440,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Listening",
             filled: true,
@@ -462,7 +469,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
@@ -490,7 +498,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
@@ -518,7 +527,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
@@ -546,7 +556,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Overall Score",
             filled: true,
@@ -562,7 +573,7 @@ class OtherTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> duolingo() {
+  List<Widget> duolingo(BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -579,7 +590,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Listening",
             filled: true,
@@ -607,7 +619,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
@@ -635,7 +648,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
@@ -663,7 +677,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
@@ -691,7 +706,8 @@ class OtherTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          textInputAction: TextInputAction.next,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
             hintText: "Overall Score",
             filled: true,

@@ -107,7 +107,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: firstName,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your First Name",
@@ -137,7 +138,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: lastName,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Last Name",
@@ -166,7 +168,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Date of Birth",
@@ -256,7 +259,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: mobileNumber,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Mobile Number",
@@ -291,7 +295,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: email,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your email",
@@ -321,7 +326,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: whatsappNumber,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Whatsapp Number",
@@ -350,7 +356,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Secondary Number",
@@ -380,7 +387,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: secondaryEmail,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Secondary Email",
@@ -477,7 +485,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: street,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Street",
@@ -507,7 +516,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: zipCode,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Zip Code",
@@ -549,7 +559,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: instagramId,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Instagram Id",
@@ -579,7 +590,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: facebookId,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Facebook Id",
@@ -609,7 +621,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: snapchatId,
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Enter your Snapchat Id",
@@ -638,7 +651,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: false,
               decoration: InputDecoration(
                 hintText: "Shreya IT",
@@ -667,7 +681,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
                 hintText: "West Delhi",
@@ -696,7 +711,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
                 hintText: "Student Visa",
@@ -725,7 +741,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
                 hintText: "Australia",
@@ -754,7 +771,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              textInputAction: TextInputAction.next,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
                 hintText: "Canada,Ireland,USA",

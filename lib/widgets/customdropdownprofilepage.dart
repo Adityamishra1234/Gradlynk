@@ -84,7 +84,8 @@ class CustomDropDownProfilePage extends StatelessWidget {
                 padding: const EdgeInsets.only(),
                 child: TextField(
                   maxLines: 1,
-                  textInputAction: TextInputAction.next,
+                  scrollPadding: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).viewInsets.bottom + 30),
                   readOnly: true,
                   decoration: InputDecoration(
                     hintText: text!,

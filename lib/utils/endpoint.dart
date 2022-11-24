@@ -3,7 +3,7 @@ class Endpoints {
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
-  static String? login = "student-panel-login";
+  static String? login = "student-panel-login?mobile_number=";
   static String? logout = "logout";
   static String? userHistory = "login-logout-history";
   static String? getUserHistory = 'get-login-logout-history';
@@ -54,12 +54,24 @@ class Endpoints {
   static String? maritalStatus = "get-marital-status";
   static String? jobInstitute = "get-job-institute";
   static String? viewEnglishTestDetails = "view-english-test-details?enq_id=";
+  static String? updateEnglishTesttDetails = "add-english-test-details?enq_id=";
   static String? viewOtherTestDetails = "view-other-test-details?enq_id=";
   static String? viewWorkHistoryDetails = "view-work-history-details?enq_id=";
   static String? addworkHistoryDetailsPart1 =
       "add-work-history-details?enq_id=";
+  static String? viewPassport = "view-passport-details?enq_id=";
+  static String? viewRelative = "view-relative-details?enq_id=";
+  static String? passportPlaceOfIssuse = "get-passport-poi";
+  static String? traveStatus = "get-travel-status";
+  static String? typeOfVisa = "get-type-of-visa";
+  static String? visaStatus = "get-visa-status";
+  static String? citizenshipStatus = "get-citizenship-status";
+  static String? realtionWithRelative = "get-relation-with-relative";
+  static String? updatepassPostDetails = "add-passport-details?enq_id=";
 }
 
+//  "add-travel-history-details?enq_id=78623&travel_history=1&added_travel_history_details[0][travel_status]=Applied&added_travel_history_details[0][choose_country]=2&added_travel_history_details[0][type_of_visa]=3&added_travel_history_details[0][visa_status]=Decision Pending&added_travel_history_details[0][date_of_application]=2022-10-20&added_travel_history_details[0][date_of_rejection]=2022-10-20&added_travel_history_details[0][reason_of_rejection]=2022-10-20&added_travel_history_details[0][proof_available]=1&added_travel_history_details[0][country_name]=Albania&added_travel_history_details[0][application_number]=sscscsghf&added_travel_history_details[0][visa_number]=uvftcgthgbnh";
+// add-relative-details?enq_id=78623&any_relative_country_interested=1&added_relative[0][id]&added_relative[0][any_relative_country_interested]=1&added_relative[0][citizenship_status]=Citizen&added_relative[0][relative_country]=14&added_relative[0][relation_with_relative]=Aunt&added_relative[0][relative_email_id]=developer10siec@gmail.com&added_relative[0][contact_of_relative]=1234242233&added_relative[0][address_of_relative]=btbtbtgrfrbbrrbrrg
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
   return "&added_courses[$index][course_broad_id]=$courseBroadId&added_courses[$index][course_narrow_id]=$courseNarrowId";
 }

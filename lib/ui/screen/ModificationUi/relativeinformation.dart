@@ -146,7 +146,10 @@ class RelativeInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
-                            textInputAction: TextInputAction.next,
+                            scrollPadding: EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).viewInsets.bottom +
+                                        30),
                             decoration: InputDecoration(
                               hintText: "Enter Relative Email",
                               filled: true,
@@ -175,7 +178,10 @@ class RelativeInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
-                            textInputAction: TextInputAction.next,
+                            scrollPadding: EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).viewInsets.bottom +
+                                        30),
                             decoration: InputDecoration(
                               hintText: "Enter Contact Of Relative",
                               filled: true,
@@ -204,7 +210,10 @@ class RelativeInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
-                            textInputAction: TextInputAction.next,
+                            scrollPadding: EdgeInsets.symmetric(
+                                vertical:
+                                    MediaQuery.of(context).viewInsets.bottom +
+                                        30),
                             decoration: InputDecoration(
                               hintText: "Enter Contact Of Relative",
                               filled: true,

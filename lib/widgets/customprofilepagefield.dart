@@ -21,7 +21,8 @@ class CustomProfilePageField extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: TextField(
         maxLines: maxlines ?? 1,
-        textInputAction: TextInputAction.next,
+        scrollPadding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).viewInsets.bottom + 30),
         readOnly: readonly!,
         decoration: InputDecoration(
           hintText: hintext,

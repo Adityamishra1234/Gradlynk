@@ -11,29 +11,28 @@ import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/otherTestDetails.dart';
+import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/workhistoryview.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
 
-  login(String baseUrl, String endpoint, String number) async {
+  login(String baseUrl, String endpoint) async {
     try {
       StudentPanel studentPanel;
       var response;
-      var jsonData = {"mobile_number": number};
-      response = await httpPost(baseUrl + endpoint, jsonData);
+
+      response = await httpPostNullBody(baseUrl + endpoint);
       if (response != null) {
         // debugPrint(response);
         // SharedPreferences sharedPreferences =
@@ -63,10 +62,7 @@ class ApiServices extends StudentPanelBase {
   }
 
   getCountry(String baseUrl, String endpoint) async {
-    // Country country = Country();
-    String data;
     var response;
-    List<String> countrylist = [], countryCode = [], listdata = [];
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
       var jsondata = json.decode(response.body);
@@ -959,6 +955,78 @@ class ApiServices extends StudentPanelBase {
             OtherTestDetailsViewModel.fromJson(jsondata);
 
         return englishTestDetailsViewModel;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  updateEnglishTestDetails(
+      EnglishTestDetailsViewModel englishTestDetailsViewModel,
+      String? endpoint) async {
+    try {
+      String jsonData = json.encode(englishTestDetailsViewModel);
+      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+
+        Get.snackbar("English Test Details", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  updatePassport(PassportModel passportModel, String? endpoint) async {
+    try {
+      String jsonData = jsonEncode(passportModel);
+
+      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+
+        Get.snackbar("Passport Details:", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  viewPassportDetail(
+    String baseUrl,
+    String endpoints,
+  ) async {
+    try {
+      var response = await httpPostNullBody(baseUrl + endpoints);
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        PassportModel passportModel = PassportModel.fromJson(jsondata);
+        return passportModel;
       }
     } catch (e) {
       Fluttertoast.showToast(

@@ -70,7 +70,7 @@ class DashboardController extends BaseController {
   login() async {
     if (loadingStudentPanelData.value == false) {
       var res = await apiservices.login(
-          Endpoints.baseUrl!, Endpoints.login!, "8860373603");
+          Endpoints.baseUrl!, "${Endpoints.login!}8860373603");
       if (res != null) {
         studentPanel = res;
         loadingStudentPanelData = true.obs;

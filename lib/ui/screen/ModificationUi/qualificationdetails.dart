@@ -100,7 +100,9 @@ class QualificationDetailsCopy extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextField(
-                        textInputAction: TextInputAction.next,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
                         decoration: InputDecoration(
                           hintText: "Enter Qualification Name",
                           filled: true,
@@ -204,7 +206,9 @@ class QualificationDetailsCopy extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextField(
-                        textInputAction: TextInputAction.next,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
                         decoration: InputDecoration(
                           hintText: "Multiplier",
                           filled: true,
@@ -233,7 +237,9 @@ class QualificationDetailsCopy extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextField(
-                        textInputAction: TextInputAction.next,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
                         decoration: InputDecoration(
                           hintText: "CGPA",
                           filled: true,
@@ -262,7 +268,9 @@ class QualificationDetailsCopy extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextField(
-                        textInputAction: TextInputAction.next,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
                         decoration: InputDecoration(
                           hintText: "Enter your Percentage",
                           filled: true,
@@ -426,7 +434,9 @@ class QualificationDetailsCopy extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextField(
-                        textInputAction: TextInputAction.next,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
                         decoration: InputDecoration(
                           hintText: "Enter backlogs",
                           filled: true,

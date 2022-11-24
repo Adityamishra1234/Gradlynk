@@ -60,7 +60,9 @@ class WorkHistoryCopy extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
                     controller: lastOrganisation,
-                    textInputAction: TextInputAction.next,
+                    scrollPadding: EdgeInsets.symmetric(
+                        vertical:
+                            MediaQuery.of(context).viewInsets.bottom + 30),
                     decoration: InputDecoration(
                       hintText: "Enter name of last organisation",
                       filled: true,
@@ -89,7 +91,9 @@ class WorkHistoryCopy extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
                     controller: workingFrom,
-                    textInputAction: TextInputAction.next,
+                    scrollPadding: EdgeInsets.symmetric(
+                        vertical:
+                            MediaQuery.of(context).viewInsets.bottom + 30),
                     decoration: InputDecoration(
                       hintText: "Enter working from date",
                       filled: true,
@@ -118,7 +122,9 @@ class WorkHistoryCopy extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
                     controller: workingTill,
-                    textInputAction: TextInputAction.next,
+                    scrollPadding: EdgeInsets.symmetric(
+                        vertical:
+                            MediaQuery.of(context).viewInsets.bottom + 30),
                     decoration: InputDecoration(
                       hintText: "Enter working till date",
                       filled: true,
@@ -172,7 +178,9 @@ class WorkHistoryCopy extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
                     controller: designation,
-                    textInputAction: TextInputAction.next,
+                    scrollPadding: EdgeInsets.symmetric(
+                        vertical:
+                            MediaQuery.of(context).viewInsets.bottom + 30),
                     decoration: InputDecoration(
                       hintText: "Enter your Designation",
                       filled: true,
@@ -226,7 +234,9 @@ class WorkHistoryCopy extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: TextField(
                     controller: income,
-                    textInputAction: TextInputAction.next,
+                    scrollPadding: EdgeInsets.symmetric(
+                        vertical:
+                            MediaQuery.of(context).viewInsets.bottom + 30),
                     decoration: InputDecoration(
                       hintText: "Enter Income",
                       filled: true,

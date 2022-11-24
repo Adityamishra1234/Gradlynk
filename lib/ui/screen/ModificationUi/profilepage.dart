@@ -21,7 +21,7 @@ class ProfilePageCopy extends StatelessWidget {
   ProfilePageCopy({Key? key}) : super(key: key);
   static const routeNamed = '/ProfilePageCopy';
   ScrollController controller = ScrollController();
-  ScrollPhysics scrollPhysics = ScrollPhysics();
+  // ScrollPhysics scrollPhysics = ScrollPhysics();
   var profilePageController = Get.put(ProfilePageController());
 
   @override
