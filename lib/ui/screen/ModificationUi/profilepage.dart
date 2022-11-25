@@ -690,7 +690,7 @@ class ProfilePageCopy extends StatelessWidget {
     if (index == 7) {
       return SizedBox(
         height: MediaQuery.of(context).size.height - 175,
-        child: TravingHistoryView(),
+        child: TravingHistory(),
       );
     }
     if (index == 8) {

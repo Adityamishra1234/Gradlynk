@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/models/travelhistory.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class TravingHistoryView extends StatelessWidget {
-  // Function callbackAddQualification;
-  // List<QualificationDetailsViewModel> model = [];
+  Function callbackAddTravelDetails;
+  List<TravelHistoryModel> model = [];
   TravingHistoryView({
     Key? key,
-    // required this.callbackAddQualification,
+    required this.model,
+    required this.callbackAddTravelDetails,
   }) : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
@@ -31,7 +34,7 @@ class TravingHistoryView extends StatelessWidget {
             padding: const EdgeInsets.only(right: 10),
             child: TextButton(
                 onPressed: () {
-                  // callbackAddQualification(true);
+                  callbackAddTravelDetails(true);
                 },
                 child: CustomAutoSizeTextMontserrat(
                   text: "Added Qualification",
@@ -44,7 +47,7 @@ class TravingHistoryView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height - 225,
           child: ListView.builder(
-              itemCount: 5,
+              itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(
@@ -68,32 +71,6 @@ class TravingHistoryView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Action",
-                                      maxLines: 2,
-                                      fontSize: 12,
-                                      textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].courseLevel",
-                                    textColor: ThemeConstants.TextColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    maxLines: 5,
-                                  ),
-                                ),
-                              ]),
-                              rowSpacer,
-                              TableRow(children: [
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: CustomAutoSizeTextMontserrat(
                                       text: "Travel Status",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
@@ -105,7 +82,7 @@ class TravingHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].countryName",
+                                    text: model[index].travelStatus,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -131,7 +108,7 @@ class TravingHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].streamName",
+                                    text: model[index].countryName,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -155,15 +132,20 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].countryName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .typeOfVisa
+                                                .toString()) ==
+                                            false
+                                        ? model[index].typeOfVisa.toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -181,15 +163,20 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].stateName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .visaStatus
+                                                .toString()) ==
+                                            false
+                                        ? model[index].visaStatus.toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -207,15 +194,20 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].affiliationName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .visaNumber
+                                                .toString()) ==
+                                            false
+                                        ? model[index].visaNumber.toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -233,15 +225,22 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].cityName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .applicationNumber
+                                                .toString()) ==
+                                            false
+                                        ? model[index]
+                                            .applicationNumber
+                                            .toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -259,15 +258,22 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].universityName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .dateOfApplication
+                                                .toString()) ==
+                                            false
+                                        ? model[index]
+                                            .dateOfApplication
+                                            .toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -285,15 +291,22 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].universityName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .dateOfRejection
+                                                .toString()) ==
+                                            false
+                                        ? model[index]
+                                            .dateOfRejection
+                                            .toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -311,15 +324,22 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].universityName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .reasonOfRejection
+                                                .toString()) ==
+                                            false
+                                        ? model[index]
+                                            .reasonOfRejection
+                                            .toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -337,15 +357,20 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].universityName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: getNUllChecker(model[index]
+                                                .proofAvailable
+                                                .toString()) ==
+                                            false
+                                        ? model[index].proofAvailable.toString()
+                                        : "",
+                                    maxLines: 2,
+                                    fontSize: 12,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ]),
                             ],
                           ),

@@ -18,6 +18,7 @@ import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
@@ -1027,6 +1028,50 @@ class ApiServices extends StudentPanelBase {
         var jsondata = json.decode(response.body);
         PassportModel passportModel = PassportModel.fromJson(jsondata);
         return passportModel;
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getTravelHistory(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      List<TravelHistoryModel> workHistoryViewModel =
+          List<TravelHistoryModel>.from(json
+              .decode(response.body)
+              .map((x) => TravelHistoryModel.fromJson(x)));
+      return workHistoryViewModel;
+    } catch (e) {
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  updateTravelHistory(String? endpoint) async {
+    try {
+      var response = await httpPostNullBody(
+        "${Endpoints.baseUrl}$endpoint",
+      );
+      if (response != null) {
+        var jsondata = json.decode(response.body);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+        Get.snackbar("Travel History:", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       Fluttertoast.showToast(

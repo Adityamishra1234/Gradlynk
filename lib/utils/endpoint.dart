@@ -68,6 +68,9 @@ class Endpoints {
   static String? citizenshipStatus = "get-citizenship-status";
   static String? realtionWithRelative = "get-relation-with-relative";
   static String? updatepassPostDetails = "add-passport-details?enq_id=";
+  static String? viewTravelDetails = "view-travel-history-details?enq_id=";
+  static String? addTravelHistoryPart1 = "add-travel-history-details?enq_id=";
+  static String? addTravelHistoryPart2 = "&travel_history=";
 }
 
 //  "add-travel-history-details?enq_id=78623&travel_history=1&added_travel_history_details[0][travel_status]=Applied&added_travel_history_details[0][choose_country]=2&added_travel_history_details[0][type_of_visa]=3&added_travel_history_details[0][visa_status]=Decision Pending&added_travel_history_details[0][date_of_application]=2022-10-20&added_travel_history_details[0][date_of_rejection]=2022-10-20&added_travel_history_details[0][reason_of_rejection]=2022-10-20&added_travel_history_details[0][proof_available]=1&added_travel_history_details[0][country_name]=Albania&added_travel_history_details[0][application_number]=sscscsghf&added_travel_history_details[0][visa_number]=uvftcgthgbnh";
@@ -106,4 +109,20 @@ addWorkHistoryPart2(
     String? income,
     int index) {
   return "&added_work_history[$index][working_from]=$workingFrom&added_work_history[$index][working_till]=$workingTill&added_work_history[$index][job_type]=$jobType&added_work_history[$index][organisation_name]=$organisationName&added_work_history[$index][job_role]=$jobRole&added_work_history[$index][job_industry_id]=$jobIndustriesId&added_work_history[$index][income]=$income";
+}
+
+addTravelHistoryPart3(
+    String index,
+    String travelStatus,
+    String? proofAvailable,
+    String? countryName,
+    String? chooseCountryID,
+    String? typeOfVisaID,
+    String? visaStatus,
+    String? dateOfRejection,
+    String? reasonOfRejection,
+    String? applicationNumber,
+    String? visaNumber,
+    String? dateOfApplication) {
+  return "&added_travel_history_details[$index][travel_status]=$travelStatus&added_travel_history_details[$index][choose_country]=$chooseCountryID&added_travel_history_details[$index][type_of_visa]=$typeOfVisaID&added_travel_history_details[$index][visa_status]=$visaStatus&added_travel_history_details[$index][date_of_application]=$dateOfApplication&added_travel_history_details[$index][date_of_rejection]=$dateOfRejection&added_travel_history_details[$index][reason_of_rejection]=$reasonOfRejection&added_travel_history_details[$index][proof_available]=$proofAvailable&added_travel_history_details[$index][country_name]=$countryName&added_travel_history_details[$index][application_number]=$applicationNumber&added_travel_history_details[$index][visa_number]=$visaNumber";
 }
