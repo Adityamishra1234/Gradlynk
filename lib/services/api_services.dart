@@ -14,6 +14,7 @@ import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
+import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:flutter/foundation.dart';
@@ -40,8 +41,8 @@ class ApiServices extends StudentPanelBase {
         //     await SharedPreferences.getInstance();
         // final formattedStr = formatDate(
         //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
-        // sharedPreferences.setString('UserModel', response.body);
-        var jsondata = json.decode(response.body);
+        // sharedPreferences.setString('UserModel', response);
+        var jsondata = json.decode(response);
         studentPanel = StudentPanel.fromJson(jsondata);
         // sharedPreferences.setString('token', userModel.token);
         // sharedPreferences.setString("login_time", formattedStr);
@@ -51,6 +52,7 @@ class ApiServices extends StudentPanelBase {
         return false;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -66,9 +68,10 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -85,10 +88,11 @@ class ApiServices extends StudentPanelBase {
 
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -107,9 +111,10 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -124,9 +129,10 @@ class ApiServices extends StudentPanelBase {
   getState2(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -145,9 +151,10 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -165,9 +172,10 @@ class ApiServices extends StudentPanelBase {
   ) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -187,9 +195,10 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(
           baseUrl + endpoint + temp2.removeAllWhitespace.toString());
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -204,9 +213,10 @@ class ApiServices extends StudentPanelBase {
   getCourseBoardField(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -224,10 +234,10 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
 
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       courseSearchModel = List<CourseSearchModel>.from(
-          json.decode(response.body).map((x) => CourseSearchModel.fromJson(x)));
+          json.decode(response).map((x) => CourseSearchModel.fromJson(x)));
       if (courseSearchModel.isNotEmpty) {
         courseModelFilter.courseSearchList = courseSearchModel;
         courseModelFilter.filterModel = await createFilter(courseModelFilter);
@@ -236,6 +246,7 @@ class ApiServices extends StudentPanelBase {
 
       return courseModelFilter;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -252,17 +263,18 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
 
         List<CompleteCourseDetail> completeCourseDetail =
             List<CompleteCourseDetail>.from(json
-                .decode(response.body)
+                .decode(response)
                 .map((x) => CompleteCourseDetail.fromJson(x)));
 
         debugPrint("object");
         return completeCourseDetail;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -279,10 +291,11 @@ class ApiServices extends StudentPanelBase {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
       if (response != null) {
-        Get.snackbar("Course ShortList", response.body,
+        Get.snackbar("Course ShortList", response,
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -299,10 +312,11 @@ class ApiServices extends StudentPanelBase {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
       if (response != null) {
-        Get.snackbar("Course ShortList", response.body,
+        Get.snackbar("Course ShortList", response,
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -320,10 +334,9 @@ class ApiServices extends StudentPanelBase {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
       if (response != null) {
-        var jsondata = json.decode(response.body);
-        courseModelFilter.courseSearchList = List<CourseSearchModel>.from(json
-            .decode(response.body)
-            .map((x) => CourseSearchModel.fromJson(x)));
+        var jsondata = json.decode(response);
+        courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
+            json.decode(response).map((x) => CourseSearchModel.fromJson(x)));
         if (courseModelFilter.courseSearchList.isNotEmpty) {
           courseModelFilter.filterModel = await createFilter(courseModelFilter);
           for (var i = 0; i < courseModelFilter.courseSearchList.length; i++) {
@@ -334,6 +347,7 @@ class ApiServices extends StudentPanelBase {
 
       return courseModelFilter;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -352,11 +366,12 @@ class ApiServices extends StudentPanelBase {
           "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
       if (response != null) {
         applicationSummaryModel = List<ApplicationSummaryModel>.from(json
-            .decode(response.body)
+            .decode(response)
             .map((x) => ApplicationSummaryModel.fromJson(x)));
       }
       return applicationSummaryModel;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -375,16 +390,16 @@ class ApiServices extends StudentPanelBase {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
       if (response != null) {
-        var jsondata = json.decode(response.body);
-        courseModelFilter.courseSearchList = List<CourseSearchModel>.from(json
-            .decode(response.body)
-            .map((x) => CourseSearchModel.fromJson(x)));
+        var jsondata = json.decode(response);
+        courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
+            json.decode(response).map((x) => CourseSearchModel.fromJson(x)));
         if (courseModelFilter.courseSearchList.isNotEmpty) {
           courseModelFilter.filterModel = await createFilter(courseModelFilter);
         }
       }
       return courseModelFilter;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -402,11 +417,12 @@ class ApiServices extends StudentPanelBase {
       var response =
           await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
         return applicationDetailModel;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -599,11 +615,12 @@ class ApiServices extends StudentPanelBase {
       VisaDetailModel visaDetailModel = VisaDetailModel();
       var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         visaDetailModel = VisaDetailModel.fromJson(jsondata);
         return visaDetailModel;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -622,7 +639,7 @@ class ApiServices extends StudentPanelBase {
       String jsonData = json.encode(personalInformationModel);
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
         Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
@@ -631,6 +648,7 @@ class ApiServices extends StudentPanelBase {
         return jsondata;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -647,10 +665,11 @@ class ApiServices extends StudentPanelBase {
 
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -667,10 +686,11 @@ class ApiServices extends StudentPanelBase {
 
     try {
       response = await httpPostNullBody(baseUrl + endpoint);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -690,11 +710,12 @@ class ApiServices extends StudentPanelBase {
       if (response != null && response != "") {
         List<ViewCourseInformation> viewCourseInformationList =
             List<ViewCourseInformation>.from(json
-                .decode(response.body)
+                .decode(response)
                 .map((x) => ViewCourseInformation.fromJson(x)));
         return viewCourseInformationList;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -710,7 +731,7 @@ class ApiServices extends StudentPanelBase {
   //   try {
   //     var response = await httpPostNullBody(baseUrl + endpoint);
   //     if (response != null) {
-  //       var jsondata = json.decode(response.body);
+  //       var jsondata = json.decode(response);
   //       DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
   //       Get.snackbar("Course detail added", dataUpdateStatus.status.toString(),
@@ -719,7 +740,7 @@ class ApiServices extends StudentPanelBase {
   //       return jsondata;
   //     }
   //   } catch (e) {
-  //     Fluttertoast.showToast(
+  //     print(StackTrace.current);Fluttertoast.showToast(
   //         msg: e.toString(),
   //         toastLength: Toast.LENGTH_SHORT,
   //         gravity: ToastGravity.BOTTOM,
@@ -734,10 +755,11 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -754,9 +776,10 @@ class ApiServices extends StudentPanelBase {
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
       List<StreamDropDown> streamDropDown = List<StreamDropDown>.from(
-          json.decode(response.body).map((x) => StreamDropDown.fromJson(x)));
+          json.decode(response).map((x) => StreamDropDown.fromJson(x)));
       return streamDropDown;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -772,10 +795,11 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -793,10 +817,11 @@ class ApiServices extends StudentPanelBase {
       response = await httpPostNullBody(baseUrl + endpoints);
       List<AffiliationDropDownModel> affiliationDropDown =
           List<AffiliationDropDownModel>.from(json
-              .decode(response.body)
+              .decode(response)
               .map((x) => AffiliationDropDownModel.fromJson(x)));
       return affiliationDropDown;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -812,10 +837,11 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      var jsondata = json.decode(response.body);
+      var jsondata = json.decode(response);
 
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -833,10 +859,11 @@ class ApiServices extends StudentPanelBase {
       response = await httpPostNullBody(baseUrl + endpoints);
       List<QualificationDetailsViewModel> qualificationDetailsView =
           List<QualificationDetailsViewModel>.from(json
-              .decode(response.body)
+              .decode(response)
               .map((x) => QualificationDetailsViewModel.fromJson(x)));
       return qualificationDetailsView;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -852,10 +879,12 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      var jsondata = json.decode(response.body);
-
+      print("object1");
+      var jsondata = json.decode(response);
+      print("2");
       return jsondata;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -873,10 +902,11 @@ class ApiServices extends StudentPanelBase {
       response = await httpPostNullBody(baseUrl + endpoints);
       List<WorkHistoryViewModel> workHistoryViewModel =
           List<WorkHistoryViewModel>.from(json
-              .decode(response.body)
+              .decode(response)
               .map((x) => WorkHistoryViewModel.fromJson(x)));
       return workHistoryViewModel;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -893,7 +923,7 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(baseUrl + endpoints);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
         Fluttertoast.showToast(
@@ -908,6 +938,7 @@ class ApiServices extends StudentPanelBase {
         return dataUpdateStatus;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -926,13 +957,14 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(baseUrl + endpoints);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         EnglishTestDetailsViewModel englishTestDetailsViewModel =
             EnglishTestDetailsViewModel.fromJson(jsondata);
 
         return englishTestDetailsViewModel;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -951,13 +983,14 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(baseUrl + endpoints);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         OtherTestDetailsViewModel englishTestDetailsViewModel =
             OtherTestDetailsViewModel.fromJson(jsondata);
 
         return englishTestDetailsViewModel;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -976,13 +1009,14 @@ class ApiServices extends StudentPanelBase {
       String jsonData = json.encode(englishTestDetailsViewModel);
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
         Get.snackbar("English Test Details", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -1000,13 +1034,14 @@ class ApiServices extends StudentPanelBase {
 
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
         Get.snackbar("Passport Details:", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -1025,11 +1060,12 @@ class ApiServices extends StudentPanelBase {
     try {
       var response = await httpPostNullBody(baseUrl + endpoints);
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         PassportModel passportModel = PassportModel.fromJson(jsondata);
         return passportModel;
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -1046,11 +1082,11 @@ class ApiServices extends StudentPanelBase {
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
       List<TravelHistoryModel> workHistoryViewModel =
-          List<TravelHistoryModel>.from(json
-              .decode(response.body)
-              .map((x) => TravelHistoryModel.fromJson(x)));
+          List<TravelHistoryModel>.from(
+              json.decode(response).map((x) => TravelHistoryModel.fromJson(x)));
       return workHistoryViewModel;
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -1068,12 +1104,13 @@ class ApiServices extends StudentPanelBase {
         "${Endpoints.baseUrl}$endpoint",
       );
       if (response != null) {
-        var jsondata = json.decode(response.body);
+        var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
         Get.snackbar("Travel History:", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
+      print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,
@@ -1083,5 +1120,57 @@ class ApiServices extends StudentPanelBase {
           textColor: ThemeConstants.blackcolor,
           fontSize: 16.0);
     }
+  }
+
+  viewRelativeInformation(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpPostNullBody(baseUrl + endpoints);
+      List<RealtionModel> model = List<RealtionModel>.from(
+          json.decode(response).map((x) => RealtionModel.fromJson(x)));
+      return model;
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  updateRelativeInformation(String? endpoint) async {
+    try {
+      var response = await httpPostNullBody(
+        "${Endpoints.baseUrl}$endpoint",
+      );
+      if (response != null) {
+        var jsondata = json.decode(response);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+        Get.snackbar(
+            "Relative Infromation:", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  examName(String baseUrl, String endpoints) async {
+    var response = await httpPostNullBody(baseUrl + endpoints);
+    print(response);
+
+    return json.decode(response);
   }
 }

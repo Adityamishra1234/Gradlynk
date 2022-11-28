@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/relativeinformation.dart';
-import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
+import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/relativeinformationview.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -11,12 +11,18 @@ import 'package:studentpanel/widgets/customdropdownsingle.dart';
 class RelativeInformation extends StatelessWidget {
   RelativeInformation({Key? key}) : super(key: key);
   var controller = Get.put(RelativeInformationController());
+
+  final realtiveEmail = TextEditingController();
+  final contactOfRelative = TextEditingController();
+  final addresOfrelative = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RelativeInformationController>(
         builder: (_) => _.viewDetails.value == true
             ? RelativeInformationView(
                 callbackAddRelativeInfo: callbackAddRelativeInfro,
+                model: controller.modelList,
               )
             : Column(
                 children: [
@@ -61,7 +67,8 @@ class RelativeInformation extends StatelessWidget {
                             model: ["Yes", "No"],
                             initialSelectedValue: "No",
                             choosefieldtype: false,
-                            callbackFunction: callback,
+                            callbackFunction:
+                                callbackAnyRelativeCountryInterested,
                           ),
                         ),
                         Padding(
@@ -80,10 +87,14 @@ class RelativeInformation extends StatelessWidget {
                         SizedBox(
                           height: 50,
                           child: CustomDropDownSingle(
-                            model: ["Yes", "No"],
-                            initialSelectedValue: "No",
+                            model: _.loadingCountry.value == true
+                                ? _.countryList
+                                : ["No data"],
+                            initialSelectedValue: _.loadingCountry.value == true
+                                ? _.countryList[0]
+                                : "No data",
                             choosefieldtype: false,
-                            callbackFunction: callback,
+                            callbackFunction: callbackCountry,
                           ),
                         ),
                         Padding(
@@ -102,10 +113,14 @@ class RelativeInformation extends StatelessWidget {
                         SizedBox(
                           height: 50,
                           child: CustomDropDownSingle(
-                            model: ["Yes", "No"],
-                            initialSelectedValue: "No",
+                            model: _.loadingCitizen.value == true
+                                ? _.citizenShipStatus
+                                : ["No data"],
+                            initialSelectedValue: _.loadingCitizen.value == true
+                                ? _.citizenShipStatus[0]
+                                : "No data",
                             choosefieldtype: false,
-                            callbackFunction: callback,
+                            callbackFunction: callbackCitizenShip,
                           ),
                         ),
                         Padding(
@@ -124,10 +139,15 @@ class RelativeInformation extends StatelessWidget {
                         SizedBox(
                           height: 50,
                           child: CustomDropDownSingle(
-                            model: ["Yes", "No"],
-                            initialSelectedValue: "No",
+                            model: _.loadingRealtion.value == true
+                                ? _.realtion
+                                : ["No data"],
+                            initialSelectedValue:
+                                _.loadingRealtion.value == true
+                                    ? _.realtion[0]
+                                    : "No data",
                             choosefieldtype: false,
-                            callbackFunction: callback,
+                            callbackFunction: callbackRelation,
                           ),
                         ),
                         Padding(
@@ -146,6 +166,7 @@ class RelativeInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
+                            controller: realtiveEmail,
                             scrollPadding: EdgeInsets.symmetric(
                                 vertical:
                                     MediaQuery.of(context).viewInsets.bottom +
@@ -178,6 +199,7 @@ class RelativeInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
+                            controller: contactOfRelative,
                             scrollPadding: EdgeInsets.symmetric(
                                 vertical:
                                     MediaQuery.of(context).viewInsets.bottom +
@@ -210,6 +232,7 @@ class RelativeInformation extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
+                            controller: addresOfrelative,
                             scrollPadding: EdgeInsets.symmetric(
                                 vertical:
                                     MediaQuery.of(context).viewInsets.bottom +
@@ -240,7 +263,39 @@ class RelativeInformation extends StatelessWidget {
                                     onPrimary:
                                         ThemeConstants.bluecolor, // foreground
                                   ),
-                                  onPressed: () async {},
+                                  onPressed: () async {
+                                    //                                    int? id,
+                                    // String? anyRelativeCountryInterested,
+                                    // String? citizenshipStatus,
+                                    // int? relativeCountry,
+                                    // String? relationWithRelative,
+                                    // String? relativeEmailId,
+                                    // int? contactOfRelative,
+                                    // String? addressOfRelative,
+                                    // int? applicantType,
+                                    // int? isActive,
+                                    // String? countryName,
+                                    controller.modelList.add(RealtionModel(
+                                      countryName:
+                                          controller.countryNameSelected,
+                                      relationWithRelative:
+                                          controller.relationSelected,
+                                      id: "",
+                                      anyRelativeCountryInterested: controller
+                                          .anyRelativeCountryInterestedSelected,
+                                      citizenshipStatus:
+                                          controller.citizenShipStatusSelected,
+                                      relativeCountry: int.parse(
+                                          controller.countryNameCodeSelected!),
+                                      relativeEmailId: realtiveEmail.text,
+                                      contactOfRelative:
+                                          int.parse(contactOfRelative.text),
+                                      addressOfRelative: addresOfrelative.text,
+                                    ));
+
+                                    controller.updateRelativeInformation(
+                                        "78623", "1");
+                                  },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Add",
                                     textColor: ThemeConstants.whitecolor,
@@ -255,7 +310,35 @@ class RelativeInformation extends StatelessWidget {
               ));
   }
 
-  callback(varTopic) {}
+  callbackAnyRelativeCountryInterested(varTopic) {
+    if (varTopic == "Yes") {
+      controller.anyRelativeCountryInterestedSelected = "1";
+    } else {
+      controller.anyRelativeCountryInterestedSelected = "2";
+    }
+    controller.update();
+  }
+
+  callbackCountry(varTopic) {
+    controller.countryNameSelected = varTopic;
+    for (var i = 0; i < controller.countryList.length; i++) {
+      if (controller.countryList[i] == varTopic) {
+        controller.countryNameCodeSelected = controller.countryCode[i];
+      }
+    }
+    controller.update();
+  }
+
+  callbackCitizenShip(varTopic) {
+    controller.citizenShipStatusSelected = varTopic;
+    controller.update();
+  }
+
+  callbackRelation(varTopic) {
+    controller.relationSelected = varTopic;
+    controller.update();
+  }
+
   callbackAddRelativeInfro(varTopic) {
     controller.setViewDetails(false);
   }

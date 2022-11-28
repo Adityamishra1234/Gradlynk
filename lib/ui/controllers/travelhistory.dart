@@ -41,18 +41,17 @@ class TravelHistoryController extends BaseController {
 
   @override
   void onInit() {
-    getTravelStatus();
-    getTravelStatus();
-    getVisaStatus();
-    getCountry();
     getTypeOfVisa();
+    getTravelStatus();
+    getCountry();
+    // getTypeOfVisa();
     getVisaTravelHistory("78623");
     super.onInit();
   }
 
   getTravelStatus() async {
-    var res =
-        await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.traveStatus!);
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.travelStatus!);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       travelStatus = map.values.toList();
@@ -73,9 +72,9 @@ class TravelHistoryController extends BaseController {
     }
   }
 
-  getVisaStatus() async {
-    var res =
-        await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.visaStatus!);
+  getVisaStatus(String travelStatus) async {
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.visaStatus! + travelStatus!);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       visaStatusList = map.values.toList();

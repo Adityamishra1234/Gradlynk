@@ -43,7 +43,6 @@ class Endpoints {
   static String? viewQualificationDetails =
       "view-qualification-details?enq_id=";
   static String? addQualification = "add-qualification-details/?enq_id=";
-  //
   static String? gender = "get-gender";
   static String? examNameOtherTest = "get-other-exam-name";
   static String? examName = "get-exam-name";
@@ -62,19 +61,21 @@ class Endpoints {
   static String? viewPassport = "view-passport-details?enq_id=";
   static String? viewRelative = "view-relative-details?enq_id=";
   static String? passportPlaceOfIssuse = "get-passport-poi";
-  static String? traveStatus = "get-travel-status";
+  static String? travelStatus = "get-travel-status";
   static String? typeOfVisa = "get-type-of-visa";
-  static String? visaStatus = "get-visa-status";
+  static String? visaStatusSummay = "get-visa-status";
   static String? citizenshipStatus = "get-citizenship-status";
   static String? realtionWithRelative = "get-relation-with-relative";
   static String? updatepassPostDetails = "add-passport-details?enq_id=";
   static String? viewTravelDetails = "view-travel-history-details?enq_id=";
   static String? addTravelHistoryPart1 = "add-travel-history-details?enq_id=";
   static String? addTravelHistoryPart2 = "&travel_history=";
+  static String? visaStatus = "get-travel-visa-status?travel_status=";
+  static String? addRelativeInformationPart1 = "add-relative-details?enq_id=";
+  static String? addRelativeInformationPart2 =
+      "&any_relative_country_interested=";
 }
 
-//  "add-travel-history-details?enq_id=78623&travel_history=1&added_travel_history_details[0][travel_status]=Applied&added_travel_history_details[0][choose_country]=2&added_travel_history_details[0][type_of_visa]=3&added_travel_history_details[0][visa_status]=Decision Pending&added_travel_history_details[0][date_of_application]=2022-10-20&added_travel_history_details[0][date_of_rejection]=2022-10-20&added_travel_history_details[0][reason_of_rejection]=2022-10-20&added_travel_history_details[0][proof_available]=1&added_travel_history_details[0][country_name]=Albania&added_travel_history_details[0][application_number]=sscscsghf&added_travel_history_details[0][visa_number]=uvftcgthgbnh";
-// add-relative-details?enq_id=78623&any_relative_country_interested=1&added_relative[0][id]&added_relative[0][any_relative_country_interested]=1&added_relative[0][citizenship_status]=Citizen&added_relative[0][relative_country]=14&added_relative[0][relation_with_relative]=Aunt&added_relative[0][relative_email_id]=developer10siec@gmail.com&added_relative[0][contact_of_relative]=1234242233&added_relative[0][address_of_relative]=btbtbtgrfrbbrrbrrg
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
   return "&added_courses[$index][course_broad_id]=$courseBroadId&added_courses[$index][course_narrow_id]=$courseNarrowId";
 }
@@ -125,4 +126,17 @@ addTravelHistoryPart3(
     String? visaNumber,
     String? dateOfApplication) {
   return "&added_travel_history_details[$index][travel_status]=$travelStatus&added_travel_history_details[$index][choose_country]=$chooseCountryID&added_travel_history_details[$index][type_of_visa]=$typeOfVisaID&added_travel_history_details[$index][visa_status]=$visaStatus&added_travel_history_details[$index][date_of_application]=$dateOfApplication&added_travel_history_details[$index][date_of_rejection]=$dateOfRejection&added_travel_history_details[$index][reason_of_rejection]=$reasonOfRejection&added_travel_history_details[$index][proof_available]=$proofAvailable&added_travel_history_details[$index][country_name]=$countryName&added_travel_history_details[$index][application_number]=$applicationNumber&added_travel_history_details[$index][visa_number]=$visaNumber";
+}
+
+addRelativeInformationPart3(
+    String? index,
+    String? id,
+    String? anyRelativeCountryInterested,
+    String? citizenshipStatus,
+    String? relativeCountry,
+    String? relativeEmailID,
+    String? addressOfRelative,
+    String? contactOfRelative,
+    String? relationWithrelative) {
+  return "&any_relative_country_interested=1&added_relative[$index][id]=$id&added_relative[$index][any_relative_country_interested]=$anyRelativeCountryInterested&added_relative[$index][citizenship_status]=$citizenshipStatus&added_relative[$index][relative_country]=$relativeCountry&added_relative[$index][relation_with_relative]=$relationWithrelative&added_relative[$index][relative_email_id]=$relativeEmailID&added_relative[$index][contact_of_relative]=$contactOfRelative&added_relative[$index][address_of_relative]=$addressOfRelative";
 }

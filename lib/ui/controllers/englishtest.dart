@@ -23,7 +23,7 @@ class EnglishTestController extends BaseController {
 
   // loading
   RxBool loadingExamStaus = false.obs;
-  RxBool loadingExamName = false.obs;
+  RxBool loadingExamName2 = false.obs;
   RxBool tentative = true.obs;
   RxBool duolingo = false.obs;
   RxBool loadingViewEnglishTestDetails = false.obs;
@@ -50,7 +50,7 @@ class EnglishTestController extends BaseController {
   void onInit() {
     getExamName();
     getExamStatus();
-    getOtherTestDetails("78623");
+    // getEnglishTestDetails("78623");
     super.onInit();
   }
 
@@ -61,7 +61,7 @@ class EnglishTestController extends BaseController {
       Map map = Map<String, dynamic>.from(res);
       examStatusList = map.values.toList();
       examStatusCode = map.keys.toList();
-      loadingExamStaus.value = true;
+      loadingExamStaus = true.obs;
       update();
     }
   }
@@ -70,19 +70,20 @@ class EnglishTestController extends BaseController {
     var res =
         await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.examName!);
     if (res != null) {
+      print(res.toString() + "saidfskm");
       Map map = Map<String, dynamic>.from(res);
+      print("23");
       examNameList = map.values.toList();
-      loadingExamName.value = true;
-      update();
+      loadingExamName2 = true.obs;
     }
   }
 
-  getOtherTestDetails(String enq_id) async {
+  getEnglishTestDetails(String enq_id) async {
     var res = await apiServices.viewEnglishTestDetails(
         Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enq_id);
     if (res != null) {
       englishTestDetailsViewModel = res;
-      loadingViewEnglishTestDetails.value = true;
+      loadingViewEnglishTestDetails = true.obs;
       update();
     }
   }
@@ -91,5 +92,6 @@ class EnglishTestController extends BaseController {
       EnglishTestDetailsViewModel englishTestDetailsViewModel) async {
     await apiServices.updateEnglishTestDetails(this.englishTestDetailsViewModel,
         Endpoints.updateEnglishTesttDetails! + enq_id);
+    update();
   }
 }

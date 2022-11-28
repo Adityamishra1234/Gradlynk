@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/models/realtion.dart';
 
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class RelativeInformationView extends StatelessWidget {
   Function callbackAddRelativeInfo;
-  // List<QualificationDetailsViewModel> model = [];
-  RelativeInformationView({
-    Key? key,
-    required this.callbackAddRelativeInfo,
-  }) : super(key: key);
+  List<RealtionModel> model = [];
+  RelativeInformationView(
+      {Key? key, required this.callbackAddRelativeInfo, required this.model})
+      : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
       height: 3,
@@ -44,7 +44,7 @@ class RelativeInformationView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height - 225,
           child: ListView.builder(
-              itemCount: 5,
+              itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(
@@ -79,7 +79,7 @@ class RelativeInformationView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].courseLevel",
+                                    text: model[index].countryName,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -105,7 +105,7 @@ class RelativeInformationView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].countryName",
+                                    text: model[index].citizenshipStatus,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -131,7 +131,7 @@ class RelativeInformationView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "model[index].streamName",
+                                    text: model[index].relationWithRelative,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -155,15 +155,15 @@ class RelativeInformationView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].countryName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: model[index].relativeEmailId,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -181,15 +181,17 @@ class RelativeInformationView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].stateName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: model[index]
+                                        .contactOfRelative
+                                        .toString(),
+                                    textColor: ThemeConstants.TextColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                  ),
+                                ),
                               ]),
                               rowSpacer,
                               TableRow(children: [
@@ -207,15 +209,15 @@ class RelativeInformationView extends StatelessWidget {
                                   ),
                                 ),
                                 Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      "model[index].affiliationName ?? " "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: model[index].addressOfRelative,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                  ),
+                                ),
                               ]),
                             ],
                           ),

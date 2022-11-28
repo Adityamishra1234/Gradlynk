@@ -77,10 +77,10 @@ class TravingHistory extends StatelessWidget {
                   SizedBox(
                     height: 50,
                     child: CustomDropDownSingle(
-                      model: _.loadingVisaStatus.value == true
+                      model: _.loadingtravelStatus.value == true
                           ? _.travelStatus
                           : ["No Data"],
-                      initialSelectedValue: _.loadingVisaStatus.value == true
+                      initialSelectedValue: _.loadingtravelStatus.value == true
                           ? _.travelStatus[0]
                           : "No Data",
                       choosefieldtype: false,
@@ -415,8 +415,6 @@ class TravingHistory extends StatelessWidget {
   }
 
   callbackTravelAbroad(varTopic) {
-// 1=> yes
-//2=> No
     if (varTopic == "Yes") {
       controller.travelAbroadSelected = "1";
     } else {
@@ -428,6 +426,7 @@ class TravingHistory extends StatelessWidget {
   callbackTravelStatus(varTopic) {
     //name
     controller.travelStatusSelected = varTopic;
+    controller.getVisaStatus(varTopic);
     controller.update();
   }
 
@@ -455,23 +454,21 @@ class TravingHistory extends StatelessWidget {
 
   callbackVisaStatus(varTopic) {
     //id
-    controller.visaStatusCodeSelected = "1";
-    // for (var i = 0; i < controller.visaStatusList.length; i++) {
-    //   if (controller.visaStatusList[i] == varTopic) {
-    //     controller.visaStatusSelected = controller.visaStatusList[i];
-    //     controller.visaStatusCodeSelected =
-    //         controller.visaStatusCode[i].toString();
-    //   }
-    // }
-    // if (controller.visaStatusCodeSelected == "3") {
-    //   controller.applicationNumberField.value = false;
-    // }
+
+    for (var i = 0; i < controller.visaStatusList.length; i++) {
+      if (controller.visaStatusList[i] == varTopic) {
+        controller.visaStatusSelected = controller.visaStatusList[i];
+        controller.visaStatusCodeSelected =
+            controller.visaStatusCode[i].toString();
+      }
+    }
+    if (controller.visaStatusCodeSelected == "3") {
+      controller.applicationNumberField.value = false;
+    }
     controller.update();
   }
 
   callbackProofAvailable(varTopic) {
-    // 1 => Yes
-    //2=> No
     if (varTopic == "Yes") {
       controller.proofAvailable = "1";
     } else {

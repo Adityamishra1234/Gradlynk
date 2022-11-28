@@ -24,7 +24,7 @@ class StudentPanelBase {
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        return response;
+        return response.body;
       } else {
         return null;
       }
@@ -51,7 +51,7 @@ class StudentPanelBase {
     switch (response.statusCode) {
       case 200:
         return response.body.isNotEmpty
-            ? response
+            ? response.body
             : throw EmptyDataException("440");
       case 440:
         throw EmptyDataException("440");
@@ -79,7 +79,7 @@ class StudentPanelBase {
         return response.body.isNotEmpty &&
                 response.body != "" &&
                 response.body != "[]"
-            ? response
+            ? response.body
             : throw EmptyDataException("440");
       case 440:
         throw EmptyDataException("440");
@@ -106,7 +106,7 @@ httpPut(String url, var jsonData) async {
       // 'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
-      return response;
+      return response.body;
     } else {
       return null;
     }
@@ -129,7 +129,7 @@ httpDelete(String url, var jsonData) async {
       body: jsonData,
     );
     if (response.statusCode == 200) {
-      return response;
+      return response.body;
     } else {
       return null;
     }
