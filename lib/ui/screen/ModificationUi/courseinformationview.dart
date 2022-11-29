@@ -7,8 +7,14 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class CourseInformationView extends StatelessWidget {
   List<ViewCourseInformation> model;
   Function callbackFunction;
+  Function callbackIndexDelete;
+  Function callbackIndexEdit;
   CourseInformationView(
-      {Key? key, required this.model, required this.callbackFunction})
+      {Key? key,
+      required this.model,
+      required this.callbackFunction,
+      required this.callbackIndexEdit,
+      required this.callbackIndexDelete})
       : super(key: key);
 
   @override
@@ -110,7 +116,7 @@ class CourseInformationView extends StatelessWidget {
                                       // foreground
                                     ),
                                     onPressed: () async {
-                                      // Api call
+                                      callbackIndexDelete(index);
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Delete",
@@ -132,7 +138,7 @@ class CourseInformationView extends StatelessWidget {
                                       ),
                                       onPressed: () async {
                                         // Api call
-                                        Get.bottomSheet(Container());
+                                        callbackIndexEdit(index);
                                       },
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Edit",
