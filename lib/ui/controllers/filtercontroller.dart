@@ -71,11 +71,14 @@ class FilterController extends BaseController {
         }
       }
     }
+
     filter();
   }
 
   // writen some code
   getAcademic(String? data) async {
+    // courseModelFilter.filterModel.filterSelected.academicPercentageSelected =
+    //     [];
     loadingfuncation.value = false;
 
     update();
@@ -422,9 +425,10 @@ class FilterController extends BaseController {
     // ;
     filterModel.filterSelected.backlogAcceptableSelected = backlogAcceptable;
 
-    // Budeget Filter Selected Added
+    //  Budeget Filter Selected Added
     for (var i = 0; i < courseModelFilter.filterModel.budget.length; i++) {
       if (courseModelFilter.filterModel.budget[i].entries.first.value == true) {
+        //TODO
         filterModel.filterSelected.budgetSelected
             .add(filterModel.budget[i].entries.first.key.toString());
       }
@@ -434,12 +438,26 @@ class FilterController extends BaseController {
     for (var i = 0;
         i < courseModelFilter.filterModel.academicPercentage.length;
         i++) {
-      if (courseModelFilter
-              .filterModel.academicPercentage[i].entries.first.value ==
-          true) {
-        filterModel.filterSelected.academicPercentageSelected.add(
-            filterModel.academicPercentage[i].entries.first.key.toString());
+      // if (courseModelFilter
+      //         .filterModel.academicPercentage[i].entries.first.value ==
+      //     true) {
+      //TODO
+      //  between_60_70 = false;
+      // between_50_60 = false;
+      // between_50 = false;
+      // more_70 = false;
+      //  {"70+ %": false},
+      //  {"60%-70%": false},
+      //  {"50%-60%": false},
+      //  {"Between 50%": false}
+      // Compare value with field and check
+      if (courseModelFilter.filterModel.academicPercentage[i].keys.toString() ==
+          "70+ %") {
+        // if()
       }
+      filterModel.filterSelected.academicPercentageSelected
+          .add(filterModel.academicPercentage[i].entries.first.key.toString());
+      // }
     }
     filterModel.filterSelected.conditionalOfferSelected = conditionaloffer;
     filterModel.filterSelected.countryNameSelected = countryName;

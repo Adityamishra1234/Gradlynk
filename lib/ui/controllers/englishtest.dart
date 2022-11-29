@@ -50,7 +50,7 @@ class EnglishTestController extends BaseController {
   void onInit() {
     getExamName();
     getExamStatus();
-    // getEnglishTestDetails("78623");
+    getEnglishTestDetails("78623");
     super.onInit();
   }
 

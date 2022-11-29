@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/utils/theme.dart';
 
 class CustomAutoSizeTextMontserrat extends StatelessWidget {
   bool? underline;
@@ -23,8 +24,13 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoSizeText(
-      text ?? "",
+    return AutoSizeText.rich(
+      // text ?? "",
+      TextSpan(text: text ?? "", children: <InlineSpan>[
+        if (mandatory == true)
+          TextSpan(text: '*', style: TextStyle(color: ThemeConstants.red))
+      ]),
+
       maxLines: maxLines ?? 100000,
       overflow: TextOverflow.ellipsis,
       style: GoogleFonts.montserrat(
@@ -37,6 +43,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
                 : TextDecoration.none
             : TextDecoration.none,
       ),
+
       // GoogleFonts.monster(
       //   fontWeight: fontWeight ?? FontWeight.w500,
       //   fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,

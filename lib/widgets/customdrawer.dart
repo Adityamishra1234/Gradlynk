@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -226,7 +227,7 @@ class CustomDrawer extends StatelessWidget {
                       child: InkWell(
                         highlightColor: ThemeConstants.whitecolor,
                         onTap: () {
-                          Get.toNamed(VisaDetail.routeNamed);
+                          Get.toNamed(VisaSummary.routeNamed);
                         },
                         child: SizedBox(
                           height: 30,

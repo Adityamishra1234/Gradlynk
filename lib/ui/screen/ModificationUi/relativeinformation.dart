@@ -78,6 +78,7 @@ class RelativeInformation extends StatelessWidget {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Country Name",
+                              mandatory: true,
                               textColor: ThemeConstants.TextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -104,6 +105,7 @@ class RelativeInformation extends StatelessWidget {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Citizenship Status",
+                              mandatory: true,
                               textColor: ThemeConstants.TextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -130,6 +132,7 @@ class RelativeInformation extends StatelessWidget {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Relation",
+                              mandatory: true,
                               textColor: ThemeConstants.TextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -157,6 +160,7 @@ class RelativeInformation extends StatelessWidget {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Relative Email",
+                              mandatory: true,
                               textColor: ThemeConstants.TextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -190,6 +194,7 @@ class RelativeInformation extends StatelessWidget {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Contact Of Relative",
+                              mandatory: true,
                               textColor: ThemeConstants.TextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
@@ -223,6 +228,7 @@ class RelativeInformation extends StatelessWidget {
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
                               text: "Address Of Relative",
+                              mandatory: true,
                               textColor: ThemeConstants.TextColor,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,

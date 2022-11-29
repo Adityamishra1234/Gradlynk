@@ -7,9 +7,16 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
-class VisaDetail extends StatelessWidget {
-  VisaDetail({Key? key}) : super(key: key);
+class VisaDetail extends StatefulWidget {
+  String applicationId;
+  VisaDetail({Key? key, required this.applicationId}) : super(key: key);
   static const routeNamed = '/VisaDetail';
+
+  @override
+  State<VisaDetail> createState() => _VisaDetailState();
+}
+
+class _VisaDetailState extends State<VisaDetail> {
   var controller = Get.put(VisaDetailController());
 
   final rowSpacer = const TableRow(children: [
@@ -29,6 +36,13 @@ class VisaDetail extends StatelessWidget {
       height: 3,
     )
   ]);
+
+  @override
+  void initState() {
+    controller.getVisDetail("78623", widget.applicationId);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

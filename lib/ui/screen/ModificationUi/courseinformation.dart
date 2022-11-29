@@ -36,6 +36,7 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Level",
+                            mandatory: true,
                             textColor: ThemeConstants.TextColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -60,6 +61,7 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Broad Field",
+                            mandatory: true,
                             textColor: ThemeConstants.TextColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -94,6 +96,7 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Narrow Field",
+                            mandatory: true,
                             textColor: ThemeConstants.TextColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold,

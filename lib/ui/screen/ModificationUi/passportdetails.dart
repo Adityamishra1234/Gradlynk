@@ -24,6 +24,7 @@ class PassportDetails extends StatelessWidget {
                     children: [
                       CustomAutoSizeTextMontserrat(
                         text: "Passport Avaliable",
+                        mandatory: true,
                         textColor: ThemeConstants.TextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -72,6 +73,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Citizen of",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -97,6 +99,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Passport Number",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -129,6 +132,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Country of Issue",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -154,6 +158,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "State of Issue",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -179,6 +184,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Place of Issue",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -204,6 +210,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Date Of Issue",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -236,6 +243,7 @@ class PassportDetails extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Expire Date",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

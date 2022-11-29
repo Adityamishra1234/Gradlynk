@@ -22,6 +22,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
+import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -1167,10 +1168,27 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  examName(String baseUrl, String endpoints) async {
-    var response = await httpPostNullBody(baseUrl + endpoints);
-    print(response);
+  getvisaSummary(String? endpoint) async {
+    try {
+      var response = await httpPostNullBody(
+        "${Endpoints.baseUrl}$endpoint",
+      );
+      if (response != null) {
+        List<VisaSummaryModel> visaSummaryModel = List<VisaSummaryModel>.from(
+            json.decode(response).map((x) => VisaSummaryModel.fromJson(x)));
 
-    return json.decode(response);
+        return visaSummaryModel;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
   }
 }

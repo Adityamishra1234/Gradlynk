@@ -50,6 +50,7 @@ class WorkHistoryCopy extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Name of Last Organisation",
+                      mandatory: true,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                       textColor: ThemeConstants.TextColor,
@@ -81,6 +82,7 @@ class WorkHistoryCopy extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Working From",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -143,6 +145,7 @@ class WorkHistoryCopy extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Industry",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -168,6 +171,7 @@ class WorkHistoryCopy extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Designation",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -199,6 +203,7 @@ class WorkHistoryCopy extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Employement Type",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
@@ -224,6 +229,7 @@ class WorkHistoryCopy extends StatelessWidget {
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Income As per ITR",
+                      mandatory: true,
                       textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,

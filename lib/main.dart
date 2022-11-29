@@ -14,6 +14,7 @@ import 'package:studentpanel/ui/screen/ModificationUi/courseinformationview.dart
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
@@ -235,11 +236,11 @@ class _MyAppState extends State<MyApp> {
         //   page: () => ApplicationCompleteDetails(),
         //   transition: Transition.fade,
         // ),
-        GetPage(
-          name: VisaDetail.routeNamed,
-          page: () => VisaDetail(),
-          transition: Transition.fade,
-        ),
+        // GetPage(
+        //   name: VisaDetail.routeNamed,
+        //   page: () => VisaDetail(),
+        //   transition: Transition.fade,
+        // ),
         GetPage(
           name: AssigneeInformationCopy.routeNamed,
           page: () => const AssigneeInformationCopy(),
@@ -250,11 +251,11 @@ class _MyAppState extends State<MyApp> {
           page: () => const CourseInformationCopy(),
           transition: Transition.fade,
         ),
-        // GetPage(
-        //   name: QualificationDetailsCopy.routeNamed,
-        //   page: () => const QualificationDetailsCopy(),
-        //   transition: Transition.fade,
-        // ),
+        GetPage(
+          name: VisaSummary.routeNamed,
+          page: () => VisaSummary(),
+          transition: Transition.fade,
+        ),
         // GetPage(
         //   name: WorkHistoryCopy.routeNamed,
         //   page: () => const WorkHistoryCopy(),

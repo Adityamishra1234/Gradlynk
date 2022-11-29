@@ -52,6 +52,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   CustomAutoSizeTextMontserrat(
                     text: "First Name",
                     textColor: ThemeConstants.TextColor,
+                    mandatory: true,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
@@ -128,6 +129,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Last Name",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -159,6 +161,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Date of Birth",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -189,6 +192,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Gender",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -207,6 +211,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Marital status",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -249,6 +254,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Mobile Number",
+                mandatory: true,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
                 textColor: ThemeConstants.TextColor,
@@ -285,6 +291,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Email",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -408,6 +415,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Country of residence",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -427,6 +435,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Select State",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -452,6 +461,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Select City",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -506,6 +516,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
                 text: "Zip Code",
+                mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,

@@ -62,6 +62,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Highest Qualification",
+                          mandatory: true,
                           textColor: ThemeConstants.TextColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -91,6 +92,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Qualification Name",
+                          mandatory: true,
                           textColor: ThemeConstants.TextColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -122,6 +124,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Stream",
+                          mandatory: true,
                           textColor: ThemeConstants.TextColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -149,6 +152,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Education Status",
+                          mandatory: true,
                           textColor: ThemeConstants.TextColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -290,6 +294,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Country of Education",
+                          mandatory: true,
                           textColor: ThemeConstants.TextColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -398,6 +403,7 @@ class QualificationDetailsCopy extends StatelessWidget {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "name of the Institution",
+                          mandatory: true,
                           textColor: ThemeConstants.TextColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,

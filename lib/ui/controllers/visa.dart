@@ -11,16 +11,16 @@ class VisaDetailController extends BaseController {
   //Loading
   RxBool loadingVisaDetails = false.obs;
 
-  @override
-  void onInit() {
-    getVisDetail();
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   getVisDetail();
+  //   super.onInit();
+  // }
 
-  getVisDetail() async {
+  getVisDetail(String enqId, String applicationId) async {
     // String? enqId, String? visaId
     var response = await apiServices
-        .getVisaDetail("get-visa-details?enq_id=78623&apli_id=5");
+        .getVisaDetail("get-visa-details?enq_id=$enqId&apli_id=$applicationId");
     if (response != null) {
       visaDetailModel = response;
       loadingVisaDetails.value = true;

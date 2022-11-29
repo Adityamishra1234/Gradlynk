@@ -21,6 +21,7 @@ class EnglishTestDetails extends StatelessWidget {
   final dateOfExam = TextEditingController();
   final dateOfTestReport = TextEditingController();
   final testScoreExpirationDate = TextEditingController();
+  final tentativeExamDate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class EnglishTestDetails extends StatelessWidget {
                 children: [
                   CustomAutoSizeTextMontserrat(
                     text: "Exam Status",
+                    mandatory: true,
                     textColor: ThemeConstants.TextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -123,17 +125,20 @@ class EnglishTestDetails extends StatelessWidget {
                               EnglishTestDetailsViewModel();
                           englishTestDetailsViewModel =
                               _.englishTestDetailsViewModel;
+                          englishTestDetailsViewModel.enqId = "78623";
                           englishTestDetailsViewModel.examStatusID =
                               _.examStatusCodeSelected.toString();
                           englishTestDetailsViewModel.dateOfExam =
                               dateOfExam.text;
+                          englishTestDetailsViewModel.examName =
+                              _.examNameSelected;
 
                           englishTestDetailsViewModel.resultDate =
                               dateOfTestReport.text;
                           englishTestDetailsViewModel.expirationDate =
                               testScoreExpirationDate.text;
                           englishTestDetailsViewModel.tentativeExamDate =
-                              _.tentativeExamDateSelcted;
+                              tentativeExamDate.text;
                           englishTestDetailsViewModel.reading = reading.text;
                           englishTestDetailsViewModel.writing = writing.text;
                           englishTestDetailsViewModel.listening =
@@ -145,8 +150,15 @@ class EnglishTestDetails extends StatelessWidget {
                           englishTestDetailsViewModel.conversation =
                               reading.text;
                           englishTestDetailsViewModel.production = writing.text;
-                          englishTestDetailsViewModel.overAll =
-                              overallScoreController.text;
+                          print(getNUllChecker(tentativeExamDate.text));
+                          if (getNUllChecker(tentativeExamDate.text)) {
+                            englishTestDetailsViewModel.overAll =
+                                overallScoreController.text;
+                          } else {
+                            englishTestDetailsViewModel.overAll =
+                                controller.englishTestDetailsViewModel.overAll;
+                          }
+
                           updateEnglishTestDetails(englishTestDetailsViewModel);
                           _.editSave.value = true;
                           _.update();
@@ -208,6 +220,7 @@ class EnglishTestDetails extends StatelessWidget {
   callbackTentativeDefinite(varTopic) {
     if (varTopic.toString() == "Tentative") {
       controller.tentative.value = true;
+
       controller.update();
     } else {
       controller.tentative.value = false;
@@ -222,11 +235,16 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Exam Name",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+          child: Row(
+            children: [
+              CustomAutoSizeTextMontserrat(
+                text: "Exam Name",
+                mandatory: true,
+                textColor: ThemeConstants.TextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ],
           ),
         ),
       ),
@@ -292,6 +310,7 @@ class EnglishTestDetails extends StatelessWidget {
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
             text: "Do you want to book test?",
+            mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -313,6 +332,7 @@ class EnglishTestDetails extends StatelessWidget {
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
             text: "Specify Exam Name",
+            mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -343,6 +363,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
+          controller: tentativeExamDate,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
@@ -368,6 +389,7 @@ class EnglishTestDetails extends StatelessWidget {
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
             text: "Exam Name",
+            mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -404,6 +426,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
+          controller: dateOfExam,
           readOnly: controller.editSave.value == true ? true : false,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -1096,6 +1119,7 @@ class EnglishTestDetails extends StatelessWidget {
             double.parse(reading.text) +
             double.parse(speaking.text);
         temp = (temp / 4);
+        overallScoreController.text = temp.toStringAsFixed(2);
       }
 
       return [
