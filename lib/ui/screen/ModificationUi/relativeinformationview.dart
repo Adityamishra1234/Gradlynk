@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/realtion.dart';
 
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class RelativeInformationView extends StatelessWidget {
+  Function callbackEdit;
+  Function callbackDelete;
   Function callbackAddRelativeInfo;
   List<RealtionModel> model = [];
   RelativeInformationView(
-      {Key? key, required this.callbackAddRelativeInfo, required this.model})
+      {Key? key,
+      required this.callbackAddRelativeInfo,
+      required this.callbackDelete,
+      required this.callbackEdit,
+      required this.model})
       : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
@@ -242,6 +246,7 @@ class RelativeInformationView extends StatelessWidget {
                                     ),
                                     onPressed: () async {
                                       // Api call
+                                      callbackDelete(index);
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Delete",
@@ -262,7 +267,7 @@ class RelativeInformationView extends StatelessWidget {
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {
-                                        // Api call
+                                        callbackEdit(index);
                                       },
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Edit",

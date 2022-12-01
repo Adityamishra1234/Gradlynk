@@ -10,12 +10,14 @@ class CourseInformationWidget extends StatelessWidget {
   Function callbackCourseLevel;
   Function callbackCourseNarrow;
   Function callbackviewDetailsButton;
+  Function callbackUpdateButton;
   bool? update;
   int? index;
 
   CourseInformationWidget(
       {Key? key,
       this.index,
+      required this.callbackUpdateButton,
       required this.callbackCourseLevel,
       required this.callbackviewDetailsButton,
       required this.update,
@@ -200,6 +202,7 @@ class CourseInformationWidget extends StatelessWidget {
 
                                 controller1.updateCourseInformation(
                                     78623, controller1.courseLevelSelectedId!);
+                                callbackUpdateButton(true);
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Update",

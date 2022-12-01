@@ -7,10 +7,16 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class WorkHistoryView extends StatelessWidget {
+  Function callbackDeleteButton;
+  Function calbackEditButton;
   Function callbackAddWorkHistory;
   List<WorkHistoryViewModel> model = [];
   WorkHistoryView(
-      {Key? key, required this.callbackAddWorkHistory, required this.model})
+      {Key? key,
+      required this.callbackAddWorkHistory,
+      required this.model,
+      required this.calbackEditButton,
+      required this.callbackDeleteButton})
       : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
@@ -267,7 +273,7 @@ class WorkHistoryView extends StatelessWidget {
                                       // foreground
                                     ),
                                     onPressed: () async {
-                                      // Api call
+                                      callbackDeleteButton(index);
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Delete",
@@ -289,6 +295,7 @@ class WorkHistoryView extends StatelessWidget {
                                       ),
                                       onPressed: () async {
                                         // Api call
+                                        calbackEditButton(index);
                                       },
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Edit",

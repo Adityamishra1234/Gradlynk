@@ -7,8 +7,10 @@ import 'package:studentpanel/utils/endpoint.dart';
 class RelativeInformationController extends BaseController {
   ApiServices apiServices = ApiServices();
   List<RealtionModel> modelList = [];
+  int? index;
 
   RxBool viewDetails = false.obs;
+  RxBool updateForEdit = true.obs;
 
   //Loading
   RxBool loadingCountry = false.obs;

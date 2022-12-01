@@ -36,6 +36,7 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
                 : CourseInformationWidget(
                     update: update,
                     index: index,
+                    callbackUpdateButton: callbackUpdateButton,
                     callbackCourseLevel: callbackCourseLevel,
                     callbackCourseNarrow: callbackCourseNarrow,
                     callbackviewDetailsButton: callbackViewDetailsButton,
@@ -44,7 +45,11 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
   }
 
   // Funcation
-  callback(varTopic) {}
+  callbackUpdateButton(varTopic) {
+    update = true;
+    setState(() {});
+  }
+
   callbackViewDetails(varTopic) {
     viewDetails = false;
     setState(() {});

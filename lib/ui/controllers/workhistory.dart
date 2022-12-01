@@ -14,12 +14,19 @@ class WorkHistoryController extends BaseController {
   List employmentTypeList = [];
   List employmentTypeCode = [];
 
+// field selection
   RxBool viewDetails = false.obs;
+  RxBool updateForEdit = true.obs;
   //Loading
   RxBool loadingIndustries = false.obs;
   RxBool loadingEmploymentType = false.obs;
   RxBool loadingWorkHistory = false.obs;
   RxBool loadingWorkUpdate = false.obs;
+
+  // field Selected
+  String? industryNameSelected, employementTypeSelected;
+  int? industryNameCode, employementTypeCode;
+  int? index;
 
   @override
   void onInit() {
