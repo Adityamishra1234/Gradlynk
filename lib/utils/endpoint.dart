@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Endpoints {
   static String? baseUrl = "http://14.97.86.202:205/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
@@ -42,7 +44,7 @@ class Endpoints {
       "get-affiliation-for-country?country_id=";
   static String? viewQualificationDetails =
       "view-qualification-details?enq_id=";
-  static String? addQualification = "add-qualification-details/?enq_id=";
+  static String? addQualification = "add-qualification-details?enq_id=";
   static String? gender = "get-gender";
   static String? examNameOtherTest = "get-other-exam-name";
   static String? examName = "get-exam-name";
@@ -82,23 +84,23 @@ getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
 }
 
 getAddQualificationPart2(
-  int index,
-  int? qualificationId,
-  String? courseName,
-  int cityId,
-  int stateId,
-  int countryId,
-  int reapperCount,
-  int grade,
-  int multiplier,
-  int percentage,
-  int paasingInstId,
-  int streamId,
-  int affiliationId,
-  String educationStatus,
-  int yearOfPassing,
+  @required String index,
+  @required String qualificationId,
+  @required String courseName,
+  @required String cityId,
+  @required String stateId,
+  @required String countryId,
+  @required String reapperCount,
+  @required String grade,
+  @required String multiplier,
+  @required String percentage,
+  @required String paasingInstId,
+  @required String streamId,
+  @required String affiliationId,
+  @required String educationStatus,
+  @required String yearOfPassing,
 ) {
-  return "&added_qualification[$index][qualification_id]=$qualificationId&added_qualification[$index][course_name]=$courseName&added_qualification[$index][city_id]=$cityId&added_qualification[$index][state_id]$stateId&added_qualification[$index][country_id]=$countryId&added_qualification[$index][reapper_count]=$reapperCount&added_qualification[$index][grade]=$grade&added_qualification[$index][multiplier]=$multiplier&added_qualification[$index][percentage]=$percentage&added_qualification[$index][passing_inst_id]=$paasingInstId&added_qualification[$index][stream_id]=$streamId&added_qualification[$index][affiliation_id]=$affiliationId&added_qualification[$index][education_status]=$educationStatus&added_qualification[$index][year_of_passing]=$yearOfPassing";
+  return "&added_qualification[$index][qualification_id]=$qualificationId&added_qualification[$index][course_name]=$courseName&added_qualification[$index][city_id]=$cityId&added_qualification[$index][state_id]=$stateId&added_qualification[$index][country_id]=$countryId&added_qualification[$index][reapper_count]=$reapperCount&added_qualification[$index][grade]=$grade&added_qualification[$index][multiplier]=$multiplier&added_qualification[$index][percentage]=$percentage&added_qualification[$index][passing_inst_id]=$paasingInstId&added_qualification[$index][stream_id]=$streamId&added_qualification[$index][affiliation_id]=$affiliationId&added_qualification[$index][education_status]=$educationStatus&added_qualification[$index][year_of_passing]=$yearOfPassing";
 }
 
 addWorkHistoryPart2(

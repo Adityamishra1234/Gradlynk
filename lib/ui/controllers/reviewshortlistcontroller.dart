@@ -33,48 +33,6 @@ class ReviewShortListController extends BaseController {
     update();
   }
 
-// Check
-  // nextpage(String endpoint, String pageNumber) async {
-  //   if (loadingNextAndPrevious.value == true) {
-  //     loadingNextAndPrevious = false.obs;
-  //     update();
-  //   }
-  //   var now = DateTime.now();
-  //   var formatterYear = DateFormat('yyyy');
-  //   var formatterMonth = DateFormat('MM');
-
-  //   debugPrint("$endpoint&page=$pageNumber");
-  //   var res = await apiservices.getCourseSearch(
-  //       Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
-  //   if (res != null) {
-  //     courseSearchPages = res;
-
-  //     for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-  //       if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-  //         for (var j = 0;
-  //             j < courseSearchPages.courseSearchModel![i].listIntake!.length;
-  //             j++) {
-  //           if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
-  //                   .split("-")[1]) >=
-  //               int.parse(formatterYear.format(now))) {
-  //             if (int.parse(courseSearchPages
-  //                     .courseSearchModel![i].listIntake![j]
-  //                     .split("-")[0]) >=
-  //                 int.parse(formatterMonth.format(now))) {
-  //               courseSearchPages.courseSearchModel![i].nearByIntake =
-  //                   courseSearchPages.courseSearchModel![i].listIntake![j];
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //     courseSearchPages.courseSearchModel!;
-  //     return loadingNextAndPrevious.value = true;
-  //   } else {
-  //     return loadingNextAndPrevious.value = false;
-  //   }
-  // }
-
   compare(String? varTopic) {
     if (varTopic.toString().split(",")[0].toString() == true.toString()) {
       if (courseSearchModelCompare1.id == null) {

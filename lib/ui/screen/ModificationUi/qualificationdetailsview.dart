@@ -6,10 +6,16 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class QualificationDetailView extends StatelessWidget {
+  Function callbackDelete;
+  Function callbackEdit;
   Function callbackAddQualification;
   List<QualificationDetailsViewModel> model = [];
   QualificationDetailView(
-      {Key? key, required this.callbackAddQualification, required this.model})
+      {Key? key,
+      required this.callbackAddQualification,
+      required this.callbackEdit,
+      required this.callbackDelete,
+      required this.model})
       : super(key: key);
   final rowSpacer = const TableRow(children: [
     SizedBox(
@@ -402,7 +408,7 @@ class QualificationDetailView extends StatelessWidget {
                                       // foreground
                                     ),
                                     onPressed: () async {
-                                      // Api call
+                                      callbackDelete(index);
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Delete",
@@ -424,6 +430,7 @@ class QualificationDetailView extends StatelessWidget {
                                       ),
                                       onPressed: () async {
                                         // Api call
+                                        callbackEdit(index);
                                       },
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Edit",

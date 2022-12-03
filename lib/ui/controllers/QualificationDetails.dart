@@ -4,12 +4,11 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
-import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class QualificationDetailsController extends BaseController {
   ApiServices apiServices = ApiServices();
-  List<QualificationDetailsViewModel> qualificationDetailsView = [];
+  List<QualificationDetailsViewModel> modelList = [];
 
   //create dropdown field list / code list
   List highestQualificationList = [];
@@ -17,7 +16,6 @@ class QualificationDetailsController extends BaseController {
   List streamList = [];
   List streamCode = [];
   List educationStatusList = [];
-  List educationStatusCode = [];
   List countryList = [];
   List countryCode = [];
   List stateList = [];
@@ -28,6 +26,7 @@ class QualificationDetailsController extends BaseController {
   List affiliationCode = [];
   List institutionList = [];
   List institutionCode = [];
+  List yearofPassing = [];
 
   // loading
   RxBool loadingHighestQualification = false.obs;
@@ -39,15 +38,39 @@ class QualificationDetailsController extends BaseController {
   RxBool loadingAffiliation = false.obs;
   RxBool loadingInstitution = false.obs;
   RxBool loadingViewQualification = false.obs;
+  RxBool loadingyearOfpassing = false.obs;
+  RxBool loadingEditQualification = false.obs;
 
   // set view Qualification/Add Qualification
   RxBool addedQualification = false.obs;
+  RxBool updteForEdit = true.obs;
+  int? modelindex;
+
+  // Selected Field
+  String? highestQualificationSelected,
+      affiliationCodeSelected,
+      affiliationNameSelected,
+      streamSelected,
+      educationStatusSelected,
+      yearOfPassingSelected,
+      countrySelected,
+      stateSelected,
+      citySelected,
+      institutionSelected;
+  String? highestQualificationSelectedID,
+      streamSelectedID,
+      countrySelectedID,
+      stateSelectedID,
+      citySelectedID,
+      institutionSelectedID;
 
   @override
   void onInit() {
     getHighestQualification();
     getStream();
     getCountryOfEducation();
+    getYearOfpassing();
+    getEducationStatus();
     viewQualification("78623");
     super.onInit();
   }
@@ -106,6 +129,7 @@ class QualificationDetailsController extends BaseController {
   }
 
   getState(String countryId) async {
+    loadingState = false.obs;
     stateList = [];
     stateCode = [];
     var res = await apiServices.getState2(
@@ -120,12 +144,17 @@ class QualificationDetailsController extends BaseController {
       temp.forEach((element) {
         stateCode.add(element.toString());
       });
+      stateSelected = null;
+      stateSelectedID = null;
       loadingState = true.obs;
       update();
     }
   }
 
-  getCity(int stateId) async {
+  getCity(String stateId) async {
+    loadingCity.value = false;
+    cityCode = [];
+    cityList = [];
     var res = await apiServices.getCity2(
         Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
     if (res != null) {
@@ -138,12 +167,15 @@ class QualificationDetailsController extends BaseController {
       temp.forEach((element) {
         cityCode.add(element.toString());
       });
+      citySelected = null;
+      citySelectedID = null;
       loadingCity = true.obs;
       update();
     }
   }
 
-  getAffiliation(int countryId) async {
+  getAffiliation(String countryId) async {
+    loadingAffiliation = false.obs;
     affiliationList = [];
     affiliationCode = [];
     List<AffiliationDropDownModel> affiliationDropDown = [];
@@ -154,14 +186,19 @@ class QualificationDetailsController extends BaseController {
       affiliationDropDown.forEach((element) {
         affiliationList.add(element.affiliationName);
         affiliationCode.add(element.id);
-        loadingAffiliation = true.obs;
-      });
+        affiliationCodeSelected = null;
+        affiliationNameSelected = null;
 
-      update();
+        loadingAffiliation = true.obs;
+        update();
+      });
     }
   }
 
-  geInstitution(int cityId) async {
+  geInstitution(String cityId) async {
+    affiliationCode = [];
+    affiliationList = [];
+    loadingAffiliation.value = false;
     var res = await apiServices.getInstitute(
         Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
     if (res != null) {
@@ -174,18 +211,42 @@ class QualificationDetailsController extends BaseController {
       temp.forEach((element) {
         institutionList.add(element.toString());
       });
+      institutionSelected = null;
+      institutionSelectedID = null;
       loadingInstitution = true.obs;
       update();
     }
   }
 
-  addQualification() {}
+  updateQualification(String enqId) async {
+    String endpoint = Endpoints.addQualification! + enqId;
+    for (var i = 0; i < modelList.length; i++) {
+      endpoint = endpoint +
+          getAddQualificationPart2(
+              i.toString(),
+              modelList[i].qualificationId ?? "",
+              modelList[i].courseName ?? "",
+              modelList[i].cityId ?? "",
+              modelList[i].stateId ?? "",
+              modelList[i].countryId ?? "",
+              modelList[i].reapperCount ?? "",
+              modelList[i].grade ?? "",
+              modelList[i].multiplier ?? "",
+              modelList[i].percentage ?? "",
+              modelList[i].passingInstId ?? "",
+              modelList[i].streamId ?? "",
+              modelList[i].affiliationId ?? "",
+              modelList[i].educationStatus ?? "",
+              modelList[i].yearOfPassing ?? "");
+    }
+    await apiServices.updateQualification(endpoint);
+  }
 
   viewQualification(String enq_id) async {
     var res = await apiServices.getQualificationDetails(
         Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enq_id);
     if (res != null) {
-      qualificationDetailsView = res;
+      modelList = res;
       loadingViewQualification.value = true;
       update();
     }
@@ -196,26 +257,25 @@ class QualificationDetailsController extends BaseController {
     update();
   }
 
-  // [complete,Pursuing,Awaiting results]
-  // getEducationStatus() async {
-  //   var res = await apiServices.getEducationStatus(
-  //       Endpoints.baseUrl!, Endpoints.);
-  //   if (res != null) {
-  //     Map map = Map<String, dynamic>.from(res);
-  //     List<dynamic> temp = map.keys.toList();
-  //     temp.forEach((element) {
-  //       stateList.add(element);
-  //     });
-  //     temp = map.values.toList();
-  //     temp.forEach((element) {
-  //       streamCode.add(element.toString());
-  //     });
+  getYearOfpassing() async {
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.yearofpassing!);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      yearofPassing = map.values.toList();
+      loadingyearOfpassing.value = true;
+      update();
+    }
+  }
 
-  //     loadingStream = true.obs;
-  //     update();
-  //   }
-  // }\
-
-// 1995-2030
-  // getYearofPassing() {}
+  getEducationStatus() async {
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.educationStatus!);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      educationStatusList = map.values.toList();
+      loadingEducationStatus.value = true;
+      update();
+    }
+  }
 }

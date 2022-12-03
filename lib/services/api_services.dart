@@ -24,6 +24,7 @@ import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
 
@@ -440,16 +441,15 @@ class ApiServices extends StudentPanelBase {
       FilterModel filterModel = FilterModel();
 
       courseModelFilter.courseSearchList.forEach((element) {
-        if (element.intakeMonth != null && element.intakeMonth != "") {
+        print(element.id);
+        if (getNUllChecker(element.intakeMonth) == false) {
           filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
         }
-        if (element.intakeYear != null && element.intakeYear != "") {
+        if (getNUllChecker(element.intakeYear) == false) {
           filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
         }
 
-        if (element.academicRequire != null &&
-            element.academicRequire != "" &&
-            element.academicRequire != "null") {
+        if (getNUllChecker(element.academicRequire) == false) {
           if (double.parse(element.academicRequire!.split("-")[2]) >= 70) {
             filterModel.academicPercentage[0].update("70+ %", (value) => true);
           } else if (double.parse(element.academicRequire!.split("-")[2]) >=
@@ -475,19 +475,17 @@ class ApiServices extends StudentPanelBase {
         //   filterModel.academicPercentage!
         //       .add(element.academicRequire!.split("-")[1]);
         // }
-        if (element.universityName != null && element.universityName != "") {
+        if (getNUllChecker(element.universityName) == false) {
           filterModel.universityname!.add(element.universityName ?? "");
         }
-        if (element.instituteType != null && element.instituteType != "") {
+        if (getNUllChecker(element.instituteType) == false) {
           filterModel.instituteLevel!.add(element.instituteType ?? "");
         }
         // if (element.academicRequire != null) {
         //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
         // }
 
-        if (element.annualTutionFeesInr != null &&
-            element.annualTutionFeesInr != "" &&
-            element.annualTutionFeesInr != "null") {
+        if (getNUllChecker(element.annualTutionFeesInr) == false) {
           if (double.parse(element.annualTutionFeesInr!) < 700000) {
             filterModel.budget[3].update("Below 7 Lac", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
@@ -501,53 +499,50 @@ class ApiServices extends StudentPanelBase {
           }
           // !.add(element.allFeesInr ?? "");
         }
-        if (element.offerTat != null && element.offerTat != "") {
+        if (getNUllChecker(element.offerTat) == false) {
           filterModel.offerTAT!.add(element.offerTat ?? "");
         }
-        if (element.visaTat != null && element.visaTat != "") {
+        if (getNUllChecker(element.visaTat) == false) {
           filterModel.visaTAT!.add(element.visaTat ?? "");
         }
 
-        if (element.countryName != null && element.countryName != "") {
+        if (getNUllChecker(element.countryName) == false) {
           filterModel.countryName!.add(element.countryName ?? "");
         }
-        if (element.instSubCategory != null && element.instSubCategory != "") {
+        if (getNUllChecker(element.instSubCategory) == false) {
           filterModel.institutePrivatePublic!
               .add(element.instSubCategory ?? "");
         }
-        if (element.arwuRank != null && element.arwuRank != "") {
+        if (getNUllChecker(element.arwuRank) == false) {
           filterModel.arwuNewsRanking!.add(element.arwuRank ?? "");
         }
-        if (element.timesRank != null && element.timesRank != "") {
+        if (getNUllChecker(element.timesRank) == false) {
           filterModel.timesRanking!.add(element.timesRank ?? "");
         }
-        if (element.usNewsRank != null && element.usNewsRank != "") {
+        if (getNUllChecker(element.usNewsRank) == false) {
           filterModel.usNewsRanking!.add(element.usNewsRank ?? "");
         }
-        if (element.qsWorldRank != null && element.qsWorldRank != "") {
+        if (getNUllChecker(element.qsWorldRank) == false) {
           filterModel.qsWorldRanking!.add(element.qsWorldRank ?? "");
         }
 
         // Yes No
-        if (element.scholarship != null && element.scholarship != "") {
+        if (getNUllChecker(element.scholarship) == false) {
           filterModel.scholarship!.add(element.scholarship ?? "");
         }
-        if (element.siecPriority != null && element.siecPriority != "") {
+        if (getNUllChecker(element.siecPriority) == false) {
           filterModel.siecPriority!.add(element.siecPriority ?? "");
         }
-        if (element.conditionalOffer != null &&
-            element.conditionalOffer != "") {
+        if (getNUllChecker(element.conditionalOffer) == false) {
           filterModel.conditionalOffer!.add(element.conditionalOffer ?? "");
         }
-        if (element.backlogsAcceptable != null &&
-            element.backlogsAcceptable != "") {
+        if (getNUllChecker(element.backlogsAcceptable) == false) {
           filterModel.backlogAcceptable!.add(element.backlogsAcceptable ?? "");
         }
-        if (element.isApplicationFee != null &&
-            element.isApplicationFee != "") {
+        if (getNUllChecker(element.isApplicationFee) == false) {
           filterModel.applicationfee!.add(element.isApplicationFee ?? "");
         }
-        if (element.siecRep != null && element.siecRep != "") {
+        if (getNUllChecker(element.siecRep) == false) {
           filterModel.siecRep!.add(element.siecRep ?? "");
         }
         // filterModel.placementSandwich!.add(element.place)
@@ -607,6 +602,7 @@ class ApiServices extends StudentPanelBase {
 
       return filterModel;
     } catch (e) {
+      print(StackTrace.current);
       throw Exception("Try after some time");
     }
   }
@@ -1178,6 +1174,31 @@ class ApiServices extends StudentPanelBase {
             json.decode(response).map((x) => VisaSummaryModel.fromJson(x)));
 
         return visaSummaryModel;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  updateQualification(String? endpoint) async {
+    try {
+      var response = await httpPostNullBody(
+        "${Endpoints.baseUrl}$endpoint",
+      );
+      if (response != null) {
+        var jsondata = json.decode(response);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+        Get.snackbar(
+            "Qualification Details:", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       print(StackTrace.current);

@@ -20,7 +20,7 @@ class CustomDropDownSingle extends StatefulWidget {
 }
 
 class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
-  String? initialSelectedValue2;
+  String? initialSelectedValue2 = null;
   @override
   Widget build(BuildContext context) {
     return widget.choosefieldtype == false
@@ -65,11 +65,10 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                   }).toList(),
 
                   onChanged: (dynamic? newValue) {
-                    setState(() {
-                      widget.initialSelectedValue = newValue!;
-                      initialSelectedValue2 = newValue;
-                      widget.callbackFunction(newValue);
-                    });
+                    widget.initialSelectedValue = newValue!;
+                    initialSelectedValue2 = newValue;
+                    widget.callbackFunction(newValue);
+                    setState(() {});
                   },
                 ),
               ),
