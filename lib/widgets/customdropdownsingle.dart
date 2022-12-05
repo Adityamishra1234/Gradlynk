@@ -20,7 +20,7 @@ class CustomDropDownSingle extends StatefulWidget {
 }
 
 class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
-  String? initialSelectedValue2 = null;
+  String? initialSelectedValue2;
   @override
   Widget build(BuildContext context) {
     return widget.choosefieldtype == false
@@ -38,7 +38,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                   elevation: 0,
                   underline: const SizedBox(),
                   // Initial Value
-                  value: initialSelectedValue2 ?? widget.initialSelectedValue,
+                  value: widget.initialSelectedValue,
                   alignment: AlignmentDirectional.bottomEnd,
                   // Down Arrow Icon
                   icon: Icon(
@@ -66,7 +66,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
 
                   onChanged: (dynamic? newValue) {
                     widget.initialSelectedValue = newValue!;
-                    initialSelectedValue2 = newValue;
+                    // initialSelectedValue2 = newValue;
                     widget.callbackFunction(newValue);
                     setState(() {});
                   },

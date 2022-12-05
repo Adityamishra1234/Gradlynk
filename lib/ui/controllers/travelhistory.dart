@@ -6,7 +6,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 
 class TravelHistoryController extends BaseController {
   ApiServices apiServices = ApiServices();
-  List<TravelHistoryModel> travelHistoryList = [];
+  List<TravelHistoryModel> modelList = [];
 
   // dropdown fields
   List travelStatus = [];
@@ -23,28 +23,32 @@ class TravelHistoryController extends BaseController {
   RxBool loadingVisaStatus = false.obs;
   RxBool loadingCountry = false.obs;
   RxBool loadingVisaTravelDetails = false.obs;
+  RxBool loadingEdit = false.obs;
 
   // View / Add
   RxBool viewDetails = false.obs;
   RxBool applicationNumberField = true.obs;
+  RxBool updateForEdit = true.obs;
 
   // Selected
-  String? travelAbroadSelected;
+  String? travelAbroadSelected = "No";
+  String? travelAbroadSelectedID;
   String? travelStatusSelected;
   String? countrySelected;
   String? countryCodeSelected;
   String? typeOfVisaSelected;
   String? typeOfVisaCodeSelected;
   String? visaStatusSelected;
-  String? visaStatusCodeSelected;
-  String? proofAvailable;
+  String? proofAvailableSelectedID;
+  String? proofAvailableSelected = "No";
+  int? index;
 
   @override
   void onInit() {
     getTypeOfVisa();
     getTravelStatus();
     getCountry();
-    // getTypeOfVisa();
+    getTypeOfVisa();
     getVisaTravelHistory("78623");
     super.onInit();
   }
@@ -73,8 +77,12 @@ class TravelHistoryController extends BaseController {
   }
 
   getVisaStatus(String travelStatus) async {
+    visaStatusList = [];
+    visaStatusCode = [];
+    visaStatusSelected = null;
+
     var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.visaStatus! + travelStatus!);
+        Endpoints.baseUrl!, Endpoints.visaStatus! + travelStatus);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       visaStatusList = map.values.toList();
@@ -108,7 +116,7 @@ class TravelHistoryController extends BaseController {
     var res = await apiServices.getTravelHistory(
         Endpoints.baseUrl!, Endpoints.viewTravelDetails! + enq_id);
     if (res != null) {
-      travelHistoryList = res;
+      modelList = res;
       loadingVisaTravelDetails.value = true;
       update();
     }
@@ -120,21 +128,21 @@ class TravelHistoryController extends BaseController {
         enq_id +
         Endpoints.addTravelHistoryPart2! +
         travelHistory;
-    for (var i = 0; i < travelHistoryList.length; i++) {
+    for (var i = 0; i < modelList.length; i++) {
       endpoint = endpoint +
           addTravelHistoryPart3(
               i.toString(),
-              travelHistoryList[i].travelStatus.toString(),
-              travelHistoryList[i].proofAvailable.toString(),
-              travelHistoryList[i].countryName,
-              travelHistoryList[i].chooseCountry.toString(),
-              travelHistoryList[i].typeOfVisa.toString(),
-              travelHistoryList[i].visaStatus,
-              travelHistoryList[i].dateOfRejection,
-              travelHistoryList[i].reasonOfRejection,
-              travelHistoryList[i].applicationNumber,
-              travelHistoryList[i].visaNumber,
-              travelHistoryList[i].dateOfApplication);
+              modelList[i].travelStatus.toString(),
+              modelList[i].proofAvailable.toString(),
+              modelList[i].countryName,
+              modelList[i].chooseCountry.toString(),
+              modelList[i].typeOfVisa.toString(),
+              modelList[i].visaStatus,
+              modelList[i].dateOfRejection,
+              modelList[i].reasonOfRejection,
+              modelList[i].applicationNumber,
+              modelList[i].visaNumber,
+              modelList[i].dateOfApplication);
     }
     print(endpoint);
     var res = await apiServices.updateTravelHistory(endpoint);

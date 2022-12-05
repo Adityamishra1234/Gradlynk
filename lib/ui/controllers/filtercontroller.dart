@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 class FilterController extends BaseController {
   CourseModelFilter courseModelFilter = CourseModelFilter();
@@ -397,26 +398,26 @@ class FilterController extends BaseController {
     filterModel.siecRep = filterModel.siecRep!.toSet().toList();
     if (filterModel.timesRanking != null) {
       filterModel.timesRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
+        return a.compareTo(b);
       });
     }
     if (filterModel.arwuNewsRanking != null) {
       filterModel.arwuNewsRanking =
           filterModel.arwuNewsRanking!.toSet().toList();
       filterModel.arwuNewsRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
+        return a.compareTo(b);
       });
     }
     if (filterModel.usNewsRanking != null) {
       filterModel.usNewsRanking = filterModel.usNewsRanking!.toSet().toList();
       filterModel.usNewsRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
+        return a.compareTo(b);
       });
     }
     if (filterModel.qsWorldRanking != null) {
       filterModel.qsWorldRanking = filterModel.qsWorldRanking!.toSet().toList();
       filterModel.qsWorldRanking!.sort((a, b) {
-        return int.parse(a).compareTo(int.parse(b));
+        return a.compareTo(b);
       });
     }
 

@@ -9,9 +9,13 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class TravingHistoryView extends StatelessWidget {
   Function callbackAddTravelDetails;
+  Function callbackEdit;
+  Function callbackDelete;
   List<TravelHistoryModel> model = [];
   TravingHistoryView({
     Key? key,
+    required this.callbackDelete,
+    required this.callbackEdit,
     required this.model,
     required this.callbackAddTravelDetails,
   }) : super(key: key);
@@ -37,7 +41,7 @@ class TravingHistoryView extends StatelessWidget {
                   callbackAddTravelDetails(true);
                 },
                 child: CustomAutoSizeTextMontserrat(
-                  text: "Added Qualification",
+                  text: "Added Travel Details",
                   fontSize: 12,
                   textColor: ThemeConstants.bluecolor,
                   fontWeight: FontWeight.bold,
@@ -394,7 +398,7 @@ class TravingHistoryView extends StatelessWidget {
                                       // foreground
                                     ),
                                     onPressed: () async {
-                                      // Api call
+                                      callbackDelete(index);
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Delete",
@@ -415,7 +419,7 @@ class TravingHistoryView extends StatelessWidget {
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {
-                                        // Api call
+                                        callbackEdit(index);
                                       },
                                       child: CustomAutoSizeTextMontserrat(
                                         text: "Edit",

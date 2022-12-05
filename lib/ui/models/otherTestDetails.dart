@@ -1,4 +1,4 @@
-class OtherTestDetailsViewModel {
+class OtherTestDetailsModel {
   int? id;
   int? enqId;
   int? applicantType;
@@ -35,7 +35,7 @@ class OtherTestDetailsViewModel {
   int? conversation;
   int? production;
 
-  OtherTestDetailsViewModel(
+  OtherTestDetailsModel(
       {this.id,
       this.enqId,
       this.applicantType,
@@ -72,7 +72,7 @@ class OtherTestDetailsViewModel {
       this.conversation,
       this.production});
 
-  OtherTestDetailsViewModel.fromJson(Map<String, dynamic> json) {
+  OtherTestDetailsModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     enqId = json['enq_Id'];
     applicantType = json['applicant_type'];
@@ -111,42 +111,42 @@ class OtherTestDetailsViewModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['enq_Id'] = this.enqId;
-    data['applicant_type'] = this.applicantType;
-    data['exam_status'] = this.examStatus;
-    data['exam_type'] = this.examType;
-    data['test_book'] = this.testBook;
-    data['date_of_exam'] = this.dateOfExam;
-    data['exam_name'] = this.examName;
-    data['tentative_exam_date'] = this.tentativeExamDate;
-    data['result_date'] = this.resultDate;
-    data['expiration_date'] = this.expirationDate;
-    data['reading'] = this.reading;
-    data['writing'] = this.writing;
-    data['listening'] = this.listening;
-    data['speaking'] = this.speaking;
-    data['math'] = this.math;
-    data['english'] = this.english;
-    data['science'] = this.science;
-    data['verbal_reasoning'] = this.verbalReasoning;
-    data['analytical_writing'] = this.analyticalWriting;
-    data['integrated_reasoning'] = this.integratedReasoning;
-    data['quantitative_apptitude'] = this.quantitativeApptitude;
-    data['essay'] = this.essay;
-    data['over_all'] = this.overAll;
-    data['is_active'] = this.isActive;
-    data['created_by'] = this.createdBy;
-    data['created_at'] = this.createdAt;
-    data['updated_by'] = this.updatedBy;
-    data['updated_at'] = this.updatedAt;
-    data['assumptive_proficiency'] = this.assumptiveProficiency;
-    data['score_type'] = this.scoreType;
-    data['literacy'] = this.literacy;
-    data['comprehension'] = this.comprehension;
-    data['conversation'] = this.conversation;
-    data['production'] = this.production;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['enq_Id'] = enqId;
+    data['applicant_type'] = applicantType;
+    data['exam_status'] = examStatus;
+    data['exam_type'] = examType;
+    data['test_book'] = testBook;
+    data['date_of_exam'] = dateOfExam;
+    data['exam_name'] = examName;
+    data['tentative_exam_date'] = tentativeExamDate;
+    data['result_date'] = resultDate;
+    data['expiration_date'] = expirationDate;
+    data['reading'] = reading;
+    data['writing'] = writing;
+    data['listening'] = listening;
+    data['speaking'] = speaking;
+    data['math'] = math;
+    data['english'] = english;
+    data['science'] = science;
+    data['verbal_reasoning'] = verbalReasoning;
+    data['analytical_writing'] = analyticalWriting;
+    data['integrated_reasoning'] = integratedReasoning;
+    data['quantitative_apptitude'] = quantitativeApptitude;
+    data['essay'] = essay;
+    data['over_all'] = overAll;
+    data['is_active'] = isActive;
+    data['created_by'] = createdBy;
+    data['created_at'] = createdAt;
+    data['updated_by'] = updatedBy;
+    data['updated_at'] = updatedAt;
+    data['assumptive_proficiency'] = assumptiveProficiency;
+    data['score_type'] = scoreType;
+    data['literacy'] = literacy;
+    data['comprehension'] = comprehension;
+    data['conversation'] = conversation;
+    data['production'] = production;
     return data;
   }
 }

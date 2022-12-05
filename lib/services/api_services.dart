@@ -233,6 +233,7 @@ class ApiServices extends StudentPanelBase {
   getCourseSearch(String baseUrl, String endpoint, String enq_id) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     List<CourseSearchModel> courseSearchModel = [];
+    print("$baseUrl$endpoint&enq_id=$enq_id");
     try {
       var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
 
@@ -981,8 +982,8 @@ class ApiServices extends StudentPanelBase {
       var response = await httpPostNullBody(baseUrl + endpoints);
       if (response != null) {
         var jsondata = json.decode(response);
-        OtherTestDetailsViewModel englishTestDetailsViewModel =
-            OtherTestDetailsViewModel.fromJson(jsondata);
+        OtherTestDetailsModel englishTestDetailsViewModel =
+            OtherTestDetailsModel.fromJson(jsondata);
 
         return englishTestDetailsViewModel;
       }
@@ -1198,6 +1199,31 @@ class ApiServices extends StudentPanelBase {
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
         Get.snackbar(
             "Qualification Details:", dataUpdateStatus.status.toString(),
+            snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  updateOtherTestDetails(
+      OtherTestDetailsModel otherTestDetailModel, String? endpoint) async {
+    try {
+      String jsonData = json.encode(otherTestDetailModel);
+      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
+      if (response != null) {
+        var jsondata = json.decode(response);
+        DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
+
+        Get.snackbar("Other Test Details:", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
