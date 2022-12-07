@@ -30,7 +30,7 @@ class OtherTestDetailsController extends BaseController {
   String? bookTestSelectedID;
   String? specifyExamNameSelected;
   String? specifyExamNameSelectedID;
-  String? tentaiveDefinite;
+  String? tentaiveDefinite = "Tentative";
 
   @override
   void onInit() {

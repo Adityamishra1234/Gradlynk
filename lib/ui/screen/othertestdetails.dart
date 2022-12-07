@@ -27,41 +27,68 @@ class OthertestDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OtherTestDetailsController>(builder: (_) {
-      //       String? examStatusSelected;
-      // String? examStatusSelectedID;
-      // String? examNameSelected;
-      // String? examNameSelectedID;
-      // String? bookTestSelected;
-      // String? bookTestSelectedID;
-      // String? specifyExamName;
-      // String? tentaiveDefinite;
-
-      //       final dateOfExam = TextEditingController();
-      // final tentativeExamDate = TextEditingController();
-      // final dateOfTestReport = TextEditingController();
-      // final testScoreExpirationDate = TextEditingController();
-      // final analyticalWriting = TextEditingController();
-      // final verbalReasoning = TextEditingController();
-      // final quantitative = TextEditingController();
-      // final integrateedReasoning = TextEditingController();
-      // final reading = TextEditingController();
-      // final writingAndLanguage = TextEditingController();
-      // final essay = TextEditingController();
-      // final math = TextEditingController();
-      // final overallScore = TextEditingController();
-      if (_.loadingEdit.value == false) {
-        _.loadingEdit.value = true;
+      if (_.loadingEdit.value == false &&
+          _.loadingExamStaus.value == true &&
+          _.loadingExamName.value == true &&
+          _.loadingViewOtherTestDetails.value == true) {
         _.examStatusSelectedID = _.otherTestDetailsModel.examStatus;
         for (var i = 0; i < _.examStatusCode.length; i++) {
-          if (_.examStatusCode.toString() ==
+          if (_.examStatusCode[i].toString() ==
               _.otherTestDetailsModel.examStatus.toString()) {
             _.examStatusSelected = _.examStatusList[i];
           }
         }
         _.bookTestSelected = _.otherTestDetailsModel.testBook ?? "";
+        _.examNameSelected = _.otherTestDetailsModel.examName;
         // _.specifyExamNameSelected=_.otherTestDetailsModel.
         tentativeExamDate.text =
             _.otherTestDetailsModel.tentativeExamDate ?? "";
+        dateOfTestReport.text = _.otherTestDetailsModel.resultDate ?? "";
+        testScoreExpirationDate.text =
+            _.otherTestDetailsModel.expirationDate ?? "";
+        _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "tentative";
+        analyticalWriting.text = getNUllChecker(
+                    _.otherTestDetailsModel.analyticalWriting.toString()) ==
+                false
+            ? _.otherTestDetailsModel.analyticalWriting.toString()
+            : "";
+        verbalReasoning.text = getNUllChecker(
+                    _.otherTestDetailsModel.verbalReasoning.toString()) ==
+                false
+            ? _.otherTestDetailsModel.verbalReasoning.toString()
+            : "";
+        quantitative.text = getNUllChecker(
+                    _.otherTestDetailsModel.quantitativeApptitude.toString()) ==
+                false
+            ? _.otherTestDetailsModel.quantitativeApptitude.toString()
+            : "";
+        integrateedReasoning.text = getNUllChecker(
+                    _.otherTestDetailsModel.integratedReasoning.toString()) ==
+                false
+            ? _.otherTestDetailsModel.integratedReasoning.toString()
+            : "";
+        overallScore.text =
+            getNUllChecker(_.otherTestDetailsModel.overAll.toString()) == false
+                ? _.otherTestDetailsModel.overAll.toString()
+                : "";
+        reading.text =
+            getNUllChecker(_.otherTestDetailsModel.reading.toString()) == false
+                ? _.otherTestDetailsModel.reading.toString()
+                : "";
+        writingAndLanguage.text =
+            getNUllChecker(_.otherTestDetailsModel.writing.toString()) == false
+                ? _.otherTestDetailsModel.writing.toString()
+                : "";
+        essay.text =
+            getNUllChecker(_.otherTestDetailsModel.essay.toString()) == false
+                ? _.otherTestDetailsModel.essay.toString()
+                : "";
+        math.text =
+            getNUllChecker(_.otherTestDetailsModel.math.toString()) == false
+                ? _.otherTestDetailsModel.math.toString()
+                : "";
+
+        _.loadingEdit.value = true;
       }
 
       return ListView(
@@ -464,144 +491,155 @@ class OthertestDetail extends StatelessWidget {
           height: 50,
           child: CustomDropDownSingle(
             model: ["Tentative", "Definite"],
-            initialSelectedValue: "Tentative",
+            initialSelectedValue: controller.tentaiveDefinite,
             choosefieldtype: controller.editSave.value == true ? true : false,
             callbackFunction: callbackTentativeDefinite,
           ),
         ),
       ),
-      if (controller.examNameSelected == "GMAT") ...GMAT(context),
-      if (controller.examNameSelected == "SAT") ...SAT(context),
-      if (controller.examNameSelected == "GRE") ...GRE(context),
+      if (controller.examNameSelected == "GMAT")
+        ...GMAT(context, controller.tentaiveDefinite!),
+      if (controller.examNameSelected == "SAT")
+        ...SAT(context, controller.tentaiveDefinite!),
+      if (controller.examNameSelected == "GRE")
+        ...GRE(context, controller.tentaiveDefinite!),
     ];
   }
 
-  List<Widget> GMAT(BuildContext context) {
+  List<Widget> GMAT(BuildContext context, String tentaiveDefinite) {
     return [
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Analytical Writing",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Analytical Writing",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Analytical Writing",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Verbal Reasoning",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: analyticalWriting,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Analytical Writing",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Verbal Reasoning",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Verbal Reasoning",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Quantitative Aptitude",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: verbalReasoning,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Verbal Reasoning",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Quantitative Aptitude",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Quantitative Aptitude",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Integrated Reasoning",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: quantitative,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Quantitative Aptitude",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Integrated Reasoning",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Integrated Reasoning",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: integrateedReasoning,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Integrated Reasoning",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+          ),
+        ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -617,7 +655,7 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          controller: tentativeExamDate,
+          controller: overallScore,
           readOnly: controller.editSave.value == true ? true : false,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -636,132 +674,140 @@ class OthertestDetail extends StatelessWidget {
     ];
   }
 
-  List<Widget> SAT(BuildContext context) {
+  List<Widget> SAT(BuildContext context, String tentaiveDefinite) {
     return [
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Reading (Other Test)",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Reading (Other Test)",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Reading (Other Test)",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Writing and Language",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: reading,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Reading (Other Test)",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Writing and Language",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Writing and Language",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Essay(optional)",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: writingAndLanguage,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Writing and Language",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Essay(optional)",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Essay(optional)",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Math",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: essay,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Essay(optional)",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Math",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Math",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
-      ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: math,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Math",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+          ),
+        ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -777,7 +823,7 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          controller: tentativeExamDate,
+          controller: overallScore,
           readOnly: controller.editSave.value == true ? true : false,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -796,14 +842,113 @@ class OthertestDetail extends StatelessWidget {
     ];
   }
 
-  List<Widget> GRE(BuildContext context) {
+  List<Widget> GRE(BuildContext context, String tentaiveDefinite) {
     return [
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Analytical Writing",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: analyticalWriting,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Analytical Writing",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+          ),
+        ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Verbal Reasoning",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: verbalReasoning,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Verbal Reasoning",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+          ),
+        ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Quantitative Aptitude",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      if (tentaiveDefinite == "Definite")
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: quantitative,
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Quantitative Aptitude",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+          ),
+        ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Analytical Writing",
+            text: "Overall Score (Other Test)",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -813,88 +958,7 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Analytical Writing",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Verbal Reasoning",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Verbal Reasoning",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Quantitative Aptitude",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Quantitative Aptitude",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
+          controller: overallScore,
           readOnly: controller.editSave.value == true ? true : false,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -932,6 +996,7 @@ class OthertestDetail extends StatelessWidget {
   callbackBookTest(data) {}
   callbackSpecifyExamName(data) {}
   callbackTentativeDefinite(data) {
+    controller.otherTestDetailsModel.scoreType = data;
     controller.tentaiveDefinite = data;
     controller.update();
   }
