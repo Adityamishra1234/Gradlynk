@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/othertestdetails.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
@@ -507,6 +508,11 @@ class OthertestDetail extends StatelessWidget {
   }
 
   List<Widget> GMAT(BuildContext context, String tentaiveDefinite) {
+    final analyticalKey = GlobalKey<FormState>();
+    final verbalKey = GlobalKey<FormState>();
+    final quantitativeKey = GlobalKey<FormState>();
+    final integratedKey = GlobalKey<FormState>();
+    final overallKey = GlobalKey<FormState>();
     return [
       if (tentaiveDefinite == "Definite")
         Padding(
@@ -524,21 +530,41 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: analyticalWriting,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Analytical Writing",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: analyticalKey,
+            child: TextFormField(
+              controller: analyticalWriting,
+              onChanged: (value) {
+                if (analyticalKey.currentState!.validate()) {
+                  analyticalKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 0 && double.parse(value) <= 5) {
+                    if (double.parse(value) % 0.5 != 0) {
+                      return SnackBarConstants.GMAT_Analytical__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GMAT_Analytical_Integrated_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Analytical Writing",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -557,21 +583,42 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: verbalReasoning,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Verbal Reasoning",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: verbalKey,
+            child: TextFormField(
+              controller: verbalReasoning,
+              onChanged: (value) {
+                if (verbalKey.currentState!.validate()) {
+                  verbalKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 0 && double.parse(value) <= 60) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants
+                          .GMAT_Verbal_Quantitative_Integrated__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GMAT_Verbal_Quantitative_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Verbal Reasoning",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -590,21 +637,42 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: quantitative,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Quantitative Aptitude",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: quantitativeKey,
+            child: TextFormField(
+              controller: quantitative,
+              onChanged: (value) {
+                if (quantitativeKey.currentState!.validate()) {
+                  quantitativeKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 0 && double.parse(value) <= 60) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants
+                          .GMAT_Verbal_Quantitative_Integrated__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GMAT_Verbal_Quantitative_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Quantitative Aptitude",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -623,21 +691,42 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: integrateedReasoning,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Integrated Reasoning",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: integratedKey,
+            child: TextFormField(
+              controller: integrateedReasoning,
+              onChanged: (value) {
+                if (integratedKey.currentState!.validate()) {
+                  integratedKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 0 && double.parse(value) <= 6) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants
+                          .GMAT_Verbal_Quantitative_Integrated__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GMAT_Verbal_Quantitative_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Integrated Reasoning",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       Padding(
@@ -654,27 +743,53 @@ class OthertestDetail extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: overallScore,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Overall Score (Other Test)",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+        child: Form(
+          key: overallKey,
+          child: TextFormField(
+            controller: overallScore,
+            onChanged: (value) {
+              if (overallKey.currentState!.validate()) {
+                overallKey.currentState!.save();
+              }
+            },
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 200 && double.parse(value) <= 800) {
+                  if (double.parse(value) % 1 != 0) {
+                    return SnackBarConstants
+                        .GMAT_Verbal_Quantitative_Integrated__Multiples;
+                  }
+                } else {
+                  return SnackBarConstants.GMAT_Overall;
+                }
+              }
+              return null;
+            },
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Overall Score (Other Test)",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
       ),
     ];
   }
 
   List<Widget> SAT(BuildContext context, String tentaiveDefinite) {
+    final readingKey = GlobalKey<FormState>();
+    final writingKey = GlobalKey<FormState>();
+    final essayKey = GlobalKey<FormState>();
+    final mathKey = GlobalKey<FormState>();
+    final overallKey = GlobalKey<FormState>();
     return [
       if (tentaiveDefinite == "Definite")
         Padding(
@@ -692,21 +807,42 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: reading,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Reading (Other Test)",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: readingKey,
+            child: TextFormField(
+              controller: reading,
+              onChanged: (value) {
+                if (readingKey.currentState!.validate()) {
+                  readingKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 200 &&
+                      double.parse(value) <= 800) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants.SAT__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.SAT_Reading_Writting_Math_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Reading (Other Test)",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -725,21 +861,42 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: writingAndLanguage,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Writing and Language",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: writingKey,
+            child: TextFormField(
+              controller: writingAndLanguage,
+              onChanged: (value) {
+                if (writingKey.currentState!.validate()) {
+                  writingKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 200 &&
+                      double.parse(value) <= 800) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants.SAT__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.SAT_Reading_Writting_Math_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Writing and Language",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -758,21 +915,41 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: essay,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Essay(optional)",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: essayKey,
+            child: TextFormField(
+              controller: essay,
+              onChanged: (value) {
+                if (essayKey.currentState!.validate()) {
+                  essayKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 2 && double.parse(value) <= 8) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants.SAT__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.SAT_Essay_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Essay(optional)",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -791,21 +968,42 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: math,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Math",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: mathKey,
+            child: TextFormField(
+              controller: math,
+              onChanged: (value) {
+                if (essayKey.currentState!.validate()) {
+                  essayKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 200 &&
+                      double.parse(value) <= 800) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants.SAT__Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.SAT_Reading_Writting_Math_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Math",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       Padding(
@@ -822,27 +1020,52 @@ class OthertestDetail extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: overallScore,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Overall Score (Other Test)",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+        child: Form(
+          key: overallKey,
+          child: TextFormField(
+            controller: overallScore,
+            onChanged: (value) {
+              if (overallKey.currentState!.validate()) {
+                overallKey.currentState!.save();
+              }
+            },
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 400 &&
+                    double.parse(value) <= 1600) {
+                  if (double.parse(value) % 1 != 0) {
+                    return SnackBarConstants.SAT__Multiples;
+                  }
+                } else {
+                  return SnackBarConstants.SAT_Reading_Writting_Math_Range;
+                }
+              }
+              return null;
+            },
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Overall Score (Other Test)",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
       ),
     ];
   }
 
   List<Widget> GRE(BuildContext context, String tentaiveDefinite) {
+    final analyticalKey = GlobalKey<FormState>();
+    final verbalKey = GlobalKey<FormState>();
+    final quantitativeKey = GlobalKey<FormState>();
+    final overallKey = GlobalKey<FormState>();
     return [
       if (tentaiveDefinite == "Definite")
         Padding(
@@ -860,21 +1083,41 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: analyticalWriting,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Analytical Writing",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: analyticalKey,
+            child: TextFormField(
+              controller: analyticalWriting,
+              onChanged: (value) {
+                if (analyticalKey.currentState!.validate()) {
+                  analyticalKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 0 && double.parse(value) <= 6) {
+                    if (double.parse(value) % 0.5 != 0) {
+                      return SnackBarConstants.GRE_Analytical_Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GRE_Analytical_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Analytical Writing",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -893,21 +1136,43 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: verbalReasoning,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Verbal Reasoning",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: verbalKey,
+            child: TextFormField(
+              controller: verbalReasoning,
+              onChanged: (value) {
+                if (verbalKey.currentState!.validate()) {
+                  verbalKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 130 &&
+                      double.parse(value) <= 160) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants
+                          .GRE_Verbal_Quantitative_Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GRE_Verbal_Quantitative_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Verbal Reasoning",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -926,21 +1191,43 @@ class OthertestDetail extends StatelessWidget {
       if (tentaiveDefinite == "Definite")
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: quantitative,
-            readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Quantitative Aptitude",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+          child: Form(
+            key: quantitativeKey,
+            child: TextFormField(
+              controller: quantitative,
+              onChanged: (value) {
+                if (quantitativeKey.currentState!.validate()) {
+                  quantitativeKey.currentState!.save();
+                }
+              },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 130 &&
+                      double.parse(value) <= 160) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants
+                          .GRE_Verbal_Quantitative_Multiples;
+                    }
+                  } else {
+                    return SnackBarConstants.GRE_Verbal_Quantitative_Range;
+                  }
+                }
+                return null;
+              },
+              readOnly: controller.editSave.value == true ? true : false,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Quantitative Aptitude",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       Padding(
@@ -957,21 +1244,41 @@ class OthertestDetail extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: overallScore,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Overall Score (Other Test)",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+        child: Form(
+          key: overallKey,
+          child: TextFormField(
+            controller: overallScore,
+            onChanged: (value) {
+              if (overallKey.currentState!.validate()) {
+                overallKey.currentState!.save();
+              }
+            },
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 260 && double.parse(value) <= 340) {
+                  if (double.parse(value) % 1 != 0) {
+                    return SnackBarConstants.GRE_Overall_Multiples;
+                  }
+                } else {
+                  return SnackBarConstants.GRE_Overall;
+                }
+              }
+              return null;
+            },
+            readOnly: controller.editSave.value == true ? true : false,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Overall Score (Other Test)",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
       ),
     ];

@@ -28,7 +28,6 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
         body: Stack(
           children: [
             //
-
             Positioned(
                 bottom: 40,
                 left: MediaQuery.of(context).size.width / 2 + 20,

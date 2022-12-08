@@ -10,9 +10,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/courseinformationview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
@@ -37,11 +35,8 @@ import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
-import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
-
-import 'ui/screen/ModificationUi/workhistory.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

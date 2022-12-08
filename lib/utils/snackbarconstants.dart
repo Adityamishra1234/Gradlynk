@@ -1,4 +1,5 @@
 class SnackBarConstants {
+  //English text Details
   static String? PTEValidation1 = "Please fill score between 0 & 90";
   static String? PTEValidation2 = "Please fill score in the multiple of 1";
   static String? IELTSValidation1 = "Please fill score between 0 & 9";
@@ -11,4 +12,36 @@ class SnackBarConstants {
       "Please fill score in the multiple of 5";
   static String? ToeflSValidation1 = "Please fill score between 0 & 30";
   static String? ToeflSValidation2 = "Please fill score in the multiple of 1";
+
+// Other Test Details
+  static String? GRE_Overall_Multiples =
+      "Please fill score in the multiple of 1";
+//GRE
+  static String? GRE_Analytical_Range = "Please fill score between 0 & 6";
+  static String? GRE_Analytical_Multiples =
+      "Please fill score in the multiple of 0.5";
+  static String? GRE_Verbal_Quantitative_Range =
+      "Please fill score between 130 & 160";
+  static String? GRE_Verbal_Quantitative_Multiples =
+      "Please fill score in the multiple of 1";
+  static String? GRE_Overall = "Please fill score between 260 & 340";
+
+  //GMAT
+  static String? GMAT_Analytical_Integrated_Range =
+      "Please fill score between 0 & 6";
+  static String? GMAT_Analytical__Multiples =
+      "Please fill score in the multiple of 0.5";
+  static String? GMAT_Verbal_Quantitative_Range =
+      "Please fill score between 0 & 60";
+  static String? GMAT_Verbal_Quantitative_Integrated__Multiples =
+      "Please fill score in the multiple of 1";
+  static String? GMAT_Overall = "Please fill score between 200 & 800";
+
+  //SAT
+  static String? SAT_Reading_Writting_Math_Range =
+      "Please fill score between 200 & 800";
+  static String? SAT_Essay_Range = "Please fill score between 2 & 8";
+
+  static String? SAT__Multiples = "Please fill score in the multiple of 1";
+  static String? SAT_Overall = "Please fill score between 400 & 1600";
 }

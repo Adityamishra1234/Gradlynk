@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
-
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -18,6 +17,7 @@ class WorkHistoryView extends StatelessWidget {
       required this.calbackEditButton,
       required this.callbackDeleteButton})
       : super(key: key);
+
   final rowSpacer = const TableRow(children: [
     SizedBox(
       height: 3,
