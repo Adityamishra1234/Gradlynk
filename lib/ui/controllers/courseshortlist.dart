@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
@@ -12,12 +13,13 @@ class CourseShortListController extends BaseController {
 
   // Loading
   RxBool compareApply = false.obs;
-  RxBool loadingNextAndPrevious = false.obs;
+  RxBool loadingCourseSearch = false.obs;
   RxBool loadingCourseShortList = false.obs;
 
   List<CompleteCourseDetail> completeCourseDetail = [];
 
   CourseModelFilter courseModelFilter = CourseModelFilter();
+  List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
 
@@ -31,48 +33,6 @@ class CourseShortListController extends BaseController {
     compareApply = data;
     update();
   }
-
-// Check
-  // nextpage(String endpoint, String pageNumber) async {
-  //   if (loadingNextAndPrevious.value == true) {
-  //     loadingNextAndPrevious = false.obs;
-  //     update();
-  //   }
-  //   var now = DateTime.now();
-  //   var formatterYear = DateFormat('yyyy');
-  //   var formatterMonth = DateFormat('MM');
-
-  //   debugPrint("$endpoint&page=$pageNumber");
-  //   var res = await apiservices.getCourseSearch(
-  //       Endpoints.baseUrl!, "$endpoint&page=$pageNumber");
-  //   if (res != null) {
-  //     courseSearchPages = res;
-
-  //     for (var i = 0; i < courseSearchPages.courseSearchModel!.length; i++) {
-  //       if (courseSearchPages.courseSearchModel![i].listIntake!.isNotEmpty) {
-  //         for (var j = 0;
-  //             j < courseSearchPages.courseSearchModel![i].listIntake!.length;
-  //             j++) {
-  //           if (int.parse(courseSearchPages.courseSearchModel![i].listIntake![j]
-  //                   .split("-")[1]) >=
-  //               int.parse(formatterYear.format(now))) {
-  //             if (int.parse(courseSearchPages
-  //                     .courseSearchModel![i].listIntake![j]
-  //                     .split("-")[0]) >=
-  //                 int.parse(formatterMonth.format(now))) {
-  //               courseSearchPages.courseSearchModel![i].nearByIntake =
-  //                   courseSearchPages.courseSearchModel![i].listIntake![j];
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //     courseSearchPages.courseSearchModel!;
-  //     return loadingNextAndPrevious.value = true;
-  //   } else {
-  //     return loadingNextAndPrevious.value = false;
-  //   }
-  // }
 
   courseShortList(String? id, String enq_id) {
     apiservices.setShortListCourse(id, enq_id);
@@ -133,6 +93,45 @@ class CourseShortListController extends BaseController {
     } else {
       courseSearchModelCompare2 = CourseSearchModel();
       update();
+    }
+  }
+
+  courseSearch(String country, String courseLevel, String enq_id) async {
+    loadingCourseSearch = false.obs;
+    courseModelFilter = CourseModelFilter();
+    var now = DateTime.now();
+    var formatterYear = DateFormat('yyyy');
+    var formatterMonth = DateFormat('MM');
+    var temp = country.split('[');
+    var temp2 = temp[1].split(']')[0];
+    var temp3 = courseLevel.split('[');
+    var temp4 = temp3[1].split(']')[0];
+    String? endpoint = Endpoints.courseSearchPart1! +
+        temp2 +
+        Endpoints.courseSearchPart2! +
+        temp4;
+    var res =
+        await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint, enq_id);
+    if (res != null) {
+      courseModelFilter = res;
+      courseSearchModel = courseModelFilter.courseSearchList;
+      for (var i = 0; i < courseSearchModel.length; i++) {
+        if (courseSearchModel[i].listIntake!.isNotEmpty) {
+          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
+            if (int.parse(courseSearchModel[i].listIntake![j].split("-")[1]) >=
+                int.parse(formatterYear.format(now))) {
+              if (int.parse(
+                      courseSearchModel[i].listIntake![j].split("-")[0]) >=
+                  int.parse(formatterMonth.format(now))) {
+                courseSearchModel[i].nearByIntake =
+                    courseSearchModel[i].listIntake![j];
+              }
+            }
+          }
+        }
+      }
+      loadingCourseSearch = true.obs;
+      return courseModelFilter;
     }
   }
 }

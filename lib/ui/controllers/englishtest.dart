@@ -35,16 +35,7 @@ class EnglishTestController extends BaseController {
   List examStatusCode = [];
   List examNameList = [];
 
-  // Validation Field
-  // 0=>Null, 1=>false, 2=>true 4=>Multiple error
-  RxInt PTE = 0.obs;
-  RxInt IELTS = 0.obs;
-  RxInt cambridge = 0.obs;
-  RxInt Duolingo = 0.obs;
-  RxInt Toefl = 0.obs;
 
-  // field selected
-  RxInt chooseField = 0.obs;
 
   @override
   void onInit() {
