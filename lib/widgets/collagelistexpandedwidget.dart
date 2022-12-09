@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -213,12 +214,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             height: 15,
                             color: ThemeConstants.bluelightgreycolor,
                           ),
-                          if (courseSearchModel.durationYear != null)
+                          if (courseSearchModel.courseDuration != null)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: CustomAutoSizeTextMontserrat(
                                 text:
-                                    "${courseSearchModel.durationYear!} Years",
+                                    "${(int.parse(courseSearchModel.courseDuration!) / 12).toStringAsFixed(1)} Years",
                                 textColor: ThemeConstants.bluelightgreycolor,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -233,7 +234,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 height: 15,
                               ),
                             ),
-                          if (courseSearchModel.annualTutionFees != null)
+                          if (getNUllChecker(
+                                  courseSearchModel.annualTutionFees) ==
+                              false)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: SizedBox(
@@ -251,7 +254,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 ),
                               ),
                             ),
-                          if (courseSearchModel.annualTutionFees != null)
+                          if (getNUllChecker(
+                                  courseSearchModel.annualTutionFees) ==
+                              false)
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 7, bottom: 10),
@@ -346,14 +351,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   const SizedBox(
                                     height: 3,
                                   ),
-                                  CustomAutoSizeTextMontserrat(
-                                    text:
-                                        "${courseSearchModel.totalFees}${courseSearchModel.currencyCode} (${courseSearchModel.totalFeesInr}INR)",
-                                    textColor:
-                                        ThemeConstants.bluelightgreycolor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  )
+                                  if (getNUllChecker(
+                                          courseSearchModel.totalFees) ==
+                                      false)
+                                    CustomAutoSizeTextMontserrat(
+                                      text:
+                                          "${courseSearchModel.totalFees}${courseSearchModel.currencyCode} (${courseSearchModel.totalFeesInr}INR)",
+                                      textColor:
+                                          ThemeConstants.bluelightgreycolor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    )
                                 ],
                               ),
                             ),
@@ -385,14 +393,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                       const SizedBox(
                                         height: 3,
                                       ),
-                                      CustomAutoSizeTextMontserrat(
-                                        text:
-                                            courseSearchModel.conditionalOffer,
-                                        textColor:
-                                            ThemeConstants.bluelightgreycolor,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                      if (getNUllChecker(courseSearchModel
+                                              .conditionalOffer) ==
+                                          false)
+                                        CustomAutoSizeTextMontserrat(
+                                          text: courseSearchModel
+                                              .conditionalOffer,
+                                          textColor:
+                                              ThemeConstants.bluelightgreycolor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                     ],
                                   ),
                                 ),
@@ -507,14 +518,17 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   const SizedBox(
                                     height: 3,
                                   ),
-                                  CustomAutoSizeTextMontserrat(
-                                    text:
-                                        courseSearchModel.academicRequire ?? "",
-                                    textColor:
-                                        ThemeConstants.bluelightgreycolor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  if (getNUllChecker(
+                                          courseSearchModel.academicRequire) ==
+                                      false)
+                                    CustomAutoSizeTextMontserrat(
+                                      text: courseSearchModel.academicRequire ??
+                                          "",
+                                      textColor:
+                                          ThemeConstants.bluelightgreycolor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                 ],
                               ),
                             ),
@@ -545,13 +559,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     const SizedBox(
                                       height: 3,
                                     ),
-                                    CustomAutoSizeTextMontserrat(
-                                      text: courseSearchModel.offerTat ?? "",
-                                      textColor:
-                                          ThemeConstants.bluelightgreycolor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                                    if (getNUllChecker(
+                                            courseSearchModel.offerTat) ==
+                                        false)
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "${courseSearchModel.offerTat!} Day" ??
+                                                "",
+                                        textColor:
+                                            ThemeConstants.bluelightgreycolor,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                   ],
                                 ),
                               ),
@@ -633,8 +652,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         ),
                       ),
 
-                    if (courseSearchModel.nearByIntake!.isNotEmpty ||
-                        courseSearchModel.nearByIntake != "")
+                    if (getNUllChecker(courseSearchModel.nearByIntake) == false)
                       MediaQuery.removePadding(
                           context: context,
                           removeTop: true,
@@ -650,19 +668,21 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   TableCell(
                                       child: Center(
                                     child: CustomAutoSizeTextMontserrat(
-                                      text:
-                                          courseSearchModel.nearByIntake != null
-                                              ? courseSearchModel.nearByIntake!
-                                                  .split("-")[1]
-                                              : "",
+                                      text: (getNUllChecker(courseSearchModel
+                                                  .nearByIntake) ==
+                                              false)
+                                          ? courseSearchModel.nearByIntake!
+                                              .split("-")[1]
+                                          : "",
                                       textColor: Colors.grey,
                                     ),
                                   )),
                                   TableCell(
                                     child: Center(
                                       child: CustomAutoSizeTextMontserrat(
-                                        text: courseSearchModel.nearByIntake !=
-                                                null
+                                        text: (getNUllChecker(courseSearchModel
+                                                    .nearByIntake) ==
+                                                false)
                                             ? courseSearchModel.nearByIntake!
                                                 .split("-")[0]
                                             : "",
@@ -687,10 +707,10 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             ),
                           )),
                     // Ranking
-                    if (courseSearchModel.arwuRank != null ||
-                        courseSearchModel.timesRank != null ||
-                        courseSearchModel.usNewsRank != null ||
-                        courseSearchModel.qsWorldRank != null)
+                    if (getNUllChecker(courseSearchModel.arwuRank) == false ||
+                        getNUllChecker(courseSearchModel.timesRank) == false ||
+                        getNUllChecker(courseSearchModel.usNewsRank) == false ||
+                        getNUllChecker(courseSearchModel.qsWorldRank) == false)
                       Padding(
                         padding: const EdgeInsets.only(),
                         child: Row(
@@ -715,14 +735,16 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ),
                       child: Row(
                         children: [
-                          if (courseSearchModel.arwuRank != null)
+                          if (getNUllChecker(courseSearchModel.arwuRank) ==
+                              false)
                             CustomAutoSizeTextMontserrat(
                               text: "ARWU:${courseSearchModel.arwuRank ?? ""}",
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
                           const Spacer(),
-                          if (courseSearchModel.timesRank != null)
+                          if (getNUllChecker(courseSearchModel.timesRank) ==
+                              false)
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "Times:${courseSearchModel.timesRank ?? ""}",
@@ -730,7 +752,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               fontSize: 14,
                             ),
                           const Spacer(),
-                          if (courseSearchModel.usNewsRank != null)
+                          if (getNUllChecker(courseSearchModel.usNewsRank) ==
+                              false)
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "US News:${courseSearchModel.usNewsRank ?? ""}",
@@ -738,7 +761,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               fontSize: 14,
                             ),
                           const Spacer(),
-                          if (courseSearchModel.qsWorldRank != null)
+                          if (getNUllChecker(courseSearchModel.qsWorldRank) ==
+                              false)
                             CustomAutoSizeTextMontserrat(
                               text:
                                   "QS World:${courseSearchModel.qsWorldRank ?? ""}",

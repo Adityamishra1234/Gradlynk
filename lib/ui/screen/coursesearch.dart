@@ -292,23 +292,28 @@ class _CourseSearchState extends State<CourseSearch> {
                                           ),
                                           onPressed: () async {
                                             // Api call
-                                            var response =
-                                                await controller1.courseSearch(
-                                                    controller.selectCountryCode
-                                                        .toString(),
-                                                    controller.selectCourseCode
-                                                        .toString(),
-                                                    "78623");
-                                            if (response != null &&
-                                                response != "") {
-                                              CourseModelFilter
-                                                  courseModelFilter2 =
-                                                  CourseModelFilter();
-                                              courseModelFilter2 = response;
-                                              Get.to(CourseSearchList(
-                                                  courseModelFilter:
-                                                      courseModelFilter2));
-                                            }
+                                            // var response =
+                                            //     await controller1.courseSearch(
+                                            //         controller.selectCountryCode
+                                            //             .toString(),
+                                            //         controller.selectCourseCode
+                                            //             .toString(),
+                                            //         "78623");
+
+                                            // CourseModelFilter
+                                            //     courseModelFilter2 =
+                                            //     CourseModelFilter();
+                                            // courseModelFilter2 = response;
+                                            Get.to(CourseSearchList(
+                                              filterRedirect: false,
+                                              countryId: controller
+                                                  .selectCountryCode
+                                                  .toString(),
+                                              courseLevel: controller
+                                                  .selectCourseCode
+                                                  .toString(),
+                                              enq_id: "78623",
+                                            ));
                                           },
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Search",

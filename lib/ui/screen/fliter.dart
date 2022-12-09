@@ -619,6 +619,7 @@ class _FilterState extends State<Filter> {
                                       if (previousRoute ==
                                           CourseSearchList.routeNamed) {
                                         Get.to(CourseSearchList(
+                                          filterRedirect: true,
                                           courseModelFilter: courseModelFilter,
                                         ));
                                       }

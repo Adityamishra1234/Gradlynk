@@ -249,7 +249,7 @@ class ApiServices extends StudentPanelBase {
 
       return courseModelFilter;
     } catch (e) {
-      print(StackTrace.current);
+      Get.back();
       Fluttertoast.showToast(
           msg: e.toString(),
           toastLength: Toast.LENGTH_SHORT,

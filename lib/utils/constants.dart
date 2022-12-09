@@ -35,6 +35,8 @@ bool getNUllChecker(String? data) {
     return true;
   } else if (data == "") {
     return true;
+  } else if (data == "0") {
+    return true;
   } else {
     return false;
   }

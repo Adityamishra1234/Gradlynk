@@ -131,6 +131,7 @@ class CourseShortListController extends BaseController {
         }
       }
       loadingCourseSearch = true.obs;
+      update();
       return courseModelFilter;
     }
   }
