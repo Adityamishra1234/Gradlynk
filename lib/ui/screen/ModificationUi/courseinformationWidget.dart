@@ -42,17 +42,21 @@ class CourseInformationWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (controller1.loadingCourseLevel.value == true)
-                  SizedBox(
-                    height: 50,
-                    child: CustomDropDownSingle(
-                      model: controller1.courseLevelList,
-                      initialSelectedValue: controller1.courseLevelSelected ??
-                          controller1.courseLevelList[0],
-                      choosefieldtype: false,
-                      callbackFunction: callbackCourseLevel,
-                    ),
+                SizedBox(
+                  height: 50,
+                  child: CustomDropDownSingle(
+                    model: controller1.loadingCourseLevel.value == true
+                        ? controller1.courseLevelList
+                        : ["No Data"],
+                    initialSelectedValue:
+                        controller1.loadingCourseLevel.value == true
+                            ? controller1.courseLevelSelected ??
+                                controller1.courseLevelList[0]
+                            : "No Data",
+                    choosefieldtype: false,
+                    callbackFunction: callbackCourseLevel,
                   ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
                   child: Align(
@@ -103,9 +107,14 @@ class CourseInformationWidget extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: CustomDropDownSingle(
-                    model: controller1.courseNarrowList,
-                    initialSelectedValue: controller1.courseNarrowSelected ??
-                        controller1.courseNarrowList[0],
+                    model: controller1.loadingCourseLevel.value == true
+                        ? controller1.courseNarrowList
+                        : ["No Data"],
+                    initialSelectedValue:
+                        controller1.loadingCourseLevel.value == true
+                            ? controller1.courseNarrowSelected ??
+                                controller1.courseNarrowList[0]
+                            : "No Data",
                     choosefieldtype: false,
                     callbackFunction: callbackCourseNarrow,
                   ),

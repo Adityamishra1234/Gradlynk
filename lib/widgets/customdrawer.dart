@@ -19,7 +19,7 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         width: 240,
-        child: Column(
+        child: ListView(
           children: [
             SizedBox(
               height: MediaQuery.of(context).size.height - 60,

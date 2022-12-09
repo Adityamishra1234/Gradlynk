@@ -51,7 +51,7 @@ class VisaSummary extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 10, bottom: 10, right: 10, left: 10),
+                                top: 5, bottom: 10, right: 10, left: 10),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,18 +61,6 @@ class VisaSummary extends StatelessWidget {
                                       Get.to(VisaDetail(
                                         applicationId: '5',
                                       ));
-                                      // var response = await controller
-                                      //     .getApplicationDetailComplete(
-                                      //         controller
-                                      //             .applicationSummaryModel[
-                                      //                 index]
-                                      //             .id
-                                      //             .toString());
-                                      // if (response != null) {
-                                      //   Get.to(ApplicationCompleteDetails(
-                                      //       applicationDetailModel: controller
-                                      //           .applicationDetailModel));
-                                      // }
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: _.modelList[index].country,
@@ -83,28 +71,32 @@ class VisaSummary extends StatelessWidget {
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Row(
-                                    children: [
-                                      CustomAutoSizeTextMontserrat(
-                                        text: "University: ",
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      SizedBox(
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                140,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: controller
-                                              .modelList[index].universityName,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 7),
+                                    child: Row(
+                                      children: [
+                                        CustomAutoSizeTextMontserrat(
+                                          text: "University: ",
+                                          fontWeight: FontWeight.bold,
                                           fontSize: 14,
-                                          textColor: ThemeConstants.TextColor,
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        SizedBox(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width -
+                                              140,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: controller.modelList[index]
+                                                .universityName,
+                                            fontSize: 14,
+                                            textColor: ThemeConstants.TextColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 10,

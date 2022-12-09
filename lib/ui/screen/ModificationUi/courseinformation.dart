@@ -26,22 +26,20 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CourseInformationProfileController>(
-        builder: (controller1) => controller1.loadingCourseNarrow.value == true
-            ? viewDetails
-                ? CourseInformationView(
-                    callbackIndexDelete: callbackIndexDelete,
-                    callbackIndexEdit: callbackIndexEdit,
-                    callbackFunction: callbackViewDetails,
-                    model: controller1.viewCourseInformationList)
-                : CourseInformationWidget(
-                    update: update,
-                    index: index,
-                    callbackUpdateButton: callbackUpdateButton,
-                    callbackCourseLevel: callbackCourseLevel,
-                    callbackCourseNarrow: callbackCourseNarrow,
-                    callbackviewDetailsButton: callbackViewDetailsButton,
-                  )
-            : const Center(child: CircularProgressIndicator()));
+        builder: (controller1) => viewDetails
+            ? CourseInformationView(
+                callbackIndexDelete: callbackIndexDelete,
+                callbackIndexEdit: callbackIndexEdit,
+                callbackFunction: callbackViewDetails,
+                model: controller1.viewCourseInformationList)
+            : CourseInformationWidget(
+                update: update,
+                index: index,
+                callbackUpdateButton: callbackUpdateButton,
+                callbackCourseLevel: callbackCourseLevel,
+                callbackCourseNarrow: callbackCourseNarrow,
+                callbackviewDetailsButton: callbackViewDetailsButton,
+              ));
   }
 
   // Funcation
