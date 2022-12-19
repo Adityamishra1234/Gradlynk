@@ -25,6 +25,17 @@ class OthertestDetail extends StatelessWidget {
   final math = TextEditingController();
   final overallScore = TextEditingController();
 
+  static final analyticalKey = GlobalKey<FormState>();
+  static final verbalKey = GlobalKey<FormState>();
+  static final quantitativeKey = GlobalKey<FormState>();
+  static final integratedKey = GlobalKey<FormState>();
+  static final overallKey = GlobalKey<FormState>();
+
+  static final readingKey = GlobalKey<FormState>();
+  static final writingKey = GlobalKey<FormState>();
+  static final essayKey = GlobalKey<FormState>();
+  static final mathKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OtherTestDetailsController>(builder: (_) {
@@ -47,7 +58,8 @@ class OthertestDetail extends StatelessWidget {
         dateOfTestReport.text = _.otherTestDetailsModel.resultDate ?? "";
         testScoreExpirationDate.text =
             _.otherTestDetailsModel.expirationDate ?? "";
-        _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "tentative";
+        _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "Tentative";
+
         analyticalWriting.text = getNUllChecker(
                     _.otherTestDetailsModel.analyticalWriting.toString()) ==
                 false
@@ -508,11 +520,6 @@ class OthertestDetail extends StatelessWidget {
   }
 
   List<Widget> GMAT(BuildContext context, String tentaiveDefinite) {
-    final analyticalKey = GlobalKey<FormState>();
-    final verbalKey = GlobalKey<FormState>();
-    final quantitativeKey = GlobalKey<FormState>();
-    final integratedKey = GlobalKey<FormState>();
-    final overallKey = GlobalKey<FormState>();
     return [
       if (tentaiveDefinite == "Definite")
         Padding(
@@ -785,11 +792,6 @@ class OthertestDetail extends StatelessWidget {
   }
 
   List<Widget> SAT(BuildContext context, String tentaiveDefinite) {
-    final readingKey = GlobalKey<FormState>();
-    final writingKey = GlobalKey<FormState>();
-    final essayKey = GlobalKey<FormState>();
-    final mathKey = GlobalKey<FormState>();
-    final overallKey = GlobalKey<FormState>();
     return [
       if (tentaiveDefinite == "Definite")
         Padding(
@@ -1062,10 +1064,6 @@ class OthertestDetail extends StatelessWidget {
   }
 
   List<Widget> GRE(BuildContext context, String tentaiveDefinite) {
-    final analyticalKey = GlobalKey<FormState>();
-    final verbalKey = GlobalKey<FormState>();
-    final quantitativeKey = GlobalKey<FormState>();
-    final overallKey = GlobalKey<FormState>();
     return [
       if (tentaiveDefinite == "Definite")
         Padding(

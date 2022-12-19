@@ -23,6 +23,15 @@ class EnglishTestDetails extends StatelessWidget {
   final testScoreExpirationDate = TextEditingController();
   final tentativeExamDate = TextEditingController();
 
+  static final literacyKey = GlobalKey<FormState>();
+  static final comprehensionKey = GlobalKey<FormState>();
+  static final conversation = GlobalKey<FormState>();
+  static final production = GlobalKey<FormState>();
+  static final listeningKey = GlobalKey<FormState>();
+  static final writingKey = GlobalKey<FormState>();
+  static final readingKey = GlobalKey<FormState>();
+  static final speakingKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<EnglishTestController>(builder: (_) {
@@ -582,11 +591,6 @@ class EnglishTestDetails extends StatelessWidget {
   }
 
   List<Widget> definite(BuildContext context) {
-    final listeningKey = GlobalKey<FormState>();
-    final writingKey = GlobalKey<FormState>();
-    final readingKey = GlobalKey<FormState>();
-    final speakingKey = GlobalKey<FormState>();
-
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -665,7 +669,7 @@ class EnglishTestDetails extends StatelessWidget {
               ),
             ),
             style: ThemeConstants.montserrattextstyle,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
           ),
         ),
@@ -687,6 +691,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Form(
           key: writingKey,
           child: TextFormField(
+            keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
             controller: writing,
             scrollPadding: EdgeInsets.symmetric(
@@ -702,8 +707,8 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (listeningKey.currentState!.validate()) {
-                listeningKey.currentState!.save();
+              if (writingKey.currentState!.validate()) {
+                writingKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -764,6 +769,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Form(
           key: readingKey,
           child: TextFormField(
+            keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
             controller: reading,
             scrollPadding: EdgeInsets.symmetric(
@@ -779,8 +785,8 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (listeningKey.currentState!.validate()) {
-                listeningKey.currentState!.save();
+              if (readingKey.currentState!.validate()) {
+                readingKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -841,6 +847,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Form(
           key: speakingKey,
           child: TextFormField(
+            keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
             controller: speaking,
             scrollPadding: EdgeInsets.symmetric(
@@ -856,8 +863,8 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (listeningKey.currentState!.validate()) {
-                listeningKey.currentState!.save();
+              if (speakingKey.currentState!.validate()) {
+                speakingKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -905,34 +912,82 @@ class EnglishTestDetails extends StatelessWidget {
     ];
   }
 
-  List<Widget> duolingo(BuildContext context) {
-    final literacyKey = GlobalKey<FormState>();
-    final comprehensionKey = GlobalKey<FormState>();
-    final conversation = GlobalKey<FormState>();
-    final production = GlobalKey<FormState>();
-    return [
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Literacy",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+  duolingo(BuildContext context) {
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Literacy",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Form(
-          key: literacyKey,
-          child: TextFormField(
-            controller: listening,
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Form(
+            key: literacyKey,
+            child: TextFormField(
+              controller: listening,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Listening",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              style: ThemeConstants.montserrattextstyle,
+              // onChanged: (value) {
+
+              // },
+              validator: (value) {
+                if (getNUllChecker(value) == false) {
+                  if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+                    if (double.parse(value) % 1 != 0) {
+                      return SnackBarConstants.DuolingoSValidation2;
+                    }
+                  } else {
+                    return SnackBarConstants.DuolingoSValidation1;
+                  }
+                }
+                return null;
+              },
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Comprehension",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            onTap: () {
+              if (literacyKey.currentState!.validate()) {
+                literacyKey.currentState!.save();
+              }
+            },
+            controller: writing,
             scrollPadding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
-              hintText: "Listening",
+              hintText: "Writing",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
               border: OutlineInputBorder(
@@ -941,121 +996,74 @@ class EnglishTestDetails extends StatelessWidget {
               ),
             ),
             style: ThemeConstants.montserrattextstyle,
-            onChanged: (value) {
-              if (literacyKey.currentState!.validate()) {
-                literacyKey.currentState!.save();
-              }
-            },
-            validator: (value) {
-              if (getNUllChecker(value) == false) {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
-                  if (double.parse(value) % 1 != 0) {
-                    return SnackBarConstants.DuolingoSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.DuolingoSValidation1;
-                }
-              }
-              return null;
-            },
+            onChanged: (value) {},
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Comprehension",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: writing,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Writing",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Conversation",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
-          onChanged: (value) {},
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Conversation",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: reading,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Reading",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+            onChanged: (value) {},
           ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: reading,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Reading",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Production",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
-          onChanged: (value) {},
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Production",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: speaking,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Speaking",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: speaking,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Speaking",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
+            onChanged: (value) {},
           ),
-          style: ThemeConstants.montserrattextstyle,
-          onChanged: (value) {},
         ),
-      ),
-      ...overallScore(context),
-    ];
+        ...overallScore(context),
+      ],
+    );
   }
 
   getOverallScore() {
