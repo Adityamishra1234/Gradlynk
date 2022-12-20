@@ -13,15 +13,15 @@ import 'package:studentpanel/widgets/customdropdownsingle.dart';
 class EnglishTestDetails extends StatelessWidget {
   EnglishTestDetails({Key? key}) : super(key: key);
   var controller = Get.put(EnglishTestController());
-  final listening = TextEditingController();
-  final writing = TextEditingController();
-  final reading = TextEditingController();
-  final speaking = TextEditingController();
-  final overallScoreController = TextEditingController();
-  final dateOfExam = TextEditingController();
-  final dateOfTestReport = TextEditingController();
-  final testScoreExpirationDate = TextEditingController();
-  final tentativeExamDate = TextEditingController();
+  static final listening = TextEditingController();
+  static final writing = TextEditingController();
+  static final reading = TextEditingController();
+  static final speaking = TextEditingController();
+  static final overallScoreController = TextEditingController();
+  static final dateOfExam = TextEditingController();
+  static final dateOfTestReport = TextEditingController();
+  static final testScoreExpirationDate = TextEditingController();
+  static final tentativeExamDate = TextEditingController();
 
   static final literacyKey = GlobalKey<FormState>();
   static final comprehensionKey = GlobalKey<FormState>();

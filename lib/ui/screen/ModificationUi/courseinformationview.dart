@@ -24,7 +24,7 @@ class CourseInformationView extends StatelessWidget {
         Align(
           alignment: AlignmentDirectional.topEnd,
           child: SizedBox(
-            height: 20,
+            height: 35,
             child: Padding(
               padding: const EdgeInsets.only(right: 5),
               child: TextButton(
@@ -39,7 +39,7 @@ class CourseInformationView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 195,
+          height: MediaQuery.of(context).size.height - 210,
           child: ListView.builder(
               controller: ScrollController(),
               itemCount: model.length,
