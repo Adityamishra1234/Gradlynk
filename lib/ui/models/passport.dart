@@ -1,7 +1,6 @@
 class PassportModel {
-  String? id;
+  // String? id;
   String? enqId;
-
   String? passportNumber;
   String? citizenOf;
   String? countryOfIssue;
@@ -9,9 +8,9 @@ class PassportModel {
   String? placeOfIssue;
   String? dateOfIssue;
   String? expiryDate;
-  String? countryOfResidence;
+  // String? countryOfResidence;
 
-  String? isActive;
+  // String? isActive;
   // String? createdAt;
   // String? createdBy;
   // String? updatedAt;
@@ -20,7 +19,8 @@ class PassportModel {
   String? passportAvailable;
 
   PassportModel(
-      {this.id,
+      {
+      // this.id,
       this.enqId,
       // this.applicantType,
       this.passportNumber,
@@ -30,9 +30,9 @@ class PassportModel {
       this.placeOfIssue,
       this.dateOfIssue,
       this.expiryDate,
-      this.countryOfResidence,
+      // this.countryOfResidence,
       // this.notes,
-      this.isActive,
+      // this.isActive,
       // this.createdAt,
       // this.createdBy,
       // this.updatedAt,
@@ -41,7 +41,7 @@ class PassportModel {
       this.passportAvailable});
 
   PassportModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'].toString();
+    // id = json['id'].toString();
     enqId = json['enq_id'].toString();
     // applicantType = json['applicant_type'].toString();
     passportNumber = json['passport_number'].toString();
@@ -51,20 +51,20 @@ class PassportModel {
     placeOfIssue = json['place_of_issue'].toString();
     dateOfIssue = json['date_of_issue'].toString();
     expiryDate = json['expiry_date'].toString();
-    countryOfResidence = json['country_of_residence'].toString();
+    // countryOfResidence = json['country_of_residence'].toString();
     // notes = json['notes'].toString();
-    isActive = json['is_active'].toString();
+    // isActive = json['is_active'].toString();
     // createdAt = json['created_at'].toString();
     // createdBy = json['created_by'].toString();
     // updatedAt = json['updated_at'].toString();
     // updatedBy = json['updated_by'].toString();
-    passportTentativeDate = json['passport_tentative_date'].toString();
+    passportTentativeDate = json['passport_tentative_date'];
     passportAvailable = json['passport_available'].toString();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    // data['id'] = id;
     data['enq_id'] = enqId;
     // data['applicant_type'] = applicantType;
     data['passport_number'] = passportNumber;
@@ -74,9 +74,9 @@ class PassportModel {
     data['place_of_issue'] = placeOfIssue;
     data['date_of_issue'] = dateOfIssue;
     data['expiry_date'] = expiryDate;
-    data['country_of_residence'] = countryOfResidence;
+    // data['country_of_residence'] = countryOfResidence;
     // data['notes'] = notes;
-    data['is_active'] = isActive;
+    // data['is_active'] = isActive;
     // data['created_at'] = createdAt;
     // data['created_by'] = createdBy;
     // data['updated_at'] = updatedAt;

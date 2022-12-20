@@ -78,6 +78,7 @@ class Endpoints {
       "&any_relative_country_interested=";
   static String? visaSummary = "get-visa-summary?enq_id=";
   static String? otherTestDetails = "add-other-test-details?enq_id=";
+  static String? allCountry = "get-all-country";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

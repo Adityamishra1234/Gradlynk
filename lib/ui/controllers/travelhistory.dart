@@ -31,7 +31,7 @@ class TravelHistoryController extends BaseController {
   RxBool updateForEdit = true.obs;
 
   // Selected
-  String? travelAbroadSelected = "No";
+  String? travelAbroadSelected;
   String? travelAbroadSelectedID;
   String? travelStatusSelected;
   String? countrySelected;
@@ -54,6 +54,7 @@ class TravelHistoryController extends BaseController {
   }
 
   getTravelStatus() async {
+    loadingtravelStatus.value = false;
     var res = await apiServices.dropDown1(
         Endpoints.baseUrl!, Endpoints.travelStatus!);
     if (res != null) {
@@ -65,6 +66,7 @@ class TravelHistoryController extends BaseController {
   }
 
   getTypeOfVisa() async {
+    loadingTypeVisa.value = false;
     var res =
         await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.typeOfVisa!);
     if (res != null) {
@@ -95,7 +97,7 @@ class TravelHistoryController extends BaseController {
   getCountry() async {
     loadingCountry.value == false;
     var res =
-        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
+        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.allCountry!);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       List<dynamic> temp = map.keys.toList();

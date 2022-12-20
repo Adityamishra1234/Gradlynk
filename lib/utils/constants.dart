@@ -28,7 +28,7 @@ class Constants {
 }
 
 //Null check
-bool getNUllChecker(String? data) {
+bool getNUllChecker(var data) {
   if (data == null) {
     return true;
   } else if (data == "null") {

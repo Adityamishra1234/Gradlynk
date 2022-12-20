@@ -27,7 +27,7 @@ class RelativeInformation extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: SizedBox(
-                        height: 25,
+                        height: 30,
                         child: TextButton(
                             onPressed: () {
                               _.setViewDetails(true);
@@ -43,6 +43,7 @@ class RelativeInformation extends StatelessWidget {
                   Expanded(
                       child: RelativeInformationWidget(
                     index: _.index,
+                    // interestedCountry: _.modelList[_.index].anyRelativeCountryInterested,
                     updatForEdit: _.updateForEdit.value,
                     callbackAnyRelativeCountryInterested:
                         callbackAnyRelativeCountryInterested,
@@ -61,6 +62,7 @@ class RelativeInformation extends StatelessWidget {
     } else {
       controller.anyRelativeCountryInterestedSelected = "2";
     }
+    controller.update();
   }
 
   callbackCountry(varTopic) {

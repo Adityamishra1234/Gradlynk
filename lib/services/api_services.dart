@@ -1029,6 +1029,7 @@ class ApiServices extends StudentPanelBase {
   updatePassport(PassportModel passportModel, String? endpoint) async {
     try {
       String jsonData = jsonEncode(passportModel);
+      print(jsonData);
 
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
@@ -1079,10 +1080,10 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      List<TravelHistoryModel> workHistoryViewModel =
+      List<TravelHistoryModel> travelHistoryList =
           List<TravelHistoryModel>.from(
               json.decode(response).map((x) => TravelHistoryModel.fromJson(x)));
-      return workHistoryViewModel;
+      return travelHistoryList;
     } catch (e) {
       print(StackTrace.current);
       Fluttertoast.showToast(
@@ -1106,6 +1107,7 @@ class ApiServices extends StudentPanelBase {
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
         Get.snackbar("Travel History:", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
+        return true;
       }
     } catch (e) {
       print(StackTrace.current);

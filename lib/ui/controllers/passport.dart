@@ -24,12 +24,13 @@ class PassportController extends BaseController {
   RxBool loadingState = false.obs;
   RxBool loadingCity = false.obs;
   RxBool loadingPlaceOfIssuse = false.obs;
+  RxBool loadingFirstTime = false.obs;
 
 //button
   RxBool editSave = false.obs;
 
 //dropdown
-  RxBool passportAvaliable = false.obs;
+  RxBool passportAvaliable = true.obs;
 
 // Selected
   String? countrySelected;
@@ -58,7 +59,9 @@ class PassportController extends BaseController {
         Endpoints.baseUrl!, Endpoints.viewPassport! + enq_id!);
     if (res != null) {
       passportModel = res;
+
       loadingPassport.value = true;
+
       update();
     }
   }
@@ -66,7 +69,7 @@ class PassportController extends BaseController {
   getCountry() async {
     loadingCountry.value == false;
     var res =
-        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
+        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.allCountry!);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       List<dynamic> temp = map.keys.toList();
@@ -86,8 +89,11 @@ class PassportController extends BaseController {
   getState(String countryId) async {
     stateList = [];
     stateCode = [];
-    var res = await apiServices.getState(
-        Endpoints.baseUrl!, Endpoints.state!, countryId);
+    stateCodeSelected = null;
+    stateSelected = null;
+    loadingState.value = false;
+    var res = await apiServices.getState2(
+        Endpoints.baseUrl!, Endpoints.state! + countryId);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       List<dynamic> temp = map.keys.toList();
@@ -98,7 +104,14 @@ class PassportController extends BaseController {
       temp.forEach((element) {
         stateCode.add(element.toString());
       });
-
+      if (getNUllChecker(passportModel.stateOfIssue) == false) {
+        for (var i = 0; i < stateCode.length; i++) {
+          if (stateCode[i] == passportModel.stateOfIssue) {
+            stateCodeSelected = passportModel.stateOfIssue;
+            stateSelected = stateList[i];
+          }
+        }
+      }
       loadingState = true.obs;
       update();
     }

@@ -49,7 +49,7 @@ class RelativeInformationController extends BaseController {
   getCountry() async {
     loadingCountry.value == false;
     var res =
-        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
+        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.allCountry!);
     if (res != null) {
       Map map = Map<String, dynamic>.from(res);
       List<dynamic> temp = map.keys.toList();

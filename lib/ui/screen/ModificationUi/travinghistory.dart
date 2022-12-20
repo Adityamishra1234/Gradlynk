@@ -23,7 +23,7 @@ class TravingHistory extends StatelessWidget {
                 updateForEdit: _.updateForEdit.value,
                 callbackCountry: callbackCountry,
                 callbackProofAvailable: callbackProofAvailable,
-                callbackTravelAbroad: callbackTravelStatus,
+                callbackTravelAbroad: callbackTravelAbroad,
                 callbackTravelStatus: callbackTravelStatus,
                 callbackTypeOfVisa: callbackTypeOfVisa,
                 callbackVisaStatus: callbackVisaStatus,
