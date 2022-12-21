@@ -288,8 +288,10 @@ class ApplicationSummary extends StatelessWidget {
                         );
                       }),
                 ),
+              if (_.loadingApplicationSummary.value == false) const Spacer(),
               if (_.loadingApplicationSummary.value == false)
-                const Center(child: CircularProgressIndicator())
+                const Center(child: CircularProgressIndicator()),
+              if (_.loadingApplicationSummary.value == false) const Spacer(),
             ],
           );
         }));
