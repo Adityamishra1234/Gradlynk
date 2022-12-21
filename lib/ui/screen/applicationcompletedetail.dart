@@ -8,7 +8,6 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ApplicationCompleteDetails extends StatelessWidget {
-  // ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
   ApplicationCompleteDetails({Key? key}) : super(key: key);
   static const routeNamed = '/ApplicationCompleteDetails';
 
