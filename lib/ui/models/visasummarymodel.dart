@@ -3,11 +3,13 @@ class VisaSummaryModel {
   String? country;
   String? universityName;
   String? stageName;
+  String? statusName;
   int? statusId;
 
   VisaSummaryModel(
       {this.applicationId,
       this.country,
+      this.statusName,
       this.universityName,
       this.stageName,
       this.statusId});
@@ -18,6 +20,7 @@ class VisaSummaryModel {
     universityName = json['university_name'];
     stageName = json['stage_name'];
     statusId = json['status_id'];
+    stageName = json['status_name'];
   }
 
   Map<String, dynamic> toJson() {
@@ -27,6 +30,7 @@ class VisaSummaryModel {
     data['university_name'] = universityName;
     data['stage_name'] = stageName;
     data['status_id'] = statusId;
+    data['status_name'] = statusName;
     return data;
   }
 }

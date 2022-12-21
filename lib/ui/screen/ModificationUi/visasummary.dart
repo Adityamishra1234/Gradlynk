@@ -17,8 +17,20 @@ class VisaSummary extends StatelessWidget {
     return Scaffold(
         appBar: CustomAppBar("title"),
         drawer: CustomDrawer(),
-        body: GetBuilder<VisaSummaryController>(
-          builder: (_) => Column(
+        body: GetBuilder<VisaSummaryController>(builder: (_) {
+          if (_.loadingVisaDetails.value == true &&
+              _.loadingVisaStatus.value == true) {
+            print("aman");
+            for (var i = 0; i < _.modelList.length; i++) {
+              for (var j = 0; j < _.visaStatusID.length; j++) {
+                if (_.modelList[i].statusId.toString() ==
+                    _.visaStatusID[j].toString()) {
+                  _.modelList[i].stageName = _.visaStatusName[j];
+                }
+              }
+            }
+          }
+          return Column(
             children: [
               if (_.loadingVisaDetails.value == true)
                 Padding(
@@ -128,8 +140,7 @@ class VisaSummary extends StatelessWidget {
                                               95,
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller
-                                                .modelList[index].stageName
-                                                .toString(),
+                                                .modelList[index].stageName,
                                             textColor: ThemeConstants.TextColor,
                                             fontSize: 14,
                                           ),
@@ -166,8 +177,7 @@ class VisaSummary extends StatelessWidget {
                                               100,
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller
-                                                .modelList[index].statusId
-                                                .toString(),
+                                                .modelList[index].stageName,
                                             fontSize: 14,
                                             textColor: ThemeConstants.TextColor,
                                           ),
@@ -183,7 +193,7 @@ class VisaSummary extends StatelessWidget {
               if (_.loadingVisaDetails.value == false)
                 const Center(child: CircularProgressIndicator())
             ],
-          ),
-        ));
+          );
+        }));
   }
 }

@@ -559,8 +559,8 @@ class ProfilePageCopy extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      if (_.iconSwipe.value == true &&
-                                          _.iconSwipetrue.value == true)
+                                      if ((_.iconSwipe.value == true &&
+                                          _.iconSwipetrue.value == true))
                                         Positioned(
                                           left: 0,
                                           child: Opacity(

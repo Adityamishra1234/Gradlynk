@@ -503,7 +503,7 @@ class OthertestDetail extends StatelessWidget {
         child: SizedBox(
           height: 50,
           child: CustomDropDownSingle(
-            model: ["Tentative", "Definite"],
+            model: const ["Tentative", "Definite"],
             initialSelectedValue: controller.tentaiveDefinite,
             choosefieldtype: controller.editSave.value == true ? true : false,
             callbackFunction: callbackTentativeDefinite,

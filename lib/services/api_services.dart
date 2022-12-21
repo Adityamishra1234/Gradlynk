@@ -877,9 +877,9 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      print("object1");
+
       var jsondata = json.decode(response);
-      print("2");
+
       return jsondata;
     } catch (e) {
       print(StackTrace.current);

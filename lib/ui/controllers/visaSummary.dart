@@ -8,11 +8,17 @@ class VisaSummaryController extends BaseController {
   ApiServices apiServices = ApiServices();
   List<VisaSummaryModel> modelList = [];
 
+  // Visa Status ID and Name
+  List visaStatusID = [];
+  List visaStatusName = [];
+
   //loading
   RxBool loadingVisaDetails = false.obs;
+  RxBool loadingVisaStatus = false.obs;
 
   @override
   void onInit() {
+    getVisaStatus();
     getVisaDetails("78623");
     super.onInit();
   }
@@ -22,6 +28,20 @@ class VisaSummaryController extends BaseController {
     if (res != null) {
       modelList = res;
       loadingVisaDetails.value = true;
+      update();
+    }
+  }
+
+  getVisaStatus() async {
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.visaStatusID!);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      visaStatusID = map.keys.toList();
+      visaStatusName = map.values.toList();
+      loadingVisaStatus.value = true;
+      print(visaStatusID);
+      print(visaStatusName);
       update();
     }
   }

@@ -24,7 +24,7 @@ class OtherTestDetailsController extends BaseController {
   //Selected
   String? examStatusSelected;
   String? examStatusSelectedID;
-  String? examNameSelected;
+  String? examNameSelected = "GRE";
   String? examNameSelectedID;
   String? bookTestSelected;
   String? bookTestSelectedID;

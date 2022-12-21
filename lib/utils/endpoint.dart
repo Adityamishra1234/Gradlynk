@@ -65,7 +65,7 @@ class Endpoints {
   static String? passportPlaceOfIssuse = "get-passport-poi";
   static String? travelStatus = "get-travel-status";
   static String? typeOfVisa = "get-type-of-visa";
-  static String? visaStatusSummay = "get-visa-status";
+  static String? visaStatusID = "get-visa-status";
   static String? citizenshipStatus = "get-citizenship-status";
   static String? realtionWithRelative = "get-relation-with-relative";
   static String? updatepassPostDetails = "add-passport-details?enq_id=";
