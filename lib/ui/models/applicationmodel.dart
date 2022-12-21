@@ -8,6 +8,8 @@ class ApplicationSummaryModel {
   String? campusName;
   int? stageId;
   int? statusId;
+  String? stageName;
+  String? statusName;
 
   ApplicationSummaryModel(
       {this.id,
@@ -18,10 +20,14 @@ class ApplicationSummaryModel {
       this.courseName,
       this.campusName,
       this.stageId,
+      this.stageName,
+      this.statusName,
       this.statusId});
 
   ApplicationSummaryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    stageName = json['stage_name'];
+    statusName = json['status_name'];
     courseId = json['courseId'];
     universityName = json['university_name'];
     countryName = json['country_name'];
@@ -35,6 +41,8 @@ class ApplicationSummaryModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
+    data['stage_name'] = stageName;
+    data['status_name'] = statusName;
     data['courseId'] = courseId;
     data['university_name'] = universityName;
     data['country_name'] = countryName;

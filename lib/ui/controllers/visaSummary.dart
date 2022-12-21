@@ -40,8 +40,6 @@ class VisaSummaryController extends BaseController {
       visaStatusID = map.keys.toList();
       visaStatusName = map.values.toList();
       loadingVisaStatus.value = true;
-      print(visaStatusID);
-      print(visaStatusName);
       update();
     }
   }

@@ -17,8 +17,33 @@ class ApplicationSummary extends StatelessWidget {
     return Scaffold(
         appBar: CustomAppBar("title"),
         drawer: CustomDrawer(),
-        body: GetBuilder<ApplicationSummaryController>(
-          builder: (_) => Column(
+        body: GetBuilder<ApplicationSummaryController>(builder: (_) {
+          // For Update model with Staus Name
+          if (_.loadingStatus.value == true &&
+              _.loadingApplicationSummary.value == true) {
+            for (var i = 0; i < _.applicationSummaryModel.length; i++) {
+              for (var j = 0; j < _.statusListId.length; j++) {
+                if (_.applicationSummaryModel[i].statusId.toString() ==
+                    _.statusListId[j].toString()) {
+                  _.applicationSummaryModel[i].statusName = _.statusListName[j];
+                }
+              }
+            }
+          }
+
+          // For  Update model with Stage Names
+          if (_.loadingStage.value == true &&
+              _.loadingApplicationSummary.value == true) {
+            for (var i = 0; i < _.applicationSummaryModel.length; i++) {
+              for (var j = 0; j < _.stageListID.length; j++) {
+                if (_.applicationSummaryModel[i].stageId.toString() ==
+                    _.stageListID[j].toString()) {
+                  _.applicationSummaryModel[i].stageName = _.stageNameList[j];
+                }
+              }
+            }
+          }
+          return Column(
             children: [
               if (_.loadingApplicationSummary.value == true)
                 Padding(
@@ -58,18 +83,12 @@ class ApplicationSummary extends StatelessWidget {
                                 children: [
                                   InkWell(
                                     onTap: () async {
-                                      var response = await controller
-                                          .getApplicationDetailComplete(
-                                              controller
-                                                  .applicationSummaryModel[
-                                                      index]
-                                                  .id
-                                                  .toString());
-                                      if (response != null) {
-                                        Get.to(ApplicationCompleteDetails(
-                                            applicationDetailModel: controller
-                                                .applicationDetailModel));
-                                      }
+                                      controller.getApplicationDetailComplete(
+                                          controller
+                                              .applicationSummaryModel[index].id
+                                              .toString());
+
+                                      Get.to(ApplicationCompleteDetails());
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: controller
@@ -218,8 +237,7 @@ class ApplicationSummary extends StatelessWidget {
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller
                                                 .applicationSummaryModel[index]
-                                                .stageId
-                                                .toString(),
+                                                .stageName,
                                             textColor: ThemeConstants.TextColor,
                                             fontSize: 14,
                                           ),
@@ -257,8 +275,7 @@ class ApplicationSummary extends StatelessWidget {
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller
                                                 .applicationSummaryModel[index]
-                                                .statusId
-                                                .toString(),
+                                                .statusName,
                                             fontSize: 14,
                                             textColor: ThemeConstants.TextColor,
                                           ),
@@ -274,7 +291,7 @@ class ApplicationSummary extends StatelessWidget {
               if (_.loadingApplicationSummary.value == false)
                 const Center(child: CircularProgressIndicator())
             ],
-          ),
-        ));
+          );
+        }));
   }
 }

@@ -9,6 +9,14 @@ class ApplicationSummaryController extends BaseController {
   // Loading
   RxBool loadingApplicationSummary = false.obs;
   RxBool loadingApplicationCompleteDetails = false.obs;
+  RxBool loadingStatus = false.obs;
+  RxBool loadingStage = false.obs;
+
+  // ID and Name Field
+  List statusListId = [];
+  List statusListName = [];
+  List stageListID = [];
+  List stageNameList = [];
 
   // Model
   ApiServices apiServices = ApiServices();
@@ -18,6 +26,8 @@ class ApplicationSummaryController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    getapplicationStatus();
+    getapplicationStage();
     getApplicationDetail("78623");
   }
 
@@ -35,7 +45,34 @@ class ApplicationSummaryController extends BaseController {
         Endpoints.applicationDetail, apli_id);
     if (response != null) {
       applicationDetailModel = response;
-      return applicationDetailModel;
+      loadingApplicationCompleteDetails.value = true;
+      update();
+    } else {
+      Get.back();
+    }
+  }
+
+  getapplicationStatus() async {
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.applicationStatus!);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      statusListId = map.keys.toList();
+      statusListName = map.values.toList();
+      loadingStatus.value = true;
+      update();
+    }
+  }
+
+  getapplicationStage() async {
+    var res = await apiServices.dropDown1(
+        Endpoints.baseUrl!, Endpoints.applicationStage!);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      stageListID = map.keys.toList();
+      stageNameList = map.values.toList();
+      loadingStage.value = true;
+      update();
     }
   }
 }

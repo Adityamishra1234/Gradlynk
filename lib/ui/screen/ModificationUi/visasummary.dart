@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/visaSUmmary.dart';
 import 'package:studentpanel/ui/screen/visa.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -71,7 +72,13 @@ class VisaSummary extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
                                       Get.to(VisaDetail(
-                                        applicationId: '5',
+                                        applicationId: getNUllChecker(_
+                                                    .modelList[index]
+                                                    .applicationId) ==
+                                                false
+                                            ? _.modelList[index].applicationId
+                                                .toString()
+                                            : "",
                                       ));
                                     },
                                     child: CustomAutoSizeTextMontserrat(
