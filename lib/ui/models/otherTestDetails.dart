@@ -1,5 +1,5 @@
 class OtherTestDetailsModel {
-  int? id;
+  // int? id;
   int? enqId;
   int? applicantType;
   String? examStatus;
@@ -23,11 +23,11 @@ class OtherTestDetailsModel {
   int? quantitativeApptitude;
   int? essay;
   int? overAll;
-  int? isActive;
-  int? createdBy;
-  String? createdAt;
-  int? updatedBy;
-  String? updatedAt;
+  // int? isActive;
+  // int? createdBy;
+  // String? createdAt;
+  // int? updatedBy;
+  // String? updatedAt;
   int? assumptiveProficiency;
   String? scoreType;
   int? literacy;
@@ -36,7 +36,8 @@ class OtherTestDetailsModel {
   int? production;
 
   OtherTestDetailsModel(
-      {this.id,
+      {
+      // this.id,
       this.enqId,
       this.applicantType,
       this.examStatus,
@@ -60,11 +61,11 @@ class OtherTestDetailsModel {
       this.quantitativeApptitude,
       this.essay,
       this.overAll,
-      this.isActive,
-      this.createdBy,
-      this.createdAt,
-      this.updatedBy,
-      this.updatedAt,
+      // this.isActive,
+      // this.createdBy,
+      // this.createdAt,
+      // this.updatedBy,
+      // this.updatedAt,
       this.assumptiveProficiency,
       this.scoreType,
       this.literacy,
@@ -73,7 +74,7 @@ class OtherTestDetailsModel {
       this.production});
 
   OtherTestDetailsModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    // id = json['id'];
     enqId = json['enq_Id'];
     applicantType = json['applicant_type'];
     examStatus = json['exam_status'];
@@ -97,11 +98,11 @@ class OtherTestDetailsModel {
     quantitativeApptitude = json['quantitative_apptitude'];
     essay = json['essay'];
     overAll = json['over_all'];
-    isActive = json['is_active'];
-    createdBy = json['created_by'];
-    createdAt = json['created_at'];
-    updatedBy = json['updated_by'];
-    updatedAt = json['updated_at'];
+    // isActive = json['is_active'];
+    // createdBy = json['created_by'];
+    // createdAt = json['created_at'];
+    // updatedBy = json['updated_by'];
+    // updatedAt = json['updated_at'];
     assumptiveProficiency = json['assumptive_proficiency'];
     scoreType = json['score_type'];
     literacy = json['literacy'];
@@ -112,7 +113,7 @@ class OtherTestDetailsModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    // data['id'] = id;
     data['enq_Id'] = enqId;
     data['applicant_type'] = applicantType;
     data['exam_status'] = examStatus;
@@ -136,11 +137,11 @@ class OtherTestDetailsModel {
     data['quantitative_apptitude'] = quantitativeApptitude;
     data['essay'] = essay;
     data['over_all'] = overAll;
-    data['is_active'] = isActive;
-    data['created_by'] = createdBy;
-    data['created_at'] = createdAt;
-    data['updated_by'] = updatedBy;
-    data['updated_at'] = updatedAt;
+    // data['is_active'] = isActive;
+    // data['created_by'] = createdBy;
+    // data['created_at'] = createdAt;
+    // data['updated_by'] = updatedBy;
+    // data['updated_at'] = updatedAt;
     data['assumptive_proficiency'] = assumptiveProficiency;
     data['score_type'] = scoreType;
     data['literacy'] = literacy;

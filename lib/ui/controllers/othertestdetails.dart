@@ -75,6 +75,6 @@ class OtherTestDetailsController extends BaseController {
 
   updateOtherTestDetails(String? enq_id) async {
     await apiServices.updateOtherTestDetails(
-        otherTestDetailsModel, Endpoints.otherTestDetails);
+        otherTestDetailsModel, Endpoints.otherTestDetails! + enq_id!);
   }
 }

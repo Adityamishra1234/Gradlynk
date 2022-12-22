@@ -50,7 +50,7 @@ class OthertestDetail extends StatelessWidget {
             _.examStatusSelected = _.examStatusList[i];
           }
         }
-        _.bookTestSelected = _.otherTestDetailsModel.testBook ?? "";
+        _.bookTestSelected = _.otherTestDetailsModel.testBook;
         _.examNameSelected = _.otherTestDetailsModel.examName;
         // _.specifyExamNameSelected=_.otherTestDetailsModel.
         tentativeExamDate.text =
@@ -176,7 +176,69 @@ class OthertestDetail extends StatelessWidget {
                           onPrimary: ThemeConstants.bluecolor, // foreground
                         ),
                         onPressed: () async {
+                          // DropDown
+                          _.otherTestDetailsModel.examStatus =
+                              _.examStatusSelectedID ?? "";
+                          if (getNUllChecker(_.examNameSelected) == false) {
+                            _.otherTestDetailsModel.examName =
+                                _.examNameSelected;
+                          } else {
+                            _.otherTestDetailsModel.examName = null;
+                          }
+                          _.otherTestDetailsModel.testBook =
+                              _.bookTestSelectedID;
+                          _.otherTestDetailsModel.scoreType =
+                              _.tentaiveDefinite;
+
+                          // text field
+                          _.otherTestDetailsModel.dateOfExam = dateOfExam.text;
+                          _.otherTestDetailsModel.tentativeExamDate =
+                              tentativeExamDate.text;
+                          _.otherTestDetailsModel.dateOfExam = dateOfExam.text;
+                          _.otherTestDetailsModel.expirationDate =
+                              testScoreExpirationDate.text;
+
+                          // int condition for null
+                          _.otherTestDetailsModel.analyticalWriting =
+                              getNUllChecker(analyticalWriting.text) == false
+                                  ? int.parse(analyticalWriting.text)
+                                  : 0;
+                          _.otherTestDetailsModel.verbalReasoning =
+                              getNUllChecker(verbalReasoning.text) == false
+                                  ? int.parse(verbalReasoning.text)
+                                  : 0;
+
+                          _.otherTestDetailsModel.quantitativeApptitude =
+                              getNUllChecker(quantitative.text) == false
+                                  ? int.parse(quantitative.text)
+                                  : 0;
+                          _.otherTestDetailsModel.integratedReasoning =
+                              getNUllChecker(integrateedReasoning.text) == false
+                                  ? int.parse(integrateedReasoning.text)
+                                  : 0;
+                          _.otherTestDetailsModel.reading =
+                              getNUllChecker(reading.text) == false
+                                  ? int.parse(reading.text)
+                                  : 0;
+                          _.otherTestDetailsModel.writing =
+                              getNUllChecker(writingAndLanguage.text) == false
+                                  ? int.parse(writingAndLanguage.text)
+                                  : 0;
+                          _.otherTestDetailsModel.essay =
+                              getNUllChecker(essay.text) == false
+                                  ? int.parse(essay.text)
+                                  : 0;
+                          _.otherTestDetailsModel.math =
+                              getNUllChecker(math.text) == false
+                                  ? int.parse(math.text)
+                                  : 0;
+                          _.otherTestDetailsModel.overAll =
+                              getNUllChecker(overallScore.text) == false
+                                  ? int.parse(overallScore.text)
+                                  : 0;
+                          _.editSave.value = true;
                           _.updateOtherTestDetails("78623");
+                          _.update();
                         },
                         child: CustomAutoSizeTextMontserrat(
                           text: "Save",
@@ -238,7 +300,7 @@ class OthertestDetail extends StatelessWidget {
                   : controller.examNameList[0]
               : "No Data",
           choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackExamStatus,
+          callbackFunction: callbackExamName,
         ),
       ),
       Padding(
@@ -303,7 +365,7 @@ class OthertestDetail extends StatelessWidget {
         height: 50,
         child: CustomDropDownSingle(
           model: const ["Yes", "No"],
-          initialSelectedValue: "No",
+          initialSelectedValue: controller.bookTestSelected ?? "No",
           choosefieldtype: controller.editSave.value == true ? true : false,
           callbackFunction: callbackBookTest,
         ),
@@ -333,10 +395,12 @@ class OthertestDetail extends StatelessWidget {
               ? controller.examNameList
               : ["No Data"],
           initialSelectedValue: controller.loadingExamName.value == true
-              ? controller.examNameList[0]
+              ? getNUllChecker(controller.examNameSelected) == false
+                  ? controller.examNameSelected.toString()
+                  : controller.examNameList[0]
               : "No Data",
           choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackBookTest,
+          callbackFunction: callbackExamName,
         ),
       ),
       Padding(
@@ -1285,6 +1349,8 @@ class OthertestDetail extends StatelessWidget {
   }
 
   callbackExamStatus(varTopic) {
+    controller.specifyExamNameSelected = null;
+    controller.specifyExamNameSelectedID = null;
     print(varTopic);
     for (var i = 0; i < controller.examStatusList.length; i++) {
       if (controller.examStatusList[i] == varTopic) {
@@ -1300,8 +1366,16 @@ class OthertestDetail extends StatelessWidget {
     controller.update();
   }
 
-  callbackBookTest(data) {}
-  callbackSpecifyExamName(data) {}
+  callbackBookTest(data) {
+    if (data == "Yes") {
+      controller.bookTestSelected = "Yes";
+      controller.bookTestSelectedID = "0";
+    } else {
+      controller.bookTestSelected = "No";
+      controller.bookTestSelectedID = "1";
+    }
+  }
+
   callbackTentativeDefinite(data) {
     controller.otherTestDetailsModel.scoreType = data;
     controller.tentaiveDefinite = data;
