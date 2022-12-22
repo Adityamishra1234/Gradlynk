@@ -23,11 +23,11 @@ class WorkHistoryWidget extends StatelessWidget {
       required this.callbackIndustry,
       required this.callbackEmployementType})
       : super(key: key);
-  final lastOrganisation = TextEditingController();
-  final workingFrom = TextEditingController();
-  final workingTill = TextEditingController();
-  final designation = TextEditingController();
-  final income = TextEditingController();
+  static final lastOrganisation = TextEditingController();
+  static final workingFrom = TextEditingController();
+  static final workingTill = TextEditingController();
+  static final designation = TextEditingController();
+  static final income = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

@@ -11,19 +11,19 @@ class OthertestDetail extends StatelessWidget {
   OthertestDetail({Key? key}) : super(key: key);
 
   var controller = Get.put(OtherTestDetailsController());
-  final dateOfExam = TextEditingController();
-  final tentativeExamDate = TextEditingController();
-  final dateOfTestReport = TextEditingController();
-  final testScoreExpirationDate = TextEditingController();
-  final analyticalWriting = TextEditingController();
-  final verbalReasoning = TextEditingController();
-  final quantitative = TextEditingController();
-  final integrateedReasoning = TextEditingController();
-  final reading = TextEditingController();
-  final writingAndLanguage = TextEditingController();
-  final essay = TextEditingController();
-  final math = TextEditingController();
-  final overallScore = TextEditingController();
+  static final dateOfExam = TextEditingController();
+  static final tentativeExamDate = TextEditingController();
+  static final dateOfTestReport = TextEditingController();
+  static final testScoreExpirationDate = TextEditingController();
+  static final analyticalWriting = TextEditingController();
+  static final verbalReasoning = TextEditingController();
+  static final quantitative = TextEditingController();
+  static final integrateedReasoning = TextEditingController();
+  static final reading = TextEditingController();
+  static final writingAndLanguage = TextEditingController();
+  static final essay = TextEditingController();
+  static final math = TextEditingController();
+  static final overallScore = TextEditingController();
 
   static final analyticalKey = GlobalKey<FormState>();
   static final verbalKey = GlobalKey<FormState>();
@@ -175,7 +175,9 @@ class OthertestDetail extends StatelessWidget {
                           primary: ThemeConstants.bluecolor, // background
                           onPrimary: ThemeConstants.bluecolor, // foreground
                         ),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          _.updateOtherTestDetails("78623");
+                        },
                         child: CustomAutoSizeTextMontserrat(
                           text: "Save",
                           textColor: ThemeConstants.whitecolor,
