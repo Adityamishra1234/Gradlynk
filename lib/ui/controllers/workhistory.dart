@@ -22,6 +22,7 @@ class WorkHistoryController extends BaseController {
   RxBool loadingEmploymentType = false.obs;
   RxBool loadingWorkHistory = false.obs;
   RxBool loadingWorkUpdate = false.obs;
+  RxBool loadingEdit = false.obs;
 
   // field Selected
   String? industryNameSelected, employementTypeSelected;

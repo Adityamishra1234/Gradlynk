@@ -27,11 +27,11 @@ class QualificationWidget extends StatelessWidget {
       required this.callback})
       : super(key: key);
 
-  final qualificationName = TextEditingController();
-  final multiplier = TextEditingController();
-  final cgpa = TextEditingController();
-  final percentage = TextEditingController();
-  final reApper = TextEditingController();
+  static final qualificationName = TextEditingController();
+  static final multiplier = TextEditingController();
+  static final cgpa = TextEditingController();
+  static final percentage = TextEditingController();
+  static final reApper = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

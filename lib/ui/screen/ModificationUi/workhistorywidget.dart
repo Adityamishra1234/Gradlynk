@@ -32,7 +32,9 @@ class WorkHistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WorkHistoryController>(builder: (_) {
-      if (update == false) {
+      if (update == false && _.loadingEdit.value == false) {
+        _.loadingEdit.value = true;
+        update = true;
         lastOrganisation.text =
             _.workHistoryViewModelList[index!].organisationName ?? "";
         workingFrom.text = _.workHistoryViewModelList[index!].workingFrom ?? "";
