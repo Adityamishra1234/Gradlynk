@@ -2,6 +2,7 @@ import 'package:configurable_expansion_tile_null_safety/configurable_expansion_t
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/applicationsummarycontroller.dart';
+import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -10,6 +11,14 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 class ApplicationCompleteDetails extends StatelessWidget {
   ApplicationCompleteDetails({Key? key}) : super(key: key);
   static const routeNamed = '/ApplicationCompleteDetails';
+  final rowSpacer2 = const TableRow(children: [
+    SizedBox(
+      height: 3,
+    ),
+    SizedBox(
+      height: 3,
+    )
+  ]);
 
   @override
   Widget build(BuildContext context) {
@@ -1132,6 +1141,31 @@ class ApplicationCompleteDetails extends StatelessWidget {
                       Divider(
                         color: ThemeConstants.TextColor,
                       ),
+                      Card(
+                        elevation: 0,
+                        shadowColor: ThemeConstants.lightgreycolor,
+                        child: ConfigurableExpansionTile(
+                          header: SizedBox(
+                            width: MediaQuery.of(context).size.width - 15,
+                            height: 40,
+                            child: Row(
+                              children: [
+                                CustomAutoSizeTextMontserrat(
+                                  text: "Document",
+                                  textColor: ThemeConstants.blackcolor,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                const Spacer(),
+                                const Icon(Icons.keyboard_arrow_down),
+                              ],
+                            ),
+                          ),
+                          children: [...documentList(_.applicationDetailModel)],
+                        ),
+                      ),
+                      Divider(
+                        color: ThemeConstants.TextColor,
+                      ),
                     ],
                   ),
                 )
@@ -1141,5 +1175,159 @@ class ApplicationCompleteDetails extends StatelessWidget {
                   ),
                 );
         }));
+  }
+
+  // Function
+  List<Widget> documentList(ApplicationDetailModel model) {
+    List<Widget> documentlist = [];
+    List temp = [];
+    for (var i = 0; i < model.documents!.length; i++) {
+      temp.add(model.documents![i].documentParentCategory);
+    }
+    temp = temp.toSet().toList();
+    List<Map<String, List<Widget>>> list = [];
+    for (var i = 0; i < temp.length; i++) {
+      list.add({temp[i]: []});
+    }
+    for (var i = 0; i < model.documents!.length; i++) {
+      for (var j = 0; j < list.length; j++) {
+        if (list[j].entries.first.key ==
+            model.documents![i].documentParentCategory) {
+          list[j].entries.first.value.add(Card(
+                elevation: 5,
+                shadowColor: ThemeConstants.whitecolor,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: ThemeConstants.lightgreycolor, width: 2.0),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, top: 5, bottom: 5, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomAutoSizeTextMontserrat(
+                        text: model.documents![i].documentName,
+                        textColor: ThemeConstants.bluecolor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      Table(
+                        children: [
+                          TableRow(children: [
+                            CustomAutoSizeTextMontserrat(
+                              text: "Mandatory/Non-Mandatory: ",
+                              fontSize: 14,
+                              maxLines: 2,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            CustomAutoSizeTextMontserrat(
+                              text: "Required By",
+                              fontSize: 14,
+                              maxLines: 2,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ]),
+                          rowSpacer2,
+                          TableRow(children: [
+                            CustomAutoSizeTextMontserrat(
+                              text: model.documents![i].mandatoryStatus,
+                              textColor: ThemeConstants.TextColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              maxLines: 2,
+                            ),
+                            CustomAutoSizeTextMontserrat(
+                              text: model.documents![i].requiredBy,
+                              textColor: ThemeConstants.TextColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              maxLines: 2,
+                            ),
+                          ]),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      CustomAutoSizeTextMontserrat(text: "Uploaded By:"),
+                      CustomAutoSizeTextMontserrat(
+                        text: model.documents![i].uploadedBy,
+                        textColor: ThemeConstants.TextColor,
+                      ),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              side:
+                                  BorderSide(color: ThemeConstants.GreenColor),
+                              primary: ThemeConstants.whitecolor, // background
+                              onPrimary:
+                                  ThemeConstants.whitecolor, // foreground
+                            ),
+                            onPressed: () {},
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Upload",
+                              textColor: ThemeConstants.GreenColor,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              side: BorderSide(color: ThemeConstants.bluecolor),
+                              primary: ThemeConstants.whitecolor, // background
+                              onPrimary:
+                                  ThemeConstants.whitecolor, // foreground
+                            ),
+                            onPressed: () {},
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Download",
+                              textColor: ThemeConstants.bluecolor,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              side:
+                                  BorderSide(color: ThemeConstants.orangeColor),
+                              primary: ThemeConstants.whitecolor, // background
+                              onPrimary:
+                                  ThemeConstants.whitecolor, // foreground
+                            ),
+                            onPressed: () {},
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "View",
+                              textColor: ThemeConstants.orangeColor,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ));
+        }
+      }
+    }
+    for (var i = 0; i < list.length; i++) {
+      documentlist.add(Padding(
+        padding: const EdgeInsets.only(left: 15, top: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: list[i].entries.first.key,
+            textColor: ThemeConstants.bluecolor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ));
+      documentlist.addAll(list[i].entries.first.value);
+    }
+    return documentlist;
   }
 }
