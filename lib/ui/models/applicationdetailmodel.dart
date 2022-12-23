@@ -36,6 +36,10 @@ class ApplicationDetailModel {
   String? defermentStatus;
   String? reasonOfWithdraw;
   String? withdrawStatus;
+  List<Documents>? documents;
+  List<AcknowledgementDocument>? acknowledgementDocument;
+  List<OfferDocument>? offerDocument;
+  List<FeeDocument>? feeDocument;
 
   ApplicationDetailModel(
       {this.offerStatus,
@@ -74,7 +78,11 @@ class ApplicationDetailModel {
       this.deferTill,
       this.defermentStatus,
       this.reasonOfWithdraw,
-      this.withdrawStatus});
+      this.withdrawStatus,
+      this.documents,
+      this.acknowledgementDocument,
+      this.offerDocument,
+      this.feeDocument});
 
   ApplicationDetailModel.fromJson(Map<String, dynamic> json) {
     offerStatus = json['offer_status'].toString();
@@ -114,6 +122,30 @@ class ApplicationDetailModel {
     defermentStatus = json['deferment_status'];
     reasonOfWithdraw = json['reason_of_withdraw'];
     withdrawStatus = json['withdraw_status'];
+    if (json['documents'] != null) {
+      documents = <Documents>[];
+      json['documents'].forEach((v) {
+        documents!.add(new Documents.fromJson(v));
+      });
+    }
+    if (json['acknowledgement_document'] != null) {
+      acknowledgementDocument = <AcknowledgementDocument>[];
+      json['acknowledgement_document'].forEach((v) {
+        acknowledgementDocument!.add(AcknowledgementDocument.fromJson(v));
+      });
+    }
+    if (json['offer_document'] != null) {
+      offerDocument = <OfferDocument>[];
+      json['offer_document'].forEach((v) {
+        offerDocument!.add(new OfferDocument.fromJson(v));
+      });
+    }
+    if (json['fee_document'] != null) {
+      feeDocument = <FeeDocument>[];
+      json['fee_document'].forEach((v) {
+        feeDocument!.add(new FeeDocument.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -155,6 +187,127 @@ class ApplicationDetailModel {
     data['deferment_status'] = defermentStatus;
     data['reason_of_withdraw'] = reasonOfWithdraw;
     data['withdraw_status'] = withdrawStatus;
+    if (documents != null) {
+      data['documents'] = documents!.map((v) => v.toJson()).toList();
+    }
+    if (acknowledgementDocument != null) {
+      data['acknowledgement_document'] =
+          acknowledgementDocument!.map((v) => v.toJson()).toList();
+    }
+    if (offerDocument != null) {
+      data['offer_document'] = offerDocument!.map((v) => v.toJson()).toList();
+    }
+    if (feeDocument != null) {
+      data['fee_document'] = feeDocument!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class OfferDocument {
+  String? documentName;
+  String? viewLink;
+  String? downloadLink;
+
+  OfferDocument({this.documentName, this.viewLink, this.downloadLink});
+
+  OfferDocument.fromJson(Map<String, dynamic> json) {
+    documentName = json['document_name'];
+    viewLink = json['view_link'];
+    downloadLink = json['download_link'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['document_name'] = documentName;
+    data['view_link'] = viewLink;
+    data['download_link'] = downloadLink;
+    return data;
+  }
+}
+
+class FeeDocument {
+  String? documentName;
+  String? viewLink;
+  String? downloadLink;
+
+  FeeDocument({this.documentName, this.viewLink, this.downloadLink});
+
+  FeeDocument.fromJson(Map<String, dynamic> json) {
+    documentName = json['document_name'];
+    viewLink = json['view_link'];
+    downloadLink = json['download_link'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['document_name'] = documentName;
+    data['view_link'] = viewLink;
+    data['download_link'] = downloadLink;
+    return data;
+  }
+}
+
+class AcknowledgementDocument {
+  String? documentName;
+  String? viewLink;
+  String? downloadLink;
+
+  AcknowledgementDocument(
+      {this.documentName, this.viewLink, this.downloadLink});
+
+  AcknowledgementDocument.fromJson(Map<String, dynamic> json) {
+    documentName = json['document_name'];
+    viewLink = json['view_link'];
+    downloadLink = json['download_link'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['document_name'] = documentName;
+    data['view_link'] = viewLink;
+    data['download_link'] = downloadLink;
+    return data;
+  }
+}
+
+class Documents {
+  String? documentParentCategory;
+  String? requiredBy;
+  String? uploadedBy;
+  String? mandatoryStatus;
+  String? documentName;
+  String? viewLink;
+  String? downloadLink;
+
+  Documents(
+      {this.documentParentCategory,
+      this.requiredBy,
+      this.uploadedBy,
+      this.mandatoryStatus,
+      this.documentName,
+      this.viewLink,
+      this.downloadLink});
+
+  Documents.fromJson(Map<String, dynamic> json) {
+    documentParentCategory = json['document_parent_category'];
+    requiredBy = json['required_by'];
+    uploadedBy = json['uploaded_by'];
+    mandatoryStatus = json['mandatory_status'];
+    documentName = json['document_name'];
+    viewLink = json['view_link'];
+    downloadLink = json['download_link'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['document_parent_category'] = documentParentCategory;
+    data['required_by'] = requiredBy;
+    data['uploaded_by'] = uploadedBy;
+    data['mandatory_status'] = mandatoryStatus;
+    data['document_name'] = documentName;
+    data['view_link'] = viewLink;
+    data['download_link'] = downloadLink;
     return data;
   }
 }
