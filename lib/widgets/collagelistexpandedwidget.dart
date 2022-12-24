@@ -2,7 +2,6 @@ import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
@@ -125,12 +124,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
 
   @override
   Widget build(BuildContext context) {
-    var now = DateTime.now();
-    var formatterMonth = DateFormat('MMM');
-    var formatterYear = DateFormat('YYYY');
-    String formattedDate = formatterMonth.format(now);
-    String formattedDate2 = formatterYear.format(now);
-
     return AnimatedContainer(
       duration: const Duration(milliseconds: 600),
       child: Card(
@@ -214,7 +207,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             height: 15,
                             color: ThemeConstants.bluelightgreycolor,
                           ),
-                          if (courseSearchModel.courseDuration != null)
+                          if (getNUllChecker(
+                                  courseSearchModel.courseDuration) ==
+                              false)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: CustomAutoSizeTextMontserrat(
@@ -271,45 +266,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
                           const Spacer(),
-                          // Row(
-                          //   children: [
-                          //     // const Spacer(),
-                          //     // Container(
-                          //     //   height: 30,
-                          //     //   width: 30,
-                          //     //   decoration: const BoxDecoration(
-                          //     //       color: Color(0xFF2FAF5E),
-                          //     //       borderRadius:
-                          //     //           BorderRadius.all(Radius.circular(7))),
-                          //     //   child: Padding(
-                          //     //     padding: const EdgeInsets.all(3),
-                          //     //     child: SvgPicture.asset(
-                          //     //       "assets/icons/list.svg",
-                          //     //       color: ThemeConstants.whitecolor,
-                          //     //       height: 25,
-                          //     //     ),
-                          //     //   ),
-                          //     // ),
-
-                          //     // const Spacer(),
-                          //     // Container(
-                          //     //   height: 30,
-                          //     //   width: 30,
-                          //     //   decoration: const BoxDecoration(
-                          //     //       color: Color(0xFFF97316),
-                          //     //       borderRadius:
-                          //     //           BorderRadius.all(Radius.circular(7))),
-                          //     //   child: Padding(
-                          //     //     padding: const EdgeInsets.all(5),
-                          //     //     child: SvgPicture.asset(
-                          //     //       "assets/icons/star.svg",
-                          //     //       color: ThemeConstants.whitecolor,
-                          //     //       height: 20,
-                          //     //     ),
-                          //     //   ),
-                          //     // ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
@@ -439,9 +395,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     height: 3,
                                   ),
                                   CustomAutoSizeTextMontserrat(
-                                    text: courseSearchModel.englishProficiency
-                                        .toString()
-                                        .split("|")[0],
+                                    text: courseSearchModel.englishProficiency,
                                     textColor:
                                         ThemeConstants.bluelightgreycolor,
                                     fontSize: 12,
@@ -778,7 +732,6 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
-
             // Button List
             Row(
               children: [
@@ -854,18 +807,13 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 const Spacer(),
               ],
             ),
-
-            // if (widget.iscompare == true) AddedButtonShow(),
-            // if ((addCompare == false || addCompare == null) &&
-            //     isCompare == true &&
-            //     ),
           ],
         ),
       ),
     );
   }
-  // Function
 
+  // Function
   AddedButtonShow() {
     // add compare in both
     if (addCompare == null) {
@@ -1057,8 +1005,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           );
         }
         // Add to ShortList
-        if ((courseSearchModel.shortList.toString() == "null" ||
-                courseSearchModel.shortList.toString() == "0") &&
+        if ((getNUllChecker(courseSearchModel.shortList) == false) &&
             widget.courseShortListFirst == true &&
             widget.shortList == false) {
           return Padding(
@@ -1133,8 +1080,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
       }
 
       // Add to Shortlist
-      if ((courseSearchModel.shortList.toString() == "null" ||
-              courseSearchModel.shortList.toString() == "0") &&
+      if ((getNUllChecker(courseSearchModel.shortList) == false) &&
           widget.courseShortListFirst == true &&
           widget.shortList == false) {
         return Padding(
