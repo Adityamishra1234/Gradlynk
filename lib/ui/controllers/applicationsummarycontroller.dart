@@ -41,6 +41,7 @@ class ApplicationSummaryController extends BaseController {
   }
 
   getApplicationDetailComplete(String? apli_id) async {
+    loadingApplicationCompleteDetails.value = false;
     var response = await apiServices.getApplicationDetails(
         Endpoints.applicationDetail, apli_id);
     if (response != null) {
