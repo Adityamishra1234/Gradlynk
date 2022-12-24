@@ -233,7 +233,7 @@ class ApiServices extends StudentPanelBase {
   getCourseSearch(String baseUrl, String endpoint, String enq_id) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     List<CourseSearchModel> courseSearchModel = [];
-    print("$baseUrl$endpoint&enq_id=$enq_id");
+
     try {
       var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
 
@@ -262,7 +262,6 @@ class ApiServices extends StudentPanelBase {
   }
 
   completeCourseDetail(String baseUrl, String endpoint) async {
-    debugPrint(endpoint);
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
       if (response != null) {
@@ -273,7 +272,6 @@ class ApiServices extends StudentPanelBase {
                 .decode(response)
                 .map((x) => CompleteCourseDetail.fromJson(x)));
 
-        debugPrint("object");
         return completeCourseDetail;
       }
     } catch (e) {
@@ -442,7 +440,6 @@ class ApiServices extends StudentPanelBase {
       FilterModel filterModel = FilterModel();
 
       courseModelFilter.courseSearchList.forEach((element) {
-        print(element.id);
         if (getNUllChecker(element.intakeMonth) == false) {
           filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
         }
@@ -1029,7 +1026,6 @@ class ApiServices extends StudentPanelBase {
   updatePassport(PassportModel passportModel, String? endpoint) async {
     try {
       String jsonData = jsonEncode(passportModel);
-      print(jsonData);
 
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {

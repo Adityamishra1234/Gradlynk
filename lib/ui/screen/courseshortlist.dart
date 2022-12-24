@@ -266,7 +266,6 @@ class _CourseSearchListState extends State<CourseSearchList> {
   }
 
   callbackModelCompare(varTopic) async {
-    print(varTopic);
     await controller1.callbackModelCompare(varTopic);
   }
 

@@ -35,8 +35,6 @@ class EnglishTestController extends BaseController {
   List examStatusCode = [];
   List examNameList = [];
 
-
-
   @override
   void onInit() {
     getExamName();
@@ -61,7 +59,6 @@ class EnglishTestController extends BaseController {
     var res =
         await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.examName!);
     if (res != null) {
-      print(res.toString() + "saidfskm");
       Map map = Map<String, dynamic>.from(res);
       print("23");
       examNameList = map.values.toList();

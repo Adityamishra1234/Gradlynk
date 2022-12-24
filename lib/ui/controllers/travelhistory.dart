@@ -146,7 +146,7 @@ class TravelHistoryController extends BaseController {
               modelList[i].visaNumber,
               modelList[i].dateOfApplication);
     }
-    print(endpoint);
+
     var res = await apiServices.updateTravelHistory(endpoint);
   }
 }

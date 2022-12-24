@@ -959,10 +959,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
 // Remove Course Search model
                 if (courseSearchModelCompare1Id == courseSearchModel.id) {
                   courseSearchModelCompare1Id = null;
-                  print("Model1");
+
                   await widget.callbackForModelCompare!("Model1");
                 } else {
-                  print("Model2");
                   courseSearchModelCompare2Id = null;
 
                   await widget.callbackForModelCompare!("Model2");

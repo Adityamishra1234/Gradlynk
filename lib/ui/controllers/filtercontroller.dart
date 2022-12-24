@@ -435,7 +435,6 @@ class FilterController extends BaseController {
     if (less_7 == true) {
       filterModel.filterSelected.budgetSelected.add("Below 7 Lac");
     }
-    print(filterModel.filterSelected.budgetSelected);
 
     //Academic Percentage selected Added
 

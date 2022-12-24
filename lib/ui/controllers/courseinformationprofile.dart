@@ -98,7 +98,7 @@ class CourseInformationProfileController extends BaseController {
               viewCourseInformationList[i].courseBroadId!,
               viewCourseInformationList[i].courseNarrowId!);
     }
-    print(endpoint);
+
     var res = await apiServices.addProfileModule(
         Endpoints.baseUrl!, endpoint!, "Course Information");
     loadingViewCourseInformation.value = true;
@@ -115,7 +115,6 @@ class CourseInformationProfileController extends BaseController {
   }
 
   callbackCourseNarrow(String? data) {
-    print(data);
     for (var i = 0; i < courseNarrowList.length; i++) {
       if (courseNarrowList[i] == data) {
         courseNarrowSelectedId = courseNarrowCode[i];

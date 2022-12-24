@@ -303,7 +303,6 @@ class WorkHistoryWidget extends StatelessWidget {
                               income: int.parse(income.text),
                               jobIndustryName: _.industryNameSelected,
                             ));
-                            print("aman");
 
                             callbackAdded(true);
                           },

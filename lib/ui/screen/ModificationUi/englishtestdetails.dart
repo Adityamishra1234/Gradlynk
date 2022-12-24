@@ -159,7 +159,7 @@ class EnglishTestDetails extends StatelessWidget {
                           englishTestDetailsViewModel.conversation =
                               reading.text;
                           englishTestDetailsViewModel.production = writing.text;
-                          print(getNUllChecker(tentativeExamDate.text));
+
                           if (getNUllChecker(tentativeExamDate.text)) {
                             englishTestDetailsViewModel.overAll =
                                 overallScoreController.text;
@@ -205,7 +205,6 @@ class EnglishTestDetails extends StatelessWidget {
   callback(varTopic) {}
 
   callbackExamStatus(varTopic) {
-    print(varTopic);
     for (var i = 0; i < controller.examStatusList.length; i++) {
       if (controller.examStatusList[i] == varTopic) {
         controller.examStatusSelected = controller.examStatusList[i];

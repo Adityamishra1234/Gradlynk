@@ -388,7 +388,6 @@ class _FinalShortListState extends State<FinalShortList> {
   }
 
   callbackModelCompare(varTopic) {
-    print(varTopic);
     if (varTopic == "Model1") {
       controller1.courseSearchModelCompare1 = CourseSearchModel();
     } else {

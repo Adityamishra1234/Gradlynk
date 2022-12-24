@@ -1351,7 +1351,7 @@ class OthertestDetail extends StatelessWidget {
   callbackExamStatus(varTopic) {
     controller.specifyExamNameSelected = null;
     controller.specifyExamNameSelectedID = null;
-    print(varTopic);
+
     for (var i = 0; i < controller.examStatusList.length; i++) {
       if (controller.examStatusList[i] == varTopic) {
         controller.examStatusSelected = controller.examStatusList[i];

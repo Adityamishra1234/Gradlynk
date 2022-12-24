@@ -21,7 +21,6 @@ class VisaSummary extends StatelessWidget {
         body: GetBuilder<VisaSummaryController>(builder: (_) {
           if (_.loadingVisaDetails.value == true &&
               _.loadingVisaStatus.value == true) {
-            print("aman");
             for (var i = 0; i < _.modelList.length; i++) {
               for (var j = 0; j < _.visaStatusID.length; j++) {
                 if (_.modelList[i].statusId.toString() ==
