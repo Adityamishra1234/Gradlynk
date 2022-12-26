@@ -807,13 +807,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 const Spacer(),
               ],
             ),
+
+            // if (widget.iscompare == true) AddedButtonShow(),
+            // if ((addCompare == false || addCompare == null) &&
+            //     isCompare == true &&
+            //     ),
           ],
         ),
       ),
     );
   }
-
   // Function
+
   AddedButtonShow() {
     // add compare in both
     if (addCompare == null) {
