@@ -645,57 +645,57 @@ class ProfilePageCopy extends StatelessWidget {
   getOption(BuildContext context, int index) {
     if (index == 0) {
       return SizedBox(
-          height: MediaQuery.of(context).size.height - 175,
+          height: MediaQuery.of(context).size.height - 210,
           child: const ContactInformationCopy());
     }
 
     if (index == 1) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: const CourseInformationCopy(),
       );
     }
 
     if (index == 2) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: QualificationDetailsCopy(),
       );
     }
 
     if (index == 3) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: WorkHistoryCopy(),
       );
     }
     if (index == 4) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: EnglishTestDetails(),
       );
     }
     if (index == 5) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: OthertestDetail(),
       );
     }
     if (index == 6) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: PassportDetails(),
       );
     }
     if (index == 7) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: TravingHistory(),
       );
     }
     if (index == 8) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height - 175,
+        height: MediaQuery.of(context).size.height - 210,
         child: RelativeInformation(),
       );
     }

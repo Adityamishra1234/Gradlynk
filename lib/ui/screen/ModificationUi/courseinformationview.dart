@@ -39,7 +39,7 @@ class CourseInformationView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 210,
+          height: MediaQuery.of(context).size.height - 245,
           child: ListView.builder(
               controller: ScrollController(),
               itemCount: model.length,
