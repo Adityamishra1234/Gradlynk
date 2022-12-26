@@ -207,9 +207,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             height: 15,
                             color: ThemeConstants.bluelightgreycolor,
                           ),
-                          if (getNUllChecker(
-                                  courseSearchModel.courseDuration) ==
-                              false)
+                          if (courseSearchModel.courseDuration != null)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: CustomAutoSizeTextMontserrat(
@@ -266,6 +264,45 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
                           const Spacer(),
+                          // Row(
+                          //   children: [
+                          //     // const Spacer(),
+                          //     // Container(
+                          //     //   height: 30,
+                          //     //   width: 30,
+                          //     //   decoration: const BoxDecoration(
+                          //     //       color: Color(0xFF2FAF5E),
+                          //     //       borderRadius:
+                          //     //           BorderRadius.all(Radius.circular(7))),
+                          //     //   child: Padding(
+                          //     //     padding: const EdgeInsets.all(3),
+                          //     //     child: SvgPicture.asset(
+                          //     //       "assets/icons/list.svg",
+                          //     //       color: ThemeConstants.whitecolor,
+                          //     //       height: 25,
+                          //     //     ),
+                          //     //   ),
+                          //     // ),
+
+                          //     // const Spacer(),
+                          //     // Container(
+                          //     //   height: 30,
+                          //     //   width: 30,
+                          //     //   decoration: const BoxDecoration(
+                          //     //       color: Color(0xFFF97316),
+                          //     //       borderRadius:
+                          //     //           BorderRadius.all(Radius.circular(7))),
+                          //     //   child: Padding(
+                          //     //     padding: const EdgeInsets.all(5),
+                          //     //     child: SvgPicture.asset(
+                          //     //       "assets/icons/star.svg",
+                          //     //       color: ThemeConstants.whitecolor,
+                          //     //       height: 20,
+                          //     //     ),
+                          //     //   ),
+                          //     // ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -395,7 +432,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     height: 3,
                                   ),
                                   CustomAutoSizeTextMontserrat(
-                                    text: courseSearchModel.englishProficiency,
+                                    text: courseSearchModel.englishProficiency
+                                        .toString()
+                                        .split("|")[0],
                                     textColor:
                                         ThemeConstants.bluelightgreycolor,
                                     fontSize: 12,
@@ -732,6 +771,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   ],
                 ),
               ),
+
             // Button List
             Row(
               children: [
@@ -1010,7 +1050,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           );
         }
         // Add to ShortList
-        if ((getNUllChecker(courseSearchModel.shortList) == false) &&
+        if ((courseSearchModel.shortList.toString() == "null" ||
+                courseSearchModel.shortList.toString() == "0") &&
             widget.courseShortListFirst == true &&
             widget.shortList == false) {
           return Padding(
@@ -1085,7 +1126,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
       }
 
       // Add to Shortlist
-      if ((getNUllChecker(courseSearchModel.shortList) == false) &&
+      if ((courseSearchModel.shortList.toString() == "null" ||
+              courseSearchModel.shortList.toString() == "0") &&
           widget.courseShortListFirst == true &&
           widget.shortList == false) {
         return Padding(
