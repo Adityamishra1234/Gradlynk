@@ -32,6 +32,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
+import 'package:studentpanel/ui/screen/test/test.dart';
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
@@ -251,16 +252,19 @@ class _MyAppState extends State<MyApp> {
           page: () => VisaSummary(),
           transition: Transition.fade,
         ),
+
         // GetPage(
         //   name: WorkHistoryCopy.routeNamed,
         //   page: () => const WorkHistoryCopy(),
         //   transition: Transition.fade,
         // ),
         // GetPage(
-        //   name: CourseInformationView.routeNamed,
-        //   page: () => const CourseInformationView(),
+        //   name: CustomFileViewer.routeNamed,
+        //   page: () => CustomFileViewer(),
         //   transition: Transition.fade,
         // ),
+
+        // CustomFileViewer
       ],
     );
   }

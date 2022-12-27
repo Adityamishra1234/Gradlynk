@@ -120,7 +120,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                       ),
                                       CustomAutoSizeTextMontserrat(
                                         text:
-                                            "${(int.parse(completeCourseDetail![0].courseDuration!)).toStringAsFixed(1)} Year",
+                                            "${(int.parse(completeCourseDetail![0].courseDuration!) / 12).toStringAsFixed(1)} Year",
                                         fontSize: 14,
                                         maxLines: 2,
                                         textColor: ThemeConstants.blackcolor,
@@ -310,8 +310,7 @@ class CourseSearchFullDetail extends StatelessWidget {
               builder: (_) => Column(
                     children: [
                       SafeArea(
-                        minimum: const EdgeInsets.only(top: 20, bottom: 0),
-                        maintainBottomViewPadding: true,
+                        bottom: false,
                         child: SizedBox(
                           height: 40,
                           child: Row(children: [
@@ -503,7 +502,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                         : ThemeConstants.TextColor,
                                   ),
                                 )),
-                            const Spacer(),
                           ],
                         ),
                       ),
