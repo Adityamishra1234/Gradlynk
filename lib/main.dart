@@ -32,7 +32,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
-import 'package:studentpanel/ui/screen/test/test.dart';
+
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
@@ -259,8 +259,8 @@ class _MyAppState extends State<MyApp> {
         //   transition: Transition.fade,
         // ),
         // GetPage(
-        //   name: CustomFileViewer.routeNamed,
-        //   page: () => CustomFileViewer(),
+        //   name: CustomDatePicker.routeNamed,
+        //   page: () => CustomDatePicker(),
         //   transition: Transition.fade,
         // ),
 

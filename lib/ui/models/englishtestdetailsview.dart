@@ -1,9 +1,8 @@
 class EnglishTestDetailsViewModel {
-  String? id;
   String? enqId;
-  String? applicantType;
+
   String? examStatusID;
-  String? examType;
+  // String? examType;
   String? testBook;
   String? dateOfExam;
   String? examName;
@@ -14,21 +13,21 @@ class EnglishTestDetailsViewModel {
   String? writing;
   String? listening;
   String? speaking;
-  String? math;
-  String? english;
-  String? science;
-  String? verbalReasoning;
+  // String? math;
+  // String? english;
+  // String? science;
+  // String? verbalReasoning;
   String? analyticalWriting;
-  String? StringegratedReasoning;
-  String? quantitativeApptitude;
-  String? essay;
+  // String? StringegratedReasoning;
+  // String? quantitativeApptitude;
+  // String? essay;
   String? overAll;
-  String? isActive;
-  String? createdBy;
-  String? createdAt;
-  String? updatedBy;
-  String? updatedAt;
-  String? assumptiveProficiency;
+  // String? isActive;
+  // String? createdBy;
+  // String? createdAt;
+  // String? updatedBy;
+  // String? updatedAt;
+  // String? assumptiveProficiency;
   String? scoreType;
   String? literacy;
   String? comprehension;
@@ -36,11 +35,12 @@ class EnglishTestDetailsViewModel {
   String? production;
 
   EnglishTestDetailsViewModel(
-      {this.id,
+      {
+      // this.id,
       this.enqId,
-      this.applicantType,
+      // this.applicantType,
       this.examStatusID,
-      this.examType,
+      // this.examType,
       this.testBook,
       this.dateOfExam,
       this.examName,
@@ -51,21 +51,21 @@ class EnglishTestDetailsViewModel {
       this.writing,
       this.listening,
       this.speaking,
-      this.math,
-      this.english,
-      this.science,
-      this.verbalReasoning,
+      // this.math,
+      // this.english,
+      // this.science,
+      // this.verbalReasoning,
       this.analyticalWriting,
-      this.StringegratedReasoning,
-      this.quantitativeApptitude,
-      this.essay,
+      // this.StringegratedReasoning,
+      // this.quantitativeApptitude,
+      // this.essay,
       this.overAll,
-      this.isActive,
-      this.createdBy,
-      this.createdAt,
-      this.updatedBy,
-      this.updatedAt,
-      this.assumptiveProficiency,
+      // this.isActive,
+      // this.createdBy,
+      // this.createdAt,
+      // this.updatedBy,
+      // this.updatedAt,
+      // this.assumptiveProficiency,
       this.scoreType,
       this.literacy,
       this.comprehension,
@@ -73,11 +73,11 @@ class EnglishTestDetailsViewModel {
       this.production});
 
   EnglishTestDetailsViewModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'].toString();
+    // id = json['id'].toString();
     enqId = json['enq_Id'].toString();
-    applicantType = json['applicant_type'].toString();
+    // applicantType = json['applicant_type'].toString();
     examStatusID = json['exam_status'].toString();
-    examType = json['exam_type'].toString();
+    // examType = json['exam_type'].toString();
     testBook = json['test_book'].toString();
     dateOfExam = json['date_of_exam'].toString();
     examName = json['exam_name'].toString();
@@ -88,21 +88,21 @@ class EnglishTestDetailsViewModel {
     writing = json['writing'].toString();
     listening = json['listening'].toString();
     speaking = json['speaking'].toString();
-    math = json['math'].toString();
-    english = json['english'].toString();
-    science = json['science'].toString();
-    verbalReasoning = json['verbal_reasoning'].toString();
+    // math = json['math'].toString();
+    // english = json['english'].toString();
+    // science = json['science'].toString();
+    // verbalReasoning = json['verbal_reasoning'].toString();
     analyticalWriting = json['analytical_writing'].toString();
-    StringegratedReasoning = json['Stringegrated_reasoning'].toString();
-    quantitativeApptitude = json['quantitative_apptitude'].toString();
-    essay = json['essay'].toString();
+    // StringegratedReasoning = json['Stringegrated_reasoning'].toString();
+    // quantitativeApptitude = json['quantitative_apptitude'].toString();
+    // essay = json['essay'].toString();
     overAll = json['over_all'].toString();
-    isActive = json['is_active'].toString();
-    createdBy = json['created_by'].toString();
-    createdAt = json['created_at'].toString();
-    updatedBy = json['updated_by'].toString();
-    updatedAt = json['updated_at'].toString();
-    assumptiveProficiency = json['assumptive_proficiency'].toString();
+    // isActive = json['is_active'].toString();
+    // createdBy = json['created_by'].toString();
+    // createdAt = json['created_at'].toString();
+    // updatedBy = json['updated_by'].toString();
+    // updatedAt = json['updated_at'].toString();
+    // assumptiveProficiency = json['assumptive_proficiency'].toString();
     scoreType = json['score_type'].toString();
     literacy = json['literacy'].toString();
     comprehension = json['comprehension'].toString();
@@ -112,11 +112,11 @@ class EnglishTestDetailsViewModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
+    // data['id'] = id;
     data['enq_Id'] = enqId;
-    data['applicant_type'] = applicantType;
+    // data['applicant_type'] = applicantType;
     data['exam_status'] = examStatusID;
-    data['exam_type'] = examType;
+    // data['exam_type'] = examType;
     data['test_book'] = testBook;
     data['date_of_exam'] = dateOfExam;
     data['exam_name'] = examName;
@@ -127,21 +127,21 @@ class EnglishTestDetailsViewModel {
     data['writing'] = writing;
     data['listening'] = listening;
     data['speaking'] = speaking;
-    data['math'] = math;
-    data['english'] = english;
-    data['science'] = science;
-    data['verbal_reasoning'] = verbalReasoning;
+    // data['math'] = math;
+    // data['english'] = english;
+    // data['science'] = science;
+    // data['verbal_reasoning'] = verbalReasoning;
     data['analytical_writing'] = analyticalWriting;
-    data['Stringegrated_reasoning'] = StringegratedReasoning;
-    data['quantitative_apptitude'] = quantitativeApptitude;
-    data['essay'] = essay;
+    // data['Stringegrated_reasoning'] = StringegratedReasoning;
+    // data['quantitative_apptitude'] = quantitativeApptitude;
+    // data['essay'] = essay;
     data['over_all'] = overAll;
-    data['is_active'] = isActive;
-    data['created_by'] = createdBy;
-    data['created_at'] = createdAt;
-    data['updated_by'] = updatedBy;
-    data['updated_at'] = updatedAt;
-    data['assumptive_proficiency'] = assumptiveProficiency;
+    // data['is_active'] = isActive;
+    // data['created_by'] = createdBy;
+    // data['created_at'] = createdAt;
+    // data['updated_by'] = updatedBy;
+    // data['updated_at'] = updatedAt;
+    // data['assumptive_proficiency'] = assumptiveProficiency;
     data['score_type'] = scoreType;
     data['literacy'] = literacy;
     data['comprehension'] = comprehension;

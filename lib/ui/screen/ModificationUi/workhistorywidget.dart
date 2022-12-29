@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/controllers/workhistory.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -12,6 +13,8 @@ class WorkHistoryWidget extends StatelessWidget {
   Function callbackAdded;
   Function callbackIndustry;
   Function callbackEmployementType;
+  Function callbackWorkingForm;
+  Function callbackWorkingTill;
   bool update;
   int? index;
   WorkHistoryWidget(
@@ -21,11 +24,11 @@ class WorkHistoryWidget extends StatelessWidget {
       required this.callbackAdded,
       required this.update,
       required this.callbackIndustry,
+      required this.callbackWorkingForm,
+      required this.callbackWorkingTill,
       required this.callbackEmployementType})
       : super(key: key);
   static final lastOrganisation = TextEditingController();
-  static final workingFrom = TextEditingController();
-  static final workingTill = TextEditingController();
   static final designation = TextEditingController();
   static final income = TextEditingController();
 
@@ -34,11 +37,17 @@ class WorkHistoryWidget extends StatelessWidget {
     return GetBuilder<WorkHistoryController>(builder: (_) {
       if (update == false && _.loadingEdit.value == false) {
         _.loadingEdit.value = true;
-        update = true;
+        // update = true;
         lastOrganisation.text =
             _.workHistoryViewModelList[index!].organisationName ?? "";
-        workingFrom.text = _.workHistoryViewModelList[index!].workingFrom ?? "";
-        workingTill.text = _.workHistoryViewModelList[index!].workingTill ?? "";
+        _.industryNameSelected =
+            _.workHistoryViewModelList[index!].jobIndustryName;
+        _.industryNameCode = _.workHistoryViewModelList[index!].jobIndustryId;
+        _.employementTypeSelected = _.workHistoryViewModelList[index!].jobType;
+        _.workingFromSelected =
+            _.workHistoryViewModelList[index!].workingFrom ?? "";
+        _.workingTillSelected =
+            _.workHistoryViewModelList[index!].workingTill ?? "";
         designation.text = _.workHistoryViewModelList[index!].jobRole ?? "";
         income.text = getNUllChecker(
                     _.workHistoryViewModelList[index!].income.toString()) ==
@@ -108,23 +117,10 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: workingFrom,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Enter working from date",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
-            ),
+          DatePickerExample(
+            enableField: false,
+            date: _.workingFromSelected,
+            callbackDate: callbackWorkingForm,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -138,23 +134,10 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: workingTill,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Enter working till date",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
-            ),
+          DatePickerExample(
+            enableField: false,
+            date: _.workingTillSelected,
+            callbackDate: callbackWorkingTill,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -298,8 +281,8 @@ class WorkHistoryWidget extends StatelessWidget {
                               jobType: _.employementTypeSelected,
                               jobRole: designation.text,
                               jobIndustryId: _.industryNameCode,
-                              workingFrom: workingFrom.text,
-                              workingTill: workingTill.text,
+                              workingFrom: _.workingFromSelected,
+                              workingTill: _.workingTillSelected,
                               income: int.parse(income.text),
                               jobIndustryName: _.industryNameSelected,
                             ));
@@ -348,8 +331,8 @@ class WorkHistoryWidget extends StatelessWidget {
                                       ? _.industryNameCode
                                       : _.workHistoryViewModelList[index!]
                                           .jobIndustryId,
-                              workingFrom: workingFrom.text,
-                              workingTill: workingTill.text,
+                              workingFrom: _.workingFromSelected,
+                              workingTill: _.workingTillSelected,
                               income: int.parse(income.text),
                               jobIndustryName: getNUllChecker(
                                       _.industryNameSelected.toString())

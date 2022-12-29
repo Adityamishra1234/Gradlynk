@@ -7,8 +7,16 @@ import 'package:studentpanel/utils/endpoint.dart';
 class ContactInformationController extends BaseController {
   ApiServices apiServices = ApiServices();
 
-  //
+// Selected fields
+  String? genderSelected;
+  String? maritalStatusSelected;
+  String? childcountSelected;
+  String? countrySelected;
+  String? stateSelected;
+  String? citySelected;
+  String? dob;
 
+//  Dropdown Fields
   List<String> countryList = [];
   List<String> countryCode = [];
   List<String> stateList = [];
@@ -48,6 +56,9 @@ class ContactInformationController extends BaseController {
   }
 
   getState(String countryId) async {
+    loadingState.value = false;
+    stateList = [];
+    stateCode = [];
     var res = await apiServices.getState(
         Endpoints.baseUrl!, Endpoints.state!, countryId);
     if (res != null) {
@@ -62,11 +73,14 @@ class ContactInformationController extends BaseController {
       });
 
       loadingState = true.obs;
-      update();
     }
+    update();
   }
 
   getCity(String state) async {
+    loadingCity.value = false;
+    cityCode = [];
+    cityList = [];
     List tempList;
     var res =
         await apiServices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
@@ -81,8 +95,8 @@ class ContactInformationController extends BaseController {
         cityCode.add(element.toString());
       });
       loadingCity = true.obs;
-      update();
     }
+    update();
   }
 
   updateData(PersonalInformationModel personalInformationModel) {

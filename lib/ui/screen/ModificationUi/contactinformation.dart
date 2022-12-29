@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -168,23 +169,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Enter your Date of Birth",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
-            ),
+          DatePickerExample(
+            enableField: saveAndEdit,
+            callbackDate: callbackDOB,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -423,10 +410,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             ),
           ),
           CustomDropDownSingle(
-            model: controller.countryList ?? const [""],
+            model: controller.loadingCountry.value == true
+                ? controller.countryList
+                : ["No data"],
             callbackFunction: callbackCountry,
-            initialSelectedValue:
-                controller.countryList.isNotEmpty ? initialSelectedCountry : "",
+            initialSelectedValue: controller.loadingCountry.value == true
+                ? initialSelectedCountry
+                : "No data",
             choosefieldtype: saveAndEdit,
           ),
           Padding(
@@ -442,18 +432,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          GetBuilder<ContactInformationController>(
-            builder: (_) => _.loadingState.value == true
-                ? CustomDropDownSingle(
-                    model:
-                        _.loadingState.value == true ? _.stateList : const [""],
-                    callbackFunction: calllbackState,
-                    initialSelectedValue: _.loadingState.value == true
-                        ? initialSelectedState
-                        : "",
-                    choosefieldtype: saveAndEdit,
-                  )
-                : Container(),
+          CustomDropDownSingle(
+            model: controller.loadingState.value == true
+                ? controller.stateList
+                : ["No data"],
+            callbackFunction: calllbackState,
+            initialSelectedValue: controller.loadingState.value == true
+                ? initialSelectedState
+                : "No data",
+            choosefieldtype: saveAndEdit,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -468,16 +455,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          GetBuilder<ContactInformationController>(
-            builder: (_) => _.loadingCity.value == true
-                ? CustomDropDownSingle(
-                    model: _.cityList ?? const [""],
-                    callbackFunction: callbackCity,
-                    initialSelectedValue:
-                        _.cityList.isNotEmpty ? initialSelectedCity : "",
-                    choosefieldtype: saveAndEdit,
-                  )
-                : Container(),
+          CustomDropDownSingle(
+            model: controller.loadingCity.value == true
+                ? controller.cityList
+                : ["No data"],
+            callbackFunction: callbackCity,
+            initialSelectedValue: controller.loadingCity.value == true
+                ? controller.cityList[0]
+                : "No data",
+            choosefieldtype: saveAndEdit,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -946,6 +932,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
     initialSelectedChildCount = varTopic;
     childrenCount = int.parse(varTopic);
     setState(() {});
+  }
+
+  callbackDOB(data) {
+    controller.dob = data;
+    controller.update();
   }
 
   updatePesonalDetail(

@@ -25,6 +25,8 @@ class WorkHistoryCopy extends StatelessWidget {
                 callbackUpdate: callbackUpdate,
                 callbackEmployementType: callbackEmployementType,
                 callbackIndustry: callbackIndustry,
+                callbackWorkingForm: callbackWorkingFrom,
+                callbackWorkingTill: callbackWorkingTill,
               ));
   }
 
@@ -76,6 +78,20 @@ class WorkHistoryCopy extends StatelessWidget {
   callbackUpdate(data) {
     controller.updatedWorkHistory();
     controller.updateForEdit.value = true;
+    controller.update();
+  }
+
+  callbackWorkingFrom(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.workingFromSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackWorkingTill(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.workingTillSelected = date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 }

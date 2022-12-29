@@ -7,6 +7,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -138,7 +139,7 @@ class EnglishTestDetails extends StatelessWidget {
                           englishTestDetailsViewModel.examStatusID =
                               _.examStatusCodeSelected.toString();
                           englishTestDetailsViewModel.dateOfExam =
-                              dateOfExam.text;
+                              _.dateOfExamSelected;
                           englishTestDetailsViewModel.examName =
                               _.examNameSelected;
 
@@ -202,6 +203,37 @@ class EnglishTestDetails extends StatelessWidget {
   }
 
 // CallBack Funcation
+  callbackDateOfExam(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dateOfExamSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackTentativeExamDate(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.tentativeExamDateSelcted =
+        date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackDateOfTestReport(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.tentativeExamDateSelcted =
+        date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackTextScoreExpirationdate(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.tentativeExamDateSelcted =
+        date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
   callback(varTopic) {}
 
   callbackExamStatus(varTopic) {
@@ -285,29 +317,15 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfExam,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: getNUllChecker(
-                        controller.englishTestDetailsViewModel.dateOfExam) ==
-                    true
-                ? "Enter Contact Of Relative"
-                : controller.englishTestDetailsViewModel.dateOfExam.toString(),
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+        enableField: controller.editSave.value == true ? true : false,
+        date:
+            getNUllChecker(controller.englishTestDetailsViewModel.dateOfExam) ==
+                    false
+                ? controller.dateOfExamSelected
+                : "",
+        callbackDate: callbackDateOfExam,
+      )
     ];
   }
 
@@ -329,8 +347,8 @@ class EnglishTestDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: ["Yes", "No"],
-          initialSelectedValue: "No",
+          model: const ["Yes", "No"],
+          initialSelectedValue: controller.bookTestSelcted ?? "No",
           choosefieldtype: false,
           callbackFunction: callback,
         ),
@@ -351,10 +369,14 @@ class EnglishTestDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: ["Yes", "No"],
-          initialSelectedValue: "No",
+          model: controller.loadingExamName2.value == true
+              ? controller.examNameList
+              : ["No data"],
+          initialSelectedValue: controller.loadingExamName2.value == true
+              ? controller.examNameSelected
+              : "No data",
           choosefieldtype: false,
-          callbackFunction: callback,
+          callbackFunction: callbackExamName,
         ),
       ),
       Padding(
@@ -369,23 +391,12 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Date",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
+      DatePickerExample(
+        enableField: controller.editSave.value == true ? true : false,
+        date: getNUllChecker(controller.tentativeExamDateSelcted) == false
+            ? controller.tentativeExamDateSelcted
+            : null,
+        callbackDate: callbackTentativeExamDate,
       ),
     ];
   }
@@ -432,28 +443,14 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfExam,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: getNUllChecker(
-                        controller.englishTestDetailsViewModel.dateOfExam) ==
-                    true
-                ? "Enter Contact Of Relative"
-                : controller.englishTestDetailsViewModel.dateOfExam.toString(),
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
+      DatePickerExample(
+        enableField: controller.editSave.value == true ? false : true,
+        date:
+            getNUllChecker(controller.englishTestDetailsViewModel.dateOfExam) ==
+                    false
+                ? controller.dateOfExamSelected
+                : "",
+        callbackDate: callbackDateOfExam,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -467,26 +464,10 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfTestReport,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: controller.englishTestDetailsViewModel.resultDate == null
-                ? "Enter Contact Of Relative"
-                : controller.englishTestDetailsViewModel.resultDate.toString(),
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
+      DatePickerExample(
+        enableField: true,
+        callbackDate: callback,
+        date: dateOfTestReport.text,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -500,28 +481,10 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: testScoreExpirationDate,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          readOnly: controller.editSave.value == true ? true : false,
-          decoration: InputDecoration(
-            hintText:
-                controller.englishTestDetailsViewModel.expirationDate == null
-                    ? "Enter Contact Of Relative"
-                    : controller.englishTestDetailsViewModel.expirationDate
-                        .toString(),
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
+      DatePickerExample(
+        enableField: true,
+        callbackDate: callback,
+        date: testScoreExpirationDate.text,
       ),
       const SizedBox(
         height: 10,
@@ -1172,6 +1135,8 @@ class EnglishTestDetails extends StatelessWidget {
   viewCondition() {
     //exam status
 
+    controller.dateOfExamSelected =
+        controller.englishTestDetailsViewModel.dateOfExam;
     for (var i = 0; i < controller.examStatusCode.length; i++) {
       if (controller.examStatusCode[i].toString() ==
           controller.englishTestDetailsViewModel.examStatusID) {
