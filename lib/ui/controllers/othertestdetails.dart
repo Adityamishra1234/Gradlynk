@@ -13,7 +13,7 @@ class OtherTestDetailsController extends BaseController {
   RxBool loadingExamName = false.obs;
   RxBool tentative = true.obs;
   RxBool loadingViewOtherTestDetails = false.obs;
-  RxBool editSave = false.obs;
+  RxBool editSave = true.obs;
   RxBool loadingEdit = false.obs;
 
 //Field for Storing Data with API
@@ -31,6 +31,10 @@ class OtherTestDetailsController extends BaseController {
   String? specifyExamNameSelected;
   String? specifyExamNameSelectedID;
   String? tentaiveDefinite = "Tentative";
+  String? dateOfExamSelected;
+  String? dateOftestReportSelected;
+  String? testScoreExpirationDateSelected;
+  String? tentativeDateSelected;
 
   @override
   void onInit() {

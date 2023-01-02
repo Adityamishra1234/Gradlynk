@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/controllers/travelhistory.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -16,17 +17,22 @@ class TravelHistoryWidget extends StatelessWidget {
   Function callbackTypeOfVisa;
   Function callbackVisaStatus;
   Function callbackProofAvailable;
-  TravelHistoryWidget(
-      {Key? key,
-      this.index,
-      required this.updateForEdit,
-      required this.callbackCountry,
-      required this.callbackTravelAbroad,
-      required this.callbackTravelStatus,
-      required this.callbackTypeOfVisa,
-      required this.callbackProofAvailable,
-      required this.callbackVisaStatus})
-      : super(key: key);
+  Function callbackDateOfApplciation;
+  Function callbackDateOfReject;
+
+  TravelHistoryWidget({
+    Key? key,
+    this.index,
+    required this.updateForEdit,
+    required this.callbackCountry,
+    required this.callbackTravelAbroad,
+    required this.callbackTravelStatus,
+    required this.callbackTypeOfVisa,
+    required this.callbackProofAvailable,
+    required this.callbackVisaStatus,
+    required this.callbackDateOfApplciation,
+    required this.callbackDateOfReject,
+  }) : super(key: key);
 
   static final dateOfApplication = TextEditingController();
   static final dateOfReject = TextEditingController();
@@ -260,24 +266,10 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfApplication,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter date of application",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: false,
+          date: _.dateOfApplicatiton,
+          callbackDate: callbackDateOfApplciation),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -290,24 +282,10 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfReject,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter date of reject",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: false,
+          date: _.dateOfReject,
+          callbackDate: callbackDateOfReject),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(

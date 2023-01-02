@@ -21,7 +21,7 @@ class DatePickerExample extends StatefulWidget {
 }
 
 class _DatePickerExampleState extends State<DatePickerExample> {
-  bool firstTime = false;
+  bool dateFormatError = false;
   DateTime date = DateTime(2016, 10, 26);
 
   // This function displays a CupertinoModalPopup with a reasonable fixed height
@@ -49,11 +49,16 @@ class _DatePickerExampleState extends State<DatePickerExample> {
 
   @override
   Widget build(BuildContext context) {
+    dateFormatError = false;
     DateTime now = new DateTime.now();
     if (getNUllChecker(widget.date) == false) {
       List<String> temp = widget.date!.split('-');
       date =
           DateTime(int.parse(temp[0]), int.parse(temp[1]), int.parse(temp[2]));
+      if (date.year == -1) {
+        dateFormatError = true;
+        date = date = DateTime(now.year, now.month, now.day);
+      }
     } else {
       date = DateTime(now.year, now.month, now.day);
     }
@@ -79,13 +84,10 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                           // This is called when the user changes the date.
                           onDateTimeChanged: (DateTime newDate) {
                             setState(() {
+                              dateFormatError = false;
                               date = newDate;
-                              print("slected+$newDate");
-                              print(newDate);
                               widget.callbackDate(newDate);
                             });
-
-                            // });
                           },
                         ),
                       ),
@@ -95,7 +97,9 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                   child: Align(
                     alignment: AlignmentDirectional.topStart,
                     child: CustomAutoSizeTextMontserrat(
-                      text: '${date.year}-${date.month}-${date.day}',
+                      text: dateFormatError == true
+                          ? "0000-00-00"
+                          : '${date.year}-${date.month}-${date.day}',
                       fontSize: 16,
                     ),
                   )),
@@ -109,7 +113,9 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
-                hintText: '${date.year}-${date.month}-${date.day}',
+                hintText: dateFormatError == true
+                    ? "0000-00-00"
+                    : '${date.year}-${date.month}-${date.day}',
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(

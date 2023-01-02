@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -11,8 +12,8 @@ class PassportDetails extends StatelessWidget {
   var controller = Get.put(PassportController());
 
   static final passportNumber = TextEditingController();
-  static final dateofIssuse = TextEditingController();
-  static final expireDate = TextEditingController();
+  // static final dateofIssuse = TextEditingController();
+  // static final expireDate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,10 @@ class PassportDetails extends StatelessWidget {
             getNUllChecker(_.passportModel.passportNumber) == false
                 ? _.passportModel.passportNumber!
                 : "";
-        dateofIssuse.text = getNUllChecker(_.passportModel.dateOfIssue) == false
+        _.dateOfIssue = getNUllChecker(_.passportModel.dateOfIssue) == false
             ? _.passportModel.dateOfIssue!
             : "";
-        expireDate.text = getNUllChecker(_.passportModel.expiryDate) == false
+        _.expireDate = getNUllChecker(_.passportModel.expiryDate) == false
             ? _.passportModel.expiryDate!
             : "";
         _.passportAvaliable =
@@ -274,25 +275,10 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateofIssuse,
-          readOnly: controller.editSave.value == false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter your date",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: _.editSave.value == true ? false : true,
+          date: _.dateOfIssue,
+          callbackDate: callbackDateOfIssue),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -306,25 +292,10 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: expireDate,
-          readOnly: controller.editSave.value == false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter expiry date",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: _.editSave.value == true ? false : true,
+          date: _.expireDate,
+          callbackDate: callbackExpireDate),
       Padding(
         padding: const EdgeInsets.only(top: 15),
         child: Row(
@@ -440,8 +411,8 @@ class PassportDetails extends StatelessWidget {
   }
 
   updatePassport() {
-    controller.passportModel.dateOfIssue = dateofIssuse.text;
-    controller.passportModel.expiryDate = expireDate.text;
+    controller.passportModel.dateOfIssue = controller.dateOfIssue;
+    controller.passportModel.expiryDate = controller.expireDate;
     //  controller.passportModel.passportTentativeDate
     controller.passportModel.passportNumber = passportNumber.text;
     controller.passportModel.citizenOf = controller.citizenCodeSelected;
@@ -453,5 +424,19 @@ class PassportDetails extends StatelessWidget {
     controller.passportModel.enqId = "78623";
 
     controller.updatePassportDetail("78623", controller.passportModel);
+  }
+
+  callbackDateOfIssue(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dateOfIssue = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackExpireDate(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.expireDate = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
   }
 }

@@ -133,22 +133,27 @@ class EnglishTestDetails extends StatelessWidget {
                           EnglishTestDetailsViewModel
                               englishTestDetailsViewModel =
                               EnglishTestDetailsViewModel();
+                          print(getNUllChecker(_.dateOfExamSelected));
+                          print(getNUllChecker(_.tentativeExamDateSelcted));
+                          print(
+                              getNUllChecker(_.testscoreExpirationDateSelcted));
+                          print(getNUllChecker(_.dateOfTestReportSelcted));
+
                           englishTestDetailsViewModel =
                               _.englishTestDetailsViewModel;
+                          englishTestDetailsViewModel.dateOfExam =
+                              _.dateOfExamSelected;
+                          englishTestDetailsViewModel.tentativeExamDate =
+                              _.tentativeExamDateSelcted;
+                          englishTestDetailsViewModel.expirationDate =
+                              _.testscoreExpirationDateSelcted;
+                          englishTestDetailsViewModel.resultDate =
+                              _.dateOfTestReportSelcted;
                           englishTestDetailsViewModel.enqId = "78623";
                           englishTestDetailsViewModel.examStatusID =
                               _.examStatusCodeSelected.toString();
-                          englishTestDetailsViewModel.dateOfExam =
-                              _.dateOfExamSelected;
                           englishTestDetailsViewModel.examName =
                               _.examNameSelected;
-
-                          englishTestDetailsViewModel.resultDate =
-                              dateOfTestReport.text;
-                          englishTestDetailsViewModel.expirationDate =
-                              testScoreExpirationDate.text;
-                          englishTestDetailsViewModel.tentativeExamDate =
-                              tentativeExamDate.text;
                           englishTestDetailsViewModel.reading = reading.text;
                           englishTestDetailsViewModel.writing = writing.text;
                           englishTestDetailsViewModel.listening =
@@ -160,7 +165,6 @@ class EnglishTestDetails extends StatelessWidget {
                           englishTestDetailsViewModel.conversation =
                               reading.text;
                           englishTestDetailsViewModel.production = writing.text;
-
                           if (getNUllChecker(tentativeExamDate.text)) {
                             englishTestDetailsViewModel.overAll =
                                 overallScoreController.text;
@@ -168,7 +172,6 @@ class EnglishTestDetails extends StatelessWidget {
                             englishTestDetailsViewModel.overAll =
                                 controller.englishTestDetailsViewModel.overAll;
                           }
-
                           updateEnglishTestDetails(englishTestDetailsViewModel);
                           _.editSave.value = true;
                           _.update();
@@ -221,7 +224,7 @@ class EnglishTestDetails extends StatelessWidget {
   callbackDateOfTestReport(data) {
     String temp = data.toString().split(' ')[0];
     List<String> date = temp.split('-');
-    controller.tentativeExamDateSelcted =
+    controller.dateOfTestReportSelcted =
         date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
@@ -229,7 +232,7 @@ class EnglishTestDetails extends StatelessWidget {
   callbackTextScoreExpirationdate(data) {
     String temp = data.toString().split(' ')[0];
     List<String> date = temp.split('-');
-    controller.tentativeExamDateSelcted =
+    controller.testscoreExpirationDateSelcted =
         date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
@@ -444,7 +447,7 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       DatePickerExample(
-        enableField: controller.editSave.value == true ? false : true,
+        enableField: controller.editSave.value == true ? true : false,
         date:
             getNUllChecker(controller.englishTestDetailsViewModel.dateOfExam) ==
                     false
@@ -465,9 +468,9 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       DatePickerExample(
-        enableField: true,
-        callbackDate: callback,
-        date: dateOfTestReport.text,
+        enableField: controller.editSave.value == true ? true : false,
+        callbackDate: callbackDateOfTestReport,
+        date: controller.dateOfTestReportSelcted,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -482,9 +485,9 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       DatePickerExample(
-        enableField: true,
-        callbackDate: callback,
-        date: testScoreExpirationDate.text,
+        enableField: controller.editSave.value == true ? true : false,
+        callbackDate: callbackTextScoreExpirationdate,
+        date: controller.testscoreExpirationDateSelcted,
       ),
       const SizedBox(
         height: 10,
@@ -519,16 +522,6 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          onTap: (() {
-            Fluttertoast.showToast(
-                msg: "Overall Scroe will autofill",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 1,
-                backgroundColor: ThemeConstants.whitecolor,
-                textColor: ThemeConstants.blackcolor,
-                fontSize: 16.0);
-          }),
           readOnly: controller.editSave.value == true ? true : false,
           controller: overallScoreController,
           scrollPadding: EdgeInsets.symmetric(
@@ -536,9 +529,9 @@ class EnglishTestDetails extends StatelessWidget {
           decoration: InputDecoration(
             hintText: getNUllChecker(
                         controller.englishTestDetailsViewModel.overAll) ==
-                    true
-                ? "Overall Score"
-                : controller.englishTestDetailsViewModel.overAll,
+                    false
+                ? controller.englishTestDetailsViewModel.overAll
+                : "Overall Score",
             filled: true,
             fillColor: ThemeConstants.lightblueColor,
             border: OutlineInputBorder(
@@ -1134,9 +1127,18 @@ class EnglishTestDetails extends StatelessWidget {
 
   viewCondition() {
     //exam status
-
     controller.dateOfExamSelected =
         controller.englishTestDetailsViewModel.dateOfExam;
+    controller.dateOfTestReportSelcted =
+        controller.englishTestDetailsViewModel.resultDate;
+    controller.testscoreExpirationDateSelcted =
+        controller.englishTestDetailsViewModel.expirationDate;
+    controller.tentativeExamDateSelcted =
+        controller.englishTestDetailsViewModel.tentativeExamDate;
+    overallScoreController.text =
+        getNUllChecker(controller.englishTestDetailsViewModel.overAll) == false
+            ? controller.englishTestDetailsViewModel.overAll.toString()
+            : "";
     for (var i = 0; i < controller.examStatusCode.length; i++) {
       if (controller.examStatusCode[i].toString() ==
           controller.englishTestDetailsViewModel.examStatusID) {

@@ -40,6 +40,8 @@ class PassportController extends BaseController {
   String? placeOfIssuseSelected;
   String? citizenSelected;
   String? citizenCodeSelected;
+  String? dateOfIssue;
+  String? expireDate;
 
   @override
   void onInit() {

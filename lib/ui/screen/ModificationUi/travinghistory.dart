@@ -27,6 +27,8 @@ class TravingHistory extends StatelessWidget {
                 callbackTravelStatus: callbackTravelStatus,
                 callbackTypeOfVisa: callbackTypeOfVisa,
                 callbackVisaStatus: callbackVisaStatus,
+                callbackDateOfApplciation: callbackDateOfApplication,
+                callbackDateOfReject: callbackDateOfReject,
               ));
   }
 
@@ -112,6 +114,20 @@ class TravingHistory extends StatelessWidget {
     } else {
       controller.proofAvailableSelectedID = "2";
     }
+    controller.update();
+  }
+
+  callbackDateOfApplication(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dateOfApplicatiton = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackDateOfReject(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dateOfReject = date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 }

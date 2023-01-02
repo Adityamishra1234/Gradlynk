@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/controllers/othertestdetails.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -11,10 +12,6 @@ class OthertestDetail extends StatelessWidget {
   OthertestDetail({Key? key}) : super(key: key);
 
   var controller = Get.put(OtherTestDetailsController());
-  static final dateOfExam = TextEditingController();
-  static final tentativeExamDate = TextEditingController();
-  static final dateOfTestReport = TextEditingController();
-  static final testScoreExpirationDate = TextEditingController();
   static final analyticalWriting = TextEditingController();
   static final verbalReasoning = TextEditingController();
   static final quantitative = TextEditingController();
@@ -24,13 +21,11 @@ class OthertestDetail extends StatelessWidget {
   static final essay = TextEditingController();
   static final math = TextEditingController();
   static final overallScore = TextEditingController();
-
   static final analyticalKey = GlobalKey<FormState>();
   static final verbalKey = GlobalKey<FormState>();
   static final quantitativeKey = GlobalKey<FormState>();
   static final integratedKey = GlobalKey<FormState>();
   static final overallKey = GlobalKey<FormState>();
-
   static final readingKey = GlobalKey<FormState>();
   static final writingKey = GlobalKey<FormState>();
   static final essayKey = GlobalKey<FormState>();
@@ -53,10 +48,11 @@ class OthertestDetail extends StatelessWidget {
         _.bookTestSelected = _.otherTestDetailsModel.testBook;
         _.examNameSelected = _.otherTestDetailsModel.examName;
         // _.specifyExamNameSelected=_.otherTestDetailsModel.
-        tentativeExamDate.text =
+        _.dateOfExamSelected = _.otherTestDetailsModel.dateOfExam;
+        _.tentativeDateSelected =
             _.otherTestDetailsModel.tentativeExamDate ?? "";
-        dateOfTestReport.text = _.otherTestDetailsModel.resultDate ?? "";
-        testScoreExpirationDate.text =
+        _.dateOftestReportSelected = _.otherTestDetailsModel.resultDate ?? "";
+        _.testScoreExpirationDateSelected =
             _.otherTestDetailsModel.expirationDate ?? "";
         _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "Tentative";
 
@@ -191,12 +187,14 @@ class OthertestDetail extends StatelessWidget {
                               _.tentaiveDefinite;
 
                           // text field
-                          _.otherTestDetailsModel.dateOfExam = dateOfExam.text;
+                          _.otherTestDetailsModel.dateOfExam =
+                              _.dateOfExamSelected;
                           _.otherTestDetailsModel.tentativeExamDate =
-                              tentativeExamDate.text;
-                          _.otherTestDetailsModel.dateOfExam = dateOfExam.text;
+                              _.tentativeDateSelected;
+                          _.otherTestDetailsModel.resultDate =
+                              _.dateOftestReportSelected;
                           _.otherTestDetailsModel.expirationDate =
-                              testScoreExpirationDate.text;
+                              _.testScoreExpirationDateSelected;
 
                           // int condition for null
                           _.otherTestDetailsModel.analyticalWriting =
@@ -315,29 +313,10 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfExam,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText:
-                getNUllChecker(controller.otherTestDetailsModel.dateOfExam) ==
-                        true
-                    ? "Enter Contact Of Relative"
-                    : controller.otherTestDetailsModel.dateOfExam.toString(),
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: controller.dateOfExamSelected,
+          callbackDate: callbackExamName)
     ];
   }
 
@@ -415,25 +394,10 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Tentative Exam Date",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: controller.tentativeDateSelected,
+          callbackDate: callbackTentativeExamDate)
     ];
   }
 
@@ -483,25 +447,10 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: tentativeExamDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Date Of Exam",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: controller.dateOfExamSelected,
+          callbackDate: callbackExamName),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -514,25 +463,10 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: dateOfTestReport,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Date Of Test Report",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: controller.dateOftestReportSelected,
+          callbackDate: callbackTextScoreExpirationdate),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -545,25 +479,10 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: testScoreExpirationDate,
-          readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Test Score Expiration Date",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-        ),
-      ),
+      DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: controller.testScoreExpirationDateSelected,
+          callbackDate: callbackTextScoreExpirationdate),
       Padding(
         padding: const EdgeInsets.only(top: 10),
         child: SizedBox(
@@ -1379,6 +1298,36 @@ class OthertestDetail extends StatelessWidget {
   callbackTentativeDefinite(data) {
     controller.otherTestDetailsModel.scoreType = data;
     controller.tentaiveDefinite = data;
+    controller.update();
+  }
+
+  callbackDateOfExam(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dateOfExamSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackTentativeExamDate(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.tentativeDateSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackDateOfTestReport(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dateOftestReportSelected =
+        date[0] + "-" + date[1] + '-' + date[2];
+    controller.update();
+  }
+
+  callbackTextScoreExpirationdate(data) {
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.testScoreExpirationDateSelected =
+        date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 }

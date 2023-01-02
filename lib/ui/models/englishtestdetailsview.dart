@@ -81,7 +81,7 @@ class EnglishTestDetailsViewModel {
     testBook = json['test_book'].toString();
     dateOfExam = json['date_of_exam'].toString();
     examName = json['exam_name'].toString();
-    tentativeExamDate = json['tentative_exam_date'].toString();
+    tentativeExamDate = json['tentative_exam_date'];
     resultDate = json['result_date'].toString();
     expirationDate = json['expiration_date'].toString();
     reading = json['reading'].toString();

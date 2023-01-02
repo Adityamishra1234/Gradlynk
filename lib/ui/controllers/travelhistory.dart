@@ -41,6 +41,10 @@ class TravelHistoryController extends BaseController {
   String? visaStatusSelected;
   String? proofAvailableSelectedID;
   String? proofAvailableSelected = "No";
+  String? dateOfApplicatiton;
+  String? dateOfReject;
+  String? reasonOfReject;
+
   int? index;
 
   @override
