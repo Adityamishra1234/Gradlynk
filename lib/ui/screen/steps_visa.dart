@@ -107,6 +107,7 @@ class StepsToVisa extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height,
             child: SfPdfViewer.network(
+              canShowScrollHead: false,
               'https://www.africau.edu/images/default/sample.pdf',
               key: _pdfViewerKey,
             ),

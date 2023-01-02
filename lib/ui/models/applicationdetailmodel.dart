@@ -106,7 +106,7 @@ class ApplicationDetailModel {
     annualTutionFeesInr = json['annualTutionFeesInr'].toString();
     oSHCFees = json['OSHC_Fees'].toString();
     acceptanceDate = json['acceptance_date'].toString();
-    acceptanceStage = json['acceptance_stage'];
+    acceptanceStage = json['acceptance_stage'].toString();
     paymentOption = json['payment_option'].toString();
     amountPaid = json['amount_paid'].toString();
     dateOfPayment = json['date_of_payment'].toString();
@@ -117,9 +117,9 @@ class ApplicationDetailModel {
     coeRecevied = json['coe_recevied'].toString();
     coeLetter = json['coe_letter'];
     siecEmployee = json['siec_employee'];
-    deferReason = json['defer_reason'];
-    deferTill = json['defer_till'];
-    defermentStatus = json['deferment_status'];
+    deferReason = json['defer_reason'].toString();
+    deferTill = json['defer_till'].toString();
+    defermentStatus = json['deferment_status'].toString();
     reasonOfWithdraw = json['reason_of_withdraw'];
     withdrawStatus = json['withdraw_status'];
     if (json['documents'] != null) {
@@ -218,7 +218,7 @@ class OfferDocument {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['document_name'] = documentName;
     data['view_link'] = viewLink;
     data['download_link'] = downloadLink;
@@ -240,7 +240,7 @@ class FeeDocument {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['document_name'] = documentName;
     data['view_link'] = viewLink;
     data['download_link'] = downloadLink;
@@ -263,7 +263,7 @@ class AcknowledgementDocument {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['document_name'] = documentName;
     data['view_link'] = viewLink;
     data['download_link'] = downloadLink;
@@ -300,7 +300,7 @@ class Documents {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['document_parent_category'] = documentParentCategory;
     data['required_by'] = requiredBy;
     data['uploaded_by'] = uploadedBy;
