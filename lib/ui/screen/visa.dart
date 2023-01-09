@@ -1219,8 +1219,7 @@ class _VisaDetailState extends State<VisaDetail> {
                                     Padding(
                                       padding: const EdgeInsets.only(left: 0),
                                       child: CustomAutoSizeTextMontserrat(
-                                        text:
-                                            "Visa Submission (To High Commission)",
+                                        text: "Visa Submission",
                                         textColor: ThemeConstants.blackcolor,
                                         fontWeight: FontWeight.w700,
                                       ),

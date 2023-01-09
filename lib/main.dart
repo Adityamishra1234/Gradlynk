@@ -32,6 +32,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
+import 'package:studentpanel/ui/screen/test/documentdownload.dart';
 
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
@@ -90,7 +91,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: UploadDocument.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -253,16 +254,16 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
         ),
 
-        // GetPage(
-        //   name: WorkHistoryCopy.routeNamed,
-        //   page: () => const WorkHistoryCopy(),
-        //   transition: Transition.fade,
-        // ),
-        // GetPage(
-        //   name: CustomDatePicker.routeNamed,
-        //   page: () => CustomDatePicker(),
-        //   transition: Transition.fade,
-        // ),
+        GetPage(
+          name: UploadDocument.routeNamed,
+          page: () => UploadDocument(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: DocumentTest.routeNamed,
+          page: () => DocumentTest(),
+          transition: Transition.fade,
+        ),
 
         // CustomFileViewer
       ],

@@ -19,8 +19,6 @@ class UploadDocument extends StatelessWidget {
 
   callback(varTopic) {
     controller.setLoadingHighestQualification(true);
-
-    // dashboardcontroller.setdropdown1(varTopic);
   }
 
   @override
@@ -30,11 +28,14 @@ class UploadDocument extends StatelessWidget {
         drawer: CustomDrawer(),
         body: ListView(
           children: [
-            CustomAutoSizeTextMontserrat(
-              text: "My Document",
-              fontSize: 18,
-              textColor: ThemeConstants.bluecolor,
-              fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10),
+              child: CustomAutoSizeTextMontserrat(
+                text: "My Document",
+                fontSize: 18,
+                textColor: ThemeConstants.bluecolor,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -74,16 +75,25 @@ class UploadDocument extends StatelessWidget {
               initialSelectedValue: "Male",
               choosefieldtype: false,
             ),
+            const SizedBox(
+              height: 10,
+            ),
             ConfigurableExpansionTile(
               header: SizedBox(
                 width: MediaQuery.of(context).size.width - 10,
                 height: 40,
                 child: Row(
                   children: [
-                    CustomAutoSizeTextMontserrat(
-                      text: "Offer Details",
-                      textColor: ThemeConstants.blackcolor,
-                      fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width - 50,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Offer Details",
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     const Spacer(),
                     const Icon(Icons.keyboard_arrow_down),
@@ -312,10 +322,16 @@ class UploadDocument extends StatelessWidget {
                 height: 40,
                 child: Row(
                   children: [
-                    CustomAutoSizeTextMontserrat(
-                      text: "Offer Details",
-                      textColor: ThemeConstants.blackcolor,
-                      fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width - 50,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Offer Details",
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     const Spacer(),
                     const Icon(Icons.keyboard_arrow_down),

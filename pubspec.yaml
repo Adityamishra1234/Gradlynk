@@ -74,6 +74,10 @@ dependencies:
   dio: ^4.0.6
   permission_handler: ^10.2.0
   image_gallery_saver: ^1.7.1
+  wakelock: ^0.6.2
+  flutter_file_downloader: ^1.1.0+1
+  file_picker: ^5.2.4
+
   
   
 

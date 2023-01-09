@@ -832,7 +832,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                       color: ThemeConstants.bluecolor,
                                     ),
                               CustomAutoSizeTextMontserrat(
-                                text: "Course Details",
+                                text: "Details",
                                 textColor: ThemeConstants.bluecolor,
                                 fontSize: 8,
                                 fontWeight: FontWeight.w700,
