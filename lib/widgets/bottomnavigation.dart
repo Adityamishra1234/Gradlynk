@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -136,7 +137,7 @@ class BottomNavigation extends StatelessWidget {
                     child: InkWell(
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () {
-                        Get.toNamed(ProfilePage.routeNamed);
+                        Get.toNamed(ProfilePageCopy.routeNamed);
                       },
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

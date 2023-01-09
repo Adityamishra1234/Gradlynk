@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -16,7 +15,6 @@ import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/test.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DashBoard extends StatefulWidget {
@@ -38,8 +36,9 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    final bool displayMobileLayout = MediaQuery.of(context).size.width > 610;
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
+    print(MediaQuery.of(context).size.width);
 
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),

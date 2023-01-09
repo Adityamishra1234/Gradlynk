@@ -23,6 +23,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
   String? initialSelectedValue2;
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return widget.choosefieldtype == false
         ? Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -54,7 +55,10 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width - 70,
+                          //Todo
+                          width: displayMobileLayout == true
+                              ? MediaQuery.of(context).size.width - 300
+                              : MediaQuery.of(context).size.width - 70,
                           child: CustomAutoSizeTextMontserrat(
                             text: items,
                             textColor: ThemeConstants.TextColor,

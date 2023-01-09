@@ -91,7 +91,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: UploadDocument.routeNamed,
+      initialRoute: DashBoard.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -243,11 +243,11 @@ class _MyAppState extends State<MyApp> {
           page: () => const AssigneeInformationCopy(),
           transition: Transition.fade,
         ),
-        GetPage(
-          name: CourseInformationCopy.routeNamed,
-          page: () => const CourseInformationCopy(),
-          transition: Transition.fade,
-        ),
+        // GetPage(
+        //   name: CourseInformationCopy.routeNamed,
+        //   page: () =>  CourseInformationCopy(),
+        //   transition: Transition.fade,
+        // ),
         GetPage(
           name: VisaSummary.routeNamed,
           page: () => VisaSummary(),

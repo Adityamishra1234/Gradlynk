@@ -25,639 +25,742 @@ class ProfilePageCopy extends StatelessWidget {
   var profilePageController = Get.put(ProfilePageController());
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext conx) {
+    final bool displayMobileLayout = MediaQuery.of(conx).size.width > 600;
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar("title"),
-        drawer: CustomDrawer(),
+        drawer: displayMobileLayout == false ? CustomDrawer() : null,
         body: GetBuilder<ProfilePageController>(
-          builder: (_) => Container(
-              color: ThemeConstants.whitecolor,
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: 85,
-                    child: Stack(
+          builder: (_) => LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints cons) {
+            double constraints = cons.maxWidth;
+            if (displayMobileLayout == false) {
+              constraints = constraints + 240.00;
+            }
+            return Row(
+              children: [
+                if (displayMobileLayout == true) CustomDrawer(),
+                Container(
+                    width: constraints - 240,
+                    color: ThemeConstants.whitecolor,
+                    child: Column(
                       children: [
-                        ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 2,
-                            controller: controller,
-                            itemBuilder: (BuildContext context, int index) {
-                              if (index == 0) {
-                                return SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Stack(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              const Spacer(),
-                                              InkWell(
-                                                onTap: () {
-                                                  _.getChooseIndex(0.obs);
-                                                },
-                                                child: Container(
-                                                  width: 100,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          _.chooseIndex!
-                                                                      .value ==
-                                                                  0
-                                                              ? ThemeConstants
-                                                                  .bluecolor
-                                                              : ThemeConstants
-                                                                  .whitecolor,
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Personal ",
-                                                        fontSize: 12,
-                                                        textColor: _.chooseIndex!
-                                                                    .value ==
-                                                                0
-                                                            ? ThemeConstants
-                                                                .whitecolor
-                                                            : ThemeConstants
-                                                                .TextColor,
+                        SizedBox(
+                          width: constraints - 240,
+                          height: 85,
+                          child: Stack(
+                            children: [
+                              ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 2,
+                                  controller: controller,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (index == 0) {
+                                      return SizedBox(
+                                        width: constraints - 240,
+                                        child: Stack(
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    const Spacer(),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _.getChooseIndex(0.obs);
+                                                      },
+                                                      child: Container(
+                                                        width: 100,
+                                                        height: 35,
+                                                        decoration: BoxDecoration(
+                                                            color: _.chooseIndex!.value ==
+                                                                    0
+                                                                ? ThemeConstants
+                                                                    .bluecolor
+                                                                : ThemeConstants
+                                                                    .whitecolor,
+                                                            border: Border.all(
+                                                                color: _.chooseIndex!
+                                                                            .value ==
+                                                                        0
+                                                                    ? ThemeConstants
+                                                                        .bluecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          children: [
+                                                            const Spacer(),
+                                                            CustomAutoSizeTextMontserrat(
+                                                              text: "Personal ",
+                                                              fontSize: 12,
+                                                              textColor: _.chooseIndex!
+                                                                          .value ==
+                                                                      0
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
+                                                            ),
+                                                            // const Icon(Icons.abc_outlined),
+                                                            const Spacer(),
+                                                          ],
+                                                        ),
                                                       ),
-                                                      // const Icon(Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 8,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  _.getChooseIndex(1.obs);
-                                                },
-                                                child: Container(
-                                                  width: 100,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          _.chooseIndex!
-                                                                      .value ==
-                                                                  1
-                                                              ? ThemeConstants
-                                                                  .bluecolor
-                                                              : ThemeConstants
-                                                                  .whitecolor,
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Course Info.",
-                                                        fontSize: 12,
-                                                        textColor: _.chooseIndex!
-                                                                    .value ==
-                                                                1
-                                                            ? ThemeConstants
-                                                                .whitecolor
-                                                            : ThemeConstants
-                                                                .TextColor,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _.getChooseIndex(1.obs);
+                                                      },
+                                                      child: Container(
+                                                        width: 100,
+                                                        height: 35,
+                                                        decoration: BoxDecoration(
+                                                            color: _.chooseIndex!.value ==
+                                                                    1
+                                                                ? ThemeConstants
+                                                                    .bluecolor
+                                                                : ThemeConstants
+                                                                    .whitecolor,
+                                                            border: Border.all(
+                                                                color: _.chooseIndex!
+                                                                            .value ==
+                                                                        1
+                                                                    ? ThemeConstants
+                                                                        .bluecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          children: [
+                                                            const Spacer(),
+                                                            CustomAutoSizeTextMontserrat(
+                                                              text:
+                                                                  "Course Info.",
+                                                              fontSize: 12,
+                                                              textColor: _.chooseIndex!
+                                                                          .value ==
+                                                                      1
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
+                                                            ),
+                                                            // const Icon(
+                                                            //     Icons.abc_outlined),
+                                                            const Spacer(),
+                                                          ],
+                                                        ),
                                                       ),
-                                                      // const Icon(
-                                                      //     Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 8,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  _.getChooseIndex(2.obs);
-                                                },
-                                                child: Container(
-                                                  width: 110,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          _.chooseIndex!
-                                                                      .value ==
-                                                                  2
-                                                              ? ThemeConstants
-                                                                  .bluecolor
-                                                              : ThemeConstants
-                                                                  .whitecolor,
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Qualification",
-                                                        fontSize: 12,
-                                                        textColor: _.chooseIndex!
-                                                                    .value ==
-                                                                2
-                                                            ? ThemeConstants
-                                                                .whitecolor
-                                                            : ThemeConstants
-                                                                .TextColor,
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _.getChooseIndex(2.obs);
+                                                      },
+                                                      child: Container(
+                                                        width: 110,
+                                                        height: 35,
+                                                        decoration: BoxDecoration(
+                                                            color: _.chooseIndex!.value ==
+                                                                    2
+                                                                ? ThemeConstants
+                                                                    .bluecolor
+                                                                : ThemeConstants
+                                                                    .whitecolor,
+                                                            border: Border.all(
+                                                                color: _.chooseIndex!
+                                                                            .value ==
+                                                                        2
+                                                                    ? ThemeConstants
+                                                                        .bluecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          children: [
+                                                            const Spacer(),
+                                                            CustomAutoSizeTextMontserrat(
+                                                              text:
+                                                                  "Qualification",
+                                                              fontSize: 12,
+                                                              textColor: _.chooseIndex!
+                                                                          .value ==
+                                                                      2
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
+                                                            ),
+                                                            // const Icon(
+                                                            //     Icons.abc_outlined),
+                                                            const Spacer(),
+                                                          ],
+                                                        ),
                                                       ),
-                                                      // const Icon(
-                                                      //     Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          Row(
-                                            children: [
-                                              const Spacer(),
-                                              InkWell(
-                                                onTap: () {
-                                                  _.getChooseIndex(3.obs);
-                                                },
-                                                child: Container(
-                                                  width: 110,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          _.chooseIndex!
-                                                                      .value ==
-                                                                  3
-                                                              ? ThemeConstants
-                                                                  .bluecolor
-                                                              : ThemeConstants
-                                                                  .whitecolor,
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Work History",
-                                                        fontSize: 12,
-                                                        textColor: _.chooseIndex!
-                                                                    .value ==
-                                                                3
-                                                            ? ThemeConstants
-                                                                .whitecolor
-                                                            : ThemeConstants
-                                                                .TextColor,
-                                                      ),
-                                                      // const Icon(
-                                                      //     Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 8,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  _.getChooseIndex(4.obs);
-                                                },
-                                                child: Container(
-                                                  width: 110,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          _.chooseIndex!
-                                                                      .value ==
-                                                                  4
-                                                              ? ThemeConstants
-                                                                  .bluecolor
-                                                              : ThemeConstants
-                                                                  .whitecolor,
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "English Test.",
-                                                        fontSize: 12,
-                                                        textColor: _.chooseIndex!
-                                                                    .value ==
-                                                                4
-                                                            ? ThemeConstants
-                                                                .whitecolor
-                                                            : ThemeConstants
-                                                                .TextColor,
-                                                      ),
-                                                      // const Icon(
-                                                      //     Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 8,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  _.getChooseIndex(5.obs);
-                                                },
-                                                child: Container(
-                                                  width: 110,
-                                                  height: 35,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          _.chooseIndex!
-                                                                      .value ==
-                                                                  5
-                                                              ? ThemeConstants
-                                                                  .bluecolor
-                                                              : ThemeConstants
-                                                                  .whitecolor,
-                                                      border: Border.all(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Row(
-                                                    children: [
-                                                      const Spacer(),
-                                                      CustomAutoSizeTextMontserrat(
-                                                        text: "Other Test",
-                                                        fontSize: 12,
-                                                        textColor: _.chooseIndex!
-                                                                    .value ==
-                                                                5
-                                                            ? ThemeConstants
-                                                                .whitecolor
-                                                            : ThemeConstants
-                                                                .TextColor,
-                                                      ),
-                                                      // const Icon(
-                                                      //     Icons.abc_outlined),
-                                                      const Spacer(),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      if (_.iconSwipe.value == false &&
-                                          _.iconSwipetrue.value == true)
-                                        Positioned(
-                                          right: 0,
-                                          child: Opacity(
-                                            opacity: 0.5,
-                                            child: InkWell(
-                                              onTap: () {
-                                                final position = controller
-                                                    .position.maxScrollExtent;
-                                                controller.animateTo(
-                                                  position,
-                                                  duration: const Duration(
-                                                      milliseconds: 300),
-                                                  curve: Curves.easeOut,
-                                                );
-                                                _.setIconSwipeTrue(false);
-                                                Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 305), () {
-                                                  _.setIconSwipe(true);
-                                                  _.setIconSwipeTrue(true);
-                                                });
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  // gradient: LinearGradient(
-                                                  //   colors: [
-                                                  //     Colors.transparent,
-                                                  //     ThemeConstants.lightgreycolor,
-                                                  //   ],
-                                                  // ),
-                                                  color:
-                                                      ThemeConstants.whitecolor,
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topLeft:
-                                                        Radius.circular(100),
-                                                    bottomLeft:
-                                                        Radius.circular(100),
-                                                  ),
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                      color: Colors.black,
-                                                      blurRadius: 2.0,
-                                                      spreadRadius: 0.0,
-                                                      offset: Offset(2.0,
-                                                          2.0), // shadow direction: bottom right
-                                                    )
+                                                    ),
+                                                    const Spacer(),
                                                   ],
                                                 ),
-                                                height: 80,
-                                                width: 35,
-                                                child: Center(
-                                                  child: SizedBox(
-                                                    height: 20,
-                                                    width: 20,
-                                                    child: RotationTransition(
-                                                      turns:
-                                                          const AlwaysStoppedAnimation(
-                                                              0 / 360),
-                                                      child: SvgPicture.asset(
-                                                        "assets/icons/nextscreen_arrow.svg",
-                                                        color: ThemeConstants
-                                                            .blackcolor,
+                                                const SizedBox(
+                                                  height: 8,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    const Spacer(),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _.getChooseIndex(3.obs);
+                                                      },
+                                                      child: Container(
+                                                        width: 110,
+                                                        height: 35,
+                                                        decoration: BoxDecoration(
+                                                            color: _.chooseIndex!.value ==
+                                                                    3
+                                                                ? ThemeConstants
+                                                                    .bluecolor
+                                                                : ThemeConstants
+                                                                    .whitecolor,
+                                                            border: Border.all(
+                                                                color: _.chooseIndex!
+                                                                            .value ==
+                                                                        3
+                                                                    ? ThemeConstants
+                                                                        .bluecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          children: [
+                                                            const Spacer(),
+                                                            CustomAutoSizeTextMontserrat(
+                                                              text:
+                                                                  "Work History",
+                                                              fontSize: 12,
+                                                              textColor: _.chooseIndex!
+                                                                          .value ==
+                                                                      3
+                                                                  ? ThemeConstants
+                                                                      .whitecolor
+                                                                  : ThemeConstants
+                                                                      .TextColor,
+                                                            ),
+                                                            // const Icon(
+                                                            //     Icons.abc_outlined),
+                                                            const Spacer(),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                );
-                              } else if (index == 1) {
-                                return SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 30),
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              children: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    _.getChooseIndex(6.obs);
-                                                  },
-                                                  child: Container(
-                                                    width: 100,
-                                                    height: 35,
-                                                    decoration: BoxDecoration(
-                                                        color: _
-                                                                    .chooseIndex!
-                                                                    .value ==
-                                                                6
-                                                            ? ThemeConstants
-                                                                .bluecolor
-                                                            : ThemeConstants
-                                                                .whitecolor,
-                                                        border: Border.all(),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    10.0)),
-                                                    child: Row(
-                                                      children: [
-                                                        const Spacer(),
-                                                        CustomAutoSizeTextMontserrat(
-                                                          text: "Passport",
-                                                          fontSize: 12,
-                                                          textColor:
-                                                              _.chooseIndex!
+                                                    const SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _.getChooseIndex(4.obs);
+                                                      },
+                                                      child: Container(
+                                                        width: 110,
+                                                        height: 35,
+                                                        decoration: BoxDecoration(
+                                                            color: _.chooseIndex!.value ==
+                                                                    4
+                                                                ? ThemeConstants
+                                                                    .bluecolor
+                                                                : ThemeConstants
+                                                                    .whitecolor,
+                                                            border: Border.all(
+                                                                color: _.chooseIndex!
+                                                                            .value ==
+                                                                        4
+                                                                    ? ThemeConstants
+                                                                        .bluecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          children: [
+                                                            const Spacer(),
+                                                            CustomAutoSizeTextMontserrat(
+                                                              text:
+                                                                  "English Test.",
+                                                              fontSize: 12,
+                                                              textColor: _.chooseIndex!
                                                                           .value ==
-                                                                      6
+                                                                      4
                                                                   ? ThemeConstants
                                                                       .whitecolor
                                                                   : ThemeConstants
                                                                       .TextColor,
+                                                            ),
+                                                            // const Icon(
+                                                            //     Icons.abc_outlined),
+                                                            const Spacer(),
+                                                          ],
                                                         ),
-                                                        // const Icon(
-                                                        //     Icons.abc_outlined),
-                                                        const Spacer(),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    _.getChooseIndex(7.obs);
-                                                  },
-                                                  child: Container(
-                                                    width: 120,
-                                                    height: 35,
-                                                    decoration: BoxDecoration(
-                                                        color: _
-                                                                    .chooseIndex!
-                                                                    .value ==
-                                                                7
-                                                            ? ThemeConstants
-                                                                .bluecolor
-                                                            : ThemeConstants
-                                                                .whitecolor,
-                                                        border: Border.all(),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    10.0)),
-                                                    child: Row(
-                                                      children: [
-                                                        const Spacer(),
-                                                        CustomAutoSizeTextMontserrat(
-                                                          text:
-                                                              "Travel History",
-                                                          fontSize: 12,
-                                                          textColor:
-                                                              _.chooseIndex!
+                                                    const SizedBox(
+                                                      width: 8,
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _.getChooseIndex(5.obs);
+                                                      },
+                                                      child: Container(
+                                                        width: 110,
+                                                        height: 35,
+                                                        decoration: BoxDecoration(
+                                                            color: _.chooseIndex!.value ==
+                                                                    5
+                                                                ? ThemeConstants
+                                                                    .bluecolor
+                                                                : ThemeConstants
+                                                                    .whitecolor,
+                                                            border: Border.all(
+                                                                color: _.chooseIndex!
+                                                                            .value ==
+                                                                        5
+                                                                    ? ThemeConstants
+                                                                        .bluecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0)),
+                                                        child: Row(
+                                                          children: [
+                                                            const Spacer(),
+                                                            CustomAutoSizeTextMontserrat(
+                                                              text:
+                                                                  "Other Test",
+                                                              fontSize: 12,
+                                                              textColor: _.chooseIndex!
                                                                           .value ==
-                                                                      7
+                                                                      5
                                                                   ? ThemeConstants
                                                                       .whitecolor
                                                                   : ThemeConstants
                                                                       .TextColor,
+                                                            ),
+                                                            // const Icon(
+                                                            //     Icons.abc_outlined),
+                                                            const Spacer(),
+                                                          ],
                                                         ),
-                                                        // const Icon(
-                                                        //     Icons.abc_outlined),
-                                                        const Spacer(),
-                                                      ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 8,
-                                                ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    _.getChooseIndex(8.obs);
-                                                  },
-                                                  child: Container(
-                                                    width: 110,
-                                                    height: 35,
-                                                    decoration: BoxDecoration(
-                                                        color: _
-                                                                    .chooseIndex!
-                                                                    .value ==
-                                                                8
-                                                            ? ThemeConstants
-                                                                .bluecolor
-                                                            : ThemeConstants
-                                                                .whitecolor,
-                                                        border: Border.all(),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    10.0)),
-                                                    child: Row(
-                                                      children: [
-                                                        const Spacer(),
-                                                        CustomAutoSizeTextMontserrat(
-                                                          text:
-                                                              "Relative Info.",
-                                                          fontSize: 12,
-                                                          textColor:
-                                                              _.chooseIndex!
-                                                                          .value ==
-                                                                      8
-                                                                  ? ThemeConstants
-                                                                      .whitecolor
-                                                                  : ThemeConstants
-                                                                      .TextColor,
-                                                        ),
-                                                        // const Icon(
-                                                        //     Icons.abc_outlined),
-                                                        const Spacer(),
-                                                      ],
-                                                    ),
-                                                  ),
+                                                    const Spacer(),
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(
-                                              height: 8,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      if ((_.iconSwipe.value == true &&
-                                          _.iconSwipetrue.value == true))
-                                        Positioned(
-                                          left: 0,
-                                          child: Opacity(
-                                            opacity: 0.5,
-                                            child: InkWell(
-                                              onTap: () {
-                                                final position = controller
-                                                    .position.minScrollExtent;
-                                                controller.animateTo(
-                                                  position,
-                                                  duration: const Duration(
-                                                      milliseconds: 305),
-                                                  curve: Curves.easeOut,
-                                                );
-                                                _.setIconSwipeTrue(false);
-                                                Future.delayed(
-                                                    const Duration(
-                                                        milliseconds: 305), () {
-                                                  _.setIconSwipe(false);
-                                                  _.setIconSwipeTrue(true);
-                                                });
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color:
-                                                      ThemeConstants.whitecolor,
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(100),
-                                                    bottomRight:
-                                                        Radius.circular(100),
-                                                  ),
-                                                  boxShadow: const [
-                                                    BoxShadow(
-                                                      color: Colors.black,
-                                                      blurRadius: 2.0,
-                                                      spreadRadius: 0.0,
-                                                      offset: Offset(2.0,
-                                                          2.0), // shadow direction: bottom right
-                                                    )
-                                                  ],
-                                                ),
-                                                height: 80,
-                                                width: 35,
-                                                child: Center(
-                                                  child: SizedBox(
-                                                    height: 20,
-                                                    width: 20,
-                                                    child: RotationTransition(
-                                                      turns:
-                                                          const AlwaysStoppedAnimation(
-                                                              180 / 360),
-                                                      child: SvgPicture.asset(
-                                                        "assets/icons/nextscreen_arrow.svg",
+                                            if (_.iconSwipe.value == false &&
+                                                _.iconSwipetrue.value == true)
+                                              Positioned(
+                                                right: 0,
+                                                child: Opacity(
+                                                  opacity: 0.5,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      final position =
+                                                          controller.position
+                                                              .maxScrollExtent;
+                                                      controller.animateTo(
+                                                        position,
+                                                        duration:
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    300),
+                                                        curve: Curves.easeOut,
+                                                      );
+                                                      _.setIconSwipeTrue(false);
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  305), () {
+                                                        _.setIconSwipe(true);
+                                                        _.setIconSwipeTrue(
+                                                            true);
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        // gradient: LinearGradient(
+                                                        //   colors: [
+                                                        //     Colors.transparent,
+                                                        //     ThemeConstants.lightgreycolor,
+                                                        //   ],
+                                                        // ),
                                                         color: ThemeConstants
-                                                            .blackcolor,
+                                                            .whitecolor,
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  100),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  100),
+                                                        ),
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            color: Colors.black,
+                                                            blurRadius: 2.0,
+                                                            spreadRadius: 0.0,
+                                                            offset: Offset(2.0,
+                                                                2.0), // shadow direction: bottom right
+                                                          )
+                                                        ],
+                                                      ),
+                                                      height: 80,
+                                                      width: 35,
+                                                      child: Center(
+                                                        child: SizedBox(
+                                                          height: 20,
+                                                          width: 20,
+                                                          child:
+                                                              RotationTransition(
+                                                            turns:
+                                                                const AlwaysStoppedAnimation(
+                                                                    0 / 360),
+                                                            child: SvgPicture
+                                                                .asset(
+                                                              "assets/icons/nextscreen_arrow.svg",
+                                                              color:
+                                                                  ThemeConstants
+                                                                      .blackcolor,
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
+                                          ],
                                         ),
-                                    ],
-                                  ),
-                                );
-                              } else {
-                                return Container();
-                              }
-                            }),
+                                      );
+                                    } else if (index == 1) {
+                                      return SizedBox(
+                                        width: constraints - 240,
+                                        child: Stack(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 30),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          _.getChooseIndex(
+                                                              6.obs);
+                                                        },
+                                                        child: Container(
+                                                          width: 100,
+                                                          height: 35,
+                                                          decoration: BoxDecoration(
+                                                              color: _.chooseIndex!
+                                                                          .value ==
+                                                                      6
+                                                                  ? ThemeConstants
+                                                                      .bluecolor
+                                                                  : ThemeConstants
+                                                                      .whitecolor,
+                                                              border: Border.all(
+                                                                  color: _.chooseIndex!
+                                                                              .value ==
+                                                                          6
+                                                                      ? ThemeConstants
+                                                                          .bluecolor
+                                                                      : ThemeConstants
+                                                                          .TextColor),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0)),
+                                                          child: Row(
+                                                            children: [
+                                                              const Spacer(),
+                                                              CustomAutoSizeTextMontserrat(
+                                                                text:
+                                                                    "Passport",
+                                                                fontSize: 12,
+                                                                textColor: _.chooseIndex!
+                                                                            .value ==
+                                                                        6
+                                                                    ? ThemeConstants
+                                                                        .whitecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor,
+                                                              ),
+                                                              // const Icon(
+                                                              //     Icons.abc_outlined),
+                                                              const Spacer(),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          _.getChooseIndex(
+                                                              7.obs);
+                                                        },
+                                                        child: Container(
+                                                          width: 120,
+                                                          height: 35,
+                                                          decoration: BoxDecoration(
+                                                              color: _.chooseIndex!
+                                                                          .value ==
+                                                                      7
+                                                                  ? ThemeConstants
+                                                                      .bluecolor
+                                                                  : ThemeConstants
+                                                                      .whitecolor,
+                                                              border: Border.all(
+                                                                  color: _.chooseIndex!
+                                                                              .value ==
+                                                                          7
+                                                                      ? ThemeConstants
+                                                                          .bluecolor
+                                                                      : ThemeConstants
+                                                                          .TextColor),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0)),
+                                                          child: Row(
+                                                            children: [
+                                                              const Spacer(),
+                                                              CustomAutoSizeTextMontserrat(
+                                                                text:
+                                                                    "Travel History",
+                                                                fontSize: 12,
+                                                                textColor: _.chooseIndex!
+                                                                            .value ==
+                                                                        7
+                                                                    ? ThemeConstants
+                                                                        .whitecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor,
+                                                              ),
+                                                              // const Icon(
+                                                              //     Icons.abc_outlined),
+                                                              const Spacer(),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 8,
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          _.getChooseIndex(
+                                                              8.obs);
+                                                        },
+                                                        child: Container(
+                                                          width: 90,
+                                                          height: 35,
+                                                          decoration: BoxDecoration(
+                                                              color: _.chooseIndex!
+                                                                          .value ==
+                                                                      8
+                                                                  ? ThemeConstants
+                                                                      .bluecolor
+                                                                  : ThemeConstants
+                                                                      .whitecolor,
+                                                              border: Border.all(
+                                                                  color: _.chooseIndex!
+                                                                              .value ==
+                                                                          8
+                                                                      ? ThemeConstants
+                                                                          .bluecolor
+                                                                      : ThemeConstants
+                                                                          .TextColor),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0)),
+                                                          child: Row(
+                                                            children: [
+                                                              const Spacer(),
+                                                              CustomAutoSizeTextMontserrat(
+                                                                text:
+                                                                    "Relative",
+                                                                fontSize: 12,
+                                                                textColor: _.chooseIndex!
+                                                                            .value ==
+                                                                        8
+                                                                    ? ThemeConstants
+                                                                        .whitecolor
+                                                                    : ThemeConstants
+                                                                        .TextColor,
+                                                              ),
+                                                              // const Icon(
+                                                              //     Icons.abc_outlined),
+                                                              const Spacer(),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            if ((_.iconSwipe.value == true &&
+                                                _.iconSwipetrue.value == true))
+                                              Positioned(
+                                                left: 0,
+                                                child: Opacity(
+                                                  opacity: 0.5,
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      final position =
+                                                          controller.position
+                                                              .minScrollExtent;
+                                                      controller.animateTo(
+                                                        position,
+                                                        duration:
+                                                            const Duration(
+                                                                milliseconds:
+                                                                    305),
+                                                        curve: Curves.easeOut,
+                                                      );
+                                                      _.setIconSwipeTrue(false);
+                                                      Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  305), () {
+                                                        _.setIconSwipe(false);
+                                                        _.setIconSwipeTrue(
+                                                            true);
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        color: ThemeConstants
+                                                            .whitecolor,
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                .only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  100),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  100),
+                                                        ),
+                                                        boxShadow: const [
+                                                          BoxShadow(
+                                                            color: Colors.black,
+                                                            blurRadius: 2.0,
+                                                            spreadRadius: 0.0,
+                                                            offset: Offset(2.0,
+                                                                2.0), // shadow direction: bottom right
+                                                          )
+                                                        ],
+                                                      ),
+                                                      height: 80,
+                                                      width: 35,
+                                                      child: Center(
+                                                        child: SizedBox(
+                                                          height: 20,
+                                                          width: 20,
+                                                          child:
+                                                              RotationTransition(
+                                                            turns:
+                                                                const AlwaysStoppedAnimation(
+                                                                    180 / 360),
+                                                            child: SvgPicture
+                                                                .asset(
+                                                              "assets/icons/nextscreen_arrow.svg",
+                                                              color:
+                                                                  ThemeConstants
+                                                                      .blackcolor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      );
+                                    } else {
+                                      return Container();
+                                    }
+                                  }),
+                            ],
+                          ),
+                        ),
+                        getOption(
+                            context, _.chooseIndex!.value, constraints - 240)
                       ],
-                    ),
-                  ),
-                  getOption(context, _.chooseIndex!.value)
-                ],
-              )),
+                    )),
+              ],
+            );
+          }),
         ));
   }
 
-  getOption(BuildContext context, int index) {
+  getOption(BuildContext context, int index, double width) {
     if (index == 0) {
       return SizedBox(
+          width: width,
           height: MediaQuery.of(context).size.height - 210,
           child: const ContactInformationCopy());
     }
 
     if (index == 1) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
-        child: const CourseInformationCopy(),
+        child: CourseInformationCopy(
+          width: width,
+        ),
       );
     }
 
     if (index == 2) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: QualificationDetailsCopy(),
       );
@@ -665,36 +768,42 @@ class ProfilePageCopy extends StatelessWidget {
 
     if (index == 3) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: WorkHistoryCopy(),
       );
     }
     if (index == 4) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: EnglishTestDetails(),
       );
     }
     if (index == 5) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: OthertestDetail(),
       );
     }
     if (index == 6) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: PassportDetails(),
       );
     }
     if (index == 7) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: TravingHistory(),
       );
     }
     if (index == 8) {
       return SizedBox(
+        width: width,
         height: MediaQuery.of(context).size.height - 210,
         child: RelativeInformation(),
       );

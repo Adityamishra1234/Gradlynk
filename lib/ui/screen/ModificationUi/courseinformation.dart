@@ -9,7 +9,9 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class CourseInformationCopy extends StatefulWidget {
-  const CourseInformationCopy({Key? key}) : super(key: key);
+  double? width;
+  CourseInformationCopy({Key? key, required this.width}) : super(key: key);
+
   static const routeNamed = '/CourseInformationCopy';
 
   @override
