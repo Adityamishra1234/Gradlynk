@@ -313,10 +313,13 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: controller.dateOfExamSelected,
-          callbackDate: callbackExamName)
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: controller.editSave.value == true ? true : false,
+            date: controller.dateOfExamSelected,
+            callbackDate: callbackExamName),
+      )
     ];
   }
 
@@ -394,10 +397,13 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: controller.tentativeDateSelected,
-          callbackDate: callbackTentativeExamDate)
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: controller.editSave.value == true ? true : false,
+            date: controller.tentativeDateSelected,
+            callbackDate: callbackTentativeExamDate),
+      )
     ];
   }
 
@@ -447,10 +453,13 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: controller.dateOfExamSelected,
-          callbackDate: callbackExamName),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: controller.editSave.value == true ? true : false,
+            date: controller.dateOfExamSelected,
+            callbackDate: callbackExamName),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -463,10 +472,13 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: controller.dateOftestReportSelected,
-          callbackDate: callbackTextScoreExpirationdate),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: controller.editSave.value == true ? true : false,
+            date: controller.dateOftestReportSelected,
+            callbackDate: callbackTextScoreExpirationdate),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -479,10 +491,13 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: controller.testScoreExpirationDateSelected,
-          callbackDate: callbackTextScoreExpirationdate),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: controller.editSave.value == true ? true : false,
+            date: controller.testScoreExpirationDateSelected,
+            callbackDate: callbackTextScoreExpirationdate),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 10),
         child: SizedBox(

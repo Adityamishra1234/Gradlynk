@@ -38,12 +38,29 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       initialSelectedCity;
   var controller = Get.put(ContactInformationController());
   GlobalKey globalKey = GlobalKey();
+  bool socialMedia = false;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       reverse: false,
       child: Column(
         children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+              child: InkWell(
+            onTap: () {
+              Get.snackbar("Image Upload Process ", "Image Upload Process",
+                  snackPosition: SnackPosition.BOTTOM);
+            },
+            child: const CircleAvatar(
+              radius: 80.0,
+              backgroundImage: NetworkImage(
+                  "https://png.pngitem.com/pimgs/s/146-1468295_business-man-profile-icon-business-profile-icon-png.png"),
+              backgroundColor: Colors.transparent,
+            ),
+          )),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
@@ -169,9 +186,12 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             ),
           ),
-          DatePickerExample(
-            enableField: saveAndEdit,
-            callbackDate: callbackDOB,
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: DatePickerExample(
+              enableField: saveAndEdit,
+              callbackDate: callbackDOB,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -531,108 +551,114 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           CheckboxListTile(
             title: CustomAutoSizeTextMontserrat(
                 text: "Are you available on Social Media"),
-            value: true,
+            value: socialMedia,
             onChanged: (newValue) {
               setState(() {
-                // checkedValue = newValue;
+                socialMedia = newValue!;
               });
             },
             controlAffinity:
                 ListTileControlAffinity.leading, //  <-- leading Checkbox
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Instagram Id",
-                textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: instagramId,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Enter your Instagram Id",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+          if (socialMedia == true)
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: CustomAutoSizeTextMontserrat(
+                  text: "Instagram Id",
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              style: ThemeConstants.montserrattextstyle,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Facebook Id",
-                textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+          if (socialMedia == true)
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                controller: instagramId,
+                scrollPadding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                readOnly: saveAndEdit,
+                decoration: InputDecoration(
+                  hintText: "Enter your Instagram Id",
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+                style: ThemeConstants.montserrattextstyle,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: facebookId,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Enter your Facebook Id",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+          if (socialMedia == true)
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: CustomAutoSizeTextMontserrat(
+                  text: "Facebook Id",
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              style: ThemeConstants.montserrattextstyle,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Snapchat Id",
-                textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+          if (socialMedia == true)
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                controller: facebookId,
+                scrollPadding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                readOnly: saveAndEdit,
+                decoration: InputDecoration(
+                  hintText: "Enter your Facebook Id",
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+                style: ThemeConstants.montserrattextstyle,
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: snapchatId,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              readOnly: saveAndEdit,
-              decoration: InputDecoration(
-                hintText: "Enter your Snapchat Id",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+          if (socialMedia == true)
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: CustomAutoSizeTextMontserrat(
+                  text: "Snapchat Id",
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              style: ThemeConstants.montserrattextstyle,
             ),
-          ),
+          if (socialMedia == true)
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                controller: snapchatId,
+                scrollPadding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                readOnly: saveAndEdit,
+                decoration: InputDecoration(
+                  hintText: "Enter your Snapchat Id",
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                ),
+                style: ThemeConstants.montserrattextstyle,
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
@@ -650,7 +676,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             child: TextField(
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              readOnly: false,
+              readOnly: true,
               decoration: InputDecoration(
                 hintText: "Shreya IT",
                 filled: true,

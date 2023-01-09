@@ -266,10 +266,13 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: false,
-          date: _.dateOfApplicatiton,
-          callbackDate: callbackDateOfApplciation),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: false,
+            date: _.dateOfApplicatiton,
+            callbackDate: callbackDateOfApplciation),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -282,10 +285,13 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: false,
-          date: _.dateOfReject,
-          callbackDate: callbackDateOfReject),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: false,
+            date: _.dateOfReject,
+            callbackDate: callbackDateOfReject),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(

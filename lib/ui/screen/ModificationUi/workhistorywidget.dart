@@ -117,10 +117,13 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          DatePickerExample(
-            enableField: false,
-            date: _.workingFromSelected,
-            callbackDate: callbackWorkingForm,
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: DatePickerExample(
+              enableField: false,
+              date: _.workingFromSelected,
+              callbackDate: callbackWorkingForm,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -134,10 +137,13 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          DatePickerExample(
-            enableField: false,
-            date: _.workingTillSelected,
-            callbackDate: callbackWorkingTill,
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: DatePickerExample(
+              enableField: false,
+              date: _.workingTillSelected,
+              callbackDate: callbackWorkingTill,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

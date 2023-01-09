@@ -320,14 +320,17 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-        enableField: controller.editSave.value == true ? true : false,
-        date:
-            getNUllChecker(controller.englishTestDetailsViewModel.dateOfExam) ==
-                    false
-                ? controller.dateOfExamSelected
-                : "",
-        callbackDate: callbackDateOfExam,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: getNUllChecker(
+                      controller.englishTestDetailsViewModel.dateOfExam) ==
+                  false
+              ? controller.dateOfExamSelected
+              : "",
+          callbackDate: callbackDateOfExam,
+        ),
       )
     ];
   }
@@ -394,12 +397,15 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-        enableField: controller.editSave.value == true ? true : false,
-        date: getNUllChecker(controller.tentativeExamDateSelcted) == false
-            ? controller.tentativeExamDateSelcted
-            : null,
-        callbackDate: callbackTentativeExamDate,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: getNUllChecker(controller.tentativeExamDateSelcted) == false
+              ? controller.tentativeExamDateSelcted
+              : null,
+          callbackDate: callbackTentativeExamDate,
+        ),
       ),
     ];
   }
@@ -446,14 +452,17 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-        enableField: controller.editSave.value == true ? true : false,
-        date:
-            getNUllChecker(controller.englishTestDetailsViewModel.dateOfExam) ==
-                    false
-                ? controller.dateOfExamSelected
-                : "",
-        callbackDate: callbackDateOfExam,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          date: getNUllChecker(
+                      controller.englishTestDetailsViewModel.dateOfExam) ==
+                  false
+              ? controller.dateOfExamSelected
+              : "",
+          callbackDate: callbackDateOfExam,
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -467,10 +476,13 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-        enableField: controller.editSave.value == true ? true : false,
-        callbackDate: callbackDateOfTestReport,
-        date: controller.dateOfTestReportSelcted,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          callbackDate: callbackDateOfTestReport,
+          date: controller.dateOfTestReportSelcted,
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -484,10 +496,13 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-        enableField: controller.editSave.value == true ? true : false,
-        callbackDate: callbackTextScoreExpirationdate,
-        date: controller.testscoreExpirationDateSelcted,
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+          enableField: controller.editSave.value == true ? true : false,
+          callbackDate: callbackTextScoreExpirationdate,
+          date: controller.testscoreExpirationDateSelcted,
+        ),
       ),
       const SizedBox(
         height: 10,

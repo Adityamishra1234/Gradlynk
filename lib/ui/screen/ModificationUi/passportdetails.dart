@@ -275,10 +275,13 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: _.editSave.value == true ? false : true,
-          date: _.dateOfIssue,
-          callbackDate: callbackDateOfIssue),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: _.editSave.value == true ? false : true,
+            date: _.dateOfIssue,
+            callbackDate: callbackDateOfIssue),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -292,10 +295,13 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      DatePickerExample(
-          enableField: _.editSave.value == true ? false : true,
-          date: _.expireDate,
-          callbackDate: callbackExpireDate),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: DatePickerExample(
+            enableField: _.editSave.value == true ? false : true,
+            date: _.expireDate,
+            callbackDate: callbackExpireDate),
+      ),
       Padding(
         padding: const EdgeInsets.only(top: 15),
         child: Row(
