@@ -59,6 +59,7 @@ class CourseInformationProfileController extends BaseController {
   }
 
   getCourseBroadField(int courseNarrowFieldId) async {
+    loadingCourseBroad.value = false;
     var res = await apiServices.getCourseNarrowProfile(
         Endpoints.baseUrl!,
         Endpoints.courseBroadFieldByNarrowField! +

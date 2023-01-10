@@ -100,166 +100,172 @@ class OthertestDetail extends StatelessWidget {
         _.loadingEdit.value = true;
       }
 
-      return ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Row(
-                children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Exam Status",
-                    mandatory: true,
-                    textColor: ThemeConstants.TextColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const Spacer(),
-                  if (_.editSave.value == true)
-                    TextButton(
-                        onPressed: () {
-                          _.editSave.value = false;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "edit",
-                          textColor: ThemeConstants.bluecolor,
-                        )),
-                  if (_.editSave.value == false)
-                    TextButton(
-                        onPressed: () {
-                          _.editSave.value = true;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "save",
-                          textColor: ThemeConstants.bluecolor,
-                        )),
-                ],
+      return SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Row(
+                  children: [
+                    CustomAutoSizeTextMontserrat(
+                      text: "Exam Status",
+                      mandatory: true,
+                      textColor: ThemeConstants.TextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    const Spacer(),
+                    if (_.editSave.value == true)
+                      TextButton(
+                          onPressed: () {
+                            _.editSave.value = false;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "edit",
+                            textColor: ThemeConstants.bluecolor,
+                          )),
+                    if (_.editSave.value == false)
+                      TextButton(
+                          onPressed: () {
+                            _.editSave.value = true;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "save",
+                            textColor: ThemeConstants.bluecolor,
+                          )),
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: _.loadingExamStaus.value == true
-                  ? _.examStatusList
-                  : ["No Data"],
-              initialSelectedValue: _.loadingExamStaus.value == true
-                  ? getNUllChecker(_.examStatusSelected) == false
-                      ? _.examStatusSelected.toString()
-                      : _.examStatusList[0]
-                  : "No Data",
-              choosefieldtype: _.editSave.value == true ? true : false,
-              callbackFunction: callbackExamStatus,
-            ),
-          ),
-          if (_.examStatusSelectedID == "1") ...register(context),
-          if (_.examStatusSelectedID == "2") ...notYetRegister(context),
-          if (_.examStatusSelectedID == "3") ...testAlreadyTaken(context),
-          Align(
-            alignment: AlignmentDirectional.topEnd,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, right: 20),
-              child: SizedBox(
-                width: 90,
-                child: _.editSave.value == false
-                    ? ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0.0,
-                          primary: ThemeConstants.bluecolor, // background
-                          onPrimary: ThemeConstants.bluecolor, // foreground
-                        ),
-                        onPressed: () async {
-                          // DropDown
-                          _.otherTestDetailsModel.examStatus =
-                              _.examStatusSelectedID ?? "";
-                          if (getNUllChecker(_.examNameSelected) == false) {
-                            _.otherTestDetailsModel.examName =
-                                _.examNameSelected;
-                          } else {
-                            _.otherTestDetailsModel.examName = null;
-                          }
-                          _.otherTestDetailsModel.testBook =
-                              _.bookTestSelectedID;
-                          _.otherTestDetailsModel.scoreType =
-                              _.tentaiveDefinite;
-
-                          // text field
-                          _.otherTestDetailsModel.dateOfExam =
-                              _.dateOfExamSelected;
-                          _.otherTestDetailsModel.tentativeExamDate =
-                              _.tentativeDateSelected;
-                          _.otherTestDetailsModel.resultDate =
-                              _.dateOftestReportSelected;
-                          _.otherTestDetailsModel.expirationDate =
-                              _.testScoreExpirationDateSelected;
-
-                          // int condition for null
-                          _.otherTestDetailsModel.analyticalWriting =
-                              getNUllChecker(analyticalWriting.text) == false
-                                  ? int.parse(analyticalWriting.text)
-                                  : 0;
-                          _.otherTestDetailsModel.verbalReasoning =
-                              getNUllChecker(verbalReasoning.text) == false
-                                  ? int.parse(verbalReasoning.text)
-                                  : 0;
-
-                          _.otherTestDetailsModel.quantitativeApptitude =
-                              getNUllChecker(quantitative.text) == false
-                                  ? int.parse(quantitative.text)
-                                  : 0;
-                          _.otherTestDetailsModel.integratedReasoning =
-                              getNUllChecker(integrateedReasoning.text) == false
-                                  ? int.parse(integrateedReasoning.text)
-                                  : 0;
-                          _.otherTestDetailsModel.reading =
-                              getNUllChecker(reading.text) == false
-                                  ? int.parse(reading.text)
-                                  : 0;
-                          _.otherTestDetailsModel.writing =
-                              getNUllChecker(writingAndLanguage.text) == false
-                                  ? int.parse(writingAndLanguage.text)
-                                  : 0;
-                          _.otherTestDetailsModel.essay =
-                              getNUllChecker(essay.text) == false
-                                  ? int.parse(essay.text)
-                                  : 0;
-                          _.otherTestDetailsModel.math =
-                              getNUllChecker(math.text) == false
-                                  ? int.parse(math.text)
-                                  : 0;
-                          _.otherTestDetailsModel.overAll =
-                              getNUllChecker(overallScore.text) == false
-                                  ? int.parse(overallScore.text)
-                                  : 0;
-                          _.editSave.value = true;
-                          _.updateOtherTestDetails("78623");
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Save",
-                          textColor: ThemeConstants.whitecolor,
-                        ))
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0.0,
-                          primary: ThemeConstants.bluecolor, // background
-                          onPrimary: ThemeConstants.bluecolor, // foreground
-                        ),
-                        onPressed: () async {
-                          _.editSave.value = false;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Edit",
-                          textColor: ThemeConstants.whitecolor,
-                        )),
+            SizedBox(
+              height: 50,
+              child: CustomDropDownSingle(
+                model: _.loadingExamStaus.value == true
+                    ? _.examStatusList
+                    : ["No Data"],
+                initialSelectedValue: _.loadingExamStaus.value == true
+                    ? getNUllChecker(_.examStatusSelected) == false
+                        ? _.examStatusSelected.toString()
+                        : _.examStatusList[0]
+                    : "No Data",
+                choosefieldtype: _.editSave.value == true ? true : false,
+                callbackFunction: callbackExamStatus,
               ),
             ),
-          ),
-        ],
+            if (_.examStatusSelectedID == "1") ...register(context),
+            if (_.examStatusSelectedID == "2") ...notYetRegister(context),
+            if (_.examStatusSelectedID == "3") ...testAlreadyTaken(context),
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 20),
+                child: SizedBox(
+                  width: 90,
+                  child: _.editSave.value == false
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0.0,
+                            primary: ThemeConstants.bluecolor, // background
+                            onPrimary: ThemeConstants.bluecolor, // foreground
+                          ),
+                          onPressed: () async {
+                            // DropDown
+                            _.otherTestDetailsModel.examStatus =
+                                _.examStatusSelectedID ?? "";
+                            if (getNUllChecker(_.examNameSelected) == false) {
+                              _.otherTestDetailsModel.examName =
+                                  _.examNameSelected;
+                            } else {
+                              _.otherTestDetailsModel.examName = null;
+                            }
+                            _.otherTestDetailsModel.testBook =
+                                _.bookTestSelectedID;
+                            _.otherTestDetailsModel.scoreType =
+                                _.tentaiveDefinite;
+
+                            // text field
+                            _.otherTestDetailsModel.dateOfExam =
+                                _.dateOfExamSelected;
+                            _.otherTestDetailsModel.tentativeExamDate =
+                                _.tentativeDateSelected;
+                            _.otherTestDetailsModel.resultDate =
+                                _.dateOftestReportSelected;
+                            _.otherTestDetailsModel.expirationDate =
+                                _.testScoreExpirationDateSelected;
+
+                            // int condition for null
+                            _.otherTestDetailsModel.analyticalWriting =
+                                getNUllChecker(analyticalWriting.text) == false
+                                    ? int.parse(analyticalWriting.text)
+                                    : 0;
+                            _.otherTestDetailsModel.verbalReasoning =
+                                getNUllChecker(verbalReasoning.text) == false
+                                    ? int.parse(verbalReasoning.text)
+                                    : 0;
+
+                            _.otherTestDetailsModel.quantitativeApptitude =
+                                getNUllChecker(quantitative.text) == false
+                                    ? int.parse(quantitative.text)
+                                    : 0;
+                            _.otherTestDetailsModel.integratedReasoning =
+                                getNUllChecker(integrateedReasoning.text) ==
+                                        false
+                                    ? int.parse(integrateedReasoning.text)
+                                    : 0;
+                            _.otherTestDetailsModel.reading =
+                                getNUllChecker(reading.text) == false
+                                    ? int.parse(reading.text)
+                                    : 0;
+                            _.otherTestDetailsModel.writing =
+                                getNUllChecker(writingAndLanguage.text) == false
+                                    ? int.parse(writingAndLanguage.text)
+                                    : 0;
+                            _.otherTestDetailsModel.essay =
+                                getNUllChecker(essay.text) == false
+                                    ? int.parse(essay.text)
+                                    : 0;
+                            _.otherTestDetailsModel.math =
+                                getNUllChecker(math.text) == false
+                                    ? int.parse(math.text)
+                                    : 0;
+                            _.otherTestDetailsModel.overAll =
+                                getNUllChecker(overallScore.text) == false
+                                    ? int.parse(overallScore.text)
+                                    : 0;
+                            _.editSave.value = true;
+                            _.updateOtherTestDetails("78623");
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Save",
+                            textColor: ThemeConstants.whitecolor,
+                          ))
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0.0,
+                            primary: ThemeConstants.bluecolor, // background
+                            onPrimary: ThemeConstants.bluecolor, // foreground
+                          ),
+                          onPressed: () async {
+                            _.editSave.value = false;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Edit",
+                            textColor: ThemeConstants.whitecolor,
+                          )),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 120,
+            ),
+          ],
+        ),
       );
     });
   }

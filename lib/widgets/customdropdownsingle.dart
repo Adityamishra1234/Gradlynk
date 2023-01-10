@@ -36,6 +36,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: DropdownButton(
+                  menuMaxHeight: 200,
                   elevation: 0,
                   underline: const SizedBox(),
                   // Initial Value

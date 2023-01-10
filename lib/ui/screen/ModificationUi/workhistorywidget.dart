@@ -357,6 +357,9 @@ class WorkHistoryWidget extends StatelessWidget {
                 ],
               ),
             ),
+          const SizedBox(
+            height: 100,
+          )
         ],
       );
     });

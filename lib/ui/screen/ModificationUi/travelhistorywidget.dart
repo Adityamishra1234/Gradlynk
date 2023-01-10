@@ -430,6 +430,9 @@ class TravelHistoryWidget extends StatelessWidget {
             ],
           ),
         ),
+      const SizedBox(
+        height: 120,
+      )
     ];
   }
 }

@@ -105,7 +105,7 @@ class _FilterState extends State<Filter> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Container(
                                   height:
-                                      MediaQuery.of(context).size.height - 220,
+                                      MediaQuery.of(context).size.height - 240,
                                   width: MediaQuery.of(context).size.width / 2 -
                                       10,
                                   color: ThemeConstants.whitecolor,
@@ -534,13 +534,13 @@ class _FilterState extends State<Filter> {
                               ),
                               SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height - 220,
+                                      MediaQuery.of(context).size.height - 240,
                                   child: const VerticalDivider()),
                               Padding(
                                 padding: const EdgeInsets.only(right: 9),
                                 child: SizedBox(
                                     height: MediaQuery.of(context).size.height -
-                                        220,
+                                        240,
                                     width:
                                         MediaQuery.of(context).size.width / 2 -
                                             10,

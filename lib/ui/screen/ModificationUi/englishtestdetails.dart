@@ -44,163 +44,169 @@ class EnglishTestDetails extends StatelessWidget {
         }
       }
 
-      return ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: Row(
-                children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Exam Status",
-                    mandatory: true,
-                    textColor: ThemeConstants.TextColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const Spacer(),
-                  if (_.editSave.value == true)
-                    TextButton(
-                        onPressed: () {
-                          _.editSave.value = false;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "edit",
-                          textColor: ThemeConstants.bluecolor,
-                        )),
-                  if (_.editSave.value == false)
-                    TextButton(
-                        onPressed: () {
-                          _.editSave.value = true;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "save",
-                          textColor: ThemeConstants.bluecolor,
-                        )),
-                ],
+      return SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: Row(
+                  children: [
+                    CustomAutoSizeTextMontserrat(
+                      text: "Exam Status",
+                      mandatory: true,
+                      textColor: ThemeConstants.TextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    const Spacer(),
+                    if (_.editSave.value == true)
+                      TextButton(
+                          onPressed: () {
+                            _.editSave.value = false;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "edit",
+                            textColor: ThemeConstants.bluecolor,
+                          )),
+                    if (_.editSave.value == false)
+                      TextButton(
+                          onPressed: () {
+                            _.editSave.value = true;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "save",
+                            textColor: ThemeConstants.bluecolor,
+                          )),
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: _.loadingExamStaus.value == true
-                  ? _.examStatusList
-                  : ["No Data"],
-              initialSelectedValue: _.loadingExamStaus.value == true
-                  ? getNUllChecker(_.examStatusSelected) == true
-                      ? _.examStatusList[0]
-                      : _.examStatusSelected.toString()
-                  : "No Data",
-              choosefieldtype: _.editSave.value == true ? true : false,
-              callbackFunction: callbackExamStatus,
+            SizedBox(
+              height: 50,
+              child: CustomDropDownSingle(
+                model: _.loadingExamStaus.value == true
+                    ? _.examStatusList
+                    : ["No Data"],
+                initialSelectedValue: _.loadingExamStaus.value == true
+                    ? getNUllChecker(_.examStatusSelected) == true
+                        ? _.examStatusList[0]
+                        : _.examStatusSelected.toString()
+                    : "No Data",
+                choosefieldtype: _.editSave.value == true ? true : false,
+                callbackFunction: callbackExamStatus,
+              ),
             ),
-          ),
-          if (getNUllChecker(_.examStatusSelected) == false)
-            if (_.examStatusCodeSelected == 1) ...registered(context),
-          if (_.examStatusCodeSelected == 2) ...notYetRegistered(context),
-          if (_.examStatusCodeSelected == 3) ...testAllReadyTaken(context),
-          if (_.examStatusCodeSelected == 3 && _.tentative.value == true)
-            ...tentative(context),
-          if (_.examStatusCodeSelected == 3 &&
-              _.tentative.value == false &&
-              _.duolingo.value == false)
-            ...definite(context),
-          if (_.examStatusCodeSelected == 3 &&
-              _.tentative.value == false &&
-              _.duolingo.value == true)
-            ...duolingo(context),
-          Align(
-            alignment: AlignmentDirectional.topEnd,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20, right: 20),
-              child: SizedBox(
-                width: 90,
-                child: _.editSave.value == false
-                    ? ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0.0,
-                          primary: ThemeConstants.bluecolor, // background
-                          onPrimary: ThemeConstants.bluecolor, // foreground
-                        ),
-                        onPressed: () async {
-                          //Book test
-                          //Specify_exam_name
-                          //already_given_exam_name
-                          EnglishTestDetailsViewModel
-                              englishTestDetailsViewModel =
-                              EnglishTestDetailsViewModel();
-                          print(getNUllChecker(_.dateOfExamSelected));
-                          print(getNUllChecker(_.tentativeExamDateSelcted));
-                          print(
-                              getNUllChecker(_.testscoreExpirationDateSelcted));
-                          print(getNUllChecker(_.dateOfTestReportSelcted));
+            if (getNUllChecker(_.examStatusSelected) == false)
+              if (_.examStatusCodeSelected == 1) ...registered(context),
+            if (_.examStatusCodeSelected == 2) ...notYetRegistered(context),
+            if (_.examStatusCodeSelected == 3) ...testAllReadyTaken(context),
+            if (_.examStatusCodeSelected == 3 && _.tentative.value == true)
+              ...tentative(context),
+            if (_.examStatusCodeSelected == 3 &&
+                _.tentative.value == false &&
+                _.duolingo.value == false)
+              ...definite(context),
+            if (_.examStatusCodeSelected == 3 &&
+                _.tentative.value == false &&
+                _.duolingo.value == true)
+              ...duolingo(context),
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, right: 20),
+                child: SizedBox(
+                  width: 90,
+                  child: _.editSave.value == false
+                      ? ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0.0,
+                            primary: ThemeConstants.bluecolor, // background
+                            onPrimary: ThemeConstants.bluecolor, // foreground
+                          ),
+                          onPressed: () async {
+                            //Book test
+                            //Specify_exam_name
+                            //already_given_exam_name
+                            EnglishTestDetailsViewModel
+                                englishTestDetailsViewModel =
+                                EnglishTestDetailsViewModel();
+                            print(getNUllChecker(_.dateOfExamSelected));
+                            print(getNUllChecker(_.tentativeExamDateSelcted));
+                            print(getNUllChecker(
+                                _.testscoreExpirationDateSelcted));
+                            print(getNUllChecker(_.dateOfTestReportSelcted));
 
-                          englishTestDetailsViewModel =
-                              _.englishTestDetailsViewModel;
-                          englishTestDetailsViewModel.dateOfExam =
-                              _.dateOfExamSelected;
-                          englishTestDetailsViewModel.tentativeExamDate =
-                              _.tentativeExamDateSelcted;
-                          englishTestDetailsViewModel.expirationDate =
-                              _.testscoreExpirationDateSelcted;
-                          englishTestDetailsViewModel.resultDate =
-                              _.dateOfTestReportSelcted;
-                          englishTestDetailsViewModel.enqId = "78623";
-                          englishTestDetailsViewModel.examStatusID =
-                              _.examStatusCodeSelected.toString();
-                          englishTestDetailsViewModel.examName =
-                              _.examNameSelected;
-                          englishTestDetailsViewModel.reading = reading.text;
-                          englishTestDetailsViewModel.writing = writing.text;
-                          englishTestDetailsViewModel.listening =
-                              listening.text;
-                          englishTestDetailsViewModel.speaking = speaking.text;
-                          englishTestDetailsViewModel.literacy = listening.text;
-                          englishTestDetailsViewModel.comprehension =
-                              writing.text;
-                          englishTestDetailsViewModel.conversation =
-                              reading.text;
-                          englishTestDetailsViewModel.production = writing.text;
-                          if (getNUllChecker(tentativeExamDate.text)) {
-                            englishTestDetailsViewModel.overAll =
-                                overallScoreController.text;
-                          } else {
-                            englishTestDetailsViewModel.overAll =
-                                controller.englishTestDetailsViewModel.overAll;
-                          }
-                          updateEnglishTestDetails(englishTestDetailsViewModel);
-                          _.editSave.value = true;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Save",
-                          textColor: ThemeConstants.whitecolor,
-                        ))
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0.0,
-                          primary: ThemeConstants.bluecolor, // background
-                          onPrimary: ThemeConstants.bluecolor, // foreground
-                        ),
-                        onPressed: () async {
-                          _.editSave.value = false;
-                          _.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Edit",
-                          textColor: ThemeConstants.whitecolor,
-                        )),
+                            englishTestDetailsViewModel =
+                                _.englishTestDetailsViewModel;
+                            englishTestDetailsViewModel.dateOfExam =
+                                _.dateOfExamSelected;
+                            englishTestDetailsViewModel.tentativeExamDate =
+                                _.tentativeExamDateSelcted;
+                            englishTestDetailsViewModel.expirationDate =
+                                _.testscoreExpirationDateSelcted;
+                            englishTestDetailsViewModel.resultDate =
+                                _.dateOfTestReportSelcted;
+                            englishTestDetailsViewModel.enqId = "78623";
+                            englishTestDetailsViewModel.examStatusID =
+                                _.examStatusCodeSelected.toString();
+                            englishTestDetailsViewModel.examName =
+                                _.examNameSelected;
+                            englishTestDetailsViewModel.reading = reading.text;
+                            englishTestDetailsViewModel.writing = writing.text;
+                            englishTestDetailsViewModel.listening =
+                                listening.text;
+                            englishTestDetailsViewModel.speaking =
+                                speaking.text;
+                            englishTestDetailsViewModel.literacy =
+                                listening.text;
+                            englishTestDetailsViewModel.comprehension =
+                                writing.text;
+                            englishTestDetailsViewModel.conversation =
+                                reading.text;
+                            englishTestDetailsViewModel.production =
+                                writing.text;
+                            if (getNUllChecker(tentativeExamDate.text)) {
+                              englishTestDetailsViewModel.overAll =
+                                  overallScoreController.text;
+                            } else {
+                              englishTestDetailsViewModel.overAll = controller
+                                  .englishTestDetailsViewModel.overAll;
+                            }
+                            updateEnglishTestDetails(
+                                englishTestDetailsViewModel);
+                            _.editSave.value = true;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Save",
+                            textColor: ThemeConstants.whitecolor,
+                          ))
+                      : ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0.0,
+                            primary: ThemeConstants.bluecolor, // background
+                            onPrimary: ThemeConstants.bluecolor, // foreground
+                          ),
+                          onPressed: () async {
+                            _.editSave.value = false;
+                            _.update();
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Edit",
+                            textColor: ThemeConstants.whitecolor,
+                          )),
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 60,
-          ),
-        ],
+            const SizedBox(
+              height: 120,
+            ),
+          ],
+        ),
       );
     });
   }

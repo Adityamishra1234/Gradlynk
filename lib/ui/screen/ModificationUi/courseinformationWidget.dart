@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
@@ -153,39 +154,53 @@ class CourseInformationWidget extends StatelessWidget {
                                 textColor: ThemeConstants.TextColor,
                               )),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20, right: 20),
-                          child: SizedBox(
-                            width: 90,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  primary:
-                                      ThemeConstants.bluecolor, // background
-                                  onPrimary:
-                                      ThemeConstants.bluecolor, // foreground
-                                ),
-                                onPressed: () async {
-                                  controller1.viewCourseInformationList.add(
-                                      ViewCourseInformation(
-                                          courseBroadId:
-                                              controller1.courseBroadSelectedId,
-                                          courseNarrowId: controller1
-                                              .courseNarrowSelectedId,
-                                          broadFieldName:
-                                              controller1.courseBroadSelected,
-                                          narrowFieldName: controller1
-                                              .courseNarrowSelected));
-                                  controller1.viewCourseInformationList;
-                                  controller1.updateCourseInformation(78623,
-                                      controller1.courseLevelSelectedId!);
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Add",
-                                  textColor: ThemeConstants.whitecolor,
-                                )),
+                        if (controller1.loadingCourseBroad.value == true)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20, right: 20),
+                            child: SizedBox(
+                              width: 90,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0.0,
+                                    primary:
+                                        ThemeConstants.bluecolor, // background
+                                    onPrimary:
+                                        ThemeConstants.bluecolor, // foreground
+                                  ),
+                                  onPressed: () async {
+                                    if (controller1.loadingCourseBroad.value ==
+                                        true) {
+                                      controller1.viewCourseInformationList.add(
+                                          ViewCourseInformation(
+                                              courseBroadId: controller1
+                                                  .courseBroadSelectedId,
+                                              courseNarrowId: controller1
+                                                  .courseNarrowSelectedId,
+                                              broadFieldName: controller1
+                                                  .courseBroadSelected,
+                                              narrowFieldName: controller1
+                                                  .courseNarrowSelected));
+                                      controller1.viewCourseInformationList;
+                                      controller1.updateCourseInformation(78623,
+                                          controller1.courseLevelSelectedId!);
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: "Please Wait",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          backgroundColor:
+                                              ThemeConstants.whitecolor,
+                                          textColor: ThemeConstants.blackcolor,
+                                          fontSize: 16.0);
+                                    }
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Add",
+                                    textColor: ThemeConstants.whitecolor,
+                                  )),
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   if (update == false)
