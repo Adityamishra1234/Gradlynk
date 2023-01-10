@@ -47,9 +47,14 @@ class _CourseSearchListState extends State<CourseSearchList> {
 
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
+    double width;
+    if (displayMobileLayout == false) {
+      width = MediaQuery.of(context).size.width + 240.00;
+    }
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: CustomDrawer(),
+        drawer: displayMobileLayout == false ? CustomDrawer() : null,
         body: GetBuilder<CourseShortListController>(builder: (_) {
           if (widget.filterRedirect == false) {
             controller1.courseModelFilter = controller1.courseModelFilter;
@@ -57,199 +62,216 @@ class _CourseSearchListState extends State<CourseSearchList> {
             controller1.courseModelFilter = widget.courseModelFilter!;
           }
           return _.loadingCourseSearch.value == true
-              ? Container(
-                  color: ThemeConstants.whitecolor,
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: [
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              controller1.courseModelFilter
-                                      .previousCourseSearchList =
-                                  controller1
-                                      .courseModelFilter.courseSearchList;
-                              Get.to(Filter(
-                                courseModelFilter:
-                                    controller1.courseModelFilter,
-                                previousRoute: CourseSearchList.routeNamed,
-                              ));
-                            },
-                            child: Container(
-                              height: 30,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightorangeColor,
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Filter",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      textColor: ThemeConstants.orangeColor),
-                                ),
-                              ),
+              ? Row(
+                  children: [
+                    if (displayMobileLayout == true) CustomDrawer(),
+                    Flexible(
+                      child: Container(
+                        color: ThemeConstants.whitecolor,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 5,
                             ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              if (controller1.compareApply.value == false) {
-                                controller1.setCompare(true.obs);
-                              } else {
-                                controller1.setCompare(false.obs);
-                              }
-                            },
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightgreentColor,
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Compare",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      textColor: ThemeConstants.GreenColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              Get.toNamed(ReviewShortList.routeNamed);
-                              Get.snackbar("Review Course", "Test",
-                                  snackPosition: SnackPosition.BOTTOM);
-                            },
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightVioletColor,
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Review Course",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      textColor: ThemeConstants.VioletColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Expanded(
-                        child: Scrollbar(
-                          isAlwaysShown: true,
-                          showTrackOnHover: true,
-                          radius: Radius.circular(12.0),
-                          controller: ScrollController(),
-                          child: ListView.builder(
-                              itemCount: controller1
-                                  .courseModelFilter.courseSearchList.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Column(
-                                  children: [
-                                    // if (controller1.courseSearchModel.length != index)
-                                    CollagelistExpandedWidget(
+                            Row(
+                              children: [
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    controller1.courseModelFilter
+                                            .previousCourseSearchList =
+                                        controller1
+                                            .courseModelFilter.courseSearchList;
+                                    Get.to(Filter(
+                                      courseModelFilter:
+                                          controller1.courseModelFilter,
                                       previousRoute:
                                           CourseSearchList.routeNamed,
-                                      index: index,
-                                      courseShortListFirst: true,
-                                      courseSearchModelCompare1Id:
-                                          _.courseSearchModelCompare1.id,
-                                      courseSearchModelCompare2Id:
-                                          _.courseSearchModelCompare2.id,
-                                      callbackForModelCompare:
-                                          callbackModelCompare,
-                                      callbackCompare: callbackCompare,
-                                      //done
-                                      iscompare: controller1.compareApply.value,
-
-                                      courseSearchModel: controller1
-                                          .courseModelFilter
-                                          .courseSearchList[index],
-                                      callbackFunction:
-                                          callbackCompleteDetailCourse,
-                                      callbackShortListButton:
-                                          CallbackShortListButton,
-                                      finalShortListFirst: false,
-                                    ),
-                                  ],
-                                );
-                              }),
-                        ),
-                      ),
-                      if (controller1.compareApply.value == true)
-                        InkWell(
-                          onTap: () {
-                            Get.to(
-                              Comparing(
-                                courseSearchModel1:
-                                    Get.find<CourseShortListController>()
-                                        .courseSearchModelCompare1,
-                                courseSearchModel2:
-                                    Get.find<CourseShortListController>()
-                                        .courseSearchModelCompare2,
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                color: ThemeConstants.bluecolor,
-                                borderRadius:
-                                    const BorderRadiusDirectional.only(
-                                  topStart: Radius.circular(20.0),
-                                  topEnd: Radius.circular(20.0),
-                                )),
-                            child: Center(
-                              child: Row(
-                                children: [
-                                  const Spacer(),
-                                  SvgPicture.asset(
-                                    "assets/icons/compare.svg",
+                                    ));
+                                  },
+                                  child: Container(
                                     height: 30,
-                                    color: ThemeConstants.whitecolor,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                        color: ThemeConstants.lightorangeColor,
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                5.0)),
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10, top: 5),
+                                        child: CustomAutoSizeTextMontserrat(
+                                            text: "Filter",
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                            textColor:
+                                                ThemeConstants.orangeColor),
+                                      ),
+                                    ),
                                   ),
-                                  const SizedBox(
-                                    width: 5,
+                                ),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    if (controller1.compareApply.value ==
+                                        false) {
+                                      controller1.setCompare(true.obs);
+                                    } else {
+                                      controller1.setCompare(false.obs);
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        color: ThemeConstants.lightgreentColor,
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                5.0)),
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10, top: 5),
+                                        child: CustomAutoSizeTextMontserrat(
+                                            text: "Compare",
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                            textColor:
+                                                ThemeConstants.GreenColor),
+                                      ),
+                                    ),
                                   ),
-                                  CustomAutoSizeTextMontserrat(
-                                    text: "Compare",
-                                    fontSize: 20,
-                                    textColor: ThemeConstants.whitecolor,
+                                ),
+                                const Spacer(),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed(ReviewShortList.routeNamed);
+                                    Get.snackbar("Review Course", "Test",
+                                        snackPosition: SnackPosition.BOTTOM);
+                                  },
+                                  child: Container(
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        color: ThemeConstants.lightVioletColor,
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                5.0)),
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10, top: 5),
+                                        child: CustomAutoSizeTextMontserrat(
+                                            text: "Review Course",
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                            textColor:
+                                                ThemeConstants.VioletColor),
+                                      ),
+                                    ),
                                   ),
-                                  const Spacer(),
-                                ],
+                                ),
+                                const Spacer(),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              child: Scrollbar(
+                                isAlwaysShown: true,
+                                showTrackOnHover: true,
+                                radius: Radius.circular(12.0),
+                                controller: ScrollController(),
+                                child: ListView.builder(
+                                    itemCount: controller1.courseModelFilter
+                                        .courseSearchList.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Column(
+                                        children: [
+                                          // if (controller1.courseSearchModel.length != index)
+                                          CollagelistExpandedWidget(
+                                            previousRoute:
+                                                CourseSearchList.routeNamed,
+                                            index: index,
+                                            courseShortListFirst: true,
+                                            courseSearchModelCompare1Id:
+                                                _.courseSearchModelCompare1.id,
+                                            courseSearchModelCompare2Id:
+                                                _.courseSearchModelCompare2.id,
+                                            callbackForModelCompare:
+                                                callbackModelCompare,
+                                            callbackCompare: callbackCompare,
+                                            //done
+                                            iscompare:
+                                                controller1.compareApply.value,
+
+                                            courseSearchModel: controller1
+                                                .courseModelFilter
+                                                .courseSearchList[index],
+                                            callbackFunction:
+                                                callbackCompleteDetailCourse,
+                                            callbackShortListButton:
+                                                CallbackShortListButton,
+                                            finalShortListFirst: false,
+                                          ),
+                                        ],
+                                      );
+                                    }),
                               ),
                             ),
-                          ),
+                            if (controller1.compareApply.value == true)
+                              InkWell(
+                                onTap: () {
+                                  Get.to(
+                                    Comparing(
+                                      courseSearchModel1:
+                                          Get.find<CourseShortListController>()
+                                              .courseSearchModelCompare1,
+                                      courseSearchModel2:
+                                          Get.find<CourseShortListController>()
+                                              .courseSearchModelCompare2,
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  height: 60,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.bluecolor,
+                                      borderRadius:
+                                          const BorderRadiusDirectional.only(
+                                        topStart: Radius.circular(20.0),
+                                        topEnd: Radius.circular(20.0),
+                                      )),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        const Spacer(),
+                                        SvgPicture.asset(
+                                          "assets/icons/compare.svg",
+                                          height: 30,
+                                          color: ThemeConstants.whitecolor,
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        CustomAutoSizeTextMontserrat(
+                                          text: "Compare",
+                                          fontSize: 20,
+                                          textColor: ThemeConstants.whitecolor,
+                                        ),
+                                        const Spacer(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 )
               : const Center(
                   child: CircularProgressIndicator(),

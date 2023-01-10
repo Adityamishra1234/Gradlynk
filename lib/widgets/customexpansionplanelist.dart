@@ -27,11 +27,16 @@ class _CustomExpansionPlanListState extends State<CustomExpansionPlanList> {
 
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
+    double width = MediaQuery.of(context).size.width;
+    if (displayMobileLayout == true) {
+      width = MediaQuery.of(context).size.width - 240;
+    }
     return Card(
       elevation: 0,
       child: ConfigurableExpansionTile(
         header: SizedBox(
-          width: MediaQuery.of(context).size.width - 10,
+          width: width - 10,
           height: 40,
           child: Row(
             children: [

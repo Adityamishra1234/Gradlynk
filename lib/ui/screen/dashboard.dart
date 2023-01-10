@@ -39,6 +39,7 @@ class _DashBoardState extends State<DashBoard> {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     print(MediaQuery.of(context).size.width);
+    print(MediaQuery.of(context).size.height);
 
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
@@ -99,6 +100,8 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ),
                   ),
+
+                  // Schedule Expert Call Button And Book an Appointment
                   Row(
                     children: [
                       // const SizedBox(
@@ -324,17 +327,19 @@ class _DashBoardState extends State<DashBoard> {
                   const SizedBox(
                     height: 10,
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(ProfilePageCopy.routeNamed, parameters: {
-                        "studentPanelModel":
-                            dashboardController.studentPanel.toString()
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Spacer(),
-                        Column(
+
+                  Wrap(
+                    runSpacing: 15.0,
+                    spacing: 15.0,
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    children: [
+                      // Create profile
+                      InkWell(
+                        onTap: () {
+                          Get.to(ProfilePageCopy());
+                        },
+                        child: Column(
                           children: [
                             Container(
                               height: 130,
@@ -361,58 +366,53 @@ class _DashBoardState extends State<DashBoard> {
                             )
                           ],
                         ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(UploadDocument.routeNamed);
-                          },
-                          child: Ink(
-                            height: 160,
-                            width: 160,
-                            color: Colors.amber,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 130,
-                                  width: 160,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 0,
-                                          color: const Color(0xFFFEF6E6)),
-                                      color: const Color(0xFFFEF6E6),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/upload_document.svg",
-                                    color: const Color(0xFFF8A300),
-                                    height: 60,
-                                    width: 80,
-                                    fit: BoxFit.scaleDown,
-                                  ),
+                      ),
+                      //Upload Document
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(UploadDocument.routeNamed);
+                        },
+                        child: Ink(
+                          height: 160,
+                          width: 160,
+                          color: Colors.amber,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 130,
+                                width: 160,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 0,
+                                        color: const Color(0xFFFEF6E6)),
+                                    color: const Color(0xFFFEF6E6),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(20))),
+                                child: SvgPicture.asset(
+                                  "assets/icons/upload_document.svg",
+                                  color: const Color(0xFFF8A300),
+                                  height: 60,
+                                  width: 80,
+                                  fit: BoxFit.scaleDown,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Text(
-                                    "Upload document",
-                                    style: _textStyle,
-                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Text(
+                                  "Upload document",
+                                  style: _textStyle,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Spacer(),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(CourseSearch.routeNamed);
-                    },
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        Column(
+                      ),
+                      //Course Search
+                      InkWell(
+                        onTap: () {
+                          Get.to(CourseSearch());
+                        },
+                        child: Column(
                           children: [
                             Container(
                               height: 130,
@@ -438,44 +438,57 @@ class _DashBoardState extends State<DashBoard> {
                             )
                           ],
                         ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            Get.toNamed(TrackApplication.routeNamed);
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                height: 130,
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 0,
-                                        color: const Color(0xFFE8FAFD)),
-                                    color: const Color(0xFFE8FAFD),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(20))),
-                                child: SvgPicture.asset(
-                                    "assets/icons/track.svg",
-                                    color: const Color(0xFF05B4D2),
-                                    height: 60,
-                                    width: 80,
-                                    fit: BoxFit.scaleDown),
+                      ),
+                      // Track Application
+                      InkWell(
+                        onTap: () {
+                          Get.toNamed(TrackApplication.routeNamed);
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 130,
+                              width: 160,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 0, color: const Color(0xFFE8FAFD)),
+                                  color: const Color(0xFFE8FAFD),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20))),
+                              child: SvgPicture.asset("assets/icons/track.svg",
+                                  color: const Color(0xFF05B4D2),
+                                  height: 60,
+                                  width: 80,
+                                  fit: BoxFit.scaleDown),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                "Track application",
+                                style: _textStyle,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: Text(
-                                  "Track application",
-                                  style: _textStyle,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        const Spacer(),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     // Get.toNamed(CourseSearch.routeNamed);
+                  //   },
+                  //   child: Row(
+                  //     children: [
+                  //       const Spacer(),
+                  //       // Course Search Button
+                  //       const Spacer(),
+                  //       // Track Application
+                  //       const Spacer(),
+                  //     ],
+                  //   ),
+                  // ),
+
+                  // Upcoming Event
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 15,
