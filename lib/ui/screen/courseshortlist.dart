@@ -164,8 +164,6 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                 InkWell(
                                   onTap: () {
                                     Get.toNamed(ReviewShortList.routeNamed);
-                                    Get.snackbar("Review Course", "Test",
-                                        snackPosition: SnackPosition.BOTTOM);
                                   },
                                   child: Container(
                                     height: 30,

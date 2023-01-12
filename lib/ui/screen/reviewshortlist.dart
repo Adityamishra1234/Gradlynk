@@ -145,8 +145,6 @@ class _ReviewShortListState extends State<ReviewShortList> {
                           InkWell(
                             onTap: () {
                               Get.toNamed(FinalShortList.routeNamed);
-                              Get.snackbar("Final ShortList", "Test",
-                                  snackPosition: SnackPosition.BOTTOM);
                             },
                             child: Container(
                               height: 30,
