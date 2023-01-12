@@ -283,7 +283,7 @@ class FilterController extends BaseController {
       if (getNUllChecker(element.intakeMonth) == false) {
         filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
       }
-      if (getNUllChecker(element.intakeMonth) == false) {
+      if (getNUllChecker(element.annualTutionFeesInr) == false) {
         if (double.parse(element.annualTutionFeesInr!) < 700000) {
           filterModel.budget[3].update("Below 7 Lac", (value) => true);
         } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&

@@ -573,7 +573,12 @@ class _FilterState extends State<Filter> {
                                               side: BorderSide(
                                                   color: ThemeConstants
                                                       .TextColor)))),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    itemsSelected = null;
+                                    controller1.filterModel.filterSelected =
+                                        FilterSelected();
+                                    controller.update();
+                                  },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Clear Filter ",
                                     fontWeight: FontWeight.bold,
