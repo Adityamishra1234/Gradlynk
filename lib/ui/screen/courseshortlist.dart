@@ -16,6 +16,10 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 class CourseSearchList extends StatefulWidget {
   static const routeNamed = '/CourseSearchList';
   bool filterRedirect = false;
+  String? stateCode;
+  String? cityCode;
+  String? boardFieldCode;
+  String? narrowField;
   String? countryId;
   String? courseLevel;
   String? enq_id;
@@ -23,6 +27,10 @@ class CourseSearchList extends StatefulWidget {
   CourseSearchList(
       {Key? key,
       required this.filterRedirect,
+      this.stateCode,
+      this.cityCode,
+      this.boardFieldCode,
+      this.narrowField,
       this.countryId,
       this.courseLevel,
       this.courseModelFilter,
@@ -36,11 +44,21 @@ class CourseSearchList extends StatefulWidget {
 class _CourseSearchListState extends State<CourseSearchList> {
   var controller1 = Get.put(CourseShortListController());
 
+  // String state = "",
+  // String city = "",
+  // String boarder_ield = "",
+  // String narrow_field = "",
   @override
   void initState() {
     if (widget.filterRedirect == false) {
       controller1.courseSearch(
-          widget.countryId!, widget.courseLevel!, widget.enq_id!);
+          widget.countryId!,
+          widget.courseLevel!,
+          widget.enq_id!,
+          widget.stateCode ?? "[]",
+          widget.cityCode ?? "[]",
+          widget.boardFieldCode ?? "[]",
+          widget.narrowField ?? "[]");
     }
     super.initState();
   }

@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseShortListController extends BaseController {
@@ -96,20 +97,29 @@ class CourseShortListController extends BaseController {
     }
   }
 
-  courseSearch(String country, String courseLevel, String enq_id) async {
+  courseSearch(String country, String courseLevel, String enq_id,
+      [String state = "[]",
+      String city = "[]",
+      String boarder_ield = "[]",
+      String narrow_field = "[]"]) async {
     loadingCourseSearch = false.obs;
     courseModelFilter = CourseModelFilter();
     var now = DateTime.now();
     var formatterYear = DateFormat('yyyy');
     var formatterMonth = DateFormat('MM');
-    var temp = country.split('[');
-    var temp2 = temp[1].split(']')[0];
-    var temp3 = courseLevel.split('[');
-    var temp4 = temp3[1].split(']')[0];
+
     String? endpoint = Endpoints.courseSearchPart1! +
-        temp2 +
+        getRemoveSquarebracket(country) +
         Endpoints.courseSearchPart2! +
-        temp4;
+        getRemoveSquarebracket(courseLevel) +
+        Endpoints.courseSearchPart3! +
+        getRemoveSquarebracket(state) +
+        Endpoints.courseSearchPart4! +
+        getRemoveSquarebracket(city) +
+        Endpoints.courseSearchPart5! +
+        getRemoveSquarebracket(boarder_ield) +
+        Endpoints.courseSearchPart6! +
+        getRemoveSquarebracket(narrow_field);
     var res =
         await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint, enq_id);
     if (res != null) {

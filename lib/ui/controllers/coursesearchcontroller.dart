@@ -11,6 +11,7 @@ class CourseSearchController extends BaseController {
   // Reactive field Using in Callback Funcation
   RxList<dynamic> selectCountryCode = [].obs;
   RxList<dynamic> selectStateCode = [].obs;
+  RxList<dynamic> selectCityCode = [].obs;
   RxList<dynamic> selectCourseBoardFieldCode = [].obs;
   RxList<dynamic> selectCourseNarrowFieldCode = [].obs;
   RxList<dynamic> selectCourseCode = [].obs;

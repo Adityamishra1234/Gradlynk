@@ -33,6 +33,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/sort.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
+import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
@@ -262,6 +263,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: DocumentTest.routeNamed,
           page: () => DocumentTest(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: TimepickerDemo.routeNamed,
+          page: () => TimepickerDemo(),
           transition: Transition.fade,
         ),
 

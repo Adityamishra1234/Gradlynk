@@ -75,6 +75,119 @@ class QualificationDetailsController extends BaseController {
     super.onInit();
   }
 
+//use for Edit case
+
+  getEdit(
+      String countryId,
+      String? state,
+      String? stateID,
+      String? city,
+      String? cityID,
+      String? affiliation,
+      String? affiliationID,
+      String? institution,
+      String? institutionId) {
+    getStateEdit(countryId, state, stateID);
+    if (stateID != null) {
+      getCityEdit(stateID, city, cityID);
+    }
+    getAffiliationEdit(countryId, affiliation, affiliationID);
+    if (cityID != null) {
+      geInstitutionEdit(cityID, institution, institutionId);
+    }
+  }
+
+  getStateEdit(String countryId, String? state, String? stateID) async {
+    loadingState = false.obs;
+    stateList = [];
+    stateCode = [];
+    var res = await apiServices.getState2(
+        Endpoints.baseUrl!, Endpoints.state! + countryId);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      List<dynamic> temp = map.keys.toList();
+      temp.forEach((element) {
+        stateList.add(element);
+      });
+      temp = map.values.toList();
+      temp.forEach((element) {
+        stateCode.add(element.toString());
+      });
+      stateSelected = state;
+      stateSelectedID = stateID;
+      loadingState = true.obs;
+      update();
+    }
+  }
+
+  getCityEdit(String stateId, String? city, String? cityID) async {
+    loadingCity.value = false;
+    cityCode = [];
+    cityList = [];
+    var res = await apiServices.getCity2(
+        Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      List<dynamic> temp = map.keys.toList();
+      temp.forEach((element) {
+        cityList.add(element);
+      });
+      temp = map.values.toList();
+      temp.forEach((element) {
+        cityCode.add(element.toString());
+      });
+      citySelected = city;
+      citySelectedID = cityID;
+      loadingCity = true.obs;
+      update();
+    }
+  }
+
+  getAffiliationEdit(
+      String countryId, String? affiliation, String? affiliationID) async {
+    loadingAffiliation = false.obs;
+    affiliationList = [];
+    affiliationCode = [];
+    List<AffiliationDropDownModel> affiliationDropDown = [];
+    var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
+        Endpoints.affiliationForCountry! + countryId.toString());
+    if (res != null) {
+      affiliationDropDown = res;
+      affiliationDropDown.forEach((element) {
+        affiliationList.add(element.affiliationName);
+        affiliationCode.add(element.id);
+        affiliationCodeSelected = affiliationID ?? affiliationList[0];
+        affiliationNameSelected = affiliation ?? affiliationCode[0];
+        loadingAffiliation.value = true;
+        update();
+      });
+    }
+  }
+
+  geInstitutionEdit(
+      String cityId, String? institution, String? institutionId) async {
+    affiliationCode = [];
+    affiliationList = [];
+    loadingAffiliation.value = false;
+    var res = await apiServices.getInstitute(
+        Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      List<dynamic> temp = map.keys.toList();
+      temp.forEach((element) {
+        institutionList.add(element);
+      });
+      temp = map.values.toList();
+      temp.forEach((element) {
+        institutionCode.add(element.toString());
+      });
+      institutionSelected = institution ?? institutionList[0];
+      institutionSelectedID = institutionId ?? institutionCode[0];
+      loadingInstitution = true.obs;
+      update();
+    }
+  }
+
   getHighestQualification() async {
     var res = await apiServices.getHighestQualification(
         Endpoints.baseUrl!, Endpoints.highestQualification!);
@@ -88,7 +201,6 @@ class QualificationDetailsController extends BaseController {
       temp.forEach((element) {
         highestQualificationCode.add(element.toString());
       });
-
       loadingHighestQualification = true.obs;
       update();
     }
@@ -124,96 +236,6 @@ class QualificationDetailsController extends BaseController {
       });
 
       loadingCountry = true.obs;
-      update();
-    }
-  }
-
-  getState(String countryId) async {
-    loadingState = false.obs;
-    stateList = [];
-    stateCode = [];
-    var res = await apiServices.getState2(
-        Endpoints.baseUrl!, Endpoints.state! + countryId);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        stateList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        stateCode.add(element.toString());
-      });
-      stateSelected = null;
-      stateSelectedID = null;
-      loadingState = true.obs;
-      update();
-    }
-  }
-
-  getCity(String stateId) async {
-    loadingCity.value = false;
-    cityCode = [];
-    cityList = [];
-    var res = await apiServices.getCity2(
-        Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        cityList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        cityCode.add(element.toString());
-      });
-      citySelected = null;
-      citySelectedID = null;
-      loadingCity = true.obs;
-      update();
-    }
-  }
-
-  getAffiliation(String countryId) async {
-    loadingAffiliation = false.obs;
-    affiliationList = [];
-    affiliationCode = [];
-    List<AffiliationDropDownModel> affiliationDropDown = [];
-    var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
-        Endpoints.affiliationForCountry! + countryId.toString());
-    if (res != null) {
-      affiliationDropDown = res;
-      affiliationDropDown.forEach((element) {
-        affiliationList.add(element.affiliationName);
-        affiliationCode.add(element.id);
-        affiliationCodeSelected = null;
-        affiliationNameSelected = null;
-
-        loadingAffiliation = true.obs;
-        update();
-      });
-    }
-  }
-
-  geInstitution(String cityId) async {
-    affiliationCode = [];
-    affiliationList = [];
-    loadingAffiliation.value = false;
-    var res = await apiServices.getInstitute(
-        Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        institutionList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        institutionList.add(element.toString());
-      });
-      institutionSelected = null;
-      institutionSelectedID = null;
-      loadingInstitution = true.obs;
       update();
     }
   }
@@ -275,6 +297,96 @@ class QualificationDetailsController extends BaseController {
       Map map = Map<String, dynamic>.from(res);
       educationStatusList = map.values.toList();
       loadingEducationStatus.value = true;
+      update();
+    }
+  }
+
+  getState(String countryId) async {
+    loadingState = false.obs;
+    stateList = [];
+    stateCode = [];
+    var res = await apiServices.getState2(
+        Endpoints.baseUrl!, Endpoints.state! + countryId);
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      List<dynamic> temp = map.keys.toList();
+      temp.forEach((element) {
+        stateList.add(element);
+      });
+      temp = map.values.toList();
+      temp.forEach((element) {
+        stateCode.add(element.toString());
+      });
+      // stateSelected = null;
+      // stateSelectedID = null;
+      loadingState = true.obs;
+      update();
+    }
+  }
+
+  getCity(String stateId) async {
+    loadingCity.value = false;
+    cityCode = [];
+    cityList = [];
+    var res = await apiServices.getCity2(
+        Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      List<dynamic> temp = map.keys.toList();
+      temp.forEach((element) {
+        cityList.add(element);
+      });
+      temp = map.values.toList();
+      temp.forEach((element) {
+        cityCode.add(element.toString());
+      });
+      // citySelected = null;
+      // citySelectedID = null;
+      loadingCity = true.obs;
+      update();
+    }
+  }
+
+  getAffiliation(String countryId) async {
+    loadingAffiliation = false.obs;
+    affiliationList = [];
+    affiliationCode = [];
+    List<AffiliationDropDownModel> affiliationDropDown = [];
+    var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
+        Endpoints.affiliationForCountry! + countryId.toString());
+    if (res != null) {
+      affiliationDropDown = res;
+      affiliationDropDown.forEach((element) {
+        affiliationList.add(element.affiliationName);
+        affiliationCode.add(element.id);
+        // affiliationCodeSelected = null;
+        // affiliationNameSelected = null;
+
+        loadingAffiliation = true.obs;
+        update();
+      });
+    }
+  }
+
+  geInstitution(String cityId) async {
+    affiliationCode = [];
+    affiliationList = [];
+    loadingAffiliation.value = false;
+    var res = await apiServices.getInstitute(
+        Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
+    if (res != null) {
+      Map map = Map<String, dynamic>.from(res);
+      List<dynamic> temp = map.keys.toList();
+      temp.forEach((element) {
+        institutionList.add(element);
+      });
+      temp = map.values.toList();
+      temp.forEach((element) {
+        institutionCode.add(element.toString());
+      });
+      // institutionSelected = null;
+      // institutionSelectedID = null;
+      loadingInstitution = true.obs;
       update();
     }
   }

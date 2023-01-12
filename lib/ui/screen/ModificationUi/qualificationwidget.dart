@@ -62,29 +62,16 @@ class QualificationWidget extends StatelessWidget {
             controller1.modelList[index!].yearOfPassing ?? "";
 
         // cgpa.text = double.parse(controller1.modelList[index!].percentage.toString()) /;
-
-        controller1.countrySelected =
-            controller1.modelList[index!].countryName ?? "";
-        controller1.countrySelectedID =
-            controller1.modelList[index!].countryId ?? "";
-        controller1.stateSelected =
-            controller1.modelList[index!].stateName ?? "";
-        controller1.stateSelectedID =
-            controller1.modelList[index!].stateId ?? "";
-        controller1.citySelected = controller1.modelList[index!].cityName ?? "";
-        controller1.citySelectedID = controller1.modelList[index!].cityId ?? "";
-        controller1.affiliationNameSelected =
-            controller1.modelList[index!].affiliationName ?? "";
-        controller1.affiliationCodeSelected =
-            controller1.modelList[index!].affiliationId ?? "";
-        controller1.institutionSelected =
-            controller1.modelList[index!].universityName ?? "";
-        controller1.institutionSelectedID =
-            controller1.modelList[index!].passingInstId ?? "";
-
-        controller1.getState(controller1.countrySelectedID!);
-        controller1.getCity(controller1.stateSelectedID ?? "");
-        controller1.getAffiliation(controller1.countrySelectedID ?? "");
+        controller1.getEdit(
+            controller1.modelList[index!].countryId!,
+            controller1.modelList[index!].stateName,
+            controller1.modelList[index!].stateId,
+            controller1.modelList[index!].cityName,
+            controller1.modelList[index!].cityId,
+            controller1.modelList[index!].affiliationName,
+            controller1.modelList[index!].affiliationId,
+            controller1.modelList[index!].universityName,
+            controller1.modelList[index!].passingInstId);
       }
       return SingleChildScrollView(
         child: Column(
@@ -590,7 +577,7 @@ class QualificationWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            SizedBox(
+            const SizedBox(
               height: 120,
             )
           ],

@@ -1,6 +1,8 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:studentpanel/utils/theme.dart';
 
 class Constants {
   static const String enterEmail = "Enter Email";
@@ -40,4 +42,21 @@ bool getNUllChecker(var data) {
   } else {
     return false;
   }
+}
+
+String getRemoveSquarebracket(String data) {
+  var temp = data.split('[');
+  var temp2 = temp[1].split(']')[0];
+  return temp2;
+}
+
+getToast(String data) {
+  return Fluttertoast.showToast(
+      msg: data,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: ThemeConstants.whitecolor,
+      textColor: ThemeConstants.blackcolor,
+      fontSize: 16.0);
 }

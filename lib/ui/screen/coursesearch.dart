@@ -1,11 +1,13 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -28,6 +30,7 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> courseindexvaluelist = [];
   List<int> countryindexvaluelist = [];
   List<int> Stateindexvaluelist = [];
+  List<int> cityindexvaluelist = [];
   List<int> courseBoardFieldindexvaluelist = [];
   List<int> courseNarrowFieldIndexvalueList = [];
   GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
@@ -54,292 +57,313 @@ class _CourseSearchState extends State<CourseSearch> {
               child: Column(
                 children: [
                   GetBuilder<CourseSearchController>(
-                    builder: (controller1) => Expanded(
-                      child: Column(
-                        children: [
-                          SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                //Select Country
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 10, top: 20),
-                                  child: MultiSelectDropDown(
-                                    title: "Select Country*",
-                                    listdata: controller1.countryList,
-                                    callbackFunction: callbackCountry,
-                                  ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 10, top: 15),
-                                  child: MultiSelectDropDown(
-                                    title: "Select State",
-                                    listdata: controller1.stateList,
-                                    callbackFunction: callbackState,
-                                  ),
-                                ),
+                    builder: (controller1) => Flexible(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            //Select Country
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 20),
+                              child: MultiSelectDropDown(
+                                title: "Select Country*",
+                                listdata: controller1.countryList,
+                                callbackFunction: callbackCountry,
+                              ),
+                            ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Divider(
+                                height: 5,
+                                thickness: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 15),
+                              child: MultiSelectDropDown(
+                                title: "Select State",
+                                listdata: controller1.stateList,
+                                callbackFunction: callbackState,
+                              ),
+                            ),
 
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
-                                //Select City
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Divider(
+                                height: 5,
+                                thickness: 1,
+                              ),
+                            ),
+                            //Select City
 
-                                Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 20, right: 10, top: 10),
-                                    child: MultiSelectDropDown(
-                                      title: "Select City",
-                                      listdata: controller1.cityList,
-                                      callbackFunction: callback,
-                                    )),
+                            Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 20, right: 10, top: 10),
+                                child: MultiSelectDropDown(
+                                  title: "Select City",
+                                  listdata: controller1.cityList,
+                                  callbackFunction: callbackCity,
+                                )),
 
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Divider(
+                                height: 5,
+                                thickness: 1,
+                              ),
+                            ),
 
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 10, top: 15),
-                                  child: MultiSelectDropDown(
-                                    title: "Select Course Level*",
-                                    listdata: controller1.courseLevelList,
-                                    callbackFunction: callbackCourse,
-                                  ),
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 15),
+                              child: MultiSelectDropDown(
+                                title: "Select Course Level*",
+                                listdata: controller1.courseLevelList,
+                                callbackFunction: callbackCourse,
+                              ),
+                            ),
 
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Divider(
+                                height: 5,
+                                thickness: 1,
+                              ),
+                            ),
 
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 10, top: 15),
-                                  child: MultiSelectDropDown(
-                                    title: "Course Board Field",
-                                    listdata: controller1.courseBoardList,
-                                    callbackFunction: callbackCourseBoardField,
-                                  ),
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 15),
+                              child: MultiSelectDropDown(
+                                title: "Course Board Field",
+                                listdata: controller1.courseBoardList,
+                                callbackFunction: callbackCourseBoardField,
+                              ),
+                            ),
 
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Divider(
+                                height: 5,
+                                thickness: 1,
+                              ),
+                            ),
 
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 10, top: 15),
-                                  child: MultiSelectDropDown(
-                                    title: "Course Narrow Field",
-                                    listdata: controller1.courseNarrowList,
-                                    callbackFunction: callback,
-                                  ),
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 15),
+                              child: MultiSelectDropDown(
+                                title: "Course Narrow Field",
+                                listdata: controller1.courseNarrowList,
+                                callbackFunction: callbackNarrowField,
+                              ),
+                            ),
 
-                                const Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 5),
-                                  child: Divider(
-                                    height: 5,
-                                    thickness: 1,
-                                  ),
-                                ),
-                                //Specialization
+                            const Padding(
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Divider(
+                                height: 5,
+                                thickness: 1,
+                              ),
+                            ),
+                            //Specialization
 
-                                // Padding(
-                                //   padding: const EdgeInsets.only(
-                                //     left: 20,
-                                //     right: 10,
-                                //   ),
-                                //   child: SizedBox(
-                                //     child: Row(
-                                //       children: [
-                                //         Padding(
-                                //           padding: const EdgeInsets.only(top: 10),
-                                //           child: CustomAutoSizeTextMontserrat(
-                                //             text: "Specialization",
-                                //             ,
-                                //             textColor: Colors.grey,
-                                //           ),
-                                //         ),
-                                //         const Spacer(),
-                                //         SizedBox(
-                                //           width: 200,
-                                //           // custom Text field
-                                //           child: Padding(
-                                //               padding: const EdgeInsets.only(),
-                                //               child: CustomDropDown(
-                                //                 hint: "Specialization",
-                                //                 model: const ["1", "2", "3"],
-                                //                 callbackFunction: callback,
-                                //               )),
-                                //         )
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
-                                // const Padding(
-                                //   padding: EdgeInsets.only(left: 20, right: 20),
-                                //   child: Divider(
-                                //     height: 5,
-                                //     thickness: 1,
-                                //   ),
-                                // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(
+                            //     left: 20,
+                            //     right: 10,
+                            //   ),
+                            //   child: SizedBox(
+                            //     child: Row(
+                            //       children: [
+                            //         Padding(
+                            //           padding: const EdgeInsets.only(top: 10),
+                            //           child: CustomAutoSizeTextMontserrat(
+                            //             text: "Specialization",
+                            //             ,
+                            //             textColor: Colors.grey,
+                            //           ),
+                            //         ),
+                            //         const Spacer(),
+                            //         SizedBox(
+                            //           width: 200,
+                            //           // custom Text field
+                            //           child: Padding(
+                            //               padding: const EdgeInsets.only(),
+                            //               child: CustomDropDown(
+                            //                 hint: "Specialization",
+                            //                 model: const ["1", "2", "3"],
+                            //                 callbackFunction: callback,
+                            //               )),
+                            //         )
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            // const Padding(
+                            //   padding: EdgeInsets.only(left: 20, right: 20),
+                            //   child: Divider(
+                            //     height: 5,
+                            //     thickness: 1,
+                            //   ),
+                            // ),
 
-                                // BY Course Name Only
+                            // BY Course Name Only
 
-                                // Padding(
-                                //   padding: const EdgeInsets.only(
-                                //     left: 20,
-                                //     right: 10,
-                                //   ),
-                                //   child: SizedBox(
-                                //     child: Row(
-                                //       children: [
-                                //         Padding(
-                                //           padding: const EdgeInsets.only(top: 10),
-                                //           child: CustomAutoSizeTextMontserrat(
-                                //             text: "By Course Name Only",
-                                //             ,
-                                //             textColor: Colors.grey,
-                                //           ),
-                                //         ),
-                                //         const Spacer(),
-                                //         SizedBox(
-                                //           width: 180,
-                                //           // custom Text field
-                                //           child: Padding(
-                                //               padding: const EdgeInsets.only(),
-                                //               child: CustomDropDown(
-                                //                 hint: "By Course Name Only",
-                                //                 model: const ["1", "2", "3"],
-                                //                 callbackFunction: callback,
-                                //               )),
-                                //         )
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
-                                // const Padding(
-                                //   padding: EdgeInsets.only(left: 20, right: 20),
-                                //   child: Divider(
-                                //     height: 5,
-                                //     thickness: 1,
-                                //   ),
-                                // ),
+                            // Padding(
+                            //   padding: const EdgeInsets.only(
+                            //     left: 20,
+                            //     right: 10,
+                            //   ),
+                            //   child: SizedBox(
+                            //     child: Row(
+                            //       children: [
+                            //         Padding(
+                            //           padding: const EdgeInsets.only(top: 10),
+                            //           child: CustomAutoSizeTextMontserrat(
+                            //             text: "By Course Name Only",
+                            //             ,
+                            //             textColor: Colors.grey,
+                            //           ),
+                            //         ),
+                            //         const Spacer(),
+                            //         SizedBox(
+                            //           width: 180,
+                            //           // custom Text field
+                            //           child: Padding(
+                            //               padding: const EdgeInsets.only(),
+                            //               child: CustomDropDown(
+                            //                 hint: "By Course Name Only",
+                            //                 model: const ["1", "2", "3"],
+                            //                 callbackFunction: callback,
+                            //               )),
+                            //         )
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                            // const Padding(
+                            //   padding: EdgeInsets.only(left: 20, right: 20),
+                            //   child: Divider(
+                            //     height: 5,
+                            //     thickness: 1,
+                            //   ),
+                            // ),
 
 // Search Part
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20),
-                                  child: SizedBox(
-                                    width: width,
-                                    child: Row(
-                                      children: [
-                                        const Spacer(),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 20),
-                                          child: ElevatedButton(
-                                              style: ButtonStyle(
-                                                  elevation: MaterialStateProperty
-                                                      .all<double>(0),
-                                                  foregroundColor:
-                                                      MaterialStateProperty.all<Color>(
-                                                          Colors.white),
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all<Color>(
-                                                          Colors.white),
-                                                  shape: MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
-                                                      RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius.circular(5.0),
-                                                          side: BorderSide(color: ThemeConstants.TextColor)))),
-                                              onPressed: () {},
-                                              child: CustomAutoSizeTextMontserrat(
-                                                text: "Clear",
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                              )),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(right: 20),
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                elevation: 0.0,
-                                                primary: ThemeConstants
-                                                    .bluecolor, // background
-                                                onPrimary: ThemeConstants
-                                                    .bluecolor, // foreground
-                                              ),
-                                              onPressed: () async {
-                                                // Api call
-                                                // var response =
-                                                //     await controller1.courseSearch(
-                                                //         controller.selectCountryCode
-                                                //             .toString(),
-                                                //         controller.selectCourseCode
-                                                //             .toString(),
-                                                //         "78623");
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: SizedBox(
+                                width: width,
+                                child: Row(
+                                  children: [
+                                    const Spacer(),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 20),
+                                      child: ElevatedButton(
+                                          style: ButtonStyle(
+                                              elevation: MaterialStateProperty
+                                                  .all<double>(0),
+                                              foregroundColor:
+                                                  MaterialStateProperty.all<Color>(
+                                                      Colors.white),
+                                              backgroundColor:
+                                                  MaterialStateProperty.all<Color>(
+                                                      Colors.white),
+                                              shape: MaterialStateProperty.all<
+                                                      RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(5.0),
+                                                      side: BorderSide(color: ThemeConstants.TextColor)))),
+                                          onPressed: () {
+                                            controller1.selectStateCode =
+                                                [].obs;
+                                            controller1.selectCityCode = [].obs;
+                                            controller1
+                                                    .selectCourseBoardFieldCode =
+                                                [].obs;
+                                            controller1.selectCountryCode =
+                                                [].obs;
+                                            controller1
+                                                    .selectCourseNarrowFieldCode =
+                                                [].obs;
+                                            controller.selectCourseCode =
+                                                [].obs;
 
-                                                // CourseModelFilter
-                                                //     courseModelFilter2 =
-                                                //     CourseModelFilter();
-                                                // courseModelFilter2 = response;
-                                                Get.to(CourseSearchList(
-                                                  filterRedirect: false,
-                                                  countryId: controller
-                                                      .selectCountryCode
-                                                      .toString(),
-                                                  courseLevel: controller
-                                                      .selectCourseCode
-                                                      .toString(),
-                                                  enq_id: "78623",
-                                                ));
-                                              },
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Search",
-                                                textColor:
-                                                    ThemeConstants.whitecolor,
-                                              )),
-                                        ),
-                                      ],
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CourseSearch()));
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Clean",
+                                            textColor: ThemeConstants.TextColor,
+                                          )),
                                     ),
-                                  ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 20),
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 0.0,
+                                            primary: ThemeConstants
+                                                .bluecolor, // background
+                                            onPrimary: ThemeConstants
+                                                .bluecolor, // foreground
+                                          ),
+                                          onPressed: () async {
+                                            if (controller
+                                                .selectCountryCode.isEmpty) {
+                                              getToast("Please Select Country");
+                                            } else if (controller1
+                                                .selectCourseCode.isEmpty) {
+                                              getToast(
+                                                  "Please Select Course Level");
+                                            } else {
+                                              Get.to(CourseSearchList(
+                                                filterRedirect: false,
+                                                stateCode: controller1
+                                                    .selectStateCode
+                                                    .toString(),
+                                                cityCode: controller1
+                                                    .selectCityCode
+                                                    .toString(),
+                                                boardFieldCode: controller1
+                                                    .selectCourseBoardFieldCode
+                                                    .toString(),
+                                                countryId: controller
+                                                    .selectCountryCode
+                                                    .toString(),
+                                                narrowField: controller1
+                                                    .selectCourseNarrowFieldCode
+                                                    .toString(),
+                                                courseLevel: controller
+                                                    .selectCourseCode
+                                                    .toString(),
+                                                enq_id: "78623",
+                                              ));
+                                            }
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Search",
+                                            textColor:
+                                                ThemeConstants.whitecolor,
+                                          )),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   )
@@ -436,9 +460,35 @@ class _CourseSearchState extends State<CourseSearch> {
     controller.getCity(controller.selectStateCode.toString());
   }
 
-  callback(varTopic) {
-    // controller.setdropdown1(varTopic);
+  callbackCity(data) {
+    for (var i = 0; i < data.length; i++) {
+      cityindexvaluelist.add(
+          controller.stateList.indexWhere((note) => note.startsWith(data[i])));
+    }
+
+    for (var j = 0; j < cityindexvaluelist.length; j++) {
+      controller.selectCityCode.add(controller.cityCode[cityindexvaluelist[j]]);
+
+      var temp = Set.of(controller.selectCityCode).toList();
+      controller.selectCityCode = temp.obs;
+    }
   }
+
+  callbackNarrowField(data) {
+    for (var i = 0; i < data.length; i++) {
+      courseNarrowFieldIndexvalueList.add(
+          controller.stateList.indexWhere((note) => note.startsWith(data[i])));
+    }
+
+    for (var j = 0; j < courseNarrowFieldIndexvalueList.length; j++) {
+      controller.selectCourseNarrowFieldCode
+          .add(controller.courseNarrowCode[courseNarrowFieldIndexvalueList[j]]);
+
+      var temp = Set.of(controller.selectCourseNarrowFieldCode).toList();
+      controller.selectCourseNarrowFieldCode = temp.obs;
+    }
+  }
+
   callbackModelCompare(varTopic) {
     if (varTopic == "Model1") {
       controller.courseSearchModelCompare1 = CourseSearchModel();

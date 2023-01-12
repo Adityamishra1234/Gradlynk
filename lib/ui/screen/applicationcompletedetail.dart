@@ -88,11 +88,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                               text: "Offer Status",
                                               maxLines: 2,
                                               fontWeight: FontWeight.bold,
+                                              fontSize: 14,
                                             ),
                                             CustomAutoSizeTextMontserrat(
                                               text: "Acknowledgement Number",
                                               maxLines: 2,
                                               fontWeight: FontWeight.bold,
+                                              fontSize: 14,
                                             ),
                                           ]),
                                           TableRow(children: [
@@ -102,6 +104,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                               textColor:
                                                   ThemeConstants.TextColor,
                                               maxLines: 2,
+                                              fontSize: 14,
                                             ),
                                             CustomAutoSizeTextMontserrat(
                                               text: _.applicationDetailModel
@@ -109,6 +112,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                               textColor:
                                                   ThemeConstants.TextColor,
                                               maxLines: 2,
+                                              fontSize: 14,
                                             ),
                                           ]),
                                         ],
