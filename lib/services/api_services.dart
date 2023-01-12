@@ -483,6 +483,7 @@ class ApiServices extends StudentPanelBase {
         //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
         // }
 
+        //annual tutionFee
         if (getNUllChecker(element.annualTutionFeesInr) == false) {
           if (double.parse(element.annualTutionFeesInr!) < 700000) {
             filterModel.budget[3].update("Below 7 Lac", (value) => true);
