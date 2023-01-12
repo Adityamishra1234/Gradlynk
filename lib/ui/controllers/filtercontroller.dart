@@ -280,7 +280,7 @@ class FilterController extends BaseController {
       if (getNUllChecker(element.intakeMonth) == false) {
         filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
       }
-      if (getNUllChecker(element.intakeMonth) == false) {
+      if (getNUllChecker(element.intakeYear) == false) {
         filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
       }
       if (getNUllChecker(element.annualTutionFeesInr) == false) {
