@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -31,15 +33,17 @@ class AboutInstitute extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 10),
                 child: Table(
                   children: [
-                    TableRow(
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.lightgreentColor,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                              color: ThemeConstants.GreenColor, width: 0.5),
-                        ),
-                        children: [
-                          if (completeCourseDetail[0].universityName != null)
+                    if (getNUllChecker(
+                            completeCourseDetail[0].universityName) ==
+                        false)
+                      TableRow(
+                          decoration: BoxDecoration(
+                            color: ThemeConstants.lightgreentColor,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                                color: ThemeConstants.GreenColor, width: 0.5),
+                          ),
+                          children: [
                             Container(
                               constraints: const BoxConstraints(minHeight: 50),
                               child: Align(
@@ -55,7 +59,6 @@ class AboutInstitute extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          if (completeCourseDetail[0].universityName != null)
                             Container(
                               constraints: const BoxConstraints(minHeight: 50),
                               child: Align(
@@ -69,7 +72,7 @@ class AboutInstitute extends StatelessWidget {
                                 ),
                               ),
                             ),
-                        ]),
+                          ]),
                     const TableRow(children: [
                       SizedBox(
                         height: 10,
@@ -78,15 +81,16 @@ class AboutInstitute extends StatelessWidget {
                         height: 10,
                       ),
                     ]),
-                    TableRow(
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.lightblueColor,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                              color: ThemeConstants.bluecolor, width: 0.5),
-                        ),
-                        children: [
-                          if (completeCourseDetail[0].instituteType != null)
+                    if (getNUllChecker(completeCourseDetail[0].instituteType) ==
+                        false)
+                      TableRow(
+                          decoration: BoxDecoration(
+                            color: ThemeConstants.lightblueColor,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                                color: ThemeConstants.bluecolor, width: 0.5),
+                          ),
+                          children: [
                             Container(
                               constraints: const BoxConstraints(minHeight: 50),
                               child: Align(
@@ -102,21 +106,22 @@ class AboutInstitute extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          if (completeCourseDetail[0].instituteType != null)
-                            Container(
-                              constraints: const BoxConstraints(minHeight: 50),
-                              child: Align(
-                                alignment: AlignmentDirectional.centerStart,
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: completeCourseDetail[0].instituteType,
-                                  textColor: ThemeConstants.blackcolor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  maxLines: 2,
+                            if (completeCourseDetail[0].instituteType != null)
+                              Container(
+                                constraints:
+                                    const BoxConstraints(minHeight: 50),
+                                child: Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: completeCourseDetail[0].instituteType,
+                                    textColor: ThemeConstants.blackcolor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                  ),
                                 ),
                               ),
-                            ),
-                        ]),
+                          ]),
                     const TableRow(children: [
                       SizedBox(
                         height: 10,
@@ -125,15 +130,16 @@ class AboutInstitute extends StatelessWidget {
                         height: 10,
                       ),
                     ]),
-                    TableRow(
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.lightorangeColor,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                              color: ThemeConstants.orangeColor, width: 0.5),
-                        ),
-                        children: [
-                          if (completeCourseDetail[0].instituteType != null)
+                    if (getNUllChecker(completeCourseDetail[0].campusName) ==
+                        false)
+                      TableRow(
+                          decoration: BoxDecoration(
+                            color: ThemeConstants.lightorangeColor,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                                color: ThemeConstants.orangeColor, width: 0.5),
+                          ),
+                          children: [
                             Container(
                               constraints: const BoxConstraints(minHeight: 50),
                               child: Align(
@@ -149,20 +155,20 @@ class AboutInstitute extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          Container(
-                            constraints: const BoxConstraints(minHeight: 50),
-                            child: Align(
-                              alignment: AlignmentDirectional.centerStart,
-                              child: CustomAutoSizeTextMontserrat(
-                                text: completeCourseDetail[0].campusName,
-                                textColor: ThemeConstants.blackcolor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                                maxLines: 2,
+                            Container(
+                              constraints: const BoxConstraints(minHeight: 50),
+                              child: Align(
+                                alignment: AlignmentDirectional.centerStart,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: completeCourseDetail[0].campusName,
+                                  textColor: ThemeConstants.blackcolor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                  maxLines: 2,
+                                ),
                               ),
                             ),
-                          ),
-                        ]),
+                          ]),
                     const TableRow(children: [
                       SizedBox(
                         height: 10,
@@ -171,15 +177,16 @@ class AboutInstitute extends StatelessWidget {
                         height: 10,
                       ),
                     ]),
-                    TableRow(
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.lightVioletColor,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                              color: ThemeConstants.VioletColor, width: 0.5),
-                        ),
-                        children: [
-                          if (completeCourseDetail[0].instituteType != null)
+                    if (getNUllChecker(completeCourseDetail[0].campusAddress) ==
+                        false)
+                      TableRow(
+                          decoration: BoxDecoration(
+                            color: ThemeConstants.lightVioletColor,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                                color: ThemeConstants.VioletColor, width: 0.5),
+                          ),
+                          children: [
                             Container(
                               constraints: const BoxConstraints(minHeight: 50),
                               child: Align(
@@ -195,45 +202,48 @@ class AboutInstitute extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          Container(
-                            constraints: const BoxConstraints(minHeight: 50),
-                            child: Align(
-                                alignment: AlignmentDirectional.centerStart,
-                                child: HtmlWidget(
-                                  completeCourseDetail[0].campusAddress!,
-                                  textStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
-                                    color: ThemeConstants.blackcolor,
-                                    fontSize: 14.0,
-                                  ),
-                                )),
-                          ),
-                        ]),
+                            Container(
+                              constraints: const BoxConstraints(minHeight: 50),
+                              child: Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: HtmlWidget(
+                                    completeCourseDetail[0].campusAddress!,
+                                    textStyle: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w600,
+                                      color: ThemeConstants.blackcolor,
+                                      fontSize: 14.0,
+                                    ),
+                                  )),
+                            ),
+                          ]),
                   ],
                 ),
               ),
-              Align(
-                alignment: AlignmentDirectional.topStart,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "About Institute",
-                    textColor: ThemeConstants.bluecolor,
-                    fontWeight: FontWeight.bold,
+              if (getNUllChecker(completeCourseDetail[0].aboutUniv) == false)
+                Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "About Institute",
+                      textColor: ThemeConstants.bluecolor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              if (completeCourseDetail[0].aboutUniv != null)
+              if (getNUllChecker(completeCourseDetail[0].aboutUniv) == false)
+                const SizedBox(
+                  height: 5,
+                ),
+              if (getNUllChecker(completeCourseDetail[0].aboutUniv) == false)
                 CustomAutoSizeTextMontserrat(
                   text: completeCourseDetail[0].aboutUniv,
                   fontSize: 14,
                   textColor: ThemeConstants.TextColor,
                   fontWeight: FontWeight.w500,
                 ),
-              if (completeCourseDetail[0].sIECRepresented != null)
+              if (getNUllChecker(completeCourseDetail[0].sIECRepresented) ==
+                  false)
                 Row(
                   children: [
                     Padding(
@@ -248,7 +258,8 @@ class AboutInstitute extends StatelessWidget {
                     const Spacer(),
                   ],
                 ),
-              if (completeCourseDetail[0].sIECRepresented != null)
+              if (getNUllChecker(completeCourseDetail[0].sIECRepresented) ==
+                  false)
                 Align(
                   alignment: AlignmentDirectional.topStart,
                   child: CustomAutoSizeTextMontserrat(
@@ -256,56 +267,72 @@ class AboutInstitute extends StatelessWidget {
                     textColor: ThemeConstants.TextColor,
                   ),
                 ),
-              Align(
-                alignment: AlignmentDirectional.topStart,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Total Numbers of Student",
-                    maxLines: 2,
-                    fontWeight: FontWeight.bold,
-                    textColor: ThemeConstants.bluecolor,
+              // Todo
+              if (getNUllChecker(
+                          completeCourseDetail[0].noOfInternationStudent) ==
+                      false ||
+                  getNUllChecker(completeCourseDetail[0].noOfIndianStudent) ==
+                      false)
+                Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Total Numbers of Student",
+                      maxLines: 2,
+                      fontWeight: FontWeight.bold,
+                      textColor: ThemeConstants.bluecolor,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Table(
-                  children: [
-                    TableRow(children: [
-                      CustomAutoSizeTextMontserrat(
-                        text: "No of International students",
-                        maxLines: 2,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      CustomAutoSizeTextMontserrat(
-                        text: "No of indian Student",
-                        maxLines: 2,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ]),
-                    rowSpacer,
-                    TableRow(children: [
-                      CustomAutoSizeTextMontserrat(
-                        text: "258",
-                        textColor: ThemeConstants.TextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        maxLines: 2,
-                      ),
-                      CustomAutoSizeTextMontserrat(
-                        text: "144",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        textColor: ThemeConstants.TextColor,
-                        maxLines: 2,
-                      ),
-                    ]),
-                  ],
+
+              if (getNUllChecker(
+                          completeCourseDetail[0].noOfInternationStudent) ==
+                      false ||
+                  getNUllChecker(completeCourseDetail[0].noOfIndianStudent) ==
+                      false)
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Table(
+                    children: [
+                      TableRow(children: [
+                        CustomAutoSizeTextMontserrat(
+                          text: "No of International students",
+                          maxLines: 2,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        CustomAutoSizeTextMontserrat(
+                          text: "No of indian Student",
+                          maxLines: 2,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ]),
+                      rowSpacer,
+                      TableRow(children: [
+                        CustomAutoSizeTextMontserrat(
+                          text: completeCourseDetail[0]
+                              .noOfInternationStudent
+                              .toString(),
+                          textColor: ThemeConstants.TextColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          maxLines: 2,
+                        ),
+                        CustomAutoSizeTextMontserrat(
+                          text: completeCourseDetail[0]
+                              .noOfIndianStudent
+                              .toString(),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          textColor: ThemeConstants.TextColor,
+                          maxLines: 2,
+                        ),
+                      ]),
+                    ],
+                  ),
                 ),
-              ),
             ],
           ),
         ),

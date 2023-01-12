@@ -69,9 +69,17 @@ class CompleteCourseDetail {
   String? findingWorkAsStudents;
   String? postStudyWorkOption;
   String? partTimeWorkOption;
+  int? noOfInternationStudent;
+  int? noOfIndianStudent;
+  String? regularApplicationDeadline;
+  String? countryName;
 
   CompleteCourseDetail(
-      {this.courseName,
+      {this.countryName,
+      this.noOfIndianStudent,
+      this.regularApplicationDeadline,
+      this.noOfInternationStudent,
+      this.courseName,
       this.universityName,
       this.courseDuration,
       this.totalTutionFees,
@@ -143,6 +151,10 @@ class CompleteCourseDetail {
       this.partTimeWorkOption});
 
   CompleteCourseDetail.fromJson(Map<String, dynamic> json) {
+    countryName = json['country_name'];
+    regularApplicationDeadline = json['regular_application_deadline'];
+    noOfInternationStudent = json['no_of_int_students'];
+    noOfIndianStudent = json['no_of_indian_students'];
     courseName = json['course_name'];
     universityName = json['university_name'];
     courseDuration = json['course_duration'];

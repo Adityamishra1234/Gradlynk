@@ -432,9 +432,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     height: 3,
                                   ),
                                   CustomAutoSizeTextMontserrat(
-                                    text: courseSearchModel.englishProficiency
-                                        .toString()
-                                        .split("|")[0],
+                                    text: courseSearchModel.englishProficiency,
                                     textColor:
                                         ThemeConstants.bluelightgreycolor,
                                     fontSize: 12,

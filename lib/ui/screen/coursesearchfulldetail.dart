@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/about_institute.dart';
 import 'package:studentpanel/ui/screen/entryrequirement.dart';
 import 'package:studentpanel/ui/screen/steps_admissions.dart';
 import 'package:studentpanel/ui/screen/steps_visa.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -29,6 +30,7 @@ class CourseSearchFullDetail extends StatelessWidget {
     if (displayMobileLayout == true) {
       width = MediaQuery.of(context).size.width - 240;
     }
+
     return Scaffold(
         // appBar: ,
         drawer: displayMobileLayout == false ? CustomDrawer() : null,
@@ -131,8 +133,13 @@ class CourseSearchFullDetail extends StatelessWidget {
                                               fontWeight: FontWeight.bold,
                                             ),
                                             CustomAutoSizeTextMontserrat(
-                                              text:
-                                                  "${(int.parse(completeCourseDetail![0].courseDuration!) / 12).toStringAsFixed(1)} Year",
+                                              text: getNUllChecker(
+                                                          completeCourseDetail![
+                                                                  0]
+                                                              .courseDuration) ==
+                                                      false
+                                                  ? "${(int.parse(completeCourseDetail![0].courseDuration!) / 12).toStringAsFixed(1)} Year"
+                                                  : "",
                                               fontSize: 14,
                                               maxLines: 2,
                                               textColor:
@@ -164,7 +171,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                             ),
                                             CustomAutoSizeTextMontserrat(
                                               text:
-                                                  "${completeCourseDetail![0].totalTutionFees}(${completeCourseDetail![0].totalTutionFeesInr}INR)",
+                                                  "${completeCourseDetail![0].totalTutionFees}${completeCourseDetail![0].countryCurrencyCode} (${completeCourseDetail![0].totalTutionFeesInr}INR)",
                                               // "347200 USD (INR 2,56,92,800)",
                                               maxLines: 2,
                                               fontSize: 14,
@@ -252,71 +259,104 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                    left: 15,
-                                    top: 10,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        "assets/icons/star.svg",
-                                        height: 15,
-                                        width: 15,
-                                        color: ThemeConstants.orangeColor,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Worlds Ranking",
-                                          maxLines: 2,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
+                                if (getNUllChecker(completeCourseDetail![0]
+                                            .arwuRank) ==
+                                        false ||
+                                    getNUllChecker(completeCourseDetail![0]
+                                            .timesRank) ==
+                                        false ||
+                                    getNUllChecker(completeCourseDetail![0]
+                                            .usNewsRank) ==
+                                        false ||
+                                    getNUllChecker(completeCourseDetail![0]
+                                            .qsWorldRank) ==
+                                        false)
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 15,
+                                      top: 10,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "assets/icons/star.svg",
+                                          height: 15,
+                                          width: 15,
+                                          color: ThemeConstants.orangeColor,
                                         ),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5),
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Worlds Ranking",
+                                            maxLines: 2,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 15, right: 10, bottom: 15, top: 10),
                                   child: Row(
                                     children: [
-                                      CustomAutoSizeTextMontserrat(
-                                        text:
-                                            "ARWU:${completeCourseDetail![0].arwuRank ?? ""}",
-                                        maxLines: 2,
-                                        fontSize: 12,
-                                        textColor: ThemeConstants.bluegreycolor,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                      if (getNUllChecker(
+                                              completeCourseDetail![0]
+                                                  .arwuRank) ==
+                                          false)
+                                        CustomAutoSizeTextMontserrat(
+                                          text:
+                                              "ARWU:${completeCourseDetail![0].arwuRank ?? ""}",
+                                          maxLines: 2,
+                                          fontSize: 12,
+                                          textColor:
+                                              ThemeConstants.bluegreycolor,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       const Spacer(),
-                                      CustomAutoSizeTextMontserrat(
-                                        text:
-                                            "Times:${completeCourseDetail![0].timesRank ?? ""}",
-                                        maxLines: 2,
-                                        fontSize: 12,
-                                        textColor: ThemeConstants.bluegreycolor,
-                                        fontWeight: FontWeight.w600,
-                                      ),
+                                      if (getNUllChecker(
+                                              completeCourseDetail![0]
+                                                  .timesRank) ==
+                                          false)
+                                        CustomAutoSizeTextMontserrat(
+                                          text:
+                                              "Times:${completeCourseDetail![0].timesRank ?? ""}",
+                                          maxLines: 2,
+                                          fontSize: 12,
+                                          textColor:
+                                              ThemeConstants.bluegreycolor,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                       const Spacer(),
-                                      CustomAutoSizeTextMontserrat(
-                                        text:
-                                            "US News:${completeCourseDetail![0].usNewsRank ?? ""}",
-                                        maxLines: 2,
-                                        textColor: ThemeConstants.bluegreycolor,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                      ),
+                                      if (getNUllChecker(
+                                              completeCourseDetail![0]
+                                                  .usNewsRank) ==
+                                          false)
+                                        CustomAutoSizeTextMontserrat(
+                                          text:
+                                              "US News:${completeCourseDetail![0].usNewsRank ?? ""}",
+                                          maxLines: 2,
+                                          textColor:
+                                              ThemeConstants.bluegreycolor,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                        ),
                                       const Spacer(),
-                                      CustomAutoSizeTextMontserrat(
-                                        text:
-                                            "QS World:${completeCourseDetail![0].qsWorldRank ?? ""}",
-                                        maxLines: 2,
-                                        textColor: ThemeConstants.bluegreycolor,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 12,
-                                      ),
+                                      if (getNUllChecker(
+                                              completeCourseDetail![0]
+                                                  .qsWorldRank) ==
+                                          false)
+                                        CustomAutoSizeTextMontserrat(
+                                          text:
+                                              "QS World:${completeCourseDetail![0].qsWorldRank ?? ""}",
+                                          maxLines: 2,
+                                          textColor:
+                                              ThemeConstants.bluegreycolor,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12,
+                                        ),
                                     ],
                                   ),
                                 )
