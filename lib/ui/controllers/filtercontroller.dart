@@ -861,4 +861,29 @@ class FilterController extends BaseController {
     }
     return courseModel;
   }
+
+  getcleanButton() {
+    university = [];
+    offerTAT = [];
+    visaTAT = [];
+    intakeMonth = [];
+    intakeYear = [];
+    instituteLevel = [];
+    scholarship = [];
+    siecPriority = [];
+    conditionaloffer = [];
+    backlogAcceptable = [];
+    applicationfee = [];
+    placementSandwichYear = [];
+    siecRepresent = [];
+    countryName = [];
+    institutePublicPrivate = [];
+    academicpercentage = [];
+    budget = [];
+    filter();
+    // courseSearchModel = courseModelFilter.previousCourseSearchList;
+    filterModel.filterSelected = FilterSelected();
+    courseSearchModel2 = [];
+    update();
+  }
 }

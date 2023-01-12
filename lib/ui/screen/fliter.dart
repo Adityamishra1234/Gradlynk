@@ -574,13 +574,46 @@ class _FilterState extends State<Filter> {
                                                   color: ThemeConstants
                                                       .TextColor)))),
                                   onPressed: () {
+                                    selectedUniversitylist = [];
+                                    selectedintakeMonth = [];
+                                    selectedUintakeYear = [];
+                                    selectedacademic = [];
+                                    selectedBudget = [];
+                                    selectedCountryName = [];
+                                    selectedSelectRanking = [];
+                                    selectedSelectedRanking = [];
+                                    selectedInstitutePublicPrivate = [];
+                                    selectedInstituteLevel = [];
+                                    selectedScholarship = [];
+                                    selectedSIECPriority = [];
+                                    selectedConditionalOffer = [];
+                                    selectedBacklogAcceptable = [];
+                                    selectedApplicationFee = [];
+                                    selectedOfferTAT = [];
+                                    selectedVisaTAT = [];
+                                    selectedPlacementSandwichYear = [];
+                                    selectedSIECRepresented = [];
+                                    firstRankingSelect = "";
+                                    secondRankingSelect = "";
+                                    indexRanking = 0;
                                     itemsSelected = null;
-                                    controller1.filterModel.filterSelected =
-                                        FilterSelected();
-                                    controller.update();
+                                    courseModelFilter.courseSearchList =
+                                        controller1.courseModelFilter
+                                            .previousCourseSearchList;
+                                    controller1.getcleanButton();
+
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //       builder: (context) => Filter(
+                                    //             courseModelFilter: controller1
+                                    //                 .courseModelFilter,
+                                    //             previousRoute: previousRoute,
+                                    //           )),
+                                    // );
                                   },
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "Clear Filter ",
+                                    text: "Clean Filter ",
                                     fontWeight: FontWeight.bold,
                                     textColor: ThemeConstants.TextColor,
                                   )),
