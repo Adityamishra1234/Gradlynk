@@ -363,6 +363,14 @@ class _ReviewShortListState extends State<ReviewShortList> {
   }
 
   callbackCompareCourseRemove(data) {
-    print(data);
+    if (data.toString() == "1") {
+      controller1.courseSearchModelCompare1 = CourseSearchModel();
+    } else if (data.toString() == "2") {
+      controller1.courseSearchModelCompare2 = CourseSearchModel();
+    } else if (data.toString() == "12") {
+      controller1.courseSearchModelCompare1 = CourseSearchModel();
+      controller1.courseSearchModelCompare2 = CourseSearchModel();
+    }
+    controller1.update();
   }
 }

@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
@@ -244,16 +245,23 @@ class _CourseSearchListState extends State<CourseSearchList> {
                             if (controller1.compareApply.value == true)
                               InkWell(
                                 onTap: () {
-                                  Get.to(
-                                    Comparing(
-                                      courseSearchModel1:
-                                          Get.find<CourseShortListController>()
-                                              .courseSearchModelCompare1,
-                                      courseSearchModel2:
-                                          Get.find<CourseShortListController>()
-                                              .courseSearchModelCompare2,
-                                    ),
-                                  );
+                                  if (controller1
+                                              .courseSearchModelCompare1.id !=
+                                          null &&
+                                      controller1
+                                              .courseSearchModelCompare2.id !=
+                                          null) {
+                                    Get.to(
+                                      Comparing(
+                                        courseSearchModel1: controller1
+                                            .courseSearchModelCompare1,
+                                        courseSearchModel2: controller1
+                                            .courseSearchModelCompare2,
+                                      ),
+                                    );
+                                  } else {
+                                    getToast("Please select course");
+                                  }
                                 },
                                 child: Container(
                                   height: 60,
@@ -339,8 +347,15 @@ class _CourseSearchListState extends State<CourseSearchList> {
     controller1.courseShortList(id, "78623");
   }
 
-  callbackCompareCourseRemove(data) async {
-    await controller1.callbackModelCompare("Model1");
-    // await controller1.callbackCompareCourseRemove(data);
+  callbackCompareCourseRemove(data) {
+    if (data.toString() == "1") {
+      controller1.courseSearchModelCompare1 = CourseSearchModel();
+    } else if (data.toString() == "2") {
+      controller1.courseSearchModelCompare2 = CourseSearchModel();
+    } else if (data.toString() == "12") {
+      controller1.courseSearchModelCompare1 = CourseSearchModel();
+      controller1.courseSearchModelCompare2 = CourseSearchModel();
+    }
+    controller1.update();
   }
 }

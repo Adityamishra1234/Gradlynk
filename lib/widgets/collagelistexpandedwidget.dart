@@ -144,17 +144,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           children: [
             Stack(
               children: [
-                Positioned(
-                    top: 8,
-                    right: 10,
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: SvgPicture.asset(
-                        "assets/icons/star.svg",
-                        color: ThemeConstants.orangeColor,
-                        height: 20,
-                      ),
-                    )),
+                if (courseSearchModel.siecRep == "Yes")
+                  Positioned(
+                      top: 8,
+                      right: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: SvgPicture.asset(
+                          "assets/icons/star.svg",
+                          color: ThemeConstants.orangeColor,
+                          height: 20,
+                        ),
+                      )),
                 Column(
                   children: [
                     Align(
@@ -561,8 +562,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                         false)
                                       CustomAutoSizeTextMontserrat(
                                         text:
-                                            "${courseSearchModel.offerTat!} Day" ??
-                                                "",
+                                            "${courseSearchModel.offerTat!} Day",
                                         textColor:
                                             ThemeConstants.bluelightgreycolor,
                                         fontSize: 12,
