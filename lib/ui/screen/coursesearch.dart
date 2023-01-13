@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -322,11 +323,12 @@ class _CourseSearchState extends State<CourseSearch> {
                                           onPressed: () async {
                                             if (controller
                                                 .selectCountryCode.isEmpty) {
-                                              getToast("Please Select Country");
+                                              getToast(SnackBarConstants
+                                                  .courseSearchPart1!);
                                             } else if (controller1
                                                 .selectCourseCode.isEmpty) {
-                                              getToast(
-                                                  "Please Select Course Level");
+                                              getToast(SnackBarConstants
+                                                  .courseSearchPart1!);
                                             } else {
                                               Get.to(CourseSearchList(
                                                 filterRedirect: false,

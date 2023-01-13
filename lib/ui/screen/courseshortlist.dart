@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
@@ -260,7 +261,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                       ),
                                     );
                                   } else {
-                                    getToast("Please select course");
+                                    getToast(SnackBarConstants
+                                        .courseSearchListPart3!);
                                   }
                                 },
                                 child: Container(

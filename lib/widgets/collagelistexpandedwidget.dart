@@ -1,7 +1,6 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
@@ -184,10 +183,11 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: CustomAutoSizeTextMontserrat(
                           text:
-                              "${courseSearchModel.countryName ?? ""},${courseSearchModel.stateName ?? ""},${courseSearchModel.cityName ?? ""}|${courseSearchModel.universityName ?? ""}",
+                              "${courseSearchModel.countryName ?? ""},${courseSearchModel.stateName ?? ""},${courseSearchModel.cityName ?? ""}\n${courseSearchModel.universityName ?? ""}",
                           // "Australia,Victor,Melbourne | RMIT University",
                           maxLines: 3,
                           textColor: ThemeConstants.bluegreycolor,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -199,6 +199,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           text: courseSearchModel.campusName,
                           maxLines: 3,
                           textColor: ThemeConstants.bluegreycolor,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -221,7 +222,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 text:
                                     "${(int.parse(courseSearchModel.courseDuration!) / 12).toStringAsFixed(1)} Years",
                                 textColor: ThemeConstants.bluelightgreycolor,
-                                fontSize: 15,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -249,7 +250,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                       : courseSearchModel.annualTutionFees
                                           .toString(),
                                   textColor: ThemeConstants.bluelightgreycolor,
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -261,7 +262,10 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               padding:
                                   const EdgeInsets.only(top: 7, bottom: 10),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  getToast(
+                                      "${courseSearchModel.annualTutionFeesInr} INR");
+                                },
                                 child: SvgPicture.asset(
                                   "assets/icons/i.svg",
                                   height: 18,

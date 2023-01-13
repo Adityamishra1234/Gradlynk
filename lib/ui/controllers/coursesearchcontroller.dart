@@ -151,7 +151,7 @@ class CourseSearchController extends BaseController {
     try {
       List tempList;
       var res = await apiservices.getCoursenarrowField(
-          Endpoints.baseUrl!, Endpoints.state!, boardField);
+          Endpoints.baseUrl!, Endpoints.courseNarrowField!, boardField);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         courseNarrowList = map.keys.toList();

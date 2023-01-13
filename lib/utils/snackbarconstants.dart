@@ -44,4 +44,11 @@ class SnackBarConstants {
 
   static String? SAT__Multiples = "Please fill score in the multiple of 1";
   static String? SAT_Overall = "Please fill score between 400 & 1600";
+
+  //Course Search.dart Toast
+  static String? courseSearchPart1 = "Please Select Country";
+  static String? courseSearchPart2 = "Please Select Course Level";
+
+  //CourseSearchList.dart Toast
+  static String? courseSearchListPart3 = "Please select course";
 }
