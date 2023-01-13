@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class WorkHistoryController extends BaseController {
@@ -41,26 +42,36 @@ class WorkHistoryController extends BaseController {
   }
 
   getIndustries() async {
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.jobInstitute!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      industriesList = map.values.toList();
-      industriesCode = map.keys.toList();
-      loadingIndustries.value = true;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.jobInstitute!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        industriesList = map.values.toList();
+        industriesCode = map.keys.toList();
+        loadingIndustries.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   emplyoymentType() async {
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.employmentType!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      employmentTypeList = map.values.toList();
-      employmentTypeCode = map.keys.toList();
-      loadingEmploymentType.value = true;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.employmentType!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        employmentTypeList = map.values.toList();
+        employmentTypeCode = map.keys.toList();
+        loadingEmploymentType.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 

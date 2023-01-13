@@ -31,7 +31,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
-import 'package:studentpanel/ui/screen/sort.dart';
+import 'package:studentpanel/ui/screen/remove_compare_course.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
 import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 
@@ -160,11 +160,11 @@ class _MyAppState extends State<MyApp> {
           binding: CourseSearchBinding(),
           page: () => CourseSearch(),
         ),
-        GetPage(
-          name: BottomSheetRemoveCourse.routeNamed,
-          transition: Transition.fade,
-          page: () => const BottomSheetRemoveCourse(),
-        ),
+        // GetPage(
+        //   name: RemoveCompareCourse.routeNamed,
+        //   transition: Transition.fade,
+        //   page: () => const RemoveCompareCourse(),
+        // ),
         GetPage(
           name: Test1.routeNamed,
           transition: Transition.fade,

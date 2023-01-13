@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class TravelHistoryController extends BaseController {
@@ -58,63 +59,83 @@ class TravelHistoryController extends BaseController {
   }
 
   getTravelStatus() async {
-    loadingtravelStatus.value = false;
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.travelStatus!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      travelStatus = map.values.toList();
-      loadingtravelStatus.value = true;
-      update();
+    try {
+      loadingtravelStatus.value = false;
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.travelStatus!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        travelStatus = map.values.toList();
+        loadingtravelStatus.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getTypeOfVisa() async {
-    loadingTypeVisa.value = false;
-    var res =
-        await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.typeOfVisa!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      typeOfVisaList = map.values.toList();
-      typeofVisaCode = map.keys.toList();
-      loadingTypeVisa.value = true;
-      update();
+    try {
+      loadingTypeVisa.value = false;
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.typeOfVisa!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        typeOfVisaList = map.values.toList();
+        typeofVisaCode = map.keys.toList();
+        loadingTypeVisa.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getVisaStatus(String travelStatus) async {
-    visaStatusList = [];
-    visaStatusCode = [];
-    visaStatusSelected = null;
+    try {
+      visaStatusList = [];
+      visaStatusCode = [];
+      visaStatusSelected = null;
 
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.visaStatus! + travelStatus);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      visaStatusList = map.values.toList();
-      visaStatusCode = map.keys.toList();
-      loadingVisaStatus.value = true;
-      update();
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.visaStatus! + travelStatus);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        visaStatusList = map.values.toList();
+        visaStatusCode = map.keys.toList();
+        loadingVisaStatus.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCountry() async {
-    loadingCountry.value == false;
-    var res =
-        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.allCountry!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        countryList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        countryCode.add(element.toString());
-      });
+    try {
+      loadingCountry.value == false;
+      var res = await apiServices.getCountry(
+          Endpoints.baseUrl!, Endpoints.allCountry!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        List<dynamic> temp = map.keys.toList();
+        temp.forEach((element) {
+          countryList.add(element);
+        });
+        temp = map.values.toList();
+        temp.forEach((element) {
+          countryCode.add(element.toString());
+        });
 
-      loadingCountry = true.obs;
-      update();
+        loadingCountry = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 

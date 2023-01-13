@@ -114,11 +114,11 @@ class CourseInformationWidget extends StatelessWidget {
                     height: 50,
                     child: CustomDropDownSingle(
                       //Todo
-                      model: controller1.loadingCourseLevel.value == true
+                      model: controller1.loadingCourseNarrow.value == true
                           ? controller1.courseNarrowList
                           : ["No Data"],
                       initialSelectedValue:
-                          controller1.loadingCourseLevel.value == true
+                          controller1.loadingCourseNarrow.value == true
                               ? controller1.courseNarrowSelected ??
                                   controller1.courseNarrowList[0]
                               : "No Data",

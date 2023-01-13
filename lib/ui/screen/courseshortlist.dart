@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/courseshortlist.dart';
+import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
@@ -207,6 +208,12 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                         children: [
                                           // if (controller1.courseSearchModel.length != index)
                                           CollagelistExpandedWidget(
+                                            callbackRemoveCourse:
+                                                callbackCompareCourseRemove,
+                                            courseSearchModelCompare1:
+                                                _.courseSearchModelCompare1,
+                                            courseSearchModelCompare2:
+                                                _.courseSearchModelCompare2,
                                             previousRoute:
                                                 CourseSearchList.routeNamed,
                                             index: index,
@@ -218,10 +225,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                             callbackForModelCompare:
                                                 callbackModelCompare,
                                             callbackCompare: callbackCompare,
-                                            //done
                                             iscompare:
                                                 controller1.compareApply.value,
-
                                             courseSearchModel: controller1
                                                 .courseModelFilter
                                                 .courseSearchList[index],
@@ -332,5 +337,10 @@ class _CourseSearchListState extends State<CourseSearchList> {
           "0";
     }
     controller1.courseShortList(id, "78623");
+  }
+
+  callbackCompareCourseRemove(data) async {
+    await controller1.callbackModelCompare("Model1");
+    // await controller1.callbackCompareCourseRemove(data);
   }
 }

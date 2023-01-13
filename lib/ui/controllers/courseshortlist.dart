@@ -87,7 +87,7 @@ class CourseShortListController extends BaseController {
     } else {}
   }
 
-  callbackModelCompare(varTopic) async {
+  callbackModelCompare(varTopic) {
     if (varTopic == "Model1") {
       courseSearchModelCompare1 = CourseSearchModel();
       update();
@@ -96,6 +96,20 @@ class CourseShortListController extends BaseController {
       update();
     }
   }
+
+  // callbackCompareCourseRemove(data) {
+  //   if (data == "1") {
+  //     courseSearchModelCompare1 = CourseSearchModel();
+  //     update();
+  //   } else if (data == "2") {
+  //     courseSearchModelCompare2 = CourseSearchModel();
+  //     update();
+  //   } else if (data == "12") {
+  //     courseSearchModelCompare2 = CourseSearchModel();
+  //     courseSearchModelCompare1 = CourseSearchModel();
+  //     update();
+  //   }
+  // }
 
   courseSearch(String country, String courseLevel, String enq_id,
       [String state = "[]",

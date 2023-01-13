@@ -165,6 +165,8 @@ class _FinalShortListState extends State<FinalShortList> {
                                               .courseSearchList.length !=
                                           index)
                                         CollagelistExpandedWidget(
+                                          callbackRemoveCourse:
+                                              callbackCompareCourseRemove,
                                           previousRoute:
                                               FinalShortList.routeNamed,
                                           index: index,
@@ -443,5 +445,9 @@ class _FinalShortListState extends State<FinalShortList> {
           "";
     }
     controller1.courseFinalShortlist(id, "78623");
+  }
+
+  callbackCompareCourseRemove(data) {
+    print(data);
   }
 }

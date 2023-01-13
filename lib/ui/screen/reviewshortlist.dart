@@ -189,6 +189,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                     if (controller1.courseSearchModel.length !=
                                         index)
                                       CollagelistExpandedWidget(
+                                        callbackRemoveCourse:
+                                            callbackCompareCourseRemove,
                                         previousRoute:
                                             ReviewShortList.routeNamed,
                                         index: index,
@@ -358,5 +360,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
           "";
     }
     controller1.courseFinalShortlist(id, "78623");
+  }
+
+  callbackCompareCourseRemove(data) {
+    print(data);
   }
 }

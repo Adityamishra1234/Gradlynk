@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class EnglishTestController extends BaseController {
@@ -44,25 +45,34 @@ class EnglishTestController extends BaseController {
   }
 
   getExamStatus() async {
-    var res =
-        await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.examStatus!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      examStatusList = map.values.toList();
-      examStatusCode = map.keys.toList();
-      loadingExamStaus = true.obs;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.examStatus!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        examStatusList = map.values.toList();
+        examStatusCode = map.keys.toList();
+        loadingExamStaus = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getExamName() async {
-    var res =
-        await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.examName!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      print("23");
-      examNameList = map.values.toList();
-      loadingExamName2 = true.obs;
+    try {
+      var res =
+          await apiServices.dropDown1(Endpoints.baseUrl!, Endpoints.examName!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        examNameList = map.values.toList();
+        loadingExamName2 = true.obs;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 

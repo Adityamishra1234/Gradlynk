@@ -493,10 +493,11 @@ class _DashBoardState extends State<DashBoard> {
                     padding: const EdgeInsets.only(
                       top: 15,
                     ),
-                    child: SizedBox(
-                        width: displayMobileLayout == true
-                            ? MediaQuery.of(context).size.width - 240
-                            : MediaQuery.of(context).size.width * 0.90,
+                    child: Container(
+                        // width: displayMobileLayout == true
+                        //     ? MediaQuery.of(context).size.width - 240
+                        //     : MediaQuery.of(context).size.width * 0.90,
+                        constraints: BoxConstraints(maxWidth: 300),
                         child: Card(
                           elevation: 0.7,
                           shadowColor: const Color(0xFFE5E1FE),

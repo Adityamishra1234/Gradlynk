@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseInformationProfileController extends BaseController {
@@ -35,44 +36,59 @@ class CourseInformationProfileController extends BaseController {
   }
 
   getCourseLevel() async {
-    var res = await apiServices.getCourseLevel(
-        Endpoints.baseUrl!, Endpoints.courselevel!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      courseLevelList = map.keys.toList();
-      courseLevelCode = map.values.toList();
-      loadingCourseLevel.value = true;
-      update();
+    try {
+      var res = await apiServices.getCourseLevel(
+          Endpoints.baseUrl!, Endpoints.courselevel!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        courseLevelList = map.keys.toList();
+        courseLevelCode = map.values.toList();
+        loadingCourseLevel.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCoursenarrow() async {
-    var res = await apiServices.getCourseNarrowProfile(
-        Endpoints.baseUrl!, Endpoints.courseNarrowFieldProfile!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      courseNarrowList = map.keys.toList();
-      courseNarrowCode = map.values.toList();
-      loadingCourseNarrow.value = true;
-      update();
+    try {
+      var res = await apiServices.getCourseNarrowProfile(
+          Endpoints.baseUrl!, Endpoints.courseNarrowFieldProfile!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        courseNarrowList = map.keys.toList();
+        courseNarrowCode = map.values.toList();
+        loadingCourseNarrow.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCourseBroadField(int courseNarrowFieldId) async {
-    loadingCourseBroad.value = false;
-    var res = await apiServices.getCourseNarrowProfile(
-        Endpoints.baseUrl!,
-        Endpoints.courseBroadFieldByNarrowField! +
-            courseNarrowFieldId.toString());
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      courseBroadSelected =
-          map.keys.toList().toString().split('[')[1].split(']')[0];
+    try {
+      loadingCourseBroad.value = false;
+      var res = await apiServices.getCourseNarrowProfile(
+          Endpoints.baseUrl!,
+          Endpoints.courseBroadFieldByNarrowField! +
+              courseNarrowFieldId.toString());
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        courseBroadSelected =
+            map.keys.toList().toString().split('[')[1].split(']')[0];
 
-      courseBroadSelectedId =
-          int.parse(map.values.toList().toString().split('[')[1].split(']')[0]);
-      loadingCourseBroad = true.obs;
-      update();
+        courseBroadSelectedId = int.parse(
+            map.values.toList().toString().split('[')[1].split(']')[0]);
+        loadingCourseBroad = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
@@ -87,23 +103,27 @@ class CourseInformationProfileController extends BaseController {
   }
 
   updateCourseInformation(int enq_id, int courseLevelId) async {
-    String? endpoint;
-    endpoint = Endpoints.addCourseInformationPart1! +
-        enq_id.toString() +
-        Endpoints.addCourseInformationPart2! +
-        courseLevelId.toString();
-    for (var i = 0; i < viewCourseInformationList.length; i++) {
-      endpoint = endpoint! +
-          getaddCourseInformationPart3(
-              i,
-              viewCourseInformationList[i].courseBroadId!,
-              viewCourseInformationList[i].courseNarrowId!);
+    try {
+      String? endpoint;
+      endpoint = Endpoints.addCourseInformationPart1! +
+          enq_id.toString() +
+          Endpoints.addCourseInformationPart2! +
+          courseLevelId.toString();
+      for (var i = 0; i < viewCourseInformationList.length; i++) {
+        endpoint = endpoint! +
+            getaddCourseInformationPart3(
+                i,
+                viewCourseInformationList[i].courseBroadId!,
+                viewCourseInformationList[i].courseNarrowId!);
+      }
+      var res = await apiServices.addProfileModule(
+          Endpoints.baseUrl!, endpoint!, "Course Information");
+      loadingViewCourseInformation.value = true;
+      update();
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
-
-    var res = await apiServices.addProfileModule(
-        Endpoints.baseUrl!, endpoint!, "Course Information");
-    loadingViewCourseInformation.value = true;
-    update();
   }
 
   callbackCourseLevel(String? data) {

@@ -3,6 +3,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class ApplicationSummaryController extends BaseController {
@@ -54,26 +55,36 @@ class ApplicationSummaryController extends BaseController {
   }
 
   getapplicationStatus() async {
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.applicationStatus!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      statusListId = map.keys.toList();
-      statusListName = map.values.toList();
-      loadingStatus.value = true;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.applicationStatus!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        statusListId = map.keys.toList();
+        statusListName = map.values.toList();
+        loadingStatus.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getapplicationStage() async {
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.applicationStage!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      stageListID = map.keys.toList();
-      stageNameList = map.values.toList();
-      loadingStage.value = true;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.applicationStage!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        stageListID = map.keys.toList();
+        stageNameList = map.values.toList();
+        loadingStage.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class VisaSummaryController extends BaseController {
@@ -33,14 +34,19 @@ class VisaSummaryController extends BaseController {
   }
 
   getVisaStatus() async {
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.visaStatusID!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      visaStatusID = map.keys.toList();
-      visaStatusName = map.values.toList();
-      loadingVisaStatus.value = true;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.visaStatusID!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        visaStatusID = map.keys.toList();
+        visaStatusName = map.values.toList();
+        loadingVisaStatus.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseSearchController extends BaseController {
@@ -61,76 +62,106 @@ class CourseSearchController extends BaseController {
   }
 
   getCountry() async {
-    var res =
-        await apiservices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      countryList = map.keys.toList();
-      countryCode = map.values.toList();
-      loadingCountry.value = true;
-      update();
+    try {
+      var res =
+          await apiservices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        countryList = map.keys.toList();
+        countryCode = map.values.toList();
+        loadingCountry.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getState(String country) async {
-    var res = await apiservices.getState(
-        Endpoints.baseUrl!, Endpoints.state!, country);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      stateList = map.keys.toList();
-      stateCode = map.values.toList();
-      loadingState = true.obs;
-      update();
+    try {
+      var res = await apiservices.getState(
+          Endpoints.baseUrl!, Endpoints.state!, country);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        stateList = map.keys.toList();
+        stateCode = map.values.toList();
+        loadingState = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCity(String state) async {
-    List tempList;
-    var res =
-        await apiservices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      cityList = map.keys.toList();
-      cityCode = map.values.toList();
-      loadingCity = true.obs;
-      update();
+    try {
+      List tempList;
+      var res =
+          await apiservices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        cityList = map.keys.toList();
+        cityCode = map.values.toList();
+        loadingCity = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCourseLevel() async {
-    var res = await apiservices.getCourseLevel(
-        Endpoints.baseUrl!, Endpoints.courselevel!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      courseLevelList = map.keys.toList();
-      courseLevelCode = map.values.toList();
-      loadingCourseLevel.value = true;
-      update();
+    try {
+      var res = await apiservices.getCourseLevel(
+          Endpoints.baseUrl!, Endpoints.courselevel!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        courseLevelList = map.keys.toList();
+        courseLevelCode = map.values.toList();
+        loadingCourseLevel.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCourseBoardField() async {
-    var res = await apiservices.getCourseBoardField(
-        Endpoints.baseUrl!, Endpoints.courseBoardField!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      courseBoardList = map.keys.toList();
-      courseBoardCode = map.values.toList();
-      loadingCourseBoardField = true.obs;
-      update();
+    try {
+      var res = await apiservices.getCourseBoardField(
+          Endpoints.baseUrl!, Endpoints.courseBoardField!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        courseBoardList = map.keys.toList();
+        courseBoardCode = map.values.toList();
+        loadingCourseBoardField = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCoursenarrowField(String boardField) async {
-    List tempList;
-    var res = await apiservices.getCoursenarrowField(
-        Endpoints.baseUrl!, Endpoints.state!, boardField);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      courseNarrowList = map.keys.toList();
-      courseNarrowCode = map.values.toList();
-      loadingCourseNarrowField = true.obs;
-      update();
+    try {
+      List tempList;
+      var res = await apiservices.getCoursenarrowField(
+          Endpoints.baseUrl!, Endpoints.state!, boardField);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        courseNarrowList = map.keys.toList();
+        courseNarrowCode = map.values.toList();
+        loadingCourseNarrowField = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
@@ -160,23 +191,30 @@ class CourseSearchController extends BaseController {
     var res =
         await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint, enq_id);
     if (res != null) {
-      courseModelFilter = res;
-      courseSearchModel = courseModelFilter.courseSearchList;
-      for (var i = 0; i < courseSearchModel.length; i++) {
-        if (courseSearchModel[i].listIntake!.isNotEmpty) {
-          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
-            if (int.parse(courseSearchModel[i].listIntake![j].split("-")[1]) >=
-                int.parse(formatterYear.format(now))) {
+      try {
+        courseModelFilter = res;
+        courseSearchModel = courseModelFilter.courseSearchList;
+        for (var i = 0; i < courseSearchModel.length; i++) {
+          if (courseSearchModel[i].listIntake!.isNotEmpty) {
+            for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
               if (int.parse(
-                      courseSearchModel[i].listIntake![j].split("-")[0]) >=
-                  int.parse(formatterMonth.format(now))) {
-                courseSearchModel[i].nearByIntake =
-                    courseSearchModel[i].listIntake![j];
+                      courseSearchModel[i].listIntake![j].split("-")[1]) >=
+                  int.parse(formatterYear.format(now))) {
+                if (int.parse(
+                        courseSearchModel[i].listIntake![j].split("-")[0]) >=
+                    int.parse(formatterMonth.format(now))) {
+                  courseSearchModel[i].nearByIntake =
+                      courseSearchModel[i].listIntake![j];
+                }
               }
             }
           }
         }
+      } catch (e) {
+        print(StackTrace.current);
+        getToast(e.toString());
       }
+
       return courseModelFilter;
     }
   }

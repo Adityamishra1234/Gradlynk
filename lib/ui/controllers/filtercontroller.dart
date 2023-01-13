@@ -72,16 +72,12 @@ class FilterController extends BaseController {
         }
       }
     }
-
     filter();
   }
 
   // writen some code
   getAcademic(String? data) async {
-    // courseModelFilter.filterModel.filterSelected.academicPercentageSelected =
-    //     [];
     loadingfuncation.value = false;
-
     update();
     filterModel = FilterModel();
     academicpercentage = data!.split(",");
@@ -126,9 +122,7 @@ class FilterController extends BaseController {
     filterModel = FilterModel();
     temp = data!.split(",");
     temp.removeAt(0);
-
     university = temp;
-
     if (kDebugMode) {
       print(university);
     }

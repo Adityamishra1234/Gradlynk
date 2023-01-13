@@ -245,7 +245,8 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                   ThemeConstants.VioletColor,
                                             ),
                                             CustomAutoSizeTextMontserrat(
-                                              text: "Aug-2022|Jan-2023",
+                                              text: completeCourseDetail![0]
+                                                  .intakeFromYear,
                                               maxLines: 2,
                                               textColor:
                                                   ThemeConstants.blackcolor,
@@ -373,7 +374,8 @@ class CourseSearchFullDetail extends StatelessWidget {
                           children: [
                             SafeArea(
                               bottom: false,
-                              child: SizedBox(
+                              child: Align(
+                                alignment: AlignmentDirectional.topStart,
                                 child: Wrap(
                                     // spacing: 10.0,
                                     runSpacing: 10.0,

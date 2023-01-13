@@ -69,64 +69,79 @@ class PassportController extends BaseController {
   }
 
   getCountry() async {
-    loadingCountry.value == false;
-    var res =
-        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.allCountry!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        countryList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        countryCode.add(element.toString());
-      });
+    try {
+      loadingCountry.value == false;
+      var res = await apiServices.getCountry(
+          Endpoints.baseUrl!, Endpoints.allCountry!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        List<dynamic> temp = map.keys.toList();
+        temp.forEach((element) {
+          countryList.add(element);
+        });
+        temp = map.values.toList();
+        temp.forEach((element) {
+          countryCode.add(element.toString());
+        });
 
-      loadingCountry = true.obs;
-      update();
+        loadingCountry = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getState(String countryId) async {
-    stateList = [];
-    stateCode = [];
-    stateCodeSelected = null;
-    stateSelected = null;
-    loadingState.value = false;
-    var res = await apiServices.getState2(
-        Endpoints.baseUrl!, Endpoints.state! + countryId);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        stateList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        stateCode.add(element.toString());
-      });
-      if (getNUllChecker(passportModel.stateOfIssue) == false) {
-        for (var i = 0; i < stateCode.length; i++) {
-          if (stateCode[i] == passportModel.stateOfIssue) {
-            stateCodeSelected = passportModel.stateOfIssue;
-            stateSelected = stateList[i];
+    try {
+      stateList = [];
+      stateCode = [];
+      stateCodeSelected = null;
+      stateSelected = null;
+      loadingState.value = false;
+      var res = await apiServices.getState2(
+          Endpoints.baseUrl!, Endpoints.state! + countryId);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        List<dynamic> temp = map.keys.toList();
+        temp.forEach((element) {
+          stateList.add(element);
+        });
+        temp = map.values.toList();
+        temp.forEach((element) {
+          stateCode.add(element.toString());
+        });
+        if (getNUllChecker(passportModel.stateOfIssue) == false) {
+          for (var i = 0; i < stateCode.length; i++) {
+            if (stateCode[i] == passportModel.stateOfIssue) {
+              stateCodeSelected = passportModel.stateOfIssue;
+              stateSelected = stateList[i];
+            }
           }
         }
+        loadingState = true.obs;
+        update();
       }
-      loadingState = true.obs;
-      update();
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getPlaceOfIssue() async {
-    var res = await apiServices.dropDown1(
-        Endpoints.baseUrl!, Endpoints.passportPlaceOfIssuse!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      placeOfIssuse = map.values.toList();
-      loadingPlaceOfIssuse.value = true;
-      update();
+    try {
+      var res = await apiServices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.passportPlaceOfIssuse!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        placeOfIssuse = map.values.toList();
+        loadingPlaceOfIssuse.value = true;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 }

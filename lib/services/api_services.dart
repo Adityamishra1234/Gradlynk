@@ -447,6 +447,7 @@ class ApiServices extends StudentPanelBase {
           filterModel.intakeYear!.addAll(element.intakeYear!.split("|"));
         }
 
+// Academic Require Filter
         if (getNUllChecker(element.academicRequire) == false) {
           if (double.parse(element.academicRequire!.split("-")[2]) >= 70) {
             filterModel.academicPercentage[0].update("70+ %", (value) => true);
@@ -483,7 +484,7 @@ class ApiServices extends StudentPanelBase {
         //   filterModel.academicPercentage!.add(element.academicRequire ?? "");
         // }
 
-        //annual tutionFee
+        //annual tutionFee and Budget
         if (getNUllChecker(element.annualTutionFeesInr) == false) {
           if (double.parse(element.annualTutionFeesInr!) < 700000) {
             filterModel.budget[3].update("Below 7 Lac", (value) => true);
@@ -875,9 +876,7 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-
       var jsondata = json.decode(response);
-
       return jsondata;
     } catch (e) {
       print(StackTrace.current);

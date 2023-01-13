@@ -6,12 +6,14 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
-import 'package:studentpanel/ui/screen/sort.dart';
+import 'package:studentpanel/ui/screen/remove_compare_course.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CollagelistExpandedWidget extends StatefulWidget {
+  CourseSearchModel? courseSearchModelCompare1;
+  CourseSearchModel? courseSearchModelCompare2;
   String? previousRoute;
   bool? finalShortListFirst;
   bool? courseShortListFirst;
@@ -22,6 +24,7 @@ class CollagelistExpandedWidget extends StatefulWidget {
   String? currentPage;
   String? lastPage;
   CourseSearchModel courseSearchModel;
+  final Function callbackRemoveCourse;
   final Function callbackFunction;
   final Function callbackCompare;
   final Function? callbackShortListButton;
@@ -31,7 +34,10 @@ class CollagelistExpandedWidget extends StatefulWidget {
   int? index;
   CollagelistExpandedWidget(
       {Key? key,
+      this.courseSearchModelCompare1,
+      this.courseSearchModelCompare2,
       this.previousRoute,
+      required this.callbackRemoveCourse,
       required this.finalShortListFirst,
       required this.courseShortListFirst,
       required this.callbackForModelCompare,
@@ -858,82 +864,12 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   // Function
 
   AddedButtonShow() {
+    print(widget.iscompare);
     // add compare in both
-    if (addCompare == null) {
-      if (courseSearchModelCompare1Id == courseSearchModel.id ||
-          courseSearchModelCompare2Id == courseSearchModel.id) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: SizedBox(
-            width: 90,
-            height: 35,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: ThemeConstants.bluecolor, // background
-                  onPrimary: ThemeConstants.bluecolor, // foreground
-                ),
-                onPressed: () {
-                  addCompare = false;
 
-                  // Remove Course Search model
-                  if (courseSearchModelCompare1Id == courseSearchModel.id) {
-                    widget.callbackForModelCompare!("Model1");
-                  } else {
-                    widget.callbackForModelCompare!("Model2");
-                  }
-
-                  // setState(() {});
-                },
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Added",
-                  fontSize: 12,
-                  textColor: ThemeConstants.whitecolor,
-                )),
-          ),
-        );
-      } else if (courseSearchModelCompare1Id != courseSearchModel.id &&
-          courseSearchModelCompare2Id != courseSearchModel.id) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: SizedBox(
-              width: 90,
-              height: 35,
-              child: InkWell(
-                onTap: () {
-                  if (widget.courseSearchModelCompare1Id != null &&
-                      widget.courseSearchModelCompare2Id != null) {
-                    showDialog(
-                        context: context,
-                        builder: (_) => const AlertDialog(
-                              contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                              content: BottomSheetRemoveCourse(),
-                              insetPadding: EdgeInsets.only(left: 5, right: 5),
-                            ));
-                  } else {
-                    setState(() {
-                      addCompare = true;
-                      widget.callbackCompare("${true},$index");
-                    });
-                  }
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: ThemeConstants.TextColor),
-                      borderRadius: BorderRadius.all(Radius.circular(5))),
-                  child: Center(
-                      child: CustomAutoSizeTextMontserrat(
-                    text: "Compare",
-                    fontSize: 8,
-                    fontWeight: FontWeight.w600,
-                    textColor: ThemeConstants.TextColor,
-                  )),
-                ),
-              )),
-        );
-      }
-    }
-    if (addCompare == true) {
-      //Added Button
+    //Added Button
+    if (widget.courseSearchModelCompare1Id == courseSearchModel.id ||
+        widget.courseSearchModelCompare2Id == courseSearchModel.id) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: SizedBox(
@@ -944,20 +880,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 primary: ThemeConstants.bluecolor, // background
                 onPrimary: ThemeConstants.bluecolor, // foreground
               ),
-              onPressed: () async {
+              onPressed: () {
                 addCompare = false;
 
-// Remove Course Search model
-                if (courseSearchModelCompare1Id == courseSearchModel.id) {
-                  courseSearchModelCompare1Id = null;
-
-                  await widget.callbackForModelCompare!("Model1");
+                // Remove Course Search model
+                if (widget.courseSearchModelCompare1Id ==
+                    courseSearchModel.id) {
+                  widget.callbackForModelCompare!("Model1");
                 } else {
-                  courseSearchModelCompare2Id = null;
-
-                  await widget.callbackForModelCompare!("Model2");
+                  widget.callbackForModelCompare!("Model2");
                 }
-                setState(() {});
+
+                // setState(() {});
               },
               child: CustomAutoSizeTextMontserrat(
                 text: "Added",
@@ -966,8 +900,10 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               )),
         ),
       );
-    } else if (addCompare == false) {
-      // added to compare
+    }
+    //Compare button
+    else if (widget.courseSearchModelCompare1Id != courseSearchModel.id &&
+        widget.courseSearchModelCompare2Id != courseSearchModel.id) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: SizedBox(
@@ -975,13 +911,21 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             height: 35,
             child: InkWell(
               onTap: () {
-                if (courseSearchModelCompare1Id != null &&
-                    courseSearchModelCompare2Id != null) {
-                  Get.bottomSheet(SizedBox(
-                    height: 40,
-                    width: MediaQuery.of(context).size.width,
-                    child: const Text("data"),
-                  ));
+                if (widget.courseSearchModelCompare1Id != null &&
+                    widget.courseSearchModelCompare2Id != null) {
+                  showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            content: RemoveCompareCourse(
+                              model1: widget.courseSearchModelCompare1!,
+                              model2: widget.courseSearchModelCompare2!,
+                              callbackRemoveCourse: callbackRemoveCourse,
+                            ),
+                            insetPadding:
+                                const EdgeInsets.only(left: 5, right: 5),
+                          ));
                 } else {
                   setState(() {
                     addCompare = true;
@@ -1004,6 +948,78 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             )),
       );
     }
+
+//     //Added Button
+//     if (addCompare == true) {
+//       return Padding(
+//         padding: const EdgeInsets.only(bottom: 10),
+//         child: SizedBox(
+//           width: 90,
+//           height: 35,
+//           child: ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//                 primary: ThemeConstants.bluecolor, // background
+//                 onPrimary: ThemeConstants.bluecolor, // foreground
+//               ),
+//               onPressed: () async {
+//                 addCompare = false;
+
+// // Remove Course Search model
+//                 if (courseSearchModelCompare1Id == courseSearchModel.id) {
+//                   courseSearchModelCompare1Id = null;
+//                   await widget.callbackForModelCompare!("Model1");
+//                 } else {
+//                   courseSearchModelCompare2Id = null;
+//                   await widget.callbackForModelCompare!("Model2");
+//                 }
+//                 setState(() {});
+//               },
+//               child: CustomAutoSizeTextMontserrat(
+//                 text: "Added",
+//                 fontSize: 12,
+//                 textColor: ThemeConstants.whitecolor,
+//               )),
+//         ),
+//       );
+//     }
+//     //Compare button
+//     else if (addCompare == false) {
+//       return Padding(
+//         padding: const EdgeInsets.only(bottom: 10),
+//         child: SizedBox(
+//             width: 90,
+//             height: 35,
+//             child: InkWell(
+//               onTap: () {
+//                 if (courseSearchModelCompare1Id != null &&
+//                     courseSearchModelCompare2Id != null) {
+//                   Get.bottomSheet(SizedBox(
+//                     height: 40,
+//                     width: MediaQuery.of(context).size.width,
+//                     child: const Text("data"),
+//                   ));
+//                 } else {
+//                   setState(() {
+//                     addCompare = true;
+//                     widget.callbackCompare("${true},$index");
+//                   });
+//                 }
+//               },
+//               child: Container(
+//                 decoration: BoxDecoration(
+//                     border: Border.all(color: ThemeConstants.TextColor),
+//                     borderRadius: BorderRadius.all(Radius.circular(5))),
+//                 child: Center(
+//                     child: CustomAutoSizeTextMontserrat(
+//                   text: "Compare",
+//                   fontSize: 8,
+//                   fontWeight: FontWeight.w600,
+//                   textColor: ThemeConstants.TextColor,
+//                 )),
+//               ),
+//             )),
+//       );
+//     }
   }
 
   AddToShortList() {
@@ -1281,5 +1297,18 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
         return Container();
       }
     }
+  }
+
+  callbackRemoveCourse(data) {
+    if (data == "1") {
+      courseSearchModelCompare1Id = null;
+    } else if (data == "2") {
+      courseSearchModelCompare2Id = null;
+    } else if (data == "12") {
+      courseSearchModelCompare1Id = null;
+      courseSearchModelCompare2Id = null;
+    }
+    widget.callbackRemoveCourse(data);
+    setState(() {});
   }
 }

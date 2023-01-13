@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/realtion.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class RelativeInformationController extends BaseController {
@@ -47,49 +48,64 @@ class RelativeInformationController extends BaseController {
   }
 
   getCountry() async {
-    loadingCountry.value == false;
-    var res =
-        await apiServices.getCountry(Endpoints.baseUrl!, Endpoints.allCountry!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      List<dynamic> temp = map.keys.toList();
-      temp.forEach((element) {
-        countryList.add(element);
-      });
-      temp = map.values.toList();
-      temp.forEach((element) {
-        countryCode.add(element.toString());
-      });
+    try {
+      loadingCountry.value == false;
+      var res = await apiServices.getCountry(
+          Endpoints.baseUrl!, Endpoints.allCountry!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        List<dynamic> temp = map.keys.toList();
+        temp.forEach((element) {
+          countryList.add(element);
+        });
+        temp = map.values.toList();
+        temp.forEach((element) {
+          countryCode.add(element.toString());
+        });
 
-      loadingCountry = true.obs;
-      update();
+        loadingCountry = true.obs;
+        update();
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
   }
 
   getCitizenShipStatus() async {
-    // single
-    loadingCountry.value == false;
-    var res = await apiServices.getCountry(
-        Endpoints.baseUrl!, Endpoints.citizenshipStatus!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      citizenShipStatus = map.keys.toList();
+    try {
+      // single
+      loadingCountry.value == false;
+      var res = await apiServices.getCountry(
+          Endpoints.baseUrl!, Endpoints.citizenshipStatus!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        citizenShipStatus = map.keys.toList();
+      }
+      loadingCitizen.value = true;
+      update();
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
-    loadingCitizen.value = true;
-    update();
   }
 
   getRealtionWithStatus() async {
-    //single
-    loadingCountry.value == false;
-    var res = await apiServices.getCountry(
-        Endpoints.baseUrl!, Endpoints.realtionWithRelative!);
-    if (res != null) {
-      Map map = Map<String, dynamic>.from(res);
-      realtion = map.keys.toList();
+    try {
+      //single
+      loadingCountry.value == false;
+      var res = await apiServices.getCountry(
+          Endpoints.baseUrl!, Endpoints.realtionWithRelative!);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        realtion = map.keys.toList();
+      }
+      loadingRealtion.value = true;
+      update();
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
     }
-    loadingRealtion.value = true;
-    update();
   }
 
   viewRelativeHistory(String enq_id) async {
