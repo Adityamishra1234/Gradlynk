@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
+import 'package:studentpanel/ui/models/institutiondropdown.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -183,21 +184,27 @@ class QualificationDetailsController extends BaseController {
   geInstitutionEdit(
       String cityId, String? institution, String? institutionId) async {
     try {
-      affiliationCode = [];
-      affiliationList = [];
+      institutionCode = [];
+      institutionList = [];
       loadingAffiliation.value = false;
       var res = await apiServices.getInstitute(
           Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
       if (res != null) {
-        Map map = Map<String, dynamic>.from(res);
-        List<dynamic> temp = map.keys.toList();
-        temp.forEach((element) {
-          institutionList.add(element);
-        });
-        temp = map.values.toList();
-        temp.forEach((element) {
-          institutionCode.add(element.toString());
-        });
+        List<InstitutionDropDown> dropdown = [];
+        dropdown = res;
+        for (var i = 0; i < dropdown.length; i++) {
+          institutionCode.add(dropdown[i].id);
+          institutionList.add(dropdown[i].universityName);
+        }
+        // Map map = Map<String, dynamic>.from(res);
+        // List<dynamic> temp = map.keys.toList();
+        // temp.forEach((element) {
+        //   institutionList.add(element);
+        // });
+        // temp = map.values.toList();
+        // temp.forEach((element) {
+        //   institutionCode.add(element.toString());
+        // });
         institutionSelected = institution ?? institutionList[0];
         institutionSelectedID = institutionId ?? institutionCode[0];
         loadingInstitution = true.obs;

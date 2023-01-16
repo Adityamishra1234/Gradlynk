@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/ui/models/institutiondropdown.dart';
 import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
@@ -834,9 +835,10 @@ class ApiServices extends StudentPanelBase {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
-      var jsondata = json.decode(response);
+      List<InstitutionDropDown> dropdown = List<InstitutionDropDown>.from(
+          json.decode(response).map((x) => InstitutionDropDown.fromJson(x)));
 
-      return jsondata;
+      return dropdown;
     } catch (e) {
       print(StackTrace.current);
       Fluttertoast.showToast(
