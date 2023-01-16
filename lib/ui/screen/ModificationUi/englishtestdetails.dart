@@ -26,8 +26,8 @@ class EnglishTestDetails extends StatelessWidget {
 
   static final literacyKey = GlobalKey<FormState>();
   static final comprehensionKey = GlobalKey<FormState>();
-  static final conversation = GlobalKey<FormState>();
-  static final production = GlobalKey<FormState>();
+  static final conversationKey = GlobalKey<FormState>();
+  static final productionkey = GlobalKey<FormState>();
   static final listeningKey = GlobalKey<FormState>();
   static final writingKey = GlobalKey<FormState>();
   static final readingKey = GlobalKey<FormState>();
@@ -888,77 +888,76 @@ class EnglishTestDetails extends StatelessWidget {
     ];
   }
 
-  duolingo(BuildContext context) {
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-          child: Align(
-            alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "Literacy",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+  List<Widget> duolingo(BuildContext context) {
+    return [
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Literacy",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Form(
-            key: literacyKey,
-            child: TextFormField(
-              controller: listening, keyboardType: TextInputType.number,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Listening",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
-              // onChanged: (value) {
-
-              // },
-              validator: (value) {
-                if (getNUllChecker(value) == false) {
-                  if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
-                    if (double.parse(value) % 1 != 0) {
-                      return SnackBarConstants.DuolingoSValidation2;
-                    }
-                  } else {
-                    return SnackBarConstants.DuolingoSValidation1;
-                  }
-                }
-                return null;
-              },
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-          child: Align(
-            alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "Comprehension",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            onTap: () {
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Form(
+          key: literacyKey,
+          child: TextFormField(
+            onChanged: (value) {
               if (literacyKey.currentState!.validate()) {
                 literacyKey.currentState!.save();
               }
             },
+            controller: listening,
+            keyboardType: TextInputType.number,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Literacy",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+            ),
+            style: ThemeConstants.montserrattextstyle,
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+                  if (double.parse(value) % 5 != 0) {
+                    return SnackBarConstants.DuolingoSValidation2;
+                  }
+                } else {
+                  return SnackBarConstants.DuolingoSValidation1;
+                }
+              }
+              return null;
+            },
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Comprehension",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Form(
+          key: comprehensionKey,
+          child: TextFormField(
             controller: writing,
             keyboardType: TextInputType.number,
             scrollPadding: EdgeInsets.symmetric(
@@ -973,24 +972,43 @@ class EnglishTestDetails extends StatelessWidget {
               ),
             ),
             style: ThemeConstants.montserrattextstyle,
-            onChanged: (value) {},
+            onChanged: (value) {
+              if (comprehensionKey.currentState!.validate()) {
+                comprehensionKey.currentState!.save();
+              }
+            },
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+                  if (double.parse(value) % 5 != 0) {
+                    return SnackBarConstants.DuolingoSValidation2;
+                  }
+                } else {
+                  return SnackBarConstants.DuolingoSValidation1;
+                }
+              }
+              return null;
+            },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-          child: Align(
-            alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "Conversation",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Conversation",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Form(
+          key: conversationKey,
+          child: TextFormField(
             controller: reading,
             keyboardType: TextInputType.number,
             scrollPadding: EdgeInsets.symmetric(
@@ -1005,24 +1023,43 @@ class EnglishTestDetails extends StatelessWidget {
               ),
             ),
             style: ThemeConstants.montserrattextstyle,
-            onChanged: (value) {},
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+                  if (double.parse(value) % 5 != 0) {
+                    return SnackBarConstants.DuolingoSValidation2;
+                  }
+                } else {
+                  return SnackBarConstants.DuolingoSValidation1;
+                }
+              }
+              return null;
+            },
+            onChanged: (value) {
+              if (conversationKey.currentState!.validate()) {
+                comprehensionKey.currentState!.save();
+              }
+            },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-          child: Align(
-            alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "Production",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Production",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 10, right: 10),
+        child: Form(
+          key: productionkey,
+          child: TextFormField(
             controller: speaking,
             keyboardType: TextInputType.number,
             scrollPadding: EdgeInsets.symmetric(
@@ -1037,12 +1074,28 @@ class EnglishTestDetails extends StatelessWidget {
               ),
             ),
             style: ThemeConstants.montserrattextstyle,
-            onChanged: (value) {},
+            validator: (value) {
+              if (getNUllChecker(value) == false) {
+                if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+                  if (double.parse(value) % 5 != 0) {
+                    return SnackBarConstants.DuolingoSValidation2;
+                  }
+                } else {
+                  return SnackBarConstants.DuolingoSValidation1;
+                }
+              }
+              return null;
+            },
+            onChanged: (value) {
+              if (productionkey.currentState!.validate()) {
+                productionkey.currentState!.save();
+              }
+            },
           ),
         ),
-        ...overallScore(context),
-      ],
-    );
+      ),
+      ...overallScore(context),
+    ];
   }
 
   getOverallScore() {
