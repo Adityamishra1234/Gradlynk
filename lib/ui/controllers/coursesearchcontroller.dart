@@ -78,41 +78,6 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  getState(String country) async {
-    try {
-      var res = await apiservices.getState(
-          Endpoints.baseUrl!, Endpoints.state!, country);
-      if (res != null) {
-        Map map = Map<String, dynamic>.from(res);
-        stateList = map.keys.toList();
-        stateCode = map.values.toList();
-        loadingState = true.obs;
-        update();
-      }
-    } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
-    }
-  }
-
-  getCity(String state) async {
-    try {
-      List tempList;
-      var res =
-          await apiservices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
-      if (res != null) {
-        Map map = Map<String, dynamic>.from(res);
-        cityList = map.keys.toList();
-        cityCode = map.values.toList();
-        loadingCity = true.obs;
-        update();
-      }
-    } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
-    }
-  }
-
   getCourseLevel() async {
     try {
       var res = await apiservices.getCourseLevel(
@@ -147,7 +112,54 @@ class CourseSearchController extends BaseController {
     }
   }
 
+  getState(String country) async {
+    stateCode = [];
+    stateList = [];
+    loadingState.value = false;
+    selectStateCode = [].obs;
+    try {
+      var res = await apiservices.getState(
+          Endpoints.baseUrl!, Endpoints.state!, country);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        stateList = map.keys.toList();
+        stateCode = map.values.toList();
+        loadingState = true.obs;
+      }
+      update();
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
+    }
+  }
+
+  getCity(String state) async {
+    cityList = [];
+    cityCode = [];
+    loadingCity.value = false;
+    selectCityCode = [].obs;
+    try {
+      List tempList;
+      var res =
+          await apiservices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
+      if (res != null) {
+        Map map = Map<String, dynamic>.from(res);
+        cityList = map.keys.toList();
+        cityCode = map.values.toList();
+        loadingCity = true.obs;
+      }
+      update();
+    } catch (e) {
+      print(StackTrace.current);
+      getToast(e.toString());
+    }
+  }
+
   getCoursenarrowField(String boardField) async {
+    courseNarrowList = [];
+    courseNarrowCode = [];
+    loadingCourseNarrowField.value = false;
+    selectCourseNarrowFieldCode = [].obs;
     try {
       List tempList;
       var res = await apiservices.getCoursenarrowField(

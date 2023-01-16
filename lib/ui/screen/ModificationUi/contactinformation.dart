@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/studentpanel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class ContactInformationCopy extends StatefulWidget {
-  const ContactInformationCopy({Key? key}) : super(key: key);
+  StudentPanel model = StudentPanel();
+  ContactInformationCopy({Key? key, required this.model}) : super(key: key);
   static const routeNamed = '/ContactInformationCopy';
 
   @override
@@ -20,6 +23,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController mobileNumber = TextEditingController();
+  TextEditingController alt_Number = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController whatsappNumber = TextEditingController();
   TextEditingController secondaryNumber = TextEditingController();
@@ -29,6 +33,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   TextEditingController instagramId = TextEditingController();
   TextEditingController facebookId = TextEditingController();
   TextEditingController snapchatId = TextEditingController();
+  TextEditingController assignedBranch = TextEditingController();
+  TextEditingController service = TextEditingController();
+  TextEditingController firstCountryInterest = TextEditingController();
+  TextEditingController otherCountryinterested = TextEditingController();
   int? genderId, maritalStatusId, childrenCount, countryId, stateId, cityId;
   String? initialSelectedGender,
       initialSelectedMaritalStatus,
@@ -39,6 +47,54 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   var controller = Get.put(ContactInformationController());
   GlobalKey globalKey = GlobalKey();
   bool socialMedia = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    firstName.text = widget.model.enquiryName ?? "";
+    // lastName.text=widget.model.familyname
+    mobileNumber.text = getNUllChecker(widget.model.mobile) == false
+        ? widget.model.mobile.toString()
+        : "";
+    email.text = widget.model.email ?? "";
+    // whatsappNumber.text=widget.model.what
+    // secondaryNumber.text=widget.model.
+    // secondaryEmail.text=widget.
+    street.text = widget.model.street ?? "";
+    zipCode.text = getNUllChecker(widget.model.pincode) == false
+        ? widget.model.pincode.toString()
+        : "";
+    //  instagramId
+    //   facebookId
+    //   snapchatId
+//  genderId, maritalStatusId, childrenCount, countryId, stateId, cityId;
+    // String? initialSelectedGender,
+    //     initialSelectedMaritalStatus,
+    //     initialSelectedChildCount,
+    //     initialSelectedCountry,
+    //     initialSelectedState,
+    //     initialSelectedState;
+    initialSelectedGender = widget.model.gender ?? "Male";
+    initialSelectedMaritalStatus = widget.model.maritalStatus ?? "Married";
+    // initialSelectedChildCount=widget.model.
+    initialSelectedCountry = widget.model.countryName ?? "India";
+    initialSelectedState = widget.model.stateName ?? "";
+    initialSelectedCity = widget.model.cityName ?? "";
+    String? temp = "";
+    if (widget.model.otherCountryOfInterest != null) {
+      for (var i = 0; i < widget.model.otherCountryOfInterest!.length; i++) {
+        if (i == 0) {
+          temp = widget.model.otherCountryOfInterest![i].countryName!;
+        } else {
+          temp =
+              "${temp!},${widget.model.otherCountryOfInterest![i].countryName!}";
+        }
+      }
+    }
+    otherCountryinterested.text = temp!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -54,10 +110,18 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               Get.snackbar("Image Upload Process ", "Image Upload Process",
                   snackPosition: SnackPosition.BOTTOM);
             },
-            child: const CircleAvatar(
+            child: CircleAvatar(
+              onBackgroundImageError: (exception, stackTrace) {
+                print(exception);
+                print(stackTrace.toString());
+              },
+              // onForegroundImageError: (exception, stackTrace) {
+              //   print(exception);
+              //   print(stackTrace.toString());
+              // },
               radius: 80.0,
               backgroundImage: NetworkImage(
-                  "https://png.pngitem.com/pimgs/s/146-1468295_business-man-profile-icon-business-profile-icon-png.png"),
+                  "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
               backgroundColor: Colors.transparent,
             ),
           )),
@@ -272,11 +336,50 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: mobileNumber,
+              keyboardType: TextInputType.number,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
               decoration: InputDecoration(
                 hintText: "Mobile Number",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              style: ThemeConstants.montserrattextstyle,
+              onChanged: (value) {
+                RenderObject? object =
+                    globalKey.currentContext!.findRenderObject();
+                object!.showOnScreen();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+            child: Align(
+              alignment: AlignmentDirectional.topStart,
+              child: CustomAutoSizeTextMontserrat(
+                text: "Alternate Number",
+                mandatory: true,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                textColor: ThemeConstants.TextColor,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              controller: alt_Number,
+              keyboardType: TextInputType.number,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              readOnly: saveAndEdit,
+              decoration: InputDecoration(
+                hintText: "Alternate Number",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -340,6 +443,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: whatsappNumber,
+              keyboardType: TextInputType.number,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
@@ -533,6 +637,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
               controller: zipCode,
+              keyboardType: TextInputType.number,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: saveAndEdit,
@@ -674,11 +779,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              onTap: () {
+                getToast("Auto Selected");
+              },
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
-                hintText: "Shreya IT",
+                hintText: "Assigned Advisors",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -704,11 +812,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              onTap: () {
+                getToast("Auto Selected");
+              },
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
-                hintText: "West Delhi",
+                hintText: "Assiged Advisors",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -734,11 +845,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              onTap: () {
+                getToast("Auto Selected");
+              },
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
-                hintText: "Student Visa",
+                hintText: "Service",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -764,11 +878,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              onTap: () {
+                getToast("Auto Selected");
+              },
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
-                hintText: "Australia",
+                hintText: "First country of Interest",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(
@@ -794,11 +911,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
+              onTap: () {
+                getToast("Auto Selected");
+              },
+              controller: otherCountryinterested,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
-                hintText: "Canada,Ireland,USA",
+                hintText: "Other Country",
                 filled: true,
                 fillColor: ThemeConstants.lightblueColor,
                 border: OutlineInputBorder(

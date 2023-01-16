@@ -167,6 +167,7 @@ class PassportDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: passportNumber,
+          keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == false,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),

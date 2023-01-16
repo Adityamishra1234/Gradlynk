@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
+import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/englishtestdetails.dart';
@@ -17,7 +18,9 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ProfilePageCopy extends StatelessWidget {
-  ProfilePageCopy({Key? key}) : super(key: key);
+  StudentPanel studentPanelmodel = StudentPanel();
+  ProfilePageCopy({Key? key, required this.studentPanelmodel})
+      : super(key: key);
   static const routeNamed = '/ProfilePageCopy';
   ScrollController controller = ScrollController();
   // ScrollPhysics scrollPhysics = ScrollPhysics();
@@ -1243,8 +1246,8 @@ class ProfilePageCopy extends StatelessWidget {
                                 }
                               }),
                         ),
-                        getOption(
-                            context, _.chooseIndex!.value, constraints - 240)
+                        getOption(context, _.chooseIndex!.value,
+                            constraints - 240, studentPanelmodel)
                       ],
                     )),
               ],
@@ -1253,12 +1256,14 @@ class ProfilePageCopy extends StatelessWidget {
         ));
   }
 
-  getOption(BuildContext context, int index, double width) {
+  getOption(BuildContext context, int index, double width, StudentPanel model) {
     if (index == 0) {
       return Expanded(
           // width: width,
           // height: MediaQuery.of(context).size.height - 210,
-          child: const ContactInformationCopy());
+          child: ContactInformationCopy(
+        model: model,
+      ));
     }
 
     if (index == 1) {

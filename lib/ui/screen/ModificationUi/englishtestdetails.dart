@@ -908,7 +908,7 @@ class EnglishTestDetails extends StatelessWidget {
           child: Form(
             key: literacyKey,
             child: TextFormField(
-              controller: listening,
+              controller: listening, keyboardType: TextInputType.number,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               decoration: InputDecoration(
@@ -960,10 +960,11 @@ class EnglishTestDetails extends StatelessWidget {
               }
             },
             controller: writing,
+            keyboardType: TextInputType.number,
             scrollPadding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
-              hintText: "Writing",
+              hintText: "Comprehension",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
               border: OutlineInputBorder(
@@ -991,10 +992,11 @@ class EnglishTestDetails extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             controller: reading,
+            keyboardType: TextInputType.number,
             scrollPadding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
-              hintText: "Reading",
+              hintText: "Conversation",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
               border: OutlineInputBorder(
@@ -1022,10 +1024,11 @@ class EnglishTestDetails extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
             controller: speaking,
+            keyboardType: TextInputType.number,
             scrollPadding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).viewInsets.bottom + 30),
             decoration: InputDecoration(
-              hintText: "Speaking",
+              hintText: "Production",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
               border: OutlineInputBorder(

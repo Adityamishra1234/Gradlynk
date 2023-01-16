@@ -547,6 +547,7 @@ class OthertestDetail extends StatelessWidget {
             key: analyticalKey,
             child: TextFormField(
               controller: analyticalWriting,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (analyticalKey.currentState!.validate()) {
                   analyticalKey.currentState!.save();
@@ -600,6 +601,7 @@ class OthertestDetail extends StatelessWidget {
             key: verbalKey,
             child: TextFormField(
               controller: verbalReasoning,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (verbalKey.currentState!.validate()) {
                   verbalKey.currentState!.save();
@@ -654,6 +656,7 @@ class OthertestDetail extends StatelessWidget {
             key: quantitativeKey,
             child: TextFormField(
               controller: quantitative,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (quantitativeKey.currentState!.validate()) {
                   quantitativeKey.currentState!.save();
@@ -708,6 +711,7 @@ class OthertestDetail extends StatelessWidget {
             key: integratedKey,
             child: TextFormField(
               controller: integrateedReasoning,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (integratedKey.currentState!.validate()) {
                   integratedKey.currentState!.save();
@@ -760,6 +764,7 @@ class OthertestDetail extends StatelessWidget {
           key: overallKey,
           child: TextFormField(
             controller: overallScore,
+            keyboardType: TextInputType.number,
             onChanged: (value) {
               if (overallKey.currentState!.validate()) {
                 overallKey.currentState!.save();
@@ -819,6 +824,7 @@ class OthertestDetail extends StatelessWidget {
             key: readingKey,
             child: TextFormField(
               controller: reading,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (readingKey.currentState!.validate()) {
                   readingKey.currentState!.save();
@@ -873,6 +879,7 @@ class OthertestDetail extends StatelessWidget {
             key: writingKey,
             child: TextFormField(
               controller: writingAndLanguage,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (writingKey.currentState!.validate()) {
                   writingKey.currentState!.save();
@@ -927,6 +934,7 @@ class OthertestDetail extends StatelessWidget {
             key: essayKey,
             child: TextFormField(
               controller: essay,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (essayKey.currentState!.validate()) {
                   essayKey.currentState!.save();
@@ -980,6 +988,7 @@ class OthertestDetail extends StatelessWidget {
             key: mathKey,
             child: TextFormField(
               controller: math,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (essayKey.currentState!.validate()) {
                   essayKey.currentState!.save();
@@ -1032,6 +1041,7 @@ class OthertestDetail extends StatelessWidget {
           key: overallKey,
           child: TextFormField(
             controller: overallScore,
+            keyboardType: TextInputType.number,
             onChanged: (value) {
               if (overallKey.currentState!.validate()) {
                 overallKey.currentState!.save();
@@ -1091,6 +1101,7 @@ class OthertestDetail extends StatelessWidget {
             key: analyticalKey,
             child: TextFormField(
               controller: analyticalWriting,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (analyticalKey.currentState!.validate()) {
                   analyticalKey.currentState!.save();
@@ -1144,6 +1155,7 @@ class OthertestDetail extends StatelessWidget {
             key: verbalKey,
             child: TextFormField(
               controller: verbalReasoning,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (verbalKey.currentState!.validate()) {
                   verbalKey.currentState!.save();
@@ -1199,6 +1211,7 @@ class OthertestDetail extends StatelessWidget {
             key: quantitativeKey,
             child: TextFormField(
               controller: quantitative,
+              keyboardType: TextInputType.number,
               onChanged: (value) {
                 if (quantitativeKey.currentState!.validate()) {
                   quantitativeKey.currentState!.save();
@@ -1252,6 +1265,7 @@ class OthertestDetail extends StatelessWidget {
           key: overallKey,
           child: TextFormField(
             controller: overallScore,
+            keyboardType: TextInputType.number,
             onChanged: (value) {
               if (overallKey.currentState!.validate()) {
                 overallKey.currentState!.save();

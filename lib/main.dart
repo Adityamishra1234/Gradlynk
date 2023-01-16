@@ -128,11 +128,11 @@ class _MyAppState extends State<MyApp> {
           binding: ProfilePageBinding(),
           page: () => ProfilePage(),
         ),
-        GetPage(
-          name: ProfilePageCopy.routeNamed,
-          transition: Transition.fade,
-          page: () => ProfilePageCopy(),
-        ),
+        // GetPage(
+        //   name: ProfilePageCopy.routeNamed,
+        //   transition: Transition.fade,
+        //   page: () => ProfilePageCopy(),
+        // ),
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,
@@ -199,11 +199,11 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.cupertino,
           page: () => LunchingPage(),
         ),
-        GetPage(
-          name: ContactInformationCopy.routeNamed,
-          transition: Transition.cupertino,
-          page: () => const ContactInformationCopy(),
-        ),
+        // GetPage(
+        //   name: ContactInformationCopy.routeNamed,
+        //   transition: Transition.cupertino,
+        //   page: () =>  ContactInformationCopy(),
+        // ),
         GetPage(
           name: ScrollTabBar.routeNamed,
           transition: Transition.cupertino,

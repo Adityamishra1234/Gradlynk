@@ -337,7 +337,9 @@ class _DashBoardState extends State<DashBoard> {
                       // Create profile
                       InkWell(
                         onTap: () {
-                          Get.to(ProfilePageCopy());
+                          Get.to(ProfilePageCopy(
+                            studentPanelmodel: dashboardController.studentPanel,
+                          ));
                         },
                         child: Column(
                           children: [

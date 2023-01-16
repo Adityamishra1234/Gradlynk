@@ -223,6 +223,7 @@ class RelativeInformationWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           controller: contactOfRelative,
+          keyboardType: TextInputType.number,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
