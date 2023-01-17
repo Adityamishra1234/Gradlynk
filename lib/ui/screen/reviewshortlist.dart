@@ -16,7 +16,9 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ReviewShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
-  ReviewShortList({Key? key, this.courseModelFilter}) : super(key: key);
+  FilterModel? filtermodel = FilterModel();
+  ReviewShortList({Key? key, this.courseModelFilter, this.filtermodel})
+      : super(key: key);
   static const routeNamed = '/ReviewShortlist';
 
   @override
@@ -84,14 +86,21 @@ class _ReviewShortListState extends State<ReviewShortList> {
                           const Spacer(),
                           InkWell(
                             onTap: () {
-                              controller1.courseModelFilter
-                                      .previousCourseSearchList =
-                                  controller1
-                                      .courseModelFilter.courseSearchList;
+                              if (controller1.courseModelFilter
+                                      .previousCourseSearchList.length <=
+                                  controller1.courseModelFilter.courseSearchList
+                                      .length) {
+                                controller1.courseModelFilter
+                                        .previousCourseSearchList =
+                                    controller1
+                                        .courseModelFilter.courseSearchList;
+                              }
+
                               Get.to(Filter(
                                 courseModelFilter:
                                     controller1.courseModelFilter,
                                 previousRoute: ReviewShortList.routeNamed,
+                                filtermodel: widget.filtermodel,
                               ));
                             },
                             child: Container(

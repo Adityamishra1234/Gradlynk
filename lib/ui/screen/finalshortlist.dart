@@ -15,7 +15,9 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 
 class FinalShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
-  FinalShortList({Key? key, this.courseModelFilter}) : super(key: key);
+  FilterModel? filterModel = FilterModel();
+  FinalShortList({Key? key, this.courseModelFilter, this.filterModel})
+      : super(key: key);
   static const routeNamed = '/FinalShortList';
 
   @override
@@ -59,14 +61,20 @@ class _FinalShortListState extends State<FinalShortList> {
                             const Spacer(),
                             InkWell(
                               onTap: () {
-                                controller1.courseModelFilter
-                                        .previousCourseSearchList =
-                                    controller1
-                                        .courseModelFilter.courseSearchList;
+                                if (controller1.courseModelFilter
+                                        .previousCourseSearchList.length <=
+                                    controller1.courseModelFilter
+                                        .courseSearchList.length) {
+                                  controller1.courseModelFilter
+                                          .previousCourseSearchList =
+                                      controller1
+                                          .courseModelFilter.courseSearchList;
+                                }
                                 Get.to(Filter(
                                   previousRoute: FinalShortList.routeNamed,
                                   courseModelFilter:
                                       controller1.courseModelFilter,
+                                  filtermodel: widget.filterModel,
                                 ));
                               },
                               child: Container(
