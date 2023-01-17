@@ -215,7 +215,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             height: 15,
                             color: ThemeConstants.bluelightgreycolor,
                           ),
-                          if (courseSearchModel.courseDuration != null)
+                          if (getNUllChecker(
+                                  courseSearchModel.courseDuration) ==
+                              false)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: CustomAutoSizeTextMontserrat(
@@ -226,7 +228,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (courseSearchModel.annualTutionFees != null)
+                          if (getNUllChecker(
+                                  courseSearchModel.annualTutionFees) ==
+                              false)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: SvgPicture.asset(
@@ -243,7 +247,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               child: SizedBox(
                                 width: 100,
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: courseSearchModel.currencyCode != null
+                                  text: getNUllChecker(
+                                              courseSearchModel.currencyCode) ==
+                                          false
                                       ? (courseSearchModel.annualTutionFees
                                               .toString() +
                                           courseSearchModel.currencyCode!)
@@ -699,7 +705,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                           ? courseSearchModel.listIntake![0]
                                               .toString()
                                               .split('-')[2]
-                                          : "",
+                                          : "Closed",
                                       textColor: Colors.grey,
                                     ),
                                   )),

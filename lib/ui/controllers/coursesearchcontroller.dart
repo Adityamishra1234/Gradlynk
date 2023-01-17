@@ -9,15 +9,20 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseSearchController extends BaseController {
-  // Reactive field Using in Callback Funcation
-  RxList<dynamic> selectCountryCode = [].obs;
-  RxList<dynamic> selectStateCode = [].obs;
-  RxList<dynamic> selectCityCode = [].obs;
-  RxList<dynamic> selectCourseBoardFieldCode = [].obs;
-  RxList<dynamic> selectCourseNarrowFieldCode = [].obs;
-  RxList<dynamic> selectCourseCode = [].obs;
-  RxList<dynamic> countryDropdown = [].obs;
-  RxString courseLevelDropdown = "".obs;
+  //Select Code
+  int? selectCountryCode;
+  int? selectStateCode;
+  int? selectCityCode;
+  int? selectCourseBoardFieldCode;
+  int? selectCourseNarrowFieldCode;
+  int? selectCourseLevelCode;
+//Select Name
+  String? selectCountryName;
+  String? selectStateName;
+  String? selectCityName;
+  String? selectCourseBoardFieldName;
+  String? selectCourseNarrowFieldName;
+  String? selectCourseLevelName;
 
 // Using for Local Variable for DropDown
   List<dynamic> countryList = [];
@@ -64,11 +69,13 @@ class CourseSearchController extends BaseController {
   getCountry() async {
     try {
       var res =
-          await apiservices.getCountry(Endpoints.baseUrl!, Endpoints.country!);
+          await apiservices.dropDown1(Endpoints.baseUrl!, Endpoints.country!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        countryList = map.keys.toList();
-        countryCode = map.values.toList();
+        countryList.add("Select Country");
+        countryCode.add(0);
+        countryList.addAll(map.keys.toList());
+        countryCode.addAll(map.values.toList());
         loadingCountry.value = true;
         update();
       }
@@ -80,12 +87,14 @@ class CourseSearchController extends BaseController {
 
   getCourseLevel() async {
     try {
-      var res = await apiservices.getCourseLevel(
+      var res = await apiservices.dropDown1(
           Endpoints.baseUrl!, Endpoints.courselevel!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        courseLevelList = map.keys.toList();
-        courseLevelCode = map.values.toList();
+        courseLevelList.add("Select Course Level");
+        courseLevelCode.add(0);
+        courseLevelList.addAll(map.keys.toList());
+        courseLevelCode.addAll(map.values.toList());
         loadingCourseLevel.value = true;
         update();
       }
@@ -97,12 +106,14 @@ class CourseSearchController extends BaseController {
 
   getCourseBoardField() async {
     try {
-      var res = await apiservices.getCourseBoardField(
+      var res = await apiservices.dropDown1(
           Endpoints.baseUrl!, Endpoints.courseBoardField!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        courseBoardList = map.keys.toList();
-        courseBoardCode = map.values.toList();
+        courseBoardList.add("Select Course Level");
+        courseBoardCode.add(0);
+        courseBoardList.addAll(map.keys.toList());
+        courseBoardCode.addAll(map.values.toList());
         loadingCourseBoardField = true.obs;
         update();
       }
@@ -112,18 +123,20 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  getState(String country) async {
+  getState(int country) async {
     stateCode = [];
     stateList = [];
     loadingState.value = false;
-    selectStateCode = [].obs;
+    selectStateCode = null;
     try {
-      var res = await apiservices.getState(
-          Endpoints.baseUrl!, Endpoints.state!, country);
+      var res = await apiservices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.state! + country.toString());
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        stateList = map.keys.toList();
-        stateCode = map.values.toList();
+        stateList.add("Select State");
+        stateCode.add(0);
+        stateList.addAll(map.keys.toList());
+        stateCode.addAll(map.values.toList());
         loadingState = true.obs;
       }
       update();
@@ -133,19 +146,21 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  getCity(String state) async {
+  getCity(int state) async {
     cityList = [];
     cityCode = [];
     loadingCity.value = false;
-    selectCityCode = [].obs;
+    selectCityCode = null;
     try {
       List tempList;
-      var res =
-          await apiservices.getCity(Endpoints.baseUrl!, Endpoints.city!, state);
+      var res = await apiservices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.city! + state.toString());
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        cityList = map.keys.toList();
-        cityCode = map.values.toList();
+        cityList.add("Select City");
+        cityCode.add(0);
+        cityList.addAll(map.keys.toList());
+        cityCode.addAll(map.values.toList());
         loadingCity = true.obs;
       }
       update();
@@ -155,19 +170,21 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  getCoursenarrowField(String boardField) async {
+  getCoursenarrowField(int boardField) async {
     courseNarrowList = [];
     courseNarrowCode = [];
     loadingCourseNarrowField.value = false;
-    selectCourseNarrowFieldCode = [].obs;
+    selectCourseNarrowFieldCode = null;
     try {
       List tempList;
-      var res = await apiservices.getCoursenarrowField(
-          Endpoints.baseUrl!, Endpoints.courseNarrowField!, boardField);
+      var res = await apiservices.dropDown1(Endpoints.baseUrl!,
+          Endpoints.courseNarrowField! + boardField.toString());
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        courseNarrowList = map.keys.toList();
-        courseNarrowCode = map.values.toList();
+        courseNarrowList.add("Select course Narrow");
+        courseNarrowCode.add(0);
+        courseNarrowList.addAll(map.keys.toList());
+        courseNarrowCode.addAll(map.values.toList());
         loadingCourseNarrowField = true.obs;
         update();
       }
@@ -177,15 +194,15 @@ class CourseSearchController extends BaseController {
     }
   }
 
-  setCountryDropdown(List data) {
-    countryDropdown.value = data;
-    update();
-  }
+  // setCountryDropdown(List data) {
+  //   countryDropdown.value = data;
+  //   update();
+  // }
 
-  setCourseDropdown(String data) {
-    courseLevelDropdown.value = data;
-    update();
-  }
+  // setCourseDropdown(String data) {
+  //   courseLevelDropdown.value = data;
+  //   update();
+  // }
 
   courseSearch(String country, String courseLevel, String enq_id) async {
     courseModelFilter = CourseModelFilter();
@@ -200,8 +217,7 @@ class CourseSearchController extends BaseController {
         temp2 +
         Endpoints.courseSearchPart2! +
         temp4;
-    var res =
-        await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint, enq_id);
+    var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
       try {
         courseModelFilter = res;

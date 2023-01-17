@@ -26,10 +26,12 @@ class CourseSearchList extends StatefulWidget {
   String? countryId;
   String? courseLevel;
   String? enq_id;
+  FilterModel? filterModel;
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   CourseSearchList(
       {Key? key,
       required this.filterRedirect,
+      this.filterModel,
       this.stateCode,
       this.cityCode,
       this.boardFieldCode,
@@ -58,10 +60,10 @@ class _CourseSearchListState extends State<CourseSearchList> {
           widget.countryId!,
           widget.courseLevel!,
           widget.enq_id!,
-          widget.stateCode ?? "[]",
-          widget.cityCode ?? "[]",
-          widget.boardFieldCode ?? "[]",
-          widget.narrowField ?? "[]");
+          widget.stateCode ?? "",
+          widget.cityCode ?? "",
+          widget.boardFieldCode ?? "",
+          widget.narrowField ?? "");
     }
     super.initState();
   }
@@ -99,15 +101,22 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                 const Spacer(),
                                 InkWell(
                                   onTap: () {
-                                    controller1.courseModelFilter
-                                            .previousCourseSearchList =
-                                        controller1
-                                            .courseModelFilter.courseSearchList;
+                                    if (controller1.courseModelFilter
+                                            .previousCourseSearchList.length <=
+                                        controller1.courseModelFilter
+                                            .courseSearchList.length) {
+                                      controller1.courseModelFilter
+                                              .previousCourseSearchList =
+                                          controller1.courseModelFilter
+                                              .courseSearchList;
+                                    }
+
                                     Get.to(Filter(
                                       courseModelFilter:
                                           controller1.courseModelFilter,
                                       previousRoute:
                                           CourseSearchList.routeNamed,
+                                      filtermodel: widget.filterModel,
                                     ));
                                   },
                                   child: Container(

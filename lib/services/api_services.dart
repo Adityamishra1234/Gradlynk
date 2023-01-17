@@ -231,12 +231,12 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getCourseSearch(String baseUrl, String endpoint, String enq_id) async {
+  getCourseSearch(String baseUrl, String endpoint) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     List<CourseSearchModel> courseSearchModel = [];
 
     try {
-      var response = await httpPostNullBody("$baseUrl$endpoint&enq_id=$enq_id");
+      var response = await httpPostNullBody("$baseUrl$endpoint");
 
       var jsondata = json.decode(response);
 

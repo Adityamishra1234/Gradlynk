@@ -15,8 +15,13 @@ import 'package:studentpanel/widgets/test.dart';
 
 class Filter extends StatefulWidget {
   CourseModelFilter courseModelFilter = CourseModelFilter();
+  FilterModel? filtermodel;
   String? previousRoute;
-  Filter({Key? key, required this.courseModelFilter, this.previousRoute})
+  Filter(
+      {Key? key,
+      required this.courseModelFilter,
+      this.previousRoute,
+      this.filtermodel})
       : super(key: key);
   static const routeNamed = '/Filter';
 
@@ -57,7 +62,8 @@ class _FilterState extends State<Filter> {
   void initState() {
     courseModelFilter = widget.courseModelFilter;
     controller.courseModelFilter = courseModelFilter;
-    controller.filterModel = courseModelFilter.filterModel;
+    controller.filterModel =
+        widget.filtermodel ?? widget.courseModelFilter.filterModel;
     previousRoute = widget.previousRoute;
     super.initState();
   }
@@ -634,32 +640,63 @@ class _FilterState extends State<Filter> {
                                               side: BorderSide(
                                                   color: ThemeConstants
                                                       .bluecolor)))),
-                                  onPressed: () async {
+                                  onPressed: () {
                                     if (itemsSelected != null) {
-                                      await loadingFilter();
-                                    }
-                                    if (controller1.loadingfuncation.value ==
-                                        true) {
-                                      if (previousRoute ==
-                                          FinalShortList.routeNamed) {
-                                        Get.to(FinalShortList(
-                                          courseModelFilter:
-                                              controller1.courseModelFilter,
-                                        ));
+                                      loadingFilter();
+                                      if (controller1.loadingfuncation.value ==
+                                          true) {
+                                        if (previousRoute ==
+                                            FinalShortList.routeNamed) {
+                                          Get.to(FinalShortList(
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                          ));
+                                        }
+                                        if (previousRoute ==
+                                            ReviewShortList.routeNamed) {
+                                          Get.to(ReviewShortList(
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                          ));
+                                        }
+                                        if (previousRoute ==
+                                            CourseSearchList.routeNamed) {
+                                          Get.to(CourseSearchList(
+                                            filterRedirect: true,
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                            filterModel:
+                                                controller1.filterModel,
+                                          ));
+                                        }
                                       }
-                                      if (previousRoute ==
-                                          ReviewShortList.routeNamed) {
-                                        Get.to(ReviewShortList(
-                                          courseModelFilter:
-                                              controller1.courseModelFilter,
-                                        ));
-                                      }
-                                      if (previousRoute ==
-                                          CourseSearchList.routeNamed) {
-                                        Get.to(CourseSearchList(
-                                          filterRedirect: true,
-                                          courseModelFilter: courseModelFilter,
-                                        ));
+                                    } else {
+                                      if (controller1.loadingfuncation.value ==
+                                          true) {
+                                        if (previousRoute ==
+                                            FinalShortList.routeNamed) {
+                                          Get.to(FinalShortList(
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                          ));
+                                        }
+                                        if (previousRoute ==
+                                            ReviewShortList.routeNamed) {
+                                          Get.to(ReviewShortList(
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                          ));
+                                        }
+                                        if (previousRoute ==
+                                            CourseSearchList.routeNamed) {
+                                          Get.to(CourseSearchList(
+                                            filterRedirect: true,
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                            filterModel:
+                                                controller1.filterModel,
+                                          ));
+                                        }
                                       }
                                     }
                                   },

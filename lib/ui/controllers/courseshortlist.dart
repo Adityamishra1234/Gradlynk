@@ -111,11 +111,8 @@ class CourseShortListController extends BaseController {
   //   }
   // }
 
-  courseSearch(String country, String courseLevel, String enq_id,
-      [String state = "[]",
-      String city = "[]",
-      String boarder_ield = "[]",
-      String narrow_field = "[]"]) async {
+  courseSearch(String country, String courseLevel, String enq_id, String state,
+      String city, String boarder_ield, String narrow_field) async {
     loadingCourseSearch = false.obs;
     courseModelFilter = CourseModelFilter();
     var now = DateTime.now();
@@ -123,19 +120,18 @@ class CourseShortListController extends BaseController {
     var formatterMonth = DateFormat('MM');
 
     String? endpoint = Endpoints.courseSearchPart1! +
-        getRemoveSquarebracket(country) +
+        country +
         Endpoints.courseSearchPart2! +
-        getRemoveSquarebracket(courseLevel) +
+        courseLevel +
         Endpoints.courseSearchPart3! +
-        getRemoveSquarebracket(state) +
+        state +
         Endpoints.courseSearchPart4! +
-        getRemoveSquarebracket(city) +
+        city +
         Endpoints.courseSearchPart5! +
-        getRemoveSquarebracket(boarder_ield) +
+        boarder_ield +
         Endpoints.courseSearchPart6! +
-        getRemoveSquarebracket(narrow_field);
-    var res =
-        await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint, enq_id);
+        narrow_field;
+    var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
       courseModelFilter = res;
       courseSearchModel = courseModelFilter.courseSearchList;
