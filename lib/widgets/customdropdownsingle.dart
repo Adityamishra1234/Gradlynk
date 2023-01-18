@@ -63,6 +63,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                           child: CustomAutoSizeTextMontserrat(
                             text: items,
                             textColor: ThemeConstants.TextColor,
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -94,7 +95,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
               ),
-              style: ThemeConstants.montserrattextstyle,
+              style: ThemeConstants.montserrattextstyle2,
             ),
           );
   }

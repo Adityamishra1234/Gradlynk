@@ -66,7 +66,7 @@ class _CourseSearchState extends State<CourseSearch> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(
-                              height: 10.0,
+                              height: 20.0,
                             ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
@@ -75,14 +75,17 @@ class _CourseSearchState extends State<CourseSearch> {
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Country",
                                   mandatory: true,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             SizedBox(
                               // width: 300,
-                              height: 50,
+                              height: 45,
                               child: CustomDropDownSingle(
                                 model: getDropdownModel(
                                   _.loadingCountry.value,
@@ -98,20 +101,26 @@ class _CourseSearchState extends State<CourseSearch> {
                                 callbackFunction: callbackCountry,
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "State",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             SizedBox(
                               // width: 300,
-                              height: 50,
+                              height: 45,
                               child: CustomDropDownSingle(
                                 model: getDropdownModel(_.loadingState.value,
                                     _.selectStateName, _.stateList),
@@ -123,20 +132,26 @@ class _CourseSearchState extends State<CourseSearch> {
                                 callbackFunction: callbackState,
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "City",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             SizedBox(
                               // width: 300,
-                              height: 50,
+                              height: 45,
                               child: CustomDropDownSingle(
                                 model: getDropdownModel(_.loadingCity.value,
                                     _.selectCityName, _.cityList),
@@ -148,6 +163,9 @@ class _CourseSearchState extends State<CourseSearch> {
                                 callbackFunction: callbackCity,
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
                               child: Padding(
@@ -155,14 +173,17 @@ class _CourseSearchState extends State<CourseSearch> {
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Level",
                                   mandatory: true,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             SizedBox(
                               // width: 300,
-                              height: 50,
+                              height: 45,
                               child: CustomDropDownSingle(
                                 model: getDropdownModel(
                                     _.loadingCourseLevel.value,
@@ -176,20 +197,26 @@ class _CourseSearchState extends State<CourseSearch> {
                                 callbackFunction: callbackCourseLevel,
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Broad Field",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             SizedBox(
                               // width: 300,
-                              height: 50,
+                              height: 45,
                               child: CustomDropDownSingle(
                                 model: getDropdownModel(
                                     _.loadingCourseBoardField.value,
@@ -203,20 +230,26 @@ class _CourseSearchState extends State<CourseSearch> {
                                 callbackFunction: callbackCourseBroadField,
                               ),
                             ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Narrow Field",
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
+                                  // fontWeight: FontWeight.bold,,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             SizedBox(
                               // width: 300,
-                              height: 50,
+                              height: 45,
                               child: CustomDropDownSingle(
                                 model: getDropdownModel(
                                     _.loadingCourseNarrowField.value,
@@ -238,123 +271,132 @@ class _CourseSearchState extends State<CourseSearch> {
                                   children: [
                                     const Spacer(),
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 20),
-                                      child: ElevatedButton(
-                                          style: ButtonStyle(
-                                              elevation: MaterialStateProperty
-                                                  .all<double>(0),
-                                              foregroundColor:
-                                                  MaterialStateProperty.all<Color>(
-                                                      Colors.white),
-                                              backgroundColor:
-                                                  MaterialStateProperty.all<Color>(
-                                                      Colors.white),
-                                              shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(5.0),
-                                                      side: BorderSide(color: ThemeConstants.TextColor)))),
-                                          onPressed: () {
-                                            // Selected Code
-                                            _.selectStateCode = null;
-                                            _.selectCityCode = null;
-                                            _.selectCourseBoardFieldCode = null;
-                                            _.selectCountryCode = null;
-                                            _.selectCourseNarrowFieldCode =
-                                                null;
-                                            _.selectCourseLevelCode = null;
-                                            //Selected Name
-                                            _.selectCountryName = null;
-                                            _.selectStateName = null;
-                                            _.selectCityName = null;
-                                            _.selectCourseBoardFieldName = null;
-                                            _.selectCourseNarrowFieldName =
-                                                null;
-                                            _.selectCourseLevelName = null;
-                                            // Dropdown model
-                                            _.stateList = [];
-                                            _.stateCode = [];
-                                            _.cityList = [];
-                                            _.cityCode = [];
-                                            _.courseNarrowList = [];
-                                            _.courseNarrowCode = [];
-                                            //loading
-                                            _.loadingState.value = false;
-                                            _.loadingCity.value = false;
-                                            _.loadingCourseNarrowField.value =
-                                                false;
-                                            _.update();
-                                          },
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Clean",
-                                            textColor: ThemeConstants.TextColor,
-                                          )),
+                                      padding: const EdgeInsets.only(right: 10),
+                                      child: SizedBox(
+                                        width: 100,
+                                        child: ElevatedButton(
+                                            style: ButtonStyle(
+                                                elevation: MaterialStateProperty
+                                                    .all<double>(0),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all<Color>(
+                                                        Colors.white),
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<Color>(
+                                                        Colors.white),
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(5.0),
+                                                        side: BorderSide(color: ThemeConstants.TextColor)))),
+                                            onPressed: () {
+                                              // Selected Code
+                                              _.selectStateCode = null;
+                                              _.selectCityCode = null;
+                                              _.selectCourseBoardFieldCode =
+                                                  null;
+                                              _.selectCountryCode = null;
+                                              _.selectCourseNarrowFieldCode =
+                                                  null;
+                                              _.selectCourseLevelCode = null;
+                                              //Selected Name
+                                              _.selectCountryName = null;
+                                              _.selectStateName = null;
+                                              _.selectCityName = null;
+                                              _.selectCourseBoardFieldName =
+                                                  null;
+                                              _.selectCourseNarrowFieldName =
+                                                  null;
+                                              _.selectCourseLevelName = null;
+                                              // Dropdown model
+                                              _.stateList = [];
+                                              _.stateCode = [];
+                                              _.cityList = [];
+                                              _.cityCode = [];
+                                              _.courseNarrowList = [];
+                                              _.courseNarrowCode = [];
+                                              //loading
+                                              _.loadingState.value = false;
+                                              _.loadingCity.value = false;
+                                              _.loadingCourseNarrowField.value =
+                                                  false;
+                                              _.update();
+                                            },
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Clear",
+                                              textColor:
+                                                  ThemeConstants.TextColor,
+                                            )),
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(right: 20),
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            elevation: 0.0,
-                                            primary: ThemeConstants
-                                                .bluecolor, // background
-                                            onPrimary: ThemeConstants
-                                                .bluecolor, // foreground
-                                          ),
-                                          onPressed: () async {
-                                            if (_.selectCountryCode == null) {
-                                              getToast(SnackBarConstants
-                                                  .courseSearchPart1!);
-                                            } else if (_
-                                                    .selectCourseLevelCode ==
-                                                null) {
-                                              getToast(SnackBarConstants
-                                                  .courseSearchPart1!);
-                                            } else {
-                                              Get.to(CourseSearchList(
-                                                filterRedirect: false,
-                                                stateCode:
-                                                    _.selectStateCode == null
-                                                        ? ""
-                                                        : _.selectStateCode
-                                                            .toString(),
-                                                cityCode:
-                                                    _.selectCityCode == null
-                                                        ? ""
-                                                        : _.selectCityCode
-                                                            .toString(),
-                                                boardFieldCode:
-                                                    _.selectCourseBoardFieldCode ==
-                                                            null
-                                                        ? ""
-                                                        : _.selectCourseBoardFieldCode
-                                                            .toString(),
-                                                countryId:
-                                                    _.selectCountryCode == null
-                                                        ? ""
-                                                        : _.selectCountryCode
-                                                            .toString(),
-                                                narrowField:
-                                                    _.selectCourseNarrowFieldCode ==
-                                                            null
-                                                        ? ""
-                                                        : _.selectCourseNarrowFieldCode
-                                                            .toString(),
-                                                courseLevel:
-                                                    _.selectCourseLevelCode ==
-                                                            null
-                                                        ? ""
-                                                        : _.selectCourseLevelCode
-                                                            .toString(),
-                                                enq_id: "78623",
-                                              ));
-                                            }
-                                          },
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Search",
-                                            textColor:
-                                                ThemeConstants.whitecolor,
-                                          )),
+                                      child: SizedBox(
+                                        width: 100,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              elevation: 0.0,
+                                              primary: ThemeConstants
+                                                  .bluecolor, // background
+                                              onPrimary: ThemeConstants
+                                                  .bluecolor, // foreground
+                                            ),
+                                            onPressed: () async {
+                                              if (_.selectCountryCode == null) {
+                                                getToast(SnackBarConstants
+                                                    .courseSearchPart1!);
+                                              } else if (_
+                                                      .selectCourseLevelCode ==
+                                                  null) {
+                                                getToast(SnackBarConstants
+                                                    .courseSearchPart1!);
+                                              } else {
+                                                Get.to(CourseSearchList(
+                                                  filterRedirect: false,
+                                                  stateCode:
+                                                      _.selectStateCode == null
+                                                          ? ""
+                                                          : _.selectStateCode
+                                                              .toString(),
+                                                  cityCode:
+                                                      _.selectCityCode == null
+                                                          ? ""
+                                                          : _.selectCityCode
+                                                              .toString(),
+                                                  boardFieldCode:
+                                                      _.selectCourseBoardFieldCode ==
+                                                              null
+                                                          ? ""
+                                                          : _.selectCourseBoardFieldCode
+                                                              .toString(),
+                                                  countryId:
+                                                      _.selectCountryCode ==
+                                                              null
+                                                          ? ""
+                                                          : _.selectCountryCode
+                                                              .toString(),
+                                                  narrowField:
+                                                      _.selectCourseNarrowFieldCode ==
+                                                              null
+                                                          ? ""
+                                                          : _.selectCourseNarrowFieldCode
+                                                              .toString(),
+                                                  courseLevel:
+                                                      _.selectCourseLevelCode ==
+                                                              null
+                                                          ? ""
+                                                          : _.selectCourseLevelCode
+                                                              .toString(),
+                                                  enq_id: "78623",
+                                                ));
+                                              }
+                                            },
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Search",
+                                              textColor:
+                                                  ThemeConstants.whitecolor,
+                                            )),
+                                      ),
                                     ),
                                   ],
                                 ),

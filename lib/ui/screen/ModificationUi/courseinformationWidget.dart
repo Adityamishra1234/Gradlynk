@@ -39,7 +39,7 @@ class CourseInformationWidget extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                         text: "Course Level",
                         mandatory: true,
-                        textColor: ThemeConstants.TextColor,
+                        //textColor: ThemeConstants.TextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -69,7 +69,7 @@ class CourseInformationWidget extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                         text: "Course Broad Field",
                         mandatory: true,
-                        textColor: ThemeConstants.TextColor,
+                        //textColor: ThemeConstants.TextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -90,7 +90,7 @@ class CourseInformationWidget extends StatelessWidget {
                           child: CustomAutoSizeTextMontserrat(
                             text: controller1.courseBroadSelected ??
                                 "Broad Field Automatically selected",
-                            textColor: ThemeConstants.TextColor,
+                            //textColor: ThemeConstants.TextColor,
                           ),
                         ),
                       ),
@@ -104,7 +104,7 @@ class CourseInformationWidget extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                         text: "Course Narrow Field",
                         mandatory: true,
-                        textColor: ThemeConstants.TextColor,
+                        //textColor: ThemeConstants.TextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
@@ -151,7 +151,7 @@ class CourseInformationWidget extends StatelessWidget {
                                   : null,
                               child: CustomAutoSizeTextMontserrat(
                                 text: "View Detail",
-                                textColor: ThemeConstants.TextColor,
+                                //textColor: ThemeConstants.TextColor,
                               )),
                         ),
                         if (controller1.loadingCourseBroad.value == true)

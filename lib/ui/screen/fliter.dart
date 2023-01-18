@@ -619,7 +619,7 @@ class _FilterState extends State<Filter> {
                                     // );
                                   },
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "Clean Filter ",
+                                    text: "Clear Filter ",
                                     fontWeight: FontWeight.bold,
                                     textColor: ThemeConstants.TextColor,
                                   )),
