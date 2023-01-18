@@ -111,7 +111,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: model[index].countryName,
+                                    text: model[index].courseName,
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,

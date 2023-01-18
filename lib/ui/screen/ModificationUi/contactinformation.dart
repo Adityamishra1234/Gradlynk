@@ -1015,8 +1015,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       if (i == 0) {
       } else {
         if (controller.cityList[i] == varTopic) {
+          controller.citySelected = controller.cityList[i];
           controller.cityId = int.parse(controller.cityCode[i]);
-          controller.getCity("[${controller.cityCode[i]}]");
+          // controller.getCity("${controller.cityCode[i]}");
           controller.update();
         }
       }
@@ -1031,7 +1032,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         if (controller.stateList[i] == varTopic) {
           controller.stateSelected = varTopic;
           controller.stateId = int.parse(controller.stateCode[i]);
-          controller.getCity("[${controller.stateCode[i]}]");
+          controller.getCity("${controller.stateCode[i]}");
         }
       }
     }

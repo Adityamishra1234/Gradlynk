@@ -21,6 +21,11 @@ class QualificationDetailsCopy extends StatelessWidget {
             : QualificationWidget(
                 updateForEdit: controller1.updteForEdit.value,
                 index: controller1.modelindex,
+                callbackAffiliation: callbackAffiliation,
+                callbackEducationStatus: callbackEducationStatus,
+                callbackInstitution: callbackInstitution,
+                callbackYearOfPassing: callbackYearOfPassing,
+                callbackCity: callbackCity,
                 callback: callback,
                 callbackCountry: callbackCountry,
                 callbackHighestQualification: callbackHighestQualification,
@@ -36,70 +41,129 @@ class QualificationDetailsCopy extends StatelessWidget {
 
   callbackHighestQualification(varTopic) {
     for (var i = 0; i < controller.highestQualificationList.length; i++) {
-      if (controller.highestQualificationList[i] == varTopic) {
-        controller.highestQualificationSelected =
-            controller.highestQualificationList[i];
-        controller.highestQualificationSelectedID =
-            controller.highestQualificationCode[i];
+      if (i == 0) {
+        controller.highestQualificationSelected = null;
+        controller.highestQualificationSelectedID = null;
+      } else {
+        if (controller.highestQualificationList[i] == varTopic) {
+          controller.highestQualificationSelected =
+              controller.highestQualificationList[i];
+          controller.highestQualificationSelectedID =
+              controller.highestQualificationCode[i];
+        }
       }
     }
   }
 
   callbackStream(varTopic) {
     for (var i = 0; i < controller.streamList.length; i++) {
-      if (controller.streamList[i] == varTopic) {
-        controller.highestQualificationSelected = controller.streamList[i];
-        controller.highestQualificationSelectedID =
-            controller.streamCode[i].toString();
+      if (i == 0) {
+        controller.highestQualificationSelected = null;
+        controller.highestQualificationSelectedID = null;
+      } else {
+        if (controller.streamList[i] == varTopic) {
+          controller.streamSelected = controller.streamList[i];
+          controller.streamSelectedID = controller.streamCode[i].toString();
+          controller.update();
+        }
       }
     }
   }
 
   callbackEducationStatus(varTopic) {
     for (var i = 0; i < controller.streamList.length; i++) {
-      if (controller.educationStatusList[i] == varTopic) {
-        controller.educationStatusSelected = controller.educationStatusList[i];
+      if (i == 0) {
+        controller.educationStatusSelected = null;
+      } else {
+        if (controller.educationStatusList[i] == varTopic) {
+          controller.educationStatusSelected =
+              controller.educationStatusList[i];
+          controller.update();
+        }
       }
     }
   }
 
   callbackYearOfPassing(varTopic) {
-    controller.yearOfPassingSelected = varTopic.toString();
+    if (varTopic.toString().contains("Select")) {
+      controller.yearOfPassingSelected = null;
+    } else {
+      controller.yearOfPassingSelected = varTopic.toString();
+    }
+    controller.update();
   }
 
   callbackCountry(varTopic) {
     for (var i = 0; i < controller.countryList.length; i++) {
-      if (controller.countryList[i] == varTopic) {
-        controller.countrySelected = controller.countryList[i];
-        controller.countrySelectedID = controller.countryCode[i];
+      if (i == 0) {
+        controller.countrySelected = null;
+        controller.countrySelectedID = null;
+      } else {
+        if (controller.countryList[i] == varTopic) {
+          controller.countrySelected = controller.countryList[i];
+          controller.countrySelectedID = controller.countryCode[i];
+          controller.getState(controller.countrySelectedID.toString());
+          controller.getAffiliation(controller.countrySelectedID!);
+          controller.update();
+        }
       }
     }
-    controller.getState(controller.countrySelectedID.toString());
-    controller.getAffiliation(controller.countrySelectedID!);
   }
 
   callbackState(varTopic) {
     for (var i = 0; i < controller.stateList.length; i++) {
-      if (controller.stateList[i] == varTopic) {
-        controller.stateSelected = controller.stateList[i];
-        controller.stateSelectedID = controller.stateCode[i];
+      if (i == 0) {
+        controller.stateSelected = null;
+        controller.stateSelectedID = null;
+      } else {
+        if (controller.stateList[i] == varTopic) {
+          controller.stateSelected = controller.stateList[i];
+          controller.stateSelectedID = controller.stateCode[i];
+          controller.getCity(controller.stateSelectedID!);
+          controller.update();
+        }
       }
     }
-    controller.getCity(controller.stateSelectedID!);
+  }
+
+  // Function callbackAffiliation;
+  callbackAffiliation(data) {
+    for (var i = 0; i < controller.affiliationList.length; i++) {
+      if (i == 0) {
+        controller.affiliationNameSelected = null;
+        controller.affiliationCodeSelected = null;
+      } else {
+        if (controller.affiliationList[i].toString() == data.toString()) {
+          controller.affiliationNameSelected = controller.affiliationList[i];
+          controller.affiliationCodeSelected = controller.affiliationCode[i];
+          controller.update();
+        }
+      }
+    }
   }
 
   callbackCity(varTopic) {
     for (var i = 0; i < controller.cityList.length; i++) {
-      if (controller.cityList == varTopic) {
-        controller.citySelected = controller.cityList[i];
-        controller.citySelectedID = controller.cityCode[i];
+      if (i == 0) {
+        controller.citySelected = null;
+        controller.citySelectedID = null;
+      } else {
+        if (controller.cityList[i].toString() == varTopic.toString()) {
+          controller.citySelected = controller.cityList[i];
+          controller.citySelectedID = controller.cityCode[i];
+          controller.geInstitution(controller.citySelectedID!);
+          controller.update();
+        }
       }
     }
-    controller.geInstitution(controller.citySelectedID!);
   }
 
   callbackInstitution(varTopic) {
-    controller.institutionSelected = varTopic.toString();
+    if (varTopic.toString().contains("Select")) {
+    } else {
+      controller.institutionSelected = varTopic.toString();
+    }
+    controller.update();
   }
 
   callbackDelete(data) {

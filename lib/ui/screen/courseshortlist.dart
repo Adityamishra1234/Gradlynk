@@ -110,7 +110,6 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                           controller1.courseModelFilter
                                               .courseSearchList;
                                     }
-
                                     Get.to(Filter(
                                       courseModelFilter:
                                           controller1.courseModelFilter,

@@ -41,7 +41,10 @@ class QualificationDetailsController extends BaseController {
   RxBool loadingInstitution = false.obs;
   RxBool loadingViewQualification = false.obs;
   RxBool loadingyearOfpassing = false.obs;
+
   RxBool loadingEditQualification = false.obs;
+  //0= normal view, 1= loading,2=edit complete;
+  RxInt loadingEdit = 0.obs;
 
   // set view Qualification/Add Qualification
   RxBool addedQualification = false.obs;
@@ -78,7 +81,6 @@ class QualificationDetailsController extends BaseController {
   }
 
 //use for Edit case
-
   getEdit(
       String countryId,
       String? state,
@@ -97,6 +99,8 @@ class QualificationDetailsController extends BaseController {
     if (cityID != null) {
       geInstitutionEdit(cityID, institution, institutionId);
     }
+    loadingEdit = 0.obs;
+    update();
   }
 
   getStateEdit(String countryId, String? state, String? stateID) async {
@@ -109,6 +113,8 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        stateList.add("Select State");
+        stateCode.add(0);
         temp.forEach((element) {
           stateList.add(element);
         });
@@ -137,6 +143,8 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        cityList.add("Select City");
+        cityCode.add(0);
         temp.forEach((element) {
           cityList.add(element);
         });
@@ -167,10 +175,12 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         affiliationDropDown = res;
         affiliationDropDown.forEach((element) {
+          affiliationList.add("Select Affiliation");
+          affiliationCode.add(0);
           affiliationList.add(element.affiliationName);
           affiliationCode.add(element.id);
-          affiliationCodeSelected = affiliationID ?? affiliationList[0];
-          affiliationNameSelected = affiliation ?? affiliationCode[0];
+          affiliationCodeSelected = affiliationID;
+          affiliationNameSelected = affiliation;
           loadingAffiliation.value = true;
           update();
         });
@@ -193,6 +203,8 @@ class QualificationDetailsController extends BaseController {
         List<InstitutionDropDown> dropdown = [];
         dropdown = res;
         for (var i = 0; i < dropdown.length; i++) {
+          institutionCode.add(0);
+          institutionList.add("Select Institution");
           institutionCode.add(dropdown[i].id);
           institutionList.add(dropdown[i].universityName);
         }
@@ -205,8 +217,8 @@ class QualificationDetailsController extends BaseController {
         // temp.forEach((element) {
         //   institutionCode.add(element.toString());
         // });
-        institutionSelected = institution ?? institutionList[0];
-        institutionSelectedID = institutionId ?? institutionCode[0];
+        institutionSelected = institution;
+        institutionSelectedID = institutionId;
         loadingInstitution = true.obs;
         update();
       }
@@ -223,6 +235,8 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        highestQualificationList.add("Select Highest Qualification");
+        highestQualificationCode.add(0);
         temp.forEach((element) {
           highestQualificationList.add(element);
         });
@@ -246,6 +260,8 @@ class QualificationDetailsController extends BaseController {
           Endpoints.baseUrl!, Endpoints.viewCourseStream!);
       if (res != null) {
         streamDropDownList = res;
+        streamCode.add(0);
+        streamList.add("Select Stream");
         streamDropDownList.forEach((element) {
           streamCode.add(element.id);
           streamList.add(element.streamName);
@@ -266,6 +282,8 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        countryList.add("Select Country");
+        countryCode.add(0);
         temp.forEach((element) {
           countryList.add(element);
         });
@@ -328,6 +346,7 @@ class QualificationDetailsController extends BaseController {
           Endpoints.baseUrl!, Endpoints.yearofpassing!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
+        yearofPassing.add("Select year of Passing");
         yearofPassing = map.values.toList();
         loadingyearOfpassing.value = true;
         update();
@@ -344,7 +363,9 @@ class QualificationDetailsController extends BaseController {
           Endpoints.baseUrl!, Endpoints.educationStatus!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        educationStatusList = map.values.toList();
+        educationStatusList.add("Select Education Status");
+
+        educationStatusList.addAll(map.values.toList());
         loadingEducationStatus.value = true;
         update();
       }
@@ -364,6 +385,8 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        stateList.add("Select State");
+        stateCode.add(0);
         temp.forEach((element) {
           stateList.add(element);
         });
@@ -392,6 +415,8 @@ class QualificationDetailsController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        cityList.add("Select City");
+        cityCode.add(0);
         temp.forEach((element) {
           cityList.add(element);
         });
@@ -420,6 +445,8 @@ class QualificationDetailsController extends BaseController {
           Endpoints.affiliationForCountry! + countryId.toString());
       if (res != null) {
         affiliationDropDown = res;
+        affiliationList.add("Select Affiliation");
+        affiliationCode.add(0);
         affiliationDropDown.forEach((element) {
           affiliationList.add(element.affiliationName);
           affiliationCode.add(element.id);
@@ -438,23 +465,20 @@ class QualificationDetailsController extends BaseController {
 
   geInstitution(String cityId) async {
     try {
+      List<InstitutionDropDown> institutionDropDown = [];
       affiliationCode = [];
       affiliationList = [];
-      loadingAffiliation.value = false;
+      loadingInstitution.value = false;
       var res = await apiServices.getInstitute(
           Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
       if (res != null) {
-        Map map = Map<String, dynamic>.from(res);
-        List<dynamic> temp = map.keys.toList();
-        temp.forEach((element) {
-          institutionList.add(element);
+        institutionDropDown = res;
+        institutionList.add("Select Institution");
+        institutionCode.add(0);
+        institutionDropDown.forEach((element) {
+          institutionList.add(element.universityName);
+          institutionCode.add(element.id);
         });
-        temp = map.values.toList();
-        temp.forEach((element) {
-          institutionCode.add(element.toString());
-        });
-        // institutionSelected = null;
-        // institutionSelectedID = null;
         loadingInstitution = true.obs;
         update();
       }

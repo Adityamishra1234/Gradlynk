@@ -49,14 +49,14 @@ class CourseInformationWidget extends StatelessWidget {
                     // width: 300,
                     height: 50,
                     child: CustomDropDownSingle(
-                      model: controller1.loadingCourseLevel.value == true
-                          ? controller1.courseLevelList
-                          : ["No Data"],
-                      initialSelectedValue:
-                          controller1.loadingCourseLevel.value == true
-                              ? controller1.courseLevelSelected ??
-                                  controller1.courseLevelList[0]
-                              : "No Data",
+                      model: getDropdownModel(
+                          controller1.loadingCourseLevel.value,
+                          controller1.courseLevelSelected,
+                          controller1.courseLevelList),
+                      initialSelectedValue: getSelectedDropDown(
+                          controller1.loadingCourseLevel.value,
+                          controller1.courseLevelSelected,
+                          controller1.courseLevelList),
                       choosefieldtype: false,
                       callbackFunction: callbackCourseLevel,
                     ),
@@ -114,14 +114,14 @@ class CourseInformationWidget extends StatelessWidget {
                     height: 50,
                     child: CustomDropDownSingle(
                       //Todo
-                      model: controller1.loadingCourseNarrow.value == true
-                          ? controller1.courseNarrowList
-                          : ["No Data"],
-                      initialSelectedValue:
-                          controller1.loadingCourseNarrow.value == true
-                              ? controller1.courseNarrowSelected ??
-                                  controller1.courseNarrowList[0]
-                              : "No Data",
+                      model: getDropdownModel(
+                          controller1.loadingCourseNarrow.value,
+                          controller1.courseNarrowSelected,
+                          controller1.courseNarrowList),
+                      initialSelectedValue: getSelectedDropDown(
+                          controller1.loadingCourseNarrow.value,
+                          controller1.courseNarrowSelected,
+                          controller1.courseNarrowList),
                       choosefieldtype: false,
                       callbackFunction: callbackCourseNarrow,
                     ),
@@ -249,5 +249,26 @@ class CourseInformationWidget extends StatelessWidget {
                 ],
               ),
             ));
+  }
+
+  //Function
+  List getDropdownModel(bool loading, String? selected, List model) {
+    if (loading == true) {
+      return model;
+    } else {
+      return ["No data"];
+    }
+  }
+
+  String getSelectedDropDown(bool loading, String? selected, List model) {
+    if (loading == true) {
+      if (selected == null) {
+        return model[0].toString();
+      } else {
+        return selected;
+      }
+    } else {
+      return "No data";
+    }
   }
 }

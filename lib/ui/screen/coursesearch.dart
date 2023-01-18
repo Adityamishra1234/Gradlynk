@@ -397,6 +397,8 @@ class _CourseSearchState extends State<CourseSearch> {
   callbackCountry(data) {
     for (var i = 0; i < controller.countryList.length; i++) {
       if (i == 0) {
+        controller.selectCountryName = null;
+        controller.selectCountryCode = null;
       } else {
         if (controller.countryList[i] == data) {
           controller.selectCountryName = data;
@@ -411,6 +413,8 @@ class _CourseSearchState extends State<CourseSearch> {
   callbackState(data) {
     for (var i = 0; i < controller.stateList.length; i++) {
       if (i == 0) {
+        controller.selectStateName = null;
+        controller.selectStateCode = null;
       } else {
         if (controller.stateList[i] == data) {
           controller.selectStateName = data;
@@ -425,6 +429,8 @@ class _CourseSearchState extends State<CourseSearch> {
   callbackCity(data) {
     for (var i = 0; i < controller.cityList.length; i++) {
       if (i == 0) {
+        controller.selectCityName = null;
+        controller.selectCityCode = null;
       } else {
         if (controller.cityList[i] == data) {
           controller.selectCityName = data;
@@ -438,6 +444,8 @@ class _CourseSearchState extends State<CourseSearch> {
   callbackCourseLevel(data) {
     for (var i = 0; i < controller.courseLevelList.length; i++) {
       if (i == 0) {
+        controller.selectCourseLevelName = null;
+        controller.selectCourseLevelCode = null;
       } else {
         if (controller.courseLevelList[i] == data) {
           controller.selectCourseLevelName = data;
@@ -451,6 +459,8 @@ class _CourseSearchState extends State<CourseSearch> {
   callbackCourseBroadField(data) {
     for (var i = 0; i < controller.courseBoardList.length; i++) {
       if (i == 0) {
+        controller.selectCourseBoardFieldName = null;
+        controller.selectCourseBoardFieldCode = null;
       } else {
         if (controller.courseBoardList[i] == data) {
           controller.selectCourseBoardFieldName = data;
@@ -466,6 +476,8 @@ class _CourseSearchState extends State<CourseSearch> {
   callbackCoursenarrowField(data) {
     for (var i = 0; i < controller.courseNarrowList.length; i++) {
       if (i == 0) {
+        controller.selectCourseBoardFieldName = null;
+        controller.selectCourseBoardFieldCode = null;
       } else {
         if (controller.courseBoardList[i] == data) {
           controller.selectCourseBoardFieldName = data;

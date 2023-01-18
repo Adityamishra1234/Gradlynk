@@ -41,8 +41,10 @@ class CourseInformationProfileController extends BaseController {
           Endpoints.baseUrl!, Endpoints.courselevel!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        courseLevelList = map.keys.toList();
-        courseLevelCode = map.values.toList();
+        courseLevelList.add("Select course level");
+        courseLevelCode.add("0");
+        courseLevelList.addAll(map.keys.toList());
+        courseLevelCode.addAll(map.values.toList());
         loadingCourseLevel.value = true;
         update();
       }
@@ -58,8 +60,10 @@ class CourseInformationProfileController extends BaseController {
           Endpoints.baseUrl!, Endpoints.courseNarrowFieldProfile!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        courseNarrowList = map.keys.toList();
-        courseNarrowCode = map.values.toList();
+        courseNarrowList.add("Select course narrow");
+        courseNarrowCode.add("0");
+        courseNarrowList.addAll(map.keys.toList());
+        courseNarrowCode.addAll(map.values.toList());
         loadingCourseNarrow.value = true;
         update();
       }
@@ -128,18 +132,26 @@ class CourseInformationProfileController extends BaseController {
 
   callbackCourseLevel(String? data) {
     for (var i = 0; i < courseLevelList.length; i++) {
-      if (courseLevelList[i] == data) {
-        courseLevelSelectedId = courseLevelCode[i];
-        courseLevelSelected = courseLevelList[i];
+      if (i == 0) {
+      } else {
+        if (courseLevelList[i] == data) {
+          courseLevelSelectedId = courseLevelCode[i];
+          courseLevelSelected = courseLevelList[i];
+          update();
+        }
       }
     }
   }
 
   callbackCourseNarrow(String? data) {
     for (var i = 0; i < courseNarrowList.length; i++) {
-      if (courseNarrowList[i] == data) {
-        courseNarrowSelectedId = courseNarrowCode[i];
-        courseNarrowSelected = courseNarrowList[i];
+      if (i == 0) {
+      } else {
+        if (courseNarrowList[i] == data) {
+          courseNarrowSelectedId = courseNarrowCode[i];
+          courseNarrowSelected = courseNarrowList[i];
+          update();
+        }
       }
     }
     if (courseNarrowSelectedId != null) {
