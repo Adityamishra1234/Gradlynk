@@ -50,7 +50,6 @@ class TravelHistoryController extends BaseController {
 
   @override
   void onInit() {
-    getTypeOfVisa();
     getTravelStatus();
     getCountry();
     getTypeOfVisa();
@@ -65,7 +64,8 @@ class TravelHistoryController extends BaseController {
           Endpoints.baseUrl!, Endpoints.travelStatus!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        travelStatus = map.values.toList();
+        travelStatus.add("select travel status");
+        travelStatus.addAll(map.values.toList());
         loadingtravelStatus.value = true;
         update();
       }
@@ -76,14 +76,18 @@ class TravelHistoryController extends BaseController {
   }
 
   getTypeOfVisa() async {
+    typeOfVisaList = [];
+    typeofVisaCode = [];
     try {
       loadingTypeVisa.value = false;
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.typeOfVisa!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        typeOfVisaList = map.values.toList();
-        typeofVisaCode = map.keys.toList();
+        typeOfVisaList.add("Select type of visa");
+        typeofVisaCode.add("0");
+        typeOfVisaList.addAll(map.values.toList());
+        typeofVisaCode.addAll(map.keys.toList());
         loadingTypeVisa.value = true;
         update();
       }
@@ -103,8 +107,9 @@ class TravelHistoryController extends BaseController {
           Endpoints.baseUrl!, Endpoints.visaStatus! + travelStatus);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        visaStatusList = map.values.toList();
-        visaStatusCode = map.keys.toList();
+        visaStatusList.add("select visa status");
+        visaStatusList.addAll(map.values.toList());
+        visaStatusCode.addAll(map.keys.toList());
         loadingVisaStatus.value = true;
         update();
       }
@@ -122,6 +127,8 @@ class TravelHistoryController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
+        countryList.add("select country");
+        countryCode.add(0);
         temp.forEach((element) {
           countryList.add(element);
         });

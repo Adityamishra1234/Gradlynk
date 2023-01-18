@@ -76,9 +76,14 @@ class TravingHistory extends StatelessWidget {
   callbackCountry(varTopic) {
     //id
     for (var i = 0; i < controller.countryList.length; i++) {
-      if (controller.countryList[i] == varTopic) {
-        controller.countrySelected = controller.countryList[i];
-        controller.countryCodeSelected = controller.countryCode[i];
+      if (i == 0) {
+        controller.countrySelected = null;
+        controller.countryCodeSelected = null;
+      } else {
+        if (controller.countryList[i] == varTopic) {
+          controller.countrySelected = controller.countryList[i];
+          controller.countryCodeSelected = controller.countryCode[i];
+        }
       }
     }
     controller.update();
@@ -87,9 +92,14 @@ class TravingHistory extends StatelessWidget {
   callbackTypeOfVisa(varTopic) {
     //id
     for (var i = 0; i < controller.typeOfVisaList.length; i++) {
-      if (controller.typeOfVisaList[i] == varTopic) {
-        controller.typeOfVisaSelected = controller.typeOfVisaList[i];
-        controller.typeOfVisaCodeSelected = controller.typeofVisaCode[i];
+      if (i == 0) {
+        controller.typeOfVisaSelected = null;
+        controller.typeOfVisaCodeSelected = null;
+      } else {
+        if (controller.typeOfVisaList[i] == varTopic) {
+          controller.typeOfVisaSelected = controller.typeOfVisaList[i];
+          controller.typeOfVisaCodeSelected = controller.typeofVisaCode[i];
+        }
       }
     }
     controller.update();
@@ -97,13 +107,14 @@ class TravingHistory extends StatelessWidget {
 
   callbackVisaStatus(varTopic) {
     for (var i = 0; i < controller.visaStatusList.length; i++) {
-      if (controller.visaStatusList[i] == varTopic) {
-        controller.visaStatusSelected = controller.visaStatusList[i];
+      if (i == 0) {
+        controller.visaStatusSelected = null;
+      } else {
+        if (controller.visaStatusList[i] == varTopic) {
+          controller.visaStatusSelected = controller.visaStatusList[i];
+        }
       }
     }
-    // if (controller.visaStatusCodeSelected == "3") {
-    //   controller.applicationNumberField.value = false;
-    // }
     controller.update();
   }
 

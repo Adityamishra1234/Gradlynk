@@ -132,14 +132,10 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingtravelStatus.value == true
-              ? _.travelStatus
-              : ["No Data"],
-          initialSelectedValue: _.loadingtravelStatus.value == true
-              ? getNUllChecker(_.travelStatusSelected) == false
-                  ? _.travelStatusSelected
-                  : _.travelStatus[0]
-              : "No Data",
+          model: getDropdownModel(_.loadingtravelStatus.value,
+              _.travelStatusSelected, _.travelStatus),
+          initialSelectedValue: getSelectedDropDown(_.loadingtravelStatus.value,
+              _.travelStatusSelected, _.travelStatus),
           choosefieldtype: false,
           callbackFunction: callbackTravelStatus,
         ),
@@ -159,12 +155,10 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingCountry.value == true ? _.countryList : ["No Data"],
-          initialSelectedValue: _.loadingCountry.value == true
-              ? getNUllChecker(_.countrySelected) == false
-                  ? _.countrySelected
-                  : _.countryList[0]
-              : "No Data",
+          model: getDropdownModel(
+              _.loadingCountry.value == true, _.countrySelected, _.countryList),
+          initialSelectedValue: getSelectedDropDown(
+              _.loadingCountry.value == true, _.countrySelected, _.countryList),
           choosefieldtype: false,
           callbackFunction: callbackCountry,
         ),
@@ -184,13 +178,10 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model:
-              _.loadingTypeVisa.value == true ? _.typeOfVisaList : ["No Data"],
-          initialSelectedValue: _.loadingTypeVisa.value == true
-              ? getNUllChecker(_.typeOfVisaSelected) == false
-                  ? _.typeOfVisaSelected
-                  : _.typeOfVisaList[0]
-              : "No Data",
+          model: getDropdownModel(_.loadingTypeVisa.value, _.typeOfVisaSelected,
+              _.typeOfVisaList.toSet().toList()),
+          initialSelectedValue: getSelectedDropDown(_.loadingTypeVisa.value,
+              _.typeOfVisaSelected, _.typeOfVisaList.toSet().toList()),
           choosefieldtype: false,
           callbackFunction: callbackTypeOfVisa,
         ),
@@ -210,14 +201,10 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingVisaStatus.value == true
-              ? _.visaStatusList
-              : ["No Data"],
-          initialSelectedValue: _.loadingVisaStatus.value == true
-              ? getNUllChecker(_.visaStatusSelected) == false
-                  ? _.visaStatusSelected
-                  : _.visaStatusList[0]
-              : "No Data",
+          model: getDropdownModel(_.loadingVisaStatus.value,
+              _.visaStatusSelected, _.visaStatusList),
+          initialSelectedValue: getSelectedDropDown(_.loadingVisaStatus.value,
+              _.visaStatusSelected, _.visaStatusList),
           choosefieldtype: false,
           callbackFunction: callbackVisaStatus,
         ),
@@ -435,5 +422,26 @@ class TravelHistoryWidget extends StatelessWidget {
         height: 120,
       )
     ];
+  }
+
+  //Function
+  List getDropdownModel(bool loading, String? selected, List model) {
+    if (loading == true) {
+      return model;
+    } else {
+      return ["No data"];
+    }
+  }
+
+  String getSelectedDropDown(bool loading, String? selected, List model) {
+    if (loading == true) {
+      if (selected == null) {
+        return model[0].toString();
+      } else {
+        return selected;
+      }
+    } else {
+      return "No data";
+    }
   }
 }
