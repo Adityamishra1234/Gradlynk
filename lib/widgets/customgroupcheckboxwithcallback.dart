@@ -19,9 +19,9 @@ class CustomgroupCheckBoxCallBack extends StatelessWidget {
       : super(key: key);
 
   getCheckBox(List<String>? checkboxlist, List<String>? itemSelectedlist) {
-    checkboxlist!.forEach((element) {
+    for (var element in checkboxlist!) {
       favoriteMovies.add(CheckBoxModel(element, false));
-    });
+    }
     if (itemSelectedlist != null) {
       for (var i = 0; i < itemSelectedlist.length; i++) {
         for (var j = 0; j < favoriteMovies.length; j++) {

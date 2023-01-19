@@ -43,11 +43,11 @@ class _ReviewShortListState extends State<ReviewShortList> {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? CustomDrawer() : null,
+        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
         body: GetBuilder<ReviewShortListController>(
           builder: (_) => Row(
             children: [
-              if (displayMobileLayout == true) CustomDrawer(),
+              if (displayMobileLayout == true) const CustomDrawer(),
               Flexible(
                 child: Column(
                   children: [
@@ -183,7 +183,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
                     if (_.loadingCourseShortList.value == true)
                       Expanded(
                         child: Scrollbar(
-                          isAlwaysShown: true,
+                          thumbVisibility: true,
                           controller: ScrollController(
                               keepScrollOffset: true, initialScrollOffset: 2.0),
                           child: ListView.builder(

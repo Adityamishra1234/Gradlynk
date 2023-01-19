@@ -278,9 +278,7 @@ class RelativeInformationWidget extends StatelessWidget {
               width: 90,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    elevation: 0.0,
-                    primary: ThemeConstants.bluecolor, // background
-                    onPrimary: ThemeConstants.bluecolor, // foreground
+                    foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                   ),
                   onPressed: () async {
                     //country, citizenship,relation,relative email,contact,address.
@@ -329,9 +327,7 @@ class RelativeInformationWidget extends StatelessWidget {
               width: 110,
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    elevation: 0.0,
-                    primary: ThemeConstants.bluecolor, // background
-                    onPrimary: ThemeConstants.bluecolor, // foreground
+                    foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                   ),
                   onPressed: () async {
                     controller.modelList[index!] = RealtionModel(

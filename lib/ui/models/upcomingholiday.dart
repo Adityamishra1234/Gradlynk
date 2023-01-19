@@ -12,7 +12,7 @@ class UpcomingHoliday {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['branch_id'] = branchId;
     data['date'] = date;
     data['holiday_reason'] = holidayReason;

@@ -168,9 +168,7 @@ class OthertestDetail extends StatelessWidget {
                   child: _.editSave.value == false
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             //register=> exam status,exam name
@@ -262,9 +260,7 @@ class OthertestDetail extends StatelessWidget {
                           ))
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             _.editSave.value = false;

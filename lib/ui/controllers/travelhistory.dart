@@ -129,13 +129,13 @@ class TravelHistoryController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         countryList.add("select country");
         countryCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           countryList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryCode.add(element.toString());
-        });
+        }
 
         loadingCountry = true.obs;
         update();
@@ -146,9 +146,9 @@ class TravelHistoryController extends BaseController {
     }
   }
 
-  getVisaTravelHistory(String enq_id) async {
+  getVisaTravelHistory(String enqId) async {
     var res = await apiServices.getTravelHistory(
-        Endpoints.baseUrl!, Endpoints.viewTravelDetails! + enq_id);
+        Endpoints.baseUrl!, Endpoints.viewTravelDetails! + enqId);
     if (res != null) {
       modelList = res;
       loadingVisaTravelDetails.value = true;
@@ -156,10 +156,10 @@ class TravelHistoryController extends BaseController {
     }
   }
 
-  updateTravelHistory(String enq_id, String travelHistory) async {
+  updateTravelHistory(String enqId, String travelHistory) async {
     String endpoint;
     endpoint = Endpoints.addTravelHistoryPart1! +
-        enq_id +
+        enqId +
         Endpoints.addTravelHistoryPart2! +
         travelHistory;
     for (var i = 0; i < modelList.length; i++) {

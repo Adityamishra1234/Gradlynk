@@ -93,9 +93,9 @@ class FinalShortListController extends BaseController {
     }
   }
 
-  getFinalShortlist(String? enq_id) async {
+  getFinalShortlist(String? enqId) async {
     var response = await apiservices.getFinalShortlist(
-        Endpoints.finalShortListDetail, enq_id!);
+        Endpoints.finalShortListDetail, enqId!);
     if (response != null) {
       courseModelFilter = response;
       loadingCourseShortList = true.obs;
@@ -103,12 +103,12 @@ class FinalShortListController extends BaseController {
     }
   }
 
-  courseShortList(String? id, String enq_id) {
-    apiservices.setShortListCourse(id, enq_id);
+  courseShortList(String? id, String enqId) {
+    apiservices.setShortListCourse(id, enqId);
   }
 
-  courseFinalShortlist(String? id, String enq_id) {
-    apiservices.setFinalShortListCourse(id, enq_id);
+  courseFinalShortlist(String? id, String enqId) {
+    apiservices.setFinalShortListCourse(id, enqId);
   }
 
   compare(String? varTopic) {

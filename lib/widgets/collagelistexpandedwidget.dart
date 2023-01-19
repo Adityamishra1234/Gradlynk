@@ -887,8 +887,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           height: 35,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: ThemeConstants.bluecolor, // background
-                onPrimary: ThemeConstants.bluecolor, // foreground
+                foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, // foreground
               ),
               onPressed: () {
                 addCompare = false;
@@ -946,7 +945,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               child: Container(
                 decoration: BoxDecoration(
                     border: Border.all(color: ThemeConstants.TextColor),
-                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                    borderRadius: const BorderRadius.all(Radius.circular(5))),
                 child: Center(
                     child: CustomAutoSizeTextMontserrat(
                   text: "Compare",

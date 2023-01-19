@@ -115,13 +115,13 @@ class QualificationDetailsController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         stateList.add("Select State");
         stateCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           stateList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           stateCode.add(element.toString());
-        });
+        }
         stateSelected = state;
         stateSelectedID = stateID;
         loadingState = true.obs;
@@ -145,13 +145,13 @@ class QualificationDetailsController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         cityList.add("Select City");
         cityCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           cityList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           cityCode.add(element.toString());
-        });
+        }
         citySelected = city;
         citySelectedID = cityID;
         loadingCity = true.obs;
@@ -174,7 +174,7 @@ class QualificationDetailsController extends BaseController {
           Endpoints.affiliationForCountry! + countryId.toString());
       if (res != null) {
         affiliationDropDown = res;
-        affiliationDropDown.forEach((element) {
+        for (var element in affiliationDropDown) {
           affiliationList.add("Select Affiliation");
           affiliationCode.add(0);
           affiliationList.add(element.affiliationName);
@@ -183,7 +183,7 @@ class QualificationDetailsController extends BaseController {
           affiliationNameSelected = affiliation;
           loadingAffiliation.value = true;
           update();
-        });
+        }
       }
     } catch (e) {
       print(StackTrace.current);
@@ -237,13 +237,13 @@ class QualificationDetailsController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         highestQualificationList.add("Select Highest Qualification");
         highestQualificationCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           highestQualificationList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           highestQualificationCode.add(element.toString());
-        });
+        }
         loadingHighestQualification = true.obs;
         update();
       }
@@ -262,10 +262,10 @@ class QualificationDetailsController extends BaseController {
         streamDropDownList = res;
         streamCode.add(0);
         streamList.add("Select Stream");
-        streamDropDownList.forEach((element) {
+        for (var element in streamDropDownList) {
           streamCode.add(element.id);
           streamList.add(element.streamName);
-        });
+        }
         loadingStream = true.obs;
         update();
       }
@@ -284,13 +284,13 @@ class QualificationDetailsController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         countryList.add("Select Country");
         countryCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           countryList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryCode.add(element.toString());
-        });
+        }
 
         loadingCountry = true.obs;
         update();
@@ -325,9 +325,9 @@ class QualificationDetailsController extends BaseController {
     await apiServices.updateQualification(endpoint);
   }
 
-  viewQualification(String enq_id) async {
+  viewQualification(String enqId) async {
     var res = await apiServices.getQualificationDetails(
-        Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enq_id);
+        Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enqId);
     if (res != null) {
       modelList = res;
       loadingViewQualification.value = true;
@@ -387,13 +387,13 @@ class QualificationDetailsController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         stateList.add("Select State");
         stateCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           stateList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           stateCode.add(element.toString());
-        });
+        }
         // stateSelected = null;
         // stateSelectedID = null;
         loadingState = true.obs;
@@ -417,13 +417,13 @@ class QualificationDetailsController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         cityList.add("Select City");
         cityCode.add(0);
-        temp.forEach((element) {
+        for (var element in temp) {
           cityList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           cityCode.add(element.toString());
-        });
+        }
         // citySelected = null;
         // citySelectedID = null;
         loadingCity = true.obs;
@@ -447,7 +447,7 @@ class QualificationDetailsController extends BaseController {
         affiliationDropDown = res;
         affiliationList.add("Select Affiliation");
         affiliationCode.add(0);
-        affiliationDropDown.forEach((element) {
+        for (var element in affiliationDropDown) {
           affiliationList.add(element.affiliationName);
           affiliationCode.add(element.id);
           // affiliationCodeSelected = null;
@@ -455,7 +455,7 @@ class QualificationDetailsController extends BaseController {
 
           loadingAffiliation = true.obs;
           update();
-        });
+        }
       }
     } catch (e) {
       print(StackTrace.current);
@@ -475,10 +475,10 @@ class QualificationDetailsController extends BaseController {
         institutionDropDown = res;
         institutionList.add("Select Institution");
         institutionCode.add(0);
-        institutionDropDown.forEach((element) {
+        for (var element in institutionDropDown) {
           institutionList.add(element.universityName);
           institutionCode.add(element.id);
-        });
+        }
         loadingInstitution = true.obs;
         update();
       }

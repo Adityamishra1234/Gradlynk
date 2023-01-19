@@ -16,10 +16,6 @@ class CompleteCourseDetailController extends BaseController {
 
   ApiServices apiservices = ApiServices();
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   setIndex(int data) {
     index.value = data;

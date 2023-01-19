@@ -14,11 +14,6 @@ class DetailController extends BaseController {
   RxBool isLoading = false.obs;
   RxBool temp = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    // getUserHistory();
-  }
 
   void startTimer(String currentScreen) {
     const maxmin = 5220;

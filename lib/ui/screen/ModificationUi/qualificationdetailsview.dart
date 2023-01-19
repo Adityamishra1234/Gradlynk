@@ -400,12 +400,10 @@ class QualificationDetailView extends StatelessWidget {
                                     const EdgeInsets.only(top: 20, right: 20),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      elevation: 0.0,
+                                      foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants
+                                          .whitecolor,
                                       side: BorderSide(
                                           color: ThemeConstants.TextColor),
-                                      primary: ThemeConstants
-                                          .whitecolor, // background
-                                      onPrimary: ThemeConstants.whitecolor,
                                       // foreground
                                     ),
                                     onPressed: () async {
@@ -423,10 +421,8 @@ class QualificationDetailView extends StatelessWidget {
                                   width: 90,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        elevation: 0.0,
-                                        primary: ThemeConstants
-                                            .bluecolor, // background
-                                        onPrimary: ThemeConstants
+                                        foregroundColor: ThemeConstants
+                                            .bluecolor, elevation: 0.0, backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {

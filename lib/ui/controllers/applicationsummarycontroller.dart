@@ -32,8 +32,8 @@ class ApplicationSummaryController extends BaseController {
     getApplicationDetail("78623");
   }
 
-  getApplicationDetail(String enq_id) async {
-    var response = await apiServices.getApplicationSummaryList(enq_id);
+  getApplicationDetail(String enqId) async {
+    var response = await apiServices.getApplicationSummaryList(enqId);
     if (response != null) {
       applicationSummaryModel = response;
       loadingApplicationSummary = true.obs;
@@ -41,10 +41,10 @@ class ApplicationSummaryController extends BaseController {
     }
   }
 
-  getApplicationDetailComplete(String? apli_id) async {
+  getApplicationDetailComplete(String? apliId) async {
     loadingApplicationCompleteDetails.value = false;
     var response = await apiServices.getApplicationDetails(
-        Endpoints.applicationDetail, apli_id);
+        Endpoints.applicationDetail, apliId);
     if (response != null) {
       applicationDetailModel = response;
       loadingApplicationCompleteDetails.value = true;

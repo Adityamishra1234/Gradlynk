@@ -50,7 +50,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
   @override
   Widget build(BuildContext context) {
     dateFormatError = false;
-    DateTime now = new DateTime.now();
+    DateTime now = DateTime.now();
     if (getNUllChecker(widget.date) == false) {
       List<String> temp = widget.date!.split('-');
       date =

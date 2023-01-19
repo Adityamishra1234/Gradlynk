@@ -125,7 +125,7 @@ class ApplicationDetailModel {
     if (json['documents'] != null) {
       documents = <Documents>[];
       json['documents'].forEach((v) {
-        documents!.add(new Documents.fromJson(v));
+        documents!.add(Documents.fromJson(v));
       });
     }
     if (json['acknowledgement_document'] != null) {
@@ -137,19 +137,19 @@ class ApplicationDetailModel {
     if (json['offer_document'] != null) {
       offerDocument = <OfferDocument>[];
       json['offer_document'].forEach((v) {
-        offerDocument!.add(new OfferDocument.fromJson(v));
+        offerDocument!.add(OfferDocument.fromJson(v));
       });
     }
     if (json['fee_document'] != null) {
       feeDocument = <FeeDocument>[];
       json['fee_document'].forEach((v) {
-        feeDocument!.add(new FeeDocument.fromJson(v));
+        feeDocument!.add(FeeDocument.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['offer_status'] = offerStatus;
     data['acknowledgement_number'] = acknowledgementNumber;
     data['acknowledgement_file'] = acknowledgementFile;

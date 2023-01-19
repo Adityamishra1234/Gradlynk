@@ -8,9 +8,6 @@ import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/contactinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/courseinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
@@ -31,7 +28,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
-import 'package:studentpanel/ui/screen/remove_compare_course.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
 import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 
@@ -126,7 +122,7 @@ class _MyAppState extends State<MyApp> {
           name: ProfilePage.routeNamed,
           transition: Transition.fade,
           binding: ProfilePageBinding(),
-          page: () => ProfilePage(),
+          page: () => const ProfilePage(),
         ),
         // GetPage(
         //   name: ProfilePageCopy.routeNamed,
@@ -158,7 +154,7 @@ class _MyAppState extends State<MyApp> {
           name: CourseSearch.routeNamed,
           transition: Transition.fade,
           binding: CourseSearchBinding(),
-          page: () => CourseSearch(),
+          page: () => const CourseSearch(),
         ),
         // GetPage(
         //   name: RemoveCompareCourse.routeNamed,
@@ -197,7 +193,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: LunchingPage.routeNamed,
           transition: Transition.cupertino,
-          page: () => LunchingPage(),
+          page: () => const LunchingPage(),
         ),
         // GetPage(
         //   name: ContactInformationCopy.routeNamed,
@@ -217,7 +213,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ApplicationDetail.routeNamed,
           transition: Transition.cupertino,
-          page: () => ApplicationDetail(),
+          page: () => const ApplicationDetail(),
         ),
         GetPage(
           name: FinalShortList.routeNamed,
@@ -267,7 +263,7 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: TimepickerDemo.routeNamed,
-          page: () => TimepickerDemo(),
+          page: () => const TimepickerDemo(),
           transition: Transition.fade,
         ),
 

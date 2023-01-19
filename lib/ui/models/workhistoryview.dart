@@ -36,7 +36,7 @@ class WorkHistoryViewModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['applicant_type'] = applicantType;
     data['enq_id'] = enqId;
     data['organisation_name'] = organisationName;

@@ -25,8 +25,8 @@ class _DocumentTestState extends State<DocumentTest> {
   }
 
   void initCheckPermission() async {
-    final _handler = PermissionsService();
-    await _handler.requestPermission(
+    final handler = PermissionsService();
+    await handler.requestPermission(
       Permission.storage,
       onPermissionDenied: () => setState(
         () => debugPrint("Error: "),
@@ -38,7 +38,7 @@ class _DocumentTestState extends State<DocumentTest> {
   Future<void> initPlatformState() async {
     String filePath;
 
-    final url = "https://filesamples.com/samples/document/pdf/sample3.pdf";
+    const url = "https://filesamples.com/samples/document/pdf/sample3.pdf";
     //
     // Platform messages may fail, so we use a try/catch PlatformException.
     //"https://file-examples-com.github.io/uploads/2017/02/file_example_XLS_5000.xls";
@@ -55,7 +55,7 @@ class _DocumentTestState extends State<DocumentTest> {
     // debugPrint("Exist: $isCheck \nPath: $filePath");
     // try {
     // if (!isCheck) {
-    filePath = await downloadFile(filePath: "$filePath", url: url);
+    filePath = await downloadFile(filePath: filePath, url: url);
     // }
     // await OpenDocument.openDocument(
     //   filePath: filePath,
@@ -84,7 +84,7 @@ class _DocumentTestState extends State<DocumentTest> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          child: Icon(Icons.open_in_new),
+          child: const Icon(Icons.open_in_new),
         ),
       ),
     );
@@ -93,14 +93,14 @@ class _DocumentTestState extends State<DocumentTest> {
   Future<String> downloadFile(
       {required String filePath, required String url}) async {
     // CancelToken cancelToken = CancelToken();
-    Dio dio = new Dio();
+    Dio dio = Dio();
     await dio.download(
       url,
       filePath,
       onReceiveProgress: (count, total) {
         debugPrint('---Download----Rec: $count, Total: $total');
         setState(() {
-          _platformVersion = ((count / total) * 100).toStringAsFixed(0) + "%";
+          _platformVersion = "${((count / total) * 100).toStringAsFixed(0)}%";
         });
       },
     );

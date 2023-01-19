@@ -73,11 +73,11 @@ class ProfilePageController extends GetxController with StateMixin<UserModel> {
   ]) {
     List<String>? tempModel = [];
 
-    studentPanel.addtionalDetails!.forEach((element) {
+    for (var element in studentPanel.addtionalDetails!) {
       if (choose1 == element.branchType) {
-        tempModel!.add(element.branchName!);
+        tempModel.add(element.branchName!);
       }
-    });
+    }
 
     tempModel = tempModel.toSet().toList();
     return tempModel;

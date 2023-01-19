@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -110,9 +109,7 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          side: BorderSide(color: ThemeConstants.bluegreycolor),
-                          primary: ThemeConstants.whitecolor, // background
-                          onPrimary: ThemeConstants.whitecolor, // foreground
+                          foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluegreycolor), backgroundColor: ThemeConstants.whitecolor, // foreground
                         ),
                         onPressed: () {
                           Navigator.pop(context, true);
@@ -131,8 +128,7 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: ThemeConstants.bluecolor, // background
-                          onPrimary: ThemeConstants.bluecolor, // foreground
+                          foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, // foreground
                         ),
                         onPressed: () {
                           String temp = "";

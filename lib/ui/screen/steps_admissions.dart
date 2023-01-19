@@ -48,7 +48,7 @@ class StepsToAdmissions extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Align(
                             alignment: AlignmentDirectional.centerStart,
                             child: CustomAutoSizeTextMontserrat(

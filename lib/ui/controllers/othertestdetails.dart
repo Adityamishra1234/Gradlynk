@@ -78,9 +78,9 @@ class OtherTestDetailsController extends BaseController {
     }
   }
 
-  getOtherTestDetails(String enq_id) async {
+  getOtherTestDetails(String enqId) async {
     var res = await apiServices.viewOtherTestDetails(
-        Endpoints.baseUrl!, Endpoints.viewOtherTestDetails! + enq_id);
+        Endpoints.baseUrl!, Endpoints.viewOtherTestDetails! + enqId);
     if (res != null) {
       otherTestDetailsModel = res;
       loadingViewOtherTestDetails.value = true;
@@ -88,8 +88,8 @@ class OtherTestDetailsController extends BaseController {
     }
   }
 
-  updateOtherTestDetails(String? enq_id) async {
+  updateOtherTestDetails(String? enqId) async {
     await apiServices.updateOtherTestDetails(
-        otherTestDetailsModel, Endpoints.otherTestDetails! + enq_id!);
+        otherTestDetailsModel, Endpoints.otherTestDetails! + enqId!);
   }
 }

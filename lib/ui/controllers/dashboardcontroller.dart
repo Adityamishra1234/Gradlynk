@@ -38,9 +38,9 @@ class DashboardController extends BaseController {
 
   List<String>? createModelForDropdown() {
     if (loadingStudentPanelData.value == true) {
-      studentPanel.addtionalDetails!.forEach((element) {
+      for (var element in studentPanel.addtionalDetails!) {
         model!.add(element.branchType!);
-      });
+      }
     }
     model = model!.toSet().toList();
     loadingCreateModel = true.obs;
@@ -57,11 +57,11 @@ class DashboardController extends BaseController {
   ]) {
     List<String>? tempModel = [];
 
-    studentPanel.addtionalDetails!.forEach((element) {
+    for (var element in studentPanel.addtionalDetails!) {
       if (choose1 == element.branchType) {
-        tempModel!.add(element.branchName!);
+        tempModel.add(element.branchName!);
       }
-    });
+    }
 
     tempModel = tempModel.toSet().toList();
     return tempModel;

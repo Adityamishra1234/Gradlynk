@@ -75,9 +75,9 @@ class WorkHistoryController extends BaseController {
     }
   }
 
-  getWorkHistoryView(String? enq_id) async {
+  getWorkHistoryView(String? enqId) async {
     var res = await apiServices.getWorkHistoryView(
-        Endpoints.baseUrl!, Endpoints.viewWorkHistoryDetails! + enq_id!);
+        Endpoints.baseUrl!, Endpoints.viewWorkHistoryDetails! + enqId!);
     if (res != null) {
       workHistoryViewModelList = res;
       loadingWorkHistory.value = true;

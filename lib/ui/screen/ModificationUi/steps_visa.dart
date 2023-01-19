@@ -40,7 +40,7 @@ class StepsToVisaCopy extends StatelessWidget {
                       children: [
                         if (completeCourseDetail[0].universityName != null)
                           Container(
-                            constraints: BoxConstraints(minHeight: 50),
+                            constraints: const BoxConstraints(minHeight: 50),
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Visa Fee",
@@ -51,7 +51,7 @@ class StepsToVisaCopy extends StatelessWidget {
                             ),
                           ),
                         Container(
-                          constraints: BoxConstraints(minHeight: 50),
+                          constraints: const BoxConstraints(minHeight: 50),
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text:

@@ -57,16 +57,16 @@ class _TestAutoScrollListViewState extends State<TestAutoScrollListView> {
                       Container(
                         width: 40,
                         height: 40,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ThemeConstants.GreenColor,
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: SvgPicture.asset(
                             "assets/icons/submit.svg",
                             color: ThemeConstants.whitecolor,
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: ThemeConstants.GreenColor,
                         ),
                       ),
                       SizedBox(

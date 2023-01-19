@@ -16,7 +16,7 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 enum BestTutorSite { Tentative, Definite }
 
 class ProfilePage extends StatefulWidget {
-  ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
   static const routeNamed = '/ProfilePage';
 
   @override
@@ -24,7 +24,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  late BestTutorSite _site = BestTutorSite.Tentative;
+  late final BestTutorSite _site = BestTutorSite.Tentative;
   List<Color> selectButton = [
     ThemeConstants.bluecolor,
     ThemeConstants.bluecolor,
@@ -50,11 +50,11 @@ class _ProfilePageState extends State<ProfilePage> {
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
       appBar: CustomAppBar("title"),
-      drawer: displayMobileLayout == false ? CustomDrawer() : null,
+      drawer: displayMobileLayout == false ? const CustomDrawer() : null,
       body: SizedBox(
         child: Row(
           children: [
-            if (displayMobileLayout == true) CustomDrawer(),
+            if (displayMobileLayout == true) const CustomDrawer(),
             Container(
               color: Colors.white,
               height: MediaQuery.of(context).size.height * 0.85,

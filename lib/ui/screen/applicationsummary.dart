@@ -21,7 +21,7 @@ class ApplicationSummary extends StatelessWidget {
     }
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? CustomDrawer() : null,
+        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
         body: GetBuilder<ApplicationSummaryController>(builder: (_) {
           // For Update model with Staus Name
           if (_.loadingStatus.value == true &&
@@ -50,7 +50,7 @@ class ApplicationSummary extends StatelessWidget {
           }
           return Row(
             children: [
-              if (displayMobileLayout == true) CustomDrawer(),
+              if (displayMobileLayout == true) const CustomDrawer(),
               Flexible(
                 child: Column(
                   children: [
@@ -105,7 +105,7 @@ class ApplicationSummary extends StatelessWidget {
                                                         .toString());
 
                                             Get.to(
-                                                ApplicationCompleteDetails());
+                                                const ApplicationCompleteDetails());
                                           },
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller

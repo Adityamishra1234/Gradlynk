@@ -6,7 +6,6 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseShortListController extends BaseController {
@@ -35,8 +34,8 @@ class CourseShortListController extends BaseController {
     update();
   }
 
-  courseShortList(String? id, String enq_id) {
-    apiservices.setShortListCourse(id, enq_id);
+  courseShortList(String? id, String enqId) {
+    apiservices.setShortListCourse(id, enqId);
   }
 
   completeCourseDetailMethod(
@@ -55,8 +54,8 @@ class CourseShortListController extends BaseController {
     }
   }
 
-  GetCourseShortList(String? enq_id) async {
-    var response = await apiservices.courseShortlistDetail(enq_id);
+  GetCourseShortList(String? enqId) async {
+    var response = await apiservices.courseShortlistDetail(enqId);
     if (response != null) {
       courseModelFilter = response;
       loadingCourseShortList = true.obs;
@@ -111,8 +110,8 @@ class CourseShortListController extends BaseController {
   //   }
   // }
 
-  courseSearch(String country, String courseLevel, String enq_id, String state,
-      String city, String boarder_ield, String narrow_field) async {
+  courseSearch(String country, String courseLevel, String enqId, String state,
+      String city, String boarderIeld, String narrowField) async {
     loadingCourseSearch = false.obs;
     courseModelFilter = CourseModelFilter();
     var now = DateTime.now();
@@ -128,9 +127,9 @@ class CourseShortListController extends BaseController {
         Endpoints.courseSearchPart4! +
         city +
         Endpoints.courseSearchPart5! +
-        boarder_ield +
+        boarderIeld +
         Endpoints.courseSearchPart6! +
-        narrow_field;
+        narrowField;
     var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
     if (res != null) {
       courseModelFilter = res;

@@ -8,12 +8,11 @@ import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
-import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomDrawer extends StatelessWidget {
-  CustomDrawer({Key? key}) : super(key: key);
+  const CustomDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +79,7 @@ class CustomDrawer extends StatelessWidget {
                         value: 0.7,
                         valueColor:
                             AlwaysStoppedAnimation(ThemeConstants.GreenColor),
-                        backgroundColor: Color(0xffD6D6D6),
+                        backgroundColor: const Color(0xffD6D6D6),
                       ),
                     ),
                   )),

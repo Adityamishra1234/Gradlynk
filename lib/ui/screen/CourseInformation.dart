@@ -678,7 +678,7 @@ class CourseInformation extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                             CustomAutoSizeTextMontserrat(
-                              text: completeCourseDetail![0]
+                              text: completeCourseDetail[0]
                                   .regularApplicationDeadline,
                               maxLines: 2,
                               fontSize: 14,
@@ -729,7 +729,7 @@ class CourseInformation extends StatelessWidget {
                 top: 10,
               ),
               child: Row(
-                children: [],
+                children: const [],
               ),
             ),
           ],

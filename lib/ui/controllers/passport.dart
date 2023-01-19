@@ -51,14 +51,14 @@ class PassportController extends BaseController {
     super.onInit();
   }
 
-  updatePassportDetail(String? enq_id, PassportModel passportModel) async {
+  updatePassportDetail(String? enqId, PassportModel passportModel) async {
     var res = await apiServices.updatePassport(
-        passportModel, Endpoints.updatepassPostDetails! + enq_id!);
+        passportModel, Endpoints.updatepassPostDetails! + enqId!);
   }
 
-  getPassPortDetail(String? enq_id) async {
+  getPassPortDetail(String? enqId) async {
     var res = await apiServices.viewPassportDetail(
-        Endpoints.baseUrl!, Endpoints.viewPassport! + enq_id!);
+        Endpoints.baseUrl!, Endpoints.viewPassport! + enqId!);
     if (res != null) {
       passportModel = res;
 
@@ -76,13 +76,13 @@ class PassportController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryCode.add(element.toString());
-        });
+        }
 
         loadingCountry = true.obs;
         update();
@@ -105,13 +105,13 @@ class PassportController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           stateList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           stateCode.add(element.toString());
-        });
+        }
         if (getNUllChecker(passportModel.stateOfIssue) == false) {
           for (var i = 0; i < stateCode.length; i++) {
             if (stateCode[i] == passportModel.stateOfIssue) {

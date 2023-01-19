@@ -11,9 +11,9 @@ class ApplicationDetailController extends BaseController {
   // loading
   RxBool loadingApplicationDetails = false.obs;
 
-  getApplicationDetailComplete(String? apli_id) async {
+  getApplicationDetailComplete(String? apliId) async {
     var response = await apiServices.getApplicationDetails(
-        Endpoints.applicationDetail, apli_id);
+        Endpoints.applicationDetail, apliId);
     if (response != null) {
       applicationDetailModel = response;
       loadingApplicationDetails.value = true;

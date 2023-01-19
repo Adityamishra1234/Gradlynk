@@ -1,11 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
-import 'package:studentpanel/ui/models/courseseach.dart';
-import 'package:studentpanel/ui/models/filterModel.dart';
-import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
@@ -14,12 +10,11 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
-import 'package:studentpanel/widgets/multiselectdropdown.dart';
 
 enum BestTutorSite { Ascending, Deascending }
 
 class CourseSearch extends StatefulWidget {
-  CourseSearch({Key? key}) : super(key: key);
+  const CourseSearch({Key? key}) : super(key: key);
   static const routeNamed = '/CourseSearch';
 
   @override
@@ -35,10 +30,10 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> cityindexvaluelist = [];
   List<int> courseBoardFieldindexvaluelist = [];
   List<int> courseNarrowFieldIndexvalueList = [];
-  GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
   bool size = false;
   bool isApplyCompare = false;
-  late BestTutorSite _site = BestTutorSite.Ascending;
+  late final BestTutorSite _site = BestTutorSite.Ascending;
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +44,10 @@ class _CourseSearchState extends State<CourseSearch> {
     }
     return Scaffold(
       appBar: CustomAppBar("title"),
-      drawer: displayMobileLayout == false ? CustomDrawer() : null,
+      drawer: displayMobileLayout == false ? const CustomDrawer() : null,
       body: Row(
         children: [
-          if (displayMobileLayout == true) CustomDrawer(),
+          if (displayMobileLayout == true) const CustomDrawer(),
           SizedBox(
               height: MediaQuery.of(context).size.height,
               width: width,

@@ -72,8 +72,8 @@ class ReviewShortListController extends BaseController {
     }
   }
 
-  GetCourseShortList(String? enq_id) async {
-    var response = await apiservices.courseShortlistDetail(enq_id);
+  GetCourseShortList(String? enqId) async {
+    var response = await apiservices.courseShortlistDetail(enqId);
     if (response != null) {
       courseModelFilter = response;
       courseSearchModel = courseModelFilter.courseSearchList;
@@ -82,11 +82,11 @@ class ReviewShortListController extends BaseController {
     }
   }
 
-  courseShortList(String? id, String enq_id) {
-    apiservices.setShortListCourse(id, enq_id);
+  courseShortList(String? id, String enqId) {
+    apiservices.setShortListCourse(id, enqId);
   }
 
-  courseFinalShortlist(String? id, String enq_id) {
-    apiservices.setFinalShortListCourse(id, enq_id);
+  courseFinalShortlist(String? id, String enqId) {
+    apiservices.setFinalShortListCourse(id, enqId);
   }
 }

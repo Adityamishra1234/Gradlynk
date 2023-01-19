@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/englishtest.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
@@ -181,9 +180,7 @@ class EnglishTestDetails extends StatelessWidget {
                   child: _.editSave.value == false
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             if (_.examStatusSelected == "Not Yet Registered") {
@@ -252,9 +249,7 @@ class EnglishTestDetails extends StatelessWidget {
                           ))
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             _.editSave.value = false;
@@ -584,7 +579,7 @@ class EnglishTestDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: ["Tentative", "Definite"],
+          model: const ["Tentative", "Definite"],
           initialSelectedValue:
               controller.tentative.value == true ? "Tentative" : "Definite",
           choosefieldtype: controller.editSave.value == true ? true : false,

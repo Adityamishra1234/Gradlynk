@@ -96,9 +96,9 @@ class CourseInformationProfileController extends BaseController {
     }
   }
 
-  getCourseInformation(int enq_id) async {
+  getCourseInformation(int enqId) async {
     var res = await apiServices.getCourseInformation(Endpoints.baseUrl!,
-        Endpoints.viewCourseInformation! + enq_id.toString());
+        Endpoints.viewCourseInformation! + enqId.toString());
     if (res != null) {
       viewCourseInformationList = res;
       loadingViewCourseInformation.value = true;
@@ -106,11 +106,11 @@ class CourseInformationProfileController extends BaseController {
     }
   }
 
-  updateCourseInformation(int enq_id, int courseLevelId) async {
+  updateCourseInformation(int enqId, int courseLevelId) async {
     try {
       String? endpoint;
       endpoint = Endpoints.addCourseInformationPart1! +
-          enq_id.toString() +
+          enqId.toString() +
           Endpoints.addCourseInformationPart2! +
           courseLevelId.toString();
       for (var i = 0; i < viewCourseInformationList.length; i++) {

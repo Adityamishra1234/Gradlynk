@@ -261,8 +261,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                   side: BorderSide(
                                     width: 1.0,
                                     color: ThemeConstants.whitecolor,
-                                  ),
-                                  primary: ThemeConstants.bluecolor,
+                                  ), backgroundColor: ThemeConstants.bluecolor,
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.circular(12), // <-- Radius

@@ -55,7 +55,7 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
       case 1:
         return const CourseDetail();
       case 2:
-        return ApplicationDetail();
+        return const ApplicationDetail();
       case 3:
         return const DocumentCheckList();
 

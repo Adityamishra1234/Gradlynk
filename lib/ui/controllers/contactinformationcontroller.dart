@@ -54,13 +54,13 @@ class ContactInformationController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         countryList.add("Select Country");
         countryCode.add("0");
-        temp.forEach((element) {
+        for (var element in temp) {
           countryList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryCode.add(element.toString());
-        });
+        }
         loadingCountry = true.obs;
         update();
       }
@@ -102,13 +102,13 @@ class ContactInformationController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         stateList.add("select State");
         stateCode.add("0");
-        temp.forEach((element) {
+        for (var element in temp) {
           stateList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           stateCode.add(element.toString());
-        });
+        }
 
         loadingState = true.obs;
       }
@@ -133,13 +133,13 @@ class ContactInformationController extends BaseController {
         List<dynamic> temp = map.keys.toList();
         cityList.add("Select city");
         cityCode.add("0");
-        temp.forEach((element) {
+        for (var element in temp) {
           cityList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           cityCode.add(element.toString());
-        });
+        }
         loadingCity = true.obs;
       }
       update();

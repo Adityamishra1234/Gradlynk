@@ -29,12 +29,12 @@ class _CustomDownloadFileState extends State<CustomDownloadFile> {
           for (int x = 1; x < paths.length; x++) {
             String folder = paths[x];
             if (folder != "Android") {
-              newPath += "/" + folder;
+              newPath += "/$folder";
             } else {
               break;
             }
           }
-          newPath = newPath + "/RPSApp";
+          newPath = "$newPath/RPSApp";
           directory = Directory(newPath);
         } else {
           return false;
@@ -46,7 +46,7 @@ class _CustomDownloadFileState extends State<CustomDownloadFile> {
           return false;
         }
       }
-      File saveFile = File(directory.path + "/$fileName");
+      File saveFile = File("${directory.path}/$fileName");
       if (!await directory.exists()) {
         await directory.create(recursive: true);
       }
@@ -115,12 +115,12 @@ class _CustomDownloadFileState extends State<CustomDownloadFile> {
                 ),
               )
             : ElevatedButton.icon(
-                icon: Icon(
+                icon: const Icon(
                   Icons.download_rounded,
                   color: Colors.white,
                 ),
                 onPressed: downloadFile,
-                label: Text(
+                label: const Text(
                   "Download Video",
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 )),

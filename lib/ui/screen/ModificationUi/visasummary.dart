@@ -23,7 +23,7 @@ class VisaSummary extends StatelessWidget {
 
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? CustomDrawer() : null,
+        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
         body: GetBuilder<VisaSummaryController>(builder: (_) {
           if (_.loadingVisaDetails.value == true &&
               _.loadingVisaStatus.value == true) {
@@ -38,7 +38,7 @@ class VisaSummary extends StatelessWidget {
           }
           return Row(
             children: [
-              if (displayMobileLayout == true) CustomDrawer(),
+              if (displayMobileLayout == true) const CustomDrawer(),
               Flexible(
                 child: Column(
                   children: [

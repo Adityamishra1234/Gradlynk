@@ -55,13 +55,13 @@ class RelativeInformationController extends BaseController {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryList.add(element);
-        });
+        }
         temp = map.values.toList();
-        temp.forEach((element) {
+        for (var element in temp) {
           countryCode.add(element.toString());
-        });
+        }
 
         loadingCountry = true.obs;
         update();
@@ -108,9 +108,9 @@ class RelativeInformationController extends BaseController {
     }
   }
 
-  viewRelativeHistory(String enq_id) async {
+  viewRelativeHistory(String enqId) async {
     var res = await apiServices.viewRelativeInformation(
-        Endpoints.baseUrl!, Endpoints.viewRelative! + enq_id);
+        Endpoints.baseUrl!, Endpoints.viewRelative! + enqId);
     if (res != null) {
       modelList = res;
       loadingViewModelList.value = true;

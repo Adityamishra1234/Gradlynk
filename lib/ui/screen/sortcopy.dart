@@ -120,9 +120,8 @@ class _Test1State extends State<Test1> {
                                   const Spacer(),
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary: ThemeConstants
-                                            .bluecolor, // background
-                                        onPrimary: ThemeConstants
+                                        foregroundColor: ThemeConstants
+                                            .bluecolor, backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () {
@@ -136,9 +135,8 @@ class _Test1State extends State<Test1> {
                                   const Spacer(),
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        primary: ThemeConstants
-                                            .bluecolor, // background
-                                        onPrimary: ThemeConstants
+                                        foregroundColor: ThemeConstants
+                                            .bluecolor, backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () {

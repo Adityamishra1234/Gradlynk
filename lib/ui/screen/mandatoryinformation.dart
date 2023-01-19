@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
 class MandatoryInformation extends StatelessWidget {
   MandatoryInformation({

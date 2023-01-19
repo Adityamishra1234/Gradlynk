@@ -270,7 +270,7 @@ class FilterController extends BaseController {
   }
 
   setModificationFilter(List<CourseSearchModel>? courseSearchModellist) {
-    courseSearchModellist!.forEach((element) {
+    for (var element in courseSearchModellist!) {
       if (getNUllChecker(element.intakeMonth) == false) {
         filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
       }
@@ -359,7 +359,7 @@ class FilterController extends BaseController {
         filterModel.qsWorldRanking!.add(element.qsWorldRank ?? "");
       }
       // filterModel.placementSandwich!.add(element.place)
-    });
+    }
     filterModel.universityname = filterModel.universityname!.toSet().toList();
     filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();
 

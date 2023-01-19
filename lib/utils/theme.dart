@@ -54,9 +54,9 @@ class ThemeConstants {
   static Color browcolor = const Color(0xFFBC7B1D);
   static Color lightRed = const Color(0xFFffe2e2);
   static Color red = const Color(0xFFcf3b3b);
-  static Color yellow = Color.fromARGB(255, 241, 164, 55);
-  static Color skycolor = Color.fromARGB(255, 36, 197, 206);
-  static Color bluelightgreycolor2 = Color.fromARGB(255, 164, 178, 202);
+  static Color yellow = const Color.fromARGB(255, 241, 164, 55);
+  static Color skycolor = const Color.fromARGB(255, 36, 197, 206);
+  static Color bluelightgreycolor2 = const Color.fromARGB(255, 164, 178, 202);
   static Color Lightcian = const Color(0xFFE9FEFF);
   static Color cianColor = const Color(0xFF0EB0B5);
 }

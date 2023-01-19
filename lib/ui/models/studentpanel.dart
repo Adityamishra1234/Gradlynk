@@ -7,6 +7,7 @@ String? studentPanelToJson(StudentPanel data) => json.encode(data.toJson());
 
 class StudentPanel {
   StudentPanel({
+    this.child_count,
     this.alternateNumber,
     this.whatsappNumber,
     this.secondaryemail,
@@ -37,6 +38,7 @@ class StudentPanel {
     this.otherCountryOfInterest,
     this.courseChoice,
   });
+  int? child_count;
   int? alternateNumber;
   int? whatsappNumber;
   String? secondaryemail;
@@ -69,6 +71,7 @@ class StudentPanel {
   List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
+        child_count: json['children_count'],
         alternateNumber: json['secondary_mobile'],
         whatsappNumber: json['whatsup_no'],
         instagramId: json['instagram_id'],

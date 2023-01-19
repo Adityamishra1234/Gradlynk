@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-final imgUrl =
+const imgUrl =
     "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
 var dio = Dio();
 
@@ -55,7 +55,7 @@ class _DownloadFileTestState extends State<DownloadFileTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("widget.title"),
+        title: const Text("widget.title"),
       ),
       body: Center(
         child: Column(
@@ -64,14 +64,14 @@ class _DownloadFileTestState extends State<DownloadFileTest> {
             TextButton(
               onPressed: () async {
                 final directory = await getExternalStorageDirectory();
-                final dirPath = '/storage/emulated/simple.pdf';
-                print('full path ${dirPath}');
+                const dirPath = '/storage/emulated/simple.pdf';
+                print('full path $dirPath');
 
                 download2(dio, imgUrl, dirPath);
               },
-              child: Text("data"),
+              child: const Text("data"),
             ),
-            Text(
+            const Text(
               'You have pushed the button this many times:',
             ),
             Text(
@@ -83,7 +83,7 @@ class _DownloadFileTestState extends State<DownloadFileTest> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

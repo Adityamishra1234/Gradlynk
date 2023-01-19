@@ -8,7 +8,7 @@ class CollapsingItemTiles extends StatefulWidget {
   final bool? isSelected;
   final VoidCallback? onTap;
 
-  CollapsingItemTiles(
+  const CollapsingItemTiles(
       {Key? key,
       this.onTap,
       this.animationController,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class TestExpanded extends StatelessWidget {
-  TestExpanded({
+  const TestExpanded({
     Key? key,
   }) : super(key: key);
 

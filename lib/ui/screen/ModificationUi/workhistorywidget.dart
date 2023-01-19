@@ -276,9 +276,7 @@ class WorkHistoryWidget extends StatelessWidget {
                       width: 90,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             //name of organisation, working from, industry, designation,employmenttype,income as per itr
@@ -332,9 +330,7 @@ class WorkHistoryWidget extends StatelessWidget {
                       width: 110,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             _.workHistoryViewModelList[index!] =

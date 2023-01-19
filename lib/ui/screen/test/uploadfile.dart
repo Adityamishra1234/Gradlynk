@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
@@ -6,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class CustomFileUpload extends StatefulWidget {
-  CustomFileUpload({Key? key}) : super(key: key);
+  const CustomFileUpload({Key? key}) : super(key: key);
 
   @override
   State<CustomFileUpload> createState() => _CustomFileUploadState();

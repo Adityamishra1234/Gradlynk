@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
@@ -18,7 +17,6 @@ import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
@@ -237,9 +235,6 @@ class ApiServices extends StudentPanelBase {
 
     try {
       var response = await httpPostNullBody("$baseUrl$endpoint");
-
-      var jsondata = json.decode(response);
-
       courseSearchModel = List<CourseSearchModel>.from(
           json.decode(response).map((x) => CourseSearchModel.fromJson(x)));
       if (courseSearchModel.isNotEmpty) {
@@ -288,10 +283,10 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  setShortListCourse(String? id, String? enq_id) async {
+  setShortListCourse(String? id, String? enqId) async {
     try {
       var response = await httpPostNullBody(
-          "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enq_id");
+          "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
         Get.snackbar("Course ShortList", response,
             snackPosition: SnackPosition.BOTTOM);
@@ -309,10 +304,10 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  setFinalShortListCourse(String? id, String? enq_id) async {
+  setFinalShortListCourse(String? id, String? enqId) async {
     try {
       var response = await httpPostNullBody(
-          "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enq_id");
+          "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
         Get.snackbar("Course ShortList", response,
             snackPosition: SnackPosition.BOTTOM);
@@ -330,11 +325,11 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  courseShortlistDetail(String? enq_id) async {
+  courseShortlistDetail(String? enqId) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     try {
       var response = await httpPostNullBody(
-          "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enq_id");
+          "${Endpoints.baseUrl!}${Endpoints.courseShortListDetail!}enq_id=$enqId");
       if (response != null) {
         var jsondata = json.decode(response);
         courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
@@ -361,11 +356,11 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getApplicationSummaryList(String enq_id) async {
+  getApplicationSummaryList(String enqId) async {
     try {
       List<ApplicationSummaryModel> applicationSummaryModel = [];
       var response = await httpPostNullBody(
-          "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enq_id");
+          "${Endpoints.baseUrl!}${Endpoints.applicationSummary!}enq_id=$enqId");
       if (response != null) {
         applicationSummaryModel = List<ApplicationSummaryModel>.from(json
             .decode(response)
@@ -385,12 +380,12 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getFinalShortlist(String? endpoints, String enq_id) async {
+  getFinalShortlist(String? endpoints, String enqId) async {
     try {
       CourseModelFilter courseModelFilter = CourseModelFilter();
       List<CourseSearchModel> courseSearchModel = [];
       var response = await httpPostNullBody(
-          "${Endpoints.baseUrl!}${endpoints}enq_id=$enq_id");
+          "${Endpoints.baseUrl!}${endpoints}enq_id=$enqId");
       if (response != null) {
         var jsondata = json.decode(response);
         courseModelFilter.courseSearchList = List<CourseSearchModel>.from(
@@ -413,11 +408,11 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getApplicationDetails(String? endpoints, String? apli_id) async {
+  getApplicationDetails(String? endpoints, String? apliId) async {
     try {
       ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
       var response =
-          await httpPostNullBody("${Endpoints.baseUrl}${endpoints}$apli_id");
+          await httpPostNullBody("${Endpoints.baseUrl}$endpoints$apliId");
       if (response != null) {
         var jsondata = json.decode(response);
         applicationDetailModel = ApplicationDetailModel.fromJson(jsondata);
@@ -440,7 +435,7 @@ class ApiServices extends StudentPanelBase {
     try {
       FilterModel filterModel = FilterModel();
 
-      courseModelFilter.courseSearchList.forEach((element) {
+      for (var element in courseModelFilter.courseSearchList) {
         if (getNUllChecker(element.intakeMonth) == false) {
           filterModel.intakeMonth!.addAll(element.intakeMonth!.split("|"));
         }
@@ -547,7 +542,7 @@ class ApiServices extends StudentPanelBase {
           filterModel.siecRep!.add(element.siecRep ?? "");
         }
         // filterModel.placementSandwich!.add(element.place)
-      });
+      }
 
       filterModel.universityname = filterModel.universityname!.toSet().toList();
       filterModel.instituteLevel = filterModel.instituteLevel!.toSet().toList();

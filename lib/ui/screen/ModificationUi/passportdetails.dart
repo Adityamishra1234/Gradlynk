@@ -337,9 +337,7 @@ class PassportDetails extends StatelessWidget {
                   height: 35,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      side: BorderSide(color: ThemeConstants.bluecolor),
-                      primary: ThemeConstants.whitecolor, // background
-                      onPrimary: ThemeConstants.whitecolor, // foreground
+                      foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluecolor), backgroundColor: ThemeConstants.whitecolor, // foreground
                     ),
                     onPressed: () {
                       controller.editSave.value = true;
@@ -360,9 +358,7 @@ class PassportDetails extends StatelessWidget {
                   height: 35,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      side: BorderSide(color: ThemeConstants.bluecolor),
-                      primary: ThemeConstants.whitecolor, // background
-                      onPrimary: ThemeConstants.whitecolor, // foreground
+                      foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluecolor), backgroundColor: ThemeConstants.whitecolor, // foreground
                     ),
                     onPressed: () {
                       if (_.passportAvaliable.value == true) {

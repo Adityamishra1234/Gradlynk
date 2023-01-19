@@ -43,10 +43,10 @@ class _DashBoardState extends State<DashBoard> {
 
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
-      drawer: displayMobileLayout == false ? CustomDrawer() : null,
+      drawer: displayMobileLayout == false ? const CustomDrawer() : null,
       body: Row(
         children: [
-          if (displayMobileLayout == true) CustomDrawer(),
+          if (displayMobileLayout == true) const CustomDrawer(),
           Container(
             color: Colors.white,
             child: SizedBox(
@@ -110,11 +110,9 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          elevation: 0,
+                          foregroundColor: ThemeConstants.whitecolor, elevation: 0, backgroundColor: ThemeConstants.whitecolor,
                           shadowColor: ThemeConstants.lightblueColor,
-                          side: BorderSide(color: ThemeConstants.bluecolor),
-                          primary: ThemeConstants.whitecolor, // background
-                          onPrimary: ThemeConstants.whitecolor, // foreground
+                          side: BorderSide(color: ThemeConstants.bluecolor), // foreground
                         ),
                         onPressed: () async {
                           Get.bottomSheet(Container(
@@ -170,7 +168,7 @@ class _DashBoardState extends State<DashBoard> {
                                       border: true,
                                       hint: "Select your Counsellor",
                                       callbackFunction: callbackDropDownButton,
-                                      model: ["1", "2", "3"]),
+                                      model: const ["1", "2", "3"]),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional.topStart,
@@ -186,7 +184,7 @@ class _DashBoardState extends State<DashBoard> {
                                       border: true,
                                       hint: "Select your Counsellor",
                                       callbackFunction: callbackDropDownButton,
-                                      model: ["1", "2", "3"]),
+                                      model: const ["1", "2", "3"]),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional.topStart,
@@ -202,7 +200,7 @@ class _DashBoardState extends State<DashBoard> {
                                       border: true,
                                       hint: "Select your Counsellor",
                                       callbackFunction: callbackDropDownButton,
-                                      model: ["1", "2", "3"]),
+                                      model: const ["1", "2", "3"]),
                                 ),
                               ],
                             ),
@@ -218,11 +216,9 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          elevation: 0,
+                          foregroundColor: ThemeConstants.whitecolor, elevation: 0, backgroundColor: ThemeConstants.whitecolor,
                           shadowColor: ThemeConstants.lightorangeColor,
-                          side: BorderSide(color: ThemeConstants.orangeColor),
-                          primary: ThemeConstants.whitecolor, // background
-                          onPrimary: ThemeConstants.whitecolor, // foreground
+                          side: BorderSide(color: ThemeConstants.orangeColor), // foreground
                         ),
                         onPressed: () async {
                           Get.bottomSheet(Container(
@@ -273,7 +269,7 @@ class _DashBoardState extends State<DashBoard> {
                                       border: true,
                                       hint: "Select your Counsellor",
                                       callbackFunction: callbackDropDownButton,
-                                      model: ["1", "2", "3"]),
+                                      model: const ["1", "2", "3"]),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional.topStart,
@@ -289,7 +285,7 @@ class _DashBoardState extends State<DashBoard> {
                                       border: true,
                                       hint: "Select your Counsellor",
                                       callbackFunction: callbackDropDownButton,
-                                      model: ["1", "2", "3"]),
+                                      model: const ["1", "2", "3"]),
                                 ),
                                 Align(
                                   alignment: AlignmentDirectional.topStart,
@@ -305,7 +301,7 @@ class _DashBoardState extends State<DashBoard> {
                                       border: true,
                                       hint: "Select your Counsellor",
                                       callbackFunction: callbackDropDownButton,
-                                      model: ["1", "2", "3"]),
+                                      model: const ["1", "2", "3"]),
                                 ),
                               ],
                             ),
@@ -412,7 +408,7 @@ class _DashBoardState extends State<DashBoard> {
                       //Course Search
                       InkWell(
                         onTap: () {
-                          Get.to(CourseSearch());
+                          Get.to(const CourseSearch());
                         },
                         child: Column(
                           children: [
@@ -499,7 +495,7 @@ class _DashBoardState extends State<DashBoard> {
                         // width: displayMobileLayout == true
                         //     ? MediaQuery.of(context).size.width - 240
                         //     : MediaQuery.of(context).size.width * 0.90,
-                        constraints: BoxConstraints(maxWidth: 300),
+                        constraints: const BoxConstraints(maxWidth: 300),
                         child: Card(
                           elevation: 0.7,
                           shadowColor: const Color(0xFFE5E1FE),

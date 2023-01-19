@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
-import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformationWidget.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/courseinformationview.dart';
-import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class CourseInformationCopy extends StatefulWidget {
   double? width;

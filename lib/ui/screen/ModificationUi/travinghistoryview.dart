@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 
@@ -389,12 +387,10 @@ class TravingHistoryView extends StatelessWidget {
                                     const EdgeInsets.only(top: 20, right: 20),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      elevation: 0.0,
+                                      foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants
+                                          .whitecolor,
                                       side: BorderSide(
                                           color: ThemeConstants.TextColor),
-                                      primary: ThemeConstants
-                                          .whitecolor, // background
-                                      onPrimary: ThemeConstants.whitecolor,
                                       // foreground
                                     ),
                                     onPressed: () async {
@@ -412,10 +408,8 @@ class TravingHistoryView extends StatelessWidget {
                                   width: 90,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        elevation: 0.0,
-                                        primary: ThemeConstants
-                                            .bluecolor, // background
-                                        onPrimary: ThemeConstants
+                                        foregroundColor: ThemeConstants
+                                            .bluecolor, elevation: 0.0, backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {

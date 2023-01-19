@@ -204,7 +204,7 @@ class CourseSearchController extends BaseController {
   //   update();
   // }
 
-  courseSearch(String country, String courseLevel, String enq_id) async {
+  courseSearch(String country, String courseLevel, String enqId) async {
     courseModelFilter = CourseModelFilter();
     var now = DateTime.now();
     var formatterYear = DateFormat('yyyy');
@@ -268,11 +268,11 @@ class CourseSearchController extends BaseController {
     update();
   }
 
-  courseShortList(String? id, String enq_id) {
-    apiservices.setShortListCourse(id, enq_id);
+  courseShortList(String? id, String enqId) {
+    apiservices.setShortListCourse(id, enqId);
   }
 
-  courseFinalShortlist(String? id, String enq_id) {
-    apiservices.setFinalShortListCourse(id, enq_id);
+  courseFinalShortlist(String? id, String enqId) {
+    apiservices.setFinalShortListCourse(id, enqId);
   }
 }

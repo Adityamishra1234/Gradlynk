@@ -12,10 +12,10 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['user'] = user.toJson();
-    _data['token'] = token;
-    return _data;
+    final data = <String, dynamic>{};
+    data['user'] = user.toJson();
+    data['token'] = token;
+    return data;
   }
 }
 
@@ -69,21 +69,21 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['emp_id'] = empId;
-    _data['name'] = name;
-    _data['email'] = email;
-    _data['email_password'] = emailPassword;
-    _data['email_verified_at'] = emailVerifiedAt;
-    _data['profile_photo'] = profilePhoto;
-    _data['mac_address'] = macAddress;
-    _data['ip_address'] = ipAddress;
-    _data['token_id'] = tokenId;
-    _data['last_online'] = lastOnline;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    _data['is_user_active'] = isUserActive;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['emp_id'] = empId;
+    data['name'] = name;
+    data['email'] = email;
+    data['email_password'] = emailPassword;
+    data['email_verified_at'] = emailVerifiedAt;
+    data['profile_photo'] = profilePhoto;
+    data['mac_address'] = macAddress;
+    data['ip_address'] = ipAddress;
+    data['token_id'] = tokenId;
+    data['last_online'] = lastOnline;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['is_user_active'] = isUserActive;
+    return data;
   }
 }

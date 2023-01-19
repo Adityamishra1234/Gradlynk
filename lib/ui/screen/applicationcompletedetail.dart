@@ -3,20 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/applicationsummarycontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
-import 'package:studentpanel/ui/screen/test/documentdownload.dart';
-import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
-import 'package:studentpanel/widgets/custom_doc_viewer.dart';
-import 'package:studentpanel/widgets/custom_image_viewer.dart';
-import 'package:studentpanel/widgets/custom_pdf_viewr.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/download_file.dart';
-import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 
 class ApplicationCompleteDetails extends StatelessWidget {
-  ApplicationCompleteDetails({Key? key}) : super(key: key);
+  const ApplicationCompleteDetails({Key? key}) : super(key: key);
   static const routeNamed = '/ApplicationCompleteDetails';
   final rowSpacer2 = const TableRow(children: [
     SizedBox(
@@ -36,12 +30,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
     }
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? CustomDrawer() : null,
+        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
         body: GetBuilder<ApplicationSummaryController>(builder: (_) {
           return _.loadingApplicationCompleteDetails.value == true
               ? Row(
                   children: [
-                    if (displayMobileLayout == true) CustomDrawer(),
+                    if (displayMobileLayout == true) const CustomDrawer(),
                     Flexible(
                       child: Container(
                         color: ThemeConstants.whitecolor,
@@ -130,12 +124,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       children: [
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
                                             side: BorderSide(
                                                 color:
                                                     ThemeConstants.GreenColor),
-                                            primary: ThemeConstants
-                                                .whitecolor, // background
-                                            onPrimary: ThemeConstants
+                                            backgroundColor: ThemeConstants
                                                 .whitecolor, // foreground
                                           ),
                                           onPressed: () {},
@@ -150,12 +144,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                         ),
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
                                             side: BorderSide(
                                                 color:
                                                     ThemeConstants.bluecolor),
-                                            primary: ThemeConstants
-                                                .whitecolor, // background
-                                            onPrimary: ThemeConstants
+                                            backgroundColor: ThemeConstants
                                                 .whitecolor, // foreground
                                           ),
                                           onPressed: () {},
@@ -169,12 +163,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                         ),
                                         ElevatedButton(
                                           style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
                                             side: BorderSide(
                                                 color:
                                                     ThemeConstants.orangeColor),
-                                            primary: ThemeConstants
-                                                .whitecolor, // background
-                                            onPrimary: ThemeConstants
+                                            backgroundColor: ThemeConstants
                                                 .whitecolor, // foreground
                                           ),
                                           onPressed: () {
@@ -397,17 +391,16 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: "${_.applicationDetailModel.annualTutionFees ?? ""}" +
-                                                " " +
-                                                "${_.applicationDetailModel.currencyCode ?? ""}",
+                                            text: (_.applicationDetailModel
+                                                        .annualTutionFees ??
+                                                    "") +
+                                                " ${_.applicationDetailModel.currencyCode ?? ""}",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text:
-                                                " ${_.applicationDetailModel.annualTutionFeesInr ?? ""}" +
-                                                    " " +
-                                                    "INR",
+                                                " ${_.applicationDetailModel.annualTutionFeesInr ?? ""} INR",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
                                           ),
@@ -440,8 +433,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             maxLines: 2,
                                           ),
                                           CustomAutoSizeTextMontserrat(
-                                            text: "${_.applicationDetailModel.totalfees ?? ""}" +
-                                                "${_.applicationDetailModel.currencyCode ?? ""}",
+                                            text: (_.applicationDetailModel
+                                                        .totalfees ??
+                                                    "") +
+                                                (_.applicationDetailModel
+                                                        .currencyCode ??
+                                                    ""),
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
                                           ),
@@ -505,11 +502,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.GreenColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -523,11 +520,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.bluecolor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -541,12 +538,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color:
                                                   ThemeConstants.orangeColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -569,11 +566,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.GreenColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -587,11 +584,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.bluecolor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -605,12 +602,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color:
                                                   ThemeConstants.orangeColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -633,11 +630,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.GreenColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -651,11 +648,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.bluecolor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -669,12 +666,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color:
                                                   ThemeConstants.orangeColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -906,11 +903,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.GreenColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -924,11 +921,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.bluecolor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -942,12 +939,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color:
                                                   ThemeConstants.orangeColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -970,11 +967,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.GreenColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -988,11 +985,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color: ThemeConstants.bluecolor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -1006,12 +1003,12 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
                                           side: BorderSide(
                                               color:
                                                   ThemeConstants.orangeColor),
-                                          primary: ThemeConstants
-                                              .whitecolor, // background
-                                          onPrimary: ThemeConstants
+                                          backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {},
@@ -1338,10 +1335,10 @@ class ApplicationCompleteDetails extends StatelessWidget {
                         children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: ThemeConstants.whitecolor,
                               side:
                                   BorderSide(color: ThemeConstants.GreenColor),
-                              primary: ThemeConstants.whitecolor, // background
-                              onPrimary:
+                              backgroundColor:
                                   ThemeConstants.whitecolor, // foreground
                             ),
                             onPressed: () {},
@@ -1355,9 +1352,9 @@ class ApplicationCompleteDetails extends StatelessWidget {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: ThemeConstants.whitecolor,
                               side: BorderSide(color: ThemeConstants.bluecolor),
-                              primary: ThemeConstants.whitecolor, // background
-                              onPrimary:
+                              backgroundColor:
                                   ThemeConstants.whitecolor, // foreground
                             ),
                             onPressed: () {},
@@ -1371,10 +1368,10 @@ class ApplicationCompleteDetails extends StatelessWidget {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                              foregroundColor: ThemeConstants.whitecolor,
                               side:
                                   BorderSide(color: ThemeConstants.orangeColor),
-                              primary: ThemeConstants.whitecolor, // background
-                              onPrimary:
+                              backgroundColor:
                                   ThemeConstants.whitecolor, // foreground
                             ),
                             onPressed: () {},

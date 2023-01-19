@@ -76,9 +76,9 @@ class EnglishTestController extends BaseController {
     }
   }
 
-  getEnglishTestDetails(String enq_id) async {
+  getEnglishTestDetails(String enqId) async {
     var res = await apiServices.viewEnglishTestDetails(
-        Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enq_id);
+        Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enqId);
     if (res != null) {
       englishTestDetailsViewModel = res;
       loadingViewEnglishTestDetails = true.obs;
@@ -86,10 +86,10 @@ class EnglishTestController extends BaseController {
     }
   }
 
-  updateEnglishTestDetaisl(String enq_id,
+  updateEnglishTestDetaisl(String enqId,
       EnglishTestDetailsViewModel englishTestDetailsViewModel) async {
     await apiServices.updateEnglishTestDetails(this.englishTestDetailsViewModel,
-        Endpoints.updateEnglishTesttDetails! + enq_id);
+        Endpoints.updateEnglishTesttDetails! + enqId);
     update();
   }
 }

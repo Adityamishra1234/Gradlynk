@@ -74,18 +74,18 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         getNUllChecker(widget.model.alternateNumber.toString()) == false
             ? widget.model.alternateNumber.toString()
             : "";
-    // initialSelectedChildCount=widget.model.
+    controller.selectedChildCount = widget.model.child_count.toString();
     secondaryEmail.text = widget.model.secondaryEmail ?? "";
     street.text = widget.model.street ?? "";
     zipCode.text = getNUllChecker(widget.model.pincode) == false
         ? widget.model.pincode.toString()
         : "";
     controller.genderSelected = widget.model.gender ?? gender[0];
-    controller.maritalStatusSelected = widget.model.maritalStatus ?? null;
+    controller.maritalStatusSelected = widget.model.maritalStatus;
 
-    controller.countrySelected = widget.model.countryName ?? null;
-    controller.stateSelected = widget.model.stateName ?? null;
-    controller.citySelected = widget.model.cityName ?? null;
+    controller.countrySelected = widget.model.countryName;
+    controller.stateSelected = widget.model.stateName;
+    controller.citySelected = widget.model.cityName;
     String? temp = "";
     if (widget.model.otherCountryOfInterest != null) {
       for (var i = 0; i < widget.model.otherCountryOfInterest!.length; i++) {
@@ -107,14 +107,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
     String? branchname;
     String? serviceName;
     String? countryName;
-    String? assigned_advisor;
+    String? assignedAdvisor;
     return GetBuilder<ContactInformationController>(builder: (_) {
       for (var i = 0; i < widget.model.addtionalDetails!.length; i++) {
         if (widget.model.addtionalDetails![i].serviceName == "Student Visa") {
           branchname = widget.model.addtionalDetails![i].branchName ?? "";
           serviceName = widget.model.addtionalDetails![i].serviceName ?? "";
           countryName = widget.model.addtionalDetails![i].countryName ?? "";
-          assigned_advisor =
+          assignedAdvisor =
               widget.model.addtionalDetails![i].assigned_advisor! +
                   widget.model.addtionalDetails![i].assigne!;
         }
@@ -143,7 +143,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                 //   print(stackTrace.toString());
                 // },
                 radius: 80.0,
-                backgroundImage: NetworkImage(
+                backgroundImage: const NetworkImage(
                     "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
                 backgroundColor: Colors.transparent,
               ),
@@ -176,7 +176,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 mobileNumber.text,
                                 email.text,
                                 int.parse(whatsappNumber.text),
-                                // int.parse(secondaryNumber.text),
+                                int.parse(alt_Number.text),
                                 _.countryId!,
                                 _.stateId!,
                                 _.cityId!,
@@ -338,7 +338,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               ),
             if (_.maritalStatusId == 1 || _.maritalStatusId == 3)
               CustomDropDownSingle(
-                model: ["0", "1", "2", "3", "4"],
+                model: const ["0", "1", "2", "3", "4"],
                 callbackFunction: callbackChildrenCount,
                 initialSelectedValue:
                     _.childrenCount != null ? _.childrenCount.toString() : "0",
@@ -775,7 +775,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     vertical: MediaQuery.of(context).viewInsets.bottom + 30),
                 readOnly: true,
                 decoration: InputDecoration(
-                  hintText: assigned_advisor,
+                  hintText: assignedAdvisor,
                   filled: true,
                   fillColor: ThemeConstants.lightblueColor,
                   border: OutlineInputBorder(
@@ -932,9 +932,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         height: 35,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            side: BorderSide(color: ThemeConstants.bluecolor),
-                            primary: ThemeConstants.whitecolor, // background
-                            onPrimary: ThemeConstants.whitecolor, // foreground
+                            foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluecolor), backgroundColor: ThemeConstants.whitecolor, // foreground
                           ),
                           onPressed: () {
                             saveAndEdit = false;
@@ -955,9 +953,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         height: 35,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            side: BorderSide(color: ThemeConstants.bluecolor),
-                            primary: ThemeConstants.whitecolor, // background
-                            onPrimary: ThemeConstants.whitecolor, // foreground
+                            foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluecolor), backgroundColor: ThemeConstants.whitecolor, // foreground
                           ),
                           onPressed: () {
                             // Id and Dob const
@@ -965,14 +961,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 78623,
                                 firstName.text,
                                 lastName.text,
-                                "12/13/1990",
+                                _.dob,
                                 _.genderId!,
                                 _.maritalStatusId!,
                                 _.childrenCount!,
                                 mobileNumber.text,
                                 email.text,
                                 int.parse(whatsappNumber.text),
-                                // int.parse(secondaryNumber.text),
+                                int.parse(alt_Number.text),
                                 _.countryId!,
                                 _.stateId!,
                                 _.cityId!,
@@ -1026,7 +1022,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         if (controller.stateList[i] == varTopic) {
           controller.stateSelected = varTopic;
           controller.stateId = int.parse(controller.stateCode[i]);
-          controller.getCity("${controller.stateCode[i]}");
+          controller.getCity(controller.stateCode[i]);
         }
       }
     }
@@ -1077,22 +1073,22 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   }
 
   updatePesonalDetail(
-      @required int id,
-      @required String firstName,
-      @required String lastName,
-      @required dateOfBirth,
-      @required int genderId,
-      @required int maritalStatusId,
+      int id,
+      String firstName,
+      String lastName,
+      String? dateOfBirth,
+      int genderId,
+      int maritalStatusId,
       int childCount,
-      @required String mobile,
-      @required String email,
+      String mobile,
+      String email,
       int whatsappNumber,
-      // int secondaryNumber,
-      @required int countryId,
-      @required int stateId,
-      @required int cityId,
+      int secondaryNumber,
+      int countryId,
+      int stateId,
+      int cityId,
       String street,
-      @required int pincode,
+      int pincode,
       String facebookId,
       String snapchatId,
       String instagramId,
@@ -1110,7 +1106,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             maritalStatusId: maritalStatusId,
             childrenCount: childCount,
             whatsappNumber: whatsappNumber,
-            // alternateNumber: secondaryNumber,
+            alternateNumber: secondaryNumber,
             countryId: countryId,
             stateId: stateId,
             cityId: cityId,

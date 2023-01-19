@@ -55,11 +55,8 @@ class ScrollTabBar extends StatelessWidget {
                         child: Column(children: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              side: BorderSide(
-                                  color: ThemeConstants.bluegreycolor),
-                              primary: ThemeConstants.whitecolor, // background
-                              onPrimary:
-                                  ThemeConstants.whitecolor, // foreground
+                              foregroundColor: ThemeConstants.whitecolor, side: BorderSide(
+                                  color: ThemeConstants.bluegreycolor), backgroundColor: ThemeConstants.whitecolor, // foreground
                             ),
                             onPressed: () {},
                             child: CustomAutoSizeTextMontserrat(text: "Tesst"),

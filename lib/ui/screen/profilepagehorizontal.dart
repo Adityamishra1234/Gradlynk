@@ -7,7 +7,7 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class ProfilePageHorizontal extends StatefulWidget {
-  ProfilePageHorizontal({Key? key}) : super(key: key);
+  const ProfilePageHorizontal({Key? key}) : super(key: key);
   static const routeNamed = '/ProfilePageHorizontal';
 
   @override

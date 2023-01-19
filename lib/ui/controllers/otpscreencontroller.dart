@@ -6,11 +6,6 @@ class OTPScreenController extends BaseController {
   RxBool loadingcounter = false.obs;
   RxBool loadingTimer = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    // setCounter();
-  }
 
   // setCounter() {
   //   if (loadingTimer.value == false) {

@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/fielddetail.dart';
 
 class ApplicationDetail extends StatelessWidget {
-  ApplicationDetail({
+  const ApplicationDetail({
     Key? key,
   }) : super(key: key);
   static const routeNamed = '/ApplicationDetail';
