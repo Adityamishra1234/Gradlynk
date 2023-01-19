@@ -54,7 +54,7 @@ getToast(String data) {
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
-      backgroundColor: ThemeConstants.whitecolor,
+      backgroundColor: ThemeConstants.lightblueColor,
       textColor: ThemeConstants.blackcolor,
       fontSize: 16.0);
 }

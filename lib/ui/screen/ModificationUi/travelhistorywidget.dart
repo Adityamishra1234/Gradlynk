@@ -350,14 +350,16 @@ class TravelHistoryWidget extends StatelessWidget {
                       onPressed: () async {
                         _.modelList.add(TravelHistoryModel(
                             travelStatus: _.travelStatusSelected,
-                            chooseCountry: int.parse(_.countryCodeSelected!),
-                            typeOfVisa: int.parse(_.typeOfVisaCodeSelected!),
+                            chooseCountry:
+                                int.parse(_.countryCodeSelected ?? "0"),
+                            typeOfVisa:
+                                int.parse(_.typeOfVisaCodeSelected ?? "0"),
                             visaStatus: _.visaStatusSelected,
                             dateOfApplication: dateOfApplication.text,
                             dateOfRejection: dateOfReject.text,
                             reasonOfRejection: reasonOfRejection.text,
                             proofAvailable:
-                                int.parse(_.proofAvailableSelectedID!),
+                                int.parse(_.proofAvailableSelectedID ?? "0"),
                             countryName: _.countrySelected,
                             applicationNumber: applicationNumber.text,
                             visaNumber: visaNumber.text));

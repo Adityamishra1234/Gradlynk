@@ -537,49 +537,71 @@ class QualificationWidget extends StatelessWidget {
                                         ThemeConstants.bluecolor, // foreground
                                   ),
                                   onPressed: () async {
-                                    controller1.modelList
-                                        .add(QualificationDetailsViewModel(
-                                      grade: cgpa.text,
-                                      multiplier: multiplier.text,
-                                      applicantType: "",
-                                      qualificationId: controller1
-                                          .highestQualificationSelectedID
-                                          .toString(),
-                                      streamId: controller1.streamSelectedID
-                                          .toString(),
-                                      countryId: controller1.countrySelectedID
-                                          .toString(),
-                                      cityId:
-                                          controller1.citySelectedID.toString(),
-                                      stateId: controller1.stateSelectedID
-                                          .toString(),
-                                      affiliationId: controller1
-                                          .affiliationCodeSelected
-                                          .toString(),
-                                      passingInstId: controller1
-                                          .institutionSelectedID
-                                          .toString(),
-                                      educationStatus:
-                                          controller1.educationStatusSelected,
-                                      yearOfPassing:
-                                          controller1.yearOfPassingSelected,
-                                      percentage: percentage.text,
-                                      reapperCount: reApper.text,
-                                      courseLevel: controller1
-                                          .highestQualificationSelected,
-                                      streamName: controller1.streamSelected,
-                                      countryName: controller1.countrySelected,
-                                      stateName: controller1.stateSelected,
-                                      cityName: controller1.citySelected,
-                                      affiliationName:
-                                          controller1.affiliationNameSelected,
-                                      universityName:
-                                          controller1.institutionSelected,
-                                      courseName: qualificationName.text,
-                                    ));
-                                    controller1.updateQualification("78623");
-                                    controller1.updteForEdit.value = false;
-                                    controller1.update();
+                                    if (controller1
+                                            .highestQualificationSelected ==
+                                        null) {
+                                      getToast(
+                                          "Please select Highest Qualification");
+                                    } else if (qualificationName.text.isEmpty) {
+                                      getToast(
+                                          "Please enter Qualification Name ");
+                                    } else if (controller1.streamSelected ==
+                                        null) {
+                                      getToast("Please select Stream");
+                                    } else if (controller1
+                                            .educationStatusSelected ==
+                                        null) {
+                                      getToast(
+                                          "Please select education status");
+                                    } else if (controller1.countrySelected ==
+                                        null) {
+                                      getToast("Please select Country");
+                                    } else {
+                                      controller1.modelList
+                                          .add(QualificationDetailsViewModel(
+                                        grade: cgpa.text,
+                                        multiplier: multiplier.text,
+                                        applicantType: "",
+                                        qualificationId: controller1
+                                            .highestQualificationSelectedID
+                                            .toString(),
+                                        streamId: controller1.streamSelectedID
+                                            .toString(),
+                                        countryId: controller1.countrySelectedID
+                                            .toString(),
+                                        cityId: controller1.citySelectedID
+                                            .toString(),
+                                        stateId: controller1.stateSelectedID
+                                            .toString(),
+                                        affiliationId: controller1
+                                            .affiliationCodeSelected
+                                            .toString(),
+                                        passingInstId: controller1
+                                            .institutionSelectedID
+                                            .toString(),
+                                        educationStatus:
+                                            controller1.educationStatusSelected,
+                                        yearOfPassing:
+                                            controller1.yearOfPassingSelected,
+                                        percentage: percentage.text,
+                                        reapperCount: reApper.text,
+                                        courseLevel: controller1
+                                            .highestQualificationSelected,
+                                        streamName: controller1.streamSelected,
+                                        countryName:
+                                            controller1.countrySelected,
+                                        stateName: controller1.stateSelected,
+                                        cityName: controller1.citySelected,
+                                        affiliationName:
+                                            controller1.affiliationNameSelected,
+                                        universityName:
+                                            controller1.institutionSelected,
+                                        courseName: qualificationName.text,
+                                      ));
+                                      controller1.updateQualification("78623");
+                                      controller1.updteForEdit.value = false;
+                                      controller1.update();
+                                    }
                                   },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Added",
@@ -609,7 +631,71 @@ class QualificationWidget extends StatelessWidget {
                                         ThemeConstants.bluecolor, // foreground
                                   ),
                                   onPressed: () async {
-                                    // Api call
+                                    if (controller1
+                                            .highestQualificationSelected ==
+                                        null) {
+                                      getToast(
+                                          "Please select Highest Qualification");
+                                    } else if (qualificationName.text.isEmpty) {
+                                      getToast(
+                                          "Please enter Qualification Name ");
+                                    } else if (controller1.streamSelected ==
+                                        null) {
+                                      getToast("Please select Stream");
+                                    } else if (controller1
+                                            .educationStatusSelected ==
+                                        null) {
+                                      getToast(
+                                          "Please select education status");
+                                    } else if (controller1.countrySelected ==
+                                        null) {
+                                      getToast("Please select Country");
+                                    } else {
+                                      controller1.modelList
+                                          .add(QualificationDetailsViewModel(
+                                        grade: cgpa.text,
+                                        multiplier: multiplier.text,
+                                        applicantType: "",
+                                        qualificationId: controller1
+                                            .highestQualificationSelectedID
+                                            .toString(),
+                                        streamId: controller1.streamSelectedID
+                                            .toString(),
+                                        countryId: controller1.countrySelectedID
+                                            .toString(),
+                                        cityId: controller1.citySelectedID
+                                            .toString(),
+                                        stateId: controller1.stateSelectedID
+                                            .toString(),
+                                        affiliationId: controller1
+                                            .affiliationCodeSelected
+                                            .toString(),
+                                        passingInstId: controller1
+                                            .institutionSelectedID
+                                            .toString(),
+                                        educationStatus:
+                                            controller1.educationStatusSelected,
+                                        yearOfPassing:
+                                            controller1.yearOfPassingSelected,
+                                        percentage: percentage.text,
+                                        reapperCount: reApper.text,
+                                        courseLevel: controller1
+                                            .highestQualificationSelected,
+                                        streamName: controller1.streamSelected,
+                                        countryName:
+                                            controller1.countrySelected,
+                                        stateName: controller1.stateSelected,
+                                        cityName: controller1.citySelected,
+                                        affiliationName:
+                                            controller1.affiliationNameSelected,
+                                        universityName:
+                                            controller1.institutionSelected,
+                                        courseName: qualificationName.text,
+                                      ));
+                                      controller1.updateQualification("78623");
+                                      controller1.updteForEdit.value = false;
+                                      controller1.update();
+                                    }
                                   },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Update",

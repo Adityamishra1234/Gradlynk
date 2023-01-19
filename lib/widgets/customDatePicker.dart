@@ -100,7 +100,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                       text: dateFormatError == true
                           ? "0000-00-00"
                           : '${date.year}-${date.month}-${date.day}',
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   )),
             ),
@@ -123,7 +123,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
               ),
-              style: ThemeConstants.montserrattextstyle,
+              style: ThemeConstants.montserrattextstyle2,
             ),
           );
   }

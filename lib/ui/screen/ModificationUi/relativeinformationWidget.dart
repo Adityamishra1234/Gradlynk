@@ -283,6 +283,20 @@ class RelativeInformationWidget extends StatelessWidget {
                     onPrimary: ThemeConstants.bluecolor, // foreground
                   ),
                   onPressed: () async {
+                    //country, citizenship,relation,relative email,contact,address.
+                    if (controller.countryNameSelected == null) {
+                      getToast("please select country");
+                    } else if (controller.citizenShipStatusSelected == null) {
+                      getToast("please select citizenShip Status");
+                    } else if (controller.relationSelected == null) {
+                      getToast("please select relation");
+                    } else if (realtiveEmail.text.isEmpty) {
+                      getToast("please enter  relative email");
+                    } else if (contactOfRelative.text.isEmpty) {
+                      getToast("please enter  relative contact number");
+                    } else if (addresOfrelative.text.isEmpty) {
+                      getToast("please enter  address of relative");
+                    }
                     controller.modelList.add(RealtionModel(
                       countryName: controller.countryNameSelected,
                       relationWithRelative: controller.relationSelected,
@@ -300,7 +314,7 @@ class RelativeInformationWidget extends StatelessWidget {
                     controller.update();
                   },
                   child: CustomAutoSizeTextMontserrat(
-                    text: "Add",
+                    text: "Added",
                     textColor: ThemeConstants.whitecolor,
                   )),
             ),

@@ -173,72 +173,88 @@ class OthertestDetail extends StatelessWidget {
                             onPrimary: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            // DropDown
-                            _.otherTestDetailsModel.examStatus =
-                                _.examStatusSelectedID ?? "";
-                            if (getNUllChecker(_.examNameSelected) == false) {
-                              _.otherTestDetailsModel.examName =
-                                  _.examNameSelected;
-                            } else {
-                              _.otherTestDetailsModel.examName = null;
+                            //register=> exam status,exam name
+                            //not yet => exam status,  exam name,book test
+                            //test already taken => exam status, exam name,
+                            if (_.examStatusSelected == "Not Yet Registered") {
+                              if (_.bookTestSelected == null) {
+                                getToast("Please select book text");
+                              }
                             }
-                            _.otherTestDetailsModel.testBook =
-                                _.bookTestSelectedID;
-                            _.otherTestDetailsModel.scoreType =
-                                _.tentaiveDefinite;
+                            if (_.examStatusSelected == null) {
+                              getToast("Please select exam status");
+                            } else if (_.examNameSelected == null) {
+                              getToast("Please select exam name");
+                            } else {
+                              // DropDown
+                              _.otherTestDetailsModel.examStatus =
+                                  _.examStatusSelectedID ?? "";
+                              if (getNUllChecker(_.examNameSelected) == false) {
+                                _.otherTestDetailsModel.examName =
+                                    _.examNameSelected;
+                              } else {
+                                _.otherTestDetailsModel.examName = null;
+                              }
+                              _.otherTestDetailsModel.testBook =
+                                  _.bookTestSelectedID;
+                              _.otherTestDetailsModel.scoreType =
+                                  _.tentaiveDefinite;
 
-                            // text field
-                            _.otherTestDetailsModel.dateOfExam =
-                                _.dateOfExamSelected;
-                            _.otherTestDetailsModel.tentativeExamDate =
-                                _.tentativeDateSelected;
-                            _.otherTestDetailsModel.resultDate =
-                                _.dateOftestReportSelected;
-                            _.otherTestDetailsModel.expirationDate =
-                                _.testScoreExpirationDateSelected;
+                              // text field
+                              _.otherTestDetailsModel.dateOfExam =
+                                  _.dateOfExamSelected;
+                              _.otherTestDetailsModel.tentativeExamDate =
+                                  _.tentativeDateSelected;
+                              _.otherTestDetailsModel.resultDate =
+                                  _.dateOftestReportSelected;
+                              _.otherTestDetailsModel.expirationDate =
+                                  _.testScoreExpirationDateSelected;
 
-                            // int condition for null
-                            _.otherTestDetailsModel.analyticalWriting =
-                                getNUllChecker(analyticalWriting.text) == false
-                                    ? int.parse(analyticalWriting.text)
-                                    : 0;
-                            _.otherTestDetailsModel.verbalReasoning =
-                                getNUllChecker(verbalReasoning.text) == false
-                                    ? int.parse(verbalReasoning.text)
-                                    : 0;
+                              // int condition for null
+                              _.otherTestDetailsModel.analyticalWriting =
+                                  getNUllChecker(analyticalWriting.text) ==
+                                          false
+                                      ? int.parse(analyticalWriting.text)
+                                      : 0;
+                              _.otherTestDetailsModel.verbalReasoning =
+                                  getNUllChecker(verbalReasoning.text) == false
+                                      ? int.parse(verbalReasoning.text)
+                                      : 0;
 
-                            _.otherTestDetailsModel.quantitativeApptitude =
-                                getNUllChecker(quantitative.text) == false
-                                    ? int.parse(quantitative.text)
-                                    : 0;
-                            _.otherTestDetailsModel.integratedReasoning =
-                                getNUllChecker(integrateedReasoning.text) ==
-                                        false
-                                    ? int.parse(integrateedReasoning.text)
-                                    : 0;
-                            _.otherTestDetailsModel.reading =
-                                getNUllChecker(reading.text) == false
-                                    ? int.parse(reading.text)
-                                    : 0;
-                            _.otherTestDetailsModel.writing =
-                                getNUllChecker(writingAndLanguage.text) == false
-                                    ? int.parse(writingAndLanguage.text)
-                                    : 0;
-                            _.otherTestDetailsModel.essay =
-                                getNUllChecker(essay.text) == false
-                                    ? int.parse(essay.text)
-                                    : 0;
-                            _.otherTestDetailsModel.math =
-                                getNUllChecker(math.text) == false
-                                    ? int.parse(math.text)
-                                    : 0;
-                            _.otherTestDetailsModel.overAll =
-                                getNUllChecker(overallScore.text) == false
-                                    ? int.parse(overallScore.text)
-                                    : 0;
-                            _.editSave.value = true;
-                            _.updateOtherTestDetails("78623");
-                            _.update();
+                              _.otherTestDetailsModel.quantitativeApptitude =
+                                  getNUllChecker(quantitative.text) == false
+                                      ? int.parse(quantitative.text)
+                                      : 0;
+                              _.otherTestDetailsModel.integratedReasoning =
+                                  getNUllChecker(integrateedReasoning.text) ==
+                                          false
+                                      ? int.parse(integrateedReasoning.text)
+                                      : 0;
+                              _.otherTestDetailsModel.reading =
+                                  getNUllChecker(reading.text) == false
+                                      ? int.parse(reading.text)
+                                      : 0;
+                              _.otherTestDetailsModel.writing =
+                                  getNUllChecker(writingAndLanguage.text) ==
+                                          false
+                                      ? int.parse(writingAndLanguage.text)
+                                      : 0;
+                              _.otherTestDetailsModel.essay =
+                                  getNUllChecker(essay.text) == false
+                                      ? int.parse(essay.text)
+                                      : 0;
+                              _.otherTestDetailsModel.math =
+                                  getNUllChecker(math.text) == false
+                                      ? int.parse(math.text)
+                                      : 0;
+                              _.otherTestDetailsModel.overAll =
+                                  getNUllChecker(overallScore.text) == false
+                                      ? int.parse(overallScore.text)
+                                      : 0;
+                              _.editSave.value = true;
+                              _.updateOtherTestDetails("78623");
+                              _.update();
+                            }
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "Save",

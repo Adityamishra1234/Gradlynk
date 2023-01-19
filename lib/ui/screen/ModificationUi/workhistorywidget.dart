@@ -281,20 +281,35 @@ class WorkHistoryWidget extends StatelessWidget {
                             onPrimary: ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            _.workHistoryViewModelList.add(WorkHistoryViewModel(
-                              applicantType: _.employementTypeCode,
-                              enqId: 78623,
-                              organisationName: lastOrganisation.text,
-                              jobType: _.employementTypeSelected,
-                              jobRole: designation.text,
-                              jobIndustryId: _.industryNameCode,
-                              workingFrom: _.workingFromSelected,
-                              workingTill: _.workingTillSelected,
-                              income: int.parse(income.text),
-                              jobIndustryName: _.industryNameSelected,
-                            ));
-
-                            callbackAdded(true);
+                            //name of organisation, working from, industry, designation,employmenttype,income as per itr
+                            if (lastOrganisation.text.isEmpty) {
+                              getToast("Please enter last organisation");
+                            } else if (_.workingFromSelected == null) {
+                              getToast("please select working from");
+                            } else if (_.industryNameSelected == null) {
+                              getToast("please select industry name");
+                            } else if (designation.text.isEmpty) {
+                              getToast("please enter designation");
+                            } else if (_.employementTypeSelected == null) {
+                              getToast("please select employement type");
+                            } else if (income.text.isEmpty) {
+                              getToast("please select Income as per ITR");
+                            } else {
+                              _.workHistoryViewModelList
+                                  .add(WorkHistoryViewModel(
+                                applicantType: _.employementTypeCode,
+                                enqId: 78623,
+                                organisationName: lastOrganisation.text,
+                                jobType: _.employementTypeSelected,
+                                jobRole: designation.text,
+                                jobIndustryId: _.industryNameCode,
+                                workingFrom: _.workingFromSelected,
+                                workingTill: _.workingTillSelected,
+                                income: int.parse(income.text),
+                                jobIndustryName: _.industryNameSelected,
+                              ));
+                              callbackAdded(true);
+                            }
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "Added",
