@@ -7,6 +7,13 @@ String? studentPanelToJson(StudentPanel data) => json.encode(data.toJson());
 
 class StudentPanel {
   StudentPanel({
+    this.alternateNumber,
+    this.whatsappNumber,
+    this.secondaryemail,
+    this.instagramId,
+    this.facebookId,
+    this.snapchatId,
+    this.lastname,
     this.gender,
     this.enquiryName,
     this.email,
@@ -30,7 +37,14 @@ class StudentPanel {
     this.otherCountryOfInterest,
     this.courseChoice,
   });
-
+  int? alternateNumber;
+  int? whatsappNumber;
+  String? secondaryemail;
+  String? instagramId;
+  String? facebookId;
+  String? snapchatId;
+  String? lastname;
+  //
   String? gender;
   String? enquiryName;
   String? email;
@@ -55,6 +69,11 @@ class StudentPanel {
   List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
+        alternateNumber: json['secondary_mobile'],
+        whatsappNumber: json['whatsup_no'],
+        instagramId: json['instagram_id'],
+        snapchatId: json['snapchat_id'],
+        lastname: json['family_name'],
         gender: json["gender"],
         enquiryName: json["enquiry_name"],
         email: json["email"],
@@ -115,19 +134,22 @@ class StudentPanel {
 }
 
 class AddtionalDetail {
-  AddtionalDetail({
-    this.branchType,
-    this.branchName,
-    this.serviceName,
-    this.subService,
-    this.countryName,
-  });
+  AddtionalDetail(
+      {this.branchType,
+      this.branchName,
+      this.serviceName,
+      this.subService,
+      this.countryName,
+      this.assigned_advisor,
+      this.assigne});
 
   String? branchType;
   String? branchName;
   String? serviceName;
   String? subService;
   String? countryName;
+  String? assigned_advisor;
+  String? assigne;
 
   factory AddtionalDetail.fromJson(Map<String?, dynamic> json) =>
       AddtionalDetail(
@@ -136,6 +158,8 @@ class AddtionalDetail {
         serviceName: json["service_name"],
         subService: json["sub_service"],
         countryName: json["country_name"],
+        assigned_advisor: json['assigned_advisor'],
+        assigne: json['assignee'],
       );
 
   Map<String?, dynamic> toJson() => {
@@ -144,6 +168,8 @@ class AddtionalDetail {
         "service_name": serviceName,
         "sub_service": subService,
         "country_name": countryName,
+        "assigned_advisor": assigned_advisor,
+        "assignee": assigne,
       };
 }
 
