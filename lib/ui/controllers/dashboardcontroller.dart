@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardController extends BaseController {
   DropDownModel? dropDownModel;
-  StudentPanel studentPanel = StudentPanel();
+  // StudentPanel studentPanel = StudentPanel();
   ApiServices apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
   List<UpcomingEvent>? upcomingEventlist;
@@ -25,59 +25,36 @@ class DashboardController extends BaseController {
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
 
-// helo word
-  @override
-  void onInit() {
-    super.onInit();
-    login();
-    // createModelForDropdown();
-    // newAndUpdates();
-    // upcomingEvents();
-    // upcomingholidays();
-  }
+  // List<String>? createModelForDropdown() {
+  //   if (loadingStudentPanelData.value == true) {
+  //     for (var element in studentPanel.addtionalDetails!) {
+  //       model!.add(element.branchType!);
+  //     }
+  //   }
+  //   model = model!.toSet().toList();
+  //   loadingCreateModel = true.obs;
+  //   update();
 
-  List<String>? createModelForDropdown() {
-    if (loadingStudentPanelData.value == true) {
-      for (var element in studentPanel.addtionalDetails!) {
-        model!.add(element.branchType!);
-      }
-    }
-    model = model!.toSet().toList();
-    loadingCreateModel = true.obs;
-    update();
+  //   return model;
+  // }
 
-    return model;
-  }
+  // List<String>? createDropDownData(
+  //   String choose1, [
+  //   String choose2 = "",
+  //   String choose3 = "",
+  //   String choose4 = "",
+  // ]) {
+  //   List<String>? tempModel = [];
 
-  List<String>? createDropDownData(
-    String choose1, [
-    String choose2 = "",
-    String choose3 = "",
-    String choose4 = "",
-  ]) {
-    List<String>? tempModel = [];
+  //   for (var element in studentPanel.addtionalDetails!) {
+  //     if (choose1 == element.branchType) {
+  //       tempModel.add(element.branchName!);
+  //     }
+  //   }
 
-    for (var element in studentPanel.addtionalDetails!) {
-      if (choose1 == element.branchType) {
-        tempModel.add(element.branchName!);
-      }
-    }
-
-    tempModel = tempModel.toSet().toList();
-    return tempModel;
-  }
-
-  login() async {
-    if (loadingStudentPanelData.value == false) {
-      var res = await apiservices.login(
-          Endpoints.baseUrl!, "${Endpoints.login!}8860373603");
-      if (res != null) {
-        studentPanel = res;
-        loadingStudentPanelData = true.obs;
-        update();
-      }
-    }
-  }
+  //   tempModel = tempModel.toSet().toList();
+  //   return tempModel;
+  // }
 
   newAndUpdates() async {
     // var res = await apiservices.newAndUpdates(

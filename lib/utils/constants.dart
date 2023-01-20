@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class Constants {
   static const String enterEmail = "Enter Email";
@@ -50,11 +53,56 @@ String getRemoveSquarebracket(String data) {
 
 getToast(String data) {
   return Fluttertoast.showToast(
+      // webBgColor: "linear-gradient(to right, #F1F4FB, #F1F4FB)",
+      // webPosition: "Top",
+      webPosition: "center",
       msg: data,
       toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
+      gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 1,
       backgroundColor: ThemeConstants.lightblueColor,
       textColor: ThemeConstants.blackcolor,
       fontSize: 16.0);
+}
+
+getDailog(BuildContext context, String data) {
+  return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            icon: SvgPicture.asset("assets/icons/warning.svg",
+                color: ThemeConstants.yellow,
+                height: 80,
+                width: 80,
+                fit: BoxFit.scaleDown),
+            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Divider(
+                    thickness: 0.5,
+                    color: ThemeConstants.lightgreycolor,
+                  ),
+                  SizedBox(
+                      width: 200.0,
+                      height: 80.0,
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(text: data))),
+                ],
+              ),
+            ),
+          )
+
+      // AlertDialog(
+      //   title: const Text("Alert Dialog Box"),
+      //   icon: SvgPicture.asset("assets/icons/warning.svg",
+      //       color: const Color(0xFF6F61FF),
+      //       height: 80,
+      //       width: 80,
+      //       fit: BoxFit.scaleDown),
+      //   content: CustomAutoSizeTextMontserrat(text: data),
+      // ),
+      );
 }

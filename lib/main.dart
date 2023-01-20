@@ -8,6 +8,7 @@ import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
@@ -118,17 +119,17 @@ class _MyAppState extends State<MyApp> {
             page: () => const DetialScreen(),
             transition: Transition.fade,
             binding: DetailBinding()),
-        GetPage(
-          name: ProfilePage.routeNamed,
-          transition: Transition.fade,
-          binding: ProfilePageBinding(),
-          page: () => const ProfilePage(),
-        ),
         // GetPage(
-        //   name: ProfilePageCopy.routeNamed,
+        //   name: ProfilePage.routeNamed,
         //   transition: Transition.fade,
-        //   page: () => ProfilePageCopy(),
+        //   binding: ProfilePageBinding(),
+        //   page: () => const ProfilePage(),
         // ),
+        GetPage(
+          name: ProfilePageCopy.routeNamed,
+          transition: Transition.fade,
+          page: () => ProfilePageCopy(),
+        ),
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,

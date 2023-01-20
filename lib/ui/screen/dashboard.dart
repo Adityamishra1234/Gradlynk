@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
@@ -110,9 +111,12 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: ThemeConstants.whitecolor, elevation: 0, backgroundColor: ThemeConstants.whitecolor,
+                          foregroundColor: ThemeConstants.whitecolor,
+                          elevation: 0,
+                          backgroundColor: ThemeConstants.whitecolor,
                           shadowColor: ThemeConstants.lightblueColor,
-                          side: BorderSide(color: ThemeConstants.bluecolor), // foreground
+                          side: BorderSide(
+                              color: ThemeConstants.bluecolor), // foreground
                         ),
                         onPressed: () async {
                           Get.bottomSheet(Container(
@@ -216,9 +220,12 @@ class _DashBoardState extends State<DashBoard> {
                       const Spacer(),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: ThemeConstants.whitecolor, elevation: 0, backgroundColor: ThemeConstants.whitecolor,
+                          foregroundColor: ThemeConstants.whitecolor,
+                          elevation: 0,
+                          backgroundColor: ThemeConstants.whitecolor,
                           shadowColor: ThemeConstants.lightorangeColor,
-                          side: BorderSide(color: ThemeConstants.orangeColor), // foreground
+                          side: BorderSide(
+                              color: ThemeConstants.orangeColor), // foreground
                         ),
                         onPressed: () async {
                           Get.bottomSheet(Container(
@@ -333,9 +340,7 @@ class _DashBoardState extends State<DashBoard> {
                       // Create profile
                       InkWell(
                         onTap: () {
-                          Get.to(ProfilePageCopy(
-                            studentPanelmodel: dashboardController.studentPanel,
-                          ));
+                          Get.to(ProfilePageCopy());
                         },
                         child: Column(
                           children: [

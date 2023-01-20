@@ -18,9 +18,9 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ProfilePageCopy extends StatelessWidget {
-  StudentPanel studentPanelmodel = StudentPanel();
-  ProfilePageCopy({Key? key, required this.studentPanelmodel})
-      : super(key: key);
+  ProfilePageCopy({
+    Key? key,
+  }) : super(key: key);
   static const routeNamed = '/ProfilePageCopy';
   ScrollController controller = ScrollController();
   // ScrollPhysics scrollPhysics = ScrollPhysics();
@@ -1246,8 +1246,11 @@ class ProfilePageCopy extends StatelessWidget {
                                 }
                               }),
                         ),
-                        getOption(context, _.chooseIndex!.value,
-                            constraints - 240, studentPanelmodel)
+                        getOption(
+                          context,
+                          _.chooseIndex!.value,
+                          constraints - 240,
+                        )
                       ],
                     )),
               ],
@@ -1256,14 +1259,12 @@ class ProfilePageCopy extends StatelessWidget {
         ));
   }
 
-  getOption(BuildContext context, int index, double width, StudentPanel model) {
+  getOption(BuildContext context, int index, double width) {
     if (index == 0) {
       return Expanded(
           // width: width,
           // height: MediaQuery.of(context).size.height - 210,
-          child: ContactInformationCopy(
-        model: model,
-      ));
+          child: ContactInformationCopy());
     }
 
     if (index == 1) {

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
@@ -36,12 +37,26 @@ class ContactInformationController extends BaseController {
   RxBool loadingState = false.obs;
   RxBool loadingCity = false.obs;
   RxBool loadingmartialStatus = false.obs;
+  RxBool loadingStudentPanelData = false.obs;
+
+  StudentPanel model = StudentPanel();
 
   @override
   void onInit() {
     getCountry();
     getMartialStatus();
+    profiledetail();
     super.onInit();
+  }
+
+  profiledetail() async {
+    var res = await apiServices.login(
+        Endpoints.baseUrl!, "${Endpoints.login!}8860373603");
+    if (res != null) {
+      model = res;
+      loadingStudentPanelData = true.obs;
+      update();
+    }
   }
 
   getCountry() async {

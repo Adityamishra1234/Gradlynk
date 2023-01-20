@@ -275,55 +275,75 @@ class AboutCourse extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: CustomExpansionPlanList(
-                titel: "About Country",
-                text: completeCourseDetail[0].aboutCountry,
+            if (getNUllChecker(completeCourseDetail[0].aboutCountry) == false)
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: CustomExpansionPlanList(
+                  titel: "About Country",
+                  text: completeCourseDetail[0].aboutCountry,
+                ),
               ),
-            ),
-            Divider(
-              color: ThemeConstants.TextColor,
-            ),
-            CustomExpansionPlanList(
-              titel: "Popular State",
-              text: completeCourseDetail[0].popularStates,
-            ),
-            Divider(
-              color: ThemeConstants.TextColor,
-            ),
-            CustomExpansionPlanList(
-              titel: "Education System",
-              text: completeCourseDetail[0].eduSystem,
-            ),
-            Divider(
-              color: ThemeConstants.TextColor,
-            ),
-            CustomExpansionPlanList(
-              titel: "Finances And Expenses (Annually)",
-              text: completeCourseDetail[0].financeAndExpenses,
-            ),
-            Divider(
-              color: ThemeConstants.TextColor,
-            ),
-            CustomExpansionPlanList(
-              titel: "Finding Work as a Student",
-              text: completeCourseDetail[0].findingWorkAsStudents,
-            ),
-            Divider(
-              color: ThemeConstants.TextColor,
-            ),
-            CustomExpansionPlanList(
-              titel: "Post Study Work Option",
-              text: completeCourseDetail[0].postStudyWorkOption,
-            ),
-            Divider(
-              color: ThemeConstants.TextColor,
-            ),
-            CustomExpansionPlanList(
-              titel: "Part Time Work Option",
-              text: completeCourseDetail[0].partTimeWorkOption,
-            ),
+            if (getNUllChecker(completeCourseDetail[0].aboutCountry) == false)
+              Divider(
+                color: ThemeConstants.TextColor,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].popularStates) == false)
+              CustomExpansionPlanList(
+                titel: "Popular State",
+                text: completeCourseDetail[0].popularStates,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].popularStates) == false)
+              Divider(
+                color: ThemeConstants.TextColor,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].eduSystem) == false)
+              CustomExpansionPlanList(
+                titel: "Education System",
+                text: completeCourseDetail[0].eduSystem,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].eduSystem) == false)
+              Divider(
+                color: ThemeConstants.TextColor,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].financeAndExpenses) ==
+                false)
+              CustomExpansionPlanList(
+                titel: "Finances And Expenses (Annually)",
+                text: completeCourseDetail[0].financeAndExpenses,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].financeAndExpenses) ==
+                false)
+              Divider(
+                color: ThemeConstants.TextColor,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].findingWorkAsStudents) ==
+                false)
+              CustomExpansionPlanList(
+                titel: "Finding Work as a Student",
+                text: completeCourseDetail[0].findingWorkAsStudents,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].findingWorkAsStudents) ==
+                false)
+              Divider(
+                color: ThemeConstants.TextColor,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].postStudyWorkOption) ==
+                false)
+              CustomExpansionPlanList(
+                titel: "Post Study Work Option",
+                text: completeCourseDetail[0].postStudyWorkOption,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].postStudyWorkOption) ==
+                false)
+              Divider(
+                color: ThemeConstants.TextColor,
+              ),
+            if (getNUllChecker(completeCourseDetail[0].partTimeWorkOption) ==
+                false)
+              CustomExpansionPlanList(
+                titel: "Part Time Work Option",
+                text: completeCourseDetail[0].partTimeWorkOption,
+              ),
           ],
         ),
       ),

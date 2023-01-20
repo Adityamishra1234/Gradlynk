@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 
@@ -17,26 +18,33 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Padding(
       padding: const EdgeInsets.only(top: 0),
       child: AppBar(
         elevation: 0,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/menu.svg",
-                color: ThemeConstants.IconColor,
-                height: 30,
-                width: 30,
-              ),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-                DrawerFilter();
-              },
+          if (displayMobileLayout == true)
+            IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Get.back(),
             ),
-          ),
+          if (displayMobileLayout == false)
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  "assets/icons/menu.svg",
+                  color: ThemeConstants.IconColor,
+                  height: 30,
+                  width: 30,
+                ),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                  DrawerFilter();
+                },
+              ),
+            ),
           SvgPicture.asset(
             "assets/icons/work.svg",
             width: 32,
