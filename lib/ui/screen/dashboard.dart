@@ -341,6 +341,7 @@ class _DashBoardState extends State<DashBoard> {
                       InkWell(
                         onTap: () {
                           Get.to(ProfilePageCopy());
+                          // getDashboardScreen(context, callbackDropDownButton);
                         },
                         child: Column(
                           children: [

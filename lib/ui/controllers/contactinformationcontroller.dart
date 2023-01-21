@@ -37,7 +37,8 @@ class ContactInformationController extends BaseController {
   RxBool loadingState = false.obs;
   RxBool loadingCity = false.obs;
   RxBool loadingmartialStatus = false.obs;
-  RxBool loadingStudentPanelData = false.obs;
+  // 0=> ,1=> first time,2=> loading,3=> normal
+  RxInt loadingStudentPanelData = 0.obs;
 
   StudentPanel model = StudentPanel();
 
@@ -54,7 +55,7 @@ class ContactInformationController extends BaseController {
         Endpoints.baseUrl!, "${Endpoints.login!}8860373603");
     if (res != null) {
       model = res;
-      loadingStudentPanelData = true.obs;
+      loadingStudentPanelData = 1.obs;
       update();
     }
   }

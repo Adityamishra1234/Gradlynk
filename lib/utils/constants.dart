@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdropdownfordailog.dart';
 
 class Constants {
   static const String enterEmail = "Enter Email";
@@ -93,16 +93,109 @@ getDailog(BuildContext context, String data) {
                 ],
               ),
             ),
-          )
+          ));
+}
 
-      // AlertDialog(
-      //   title: const Text("Alert Dialog Box"),
-      //   icon: SvgPicture.asset("assets/icons/warning.svg",
-      //       color: const Color(0xFF6F61FF),
-      //       height: 80,
-      //       width: 80,
-      //       fit: BoxFit.scaleDown),
-      //   content: CustomAutoSizeTextMontserrat(text: data),
-      // ),
-      );
+getDashboardScreen(
+  BuildContext context,
+  Function callback,
+) {
+  return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            content: SingleChildScrollView(
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    width: 300,
+                    height: 80.0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: CustomAutoSizeTextMontserrat(
+                        text:
+                            "For prevent abuse of application and to utilize all feature of the application your ID proof is mandatory",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 50,
+                    width: 300,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20, left: 15),
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Upload an Identity Proof Document",
+                        textColor: ThemeConstants.bluecolor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                    width: 300,
+                    child: Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: CustomDropDownSingleDailog(
+                          model: ["sample"],
+                          callbackFunction: callback,
+                          choosefieldtype: false,
+                          initialSelectedValue: "sample"),
+                    ),
+                  ),
+                  Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: Container(
+                      color: ThemeConstants.red,
+                      width: 340,
+                      height: 50,
+                      child: CheckboxListTile(
+                        title: CustomAutoSizeTextMontserrat(
+                            text: "Are you available on Social Media"),
+                        value: true,
+                        onChanged: (newValue) {
+                          // true = newValue!;
+                        },
+                        controlAffinity: ListTileControlAffinity
+                            .leading, //  <-- leading Checkbox
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ));
+}
+
+getEmailvaliation(String? value) {
+  const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+      r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+      r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+      r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
+      r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
+      r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
+      r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+  final regex = RegExp(pattern);
+
+  if (value != null) {
+    return value!.isNotEmpty && !regex.hasMatch(value)
+        ? 'Enter a valid email address'
+        : null;
+  } else if (value == null) {
+    return "Please enter email address";
+  }
+}
+
+getPhoneNumbervalidation(String? value) {
+  if (value != null) {
+    if (value.length != 10) {
+      return 'Mobile Number must be of 10 digit';
+    } else
+      return null;
+  } else {
+    return "Mobile Number must be of 10 digit";
+  }
 }
