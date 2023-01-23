@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/relativeinformation.dart';
 import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -335,7 +336,8 @@ class RelativeInformationWidget extends StatelessWidget {
                       contactOfRelative: int.parse(contactOfRelative.text),
                       addressOfRelative: addresOfrelative.text,
                     ));
-                    controller.updateRelativeInformation("78623", "1");
+                    controller.updateRelativeInformation(
+                        Get.find<BaseController>().model1.id.toString(), "1");
                     controller.update();
                   },
                   child: CustomAutoSizeTextMontserrat(
@@ -371,7 +373,8 @@ class RelativeInformationWidget extends StatelessWidget {
                       contactOfRelative: int.parse(contactOfRelative.text),
                       addressOfRelative: addresOfrelative.text,
                     );
-                    controller.updateRelativeInformation("78623", "1");
+                    controller.updateRelativeInformation(
+                        Get.find<BaseController>().model1.id.toString(), "1");
                     controller.updateForEdit.value = true;
                     controller.update();
                   },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
@@ -143,7 +144,13 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
-                            Get.toNamed(ApplicationSummary.routeNamed);
+                            Get.toNamed(ApplicationSummary.routeNamed,
+                                parameters: {
+                                  "id": Get.find<BaseController>()
+                                      .model1
+                                      .id
+                                      .toString()
+                                });
                           },
                           child: SizedBox(
                             height: 30,

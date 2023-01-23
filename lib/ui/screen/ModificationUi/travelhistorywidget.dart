@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/travelhistory.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -343,7 +345,9 @@ class TravelHistoryWidget extends StatelessWidget {
                   width: 90,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                        foregroundColor: ThemeConstants.bluecolor,
+                        elevation: 0.0,
+                        backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
                         _.modelList.add(TravelHistoryModel(
@@ -362,7 +366,9 @@ class TravelHistoryWidget extends StatelessWidget {
                             applicationNumber: applicationNumber.text,
                             visaNumber: visaNumber.text));
                         _.update();
-                        _.updateTravelHistory("78623", _.travelAbroadSelected!);
+                        _.updateTravelHistory(
+                            Get.find<BaseController>().model1.id.toString(),
+                            _.travelAbroadSelected!);
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "Added",
@@ -385,7 +391,9 @@ class TravelHistoryWidget extends StatelessWidget {
                   width: 110,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                        foregroundColor: ThemeConstants.bluecolor,
+                        elevation: 0.0,
+                        backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
                         // _.modelList.add(TravelHistoryModel(

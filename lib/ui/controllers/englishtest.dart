@@ -40,7 +40,7 @@ class EnglishTestController extends BaseController {
   void onInit() {
     getExamName();
     getExamStatus();
-    getEnglishTestDetails("78623");
+    getEnglishTestDetails(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

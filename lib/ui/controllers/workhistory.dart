@@ -37,7 +37,7 @@ class WorkHistoryController extends BaseController {
   void onInit() {
     getIndustries();
     emplyoymentType();
-    getWorkHistoryView("78623");
+    getWorkHistoryView(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

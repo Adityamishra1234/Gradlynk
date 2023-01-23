@@ -76,7 +76,7 @@ class QualificationDetailsController extends BaseController {
     getCountryOfEducation();
     getYearOfpassing();
     getEducationStatus();
-    viewQualification("78623");
+    viewQualification(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

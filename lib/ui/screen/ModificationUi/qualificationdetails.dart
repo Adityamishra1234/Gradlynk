@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/qualificationdetails.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetailsview.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/qualificationwidget.dart';
@@ -168,7 +169,8 @@ class QualificationDetailsCopy extends StatelessWidget {
 
   callbackDelete(data) {
     controller.modelList.removeAt(data);
-    controller.updateQualification("78623");
+    controller
+        .updateQualification(Get.find<BaseController>().model1.id.toString());
     controller.update();
   }
 

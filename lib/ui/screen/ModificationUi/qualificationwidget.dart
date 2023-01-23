@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/qualificationdetails.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -530,7 +531,10 @@ class QualificationWidget extends StatelessWidget {
                               width: 90,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                                    foregroundColor: ThemeConstants.bluecolor,
+                                    elevation: 0.0,
+                                    backgroundColor:
+                                        ThemeConstants.bluecolor, // foreground
                                   ),
                                   onPressed: () async {
                                     if (controller1
@@ -594,7 +598,11 @@ class QualificationWidget extends StatelessWidget {
                                             controller1.institutionSelected,
                                         courseName: qualificationName.text,
                                       ));
-                                      controller1.updateQualification("78623");
+                                      controller1.updateQualification(
+                                          Get.find<BaseController>()
+                                              .model1
+                                              .id
+                                              .toString());
                                       controller1.updteForEdit.value = false;
                                       controller1.update();
                                     }
@@ -620,7 +628,10 @@ class QualificationWidget extends StatelessWidget {
                               width: 110,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                                    foregroundColor: ThemeConstants.bluecolor,
+                                    elevation: 0.0,
+                                    backgroundColor:
+                                        ThemeConstants.bluecolor, // foreground
                                   ),
                                   onPressed: () async {
                                     if (controller1
@@ -684,7 +695,11 @@ class QualificationWidget extends StatelessWidget {
                                             controller1.institutionSelected,
                                         courseName: qualificationName.text,
                                       ));
-                                      controller1.updateQualification("78623");
+                                      controller1.updateQualification(
+                                          Get.find<BaseController>()
+                                              .model1
+                                              .id
+                                              .toString());
                                       controller1.updteForEdit.value = false;
                                       controller1.update();
                                     }

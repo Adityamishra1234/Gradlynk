@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/courseshortlist.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
@@ -354,7 +355,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
           "0";
     }
-    controller1.courseShortList(id, "78623");
+    controller1.courseShortList(
+        id, Get.find<BaseController>().model1.id.toString());
   }
 
   callbackCompareCourseRemove(data) {

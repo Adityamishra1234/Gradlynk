@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/englishtest.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -97,7 +98,11 @@ class EnglishTestDetails extends StatelessWidget {
                                     _.testscoreExpirationDateSelcted;
                                 englishTestDetailsViewModel.resultDate =
                                     _.dateOfTestReportSelcted;
-                                englishTestDetailsViewModel.enqId = "78623";
+                                englishTestDetailsViewModel.enqId =
+                                    Get.find<BaseController>()
+                                        .model1
+                                        .id
+                                        .toString();
                                 englishTestDetailsViewModel.examStatusID =
                                     _.examStatusCodeSelected.toString();
                                 englishTestDetailsViewModel.examName =
@@ -180,7 +185,10 @@ class EnglishTestDetails extends StatelessWidget {
                   child: _.editSave.value == false
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor,
+                            elevation: 0.0,
+                            backgroundColor:
+                                ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             if (_.examStatusSelected == "Not Yet Registered") {
@@ -207,7 +215,11 @@ class EnglishTestDetails extends StatelessWidget {
                                     _.testscoreExpirationDateSelcted;
                                 englishTestDetailsViewModel.resultDate =
                                     _.dateOfTestReportSelcted;
-                                englishTestDetailsViewModel.enqId = "78623";
+                                englishTestDetailsViewModel.enqId =
+                                    Get.find<BaseController>()
+                                        .model1
+                                        .id
+                                        .toString();
                                 englishTestDetailsViewModel.examStatusID =
                                     _.examStatusCodeSelected.toString();
                                 englishTestDetailsViewModel.examName =
@@ -249,7 +261,10 @@ class EnglishTestDetails extends StatelessWidget {
                           ))
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor,
+                            elevation: 0.0,
+                            backgroundColor:
+                                ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             _.editSave.value = false;
@@ -1310,6 +1325,8 @@ class EnglishTestDetails extends StatelessWidget {
 
   updateEnglishTestDetails(
       EnglishTestDetailsViewModel englishTestDetailsViewModel) {
-    controller.updateEnglishTestDetaisl("78623", englishTestDetailsViewModel);
+    controller.updateEnglishTestDetaisl(
+        Get.find<BaseController>().model1.id.toString(),
+        englishTestDetailsViewModel);
   }
 }

@@ -14,6 +14,7 @@ class ApplicationSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Get.arguments);
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     double width = MediaQuery.of(context).size.width;
     if (displayMobileLayout == true) {

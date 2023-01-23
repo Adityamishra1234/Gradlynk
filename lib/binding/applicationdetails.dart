@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/applicationdetail.dart';
 
-class ApplicationDetail implements Bindings {
+class ApplicationDetailBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ApplicationDetail>(() => ApplicationDetail());

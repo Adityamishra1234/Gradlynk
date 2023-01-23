@@ -41,7 +41,7 @@ class OtherTestDetailsController extends BaseController {
   void onInit() {
     getExamName();
     getExamStatus();
-    getOtherTestDetails("78623");
+    getOtherTestDetails(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

@@ -53,7 +53,7 @@ class TravelHistoryController extends BaseController {
     getTravelStatus();
     getCountry();
     getTypeOfVisa();
-    getVisaTravelHistory("78623");
+    getVisaTravelHistory(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

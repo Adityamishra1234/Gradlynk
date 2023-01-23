@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -337,7 +338,9 @@ class PassportDetails extends StatelessWidget {
                   height: 35,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluecolor), backgroundColor: ThemeConstants.whitecolor, // foreground
+                      foregroundColor: ThemeConstants.whitecolor,
+                      side: BorderSide(color: ThemeConstants.bluecolor),
+                      backgroundColor: ThemeConstants.whitecolor, // foreground
                     ),
                     onPressed: () {
                       controller.editSave.value = true;
@@ -358,7 +361,9 @@ class PassportDetails extends StatelessWidget {
                   height: 35,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluecolor), backgroundColor: ThemeConstants.whitecolor, // foreground
+                      foregroundColor: ThemeConstants.whitecolor,
+                      side: BorderSide(color: ThemeConstants.bluecolor),
+                      backgroundColor: ThemeConstants.whitecolor, // foreground
                     ),
                     onPressed: () {
                       if (_.passportAvaliable.value == true) {
@@ -467,9 +472,12 @@ class PassportDetails extends StatelessWidget {
     controller.passportModel.placeOfIssue = controller.placeOfIssuseSelected;
     controller.passportModel.passportAvailable =
         controller.passportAvaliable.value == true ? "2" : "1";
-    controller.passportModel.enqId = "78623";
+    controller.passportModel.enqId =
+        Get.find<BaseController>().model1.id.toString();
 
-    controller.updatePassportDetail("78623", controller.passportModel);
+    controller.updatePassportDetail(
+        Get.find<BaseController>().model1.id.toString(),
+        controller.passportModel);
   }
 
   callbackDateOfIssue(data) {

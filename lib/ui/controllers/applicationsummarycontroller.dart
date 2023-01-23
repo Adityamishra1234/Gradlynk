@@ -27,9 +27,11 @@ class ApplicationSummaryController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+
+    print(Get.find<BaseController>().model1.id.toString());
     getapplicationStatus();
     getapplicationStage();
-    getApplicationDetail("78623");
+    getApplicationDetail(Get.find<BaseController>().model1.id.toString());
   }
 
   getApplicationDetail(String enqId) async {

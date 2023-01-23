@@ -1,6 +1,7 @@
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/visa.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -39,7 +40,8 @@ class _VisaDetailState extends State<VisaDetail> {
 
   @override
   void initState() {
-    controller.getVisDetail("78623", widget.applicationId);
+    controller.getVisDetail(
+        Get.find<BaseController>().model1.id.toString(), widget.applicationId);
     super.initState();
   }
 
@@ -239,9 +241,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -264,9 +268,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -289,9 +295,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -331,9 +339,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -356,9 +366,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -381,9 +393,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -657,9 +671,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -682,9 +698,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -707,9 +725,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -749,9 +769,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -774,9 +796,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -799,9 +823,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -995,9 +1021,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1020,9 +1048,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1045,9 +1075,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -1198,9 +1230,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1223,9 +1257,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1248,9 +1284,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -1389,9 +1427,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1414,9 +1454,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1439,9 +1481,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -1480,9 +1524,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1505,9 +1551,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1530,9 +1578,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -1571,9 +1621,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1596,9 +1648,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1621,9 +1675,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -1778,9 +1834,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1803,9 +1861,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1828,9 +1888,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground
@@ -1942,9 +2004,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .GreenColor), // foreground
@@ -1967,9 +2031,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .bluecolor), // foreground
@@ -1992,9 +2058,11 @@ class _VisaDetailState extends State<VisaDetail> {
                                             height: 30,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
-                                                foregroundColor: ThemeConstants
-                                                    .whitecolor, elevation: 0, backgroundColor: ThemeConstants
-                                                    .whitecolor,
+                                                foregroundColor:
+                                                    ThemeConstants.whitecolor,
+                                                elevation: 0,
+                                                backgroundColor:
+                                                    ThemeConstants.whitecolor,
                                                 side: BorderSide(
                                                     color: ThemeConstants
                                                         .orangeColor), // foreground

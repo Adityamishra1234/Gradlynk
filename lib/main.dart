@@ -1,10 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:studentpanel/binding/applicationdetails.dart';
+import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
 import 'package:studentpanel/binding/dashboard.dart';
 import 'package:studentpanel/binding/detailbinding.dart';
+import 'package:studentpanel/binding/finalshortlist.dart';
 import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/binding/profilepage.dart';
+import 'package:studentpanel/binding/reviewshortlist.dart';
+import 'package:studentpanel/binding/trackapplication.dart';
+import 'package:studentpanel/binding/uploaddocument.dart';
+import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
@@ -38,7 +45,7 @@ import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(systemStatusBarContrastEnforced: true));
@@ -126,10 +133,10 @@ class _MyAppState extends State<MyApp> {
         //   page: () => const ProfilePage(),
         // ),
         GetPage(
-          name: ProfilePageCopy.routeNamed,
-          transition: Transition.fade,
-          page: () => ProfilePageCopy(),
-        ),
+            name: ProfilePageCopy.routeNamed,
+            transition: Transition.fade,
+            page: () => ProfilePageCopy(),
+            binding: ProfilePageBinding()),
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,
@@ -142,10 +149,10 @@ class _MyAppState extends State<MyApp> {
           page: () => OTPScreen(),
         ),
         GetPage(
-          name: UploadDocument.routeNamed,
-          transition: Transition.fade,
-          page: () => UploadDocument(),
-        ),
+            name: UploadDocument.routeNamed,
+            transition: Transition.fade,
+            page: () => UploadDocument(),
+            binding: UploadDocumentBinding()),
         GetPage(
           name: ImageViewerScreen.routeNamed,
           transition: Transition.fade,
@@ -182,15 +189,15 @@ class _MyAppState extends State<MyApp> {
           page: () => const TestAutoScrollListView(),
         ),
         GetPage(
-          name: TrackApplication.routeNamed,
-          transition: Transition.fade,
-          page: () => const TrackApplication(),
-        ),
+            name: TrackApplication.routeNamed,
+            transition: Transition.fade,
+            page: () => const TrackApplication(),
+            binding: TrackApplicationBinding()),
         GetPage(
-          name: TrackApplicationCopy.routeNamed,
-          transition: Transition.fade,
-          page: () => const TrackApplicationCopy(),
-        ),
+            name: TrackApplicationCopy.routeNamed,
+            transition: Transition.fade,
+            page: () => const TrackApplicationCopy(),
+            binding: TrackApplicationBinding()),
         GetPage(
           name: LunchingPage.routeNamed,
           transition: Transition.cupertino,
@@ -207,24 +214,25 @@ class _MyAppState extends State<MyApp> {
           page: () => ScrollTabBar(),
         ),
         GetPage(
-          name: ApplicationSummary.routeNamed,
-          transition: Transition.cupertino,
-          page: () => ApplicationSummary(),
-        ),
+            name: ApplicationSummary.routeNamed,
+            transition: Transition.cupertino,
+            page: () => ApplicationSummary(),
+            binding: ApplicationSummaryBinding()),
         GetPage(
-          name: ApplicationDetail.routeNamed,
-          transition: Transition.cupertino,
-          page: () => const ApplicationDetail(),
-        ),
+            name: ApplicationDetail.routeNamed,
+            transition: Transition.cupertino,
+            page: () => const ApplicationDetail(),
+            binding: ApplicationDetailBinding()),
         GetPage(
-          name: FinalShortList.routeNamed,
-          transition: Transition.cupertino,
-          page: () => FinalShortList(),
-        ),
+            name: FinalShortList.routeNamed,
+            transition: Transition.cupertino,
+            page: () => FinalShortList(),
+            binding: FinalShortListBinding()),
         GetPage(
           name: ReviewShortList.routeNamed,
           page: () => ReviewShortList(),
           transition: Transition.fade,
+          binding: ReviewShortListBinding(),
         ),
         // GetPage(
         //   name: ApplicationCompleteDetails.routeNamed,
@@ -247,16 +255,16 @@ class _MyAppState extends State<MyApp> {
         //   transition: Transition.fade,
         // ),
         GetPage(
-          name: VisaSummary.routeNamed,
-          page: () => VisaSummary(),
-          transition: Transition.fade,
-        ),
+            name: VisaSummary.routeNamed,
+            page: () => VisaSummary(),
+            transition: Transition.fade,
+            binding: VisaSummaryBinding()),
 
         GetPage(
-          name: UploadDocument.routeNamed,
-          page: () => UploadDocument(),
-          transition: Transition.fade,
-        ),
+            name: UploadDocument.routeNamed,
+            page: () => UploadDocument(),
+            transition: Transition.fade,
+            binding: UploadDocumentBinding()),
         GetPage(
           name: DocumentTest.routeNamed,
           page: () => DocumentTest(),

@@ -38,7 +38,7 @@ class RelativeInformationController extends BaseController {
     getCountry();
     getCitizenShipStatus();
     getRealtionWithStatus();
-    viewRelativeHistory("78623");
+    viewRelativeHistory(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

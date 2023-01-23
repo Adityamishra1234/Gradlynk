@@ -22,13 +22,6 @@ class CourseShortListController extends BaseController {
   List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   // GetCourseShortList("78623");
-  // }
-
   setCompare(RxBool data) {
     compareApply = data;
     update();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/travelhistory.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/travinghistoryview.dart';
 import 'travelhistorywidget.dart';
@@ -37,7 +38,8 @@ class TravingHistory extends StatelessWidget {
   callbackDelete(data) {
     controller.modelList.removeAt(data);
     controller.updateTravelHistory(
-        "78623", controller.travelAbroadSelectedID.toString());
+        Get.find<BaseController>().model1.id.toString(),
+        controller.travelAbroadSelectedID.toString());
     controller.update();
   }
 

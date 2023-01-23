@@ -20,7 +20,7 @@ class VisaSummaryController extends BaseController {
   @override
   void onInit() {
     getVisaStatus();
-    getVisaDetails("78623");
+    getVisaDetails(Get.find<BaseController>().model1.id.toString());
     super.onInit();
   }
 

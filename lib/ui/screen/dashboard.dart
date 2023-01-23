@@ -1,14 +1,14 @@
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
+import 'package:studentpanel/ui/screen/test/camera.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
@@ -29,6 +29,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  var controller = Get.put(BaseController());
   var dashboardController = Get.put(DashboardController());
   final TextStyle _textStyle = GoogleFonts.roboto(
     fontWeight: FontWeight.w800,
@@ -340,7 +341,25 @@ class _DashBoardState extends State<DashBoard> {
                       // Create profile
                       InkWell(
                         onTap: () {
-                          Get.to(ProfilePageCopy());
+                          String id = DateTime.now().toIso8601String();
+                          Get.to(CameraApp(id: id));
+
+                          // final photos = <File>[];
+
+                          // void openCamera() {
+                          //   Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (_) => CameraCamera(
+                          //                 onFile: (file) {
+                          //                   photos.add(file);
+                          //                   Navigator.pop(context);
+                          //                   setState(() {});
+                          //                 },
+                          //               )));
+                          // }
+
+                          // Get.to(ProfilePageCopy());
                           // getDashboardScreen(context, callbackDropDownButton);
                         },
                         child: Column(

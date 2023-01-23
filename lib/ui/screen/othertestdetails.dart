@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/othertestdetails.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
@@ -168,7 +169,10 @@ class OthertestDetail extends StatelessWidget {
                   child: _.editSave.value == false
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor,
+                            elevation: 0.0,
+                            backgroundColor:
+                                ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             //register=> exam status,exam name
@@ -250,7 +254,11 @@ class OthertestDetail extends StatelessWidget {
                                       ? int.parse(overallScore.text)
                                       : 0;
                               _.editSave.value = true;
-                              _.updateOtherTestDetails("78623");
+                              _.updateOtherTestDetails(
+                                  Get.find<BaseController>()
+                                      .model1
+                                      .id
+                                      .toString());
                               _.update();
                             }
                           },
@@ -260,7 +268,10 @@ class OthertestDetail extends StatelessWidget {
                           ))
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor,
+                            elevation: 0.0,
+                            backgroundColor:
+                                ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
                             _.editSave.value = false;

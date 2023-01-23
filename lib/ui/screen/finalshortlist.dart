@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/finalshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
@@ -30,7 +31,8 @@ class _FinalShortListState extends State<FinalShortList> {
   @override
   void initState() {
     if (widget.courseModelFilter == null) {
-      controller1.getFinalShortlist("78623");
+      controller1
+          .getFinalShortlist(Get.find<BaseController>().model1.id.toString());
     } else {
       controller1.courseModelFilter = widget.courseModelFilter!;
     }
@@ -435,7 +437,8 @@ class _FinalShortListState extends State<FinalShortList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
           "0";
     }
-    controller1.courseShortList(id, "78623");
+    controller1.courseShortList(
+        id, Get.find<BaseController>().model1.id.toString());
   }
 
   CallbackFinalShortList(data) {
@@ -452,7 +455,8 @@ class _FinalShortListState extends State<FinalShortList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].finalList ==
           "";
     }
-    controller1.courseFinalShortlist(id, "78623");
+    controller1.courseFinalShortlist(
+        id, Get.find<BaseController>().model1.id.toString());
   }
 
   callbackCompareCourseRemove(data) {

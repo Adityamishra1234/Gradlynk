@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/relativeinformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/relativeinformationWidget.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/relativeinformationview.dart';
@@ -88,7 +89,8 @@ class RelativeInformation extends StatelessWidget {
 
   callbackDelete(data) {
     controller.modelList.removeAt(data);
-    controller.updateRelativeInformation("78623", "1");
+    controller.updateRelativeInformation(
+        Get.find<BaseController>().model1.id.toString(), "1");
     controller.update();
   }
 
