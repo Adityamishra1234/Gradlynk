@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:adv_camera/adv_camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/test/display.dart';
+import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CameraApp extends StatefulWidget {
   final String id;
@@ -24,6 +27,7 @@ class _CameraAppState extends State<CameraApp> {
       body: AdvCamera(
         initialCameraType: CameraType.rear,
         onCameraCreated: _onCameraCreated,
+        cameraPreviewRatio: CameraPreviewRatio.r16_9,
         onImageCaptured: (String path) {
           if (this.mounted)
             setState(() {
@@ -34,27 +38,73 @@ class _CameraAppState extends State<CameraApp> {
         // focusRectColor: Colors.purple,
         // focusRectSize: 200,
       ),
-      floatingActionButton: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisSize: MainAxisSize.min,
+      floatingActionButton: Stack(
         children: [
-          FloatingActionButton(
-            heroTag: "GoToNextPage",
-            child: Icon(Icons.navigate_next),
-            onPressed: () async {
-              await cameraController!.turnOffCamera();
-              await Get.to(DisplayImage(imagepath: imagePath!));
-              await cameraController!.turnOnCamera();
-            },
+          // const Spacer(),
+          // ElevatedButton(
+          //   style: ElevatedButton.styleFrom(
+          //     foregroundColor: ThemeConstants.bluecolor,
+          //     side: BorderSide(color: ThemeConstants.bluecolor),
+          //     backgroundColor: ThemeConstants.bluecolor, // foreground
+          //   ),
+          //   onPressed: () async {
+          //     await cameraController!.turnOffCamera();
+          //     await Get.to(DisplayImage(imagepath: imagePath!));
+          //     await cameraController!.turnOnCamera();
+          //   },
+          //   child: CustomAutoSizeTextMontserrat(
+          //     text: "Preview Image",
+          //     textColor: ThemeConstants.whitecolor,
+          //   ),
+          // ),
+
+          Align(
+            alignment: AlignmentDirectional.bottomCenter,
+            child: SizedBox(
+              height: 60,
+              width: 60,
+              child: FloatingActionButton(
+                backgroundColor: ThemeConstants.bluecolor,
+                heroTag: "capture",
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset(
+                    "assets/icons/cameracapture.svg",
+                    color: ThemeConstants.whitecolor,
+                  ),
+                ),
+                onPressed: () {
+                  cameraController!.captureImage();
+                },
+              ),
+            ),
           ),
-          Container(height: 16.0),
-          FloatingActionButton(
-            heroTag: "capture",
-            child: Icon(Icons.camera),
-            onPressed: () {
-              cameraController!.captureImage();
-            },
+
+          Align(
+            alignment: AlignmentDirectional.bottomEnd,
+            child: SizedBox(
+                height: 40,
+                width: 40,
+                child: SvgPicture.asset(
+                  "assets/icons/switchcamera.svg",
+                  color: ThemeConstants.bluecolor,
+                )),
           ),
+
+          // ElevatedButton(
+          //   style: ElevatedButton.styleFrom(
+          //     foregroundColor: ThemeConstants.bluecolor,
+          //     side: BorderSide(color: ThemeConstants.bluecolor),
+          //     backgroundColor: ThemeConstants.bluecolor, // foreground
+          //   ),
+          //   onPressed: () async {
+          //     await cameraController!.switchCamera();
+          //   },
+          //   child: CustomAutoSizeTextMontserrat(
+          //     text: "Switch Camera",
+          //     textColor: ThemeConstants.whitecolor,
+          //   ),
+          // ),
         ],
       ),
     );
@@ -76,7 +126,7 @@ class _CameraAppState extends State<CameraApp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 16),
           child: Text("Flash Setting"),
         ),
@@ -86,25 +136,25 @@ class _CameraAppState extends State<CameraApp> {
             child: Row(
               children: [
                 TextButton(
-                  child: Text("Auto"),
+                  child: const Text("Auto"),
                   onPressed: () {
                     cameraController!.setFlashType(FlashType.auto);
                   },
                 ),
                 TextButton(
-                  child: Text("On"),
+                  child: const Text("On"),
                   onPressed: () {
                     cameraController!.setFlashType(FlashType.on);
                   },
                 ),
                 TextButton(
-                  child: Text("Off"),
+                  child: const Text("Off"),
                   onPressed: () {
                     cameraController!.setFlashType(FlashType.off);
                   },
                 ),
                 TextButton(
-                  child: Text("Torch"),
+                  child: const Text("Torch"),
                   onPressed: () {
                     cameraController!.setFlashType(FlashType.torch);
                   },
@@ -121,7 +171,7 @@ class _CameraAppState extends State<CameraApp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 16),
           child: Text("Ratio Setting"),
         ),
@@ -173,7 +223,7 @@ class _CameraAppState extends State<CameraApp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 16),
           child: Text("Image Output Setting"),
         ),
