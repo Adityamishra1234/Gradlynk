@@ -17,7 +17,9 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 class FinalShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   FilterModel? filterModel = FilterModel();
-  FinalShortList({Key? key, this.courseModelFilter, this.filterModel})
+  bool? filterRedirect = false;
+  FinalShortList(
+      {Key? key, this.courseModelFilter, this.filterModel, this.filterRedirect})
       : super(key: key);
   static const routeNamed = '/FinalShortList';
 
@@ -41,6 +43,13 @@ class _FinalShortListState extends State<FinalShortList> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.filterRedirect == false) {
+      controller1.courseModelFilter = controller1.courseModelFilter;
+    } else {
+      if (widget.courseModelFilter != null) {
+        controller1.courseModelFilter = widget.courseModelFilter!;
+      }
+    }
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
         appBar: CustomAppBar("title"),

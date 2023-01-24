@@ -58,7 +58,7 @@ getToast(String data) {
       webPosition: "center",
       msg: data,
       toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.TOP,
+      gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 1,
       backgroundColor: ThemeConstants.lightblueColor,
       textColor: ThemeConstants.blackcolor,

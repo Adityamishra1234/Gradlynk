@@ -650,6 +650,9 @@ class _FilterState extends State<Filter> {
                                           Get.to(FinalShortList(
                                             courseModelFilter:
                                                 controller1.courseModelFilter,
+                                            filterRedirect: true,
+                                            filterModel:
+                                                controller1.filterModel,
                                           ));
                                         }
                                         if (previousRoute ==
@@ -657,6 +660,9 @@ class _FilterState extends State<Filter> {
                                           Get.to(ReviewShortList(
                                             courseModelFilter:
                                                 controller1.courseModelFilter,
+                                            filterRedirect: true,
+                                            filtermodel:
+                                                controller1.filterModel,
                                           ));
                                         }
                                         if (previousRoute ==
@@ -678,6 +684,9 @@ class _FilterState extends State<Filter> {
                                           Get.to(FinalShortList(
                                             courseModelFilter:
                                                 controller1.courseModelFilter,
+                                            filterRedirect: true,
+                                            filterModel:
+                                                controller1.filterModel,
                                           ));
                                         }
                                         if (previousRoute ==
@@ -685,6 +694,9 @@ class _FilterState extends State<Filter> {
                                           Get.to(ReviewShortList(
                                             courseModelFilter:
                                                 controller1.courseModelFilter,
+                                            filterRedirect: true,
+                                            filtermodel:
+                                                controller1.filterModel,
                                           ));
                                         }
                                         if (previousRoute ==

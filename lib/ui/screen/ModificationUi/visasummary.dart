@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/visaSUmmary.dart';
+import 'package:studentpanel/ui/controllers/visaSummary.dart';
 import 'package:studentpanel/ui/screen/visa.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -62,7 +62,7 @@ class VisaSummary extends StatelessWidget {
                       Expanded(
                         child: ListView.builder(
                             controller: ScrollController(),
-                            itemCount: controller.modelList.length,
+                            itemCount: _.modelList.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Card(
                                 elevation: 0,
@@ -120,8 +120,7 @@ class VisaSummary extends StatelessWidget {
                                                 width: width - 140,
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .modelList[index]
+                                                  text: _.modelList[index]
                                                       .universityName,
                                                   fontSize: 14,
                                                   textColor:
@@ -163,8 +162,7 @@ class VisaSummary extends StatelessWidget {
                                                 width: width - 95,
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .modelList[index]
+                                                  text: _.modelList[index]
                                                       .stageName,
                                                   textColor:
                                                       ThemeConstants.TextColor,
@@ -205,8 +203,7 @@ class VisaSummary extends StatelessWidget {
                                                 width: width - 100,
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .modelList[index]
+                                                  text: _.modelList[index]
                                                       .stageName,
                                                   fontSize: 14,
                                                   textColor:

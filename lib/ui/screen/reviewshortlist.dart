@@ -18,7 +18,9 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 class ReviewShortList extends StatefulWidget {
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   FilterModel? filtermodel = FilterModel();
-  ReviewShortList({Key? key, this.courseModelFilter, this.filtermodel})
+  bool? filterRedirect = false;
+  ReviewShortList(
+      {Key? key, this.courseModelFilter, this.filtermodel, this.filterRedirect})
       : super(key: key);
   static const routeNamed = '/ReviewShortlist';
 
@@ -31,17 +33,25 @@ class _ReviewShortListState extends State<ReviewShortList> {
 
   @override
   void initState() {
+    super.initState();
     if (widget.courseModelFilter == null) {
       controller1.GetCourseShortList(
           Get.find<BaseController>().model1.id.toString());
     } else {
       controller1.courseModelFilter = widget.courseModelFilter!;
     }
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.filterRedirect == false) {
+      controller1.courseModelFilter = controller1.courseModelFilter;
+    } else {
+      if (widget.courseModelFilter != null) {
+        controller1.courseModelFilter = widget.courseModelFilter!;
+      }
+    }
+
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
         appBar: CustomAppBar("title"),
@@ -97,7 +107,6 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                     controller1
                                         .courseModelFilter.courseSearchList;
                               }
-
                               Get.to(Filter(
                                 courseModelFilter:
                                     controller1.courseModelFilter,

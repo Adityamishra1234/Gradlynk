@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
@@ -342,16 +343,16 @@ class _DashBoardState extends State<DashBoard> {
                       // Create profile
                       InkWell(
                         onTap: () async {
-                          final cameras = await availableCameras();
+                          // final cameras = await availableCameras();
 
-                          // Get a specific camera from the list of available cameras.
-                          final firstCamera = cameras.first;
-                          // String id = DateTime.now().toIso8601String();
-                          Get.to(TakePictureScreen(
-                            camera: firstCamera,
-                          ));
+                          // // Get a specific camera from the list of available cameras.
+                          // final firstCamera = cameras.first;
+                          // // String id = DateTime.now().toIso8601String();
+                          // Get.to(TakePictureScreen(
+                          //   camera: firstCamera,
+                          // ));
 
-                          // Get.to(ProfilePageCopy());
+                          Get.to(ProfilePageCopy());
                           // getDashboardScreen(context, callbackDropDownButton);
                         },
                         child: Column(

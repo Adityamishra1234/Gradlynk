@@ -19,23 +19,25 @@ class ContactInformationCopy extends StatefulWidget {
 
 class _ContactInformationCopyState extends State<ContactInformationCopy> {
   bool saveAndEdit = true;
-  TextEditingController firstName = TextEditingController();
-  TextEditingController lastName = TextEditingController();
-  TextEditingController mobileNumber = TextEditingController();
-  TextEditingController alt_Number = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController whatsappNumber = TextEditingController();
-  TextEditingController secondaryNumber = TextEditingController();
-  TextEditingController secondaryEmail = TextEditingController();
-  TextEditingController street = TextEditingController();
-  TextEditingController zipCode = TextEditingController();
-  TextEditingController instagramId = TextEditingController();
-  TextEditingController facebookId = TextEditingController();
-  TextEditingController snapchatId = TextEditingController();
-  TextEditingController assignedBranch = TextEditingController();
-  TextEditingController service = TextEditingController();
-  TextEditingController firstCountryInterest = TextEditingController();
-  TextEditingController otherCountryinterested = TextEditingController();
+  static TextEditingController firstName = TextEditingController();
+  static TextEditingController lastName = TextEditingController();
+  static TextEditingController mobileNumber = TextEditingController();
+  static TextEditingController alt_Number = TextEditingController();
+  static TextEditingController email = TextEditingController();
+  static TextEditingController whatsappNumber = TextEditingController();
+  static TextEditingController secondaryNumber = TextEditingController();
+  static TextEditingController secondaryEmail = TextEditingController();
+  static TextEditingController street = TextEditingController();
+  static TextEditingController zipCode = TextEditingController();
+  static TextEditingController instagramId = TextEditingController();
+  static TextEditingController facebookId = TextEditingController();
+  static TextEditingController snapchatId = TextEditingController();
+
+  static TextEditingController otherCountryinterested = TextEditingController();
+  static TextEditingController assignedBranch = TextEditingController();
+  static TextEditingController service = TextEditingController();
+  static TextEditingController firstCountryInterest = TextEditingController();
+  static TextEditingController assignedAdvisors = TextEditingController();
 
   var controller = Get.put(ContactInformationController());
   GlobalKey globalKey = GlobalKey();
@@ -66,19 +68,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   @override
   Widget build(BuildContext context) {
-    String? branchname;
-    String? serviceName;
-    String? countryName;
-    String? assignedAdvisor;
     return GetBuilder<ContactInformationController>(builder: (_) {
       if (_.loadingStudentPanelData.value == 1) {
         for (var i = 0; i < _.model.addtionalDetails!.length; i++) {
           if (_.model.addtionalDetails![i].serviceName == "Student Visa") {
-            branchname = _.model.addtionalDetails![i].branchName ?? "";
-            serviceName = _.model.addtionalDetails![i].serviceName ?? "";
-            countryName = _.model.addtionalDetails![i].countryName ?? "";
-            assignedAdvisor = _.model.addtionalDetails![i].assigned_advisor! +
-                _.model.addtionalDetails![i].assigne!;
+            assignedBranch.text = _.model.addtionalDetails![i].branchName ?? "";
+            service.text = _.model.addtionalDetails![i].serviceName ?? "";
+            firstCountryInterest.text =
+                _.model.addtionalDetails![i].countryName ?? "";
+            assignedAdvisors.text =
+                _.model.addtionalDetails![i].assigned_advisor! +
+                    _.model.addtionalDetails![i].assigne!;
           }
         }
         firstName.text = _.model.enquiryName ?? "";
@@ -974,7 +974,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               MediaQuery.of(context).viewInsets.bottom + 30),
                       readOnly: true,
                       decoration: InputDecoration(
-                        hintText: assignedAdvisor,
+                        hintText: assignedAdvisors.text,
                         filled: true,
                         fillColor: ThemeConstants.lightblueColor,
                         border: OutlineInputBorder(
@@ -1009,7 +1009,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               MediaQuery.of(context).viewInsets.bottom + 30),
                       readOnly: true,
                       decoration: InputDecoration(
-                        hintText: branchname,
+                        hintText: assignedBranch.text,
                         filled: true,
                         fillColor: ThemeConstants.lightblueColor,
                         border: OutlineInputBorder(
@@ -1044,7 +1044,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               MediaQuery.of(context).viewInsets.bottom + 30),
                       readOnly: true,
                       decoration: InputDecoration(
-                        hintText: serviceName,
+                        hintText: service.text,
                         filled: true,
                         fillColor: ThemeConstants.lightblueColor,
                         border: OutlineInputBorder(
@@ -1079,7 +1079,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               MediaQuery.of(context).viewInsets.bottom + 30),
                       readOnly: true,
                       decoration: InputDecoration(
-                        hintText: countryName,
+                        hintText: firstCountryInterest.text,
                         filled: true,
                         fillColor: ThemeConstants.lightblueColor,
                         border: OutlineInputBorder(

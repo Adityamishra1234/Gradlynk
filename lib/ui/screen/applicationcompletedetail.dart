@@ -81,14 +81,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             CustomAutoSizeTextMontserrat(
                                               text: "Offer Status",
                                               maxLines: 2,
-                                              fontWeight: FontWeight.bold,
                                               fontSize: 14,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                             CustomAutoSizeTextMontserrat(
                                               text: "Acknowledgement Number",
                                               maxLines: 2,
-                                              fontWeight: FontWeight.bold,
                                               fontSize: 14,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ]),
                                           TableRow(children: [
@@ -98,7 +98,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                               textColor:
                                                   ThemeConstants.TextColor,
                                               maxLines: 2,
-                                              fontSize: 14,
+                                              fontSize: 12,
                                             ),
                                             CustomAutoSizeTextMontserrat(
                                               text: _.applicationDetailModel
@@ -106,7 +106,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                               textColor:
                                                   ThemeConstants.TextColor,
                                               maxLines: 2,
-                                              fontSize: 14,
+                                              fontSize: 12,
                                             ),
                                           ]),
                                         ],
@@ -248,11 +248,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                           CustomAutoSizeTextMontserrat(
                                             text: "Application Submission Date",
                                             maxLines: 2,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Offer Date",
                                             maxLines: 2,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ]),
@@ -262,12 +264,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .submissionDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .offerDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -282,6 +286,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Offer lapse Date",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Conditional offer date",
@@ -295,12 +300,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .offerLapseDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .conditionalOfferDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -315,11 +322,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Fee Payment \nDeadline",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Course Start date",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
@@ -328,12 +337,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .feeDeadline,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .courseStartDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -349,9 +360,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 "Estimated Course Completion date",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Course Fees Currency",
+                                            fontSize: 14,
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -362,12 +375,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .completionDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .currencyCode,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -382,27 +397,29 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Course Fees in AUD",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Course Fees in INR",
+                                            fontSize: 14,
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: (_.applicationDetailModel
-                                                        .annualTutionFees ??
-                                                    "") +
-                                                " ${_.applicationDetailModel.currencyCode ?? ""}",
+                                            text:
+                                                "${_.applicationDetailModel.annualTutionFees ?? ""} ${_.applicationDetailModel.currencyCode ?? ""}",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text:
                                                 " ${_.applicationDetailModel.annualTutionFeesInr ?? ""} INR",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -417,12 +434,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "OSHC Fees",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text:
                                                 "Total Fees in ${_.applicationDetailModel.currencyCode}",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
@@ -431,6 +450,7 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .oSHCFees,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: (_.applicationDetailModel
@@ -441,10 +461,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                     ""),
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5),
@@ -455,21 +479,25 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Total Fees in INR",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Reason of Rejected",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: "9800 INR",
+                                            text: "9800 INR hardcode",
+                                            fontSize: 12,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
                                           ),
                                           CustomAutoSizeTextMontserrat(
-                                            text: "1000000 INR",
+                                            text: "1000000 INR hard code",
+                                            fontSize: 12,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
                                           ),
@@ -477,19 +505,29 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
                                   Align(
                                     alignment: AlignmentDirectional.topStart,
                                     child: CustomAutoSizeTextMontserrat(
                                       text:
                                           "Specify conditionals for conditional offer",
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 14,
                                     ),
                                   ),
+
                                   Align(
                                       alignment: AlignmentDirectional.topStart,
                                       child: CustomAutoSizeTextMontserrat(
-                                          text: "...........")),
-
+                                        text: "........... hard code",
+                                        textColor: ThemeConstants.TextColor,
+                                        fontSize: 12,
+                                      )),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
                                   Align(
                                     alignment: AlignmentDirectional.topStart,
                                     child: CustomAutoSizeTextMontserrat(
@@ -718,11 +756,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Offer Acceptance status",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Offer Acceptance Date",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
@@ -731,12 +771,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .acceptanceStage,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .acceptanceDate,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -751,11 +793,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Payment Option",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Amount Paid",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
@@ -764,12 +808,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .paymentOption,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .amountPaid,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -784,11 +830,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Date of Payment",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Transacted by",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
@@ -797,11 +845,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .dateOfPayment,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "_.applicationDetailModel.",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -816,9 +866,11 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "SIEC Person",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Mode of Payment",
+                                            fontSize: 14,
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
                                           ),
@@ -829,12 +881,14 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .siecEmployee,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: _.applicationDetailModel
                                                 .modeOfPayment,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -849,11 +903,13 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Balance Fee",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "COE/CAS/I-20 Receipt",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
@@ -862,22 +918,28 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 .balanceFee,
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text:
                                                 "applicationDetailModel.coeRecevied",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional.topStart,
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Confirmation Received Date/Time",
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 14,
                                     ),
                                   ),
                                   Align(
@@ -886,10 +948,10 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                         text: _.applicationDetailModel
                                             .conditionalOfferDate,
                                         textColor: ThemeConstants.TextColor,
-                                        fontSize: 14,
+                                        fontSize: 12,
                                       )),
                                   const SizedBox(
-                                    height: 8,
+                                    height: 10,
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional.topStart,
@@ -1053,39 +1115,50 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Reason for Defer",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Defer Till",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: "Scholarship",
+                                            text: "Scholarship hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
-                                            text: "March 2021",
+                                            text: "March 2021 hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
                                     ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
                                   ),
                                   Align(
                                     alignment: AlignmentDirectional.topStart,
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "Deferment Status",
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 14,
                                     ),
                                   ),
                                   Align(
                                       alignment: AlignmentDirectional.topStart,
                                       child: CustomAutoSizeTextMontserrat(
-                                          text: "Defer Approved")),
+                                        text: "Defer Approved hard code",
+                                        textColor: ThemeConstants.TextColor,
+                                        fontSize: 12,
+                                      )),
                                 ],
                               ),
                             ),
@@ -1120,23 +1193,28 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Reason for Withdraw",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Withdrawal Status",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: "Plan Drop",
+                                            text: "Plan Drop hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
-                                            text: "Request from Student",
+                                            text:
+                                                "Request from Student hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -1152,23 +1230,27 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                                 "Applied for other University",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "How did you apply?",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: "Yes",
+                                            text: "Yes hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
-                                            text: "Self",
+                                            text: "Self hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
@@ -1183,24 +1265,28 @@ class ApplicationCompleteDetails extends StatelessWidget {
                                             text: "Country Name",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text: "University Name",
                                             maxLines: 2,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 14,
                                           ),
                                         ]),
                                         TableRow(children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: "Canada",
+                                            text: "Canada hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                           CustomAutoSizeTextMontserrat(
                                             text:
-                                                "University of the Fraser Valley",
+                                                "University of the Fraser Valley hard code",
                                             textColor: ThemeConstants.TextColor,
                                             maxLines: 2,
+                                            fontSize: 12,
                                           ),
                                         ]),
                                       ],
