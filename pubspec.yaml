@@ -39,7 +39,7 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.4
   shared_preferences: ^2.0.15
-  # date_format: ^2.0.6
+  date_format: ^2.0.6
   google_fonts: ^3.0.1
   intl: ^0.17.0
   back_pressed: ^0.0.2
@@ -61,15 +61,7 @@ dependencies:
   time_picker_sheet: ^0.0.2+1
   fluttertoast: ^8.0.9
   flutter_limited_checkbox: ^0.0.1
-  webview_flutter: ^4.0.1 
-
-
-
-
-
- 
-  
-  dependencies:
+  webview_flutter: ^4.0.1
   phlox_animations: ^2.1.1
   container_tab_indicator: ^0.3.0
   carousel_slider: ^4.1.1
@@ -83,9 +75,7 @@ dependencies:
   flutter_file_downloader: ^1.1.0+1
   file_picker: ^5.2.4
   adv_camera: ^3.0.2
-
-
-
+  camera: ^0.8.1+1 
 
   
   

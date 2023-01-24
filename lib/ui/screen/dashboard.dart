@@ -1,13 +1,13 @@
 import 'package:bulleted_list/bulleted_list.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/test/camera.dart';
+import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -341,9 +341,15 @@ class _DashBoardState extends State<DashBoard> {
                     children: [
                       // Create profile
                       InkWell(
-                        onTap: () {
-                          String id = DateTime.now().toIso8601String();
-                          Get.to(CameraApp(id: id));
+                        onTap: () async {
+                          final cameras = await availableCameras();
+
+                          // Get a specific camera from the list of available cameras.
+                          final firstCamera = cameras.first;
+                          // String id = DateTime.now().toIso8601String();
+                          Get.to(TakePictureScreen(
+                            camera: firstCamera,
+                          ));
 
                           // Get.to(ProfilePageCopy());
                           // getDashboardScreen(context, callbackDropDownButton);
@@ -482,20 +488,6 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                     ],
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     // Get.toNamed(CourseSearch.routeNamed);
-                  //   },
-                  //   child: Row(
-                  //     children: [
-                  //       const Spacer(),
-                  //       // Course Search Button
-                  //       const Spacer(),
-                  //       // Track Application
-                  //       const Spacer(),
-                  //     ],
-                  //   ),
-                  // ),
 
                   // Upcoming Event
                   Padding(

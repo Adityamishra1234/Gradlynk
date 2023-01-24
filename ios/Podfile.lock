@@ -1,6 +1,8 @@
 PODS:
   - adv_camera (0.0.1):
     - Flutter
+  - camera (0.0.1):
+    - Flutter
   - DKImagePickerController/Core (4.3.4):
     - DKImagePickerController/ImageDataManager
     - DKImagePickerController/Resource
@@ -65,6 +67,7 @@ PODS:
 
 DEPENDENCIES:
   - adv_camera (from `.symlinks/plugins/adv_camera/ios`)
+  - camera (from `.symlinks/plugins/camera/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -89,6 +92,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   adv_camera:
     :path: ".symlinks/plugins/adv_camera/ios"
+  camera:
+    :path: ".symlinks/plugins/camera/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
@@ -116,6 +121,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   adv_camera: 0e954c22d5a993a38ecce7581ade87ecf5660523
+  camera: 3164201dc344383e62282964016528c4f5a9ad50
   DKImagePickerController: b512c28220a2b8ac7419f21c491fc8534b7601ac
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 817ab1d8cd2da9d2da412a417162deee3500fc95

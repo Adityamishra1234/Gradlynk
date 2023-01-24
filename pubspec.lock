@@ -64,6 +64,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.1+0.1a"
+  camera:
+    dependency: "direct main"
+    description:
+      name: camera
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.1+7"
+  camera_platform_interface:
+    dependency: transitive
+    description:
+      name: camera_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.4"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -120,6 +134,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  cross_file:
+    dependency: transitive
+    description:
+      name: cross_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.3+2"
   crypto:
     dependency: transitive
     description:
@@ -141,13 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  dependencies:
+  date_format:
     dependency: "direct main"
     description:
-      name: dependencies
+      name: date_format
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "2.0.7"
   dio:
     dependency: "direct main"
     description:
@@ -155,13 +176,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
-  disposables:
-    dependency: transitive
-    description:
-      name: disposables
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   dotted_line:
     dependency: "direct main"
     description:
@@ -527,6 +541,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  pedantic:
+    dependency: transitive
+    description:
+      name: pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.11.1"
   permission_handler:
     dependency: "direct main"
     description:
@@ -610,7 +631,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "3.2.1"
   scroll_to_index:
     dependency: "direct main"
     description:
@@ -704,6 +725,13 @@ packages:
     dependency: transitive
     description:
       name: stream_channel
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
