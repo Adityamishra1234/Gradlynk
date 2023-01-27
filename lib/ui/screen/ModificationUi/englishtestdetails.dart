@@ -191,13 +191,64 @@ class EnglishTestDetails extends StatelessWidget {
                                 ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            if (_.examStatusSelected == "Not Yet Registered") {
-                              if (_.bookTestSelcted == null) {
-                                getToast("Please select book test");
-                              }
-                            }
                             if (_.examStatusSelected == null) {
                               getToast("Please select Exam Status");
+                            } else if (_.examStatusSelected ==
+                                "Not Yet Registered") {
+                              if (_.bookTestSelcted == null) {
+                                getToast("Please select book test");
+                              } else {
+                                EnglishTestDetailsViewModel
+                                    englishTestDetailsViewModel =
+                                    EnglishTestDetailsViewModel();
+                                englishTestDetailsViewModel =
+                                    _.englishTestDetailsViewModel;
+                                englishTestDetailsViewModel.dateOfExam =
+                                    _.dateOfExamSelected;
+                                englishTestDetailsViewModel.tentativeExamDate =
+                                    _.tentativeExamDateSelcted;
+                                englishTestDetailsViewModel.expirationDate =
+                                    _.testscoreExpirationDateSelcted;
+                                englishTestDetailsViewModel.resultDate =
+                                    _.dateOfTestReportSelcted;
+                                englishTestDetailsViewModel.enqId =
+                                    Get.find<BaseController>()
+                                        .model1
+                                        .id
+                                        .toString();
+                                englishTestDetailsViewModel.examStatusID =
+                                    _.examStatusCodeSelected.toString();
+                                englishTestDetailsViewModel.examName =
+                                    _.examNameSelected;
+                                englishTestDetailsViewModel.reading =
+                                    reading.text;
+                                englishTestDetailsViewModel.writing =
+                                    writing.text;
+                                englishTestDetailsViewModel.listening =
+                                    listening.text;
+                                englishTestDetailsViewModel.speaking =
+                                    speaking.text;
+                                englishTestDetailsViewModel.literacy =
+                                    listening.text;
+                                englishTestDetailsViewModel.comprehension =
+                                    writing.text;
+                                englishTestDetailsViewModel.conversation =
+                                    reading.text;
+                                englishTestDetailsViewModel.production =
+                                    writing.text;
+                                if (getNUllChecker(tentativeExamDate.text)) {
+                                  englishTestDetailsViewModel.overAll =
+                                      overallScoreController.text;
+                                } else {
+                                  englishTestDetailsViewModel.overAll =
+                                      controller
+                                          .englishTestDetailsViewModel.overAll;
+                                }
+                                updateEnglishTestDetails(
+                                    englishTestDetailsViewModel);
+                                _.editSave.value = true;
+                                _.update();
+                              }
                             } else {
                               if (_.examNameSelected == null) {
                                 getToast("Please select Exam Name");

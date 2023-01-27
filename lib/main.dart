@@ -45,6 +45,8 @@ import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
+import 'ui/screen/test/animationtest.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
@@ -96,7 +98,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: AnimationTest.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -202,6 +204,11 @@ class _MyAppState extends State<MyApp> {
           name: LunchingPage.routeNamed,
           transition: Transition.cupertino,
           page: () => const LunchingPage(),
+        ),
+        GetPage(
+          name: AnimationTest.routeNamed,
+          transition: Transition.cupertino,
+          page: () => const AnimationTest(),
         ),
         // GetPage(
         //   name: ContactInformationCopy.routeNamed,

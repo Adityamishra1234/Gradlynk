@@ -343,16 +343,16 @@ class _DashBoardState extends State<DashBoard> {
                       // Create profile
                       InkWell(
                         onTap: () async {
-                          // final cameras = await availableCameras();
+                          final cameras = await availableCameras();
 
-                          // // Get a specific camera from the list of available cameras.
-                          // final firstCamera = cameras.first;
-                          // // String id = DateTime.now().toIso8601String();
-                          // Get.to(TakePictureScreen(
-                          //   camera: firstCamera,
-                          // ));
+                          // Get a specific camera from the list of available cameras.
+                          final firstCamera = cameras.first;
+                          // String id = DateTime.now().toIso8601String();
+                          Get.to(TakePictureScreen(
+                            camera: firstCamera,
+                          ));
 
-                          Get.to(ProfilePageCopy());
+                          // Get.to(ProfilePageCopy());
                           // getDashboardScreen(context, callbackDropDownButton);
                         },
                         child: Column(

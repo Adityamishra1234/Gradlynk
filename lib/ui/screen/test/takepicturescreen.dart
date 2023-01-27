@@ -23,10 +23,6 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   var cameras;
   bool backCamera = true;
 
-  getcamera() async {
-    cameras = await availableCameras();
-  }
-
   @override
   initState() {
     super.initState();
@@ -110,7 +106,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: SvgPicture.asset(
                       "assets/icons/cameracapture.svg",
                       color: ThemeConstants.whitecolor,
@@ -193,7 +189,7 @@ class DisplayPictureScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               )),
           Padding(
-            padding: const EdgeInsets.only(left: 30, top: 40),
+            padding: const EdgeInsets.only(left: 10, top: 45),
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: InkWell(
@@ -208,15 +204,15 @@ class DisplayPictureScreen extends StatelessWidget {
                   ));
                 },
                 child: Container(
-                    height: 50,
-                    width: 50,
+                    height: 35,
+                    width: 35,
                     decoration: BoxDecoration(
-                        color: ThemeConstants.lightgreycolor,
+                        color: ThemeConstants.whitecolor,
                         shape: BoxShape.circle),
                     child: Icon(
                       Icons.close,
-                      size: 40,
-                      color: ThemeConstants.whitecolor,
+                      size: 25,
+                      color: ThemeConstants.bluecolor,
                     )),
               ),
             ),
@@ -237,14 +233,14 @@ class DisplayPictureScreen extends StatelessWidget {
                   ));
                 },
                 child: Container(
-                    height: 50,
-                    width: 50,
+                    height: 60,
+                    width: 60,
                     decoration: BoxDecoration(
                         color: ThemeConstants.bluecolor,
                         shape: BoxShape.circle),
                     child: Icon(
                       Icons.check,
-                      size: 40,
+                      size: 35,
                       color: ThemeConstants.whitecolor,
                     )),
               ),
