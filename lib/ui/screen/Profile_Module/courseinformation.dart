@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/courseinformationWidget.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/courseinformationview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/courseinformationWidget.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/courseinformationview.dart';
 
 class CourseInformationCopy extends StatefulWidget {
   double? width;

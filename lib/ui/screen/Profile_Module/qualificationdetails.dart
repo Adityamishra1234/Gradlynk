@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/qualificationdetails.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/qualificationdetailsview.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/qualificationwidget.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/qualificationdetailsview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/qualificationwidget.dart';
 
 class QualificationDetailsCopy extends StatelessWidget {
   QualificationDetailsCopy({Key? key}) : super(key: key);

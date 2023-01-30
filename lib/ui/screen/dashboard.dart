@@ -6,7 +6,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
@@ -31,7 +31,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  var controller = Get.put(BaseController());
+  var controller = Get.put(BaseController(), permanent: true);
   var dashboardController = Get.put(DashboardController());
   final TextStyle _textStyle = GoogleFonts.roboto(
     fontWeight: FontWeight.w800,
@@ -42,8 +42,6 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
-    print(MediaQuery.of(context).size.width);
-    print(MediaQuery.of(context).size.height);
 
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
@@ -343,16 +341,16 @@ class _DashBoardState extends State<DashBoard> {
                       // Create profile
                       InkWell(
                         onTap: () async {
-                          final cameras = await availableCameras();
+                          // final cameras = await availableCameras();
 
-                          // Get a specific camera from the list of available cameras.
-                          final firstCamera = cameras.first;
-                          // String id = DateTime.now().toIso8601String();
-                          Get.to(TakePictureScreen(
-                            camera: firstCamera,
-                          ));
+                          // // Get a specific camera from the list of available cameras.
+                          // final firstCamera = cameras.first;
+                          // // String id = DateTime.now().toIso8601String();
+                          // Get.to(TakePictureScreen(
+                          //   camera: firstCamera,
+                          // ));
 
-                          // Get.to(ProfilePageCopy());
+                          Get.toNamed(ProfilePageCopy.routeNamed);
                           // getDashboardScreen(context, callbackDropDownButton);
                         },
                         child: Column(
@@ -426,7 +424,7 @@ class _DashBoardState extends State<DashBoard> {
                       //Course Search
                       InkWell(
                         onTap: () {
-                          Get.to(const CourseSearch());
+                          Get.toNamed(CourseSearch.routeNamed);
                         },
                         child: Column(
                           children: [

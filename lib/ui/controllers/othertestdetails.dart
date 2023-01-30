@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -36,6 +37,17 @@ class OtherTestDetailsController extends BaseController {
   String? dateOftestReportSelected;
   String? testScoreExpirationDateSelected;
   String? tentativeDateSelected;
+
+  //Key
+  static final analyticalKey = GlobalKey<FormState>();
+  static final verbalKey = GlobalKey<FormState>();
+  static final quantitativeKey = GlobalKey<FormState>();
+  static final integratedKey = GlobalKey<FormState>();
+  static final overallKey = GlobalKey<FormState>();
+  static final readingKey = GlobalKey<FormState>();
+  static final writingKey = GlobalKey<FormState>();
+  static final essayKey = GlobalKey<FormState>();
+  static final mathKey = GlobalKey<FormState>();
 
   @override
   void onInit() {

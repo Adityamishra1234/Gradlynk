@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/relativeinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/relativeinformationWidget.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/relativeinformationview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/relativeinformationWidget.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/relativeinformationview.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 

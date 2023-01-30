@@ -383,7 +383,11 @@ class _CourseSearchState extends State<CourseSearch> {
                                                           ? ""
                                                           : _.selectCourseLevelCode
                                                               .toString(),
-                                                  enq_id: Get.find<BaseController>().model1.id.toString(),
+                                                  enq_id:
+                                                      Get.find<BaseController>()
+                                                          .model1
+                                                          .id
+                                                          .toString(),
                                                 ));
                                               }
                                             },

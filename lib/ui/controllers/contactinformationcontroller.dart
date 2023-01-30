@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -20,7 +21,12 @@ class ContactInformationController extends BaseController {
   String? selectedChildCount;
 
 //Code
-  int? genderId, maritalStatusId, childrenCount, countryId, stateId, cityId;
+  int? genderIdSelected,
+      maritalStatusIdSelected,
+      childrenCountSelected,
+      countryIdSelected,
+      stateIdSelected,
+      cityIdSelected;
 
 //  Dropdown Fields
   List<String> countryList = [];
@@ -42,6 +48,21 @@ class ContactInformationController extends BaseController {
 
   StudentPanel model = StudentPanel();
 
+  //key
+  // Local key
+  GlobalKey<FormState> firstNameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> lastNameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> mobileNameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> alternateNumberKey = GlobalKey<FormState>();
+  GlobalKey<FormState> emailKey = GlobalKey<FormState>();
+  GlobalKey<FormState> whatsappNumberkey = GlobalKey<FormState>();
+  GlobalKey<FormState> secondaryemailKey = GlobalKey<FormState>();
+  GlobalKey<FormState> streetkey = GlobalKey<FormState>();
+  GlobalKey<FormState> zipcodekey = GlobalKey<FormState>();
+  GlobalKey<FormState> instragramkey = GlobalKey<FormState>();
+  GlobalKey<FormState> facebookkey = GlobalKey<FormState>();
+  GlobalKey<FormState> snapchatkey = GlobalKey<FormState>();
+
   @override
   void onInit() {
     getCountry();
@@ -49,6 +70,9 @@ class ContactInformationController extends BaseController {
     profiledetail();
     super.onInit();
   }
+
+  @override
+  void disposed() {}
 
   profiledetail() async {
     var res = await apiServices.login(

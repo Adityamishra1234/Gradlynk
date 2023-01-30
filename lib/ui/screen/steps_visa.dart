@@ -8,7 +8,7 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 class StepsToVisa extends StatelessWidget {
   List<CompleteCourseDetail> completeCourseDetail;
   StepsToVisa({Key? key, required this.completeCourseDetail}) : super(key: key);
-  static final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

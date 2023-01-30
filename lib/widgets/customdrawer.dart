@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/profilepage.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -102,6 +102,7 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
+                            Get.deleteAll();
                             Get.toNamed(DashBoard.routeNamed);
                           },
                           child: SizedBox(
@@ -123,6 +124,7 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
+                            Get.deleteAll();
                             Get.toNamed(ProfilePageCopy.routeNamed);
                           },
                           child: SizedBox(
@@ -144,13 +146,8 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
-                            Get.toNamed(ApplicationSummary.routeNamed,
-                                parameters: {
-                                  "id": Get.find<BaseController>()
-                                      .model1
-                                      .id
-                                      .toString()
-                                });
+                            Get.deleteAll();
+                            Get.toNamed(ApplicationSummary.routeNamed);
                           },
                           child: SizedBox(
                             height: 30,
@@ -171,6 +168,7 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
+                            Get.deleteAll();
                             Get.toNamed(CourseSearch.routeNamed);
                           },
                           child: SizedBox(
@@ -192,6 +190,7 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
+                            Get.deleteAll();
                             Get.toNamed(ReviewShortList.routeNamed);
                           },
                           child: SizedBox(
@@ -213,6 +212,7 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
+                            Get.deleteAll();
                             Get.toNamed(FinalShortList.routeNamed);
                           },
                           child: SizedBox(
@@ -234,6 +234,7 @@ class CustomDrawer extends StatelessWidget {
                         child: InkWell(
                           highlightColor: ThemeConstants.whitecolor,
                           onTap: () {
+                            Get.deleteAll();
                             Get.toNamed(VisaSummary.routeNamed);
                           },
                           child: SizedBox(

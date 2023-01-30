@@ -344,6 +344,7 @@ class ApiServices extends StudentPanelBase {
 
       return courseModelFilter;
     } catch (e) {
+      Get.back();
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
@@ -368,6 +369,7 @@ class ApiServices extends StudentPanelBase {
       }
       return applicationSummaryModel;
     } catch (e) {
+      Get.back();
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
@@ -396,6 +398,7 @@ class ApiServices extends StudentPanelBase {
       }
       return courseModelFilter;
     } catch (e) {
+      Get.back();
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
@@ -419,6 +422,7 @@ class ApiServices extends StudentPanelBase {
         return applicationDetailModel;
       }
     } catch (e) {
+      Get.back();
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
@@ -613,6 +617,7 @@ class ApiServices extends StudentPanelBase {
         return visaDetailModel;
       }
     } catch (e) {
+      Get.back();
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),
@@ -1172,6 +1177,7 @@ class ApiServices extends StudentPanelBase {
         return visaSummaryModel;
       }
     } catch (e) {
+      Get.back();
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),

@@ -6,7 +6,7 @@ import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 class CustomImageViewer extends StatelessWidget {
   String url;
 
-  static final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
   CustomImageViewer({Key? key, required this.url}) : super(key: key);
 
   @override

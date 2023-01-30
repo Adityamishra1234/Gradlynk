@@ -24,14 +24,14 @@ class EnglishTestDetails extends StatelessWidget {
   static final testScoreExpirationDate = TextEditingController();
   static final tentativeExamDate = TextEditingController();
 
-  static final literacyKey = GlobalKey<FormState>();
-  static final comprehensionKey = GlobalKey<FormState>();
-  static final conversationKey = GlobalKey<FormState>();
-  static final productionkey = GlobalKey<FormState>();
-  static final listeningKey = GlobalKey<FormState>();
-  static final writingKey = GlobalKey<FormState>();
-  static final readingKey = GlobalKey<FormState>();
-  static final speakingKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> literacyKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> comprehensionKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> conversationKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> productionkey = GlobalKey<FormState>();
+  // GlobalKey<FormState> listeningKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> writingKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> readingKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> speakingKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -712,12 +712,12 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: listeningKey,
+          key: EnglishTestController.listeningKey,
           child: TextFormField(
             controller: listening,
             onChanged: (value) {
-              if (listeningKey.currentState!.validate()) {
-                listeningKey.currentState!.save();
+              if (EnglishTestController.listeningKey.currentState!.validate()) {
+                EnglishTestController.listeningKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -794,7 +794,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: writingKey,
+          key: EnglishTestController.writingKey,
           child: TextFormField(
             keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
@@ -812,8 +812,8 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (writingKey.currentState!.validate()) {
-                writingKey.currentState!.save();
+              if (EnglishTestController.writingKey.currentState!.validate()) {
+                EnglishTestController.writingKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -872,7 +872,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: readingKey,
+          key: EnglishTestController.readingKey,
           child: TextFormField(
             keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
@@ -890,8 +890,8 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (readingKey.currentState!.validate()) {
-                readingKey.currentState!.save();
+              if (EnglishTestController.readingKey.currentState!.validate()) {
+                EnglishTestController.readingKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -950,7 +950,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: speakingKey,
+          key: EnglishTestController.speakingKey,
           child: TextFormField(
             keyboardType: TextInputType.number,
             readOnly: controller.editSave.value == true ? true : false,
@@ -968,8 +968,8 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (speakingKey.currentState!.validate()) {
-                speakingKey.currentState!.save();
+              if (EnglishTestController.speakingKey.currentState!.validate()) {
+                EnglishTestController.speakingKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -1034,11 +1034,11 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: literacyKey,
+          key: EnglishTestController.literacyKey,
           child: TextFormField(
             onChanged: (value) {
-              if (literacyKey.currentState!.validate()) {
-                literacyKey.currentState!.save();
+              if (EnglishTestController.literacyKey.currentState!.validate()) {
+                EnglishTestController.literacyKey.currentState!.save();
               }
             },
             controller: listening,
@@ -1085,7 +1085,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: comprehensionKey,
+          key: EnglishTestController.comprehensionKey,
           child: TextFormField(
             controller: writing,
             keyboardType: TextInputType.number,
@@ -1102,8 +1102,9 @@ class EnglishTestDetails extends StatelessWidget {
             ),
             style: ThemeConstants.montserrattextstyle,
             onChanged: (value) {
-              if (comprehensionKey.currentState!.validate()) {
-                comprehensionKey.currentState!.save();
+              if (EnglishTestController.comprehensionKey.currentState!
+                  .validate()) {
+                EnglishTestController.comprehensionKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -1136,7 +1137,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: conversationKey,
+          key: EnglishTestController.conversationKey,
           child: TextFormField(
             controller: reading,
             keyboardType: TextInputType.number,
@@ -1165,8 +1166,9 @@ class EnglishTestDetails extends StatelessWidget {
               return null;
             },
             onChanged: (value) {
-              if (conversationKey.currentState!.validate()) {
-                comprehensionKey.currentState!.save();
+              if (EnglishTestController.conversationKey.currentState!
+                  .validate()) {
+                EnglishTestController.comprehensionKey.currentState!.save();
               }
             },
           ),
@@ -1187,7 +1189,7 @@ class EnglishTestDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: productionkey,
+          key: EnglishTestController.productionkey,
           child: TextFormField(
             controller: speaking,
             keyboardType: TextInputType.number,
@@ -1216,8 +1218,9 @@ class EnglishTestDetails extends StatelessWidget {
               return null;
             },
             onChanged: (value) {
-              if (productionkey.currentState!.validate()) {
-                productionkey.currentState!.save();
+              if (EnglishTestController.productionkey.currentState!
+                  .validate()) {
+                EnglishTestController.productionkey.currentState!.save();
               }
             },
           ),

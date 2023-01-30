@@ -355,8 +355,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
           "0";
     }
-    controller1.courseShortList(
-        id, Get.find<BaseController>().model1.id.toString());
+    controller1.courseShortList(id, controller1.model1.id.toString());
   }
 
   callbackCompareCourseRemove(data) {

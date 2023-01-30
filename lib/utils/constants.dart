@@ -6,6 +6,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
 
 class Constants {
+  String? id;
   static const String enterEmail = "Enter Email";
 
   // Color

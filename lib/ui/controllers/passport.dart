@@ -45,7 +45,7 @@ class PassportController extends BaseController {
 
   @override
   void onInit() {
-    getPassPortDetail(Get.find<BaseController>().model1.id.toString());
+    getPassPortDetail(model1.id.toString());
     getCountry();
     getPlaceOfIssue();
     super.onInit();

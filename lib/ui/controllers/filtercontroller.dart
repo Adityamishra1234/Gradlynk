@@ -385,25 +385,25 @@ class FilterController extends BaseController {
         filterModel.backlogAcceptable!.toSet().toList();
     filterModel.applicationfee = filterModel.applicationfee!.toSet().toList();
     filterModel.siecRep = filterModel.siecRep!.toSet().toList();
-    if (filterModel.timesRanking != null) {
+    if (getNUllChecker(filterModel.timesRanking) == false) {
       filterModel.timesRanking!.sort((a, b) {
         return a.compareTo(b);
       });
     }
-    if (filterModel.arwuNewsRanking != null) {
+    if (getNUllChecker(filterModel.arwuNewsRanking) == false) {
       filterModel.arwuNewsRanking =
           filterModel.arwuNewsRanking!.toSet().toList();
       filterModel.arwuNewsRanking!.sort((a, b) {
         return a.compareTo(b);
       });
     }
-    if (filterModel.usNewsRanking != null) {
+    if (getNUllChecker(filterModel.usNewsRanking) == false) {
       filterModel.usNewsRanking = filterModel.usNewsRanking!.toSet().toList();
       filterModel.usNewsRanking!.sort((a, b) {
         return a.compareTo(b);
       });
     }
-    if (filterModel.qsWorldRanking != null) {
+    if (getNUllChecker(filterModel.qsWorldRanking) == false) {
       filterModel.qsWorldRanking = filterModel.qsWorldRanking!.toSet().toList();
       filterModel.qsWorldRanking!.sort((a, b) {
         return a.compareTo(b);
@@ -525,7 +525,7 @@ class FilterController extends BaseController {
       List<int> indexSelected = [];
       for (int i = 0; i < intakeMonth.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].intakeMonth != null) {
+          if (getNUllChecker(courseSearchModel[j].intakeMonth) == false) {
             List<String>? temp = courseSearchModel[j].intakeMonth!.split("|");
             temp = temp.toSet().toList();
 
@@ -548,7 +548,7 @@ class FilterController extends BaseController {
       List<int> indexSelected = [];
       for (int i = 0; i < intakeYear.length; i++) {
         for (int j = 0; j < courseSearchModel.length; j++) {
-          if (courseSearchModel[j].intakeYear != null) {
+          if (getNUllChecker(courseSearchModel[j].intakeYear) == false) {
             List<String>? temp = courseSearchModel[j].intakeYear!.split("|");
             temp = temp.toSet().toList();
             for (var k = 0; k < temp.length; k++) {
@@ -810,8 +810,8 @@ class FilterController extends BaseController {
     switch (indexSelect) {
       case 0:
         for (int j = 0; j < model.length; j++) {
-          if (model[j].timesRank != null && model[j].timesRank != "") {
-            if (int.parse(model[j].timesRank.toString()) >= firstIndexValue! ||
+          if (getNUllChecker(model[j].timesRank.toString()) == false) {
+            if (int.parse(model[j].timesRank.toString()) >= firstIndexValue! &&
                 int.parse(model[j].timesRank.toString()) <= secondIndexValue!) {
               courseModel.add(model[j]);
             }
@@ -820,8 +820,8 @@ class FilterController extends BaseController {
         break;
       case 1:
         for (int j = 0; j < model.length; j++) {
-          if (model[j].timesRank != null && model[j].timesRank != "") {
-            if (int.parse(model[j].arwuRank.toString()) >= firstIndexValue! ||
+          if (getNUllChecker(model[j].arwuRank.toString()) == false) {
+            if (int.parse(model[j].arwuRank.toString()) >= firstIndexValue! &&
                 int.parse(model[j].arwuRank.toString()) <= secondIndexValue!) {
               courseModel.add(model[j]);
             }
@@ -830,8 +830,8 @@ class FilterController extends BaseController {
         break;
       case 2:
         for (int j = 0; j < model.length; j++) {
-          if (model[j].timesRank != null && model[j].timesRank != "") {
-            if (int.parse(model[j].usNewsRank.toString()) >= firstIndexValue! ||
+          if (getNUllChecker(model[j].usNewsRank.toString()) == false) {
+            if (int.parse(model[j].usNewsRank.toString()) >= firstIndexValue! &&
                 int.parse(model[j].usNewsRank.toString()) <=
                     secondIndexValue!) {
               courseModel.add(model[j]);
@@ -841,9 +841,9 @@ class FilterController extends BaseController {
         break;
       case 3:
         for (int j = 0; j < model.length; j++) {
-          if (model[j].timesRank != null && model[j].timesRank != "") {
+          if (getNUllChecker(model[j].qsWorldRank.toString()) == false) {
             if (int.parse(model[j].qsWorldRank.toString()) >=
-                    firstIndexValue! ||
+                    firstIndexValue! &&
                 int.parse(model[j].qsWorldRank.toString()) <=
                     secondIndexValue!) {
               courseModel.add(model[j]);

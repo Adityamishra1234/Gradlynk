@@ -28,7 +28,7 @@ class _AnimationTestState extends State<AnimationTest>
 
   void startTimer() {
     Future.delayed(const Duration(milliseconds: 4550), () {
-      Get.to(const DashBoard());
+      Get.toNamed(DashBoard.routeNamed);
     });
   }
 

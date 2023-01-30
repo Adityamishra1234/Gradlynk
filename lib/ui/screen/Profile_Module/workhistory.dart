@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/workhistory.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/workhistoryview.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/workhistorywidget.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/workhistorywidget.dart';
 
 class WorkHistoryCopy extends StatelessWidget {
   WorkHistoryCopy({Key? key}) : super(key: key);

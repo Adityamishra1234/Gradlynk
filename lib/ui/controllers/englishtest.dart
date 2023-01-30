@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -35,6 +36,16 @@ class EnglishTestController extends BaseController {
   List examStatusList = [];
   List examStatusCode = [];
   List examNameList = [];
+
+  //key
+  static final literacyKey = GlobalKey<FormState>();
+  static final comprehensionKey = GlobalKey<FormState>();
+  static final conversationKey = GlobalKey<FormState>();
+  static final productionkey = GlobalKey<FormState>();
+  static final listeningKey = GlobalKey<FormState>();
+  static final writingKey = GlobalKey<FormState>();
+  static final readingKey = GlobalKey<FormState>();
+  static final speakingKey = GlobalKey<FormState>();
 
   @override
   void onInit() {

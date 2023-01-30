@@ -43,28 +43,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   GlobalKey globalKey = GlobalKey();
   bool socialMedia = false;
   List gender = ["Select gender", "Male", "Female", "Other"];
-  List martialStatus = [
-    "Select marital status",
-    "Married",
-    "Unmarried",
-    "Divorced",
-    "Live-in",
-    "Annulled Marriage"
-  ];
-
-  // Local key
-  static final firstNameKey = GlobalKey<FormState>();
-  static final lastNameKey = GlobalKey<FormState>();
-  static final mobileNameKey = GlobalKey<FormState>();
-  static final alternateNumberKey = GlobalKey<FormState>();
-  static final emailKey = GlobalKey<FormState>();
-  static final whatsappNumberkey = GlobalKey<FormState>();
-  static final secondaryemailKey = GlobalKey<FormState>();
-  static final streetkey = GlobalKey<FormState>();
-  static final zipcodekey = GlobalKey<FormState>();
-  static final instragramkey = GlobalKey<FormState>();
-  static final facebookkey = GlobalKey<FormState>();
-  static final snapchatkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +95,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             }
           }
         }
+        _.getState(_.model.countryID.toString());
+        _.getCity(_.model.stateID.toString());
+        _.stateIdSelected = _.model.stateID;
+        _.cityIdSelected = _.model.cityID;
+
+        _.stateSelected = _.model.stateName;
+        _.citySelected = _.model.cityName;
         otherCountryinterested.text = temp!;
         _.loadingStudentPanelData.value = 3;
         _.update();
@@ -175,16 +160,16 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                       firstName.text,
                                       lastName.text,
                                       "12/13/1990",
-                                      _.genderId!,
-                                      _.maritalStatusId!,
-                                      _.childrenCount!,
+                                      _.genderIdSelected!,
+                                      _.maritalStatusIdSelected!,
+                                      _.childrenCountSelected!,
                                       mobileNumber.text,
                                       email.text,
                                       int.parse(whatsappNumber.text),
                                       int.parse(alt_Number.text),
-                                      _.countryId!,
-                                      _.stateId!,
-                                      _.cityId!,
+                                      _.countryIdSelected!,
+                                      _.stateIdSelected!,
+                                      _.cityIdSelected!,
                                       street.text,
                                       int.parse(zipCode.text),
                                       facebookId.text,
@@ -217,7 +202,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: firstNameKey,
+                      key: controller.firstNameKey,
                       child: TextFormField(
                         controller: firstName,
                         scrollPadding: EdgeInsets.symmetric(
@@ -235,8 +220,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (firstNameKey.currentState!.validate()) {
-                            firstNameKey.currentState!.save();
+                          if (controller.firstNameKey.currentState!
+                              .validate()) {
+                            controller.firstNameKey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -266,7 +252,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: lastNameKey,
+                      key: controller.lastNameKey,
                       child: TextFormField(
                         controller: lastName,
                         scrollPadding: EdgeInsets.symmetric(
@@ -284,8 +270,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (lastNameKey.currentState!.validate()) {
-                            lastNameKey.currentState!.save();
+                          if (controller.lastNameKey.currentState!.validate()) {
+                            controller.lastNameKey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -364,7 +350,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         _.martialStatusList),
                     choosefieldtype: saveAndEdit,
                   ),
-                  if (_.maritalStatusId == 1 || _.maritalStatusId == 3)
+                  if (_.maritalStatusIdSelected == 1 ||
+                      _.maritalStatusIdSelected == 3)
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -378,12 +365,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                       ),
                     ),
-                  if (_.maritalStatusId == 1 || _.maritalStatusId == 3)
+                  if (_.maritalStatusIdSelected == 1 ||
+                      _.maritalStatusIdSelected == 3)
                     CustomDropDownSingle(
                       model: const ["0", "1", "2", "3", "4"],
                       callbackFunction: callbackChildrenCount,
-                      initialSelectedValue: _.childrenCount != null
-                          ? _.childrenCount.toString()
+                      initialSelectedValue: _.childrenCountSelected != null
+                          ? _.childrenCountSelected.toString()
                           : "0",
                       choosefieldtype: saveAndEdit,
                     ),
@@ -404,7 +392,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: mobileNameKey,
+                      key: controller.mobileNameKey,
                       child: TextFormField(
                         controller: mobileNumber,
                         keyboardType: TextInputType.number,
@@ -426,8 +414,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           // RenderObject? object =
                           //     globalKey.currentContext!.findRenderObject();
                           // object!.showOnScreen();
-                          if (mobileNameKey.currentState!.validate()) {
-                            mobileNameKey.currentState!.save();
+                          if (controller.mobileNameKey.currentState!
+                              .validate()) {
+                            controller.mobileNameKey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -453,7 +442,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: alternateNumberKey,
+                      key: controller.alternateNumberKey,
                       child: TextFormField(
                         controller: alt_Number,
                         keyboardType: TextInputType.number,
@@ -475,8 +464,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           RenderObject? object =
                               globalKey.currentContext!.findRenderObject();
                           object!.showOnScreen();
-                          if (alternateNumberKey.currentState!.validate()) {
-                            alternateNumberKey.currentState!.save();
+                          if (controller.alternateNumberKey.currentState!
+                              .validate()) {
+                            controller.alternateNumberKey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -502,7 +492,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: emailKey,
+                      key: controller.emailKey,
                       child: TextFormField(
                         controller: email,
                         scrollPadding: EdgeInsets.symmetric(
@@ -520,8 +510,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (emailKey.currentState!.validate()) {
-                            emailKey.currentState!.save();
+                          if (controller.emailKey.currentState!.validate()) {
+                            controller.emailKey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -546,7 +536,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: whatsappNumberkey,
+                      key: controller.whatsappNumberkey,
                       child: TextFormField(
                         controller: whatsappNumber,
                         keyboardType: TextInputType.number,
@@ -565,8 +555,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (whatsappNumberkey.currentState!.validate()) {
-                            whatsappNumberkey.currentState!.save();
+                          if (controller.whatsappNumberkey.currentState!
+                              .validate()) {
+                            controller.whatsappNumberkey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -591,7 +582,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: secondaryemailKey,
+                      key: controller.secondaryemailKey,
                       child: TextFormField(
                         controller: secondaryEmail,
                         scrollPadding: EdgeInsets.symmetric(
@@ -609,8 +600,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (secondaryemailKey.currentState!.validate()) {
-                            secondaryemailKey.currentState!.save();
+                          if (controller.secondaryemailKey.currentState!
+                              .validate()) {
+                            controller.secondaryemailKey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -703,7 +695,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: streetkey,
+                      key: controller.streetkey,
                       child: TextFormField(
                         controller: street,
                         scrollPadding: EdgeInsets.symmetric(
@@ -721,8 +713,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (streetkey.currentState!.validate()) {
-                            streetkey.currentState!.save();
+                          if (controller.streetkey.currentState!.validate()) {
+                            controller.streetkey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -752,7 +744,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Form(
-                      key: zipcodekey,
+                      key: controller.zipcodekey,
                       child: TextFormField(
                         controller: zipCode,
                         keyboardType: TextInputType.number,
@@ -771,8 +763,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          if (zipcodekey.currentState!.validate()) {
-                            zipcodekey.currentState!.save();
+                          if (controller.zipcodekey.currentState!.validate()) {
+                            controller.zipcodekey.currentState!.save();
                           }
                         },
                         validator: (value) {
@@ -815,7 +807,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Form(
-                        key: instragramkey,
+                        key: controller.instragramkey,
                         child: TextFormField(
                           controller: instagramId,
                           scrollPadding: EdgeInsets.symmetric(
@@ -834,8 +826,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                           style: ThemeConstants.montserrattextstyle2,
                           onChanged: (value) {
-                            if (instragramkey.currentState!.validate()) {
-                              instragramkey.currentState!.save();
+                            if (controller.instragramkey.currentState!
+                                .validate()) {
+                              controller.instragramkey.currentState!.save();
                             }
                           },
                           validator: (value) {
@@ -866,7 +859,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Form(
-                        key: facebookkey,
+                        key: controller.facebookkey,
                         child: TextFormField(
                           controller: facebookId,
                           scrollPadding: EdgeInsets.symmetric(
@@ -885,8 +878,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                           style: ThemeConstants.montserrattextstyle2,
                           onChanged: (value) {
-                            if (facebookkey.currentState!.validate()) {
-                              facebookkey.currentState!.save();
+                            if (controller.facebookkey.currentState!
+                                .validate()) {
+                              controller.facebookkey.currentState!.save();
                             }
                           },
                           validator: (value) {
@@ -917,7 +911,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Form(
-                        key: snapchatkey,
+                        key: controller.snapchatkey,
                         child: TextFormField(
                           controller: snapchatId,
                           scrollPadding: EdgeInsets.symmetric(
@@ -936,8 +930,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                           style: ThemeConstants.montserrattextstyle2,
                           onChanged: (value) {
-                            if (firstNameKey.currentState!.validate()) {
-                              firstNameKey.currentState!.save();
+                            if (controller.firstNameKey.currentState!
+                                .validate()) {
+                              controller.firstNameKey.currentState!.save();
                             }
                           },
                           validator: (value) {
@@ -1177,16 +1172,16 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                       firstName.text,
                                       lastName.text,
                                       _.dob,
-                                      _.genderId!,
-                                      _.maritalStatusId!,
-                                      _.childrenCount!,
+                                      _.genderIdSelected!,
+                                      _.maritalStatusIdSelected!,
+                                      _.childrenCountSelected!,
                                       mobileNumber.text,
                                       email.text,
                                       int.parse(whatsappNumber.text),
                                       int.parse(alt_Number.text),
-                                      _.countryId!,
-                                      _.stateId!,
-                                      _.cityId!,
+                                      _.countryIdSelected!,
+                                      _.stateIdSelected!,
+                                      _.cityIdSelected!,
                                       street.text,
                                       int.parse(zipCode.text),
                                       facebookId.text,
@@ -1224,7 +1219,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       } else {
         if (controller.cityList[i] == varTopic) {
           controller.citySelected = controller.cityList[i];
-          controller.cityId = int.parse(controller.cityCode[i]);
+          controller.cityIdSelected = int.parse(controller.cityCode[i]);
           // controller.getCity("${controller.cityCode[i]}");
           controller.update();
         }
@@ -1239,7 +1234,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       } else {
         if (controller.stateList[i] == varTopic) {
           controller.stateSelected = varTopic;
-          controller.stateId = int.parse(controller.stateCode[i]);
+          controller.stateIdSelected = int.parse(controller.stateCode[i]);
           controller.getCity(controller.stateCode[i]);
         }
       }
@@ -1252,7 +1247,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       } else {
         if (controller.countryList[i] == varTopic) {
           controller.countrySelected = varTopic;
-          controller.countryId = int.parse(controller.countryCode[i]);
+          controller.countryIdSelected = int.parse(controller.countryCode[i]);
           controller.getState(controller.countryCode[i]);
           controller.update();
         }
@@ -1264,7 +1259,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
     for (var i = 0; i < gender.length; i++) {
       if (gender[i].toString() == varTopic.toString()) {
         controller.genderSelected = gender[i];
-        controller.genderId = i + 1;
+        controller.genderIdSelected = i + 1;
         controller.update();
       }
     }
@@ -1274,14 +1269,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
     for (var i = 1; i < controller.martialStatusList.length; i++) {
       if (controller.martialStatusList[i].toString() == varTopic.toString()) {
         controller.maritalStatusSelected = controller.martialStatusList[i];
-        controller.maritalStatusId = i;
+        controller.maritalStatusIdSelected = i;
         controller.update();
       }
     }
   }
 
   callbackChildrenCount(varTopic) {
-    controller.childrenCount = int.parse(varTopic);
+    controller.childrenCountSelected = int.parse(varTopic);
     setState(() {});
   }
 

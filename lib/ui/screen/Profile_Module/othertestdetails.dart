@@ -22,15 +22,6 @@ class OthertestDetail extends StatelessWidget {
   static final essay = TextEditingController();
   static final math = TextEditingController();
   static final overallScore = TextEditingController();
-  static final analyticalKey = GlobalKey<FormState>();
-  static final verbalKey = GlobalKey<FormState>();
-  static final quantitativeKey = GlobalKey<FormState>();
-  static final integratedKey = GlobalKey<FormState>();
-  static final overallKey = GlobalKey<FormState>();
-  static final readingKey = GlobalKey<FormState>();
-  static final writingKey = GlobalKey<FormState>();
-  static final essayKey = GlobalKey<FormState>();
-  static final mathKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -647,13 +638,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: analyticalKey,
+            key: OtherTestDetailsController.analyticalKey,
             child: TextFormField(
               controller: analyticalWriting,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (analyticalKey.currentState!.validate()) {
-                  analyticalKey.currentState!.save();
+                if (OtherTestDetailsController.analyticalKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.analyticalKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -701,13 +693,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: verbalKey,
+            key: OtherTestDetailsController.verbalKey,
             child: TextFormField(
               controller: verbalReasoning,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (verbalKey.currentState!.validate()) {
-                  verbalKey.currentState!.save();
+                if (OtherTestDetailsController.verbalKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.verbalKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -756,13 +749,15 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: quantitativeKey,
+            key: OtherTestDetailsController.quantitativeKey,
             child: TextFormField(
               controller: quantitative,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (quantitativeKey.currentState!.validate()) {
-                  quantitativeKey.currentState!.save();
+                if (OtherTestDetailsController.quantitativeKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.quantitativeKey.currentState!
+                      .save();
                 }
               },
               validator: (value) {
@@ -811,13 +806,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: integratedKey,
+            key: OtherTestDetailsController.integratedKey,
             child: TextFormField(
               controller: integrateedReasoning,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (integratedKey.currentState!.validate()) {
-                  integratedKey.currentState!.save();
+                if (OtherTestDetailsController.integratedKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.integratedKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -864,13 +860,14 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: overallKey,
+          key: OtherTestDetailsController.overallKey,
           child: TextFormField(
             controller: overallScore,
             keyboardType: TextInputType.number,
             onChanged: (value) {
-              if (overallKey.currentState!.validate()) {
-                overallKey.currentState!.save();
+              if (OtherTestDetailsController.overallKey.currentState!
+                  .validate()) {
+                OtherTestDetailsController.overallKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -924,13 +921,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: readingKey,
+            key: OtherTestDetailsController.readingKey,
             child: TextFormField(
               controller: reading,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (readingKey.currentState!.validate()) {
-                  readingKey.currentState!.save();
+                if (OtherTestDetailsController.readingKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.readingKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -979,13 +977,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: writingKey,
+            key: OtherTestDetailsController.writingKey,
             child: TextFormField(
               controller: writingAndLanguage,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (writingKey.currentState!.validate()) {
-                  writingKey.currentState!.save();
+                if (OtherTestDetailsController.writingKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.writingKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -1034,13 +1033,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: essayKey,
+            key: OtherTestDetailsController.essayKey,
             child: TextFormField(
               controller: essay,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (essayKey.currentState!.validate()) {
-                  essayKey.currentState!.save();
+                if (OtherTestDetailsController.essayKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.essayKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -1088,13 +1088,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: mathKey,
+            key: OtherTestDetailsController.mathKey,
             child: TextFormField(
               controller: math,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (essayKey.currentState!.validate()) {
-                  essayKey.currentState!.save();
+                if (OtherTestDetailsController.essayKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.essayKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -1141,13 +1142,14 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: overallKey,
+          key: OtherTestDetailsController.overallKey,
           child: TextFormField(
             controller: overallScore,
             keyboardType: TextInputType.number,
             onChanged: (value) {
-              if (overallKey.currentState!.validate()) {
-                overallKey.currentState!.save();
+              if (OtherTestDetailsController.overallKey.currentState!
+                  .validate()) {
+                OtherTestDetailsController.overallKey.currentState!.save();
               }
             },
             validator: (value) {
@@ -1201,13 +1203,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: analyticalKey,
+            key: OtherTestDetailsController.analyticalKey,
             child: TextFormField(
               controller: analyticalWriting,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (analyticalKey.currentState!.validate()) {
-                  analyticalKey.currentState!.save();
+                if (OtherTestDetailsController.analyticalKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.analyticalKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -1255,13 +1258,14 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: verbalKey,
+            key: OtherTestDetailsController.verbalKey,
             child: TextFormField(
               controller: verbalReasoning,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (verbalKey.currentState!.validate()) {
-                  verbalKey.currentState!.save();
+                if (OtherTestDetailsController.verbalKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.verbalKey.currentState!.save();
                 }
               },
               validator: (value) {
@@ -1311,13 +1315,15 @@ class OthertestDetail extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Form(
-            key: quantitativeKey,
+            key: OtherTestDetailsController.quantitativeKey,
             child: TextFormField(
               controller: quantitative,
               keyboardType: TextInputType.number,
               onChanged: (value) {
-                if (quantitativeKey.currentState!.validate()) {
-                  quantitativeKey.currentState!.save();
+                if (OtherTestDetailsController.quantitativeKey.currentState!
+                    .validate()) {
+                  OtherTestDetailsController.quantitativeKey.currentState!
+                      .save();
                 }
               },
               validator: (value) {
@@ -1365,13 +1371,14 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Form(
-          key: overallKey,
+          key: OtherTestDetailsController.overallKey,
           child: TextFormField(
             controller: overallScore,
             keyboardType: TextInputType.number,
             onChanged: (value) {
-              if (overallKey.currentState!.validate()) {
-                overallKey.currentState!.save();
+              if (OtherTestDetailsController.overallKey.currentState!
+                  .validate()) {
+                OtherTestDetailsController.overallKey.currentState!.save();
               }
             },
             validator: (value) {

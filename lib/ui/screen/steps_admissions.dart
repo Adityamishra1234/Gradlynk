@@ -10,7 +10,7 @@ class StepsToAdmissions extends StatelessWidget {
   StepsToAdmissions({Key? key, required this.completeCourseDetail})
       : super(key: key);
 
-  static final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
