@@ -637,21 +637,33 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 children: [
                                   TableCell(
                                       child: Center(
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Month",
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Month",
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   )),
                                   TableCell(
                                     child: Center(
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "Year",
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Year",
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   TableCell(
                                       child: Center(
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Admission",
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Admission",
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   )),
                                 ]),
@@ -674,39 +686,52 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 TableRow(children: [
                                   TableCell(
                                       child: Center(
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: (getNUllChecker(courseSearchModel
-                                                  .nearByIntake) ==
-                                              false)
-                                          ? courseSearchModel.nearByIntake!
-                                              .split("-")[1]
-                                          : "",
-                                      textColor: Colors.grey,
-                                    ),
-                                  )),
-                                  TableCell(
-                                    child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
                                       child: CustomAutoSizeTextMontserrat(
                                         text: (getNUllChecker(courseSearchModel
                                                     .nearByIntake) ==
                                                 false)
                                             ? courseSearchModel.nearByIntake!
-                                                .split("-")[0]
+                                                .split("-")[1]
                                             : "",
                                         textColor: Colors.grey,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  )),
+                                  TableCell(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: (getNUllChecker(
+                                                      courseSearchModel
+                                                          .nearByIntake) ==
+                                                  false)
+                                              ? courseSearchModel.nearByIntake!
+                                                  .split("-")[0]
+                                              : "",
+                                          fontSize: 14,
+                                          textColor: Colors.grey,
+                                        ),
                                       ),
                                     ),
                                   ),
                                   TableCell(
                                       child: Center(
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: courseSearchModel
-                                              .listIntake!.isNotEmpty
-                                          ? courseSearchModel.listIntake![0]
-                                              .toString()
-                                              .split('-')[2]
-                                          : "Closed",
-                                      textColor: Colors.grey,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: courseSearchModel
+                                                .listIntake!.isNotEmpty
+                                            ? courseSearchModel.listIntake![0]
+                                                .toString()
+                                                .split('-')[2]
+                                            : "Closed",
+                                        fontSize: 14,
+                                        textColor: Colors.grey,
+                                      ),
                                     ),
                                   )),
                                 ]),
@@ -887,7 +912,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           height: 35,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, // foreground
+                foregroundColor: ThemeConstants.bluecolor,
+                backgroundColor: ThemeConstants.bluecolor, // foreground
               ),
               onPressed: () {
                 addCompare = false;

@@ -168,15 +168,17 @@ class AboutInstituteCopy extends StatelessWidget {
                             ),
                           SizedBox(
                             height: 50,
-                            child: Center(
+                            child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 10.0, bottom: 10.0),
                                 child: HtmlWidget(
-                              completeCourseDetail[0].campusAddress!,
-                              textStyle: GoogleFonts.montserrat(
-                                fontWeight: FontWeight.w500,
-                                color: ThemeConstants.TextColor,
-                                fontSize: 16.0,
-                              ),
-                            )),
+                                  completeCourseDetail[0].campusAddress!,
+                                  textStyle: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w500,
+                                    color: ThemeConstants.TextColor,
+                                    fontSize: 16.0,
+                                  ),
+                                )),
                           ),
                         ]),
                   ],

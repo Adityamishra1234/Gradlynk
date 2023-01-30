@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
@@ -288,8 +289,14 @@ class ApiServices extends StudentPanelBase {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        Get.snackbar("Course ShortList", response,
-            snackPosition: SnackPosition.BOTTOM);
+        Get.snackbar(
+          "Course ShortList",
+          duration: const Duration(seconds: 2),
+          response,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.white.withOpacity(0.0),
+          margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+        );
       }
     } catch (e) {
       print(StackTrace.current);

@@ -68,8 +68,8 @@ class CourseSearchFullDetail extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 "assets/icons/university.svg",
-                                height: 20,
-                                width: 20,
+                                height: 15,
+                                width: 15,
                                 color: ThemeConstants.bluegreycolor,
                               ),
                               const SizedBox(
@@ -85,7 +85,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                               .universityName,
                                           textColor:
                                               ThemeConstants.bluegreycolor,
-                                          fontSize: 16,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                           maxLines: 2),
                                     ],
@@ -376,195 +376,195 @@ class CourseSearchFullDetail extends StatelessWidget {
                               bottom: false,
                               child: Align(
                                 alignment: AlignmentDirectional.topStart,
-                                child: Wrap(
-                                    // spacing: 10.0,
-                                    runSpacing: 10.0,
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                          height: 40,
-                                          width: 120,
-                                          decoration: BoxDecoration(
-                                            color: _.index.value == 0
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.whitecolor,
-                                            border: Border.all(
-                                                color: _.index.value == 0
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.TextColor),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              controller.setIndex(0);
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "About Institute",
-                                              maxLines: 1,
-                                              fontSize: 12,
-                                              textColor: _.index.value == 0
-                                                  ? ThemeConstants.whitecolor
-                                                  : ThemeConstants.TextColor,
+                                child: Center(
+                                  child: Wrap(
+                                      spacing: 10.0,
+                                      runSpacing: 10.0,
+                                      crossAxisAlignment:
+                                          WrapCrossAlignment.center,
+                                      alignment: WrapAlignment.center,
+                                      runAlignment: WrapAlignment.center,
+                                      children: [
+                                        Container(
+                                            height: 40,
+                                            width: 120,
+                                            decoration: BoxDecoration(
+                                              color: _.index.value == 0
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.whitecolor,
+                                              border: Border.all(
+                                                  color: _.index.value == 0
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .TextColor),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
-                                          )),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                          height: 40,
-                                          width: 110,
-                                          decoration: BoxDecoration(
-                                            color: _.index.value == 1
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.whitecolor,
-                                            border: Border.all(
-                                                color: _.index.value == 1
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.TextColor),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              controller.setIndex(1);
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Course Inf.",
-                                              maxLines: 1,
-                                              fontSize: 12,
-                                              textColor: _.index.value == 1
-                                                  ? ThemeConstants.whitecolor
-                                                  : ThemeConstants.TextColor,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                controller.setIndex(0);
+                                              },
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "About Institute",
+                                                maxLines: 1,
+                                                fontSize: 12,
+                                                textColor: _.index.value == 0
+                                                    ? ThemeConstants.whitecolor
+                                                    : ThemeConstants.TextColor,
+                                              ),
+                                            )),
+                                        Container(
+                                            height: 40,
+                                            width: 110,
+                                            decoration: BoxDecoration(
+                                              color: _.index.value == 1
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.whitecolor,
+                                              border: Border.all(
+                                                  color: _.index.value == 1
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .TextColor),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
-                                          )),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                          height: 40,
-                                          width: 100,
-                                          decoration: BoxDecoration(
-                                            color: _.index.value == 4
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.whitecolor,
-                                            border: Border.all(
-                                                color: _.index.value == 4
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.TextColor),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              controller.setIndex(4);
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Step To Visa",
-                                              maxLines: 1,
-                                              textColor: _.index.value == 4
-                                                  ? ThemeConstants.whitecolor
-                                                  : ThemeConstants.TextColor,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                controller.setIndex(1);
+                                              },
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Course Inf.",
+                                                maxLines: 1,
+                                                fontSize: 12,
+                                                textColor: _.index.value == 1
+                                                    ? ThemeConstants.whitecolor
+                                                    : ThemeConstants.TextColor,
+                                              ),
+                                            )),
+                                        Container(
+                                            height: 40,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              color: _.index.value == 4
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.whitecolor,
+                                              border: Border.all(
+                                                  color: _.index.value == 4
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .TextColor),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
-                                          )),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                          height: 40,
-                                          width: 100,
-                                          decoration: BoxDecoration(
-                                            color: _.index.value == 2
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.whitecolor,
-                                            border: Border.all(
-                                                color: _.index.value == 2
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.TextColor),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              controller.setIndex(2);
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Requirement",
-                                              maxLines: 1,
-                                              fontSize: 12,
-                                              textColor: _.index.value == 2
-                                                  ? ThemeConstants.whitecolor
-                                                  : ThemeConstants.TextColor,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                controller.setIndex(4);
+                                              },
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Step To Visa",
+                                                maxLines: 1,
+                                                textColor: _.index.value == 4
+                                                    ? ThemeConstants.whitecolor
+                                                    : ThemeConstants.TextColor,
+                                              ),
+                                            )),
+                                        Container(
+                                            height: 40,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              color: _.index.value == 2
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.whitecolor,
+                                              border: Border.all(
+                                                  color: _.index.value == 2
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .TextColor),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
-                                          )),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                          height: 40,
-                                          width: 110,
-                                          decoration: BoxDecoration(
-                                            color: _.index.value == 3
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.whitecolor,
-                                            border: Border.all(
-                                                color: _.index.value == 3
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.TextColor),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              controller.setIndex(3);
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Admissions",
-                                              fontSize: 12,
-                                              maxLines: 1,
-                                              textColor: _.index.value == 3
-                                                  ? ThemeConstants.whitecolor
-                                                  : ThemeConstants.TextColor,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                controller.setIndex(2);
+                                              },
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Requirement",
+                                                maxLines: 1,
+                                                fontSize: 12,
+                                                textColor: _.index.value == 2
+                                                    ? ThemeConstants.whitecolor
+                                                    : ThemeConstants.TextColor,
+                                              ),
+                                            )),
+                                        Container(
+                                            height: 40,
+                                            width: 110,
+                                            decoration: BoxDecoration(
+                                              color: _.index.value == 3
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.whitecolor,
+                                              border: Border.all(
+                                                  color: _.index.value == 3
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .TextColor),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
-                                          )),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Container(
-                                          height: 40,
-                                          width: 60,
-                                          decoration: BoxDecoration(
-                                            color: _.index.value == 5
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.whitecolor,
-                                            border: Border.all(
-                                                color: _.index.value == 5
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.TextColor),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(10)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              controller.setIndex(5);
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "About",
-                                              maxLines: 1,
-                                              textColor: _.index.value == 5
-                                                  ? ThemeConstants.whitecolor
-                                                  : ThemeConstants.TextColor,
+                                            child: TextButton(
+                                              onPressed: () {
+                                                controller.setIndex(3);
+                                              },
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Admissions",
+                                                fontSize: 12,
+                                                maxLines: 1,
+                                                textColor: _.index.value == 3
+                                                    ? ThemeConstants.whitecolor
+                                                    : ThemeConstants.TextColor,
+                                              ),
+                                            )),
+                                        Container(
+                                            height: 40,
+                                            width: 60,
+                                            decoration: BoxDecoration(
+                                              color: _.index.value == 5
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.whitecolor,
+                                              border: Border.all(
+                                                  color: _.index.value == 5
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .TextColor),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
-                                          )),
-                                    ]),
+                                            child: TextButton(
+                                              onPressed: () {
+                                                controller.setIndex(5);
+                                              },
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "About",
+                                                maxLines: 1,
+                                                textColor: _.index.value == 5
+                                                    ? ThemeConstants.whitecolor
+                                                    : ThemeConstants.TextColor,
+                                              ),
+                                            )),
+                                      ]),
+                                ),
                               ),
                             ),
                             // const SizedBox(

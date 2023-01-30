@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
@@ -199,4 +200,15 @@ getPhoneNumbervalidation(String? value) {
   } else {
     return "Mobile Number must be of 10 digit";
   }
+}
+
+getsnakbar(String data) {
+  return Get.snackbar(
+    "Course ShortList",
+    duration: const Duration(seconds: 2),
+    data,
+    snackPosition: SnackPosition.BOTTOM,
+    backgroundColor: Colors.white.withOpacity(0.0),
+    margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+  );
 }

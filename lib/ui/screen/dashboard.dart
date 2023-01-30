@@ -351,8 +351,8 @@ class _DashBoardState extends State<DashBoard> {
                           //   camera: firstCamera,
                           // ));
 
-                          // Get.toNamed(ProfilePageCopy.routeNamed);
-                          Get.to(CustomFileUpload());
+                          Get.toNamed(ProfilePageCopy.routeNamed);
+                          // Get.to(CustomFileUpload());
                           // getDashboardScreen(context, callbackDropDownButton);
                         },
                         child: Column(
@@ -471,11 +471,15 @@ class _DashBoardState extends State<DashBoard> {
                                   color: const Color(0xFFE8FAFD),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(20))),
-                              child: SvgPicture.asset("assets/icons/track.svg",
-                                  color: const Color(0xFF05B4D2),
-                                  height: 60,
-                                  width: 80,
-                                  fit: BoxFit.scaleDown),
+                              child: Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: SvgPicture.asset(
+                                    "assets/icons/track.svg",
+                                    color: const Color(0xFF05B4D2),
+                                    height: 60,
+                                    width: 60,
+                                    fit: BoxFit.scaleDown),
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 10),

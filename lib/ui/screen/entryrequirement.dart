@@ -111,7 +111,8 @@ class EntryRequirement extends StatelessWidget {
                                 text: "Level of study",
                                 maxLines: 2,
                                 textColor: ThemeConstants.bluecolor,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
@@ -159,10 +160,11 @@ class EntryRequirement extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8),
                               child: CustomAutoSizeTextMontserrat(
-                                text: "Min Percentage",
+                                text: "Min. Percentage",
                                 maxLines: 2,
                                 textColor: ThemeConstants.orangeColor,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
@@ -367,9 +369,9 @@ class EntryRequirement extends StatelessWidget {
                           height: 25,
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Test Type",
+                              text: "Test",
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                           ),
                         )),
@@ -377,10 +379,14 @@ class EntryRequirement extends StatelessWidget {
                           child: SizedBox(
                             height: 25,
                             child: Center(
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Listening",
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 5, bottom: 5, left: 1, right: 1),
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Listening",
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 10,
+                                ),
                               ),
                             ),
                           ),
@@ -392,7 +398,7 @@ class EntryRequirement extends StatelessWidget {
                             child: CustomAutoSizeTextMontserrat(
                               text: "Reading",
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                           ),
                         )),
@@ -403,7 +409,7 @@ class EntryRequirement extends StatelessWidget {
                             child: CustomAutoSizeTextMontserrat(
                               text: "Writing",
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                           ),
                         )),
@@ -414,7 +420,7 @@ class EntryRequirement extends StatelessWidget {
                             child: CustomAutoSizeTextMontserrat(
                               text: "Speaking",
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                           ),
                         )),
@@ -425,7 +431,7 @@ class EntryRequirement extends StatelessWidget {
                             child: CustomAutoSizeTextMontserrat(
                               text: "Overall",
                               fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                           ),
                         )),
@@ -435,49 +441,69 @@ class EntryRequirement extends StatelessWidget {
                       TableRow(children: [
                         TableCell(
                             child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: testTypeList[i],
-                            fontSize: 14,
-                            textColor: ThemeConstants.TextColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: testTypeList[i],
+                              fontSize: 12,
+                              textColor: ThemeConstants.TextColor,
+                            ),
                           ),
                         )),
                         TableCell(
                           child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: listeningList[i],
-                              fontSize: 14,
-                              textColor: ThemeConstants.TextColor,
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: listeningList[i],
+                                fontSize: 12,
+                                textColor: ThemeConstants.TextColor,
+                              ),
                             ),
                           ),
                         ),
                         TableCell(
                             child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: readingList[i],
-                            fontSize: 14,
-                            textColor: ThemeConstants.TextColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: readingList[i],
+                              fontSize: 12,
+                              textColor: ThemeConstants.TextColor,
+                            ),
                           ),
                         )),
                         TableCell(
                             child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: writingList[i],
-                            fontSize: 14,
-                            textColor: ThemeConstants.TextColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: writingList[i],
+                              fontSize: 12,
+                              textColor: ThemeConstants.TextColor,
+                            ),
                           ),
                         )),
                         TableCell(
                             child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: speakingList[i],
-                            fontSize: 14,
-                            textColor: ThemeConstants.TextColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: speakingList[i],
+                              fontSize: 12,
+                              textColor: ThemeConstants.TextColor,
+                            ),
                           ),
                         )),
                         TableCell(
                             child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                            text: overallList.isNotEmpty ? overallList[i] : "",
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: CustomAutoSizeTextMontserrat(
+                              text:
+                                  overallList.isNotEmpty ? overallList[i] : "",
+                              fontSize: 12,
+                            ),
                           ),
                         )),
                       ]),
@@ -504,14 +530,16 @@ class EntryRequirement extends StatelessWidget {
                     height: 35,
                     width: 150,
                     decoration: BoxDecoration(
-                        color: ThemeConstants.bluecolor,
-                        borderRadius: BorderRadiusDirectional.circular(10)),
+                        color: ThemeConstants.lightblueColor,
+                        borderRadius: BorderRadiusDirectional.circular(10),
+                        border: Border.all(
+                            color: ThemeConstants.bluecolor, width: 0.5)),
                     child: Center(
                       child: CustomAutoSizeTextMontserrat(
                         text: "SAT Components",
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
-                        textColor: ThemeConstants.whitecolor,
+                        textColor: ThemeConstants.blackcolor,
                       ),
                     ),
                   ),
@@ -528,25 +556,23 @@ class EntryRequirement extends StatelessWidget {
                     text: "Math",
                     maxLines: 2,
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
                   ),
                   CustomAutoSizeTextMontserrat(
                     text: "Reading + Writing And Language",
                     maxLines: 2,
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
                   ),
                 ]),
                 TableRow(children: [
                   CustomAutoSizeTextMontserrat(
-                    text: "0",
+                    text: "hard code",
                     textColor: ThemeConstants.TextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     maxLines: 2,
                   ),
                   CustomAutoSizeTextMontserrat(
-                    text: "0",
+                    text: "hard code",
                     textColor: ThemeConstants.TextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -565,13 +591,11 @@ class EntryRequirement extends StatelessWidget {
                     text: "Eassay(Optional)",
                     maxLines: 2,
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
                   ),
                   CustomAutoSizeTextMontserrat(
                     text: "Overrall Score",
                     maxLines: 2,
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
                   ),
                 ]),
                 TableRow(children: [
@@ -618,7 +642,6 @@ class EntryRequirement extends StatelessWidget {
                         text: "Flexible ",
                         fontSize: 14,
                         maxLines: 2,
-                        fontWeight: FontWeight.bold,
                       ),
                     if (getNUllChecker(
                             completeCourseDetail[0].backlogsAcceptable) ==
@@ -627,7 +650,6 @@ class EntryRequirement extends StatelessWidget {
                         text: "Baclogs Acceptable",
                         fontSize: 14,
                         maxLines: 2,
-                        fontWeight: FontWeight.bold,
                       ),
                   ]),
                   TableRow(children: [
@@ -663,7 +685,6 @@ class EntryRequirement extends StatelessWidget {
                     text: "Number",
                     fontSize: 14,
                     maxLines: 2,
-                    fontWeight: FontWeight.bold,
                   ),
                 ]),
                 TableRow(children: [
