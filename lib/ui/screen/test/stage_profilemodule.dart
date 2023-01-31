@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class StageProgress extends StatelessWidget {
   const StageProgress({super.key});
@@ -10,6 +11,7 @@ class StageProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
+        drawer: const CustomDrawer(),
         body: SingleChildScrollView(
           child: Column(
             children: [

@@ -258,39 +258,6 @@ class QualificationWidget extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional.topStart,
                       child: CustomAutoSizeTextMontserrat(
-                        text: "Multiplier",
-                        textColor: ThemeConstants.TextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      controller: multiplier,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      decoration: InputDecoration(
-                        hintText: "Multiplier",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
                         text: "CGPA",
                         textColor: ThemeConstants.TextColor,
                         fontSize: 14,
@@ -300,22 +267,106 @@ class QualificationWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      controller: cgpa,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      decoration: InputDecoration(
-                        hintText: "CGPA",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    child: Form(
+                      key: controller1.CGPAKey,
+                      child: TextFormField(
+                        controller: cgpa,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        decoration: InputDecoration(
+                          hintText: "CGPA",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
                         ),
+                        style: ThemeConstants.montserrattextstyle,
+                        onChanged: (value) {
+                          if (controller1.CGPAKey.currentState!.validate()) {
+                            controller1.CGPAKey.currentState!.save();
+                          }
+                          if (getNUllChecker(cgpa.text) == false &&
+                              getNUllChecker(multiplier.text) == false) {
+                            percentage.text = (double.parse(cgpa.text) *
+                                    double.parse(multiplier.text))
+                                .toString();
+                          }
+                        },
+                        validator: (value) {
+                          if (getNUllChecker(value) == false) {
+                            if (double.parse(value!) > 11) {
+                              return 'CGPA in Between 0 to 10';
+                            } else {
+                              return null;
+                            }
+                          } else {
+                            return "CGPA in Between 0 to 10";
+                          }
+                        },
                       ),
-                      style: ThemeConstants.montserrattextstyle,
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 20, right: 10),
+                    child: Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Multiplier",
+                        textColor: ThemeConstants.TextColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Form(
+                      key: controller1.MultiplierKey,
+                      child: TextFormField(
+                        controller: multiplier,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        decoration: InputDecoration(
+                          hintText: "Multiplier",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle,
+                        onChanged: (value) {
+                          if (controller1.MultiplierKey.currentState!
+                              .validate()) {
+                            controller1.MultiplierKey.currentState!.save();
+                          }
+                          if (getNUllChecker(cgpa.text) == false &&
+                              getNUllChecker(multiplier.text) == false) {
+                            percentage.text = (double.parse(cgpa.text) *
+                                    double.parse(multiplier.text))
+                                .toString();
+                          }
+                        },
+                        validator: (value) {
+                          if (getNUllChecker(value) == false) {
+                            if (double.parse(value!) > 11) {
+                              return 'Multiplier in Between 0 to 10';
+                            } else {
+                              return null;
+                            }
+                          } else {
+                            return "Multiplier in Between 0 to 10";
+                          }
+                        },
+                      ),
                     ),
                   ),
                   Padding(
@@ -333,22 +384,42 @@ class QualificationWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      controller: percentage,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      decoration: InputDecoration(
-                        hintText: "Enter your Percentage",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    child: Form(
+                      key: controller1.PercentageKey,
+                      child: TextFormField(
+                        controller: percentage,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        decoration: InputDecoration(
+                          hintText: "Enter your Percentage",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
                         ),
+                        style: ThemeConstants.montserrattextstyle,
+                        onChanged: (value) {
+                          if (controller1.PercentageKey.currentState!
+                              .validate()) {
+                            controller1.PercentageKey.currentState!.save();
+                          }
+                        },
+                        validator: (value) {
+                          if (getNUllChecker(value) == false) {
+                            if (double.parse(value!) > 11) {
+                              return 'Percentage in Between 0 to 100';
+                            } else {
+                              return null;
+                            }
+                          } else {
+                            return "Percentage in Between 0 to 100";
+                          }
+                        },
                       ),
-                      style: ThemeConstants.montserrattextstyle,
                     ),
                   ),
                   Padding(

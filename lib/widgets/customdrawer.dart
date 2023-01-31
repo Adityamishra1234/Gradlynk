@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
+import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -64,7 +65,7 @@ class CustomDrawer extends StatelessWidget {
                   ),
                   Center(
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Nishant Bharwaj",
+                      text: Get.find<BaseController>().model1.enquiryName,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -242,6 +243,28 @@ class CustomDrawer extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             child: CustomAutoSizeTextMontserrat(
                               text: "My Visa",
+                            ),
+                          ),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: InkWell(
+                          highlightColor: ThemeConstants.whitecolor,
+                          onTap: () {
+                            Get.deleteAll();
+                            Get.toNamed(StageProgress.routeNamed);
+                          },
+                          child: SizedBox(
+                            height: 30,
+                            width: MediaQuery.of(context).size.width,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Processes",
                             ),
                           ),
                         )),

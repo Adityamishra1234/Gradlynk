@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -68,6 +69,10 @@ class QualificationDetailsController extends BaseController {
       stateSelectedID,
       citySelectedID,
       institutionSelectedID;
+
+  GlobalKey<FormState> CGPAKey = GlobalKey<FormState>();
+  GlobalKey<FormState> MultiplierKey = GlobalKey<FormState>();
+  GlobalKey<FormState> PercentageKey = GlobalKey<FormState>();
 
   @override
   void onInit() {

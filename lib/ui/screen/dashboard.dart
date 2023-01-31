@@ -86,11 +86,17 @@ class _DashBoardState extends State<DashBoard> {
                             padding: const EdgeInsets.only(left: 20),
                             child: Align(
                                 alignment: AlignmentDirectional.topStart,
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Nishant",
-                                  maxLines: 1,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
+                                child: SizedBox(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  height: 50,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: Get.find<BaseController>()
+                                        .model1
+                                        .enquiryName,
+                                    maxLines: 2,
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 )),
                           ),
                           const Divider(
