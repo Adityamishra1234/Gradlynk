@@ -37,6 +37,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/sortcopy.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
+import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 
 import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
@@ -98,7 +99,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: StageProgress.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -280,6 +281,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: TimepickerDemo.routeNamed,
           page: () => const TimepickerDemo(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: StageProgress.routeNamed,
+          page: () => const StageProgress(),
           transition: Transition.fade,
         ),
 
