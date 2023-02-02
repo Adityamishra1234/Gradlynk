@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
@@ -267,11 +268,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                             child: Row(
                               children: [
                                 const Spacer(),
-                                SvgPicture.asset(
-                                  "assets/icons/compare.svg",
-                                  height: 30,
-                                  color: ThemeConstants.whitecolor,
-                                ),
+                                svgImage("compare", ThemeConstants.whitecolor,
+                                    30, 30),
                                 const SizedBox(
                                   width: 5,
                                 ),

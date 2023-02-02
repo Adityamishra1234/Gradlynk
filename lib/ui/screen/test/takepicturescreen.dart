@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class TakePictureScreen extends StatefulWidget {
@@ -107,10 +108,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: SvgPicture.asset(
-                      "assets/icons/cameracapture.svg",
-                      color: ThemeConstants.whitecolor,
-                    ),
+                    child: svgImage(
+                        "cameracapture", ThemeConstants.whitecolor, 25, 25),
                   )),
             ),
           ),
@@ -155,10 +154,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                     }
                     setState(() {});
                   },
-                  child: SvgPicture.asset(
-                    "assets/icons/switchcamera.svg",
-                    color: ThemeConstants.bluecolor,
-                  ),
+                  child: svgImage(
+                      "switchcamera", ThemeConstants.bluecolor, 20, 20),
                 ),
               ),
             ),

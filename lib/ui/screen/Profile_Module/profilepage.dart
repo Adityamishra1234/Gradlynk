@@ -11,6 +11,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/qualificationdetails.dart'
 import 'package:studentpanel/ui/screen/Profile_Module/relativeinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/travinghistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistory.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -976,13 +977,12 @@ class ProfilePageCopy extends StatelessWidget {
                                                           turns:
                                                               const AlwaysStoppedAnimation(
                                                                   0 / 360),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                            "assets/icons/nextscreen_arrow.svg",
-                                                            color:
-                                                                ThemeConstants
-                                                                    .blackcolor,
-                                                          ),
+                                                          child: svgImage(
+                                                              "nextscreen_arrow",
+                                                              ThemeConstants
+                                                                  .bluecolor,
+                                                              25,
+                                                              25),
                                                         ),
                                                       ),
                                                     ),
@@ -1222,13 +1222,12 @@ class ProfilePageCopy extends StatelessWidget {
                                                           turns:
                                                               const AlwaysStoppedAnimation(
                                                                   180 / 360),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                            "assets/icons/nextscreen_arrow.svg",
-                                                            color:
-                                                                ThemeConstants
-                                                                    .blackcolor,
-                                                          ),
+                                                          child: svgImage(
+                                                              "nextscreen_arrow",
+                                                              ThemeConstants
+                                                                  .blackcolor,
+                                                              25,
+                                                              25),
                                                         ),
                                                       ),
                                                     ),

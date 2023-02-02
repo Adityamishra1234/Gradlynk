@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -54,10 +55,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -90,10 +89,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -126,10 +123,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -162,10 +157,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -198,10 +191,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -234,10 +225,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -270,10 +259,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),
@@ -306,10 +293,8 @@ class MyDocument extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.blackcolor, 20, 20),
                             ),
                           ],
                         ),

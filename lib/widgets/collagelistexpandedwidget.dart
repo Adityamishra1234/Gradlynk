@@ -149,11 +149,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       right: 10,
                       child: Padding(
                         padding: const EdgeInsets.all(5),
-                        child: SvgPicture.asset(
-                          "assets/icons/star.svg",
-                          color: ThemeConstants.orangeColor,
-                          height: 20,
-                        ),
+                        child: svgImage(
+                            "star", ThemeConstants.orangeColor, 20, 20),
                       )),
                 Column(
                   children: [
@@ -210,11 +207,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       ),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            "assets/icons/clock.svg",
-                            height: 15,
-                            color: ThemeConstants.bluelightgreycolor,
-                          ),
+                          svgImage("clock", ThemeConstants.bluelightgreycolor,
+                              20, 20),
                           if (getNUllChecker(
                                   courseSearchModel.courseDuration) ==
                               false)
@@ -233,11 +227,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               false)
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
-                              child: SvgPicture.asset(
-                                "assets/icons/price.svg",
-                                color: ThemeConstants.bluelightgreycolor,
-                                height: 15,
-                              ),
+                              child: svgImage("price",
+                                  ThemeConstants.bluelightgreycolor, 15, 15),
                             ),
                           if (getNUllChecker(
                                   courseSearchModel.annualTutionFees) ==
@@ -272,12 +263,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   getToast(
                                       "${courseSearchModel.annualTutionFeesInr} INR");
                                 },
-                                child: SvgPicture.asset(
-                                  "assets/icons/i.svg",
-                                  height: 18,
-                                  width: 18,
-                                  color: ThemeConstants.bluecolor,
-                                ),
+                                child: svgImage(
+                                    "i", ThemeConstants.bluecolor, 20, 20),
                               ),
                             ),
                           const Spacer(),

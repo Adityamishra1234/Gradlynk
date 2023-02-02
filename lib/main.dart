@@ -22,13 +22,13 @@ import 'package:studentpanel/ui/screen/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
+import 'package:studentpanel/ui/screen/remove_compare_course.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/lunchingpage.dart';
 import 'package:studentpanel/ui/screen/mydocument.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
-import 'package:studentpanel/ui/screen/profilepage.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/detail.dart';
 import 'package:studentpanel/ui/screen/login.dart';
@@ -129,12 +129,7 @@ class _MyAppState extends State<MyApp> {
             page: () => const DetialScreen(),
             transition: Transition.fade,
             binding: DetailBinding()),
-        // GetPage(
-        //   name: ProfilePage.routeNamed,
-        //   transition: Transition.fade,
-        //   binding: ProfilePageBinding(),
-        //   page: () => const ProfilePage(),
-        // ),
+
         GetPage(
             name: ProfilePageCopy.routeNamed,
             transition: Transition.fade,
@@ -167,25 +162,13 @@ class _MyAppState extends State<MyApp> {
           binding: CourseSearchBinding(),
           page: () => const CourseSearch(),
         ),
-        // GetPage(
-        //   name: RemoveCompareCourse.routeNamed,
-        //   transition: Transition.fade,
-        //   page: () => const RemoveCompareCourse(),
-        // ),
+
         GetPage(
           name: Test1.routeNamed,
           transition: Transition.fade,
           page: () => const Test1(),
         ),
-        // GetPage(
-        //   name: Filter.routeNamed,
-        //   transition: Transition.fade,
-        //   page: () => const Filter(),
-        // ),
-        // GetPage(
-        //   name: CourseSearchFullDetail.routeNamed,
-        //   page: () => CourseSearchFullDetail(),
-        // ),
+
         GetPage(
           name: TestAutoScrollListView.routeNamed,
           transition: Transition.fade,
@@ -211,11 +194,7 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.cupertino,
           page: () => const AnimationTest(),
         ),
-        // GetPage(
-        //   name: ContactInformationCopy.routeNamed,
-        //   transition: Transition.cupertino,
-        //   page: () =>  ContactInformationCopy(),
-        // ),
+
         GetPage(
           name: ScrollTabBar.routeNamed,
           transition: Transition.cupertino,
@@ -242,32 +221,18 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
           binding: ReviewShortListBinding(),
         ),
-        // GetPage(
-        //   name: ApplicationCompleteDetails.routeNamed,
-        //   page: () => ApplicationCompleteDetails(),
-        //   transition: Transition.fade,
-        // ),
-        // GetPage(
-        //   name: VisaDetail.routeNamed,
-        //   page: () => VisaDetail(),
-        //   transition: Transition.fade,
-        // ),
+
         GetPage(
           name: AssigneeInformationCopy.routeNamed,
           page: () => const AssigneeInformationCopy(),
           transition: Transition.fade,
         ),
-        // GetPage(
-        //   name: CourseInformationCopy.routeNamed,
-        //   page: () =>  CourseInformationCopy(),
-        //   transition: Transition.fade,
-        // ),
+
         GetPage(
             name: VisaSummary.routeNamed,
             page: () => VisaSummary(),
             transition: Transition.fade,
             binding: VisaSummaryBinding()),
-
         GetPage(
             name: UploadDocument.routeNamed,
             page: () => UploadDocument(),
@@ -288,8 +253,6 @@ class _MyAppState extends State<MyApp> {
           page: () => const StageProgress(),
           transition: Transition.fade,
         ),
-
-        // CustomFileViewer
       ],
     );
   }

@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.1+0.1a"
+  cached_network_svg_image:
+    dependency: "direct main"
+    description:
+      name: cached_network_svg_image
+      sha256: b17097b7dbda9e95b0e5c01b7e8baa6022a1f67766b85b9ff4fa3012f43dfbc6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   camera:
     dependency: "direct main"
     description:
@@ -278,6 +286,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  flutter_cache_manager:
+    dependency: transitive
+    description:
+      name: flutter_cache_manager
+      sha256: "32cd900555219333326a2d0653aaaf8671264c29befa65bbd9856d204a4c9fb3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   flutter_file_downloader:
     dependency: "direct main"
     description:
@@ -728,6 +744,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.27.7"
   scroll_to_index:
     dependency: "direct main"
     description:
@@ -813,6 +837,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  sqflite:
+    dependency: transitive
+    description:
+      name: sqflite
+      sha256: "78324387dc81df14f78df06019175a86a2ee0437624166c382e145d0a7fd9a4f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.4+1"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      sha256: bfd6973aaeeb93475bc0d875ac9aefddf7965ef22ce09790eb963992ffc5183f
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.2+2"
   stack_trace:
     dependency: transitive
     description:
@@ -901,6 +941,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "20.4.44"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "33b31b6beb98100bf9add464a36a8dd03eb10c7a8cf15aeec535e9b054aaf04b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   term_glyph:
     dependency: transitive
     description:
@@ -1073,10 +1121,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: "9d97fa2bae0f1900553c48a2ef0aaa3864367fd7bb625d683c460754b691312c"
+      sha256: "5f49a6e5fc59e21fcec5e1bbcd401afbee9792a24a4f3d9cef9b5bb0cd1e3767"
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.1"
+    version: "3.2.4"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
@@ -1089,10 +1137,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_wkwebview
-      sha256: "523aff9168af9bb2170e4809e0499d7dee065c3919799fd3341d3e616c137960"
+      sha256: "92e7e7fa468f1df597fb9d37bcf1f303175cbe147c4dbdf06ecc323d950116eb"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "3.0.5"
   win32:
     dependency: transitive
     description:
@@ -1126,5 +1174,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.0 <4.0.0"
-  flutter: ">=3.1.0-0"
+  dart: ">=2.18.0 <3.0.0"
+  flutter: ">=3.3.0"

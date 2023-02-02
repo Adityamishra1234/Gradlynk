@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -51,13 +52,10 @@ class CustomDrawer extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                          padding: const EdgeInsets.only(left: 180),
-                          child: SizedBox(
-                              height: 30,
-                              child: SvgPicture.asset(
-                                "assets/icons/edit.svg",
-                                color: ThemeConstants.bluecolor,
-                              )))
+                        padding: const EdgeInsets.only(left: 180),
+                        child:
+                            svgImage("edit", ThemeConstants.bluecolor, 30, 30),
+                      )
                     ],
                   ),
                   const SizedBox(
@@ -320,11 +318,7 @@ class CustomDrawer extends StatelessWidget {
                       child: Row(
                         children: [
                           const Spacer(),
-                          SizedBox(
-                              height: 20,
-                              width: 20,
-                              child:
-                                  SvgPicture.asset("assets/icons/logout.svg")),
+                          svgImage("logout", ThemeConstants.IconColor, 25, 25),
                           CustomAutoSizeTextMontserrat(
                             text: "Logout",
                           ),

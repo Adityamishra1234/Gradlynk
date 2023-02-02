@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/screen/applicantdetail.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/coursedetail.dart';
 import 'package:studentpanel/ui/screen/documentchecklist.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -92,10 +93,8 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(10),
-                              child: SvgPicture.asset(
-                                "assets/icons/submit.svg",
-                                color: ThemeConstants.whitecolor,
-                              ),
+                              child: svgImage(
+                                  "add", ThemeConstants.whitecolor, 25, 25),
                             ),
                           ),
                           Padding(
@@ -157,11 +156,8 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(right: 30, top: 10),
-                    child: SvgPicture.asset(
-                      "assets/icons/nextscreen_arrow.svg",
-                      color: ThemeConstants.bluecolor,
-                      height: 20,
-                    ),
+                    child: svgImage(
+                        "nextscreen_arrow", ThemeConstants.bluecolor, 25, 25),
                   ),
                 ],
               ),
@@ -194,11 +190,8 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(right: 30, top: 10),
-                    child: SvgPicture.asset(
-                      "assets/icons/nextscreen_arrow.svg",
-                      color: ThemeConstants.bluecolor,
-                      height: 20,
-                    ),
+                    child: svgImage(
+                        "nextscreen_arrow", ThemeConstants.bluecolor, 25, 25),
                   ),
                 ],
               ),
@@ -231,11 +224,8 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(right: 30, top: 10),
-                    child: SvgPicture.asset(
-                      "assets/icons/nextscreen_arrow.svg",
-                      color: ThemeConstants.bluecolor,
-                      height: 20,
-                    ),
+                    child: svgImage(
+                        "nextscreen_arrow", ThemeConstants.bluecolor, 25, 25),
                   ),
                 ],
               ),
@@ -268,11 +258,8 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(right: 30, top: 10),
-                    child: SvgPicture.asset(
-                      "assets/icons/nextscreen_arrow.svg",
-                      color: ThemeConstants.bluecolor,
-                      height: 20,
-                    ),
+                    child: svgImage(
+                        "nextscreen_arrow", ThemeConstants.bluecolor, 25, 25),
                   ),
                 ],
               ),

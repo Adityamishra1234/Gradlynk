@@ -1,4 +1,5 @@
 import 'package:bulleted_list/bulleted_list.dart';
+import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_advanced_networkimage_2/provider.dart';
@@ -14,6 +15,7 @@ import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
 import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
@@ -405,47 +407,18 @@ class _DashBoardState extends State<DashBoard> {
                                 child: Column(
                                   children: [
                                     Container(
-                                      height: 130,
-                                      width: 160,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 0,
-                                              color: const Color(0xFFF1F0FF)),
-                                          color: const Color(0xFFF1F0FF),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child:
-                                          //  SvgPicture.string(ThemeConstants.icons,
-                                          //     color: const Color(0xFF6F61FF),
-                                          //     height: 60,
-                                          //     width: 80,
-                                          //     fit: BoxFit.scaleDown),
-                                          // SvgPicture(
-                                          //   AdvancedNetworkSvg(
-                                          //     "https://github.com/dart-lang/site-shared/raw/master/src/_assets/image/flutter/logo/default.svg",
-                                          //     //svgByteDecoder
-                                          //     cacheRule: const CacheRule(
-                                          //         maxAge: Duration(days: 30)),
-                                          //     useDiskCache: true,
-                                          //     (theme) => (bytes, colorFilter, key) {
-                                          //       print(bytes);
-                                          //       return svg.svgPictureDecoder(
-                                          //         bytes ?? Uint8List.fromList(const []),
-                                          //         false,
-                                          //         colorFilter,
-                                          //         key,
-                                          //         theme: theme,
-                                          //       );
-                                          //     },
-                                          //   ),
-                                          // ),
-                                          SvgPicture.asset(
-                                              "assets/icons/create_profile.svg",
-                                              color: const Color(0xFF6F61FF),
-                                              height: 60,
-                                              width: 80,
-                                              fit: BoxFit.scaleDown),
-                                    ),
+                                        height: 130,
+                                        width: 160,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 0,
+                                                color: const Color(0xFFF1F0FF)),
+                                            color: const Color(0xFFF1F0FF),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20))),
+                                        child: svgImage("create_profile",
+                                            const Color(0xFF6F61FF), 80, 80)),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10),
                                       child: Text(
@@ -468,24 +441,19 @@ class _DashBoardState extends State<DashBoard> {
                                   child: Column(
                                     children: [
                                       Container(
-                                        height: 130,
-                                        width: 160,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                width: 0,
-                                                color: const Color(0xFFFEF6E6)),
-                                            color: const Color(0xFFFEF6E6),
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(20))),
-                                        child: SvgPicture.asset(
-                                          "assets/icons/upload_document.svg",
-                                          color: const Color(0xFFF8A300),
-                                          height: 60,
-                                          width: 80,
-                                          fit: BoxFit.scaleDown,
-                                        ),
-                                      ),
+                                          height: 130,
+                                          width: 160,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  width: 0,
+                                                  color:
+                                                      const Color(0xFFFEF6E6)),
+                                              color: const Color(0xFFFEF6E6),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(20))),
+                                          child: svgImage("upload_document",
+                                              const Color(0xFFF8A300), 80, 80)),
                                       Padding(
                                         padding: const EdgeInsets.only(top: 10),
                                         child: Text(
@@ -505,22 +473,18 @@ class _DashBoardState extends State<DashBoard> {
                                 child: Column(
                                   children: [
                                     Container(
-                                      height: 130,
-                                      width: 160,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 0,
-                                              color: const Color(0xFFFEF0F0)),
-                                          color: const Color(0xFFFEF0F0),
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: SvgPicture.asset(
-                                          "assets/icons/course.svg",
-                                          color: const Color(0xFFF16660),
-                                          height: 60,
-                                          width: 80,
-                                          fit: BoxFit.scaleDown),
-                                    ),
+                                        height: 130,
+                                        width: 160,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                width: 0,
+                                                color: const Color(0xFFFEF0F0)),
+                                            color: const Color(0xFFFEF0F0),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20))),
+                                        child: svgImage("course",
+                                            const Color(0xFFF16660), 80, 80)),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10),
                                       child: Text(
@@ -550,12 +514,8 @@ class _DashBoardState extends State<DashBoard> {
                                               Radius.circular(20))),
                                       child: Padding(
                                         padding: const EdgeInsets.all(30.0),
-                                        child: SvgPicture.asset(
-                                            "assets/icons/track.svg",
-                                            color: const Color(0xFF05B4D2),
-                                            height: 60,
-                                            width: 60,
-                                            fit: BoxFit.scaleDown),
+                                        child: svgImage("track",
+                                            const Color(0xFF05B4D2), 80, 80),
                                       ),
                                     ),
                                     Padding(
@@ -610,14 +570,12 @@ class _DashBoardState extends State<DashBoard> {
                                             padding:
                                                 const EdgeInsets.only(left: 5),
                                             child: SizedBox(
-                                              width: 50,
-                                              child: SvgPicture.asset(
-                                                "assets/icons/calender.svg",
-                                                color: const Color(0xFF6F61FF),
-                                                height: 50,
-                                                width: 40,
-                                              ),
-                                            ),
+                                                width: 50,
+                                                child: svgImage(
+                                                    "calender",
+                                                    const Color(0xFF6F61FF),
+                                                    70,
+                                                    60)),
                                           ),
                                           Padding(
                                             padding:
@@ -689,7 +647,7 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ],
               )
-            : Center(
+            : const Center(
                 child: CircularProgressIndicator(),
               );
       }),
@@ -705,11 +663,7 @@ class _DashBoardState extends State<DashBoard> {
               await _launchURL();
               // isExtended: true,
             },
-            child: SvgPicture.asset(
-              "assets/icons/video-call.svg",
-              height: 30,
-              color: Colors.white,
-            )),
+            child: svgImage("video-call", ThemeConstants.whitecolor, 40, 30)),
       ),
       bottomNavigationBar: BottomNavigation(
         index: 0,

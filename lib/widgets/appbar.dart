@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 
@@ -33,39 +34,27 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             Padding(
               padding: const EdgeInsets.only(left: 10),
               child: IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/menu.svg",
-                  color: ThemeConstants.IconColor,
-                  height: 30,
-                  width: 30,
-                ),
+                icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                   DrawerFilter();
                 },
               ),
             ),
-          SvgPicture.asset(
-            "assets/icons/work.svg",
-            width: 32,
-            color: Colors.transparent,
-          ),
+          svgImage("work", Colors.transparent, 32, 32),
+
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Image.asset(
-              "assets/images/logo.png",
+            child: Image.network(
+              "https://sieceducation.in/assets/assets/images/logo.png",
               width: 150,
               height: 50,
             ),
           ),
           const Spacer(),
           IconButton(
-            icon: SvgPicture.asset(
-              "assets/icons/notification.svg",
-              color: ThemeConstants.IconColor,
-              height: 27,
-            ),
+            icon: svgImage("notification", ThemeConstants.IconColor, 30, 30),
             onPressed: () {},
           ),
           // IconButton(

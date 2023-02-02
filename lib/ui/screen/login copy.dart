@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -75,11 +76,7 @@ class _LoginCopyState extends State<LoginCopy> {
                   width: MediaQuery.of(context).size.width - 20,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/location.svg",
-                        color: ThemeConstants.whitecolor,
-                        height: 35,
-                      ),
+                      svgImage("location", ThemeConstants.whitecolor, 35, 35),
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: CustomAutoSizeTextMontserrat(
@@ -115,11 +112,7 @@ class _LoginCopyState extends State<LoginCopy> {
                   width: MediaQuery.of(context).size.width - 20,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/location.svg",
-                        color: ThemeConstants.whitecolor,
-                        height: 35,
-                      ),
+                      svgImage("location", ThemeConstants.whitecolor, 35, 35),
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: CustomAutoSizeTextMontserrat(
@@ -155,11 +148,7 @@ class _LoginCopyState extends State<LoginCopy> {
                   width: MediaQuery.of(context).size.width - 20,
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        "assets/icons/location.svg",
-                        color: ThemeConstants.whitecolor,
-                        height: 35,
-                      ),
+                      svgImage("location", ThemeConstants.whitecolor, 35, 35),
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: CustomAutoSizeTextMontserrat(
@@ -261,7 +250,8 @@ class _LoginCopyState extends State<LoginCopy> {
                                   side: BorderSide(
                                     width: 1.0,
                                     color: ThemeConstants.whitecolor,
-                                  ), backgroundColor: ThemeConstants.bluecolor,
+                                  ),
+                                  backgroundColor: ThemeConstants.bluecolor,
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.circular(12), // <-- Radius

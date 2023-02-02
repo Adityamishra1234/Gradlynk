@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -49,11 +50,7 @@ class _Test1State extends State<Test1> {
                             const SizedBox(
                               width: 5,
                             ),
-                            SvgPicture.asset(
-                              "assets/icons/sort.svg",
-                              height: 20,
-                              color: ThemeConstants.bluecolor,
-                            ),
+                            svgImage("sort", ThemeConstants.bluecolor, 20, 20),
                             const Spacer(),
                           ],
                         ),
@@ -120,8 +117,9 @@ class _Test1State extends State<Test1> {
                                   const Spacer(),
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: ThemeConstants
-                                            .bluecolor, backgroundColor: ThemeConstants
+                                        foregroundColor:
+                                            ThemeConstants.bluecolor,
+                                        backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () {
@@ -135,8 +133,9 @@ class _Test1State extends State<Test1> {
                                   const Spacer(),
                                   ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: ThemeConstants
-                                            .bluecolor, backgroundColor: ThemeConstants
+                                        foregroundColor:
+                                            ThemeConstants.bluecolor,
+                                        backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () {

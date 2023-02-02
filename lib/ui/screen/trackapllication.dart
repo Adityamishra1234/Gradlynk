@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/screen/applicantdetail.dart';
 import 'package:studentpanel/ui/screen/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/coursedetail.dart';
 import 'package:studentpanel/ui/screen/documentchecklist.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -101,12 +102,9 @@ class _TrackApplicationState extends State<TrackApplication> {
                                   color: ThemeConstants.GreenColor,
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: SvgPicture.asset(
-                                    "assets/icons/submit.svg",
-                                    color: ThemeConstants.whitecolor,
-                                  ),
-                                ),
+                                    padding: const EdgeInsets.all(10),
+                                    child: svgImage("submit",
+                                        ThemeConstants.whitecolor, 25, 25)),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),

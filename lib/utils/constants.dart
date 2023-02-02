@@ -1,3 +1,4 @@
+import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -73,11 +74,7 @@ getDailog(BuildContext context, String data) {
       builder: (ctx) => AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            icon: SvgPicture.asset("assets/icons/warning.svg",
-                color: ThemeConstants.yellow,
-                height: 80,
-                width: 80,
-                fit: BoxFit.scaleDown),
+            icon: svgImage("warning", ThemeConstants.yellow, 90, 90),
             insetPadding: const EdgeInsets.symmetric(horizontal: 20),
             content: SingleChildScrollView(
               child: Column(
@@ -210,5 +207,20 @@ getsnakbar(String data) {
     snackPosition: SnackPosition.BOTTOM,
     backgroundColor: Colors.white.withOpacity(0.0),
     margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+  );
+}
+
+svgImage(String endpoint, Color color, double height, double width) {
+  return FittedBox(
+    fit: BoxFit.scaleDown,
+    child: CachedNetworkSVGImage(
+      'https://sieceducation.in/assets/assets/icons/$endpoint.svg',
+      placeholder: const CircularProgressIndicator(color: Colors.blue),
+      errorWidget: const Icon(Icons.error, color: Colors.red),
+      height: height,
+      width: width,
+      color: color,
+      fadeDuration: const Duration(milliseconds: 500),
+    ),
   );
 }

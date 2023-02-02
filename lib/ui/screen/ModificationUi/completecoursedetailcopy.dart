@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/screen/CourseInformation.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/about_institute.dart';
 import 'package:studentpanel/ui/screen/ModificationUi/steps_visa.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/animationshowdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -79,11 +80,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 10),
                           child: Row(
                             children: [
-                              SvgPicture.asset(
-                                "assets/icons/university.svg",
-                                height: 20,
-                                width: 20,
-                              ),
+                              svgImage("university", ThemeConstants.blackcolor,
+                                  25, 25),
                               Expanded(
                                 child: Align(
                                   alignment: AlignmentDirectional.topStart,
@@ -265,11 +263,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                                   ),
                                   child: Row(
                                     children: [
-                                      SvgPicture.asset(
-                                        "assets/icons/star.svg",
-                                        height: 20,
-                                        width: 20,
-                                      ),
+                                      svgImage("star",
+                                          ThemeConstants.blackcolor, 25, 25),
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(left: 10),
@@ -350,11 +345,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                color: ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.bluecolor, 25, 25),
                             ),
                           ],
                         ),
@@ -389,11 +381,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                color: ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.bluecolor, 25, 25),
                             ),
                           ],
                         ),
@@ -427,11 +416,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                color: ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.bluecolor, 25, 25),
                             ),
                           ],
                         ),
@@ -465,11 +451,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                color: ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.bluecolor, 25, 25),
                             ),
                           ],
                         ),
@@ -504,11 +487,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                color: ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.bluecolor, 25, 25),
                             ),
                           ],
                         ),
@@ -543,11 +523,8 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 30, top: 10),
-                              child: SvgPicture.asset(
-                                "assets/icons/nextscreen_arrow.svg",
-                                color: ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              child: svgImage("nextscreen_arrow",
+                                  ThemeConstants.bluecolor, 25, 25),
                             ),
                           ],
                         ),

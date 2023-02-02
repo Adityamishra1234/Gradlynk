@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -40,13 +41,13 @@ class BottomNavigation extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            SvgPicture.asset("assets/icons/home.svg",
-                                color: index == 0
+                            svgImage(
+                                "home",
+                                index == 0
                                     ? ThemeConstants.bluecolor
                                     : ThemeConstants.IconColor,
-                                height: 30,
-                                width: 30,
-                                semanticsLabel: 'A red up arrow'),
+                                30,
+                                30),
                           ],
                         ),
                       ),
@@ -71,13 +72,13 @@ class BottomNavigation extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            SvgPicture.asset("assets/icons/messanger.svg",
-                                color: index == 1
+                            svgImage(
+                                "messanger",
+                                index == 1
                                     ? ThemeConstants.bluecolor
                                     : ThemeConstants.IconColor,
-                                height: 30,
-                                width: 30,
-                                semanticsLabel: 'A red up arrow'),
+                                30,
+                                30),
                           ],
                         ),
                       ),
@@ -111,13 +112,13 @@ class BottomNavigation extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            SvgPicture.asset("assets/icons/enqiry.svg",
-                                color: index == 2
+                            svgImage(
+                                "enqiry",
+                                index == 2
                                     ? ThemeConstants.bluecolor
                                     : ThemeConstants.IconColor,
-                                height: 30,
-                                width: 30,
-                                semanticsLabel: 'A red up arrow'),
+                                30,
+                                30),
                           ],
                         ),
                       ),
@@ -142,13 +143,13 @@ class BottomNavigation extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          SvgPicture.asset("assets/icons/profile-bottom.svg",
-                              color: index == 3
+                          svgImage(
+                              "profile-bottom",
+                              index == 3
                                   ? ThemeConstants.bluecolor
                                   : ThemeConstants.IconColor,
-                              height: 30,
-                              width: 30,
-                              semanticsLabel: 'A red up arrow'),
+                              30,
+                              30),
                         ],
                       ),
                     ),

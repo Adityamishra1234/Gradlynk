@@ -288,11 +288,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                     child: Row(
                                       children: [
                                         const Spacer(),
-                                        SvgPicture.asset(
-                                          "assets/icons/compare.svg",
-                                          height: 30,
-                                          color: ThemeConstants.whitecolor,
-                                        ),
+                                        svgImage("compare",
+                                            ThemeConstants.whitecolor, 30, 30),
                                         const SizedBox(
                                           width: 5,
                                         ),

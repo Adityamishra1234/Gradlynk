@@ -66,12 +66,8 @@ class CourseSearchFullDetail extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 10, top: 8),
                           child: Row(
                             children: [
-                              SvgPicture.asset(
-                                "assets/icons/university.svg",
-                                height: 15,
-                                width: 15,
-                                color: ThemeConstants.bluegreycolor,
-                              ),
+                              svgImage("university",
+                                  ThemeConstants.bluegreycolor, 20, 20),
                               const SizedBox(
                                 width: 5,
                               ),
@@ -279,12 +275,8 @@ class CourseSearchFullDetail extends StatelessWidget {
                                     ),
                                     child: Row(
                                       children: [
-                                        SvgPicture.asset(
-                                          "assets/icons/star.svg",
-                                          height: 15,
-                                          width: 15,
-                                          color: ThemeConstants.orangeColor,
-                                        ),
+                                        svgImage("star",
+                                            ThemeConstants.orangeColor, 20, 20),
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(left: 5),

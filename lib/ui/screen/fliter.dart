@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/reviewshortlist.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -93,11 +94,8 @@ class _FilterState extends State<Filter> {
                               const SizedBox(
                                 width: 5,
                               ),
-                              SvgPicture.asset(
-                                "assets/icons/filter.svg",
-                                color: ThemeConstants.orangeColor,
-                                height: 14,
-                              ),
+                              svgImage(
+                                  "filter", ThemeConstants.orangeColor, 14, 14),
                               const Spacer(),
                             ],
                           ),

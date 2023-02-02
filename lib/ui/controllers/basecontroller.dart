@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class BaseController extends GetxController {
@@ -9,6 +11,19 @@ class BaseController extends GetxController {
   StudentPanel model1 = StudentPanel();
   RxBool loadingStudentPanelData1 = false.obs;
   PersonalInformationModel personalModal = PersonalInformationModel();
+  final prefs = SharedPreferences.getInstance();
+
+  //Image
+  // String? create_profile;
+  // String? add;
+  // String? alarm;
+  // String? arrow;
+  // String? calender;
+  // String? camera;
+  // String? cameracapture;
+  // String? clock;
+  // String? compare;
+  // String? course;
 
   @override
   void onInit() {

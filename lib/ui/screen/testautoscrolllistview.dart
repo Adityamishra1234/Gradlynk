@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -62,12 +63,9 @@ class _TestAutoScrollListViewState extends State<TestAutoScrollListView> {
                           color: ThemeConstants.GreenColor,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: SvgPicture.asset(
-                            "assets/icons/submit.svg",
-                            color: ThemeConstants.whitecolor,
-                          ),
-                        ),
+                            padding: const EdgeInsets.all(10),
+                            child: svgImage(
+                                "submit", ThemeConstants.whitecolor, 25, 25)),
                       ),
                       SizedBox(
                         width: 190,
