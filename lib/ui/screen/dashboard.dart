@@ -1,9 +1,4 @@
 import 'package:bulleted_list/bulleted_list.dart';
-import 'package:cached_network_svg_image/cached_network_svg_image.dart';
-import 'package:camera/camera.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_advanced_networkimage_2/provider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
@@ -11,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
-import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/ui/screen/trackapllication.dart';
 import 'package:studentpanel/ui/screen/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';

@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/compare.dart';
 import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/fliter.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
@@ -181,12 +182,45 @@ class _FinalShortListState extends State<FinalShortList> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Column(
                                     children: [
+                                      //  CollagelistExpandedWidget(
+                                      //         callbackRemoveCourse:
+                                      //             callbackCompareCourseRemove,
+                                      //         courseSearchModelCompare1:
+                                      //             _.courseSearchModelCompare1,
+                                      //         courseSearchModelCompare2:
+                                      //             _.courseSearchModelCompare2,
+                                      //         previousRoute:
+                                      //             CourseSearchList.routeNamed,
+                                      //         index: index,
+                                      //         courseShortListFirst: true,
+                                      //         courseSearchModelCompare1Id:
+                                      //             _.courseSearchModelCompare1.id,
+                                      //         courseSearchModelCompare2Id:
+                                      //             _.courseSearchModelCompare2.id,
+                                      //         callbackForModelCompare:
+                                      //             callbackModelCompare,
+                                      //         callbackCompare: callbackCompare,
+                                      //         iscompare:
+                                      //             controller1.compareApply.value,
+                                      //         courseSearchModel: controller1
+                                      //             .courseModelFilter
+                                      //             .courseSearchList[index],
+                                      //         callbackFunction:
+                                      //             callbackCompleteDetailCourse,
+                                      //         callbackShortListButton:
+                                      //             CallbackShortListButton,
+                                      //         finalShortListFirst: false,
+                                      //       ),
                                       if (controller1.courseModelFilter
                                               .courseSearchList.length !=
                                           index)
                                         CollagelistExpandedWidget(
                                           callbackRemoveCourse:
                                               callbackCompareCourseRemove,
+                                          courseSearchModelCompare1:
+                                              _.courseSearchModelCompare1,
+                                          courseSearchModelCompare2:
+                                              _.courseSearchModelCompare2,
                                           previousRoute:
                                               FinalShortList.routeNamed,
                                           index: index,
@@ -225,16 +259,32 @@ class _FinalShortListState extends State<FinalShortList> {
                       if (controller1.compareApply.value == true)
                         InkWell(
                           onTap: () {
-                            Get.to(
-                              Comparing(
-                                courseSearchModel1:
-                                    Get.find<FinalShortListController>()
-                                        .courseSearchModelCompare1,
-                                courseSearchModel2:
-                                    Get.find<FinalShortListController>()
-                                        .courseSearchModelCompare2,
-                              ),
-                            );
+                            if (controller1.courseSearchModelCompare1.id !=
+                                    null &&
+                                controller1.courseSearchModelCompare2.id !=
+                                    null) {
+                              Get.to(
+                                Comparing(
+                                  courseSearchModel1:
+                                      controller1.courseSearchModelCompare1,
+                                  courseSearchModel2:
+                                      controller1.courseSearchModelCompare2,
+                                ),
+                              );
+                            } else {
+                              getToast(
+                                  SnackBarConstants.courseSearchListPart3!);
+                            }
+                            // Get.to(
+                            //   Comparing(
+                            //     courseSearchModel1:
+                            //         Get.find<FinalShortListController>()
+                            //             .courseSearchModelCompare1,
+                            //     courseSearchModel2:
+                            //         Get.find<FinalShortListController>()
+                            //             .courseSearchModelCompare2,
+                            //   ),
+                            // );
                           },
                           child: Container(
                             height: 60,
@@ -304,6 +354,7 @@ class _FinalShortListState extends State<FinalShortList> {
     } else {
       controller1.courseSearchModelCompare2 = CourseSearchModel();
     }
+    controller1.update();
   }
 
   CallbackShortListButton(data) {
