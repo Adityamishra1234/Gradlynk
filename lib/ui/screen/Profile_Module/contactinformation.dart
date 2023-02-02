@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 
@@ -32,7 +33,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   static TextEditingController instagramId = TextEditingController();
   static TextEditingController facebookId = TextEditingController();
   static TextEditingController snapchatId = TextEditingController();
-
   static TextEditingController otherCountryinterested = TextEditingController();
   static TextEditingController assignedBranch = TextEditingController();
   static TextEditingController service = TextEditingController();
@@ -73,14 +73,29 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
             getNUllChecker(_.model.alternateNumber.toString()) == false
                 ? _.model.alternateNumber.toString()
                 : "";
-        _.selectedChildCount = _.model.child_count.toString();
+        _.childrenCountSelected = _.model.child_count;
         secondaryEmail.text = _.model.secondaryEmail ?? "";
         street.text = _.model.street ?? "";
         zipCode.text = getNUllChecker(_.model.pincode) == false
             ? _.model.pincode.toString()
             : "";
         _.genderSelected = _.model.gender ?? gender[0];
+        for (var i = 0; i < gender.length; i++) {
+          if (gender[i].toString() == _.model.gender.toString()) {
+            controller.genderSelected = gender[i];
+            controller.genderIdSelected = i;
+            controller.update();
+          }
+        }
         _.maritalStatusSelected = _.model.maritalStatus;
+        for (var i = 1; i < controller.martialStatusList.length; i++) {
+          if (controller.martialStatusList[i].toString() ==
+              _.model.maritalStatus.toString()) {
+            controller.maritalStatusSelected = controller.martialStatusList[i];
+            controller.maritalStatusIdSelected = i;
+            controller.update();
+          }
+        }
         _.countrySelected = _.model.countryName;
         _.stateSelected = _.model.stateName;
         _.citySelected = _.model.cityName;
@@ -99,7 +114,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         _.getCity(_.model.stateID.toString());
         _.stateIdSelected = _.model.stateID;
         _.cityIdSelected = _.model.cityID;
-
+        _.countryIdSelected = _.model.countryID;
         _.stateSelected = _.model.stateName;
         _.citySelected = _.model.cityName;
         otherCountryinterested.text = temp!;
@@ -155,27 +170,76 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           if (saveAndEdit == false)
                             TextButton(
                                 onPressed: () {
-                                  updatePesonalDetail(
-                                      78623,
-                                      firstName.text,
-                                      lastName.text,
-                                      "12/13/1990",
-                                      _.genderIdSelected!,
-                                      _.maritalStatusIdSelected!,
-                                      _.childrenCountSelected!,
-                                      mobileNumber.text,
-                                      email.text,
-                                      int.parse(whatsappNumber.text),
-                                      int.parse(alt_Number.text),
-                                      _.countryIdSelected!,
-                                      _.stateIdSelected!,
-                                      _.cityIdSelected!,
-                                      street.text,
-                                      int.parse(zipCode.text),
-                                      facebookId.text,
-                                      snapchatId.text,
-                                      instagramId.text,
-                                      secondaryEmail.text);
+                                  try {
+                                    if (getNUllChecker(firstName.text) ==
+                                        true) {
+                                      getToast("Please Enter your first name");
+                                    } else if (getNUllChecker(lastName.text) ==
+                                        true) {
+                                      getToast("Please Enter your last name");
+                                    } else if (getNUllChecker(_.dob)) {
+                                      getToast(
+                                          "Please Enter your date of birth");
+                                    } else if (getNUllChecker(
+                                            _.genderIdSelected) ==
+                                        true) {
+                                      getToast("Please select your gender");
+                                    } else if (getNUllChecker(
+                                            _.maritalStatusSelected) ==
+                                        true) {
+                                      getToast(
+                                          "Please select your marital status");
+                                    } else if (getNUllChecker(
+                                            mobileNumber.text) ==
+                                        true) {
+                                      getToast(
+                                          "Please Enter your mobile number");
+                                    } else if (getNUllChecker(
+                                            alt_Number.text) ==
+                                        true) {
+                                      getToast(
+                                          "Please Enter your Alternate number");
+                                    } else if (getNUllChecker(email.text)) {
+                                      getToast("Please Enter your email");
+                                    } else if (getNUllChecker(
+                                        _.countrySelected)) {
+                                      getToast("Please select  your country");
+                                    } else if (getNUllChecker(
+                                        _.stateSelected)) {
+                                      getToast("Please select your state");
+                                    } else if (getNUllChecker(_.citySelected)) {
+                                      getToast("Please select your city");
+                                    } else if (getNUllChecker(zipCode.text)) {
+                                      getToast("Please enter your zip code");
+                                    } else {
+                                      updatePesonalDetail(
+                                          Get.find<BaseController>().model1.id!,
+                                          firstName.text,
+                                          lastName.text,
+                                          _.dob,
+                                          _.genderIdSelected!,
+                                          _.maritalStatusIdSelected!,
+                                          _.childrenCountSelected!,
+                                          mobileNumber.text,
+                                          email.text,
+                                          int.parse(whatsappNumber.text),
+                                          int.parse(alt_Number.text),
+                                          _.countryIdSelected!,
+                                          _.stateIdSelected!,
+                                          _.cityIdSelected!,
+                                          street.text,
+                                          int.parse(zipCode.text),
+                                          facebookId.text,
+                                          snapchatId.text,
+                                          instagramId.text,
+                                          secondaryEmail.text);
+                                    }
+                                  } catch (e) {
+                                    print(StackTrace.current);
+                                    getToast(e.toString());
+                                  }
+                                  saveAndEdit = true;
+                                  setState(() {});
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "save",
@@ -302,6 +366,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: DatePickerExample(
                       enableField: saveAndEdit,
+                      date: getNUllChecker(_.dob) == false ? _.dob : "",
                       callbackDate: callbackDOB,
                     ),
                   ),
@@ -461,9 +526,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                         style: ThemeConstants.montserrattextstyle2,
                         onChanged: (value) {
-                          RenderObject? object =
-                              globalKey.currentContext!.findRenderObject();
-                          object!.showOnScreen();
                           if (controller.alternateNumberKey.currentState!
                               .validate()) {
                             controller.alternateNumberKey.currentState!.save();
@@ -1166,28 +1228,76 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                       ThemeConstants.whitecolor, // foreground
                                 ),
                                 onPressed: () {
-                                  // Id and Dob const
-                                  updatePesonalDetail(
-                                      78623,
-                                      firstName.text,
-                                      lastName.text,
-                                      _.dob,
-                                      _.genderIdSelected!,
-                                      _.maritalStatusIdSelected!,
-                                      _.childrenCountSelected!,
-                                      mobileNumber.text,
-                                      email.text,
-                                      int.parse(whatsappNumber.text),
-                                      int.parse(alt_Number.text),
-                                      _.countryIdSelected!,
-                                      _.stateIdSelected!,
-                                      _.cityIdSelected!,
-                                      street.text,
-                                      int.parse(zipCode.text),
-                                      facebookId.text,
-                                      snapchatId.text,
-                                      instagramId.text,
-                                      secondaryEmail.text);
+                                  try {
+                                    if (getNUllChecker(firstName.text) ==
+                                        true) {
+                                      getToast("Please Enter your first name");
+                                    } else if (getNUllChecker(lastName.text) ==
+                                        true) {
+                                      getToast("Please Enter your last name");
+                                    } else if (getNUllChecker(_.dob)) {
+                                      getToast(
+                                          "Please Enter your date of birth");
+                                    } else if (getNUllChecker(
+                                            _.genderIdSelected) ==
+                                        true) {
+                                      getToast("Please select your gender");
+                                    } else if (getNUllChecker(
+                                            _.maritalStatusSelected) ==
+                                        true) {
+                                      getToast(
+                                          "Please select your marital status");
+                                    } else if (getNUllChecker(
+                                            mobileNumber.text) ==
+                                        true) {
+                                      getToast(
+                                          "Please Enter your mobile number");
+                                    } else if (getNUllChecker(
+                                            alt_Number.text) ==
+                                        true) {
+                                      getToast(
+                                          "Please Enter your Alternate number");
+                                    } else if (getNUllChecker(email.text)) {
+                                      getToast("Please Enter your email");
+                                    } else if (getNUllChecker(
+                                        _.countrySelected)) {
+                                      getToast("Please select  your country");
+                                    } else if (getNUllChecker(
+                                        _.stateSelected)) {
+                                      getToast("Please select your state");
+                                    } else if (getNUllChecker(_.citySelected)) {
+                                      getToast("Please select your city");
+                                    } else if (getNUllChecker(zipCode.text)) {
+                                      getToast("Please enter your zip code");
+                                    } else {
+                                      updatePesonalDetail(
+                                          Get.find<BaseController>().model1.id!,
+                                          firstName.text,
+                                          lastName.text,
+                                          _.dob,
+                                          _.genderIdSelected!,
+                                          _.maritalStatusIdSelected!,
+                                          _.childrenCountSelected!,
+                                          mobileNumber.text,
+                                          email.text,
+                                          int.parse(whatsappNumber.text),
+                                          int.parse(alt_Number.text),
+                                          _.countryIdSelected!,
+                                          _.stateIdSelected!,
+                                          _.cityIdSelected!,
+                                          street.text,
+                                          int.parse(zipCode.text),
+                                          facebookId.text,
+                                          snapchatId.text,
+                                          instagramId.text,
+                                          secondaryEmail.text);
+                                    }
+                                  } catch (e) {
+                                    print(StackTrace.current);
+                                    getToast(e.toString());
+                                  }
+                                  saveAndEdit = true;
+                                  setState(() {});
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Save",
@@ -1216,6 +1326,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   callbackCity(varTopic) {
     for (var i = 0; i < controller.cityList.length; i++) {
       if (i == 0) {
+        controller.citySelected = null;
+        controller.cityIdSelected = null;
       } else {
         if (controller.cityList[i] == varTopic) {
           controller.citySelected = controller.cityList[i];
@@ -1231,6 +1343,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   calllbackState(varTopic) {
     for (var i = 0; i < controller.stateList.length; i++) {
       if (i == 0) {
+        controller.stateSelected = null;
+        controller.stateIdSelected = null;
       } else {
         if (controller.stateList[i] == varTopic) {
           controller.stateSelected = varTopic;
@@ -1244,6 +1358,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   callbackCountry(varTopic) {
     for (var i = 0; i < controller.countryList.length; i++) {
       if (i == 0) {
+        controller.countryIdSelected = null;
+        controller.countryIdSelected = null;
       } else {
         if (controller.countryList[i] == varTopic) {
           controller.countrySelected = varTopic;
@@ -1257,7 +1373,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   callbackGender(varTopic) {
     for (var i = 0; i < gender.length; i++) {
-      if (gender[i].toString() == varTopic.toString()) {
+      if (i == 0) {
+        controller.genderSelected = null;
+        controller.genderIdSelected = null;
+      } else if (gender[i].toString() == varTopic.toString()) {
         controller.genderSelected = gender[i];
         controller.genderIdSelected = i + 1;
         controller.update();
@@ -1267,6 +1386,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   callbackMaritalStatus(varTopic) {
     for (var i = 1; i < controller.martialStatusList.length; i++) {
+      if (i == 0) {
+        controller.maritalStatusSelected = null;
+        controller.maritalStatusIdSelected = null;
+      }
       if (controller.martialStatusList[i].toString() == varTopic.toString()) {
         controller.maritalStatusSelected = controller.martialStatusList[i];
         controller.maritalStatusIdSelected = i;
@@ -1276,12 +1399,16 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   }
 
   callbackChildrenCount(varTopic) {
-    controller.childrenCountSelected = int.parse(varTopic);
-    setState(() {});
+    if (getNUllChecker(varTopic) == false) {
+      controller.childrenCountSelected = int.parse(varTopic);
+      setState(() {});
+    }
   }
 
   callbackDOB(data) {
-    controller.dob = data;
+    String temp = data.toString().split(' ')[0];
+    List<String> date = temp.split('-');
+    controller.dob = date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 

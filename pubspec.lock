@@ -270,6 +270,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_advanced_networkimage_2:
+    dependency: "direct main"
+    description:
+      name: flutter_advanced_networkimage_2
+      sha256: "31f6c446a33e9f154e6b63ea69e4871afeeccd2dcd0b0fc1c117f1856ac04606"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   flutter_file_downloader:
     dependency: "direct main"
     description:
@@ -696,6 +704,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.6.2"
+  pool:
+    dependency: transitive
+    description:
+      name: pool
+      sha256: "20fe868b6314b322ea036ba325e6fc0711a22948856475e2c2b6306e8ab39c2a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.1"
   process:
     dependency: transitive
     description:

@@ -50,7 +50,7 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
                   iconEnabledColor: ThemeConstants.whitecolor,
 
                   // Array list of items
-                  items: widget.model!.map((dynamic items) {
+                  items: widget.model!.toSet().toList().map((dynamic items) {
                     return DropdownMenuItem(
                       value: items,
                       child: Padding(

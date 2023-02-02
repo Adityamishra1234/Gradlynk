@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:studentpanel/services/baseservice.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
@@ -644,9 +645,9 @@ class ApiServices extends StudentPanelBase {
       String jsonData = json.encode(personalInformationModel);
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
+        Get.find<BaseController>().getPersonalModal(personalInformationModel);
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-
         Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
 

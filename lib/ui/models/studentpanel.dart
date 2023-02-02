@@ -105,7 +105,7 @@ class StudentPanel {
         passportAvailable: json["passport_available"],
         addtionalDetails: List<AddtionalDetail>.from(
             json["addtionalDetails"].map((x) => AddtionalDetail.fromJson(x))),
-        testDetails: TestDetails.fromJson(json["testDetails"]),
+        // testDetails: TestDetails.fromJson(json["testDetails"] ?? ""),
         courseChoice: List<CourseChoice>.from(
             json["courseChoice"].map((x) => CourseChoice.fromJson(x))),
         passportDetails: List<PassportDetail>.from(

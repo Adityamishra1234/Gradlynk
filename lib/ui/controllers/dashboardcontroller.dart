@@ -98,5 +98,4 @@ class DashboardController extends BaseController {
   }
 
 // Notification Api call
-
 }
