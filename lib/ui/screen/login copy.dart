@@ -53,14 +53,14 @@ class _LoginCopyState extends State<LoginCopy> {
   // }
 
   List<Widget> imglist1 = [
-    Image.asset(
-      "assets/images/login-page.png",
+    Image.network(
+      "https://sieceducation.in/assets/assets/images/login-page.png",
     ),
-    Image.asset(
-      "assets/images/University-of-Melbourne.png",
+    Image.network(
+      "https://sieceducation.in/assets/assets/images/University-of-Melbourne.png",
     ),
-    Image.asset(
-      "assets/images/University-of-Toronto.png",
+    Image.network(
+      "https://sieceducation.in/assets/assets/images/University-of-Toronto.png",
     ),
   ];
 
@@ -209,6 +209,15 @@ class _LoginCopyState extends State<LoginCopy> {
               GetBuilder<LoginController>(
                 builder: (_) => setTextposistion(_.currentindex.value),
               ),
+              Positioned(
+                  top: 40,
+                  left: (MediaQuery.of(context).size.width / 3.5),
+                  child: SizedBox(
+                      width: 200,
+                      height: 50,
+                      child: Image.asset(
+                        "assets/images/logo.png",
+                      ))),
               Positioned(
                 bottom: 0,
                 left: 0,

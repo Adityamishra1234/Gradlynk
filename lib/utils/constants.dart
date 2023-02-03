@@ -215,7 +215,7 @@ svgImage(String endpoint, Color color, double height, double width) {
     fit: BoxFit.scaleDown,
     child: CachedNetworkSVGImage(
       'https://sieceducation.in/assets/assets/icons/$endpoint.svg',
-      placeholder: const CircularProgressIndicator(color: Colors.blue),
+      // placeholder: const CircularProgressIndicator(color: Colors.blue),
       errorWidget: const Icon(Icons.error, color: Colors.red),
       height: height,
       width: width,

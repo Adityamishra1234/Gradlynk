@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: AnimationTest.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
@@ -120,21 +120,21 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: DashBoard.routeNamed,
-          transition: Transition.fade,
+          transition: Transition.cupertino,
           binding: DashBoardBinding(),
           page: () => const DashBoard(),
         ),
+        GetPage(
+            name: ProfilePageCopy.routeNamed,
+            transition: Transition.cupertino,
+            page: () => ProfilePageCopy(),
+            binding: ProfilePageBinding()),
         GetPage(
             name: DetialScreen.routeNamed,
             page: () => const DetialScreen(),
             transition: Transition.fade,
             binding: DetailBinding()),
 
-        GetPage(
-            name: ProfilePageCopy.routeNamed,
-            transition: Transition.fade,
-            page: () => ProfilePageCopy(),
-            binding: ProfilePageBinding()),
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,

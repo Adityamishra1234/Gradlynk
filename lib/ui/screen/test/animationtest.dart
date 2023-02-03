@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/login%20copy.dart';
 
 class AnimationTest extends StatefulWidget {
   const AnimationTest({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _AnimationTestState extends State<AnimationTest>
     controller = GifController(
       loop: false,
       onFinish: () {
-        Get.toNamed(DashBoard.routeNamed);
+        Get.toNamed(LoginCopy.routeNamed);
       },
     );
     super.initState();
