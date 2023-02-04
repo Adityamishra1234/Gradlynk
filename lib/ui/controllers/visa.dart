@@ -3,7 +3,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 
-class VisaDetailController extends BaseController {
+class VisaDetailController extends GetxController {
   //Model
   ApiServices apiServices = ApiServices();
   VisaDetailModel visaDetailModel = VisaDetailModel();

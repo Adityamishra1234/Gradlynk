@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
-import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class BaseController extends GetxController {
@@ -12,6 +12,8 @@ class BaseController extends GetxController {
   RxBool loadingStudentPanelData1 = false.obs;
   PersonalInformationModel personalModal = PersonalInformationModel();
   final prefs = SharedPreferences.getInstance();
+  List<UpcomingEvent>? upcomingEventlist;
+  RxBool loadingUpcomingEvents = false.obs;
 
   //Image
   // String? create_profile;
@@ -29,6 +31,7 @@ class BaseController extends GetxController {
   void onInit() {
     super.onInit();
     profiledetail();
+    upcomingEvents();
   }
 
   profiledetail() async {
@@ -44,5 +47,14 @@ class BaseController extends GetxController {
   getPersonalModal(PersonalInformationModel model) {
     personalModal = model;
     update();
+  }
+
+  upcomingEvents() async {
+    var res = await apiServices.getUpComingEvent(Endpoints.upcomingEvents!);
+    if (res != null) {
+      upcomingEventlist = res;
+      loadingUpcomingEvents = true.obs;
+      update();
+    }
   }
 }

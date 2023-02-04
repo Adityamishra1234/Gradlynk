@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginController extends BaseController with StateMixin<UserModel> {
+class LoginController extends GetxController with StateMixin<UserModel> {
   UserModel? userModel;
   RxInt currentindex = 0.obs;
   ApiServices services = ApiServices();

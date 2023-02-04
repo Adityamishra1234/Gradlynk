@@ -5,9 +5,9 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
-import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/trackapllication.dart';
-import 'package:studentpanel/ui/screen/uploaddocument.dart';
+import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
+import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
+import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -525,112 +525,119 @@ class _DashBoardState extends State<DashBoard> {
                           ),
 
                           // Upcoming Event
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 15,
-                            ),
-                            child: Container(
-                                // width: displayMobileLayout == true
-                                //     ? MediaQuery.of(context).size.width - 240
-                                //     : MediaQuery.of(context).size.width * 0.90,
-                                constraints:
-                                    const BoxConstraints(maxWidth: 300),
-                                child: Card(
-                                  elevation: 0.7,
-                                  shadowColor: const Color(0xFFE5E1FE),
-                                  shape: const RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: Color(0xFFE5E1FE), width: 1.0),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10, left: 35),
-                                        child: Text(
-                                          "Upcoming Event",
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 26,
+                          if (_.loadingUpcomingEvents.value == true)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 15,
+                              ),
+                              child: Container(
+                                  // width: displayMobileLayout == true
+                                  //     ? MediaQuery.of(context).size.width - 240
+                                  //     : MediaQuery.of(context).size.width * 0.90,
+                                  constraints:
+                                      const BoxConstraints(maxWidth: 300),
+                                  child: Card(
+                                    elevation: 0.7,
+                                    shadowColor: const Color(0xFFE5E1FE),
+                                    shape: const RoundedRectangleBorder(
+                                      side: BorderSide(
+                                          color: Color(0xFFE5E1FE), width: 1.0),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 10, left: 35),
+                                          child: Text(
+                                            "Upcoming Event",
+                                            style: GoogleFonts.roboto(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 26,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 5),
-                                            child: SizedBox(
-                                                width: 50,
-                                                child: svgImage(
-                                                    "calender",
-                                                    const Color(0xFF6F61FF),
-                                                    70,
-                                                    60)),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 5),
-                                            child: SizedBox(
-                                              width: displayMobileLayout == true
-                                                  ? (MediaQuery.of(context)
-                                                              .size
-                                                              .width -
-                                                          240) *
-                                                      0.70
-                                                  : MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.70,
-                                              child: Column(
-                                                children: [
-                                                  BulletedList(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    bullet: const MyBullet(),
-                                                    listItems: [
-                                                      CustomAutoSizeText(
-                                                          text:
-                                                              "Canada Migration Counselling Day Bangalore",
-                                                          maxLines: 3),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.70,
-                                                    child: const Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 38),
-                                                      child: Text(
-                                                          "on Thu, May 5th, 2022  16:11 pm"),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
+                                        Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5),
+                                              child: SizedBox(
+                                                  width: 50,
+                                                  child: svgImage(
+                                                      "calender",
+                                                      const Color(0xFF6F61FF),
+                                                      70,
+                                                      60)),
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                      TextButton(
-                                          onPressed: () {
-                                            Get.snackbar(
-                                              "DashBoard",
-                                              "View All",
-                                              snackPosition:
-                                                  SnackPosition.BOTTOM,
-                                            );
-                                          },
-                                          child: const Text("View all"))
-                                    ],
-                                  ),
-                                )),
-                          ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 5),
+                                              child: SizedBox(
+                                                width: displayMobileLayout ==
+                                                        true
+                                                    ? (MediaQuery.of(context)
+                                                                .size
+                                                                .width -
+                                                            240) *
+                                                        0.70
+                                                    : MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.70,
+                                                child: Column(
+                                                  children: [
+                                                    BulletedList(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      bullet: const MyBullet(),
+                                                      listItems: [
+                                                        CustomAutoSizeText(
+                                                            text: _
+                                                                .upcomingEventlist![
+                                                                    0]
+                                                                .campaignName,
+                                                            maxLines: 3),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.70,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(left: 38),
+                                                        child: Text(_
+                                                            .upcomingEventlist![
+                                                                0]
+                                                            .campaignDate!),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        TextButton(
+                                            onPressed: () {
+                                              Get.snackbar(
+                                                "DashBoard",
+                                                "View All",
+                                                snackPosition:
+                                                    SnackPosition.BOTTOM,
+                                              );
+                                            },
+                                            child: const Text("View all"))
+                                      ],
+                                    ),
+                                  )),
+                            ),
                           const SizedBox(
                             height: 40,
                           ),

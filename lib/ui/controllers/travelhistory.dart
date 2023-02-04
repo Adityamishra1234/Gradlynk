@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class TravelHistoryController extends BaseController {
+class TravelHistoryController extends GetxController {
   ApiServices apiServices = ApiServices();
   List<TravelHistoryModel> modelList = [];
 

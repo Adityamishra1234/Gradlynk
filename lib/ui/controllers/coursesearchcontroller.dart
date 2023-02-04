@@ -8,7 +8,7 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class CourseSearchController extends BaseController {
+class CourseSearchController extends GetxController {
   //Select Code
   int? selectCountryCode;
   int? selectStateCode;

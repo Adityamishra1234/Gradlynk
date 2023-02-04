@@ -36,10 +36,10 @@ class StudentPanel {
     this.dateOfBirth,
     this.passportAvailable,
     this.addtionalDetails,
-    this.testDetails,
-    this.passportDetails,
+    // this.testDetails,
+    // this.passportDetails,
     this.otherCountryOfInterest,
-    this.courseChoice,
+    // this.courseChoice,
   });
   int? countryID;
   int? stateID;
@@ -71,10 +71,10 @@ class StudentPanel {
   String? dateOfBirth;
   String? passportAvailable;
   List<AddtionalDetail>? addtionalDetails;
-  TestDetails? testDetails;
-  List<PassportDetail>? passportDetails;
+  // TestDetails? testDetails;
+  // List<PassportDetail>? passportDetails;
   List<OtherCountryOfInterest>? otherCountryOfInterest;
-  List<CourseChoice>? courseChoice;
+  // List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
         cityID: json['city_id'],
@@ -106,10 +106,10 @@ class StudentPanel {
         addtionalDetails: List<AddtionalDetail>.from(
             json["addtionalDetails"].map((x) => AddtionalDetail.fromJson(x))),
         // testDetails: TestDetails.fromJson(json["testDetails"] ?? ""),
-        courseChoice: List<CourseChoice>.from(
-            json["courseChoice"].map((x) => CourseChoice.fromJson(x))),
-        passportDetails: List<PassportDetail>.from(
-            json["passportDetails"].map((x) => PassportDetail.fromJson(x))),
+        // courseChoice: List<CourseChoice>.from(
+        //     json["courseChoice"].map((x) => CourseChoice.fromJson(x))),
+        // passportDetails: List<PassportDetail>.from(
+        //     json["passportDetails"].map((x) => PassportDetail.fromJson(x))),
         otherCountryOfInterest: List<OtherCountryOfInterest>.from(
             json["otherCountryOfInterest"]
                 .map((x) => OtherCountryOfInterest.fromJson(x))),
@@ -135,11 +135,11 @@ class StudentPanel {
         "passport_available": passportAvailable,
         "addtionalDetails":
             List<dynamic>.from(addtionalDetails!.map((x) => x.toJson())),
-        "testDetails": testDetails!.toJson(),
-        "courseChoice":
-            List<dynamic>.from(courseChoice!.map((x) => x.toJson())),
-        "passportDetails":
-            List<dynamic>.from(passportDetails!.map((x) => x.toJson())),
+        // "testDetails": testDetails!.toJson(),
+        // "courseChoice":
+        //     List<dynamic>.from(courseChoice!.map((x) => x.toJson())),
+        // "passportDetails":
+        //     List<dynamic>.from(passportDetails!.map((x) => x.toJson())),
         "otherCountryOfInterest":
             List<dynamic>.from(otherCountryOfInterest!.map((x) => x.toJson())),
       };

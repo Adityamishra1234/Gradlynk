@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class CourseInformationProfileController extends BaseController {
+class CourseInformationProfileController extends GetxController {
   List<ViewCourseInformation> viewCourseInformationList = [];
   ApiServices apiServices = ApiServices();
   List courseLevelList = [];

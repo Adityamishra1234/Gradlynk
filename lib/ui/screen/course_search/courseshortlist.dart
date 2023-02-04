@@ -5,10 +5,10 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/courseshortlist.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
-import 'package:studentpanel/ui/screen/compare.dart';
-import 'package:studentpanel/ui/screen/coursesearchfulldetail.dart';
-import 'package:studentpanel/ui/screen/fliter.dart';
-import 'package:studentpanel/ui/screen/reviewshortlist.dart';
+import 'package:studentpanel/ui/screen/course_search/compare.dart';
+import 'package:studentpanel/ui/screen/complete_course_details/coursesearchfulldetail.dart';
+import 'package:studentpanel/ui/screen/course_search/fliter.dart';
+import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -352,7 +352,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].shortList ==
           "0";
     }
-    controller1.courseShortList(id, controller1.model1.id.toString());
+    controller1.courseShortList(
+        id, Get.find<BaseController>().model1.id.toString());
   }
 
   callbackCompareCourseRemove(data) {

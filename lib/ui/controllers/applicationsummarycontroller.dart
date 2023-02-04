@@ -6,7 +6,7 @@ import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ApplicationSummaryController extends BaseController {
+class ApplicationSummaryController extends GetxController {
   // Loading
   RxBool loadingApplicationSummary = false.obs;
   RxBool loadingApplicationCompleteDetails = false.obs;

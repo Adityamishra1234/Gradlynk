@@ -7,7 +7,7 @@ import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ContactInformationController extends BaseController {
+class ContactInformationController extends GetxController {
   ApiServices apiServices = ApiServices();
 
 // Selected fields

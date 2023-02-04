@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/applicationsummarycontroller.dart';
-import 'package:studentpanel/ui/screen/applicationcompletedetail.dart';
+import 'package:studentpanel/ui/screen/My_Application/applicationcompletedetail.dart';
+
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -14,7 +15,6 @@ class ApplicationSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(Get.arguments);
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     double width = MediaQuery.of(context).size.width;
     if (displayMobileLayout == true) {

@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
@@ -14,39 +16,39 @@ import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/assigneeinformation.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/trackapllication.dart';
-import 'package:studentpanel/ui/screen/ModificationUi/visasummary.dart';
+import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
+import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
+import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
-import 'package:studentpanel/ui/screen/applicationdetail.dart';
-import 'package:studentpanel/ui/screen/applicationsummary.dart';
-import 'package:studentpanel/ui/screen/coursesearch.dart';
-import 'package:studentpanel/ui/screen/finalshortlist.dart';
-import 'package:studentpanel/ui/screen/remove_compare_course.dart';
-import 'package:studentpanel/ui/screen/reviewshortlist.dart';
+import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
+import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
+import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
+import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
+import 'package:studentpanel/ui/screen/course_search/remove_compare_course.dart';
+import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/lunchingpage.dart';
-import 'package:studentpanel/ui/screen/mydocument.dart';
+import 'package:studentpanel/ui/screen/Delete/mydocument.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/detail.dart';
+import 'package:studentpanel/ui/screen/Delete/detail.dart';
 import 'package:studentpanel/ui/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/ui/screen/sortcopy.dart';
+import 'package:studentpanel/ui/screen/Delete/sortcopy.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 
-import 'package:studentpanel/ui/screen/testautoscrolllistview.dart';
-import 'package:studentpanel/ui/screen/trackapllication.dart';
-import 'package:studentpanel/ui/screen/uploaddocument.dart';
+import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.dart';
+import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
+import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
-import 'ui/screen/test/animationtest.dart';
+import 'ui/screen/Login_Module/animationtest.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,10 +71,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   UserModel? userModel;
+  late final GifController controller;
 
   @override
   void initState() {
     // getUserInfo();
+    controller = GifController(
+      loop: false,
+      onFinish: () {
+        Get.toNamed(LoginCopy.routeNamed);
+      },
+    );
     super.initState();
   }
 
@@ -99,7 +108,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: AnimationTest.routeNamed,
+      initialRoute: DashBoard.routeNamed,
       // Create Route
       getPages: [
         GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),

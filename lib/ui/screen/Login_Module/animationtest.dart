@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
-import 'package:studentpanel/ui/screen/dashboard.dart';
+
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 
 class AnimationTest extends StatefulWidget {
@@ -27,12 +27,6 @@ class _AnimationTestState extends State<AnimationTest>
     super.initState();
   }
 
-  void startTimer() {
-    Future.delayed(const Duration(milliseconds: 4550), () {
-      Get.toNamed(DashBoard.routeNamed);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +37,7 @@ class _AnimationTestState extends State<AnimationTest>
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
               child: GifView.asset(
-                frameRate: 24,
+                frameRate: 45,
                 controller: controller,
                 "assets/icons/logoanimation.gif",
               )),

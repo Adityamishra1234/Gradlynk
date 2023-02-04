@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class PassportController extends BaseController {
+class PassportController extends GetxController {
   ApiServices apiServices = ApiServices();
   PassportModel passportModel = PassportModel();
 
@@ -45,7 +45,7 @@ class PassportController extends BaseController {
 
   @override
   void onInit() {
-    getPassPortDetail(model1.id.toString());
+    getPassPortDetail(Get.find<BaseController>().model1.id.toString());
     getCountry();
     getPlaceOfIssue();
     super.onInit();

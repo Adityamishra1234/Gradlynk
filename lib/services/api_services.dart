@@ -21,6 +21,7 @@ import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
+import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
@@ -1234,6 +1235,28 @@ class ApiServices extends StudentPanelBase {
 
         Get.snackbar("Other Test Details:", dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getUpComingEvent(String endpoint) async {
+    try {
+      List<UpcomingEvent> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<UpcomingEvent>.from(
+            json.decode(res).map((x) => UpcomingEvent.fromJson(x)));
+        return model;
       }
     } catch (e) {
       print(StackTrace.current);

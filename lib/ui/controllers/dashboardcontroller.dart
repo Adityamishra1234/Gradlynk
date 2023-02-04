@@ -9,7 +9,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DashboardController extends BaseController {
+class DashboardController extends GetxController {
   DropDownModel? dropDownModel;
   // StudentPanel studentPanel = StudentPanel();
   ApiServices apiservices = ApiServices();
@@ -24,6 +24,12 @@ class DashboardController extends BaseController {
 
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
+
+  @override
+  void onInit() {
+    super.onInit();
+    upcomingEvents();
+  }
 
   // List<String>? createModelForDropdown() {
   //   if (loadingStudentPanelData.value == true) {
@@ -67,14 +73,12 @@ class DashboardController extends BaseController {
   }
 
   upcomingEvents() async {
-    // var res = await apiservices.upcomingEvents(
-    //     Endpoints.baseUrl!, Endpoints.upcomingEvents!);
-
-    // if (res != null) {
-    //   upcomingEventlist = res;
-    //   loadingUpcomingEvents = true.obs;
-    //   update();
-    // } else {}
+    var res = await apiservices.getUpComingEvent(Endpoints.upcomingEvents!);
+    if (res != null) {
+      upcomingEventlist = res;
+      loadingUpcomingEvents = true.obs;
+      update();
+    }
   }
 
   upcomingholidays() async {

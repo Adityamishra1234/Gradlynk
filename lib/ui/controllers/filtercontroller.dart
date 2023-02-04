@@ -7,7 +7,7 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
-class FilterController extends BaseController {
+class FilterController extends GetxController {
   CourseModelFilter courseModelFilter = CourseModelFilter();
   List<CourseSearchModel> courseSearchModel = [];
   FilterModel filterModel = FilterModel();

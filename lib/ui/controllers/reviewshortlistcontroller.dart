@@ -7,7 +7,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ReviewShortListController extends BaseController {
+class ReviewShortListController extends GetxController {
   ApiServices apiservices = ApiServices();
 
   // Loading

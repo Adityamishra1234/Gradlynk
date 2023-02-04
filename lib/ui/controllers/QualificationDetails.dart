@@ -9,7 +9,7 @@ import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class QualificationDetailsController extends BaseController {
+class QualificationDetailsController extends GetxController {
   ApiServices apiServices = ApiServices();
   List<QualificationDetailsViewModel> modelList = [];
 

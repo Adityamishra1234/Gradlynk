@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 
-class UploadDocumentController extends BaseController {
+class UploadDocumentController extends GetxController {
   RxBool loadingDegree = false.obs;
   RxBool loadingSrSecondary = false.obs;
   RxBool loadingSecondary = false.obs;

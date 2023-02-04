@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/applicationdetail.dart';
+import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
 
 class ApplicationDetailBinding implements Bindings {
   @override

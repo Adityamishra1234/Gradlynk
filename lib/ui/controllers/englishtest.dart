@@ -6,7 +6,7 @@ import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class EnglishTestController extends BaseController {
+class EnglishTestController extends GetxController {
   ApiServices apiServices = ApiServices();
   EnglishTestDetailsViewModel englishTestDetailsViewModel =
       EnglishTestDetailsViewModel();

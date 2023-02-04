@@ -7,13 +7,12 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/userHistory.dart';
 
-class DetailController extends BaseController {
+class DetailController extends GetxController {
   ApiServices apiServices = ApiServices();
 
   List<UserHistory>? userHistoryList;
   RxBool isLoading = false.obs;
   RxBool temp = false.obs;
-
 
   void startTimer(String currentScreen) {
     const maxmin = 5220;
@@ -34,11 +33,11 @@ class DetailController extends BaseController {
   }
 
   // getUserHistory() async {
-  //   // userHistoryList = await apiServices.getUserHistory(
-  //   //     Endpoints.baseUrl!, Endpoints.getUserHistory!);
-  //   // if (userHistoryList != null) {
-  //   //   isLoading.value = true;
-  //   //   update();
+  //   userHistoryList = await apiServices.getUserHistory(
+  //       Endpoints.baseUrl!, Endpoints.getUserHistory!);
+  //   if (userHistoryList != null) {
+  //     isLoading.value = true;
+  //     update();
   //   }
 
   //   return userHistoryList!;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/visaSummary.dart';
-import 'package:studentpanel/ui/screen/visa.dart';
+import 'package:studentpanel/ui/screen/Visa/visa.dart';
+
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';

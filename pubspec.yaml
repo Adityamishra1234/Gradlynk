@@ -78,6 +78,15 @@ dependencies:
   gif_view: ^0.3.1
   # flutter_advanced_networkimage_2: ^2.0.1
   cached_network_svg_image: ^0.0.3
+  another_flutter_splash_screen: ^1.1.4
+  # flutter_native_splash: ^2.2.16
+  #   path: "assets/images/logotest1.jpg"
+  #   andoid: true
+  #   ios: true
+  # flutter_native_splash:
+  #   image: assets/images/logotest1.jpg 
+  #   android: true
+  #   ios: true
 
   
   

@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class WorkHistoryController extends BaseController {
+class WorkHistoryController extends GetxController {
   ApiServices apiServices = ApiServices();
   List<WorkHistoryViewModel> workHistoryViewModelList = [];
 

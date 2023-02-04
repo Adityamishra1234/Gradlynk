@@ -8,7 +8,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class CourseShortListController extends BaseController {
+class CourseShortListController extends GetxController {
   ApiServices apiservices = ApiServices();
 
   // Loading

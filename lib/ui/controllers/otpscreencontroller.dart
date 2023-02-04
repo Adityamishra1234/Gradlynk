@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 
-class OTPScreenController extends BaseController {
+class OTPScreenController extends GetxController {
   RxInt count = 60.obs;
   RxBool loadingcounter = false.obs;
   RxBool loadingTimer = false.obs;
-
 
   // setCounter() {
   //   if (loadingTimer.value == false) {
