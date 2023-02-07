@@ -1,10 +1,10 @@
-class UpcomingEvent {
+class UpcomingEventModel {
   String? campaignName;
   String? campaignDate;
 
-  UpcomingEvent({this.campaignName, this.campaignDate});
+  UpcomingEventModel({this.campaignName, this.campaignDate});
 
-  UpcomingEvent.fromJson(Map<String, dynamic> json) {
+  UpcomingEventModel.fromJson(Map<String, dynamic> json) {
     campaignName = json['campaign_name'];
     campaignDate = json['campaign_date'];
   }

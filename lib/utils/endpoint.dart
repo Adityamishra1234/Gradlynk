@@ -11,7 +11,7 @@ class Endpoints {
   static String? getUserHistory = 'get-login-logout-history';
   static String? upcomingEvents = 'get-upcoming-events';
   static String? newsAndUpdate = 'get-siec-news-and-update';
-  static String? notificationForUser = 'get-notification-for-user';
+  static String? notificationForUser = 'get-notification-for-user?user_id=';
   static String? upcomingHolidays = 'get-upcoming-holidays';
   static String? country = 'get-country';
   static String? state = 'get-state?country=';

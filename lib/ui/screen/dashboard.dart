@@ -4,8 +4,11 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
+import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -393,8 +396,8 @@ class _DashBoardState extends State<DashBoard> {
                                   //   camera: firstCamera,
                                   // ));
 
-                                  Get.toNamed(ProfilePageCopy.routeNamed);
-                                  // Get.to(CustomFileUpload());
+                                  // Get.toNamed(ProfilePageCopy.routeNamed);
+                                  Get.to(CustomFileUpload());
                                   // getDashboardScreen(context, callbackDropDownButton);
                                 },
                                 child: Column(
@@ -596,7 +599,7 @@ class _DashBoardState extends State<DashBoard> {
                                                       listItems: [
                                                         CustomAutoSizeText(
                                                             text: _
-                                                                .upcomingEventlist![
+                                                                .upcomingModel![
                                                                     0]
                                                                 .campaignName,
                                                             maxLines: 3),
@@ -613,8 +616,7 @@ class _DashBoardState extends State<DashBoard> {
                                                             const EdgeInsets
                                                                 .only(left: 38),
                                                         child: Text(_
-                                                            .upcomingEventlist![
-                                                                0]
+                                                            .upcomingModel![0]
                                                             .campaignDate!),
                                                       ),
                                                     )
@@ -626,12 +628,15 @@ class _DashBoardState extends State<DashBoard> {
                                         ),
                                         TextButton(
                                             onPressed: () {
-                                              Get.snackbar(
-                                                "DashBoard",
-                                                "View All",
-                                                snackPosition:
-                                                    SnackPosition.BOTTOM,
-                                              );
+                                              Get.to(UpcomingEvent(
+                                                model: _.upcomingModel,
+                                              ));
+                                              // Get.snackbar(
+                                              //   "DashBoard",
+                                              //   "View All",
+                                              //   snackPosition:
+                                              //       SnackPosition.BOTTOM,
+                                              // );
                                             },
                                             child: const Text("View all"))
                                       ],

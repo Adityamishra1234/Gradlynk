@@ -38,13 +38,13 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
                     final results = await FilePicker.platform.pickFiles(
                       allowMultiple: false,
                       type: FileType.custom,
-                      allowedExtensions: ['mp4'],
+                      allowedExtensions: ['jpeg'],
                     );
                     csvFile2 = results!.files.first;
                     uploadFilename = results.files.first.name;
-                    fileUploadMultipart(
-                        file: csvFile2, onUploadProgress: callbacktest);
-                    // sendFile(csvFile2, uploadFilename);
+                    // fileUploadMultipart(
+                    //     file: csvFile2, onUploadProgress: callbacktest);
+                    sendFile(csvFile2, uploadFilename);
                     setState(() {});
                   },
                   child: const Text('CSV Take')),
@@ -71,31 +71,34 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
   }
 
   sendFile(file, uploadFilename) async {
-    var url = Uri.parse(
-        "http://14.97.86.202:205/api/upload-application-document?enq_id=78623&id=29463");
+    var url = Uri.parse("http://14.97.86.202:205/api/document-test");
+    // var url = Uri.parse(
+    //     "http://14.97.86.202:205/api/upload-application-document?enq_id=78623&id=29463");
     var request = http.MultipartRequest("POST", url);
 
-    request.files.add(await http.MultipartFile.fromPath('doc', file.path,
+    request.files.add(await http.MultipartFile.fromPath('file', file.path,
         filename: "test.jpeg"));
 
     // request.headers.addAll({"Authorization": "Bearer $token"});
 
-    request.send().then((response) {
-      print("test");
-      print(response.statusCode);
-      if (response.statusCode == 200) {
-        print("Uploaded!");
-      }
-    });
+    var res = await request.send();
+    // .then((response) {
+    //   print(response);
+    //   print("test");
+    //   print(response.statusCode);
+    //   if (response.statusCode == 200) {
+    //     print("Uploaded!");
+    //   }
+    // });
+    var responsed = await http.Response.fromStream(res);
+    print(responsed.body);
   }
-
-  //
 
   static Future<String> fileUploadMultipart({file, onUploadProgress}) async {
     assert(file != null);
 
-    const url =
-        'http://14.97.86.202:205/api/upload-application-document?enq_id=78623&id=29463';
+    const url = 'http://14.97.86.202:205/api/document-test';
+    // 'http://14.97.86.202:205/api/upload-application-document?enq_id=78623&id=29463';
 
     final httpClient = getHttpClient();
 
@@ -104,19 +107,18 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
     int byteCount = 0;
 
     var multipart = await http.MultipartFile.fromPath('doc', file.path,
-        filename: "test.mp4");
+        filename: "test.jpeg");
 
     // final fileStreamFile = file.openRead();
 
     // var multipart = MultipartFile("file", fileStreamFile, file.lengthSync(),
     //     filename: fileUtil.basename(file.path));
 
-    var requestMultipart = http.MultipartRequest("POST", Uri.parse("uri"));
+    var requestMultipart = http.MultipartRequest("POST", Uri.parse(url));
 
     requestMultipart.files.add(multipart);
 
     var msStream = requestMultipart.finalize();
-
     var totalByteLength = requestMultipart.contentLength;
 
     request.contentLength = totalByteLength;

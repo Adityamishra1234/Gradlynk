@@ -12,6 +12,7 @@ import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/institutiondropdown.dart';
+import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
@@ -1251,11 +1252,33 @@ class ApiServices extends StudentPanelBase {
 
   getUpComingEvent(String endpoint) async {
     try {
-      List<UpcomingEvent> model = [];
+      List<UpcomingEventModel> model = [];
       var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
       if (res != null) {
-        model = List<UpcomingEvent>.from(
-            json.decode(res).map((x) => UpcomingEvent.fromJson(x)));
+        model = List<UpcomingEventModel>.from(
+            json.decode(res).map((x) => UpcomingEventModel.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getNotification(String endpoint) async {
+    try {
+      List<NotificationModel> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<NotificationModel>.from(
+            json.decode(res).map((x) => NotificationModel.fromJson(x)));
         return model;
       }
     } catch (e) {

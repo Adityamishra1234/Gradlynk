@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
@@ -55,7 +56,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           const Spacer(),
           IconButton(
             icon: svgImage("notification", ThemeConstants.IconColor, 30, 30),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(NotificationScreen());
+            },
           ),
           // IconButton(
           //   icon: SvgPicture.asset(
@@ -79,5 +82,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: Colors.white,
       ),
     );
+  }
+
+  //Funcation
+  callbacktest(data) {
+    print(data);
   }
 }

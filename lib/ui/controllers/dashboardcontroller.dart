@@ -14,7 +14,7 @@ class DashboardController extends GetxController {
   // StudentPanel studentPanel = StudentPanel();
   ApiServices apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
-  List<UpcomingEvent>? upcomingEventlist;
+  List<UpcomingEventModel>? upcomingEventlist;
   List<UpcomingHoliday>? upcomingholidayslist;
   RxBool loadingUpcomingEvents = false.obs;
   RxBool loadingNewsAndUpdates = false.obs;

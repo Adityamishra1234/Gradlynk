@@ -17,6 +17,7 @@ import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
+import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
@@ -49,6 +50,7 @@ import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 
 import 'ui/screen/Login_Module/animationtest.dart';
+import 'ui/screen/My_Application/applicationcompletedetail.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -260,6 +262,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: StageProgress.routeNamed,
           page: () => const StageProgress(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: ApplicationCompleteDetails.routeNamed,
+          page: () => ApplicationCompleteDetails(),
           transition: Transition.fade,
         ),
       ],

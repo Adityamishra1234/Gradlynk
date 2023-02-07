@@ -97,16 +97,21 @@ class ApplicationSummary extends StatelessWidget {
                                       children: [
                                         InkWell(
                                           onTap: () async {
-                                            controller
-                                                .getApplicationDetailComplete(
-                                                    controller
-                                                        .applicationSummaryModel[
-                                                            index]
-                                                        .id
-                                                        .toString());
+                                            // controller
+                                            //     .getApplicationDetailComplete(
+                                            //         controller
+                                            //             .applicationSummaryModel[
+                                            //                 index]
+                                            //             .id
+                                            //             .toString());
 
-                                            Get.to(
-                                                const ApplicationCompleteDetails());
+                                            Get.toNamed(
+                                                ApplicationCompleteDetails
+                                                    .routeNamed,
+                                                arguments: controller
+                                                    .applicationSummaryModel[
+                                                        index]
+                                                    .id);
                                           },
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller

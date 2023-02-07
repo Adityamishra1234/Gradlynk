@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:hashids2/hashids2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -12,25 +14,19 @@ class BaseController extends GetxController {
   RxBool loadingStudentPanelData1 = false.obs;
   PersonalInformationModel personalModal = PersonalInformationModel();
   final prefs = SharedPreferences.getInstance();
-  List<UpcomingEvent>? upcomingEventlist;
+  List<UpcomingEventModel>? upcomingModel;
   RxBool loadingUpcomingEvents = false.obs;
-
-  //Image
-  // String? create_profile;
-  // String? add;
-  // String? alarm;
-  // String? arrow;
-  // String? calender;
-  // String? camera;
-  // String? cameracapture;
-  // String? clock;
-  // String? compare;
-  // String? course;
+  List<NotificationModel>? notificationModel;
+  RxBool loadingnotificationModel = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     profiledetail();
+  }
+
+  @override
+  onReady() {
     upcomingEvents();
   }
 
@@ -42,6 +38,7 @@ class BaseController extends GetxController {
       loadingStudentPanelData1 = true.obs;
       update();
     }
+    getNotificatin(model1.id.toString());
   }
 
   getPersonalModal(PersonalInformationModel model) {
@@ -52,8 +49,18 @@ class BaseController extends GetxController {
   upcomingEvents() async {
     var res = await apiServices.getUpComingEvent(Endpoints.upcomingEvents!);
     if (res != null) {
-      upcomingEventlist = res;
+      upcomingModel = res;
       loadingUpcomingEvents = true.obs;
+      update();
+    }
+  }
+
+  getNotificatin(String id) async {
+    var res = await apiServices
+        .getNotification("${Endpoints.notificationForUser!}$id");
+    if (res != null) {
+      notificationModel = res;
+      loadingnotificationModel = true.obs;
       update();
     }
   }

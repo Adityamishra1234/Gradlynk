@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
@@ -223,4 +224,36 @@ svgImage(String endpoint, Color color, double height, double width) {
       fadeDuration: const Duration(milliseconds: 500),
     ),
   );
+}
+
+getNotification(
+  BuildContext context,
+  Function callback,
+) {
+  return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+          content: SingleChildScrollView(
+              child: Container(
+            // color: ThemeConstants.GreenColor,
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width,
+                  child: Card(
+                    child: GetBuilder<BaseController>(builder: (_) {
+                      return CustomAutoSizeTextMontserrat(
+                          text: _.notificationModel![0].notificationTitle);
+                    }),
+                  ),
+                )
+              ],
+            ),
+          ))));
 }
