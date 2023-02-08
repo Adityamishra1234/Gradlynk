@@ -7,10 +7,16 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:http_parser/http_parser.dart' show MediaType;
+import 'package:studentpanel/ui/screen/test/multipartrequest.dart';
+
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
 class CustomFileUpload extends StatefulWidget {
-  const CustomFileUpload({Key? key}) : super(key: key);
+  String enq_id;
+  String id;
+  CustomFileUpload({Key? key, required this.enq_id, required this.id})
+      : super(key: key);
 
   @override
   State<CustomFileUpload> createState() => _CustomFileUploadState();
@@ -43,8 +49,9 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
                     csvFile2 = results!.files.first;
                     uploadFilename = results.files.first.name;
                     // fileUploadMultipart(
-                    //     file: csvFile2, onUploadProgress: callbacktest);
-                    sendFile(csvFile2, uploadFilename);
+                    //     csvFile2, callbacktest, widget.enq_id, widget.id);
+                    sendFile(
+                        csvFile2, uploadFilename, widget.enq_id, widget.id);
                     setState(() {});
                   },
                   child: const Text('CSV Take')),
@@ -70,55 +77,43 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
     return httpClient;
   }
 
-  sendFile(file, uploadFilename) async {
-    var url = Uri.parse("http://14.97.86.202:205/api/document-test");
-    // var url = Uri.parse(
-    //     "http://14.97.86.202:205/api/upload-application-document?enq_id=78623&id=29463");
+  sendFile(file, uploadFilename, String enq_id, String id) async {
+    var url = Uri.parse(
+        "http://14.97.86.202:205/api/upload-application-document?enq_id=$enq_id&id=$id");
     var request = http.MultipartRequest("POST", url);
 
-    request.files.add(await http.MultipartFile.fromPath('file', file.path,
-        filename: "test.jpeg"));
-
-    // request.headers.addAll({"Authorization": "Bearer $token"});
-
+    request.files.add(await http.MultipartFile.fromPath('doc', file.path,
+        filename: "ample.jpeg"));
     var res = await request.send();
-    // .then((response) {
-    //   print(response);
-    //   print("test");
-    //   print(response.statusCode);
-    //   if (response.statusCode == 200) {
-    //     print("Uploaded!");
-    //   }
-    // });
     var responsed = await http.Response.fromStream(res);
-    print(responsed.body);
+    if (responsed.statusCode == 200) {
+      responsed.body;
+    } else {
+      print(responsed.statusCode);
+    }
   }
 
-  static Future<String> fileUploadMultipart({file, onUploadProgress}) async {
+  fileUploadMultipart(file, onUploadProgress, String enqId, String id) async {
     assert(file != null);
 
-    const url = 'http://14.97.86.202:205/api/document-test';
-    // 'http://14.97.86.202:205/api/upload-application-document?enq_id=78623&id=29463';
+    var url = Uri.parse(
+        "http://14.97.86.202:205/api/upload-application-document?enq_id=$enqId&id=$id");
 
     final httpClient = getHttpClient();
 
-    final request = await httpClient.postUrl(Uri.parse(url));
+    final request = await httpClient.postUrl(url);
 
     int byteCount = 0;
 
     var multipart = await http.MultipartFile.fromPath('doc', file.path,
-        filename: "test.jpeg");
+        filename: file.path);
 
-    // final fileStreamFile = file.openRead();
-
-    // var multipart = MultipartFile("file", fileStreamFile, file.lengthSync(),
-    //     filename: fileUtil.basename(file.path));
-
-    var requestMultipart = http.MultipartRequest("POST", Uri.parse(url));
+    var requestMultipart = http.MultipartRequest("POST", url);
 
     requestMultipart.files.add(multipart);
 
     var msStream = requestMultipart.finalize();
+
     var totalByteLength = requestMultipart.contentLength;
 
     request.contentLength = totalByteLength;
@@ -163,7 +158,7 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
     }
   }
 
-  static Future<String> readResponseAsString(HttpClientResponse response) {
+  readResponseAsString(HttpClientResponse response) {
     var completer = Completer<String>();
     var contents = StringBuffer();
     response.transform(utf8.decoder).listen((String data) {
@@ -172,58 +167,23 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
     return completer.future;
   }
 
-  // static Future<String> fileDownload(
-  //     {String fileName, OnUploadProgressCallback onDownloadProgress}) async {
-  //   assert(fileName != null);
+  getielUpload(file, onUploadProgress, String enqId, String id) async {
+    var url = Uri.parse(
+        "http://14.97.86.202:205/api/upload-application-document?enq_id=$enqId&id=$id");
+    final request = MultipartRequest(
+      'POST',
+      url,
+      onProgress: (int bytes, int total) {
+        final progress = bytes / total;
+        print('progress: $progress ($bytes/$total)');
+      },
+    );
 
-  //   final url = Uri.encodeFull('$baseUrl/api/file/$fileName');
+// request.headers['HeaderKey'] = 'header_value';
+// request.fields['form_key'] = 'form_value';
+    request.files.add(await await http.MultipartFile.fromPath('doc', file.path,
+        filename: file.path));
 
-  //   final httpClient = getHttpClient();
-
-  //   final request = await httpClient.getUrl(Uri.parse(url));
-
-  //   request.headers
-  //       .add(HttpHeaders.contentTypeHeader, "application/octet-stream");
-
-  //   var httpResponse = await request.close();
-
-  //   int byteCount = 0;
-  //   int totalBytes = httpResponse.contentLength;
-
-  //   Directory appDocDir = await getApplicationDocumentsDirectory();
-  //   String appDocPath = appDocDir.path;
-
-  //   //appDocPath = "/storage/emulated/0/Download";
-
-  //   File file = new File(appDocPath + "/" + fileName);
-
-  //   var raf = file.openSync(mode: FileMode.write);
-
-  //   Completer completer = new Completer<String>();
-
-  //   httpResponse.listen(
-  //     (data) {
-  //       byteCount += data.length;
-
-  //       raf.writeFromSync(data);
-
-  //       if (onDownloadProgress != null) {
-  //         onDownloadProgress(byteCount, totalBytes);
-  //       }
-  //     },
-  //     onDone: () {
-  //       raf.closeSync();
-
-  //       completer.complete(file.path);
-  //     },
-  //     onError: (e) {
-  //       raf.closeSync();
-  //       file.deleteSync();
-  //       completer.completeError(e);
-  //     },
-  //     cancelOnError: true,
-  //   );
-
-  //   return completer.future;
-  // }
+    final streamedResponse = await request.send();
+  }
 }

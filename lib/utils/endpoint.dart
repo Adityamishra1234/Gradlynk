@@ -85,6 +85,8 @@ class Endpoints {
   static String? allCountry = "get-all-country";
   static String? applicationStatus = "get-application-status";
   static String? applicationStage = "get-application-stage";
+  static String? applicationDocumentUpload =
+      "upload-application-document?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

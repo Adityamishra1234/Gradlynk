@@ -272,6 +272,7 @@ class AcknowledgementDocument {
 }
 
 class Documents {
+  int? id;
   String? documentParentCategory;
   String? requiredBy;
   String? uploadedBy;
@@ -282,6 +283,7 @@ class Documents {
 
   Documents(
       {this.documentParentCategory,
+      this.id,
       this.requiredBy,
       this.uploadedBy,
       this.mandatoryStatus,
@@ -290,6 +292,7 @@ class Documents {
       this.downloadLink});
 
   Documents.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     documentParentCategory = json['document_parent_category'];
     requiredBy = json['required_by'];
     uploadedBy = json['uploaded_by'];
@@ -301,6 +304,7 @@ class Documents {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
     data['document_parent_category'] = documentParentCategory;
     data['required_by'] = requiredBy;
     data['uploaded_by'] = uploadedBy;

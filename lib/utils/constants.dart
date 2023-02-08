@@ -200,9 +200,9 @@ getPhoneNumbervalidation(String? value) {
   }
 }
 
-getsnakbar(String data) {
+getsnakbar(String title, String data) {
   return Get.snackbar(
-    "Course ShortList",
+    title,
     duration: const Duration(seconds: 2),
     data,
     snackPosition: SnackPosition.BOTTOM,

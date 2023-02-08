@@ -1,10 +1,19 @@
+import 'dart:typed_data';
+
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
+import 'package:studentpanel/ui/screen/test/uploadfile.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
+import 'package:studentpanel/widgets/custom_doc_viewer.dart';
+import 'package:studentpanel/widgets/custom_image_viewer.dart';
+import 'package:studentpanel/widgets/custom_pdf_viewr.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/download_file.dart';
@@ -1394,53 +1403,95 @@ class ApplicationCompleteDetails extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: ThemeConstants.whitecolor,
-                              side:
-                                  BorderSide(color: ThemeConstants.GreenColor),
-                              backgroundColor:
-                                  ThemeConstants.whitecolor, // foreground
+                          //Upload
+                          if (getNUllChecker(model.documents![i].viewLink) ==
+                              true)
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: ThemeConstants.whitecolor,
+                                side: BorderSide(
+                                    color: ThemeConstants.GreenColor),
+                                backgroundColor:
+                                    ThemeConstants.whitecolor, // foreground
+                              ),
+                              onPressed: () {
+                                controller.uploadDocument(
+                                    model.documents![i].id.toString(), i);
+                              },
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Upload",
+                                textColor: ThemeConstants.GreenColor,
+                              ),
                             ),
-                            onPressed: () {},
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Upload",
-                              textColor: ThemeConstants.GreenColor,
+                          if (getNUllChecker(model.documents![i].viewLink) ==
+                              true)
+                            const SizedBox(
+                              width: 20,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: ThemeConstants.whitecolor,
-                              side: BorderSide(color: ThemeConstants.bluecolor),
-                              backgroundColor:
-                                  ThemeConstants.whitecolor, // foreground
+                          //Download
+                          if (getNUllChecker(model.documents![i].viewLink) ==
+                              false)
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: ThemeConstants.whitecolor,
+                                side:
+                                    BorderSide(color: ThemeConstants.bluecolor),
+                                backgroundColor:
+                                    ThemeConstants.whitecolor, // foreground
+                              ),
+                              onPressed: () {},
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Download",
+                                textColor: ThemeConstants.bluecolor,
+                              ),
                             ),
-                            onPressed: () {},
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Download",
-                              textColor: ThemeConstants.bluecolor,
+                          if (getNUllChecker(model.documents![i].viewLink) ==
+                              false)
+                            const SizedBox(
+                              width: 20,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: ThemeConstants.whitecolor,
-                              side:
-                                  BorderSide(color: ThemeConstants.orangeColor),
-                              backgroundColor:
-                                  ThemeConstants.whitecolor, // foreground
+                          //View
+                          if (getNUllChecker(model.documents![i].viewLink) ==
+                              false)
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: ThemeConstants.whitecolor,
+                                side: BorderSide(
+                                    color: ThemeConstants.orangeColor),
+                                backgroundColor:
+                                    ThemeConstants.whitecolor, // foreground
+                              ),
+                              onPressed: () {
+                                if (model.documents![i].viewLink
+                                    .toString()
+                                    .contains("pdf")) {
+                                  Get.to(CustomPDFViewer(
+                                    url:
+                                        model.documents![i].viewLink.toString(),
+                                  ));
+                                } else if (model.documents![i].viewLink
+                                    .toString()
+                                    .contains("doc")) {
+                                  Get.to(CustomDocumentViewer(
+                                    url: model.documents![i].viewLink!,
+                                  ));
+                                } else if (model.documents![i].viewLink
+                                    .toString()
+                                    .contains("docx")) {
+                                  Get.to(CustomDocumentViewer(
+                                    url: model.documents![i].viewLink!,
+                                  ));
+                                } else {
+                                  Get.to(CustomImageViewer(
+                                    url: model.documents![i].viewLink!,
+                                  ));
+                                }
+                              },
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "View",
+                                textColor: ThemeConstants.orangeColor,
+                              ),
                             ),
-                            onPressed: () {},
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "View",
-                              textColor: ThemeConstants.orangeColor,
-                            ),
-                          ),
                         ],
                       )
                     ],

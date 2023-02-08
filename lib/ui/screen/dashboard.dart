@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
@@ -396,8 +397,9 @@ class _DashBoardState extends State<DashBoard> {
                                   //   camera: firstCamera,
                                   // ));
 
-                                  // Get.toNamed(ProfilePageCopy.routeNamed);
-                                  Get.to(CustomFileUpload());
+                                  Get.toNamed(ProfilePageCopy.routeNamed);
+                                  // Get.to(DownloadFileTest());
+                                  // Get.to(CustomFileUpload());
                                   // getDashboardScreen(context, callbackDropDownButton);
                                 },
                                 child: Column(

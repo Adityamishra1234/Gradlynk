@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
+import 'package:studentpanel/ui/models/fileupload.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/institutiondropdown.dart';
 import 'package:studentpanel/ui/models/notificationmodel.dart';
@@ -30,6 +31,7 @@ import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:http/http.dart' as http;
 
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
@@ -1291,6 +1293,31 @@ class ApiServices extends StudentPanelBase {
           backgroundColor: ThemeConstants.whitecolor,
           textColor: ThemeConstants.blackcolor,
           fontSize: 16.0);
+    }
+  }
+
+  Future<String?> sendFile(
+    file,
+    uploadFilename,
+    String enq_id,
+    String id,
+    String endpoint,
+  ) async {
+    var url = Uri.parse(
+        "${Endpoints.baseUrl}${Endpoints.applicationDocumentUpload}$enq_id&id=$id");
+    var request = http.MultipartRequest("POST", url);
+
+    request.files.add(await http.MultipartFile.fromPath('doc', file.path,
+        filename: file.path));
+    var res = await request.send();
+    var responsed = await http.Response.fromStream(res);
+    if (responsed.statusCode == 200) {
+      var jsondata = json.decode(responsed.body);
+      FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
+      getsnakbar("Document Upload", status.status.toString());
+      return status.viewLink;
+    } else {
+      return "";
     }
   }
 }
