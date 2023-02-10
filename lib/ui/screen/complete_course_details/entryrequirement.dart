@@ -13,6 +13,8 @@ class EntryRequirement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List temp = [];
+    List examType = [];
     List testTypeList = [];
     List listeningList = [];
     List readingList = [];
@@ -21,16 +23,32 @@ class EntryRequirement extends StatelessWidget {
     List writingList = [];
 
     try {
-      testTypeList = completeCourseDetail[0].testType!.split('|');
-      writingList = completeCourseDetail[0].writing!.split('|');
-      listeningList = completeCourseDetail[0].listening!.split('|');
-      readingList = completeCourseDetail[0].reading!.split('|');
-      speakingList = completeCourseDetail[0].speaking!.split('|');
-      overallList = completeCourseDetail[0].overall!.split('|');
+      testTypeList.addAll(completeCourseDetail[0].testType!.split('|'));
+      testTypeList.forEach(
+        (element) {
+          examType.add(element.toString().split("=>")[0]);
+          temp.add(element.toString().split("=>")[1].split(","));
+        },
+      );
+      for (var i = 0; i < (temp.length); i++) {
+        print(temp[i].length);
+        for (var j = 0; j < (temp[i].length); j++) {
+          if (j == 0) {
+            listeningList.add(temp[i][j].toString().split("Listening :")[1]);
+          } else if (j == 1) {
+            readingList.add(temp[i][j].toString().split("Reading :")[1]);
+          } else if (j == 2) {
+            writingList.add(temp[i][j].toString().split("Writing :")[1]);
+          } else if (j == 3) {
+            speakingList.add(temp[i][j].toString().split("Speaking :")[1]);
+          } else if (j == 4) {
+            overallList.add(temp[i][j].toString().split("Overall :")[1]);
+          }
+        }
+      }
     } catch (e) {
       debugPrint(e.toString());
     }
-
     return Expanded(
         child: SingleChildScrollView(
       child: Column(
@@ -437,14 +455,14 @@ class EntryRequirement extends StatelessWidget {
                         )),
                       ]),
                   if (getNUllChecker(completeCourseDetail[0].testType) == false)
-                    for (var i = 0; i < testTypeList.length; i++)
+                    for (var i = 0; i < writingList.length; i++)
                       TableRow(children: [
                         TableCell(
                             child: Center(
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: CustomAutoSizeTextMontserrat(
-                              text: testTypeList[i],
+                              text: examType[i],
                               fontSize: 12,
                               textColor: ThemeConstants.TextColor,
                             ),
