@@ -5,9 +5,12 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:studentpanel/utils/constants.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class CustomDownloadFile extends StatefulWidget {
+  String url;
+  CustomDownloadFile({Key? key, required this.url});
   @override
   _CustomDownloadFileState createState() => _CustomDownloadFileState();
 }
@@ -34,32 +37,38 @@ class _CustomDownloadFileState extends State<CustomDownloadFile> {
               break;
             }
           }
-          newPath = "$newPath/RPSApp";
+          newPath = "$newPath/SIEC";
           directory = Directory(newPath);
         } else {
           return false;
         }
       } else {
-        if (await _requestPermission(Permission.photos)) {
-          directory = await getTemporaryDirectory();
+        if (await _requestPermission(Permission.storage)) {
+          print("aman2");
+          directory = await getApplicationDocumentsDirectory();
+          print("aman3");
         } else {
           return false;
         }
       }
       File saveFile = File("${directory.path}/$fileName");
       if (!await directory.exists()) {
+        print("aman4");
         await directory.create(recursive: true);
       }
       if (await directory.exists()) {
+        print("aman5");
         await dio.download(url, saveFile.path,
             onReceiveProgress: (value1, value2) {
           setState(() {
             progress = value1 / value2;
+            print(progress);
           });
         });
         if (Platform.isIOS) {
-          await ImageGallerySaver.saveFile(saveFile.path,
-              isReturnPathOfIOS: true);
+          print("aman6");
+
+          shareFile(saveFile.path);
         }
         return true;
       }
@@ -88,12 +97,12 @@ class _CustomDownloadFileState extends State<CustomDownloadFile> {
       progress = 0;
     });
     bool downloaded = await saveVideo(
-        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-        "video.mp4");
+        widget.url,
+        reverseStringUsingSplit(
+            reverseStringUsingSplit(widget.url).split("/")[0]));
     if (downloaded) {
       Get.snackbar("File download", "complete download",
           snackPosition: SnackPosition.BOTTOM);
-      print("File Downloaded");
     } else {
       print("Problem Downloading File");
     }
@@ -120,11 +129,23 @@ class _CustomDownloadFileState extends State<CustomDownloadFile> {
                   color: Colors.white,
                 ),
                 onPressed: downloadFile,
+
+                // downloadFile,
                 label: const Text(
                   "Download Video",
                   style: TextStyle(color: Colors.white, fontSize: 25),
                 )),
       ),
     );
+  }
+
+//
+  Future<void> shareFile(String filepath) async {
+    print("aman1");
+    await FlutterShare.shareFile(
+      title: filepath,
+      filePath: filepath,
+    );
+    print("aman7");
   }
 }
