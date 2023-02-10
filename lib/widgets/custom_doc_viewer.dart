@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_file_view/flutter_file_view.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
-// import 'package:webviewx/webviewx.dart' as wv;
-// import 'package:webviewx/webviewx.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class CustomDocumentViewer extends StatefulWidget {
   String url;
@@ -14,28 +11,24 @@ class CustomDocumentViewer extends StatefulWidget {
 }
 
 class _CustomDocumentViewerState extends State<CustomDocumentViewer> {
-  // late final WebViewController controller;
-  // late WebViewXController webviewController;
+  late final WebViewController controller;
 
   @override
   void initState() {
-    // webviewController=WebViewXController()..
-    // controller = WebViewController()
-    //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    //   ..setBackgroundColor(const Color(0x00000000))
-    //   ..setNavigationDelegate(
-    //     NavigationDelegate(
-    //       onProgress: (int progress) {
-    //         // Update loading bar.
-    //       },
-    //       onPageStarted: (String url) {},
-    //       onPageFinished: (String url) {},
-    //       onWebResourceError: (WebResourceError error) {
-    //         print(error);
-    //       },
-    //     ),
-    //   )
-    //   ..loadRequest(Uri.parse(widget.url));
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            // Update loading bar.
+          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {},
+          onWebResourceError: (WebResourceError error) {},
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.url));
     super.initState();
   }
 
@@ -51,14 +44,8 @@ class _CustomDocumentViewerState extends State<CustomDocumentViewer> {
         children: [
           SafeArea(
             child: SizedBox(
-                height: MediaQuery.of(context).size.height, child: Text("sdkj")
-                // FileView(
-                //     controller: FileViewController.network(
-                //   widget.url,
-                // ))
-
-                // WebViewWidget(controller: controller)
-                ),
+                height: MediaQuery.of(context).size.height,
+                child: WebViewWidget(controller: controller)),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50, right: 20),
