@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 
 class VisaDetailController extends GetxController {

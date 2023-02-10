@@ -347,48 +347,94 @@ class _CourseSearchState extends State<CourseSearch> {
                                                 getToast(SnackBarConstants
                                                     .courseSearchPart1!);
                                               } else {
-                                                Get.to(CourseSearchList(
-                                                  filterRedirect: false,
-                                                  stateCode:
-                                                      _.selectStateCode == null
-                                                          ? ""
-                                                          : _.selectStateCode
-                                                              .toString(),
-                                                  cityCode:
-                                                      _.selectCityCode == null
-                                                          ? ""
-                                                          : _.selectCityCode
-                                                              .toString(),
-                                                  boardFieldCode:
-                                                      _.selectCourseBoardFieldCode ==
-                                                              null
-                                                          ? ""
-                                                          : _.selectCourseBoardFieldCode
-                                                              .toString(),
-                                                  countryId:
-                                                      _.selectCountryCode ==
-                                                              null
-                                                          ? ""
-                                                          : _.selectCountryCode
-                                                              .toString(),
-                                                  narrowField:
-                                                      _.selectCourseNarrowFieldCode ==
-                                                              null
-                                                          ? ""
-                                                          : _.selectCourseNarrowFieldCode
-                                                              .toString(),
-                                                  courseLevel:
-                                                      _.selectCourseLevelCode ==
-                                                              null
-                                                          ? ""
-                                                          : _.selectCourseLevelCode
-                                                              .toString(),
-                                                  enq_id:
-                                                      Get.find<BaseController>()
-                                                          .model1
-                                                          .id
-                                                          .toString(),
-                                                ));
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            CourseSearchList(
+                                                              filterRedirect:
+                                                                  false,
+                                                              stateCode: _.selectStateCode ==
+                                                                      null
+                                                                  ? ""
+                                                                  : _.selectStateCode
+                                                                      .toString(),
+                                                              cityCode: _.selectCityCode ==
+                                                                      null
+                                                                  ? ""
+                                                                  : _.selectCityCode
+                                                                      .toString(),
+                                                              boardFieldCode: _
+                                                                          .selectCourseBoardFieldCode ==
+                                                                      null
+                                                                  ? ""
+                                                                  : _.selectCourseBoardFieldCode
+                                                                      .toString(),
+                                                              countryId: _.selectCountryCode ==
+                                                                      null
+                                                                  ? ""
+                                                                  : _.selectCountryCode
+                                                                      .toString(),
+                                                              narrowField: _
+                                                                          .selectCourseNarrowFieldCode ==
+                                                                      null
+                                                                  ? ""
+                                                                  : _.selectCourseNarrowFieldCode
+                                                                      .toString(),
+                                                              courseLevel: _
+                                                                          .selectCourseLevelCode ==
+                                                                      null
+                                                                  ? ""
+                                                                  : _.selectCourseLevelCode
+                                                                      .toString(),
+                                                              enq_id: Get.find<
+                                                                      BaseController>()
+                                                                  .model1
+                                                                  .id
+                                                                  .toString(),
+                                                            )));
+                                                // Get.to(CourseSearchList(
+                                                //   filterRedirect: false,
+                                                //   stateCode:
+                                                //       _.selectStateCode == null
+                                                //           ? ""
+                                                //           : _.selectStateCode
+                                                //               .toString(),
+                                                //   cityCode:
+                                                //       _.selectCityCode == null
+                                                //           ? ""
+                                                //           : _.selectCityCode
+                                                //               .toString(),
+                                                //   boardFieldCode:
+                                                //       _.selectCourseBoardFieldCode ==
+                                                //               null
+                                                //           ? ""
+                                                //           : _.selectCourseBoardFieldCode
+                                                //               .toString(),
+                                                //   countryId:
+                                                //       _.selectCountryCode ==
+                                                //               null
+                                                //           ? ""
+                                                //           : _.selectCountryCode
+                                                //               .toString(),
+                                                //   narrowField:
+                                                //       _.selectCourseNarrowFieldCode ==
+                                                //               null
+                                                //           ? ""
+                                                //           : _.selectCourseNarrowFieldCode
+                                                //               .toString(),
+                                                //   courseLevel:
+                                                //       _.selectCourseLevelCode ==
+                                                //               null
+                                                //           ? ""
+                                                //           : _.selectCourseLevelCode
+                                                //               .toString(),
+                                                //   enq_id:
+                                                //       Get.find<BaseController>()
+                                                //           .model1
+                                                //           .id
+                                                //           .toString(),
+                                                // ));
                                               }
                                             },
                                             child: CustomAutoSizeTextMontserrat(

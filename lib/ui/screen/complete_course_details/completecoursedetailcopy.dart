@@ -326,8 +326,12 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.whitecolor,
                       onTap: () {
-                        Get.to(AboutInstituteCopy(
-                            completeCourseDetail: completeCourseDetail!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AboutInstituteCopy(
+                                    completeCourseDetail:
+                                        completeCourseDetail!)));
                       },
                       child: SizedBox(
                         height: 40,
@@ -362,8 +366,14 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.whitecolor,
                       onTap: () {
-                        Get.to(CourseInformation(
-                            completeCourseDetail: completeCourseDetail!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CourseInformation(
+                                    completeCourseDetail:
+                                        completeCourseDetail!)));
+                        // Get.to(CourseInformation(
+                        //     completeCourseDetail: completeCourseDetail!));
                       },
                       child: SizedBox(
                         height: 40,
@@ -468,8 +478,14 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                     InkWell(
                       highlightColor: ThemeConstants.whitecolor,
                       onTap: () {
-                        Get.to(StepsToVisaCopy(
-                            completeCourseDetail: completeCourseDetail!));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => StepsToVisaCopy(
+                                    completeCourseDetail:
+                                        completeCourseDetail!)));
+                        // Get.to(StepsToVisaCopy(
+                        //     completeCourseDetail: completeCourseDetail!));
                       },
                       child: SizedBox(
                         height: 40,

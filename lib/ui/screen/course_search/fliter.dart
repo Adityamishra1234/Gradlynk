@@ -645,33 +645,69 @@ class _FilterState extends State<Filter> {
                                           true) {
                                         if (previousRoute ==
                                             FinalShortList.routeNamed) {
-                                          Get.to(FinalShortList(
-                                            courseModelFilter:
-                                                controller1.courseModelFilter,
-                                            filterRedirect: true,
-                                            filterModel:
-                                                controller1.filterModel,
-                                          ));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      FinalShortList(
+                                                        courseModelFilter:
+                                                            controller1
+                                                                .courseModelFilter,
+                                                        filterRedirect: true,
+                                                        filterModel: controller1
+                                                            .filterModel,
+                                                      )));
+                                          // Get.to(FinalShortList(
+                                          //   courseModelFilter:
+                                          //       controller1.courseModelFilter,
+                                          //   filterRedirect: true,
+                                          //   filterModel:
+                                          //       controller1.filterModel,
+                                          // ));
                                         }
                                         if (previousRoute ==
                                             ReviewShortList.routeNamed) {
-                                          Get.to(ReviewShortList(
-                                            courseModelFilter:
-                                                controller1.courseModelFilter,
-                                            filterRedirect: true,
-                                            filtermodel:
-                                                controller1.filterModel,
-                                          ));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ReviewShortList(
+                                                        courseModelFilter:
+                                                            controller1
+                                                                .courseModelFilter,
+                                                        filterRedirect: true,
+                                                        filtermodel: controller1
+                                                            .filterModel,
+                                                      )));
+                                          // Get.to(ReviewShortList(
+                                          //   courseModelFilter:
+                                          //       controller1.courseModelFilter,
+                                          //   filterRedirect: true,
+                                          //   filtermodel:
+                                          //       controller1.filterModel,
+                                          // ));
                                         }
                                         if (previousRoute ==
                                             CourseSearchList.routeNamed) {
-                                          Get.to(CourseSearchList(
-                                            filterRedirect: true,
-                                            courseModelFilter:
-                                                controller1.courseModelFilter,
-                                            filterModel:
-                                                controller1.filterModel,
-                                          ));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CourseSearchList(
+                                                        filterRedirect: true,
+                                                        courseModelFilter:
+                                                            controller1
+                                                                .courseModelFilter,
+                                                        filterModel: controller1
+                                                            .filterModel,
+                                                      )));
+                                          // Get.to(CourseSearchList(
+                                          //   filterRedirect: true,
+                                          //   courseModelFilter:
+                                          //       controller1.courseModelFilter,
+                                          //   filterModel:
+                                          //       controller1.filterModel,
+                                          // ));
                                         }
                                       }
                                     } else {
@@ -679,33 +715,68 @@ class _FilterState extends State<Filter> {
                                           true) {
                                         if (previousRoute ==
                                             FinalShortList.routeNamed) {
-                                          Get.to(FinalShortList(
-                                            courseModelFilter:
-                                                controller1.courseModelFilter,
-                                            filterRedirect: true,
-                                            filterModel:
-                                                controller1.filterModel,
-                                          ));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      FinalShortList(
+                                                        courseModelFilter:
+                                                            controller1
+                                                                .courseModelFilter,
+                                                        filterRedirect: true,
+                                                        filterModel: controller1
+                                                            .filterModel,
+                                                      )));
+                                          // Get.to(FinalShortList(
+                                          //   courseModelFilter:
+                                          //       controller1.courseModelFilter,
+                                          //   filterRedirect: true,
+                                          //   filterModel:
+                                          //       controller1.filterModel,
+                                          // ));
                                         }
                                         if (previousRoute ==
                                             ReviewShortList.routeNamed) {
-                                          Get.to(ReviewShortList(
-                                            courseModelFilter:
-                                                controller1.courseModelFilter,
-                                            filterRedirect: true,
-                                            filtermodel:
-                                                controller1.filterModel,
-                                          ));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ReviewShortList(
+                                                        courseModelFilter:
+                                                            controller1
+                                                                .courseModelFilter,
+                                                        filterRedirect: true,
+                                                        filtermodel: controller1
+                                                            .filterModel,
+                                                      )));
+                                          // Get.to(ReviewShortList(
+                                          //   courseModelFilter:
+                                          //       controller1.courseModelFilter,
+                                          //   filterRedirect: true,
+                                          //   filtermodel:
+                                          //       controller1.filterModel,
+                                          // ));
                                         }
                                         if (previousRoute ==
                                             CourseSearchList.routeNamed) {
-                                          Get.to(CourseSearchList(
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CourseSearchList(
                                             filterRedirect: true,
                                             courseModelFilter:
                                                 controller1.courseModelFilter,
                                             filterModel:
                                                 controller1.filterModel,
-                                          ));
+                                          )));
+                                          // Get.to(CourseSearchList(
+                                          //   filterRedirect: true,
+                                          //   courseModelFilter:
+                                          //       controller1.courseModelFilter,
+                                          //   filterModel:
+                                          //       controller1.filterModel,
+                                          // ));
                                         }
                                       }
                                     }

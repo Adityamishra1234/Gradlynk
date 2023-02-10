@@ -28,7 +28,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
     return AutoSizeText.rich(
       // text ?? "",
       TextSpan(
-          text: getNUllChecker(text) == false ? text : "",
+          text: getNUllChecker(text) == false ? text.toString() : "",
           children: <InlineSpan>[
             if (mandatory == true)
               TextSpan(text: '*', style: TextStyle(color: ThemeConstants.red))

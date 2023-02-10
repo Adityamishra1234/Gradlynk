@@ -111,13 +111,25 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                           controller1.courseModelFilter
                                               .courseSearchList;
                                     }
-                                    Get.to(Filter(
-                                      courseModelFilter:
-                                          controller1.courseModelFilter,
-                                      previousRoute:
-                                          CourseSearchList.routeNamed,
-                                      filtermodel: widget.filterModel,
-                                    ));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Filter(
+                                                  courseModelFilter: controller1
+                                                      .courseModelFilter,
+                                                  previousRoute:
+                                                      CourseSearchList
+                                                          .routeNamed,
+                                                  filtermodel:
+                                                      widget.filterModel,
+                                                )));
+                                    // Get.to(Filter(
+                                    //   courseModelFilter:
+                                    //       controller1.courseModelFilter,
+                                    //   previousRoute:
+                                    //       CourseSearchList.routeNamed,
+                                    //   filtermodel: widget.filterModel,
+                                    // ));
                                   },
                                   child: Container(
                                     height: 30,
@@ -261,14 +273,24 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                       controller1
                                               .courseSearchModelCompare2.id !=
                                           null) {
-                                    Get.to(
-                                      Comparing(
-                                        courseSearchModel1: controller1
-                                            .courseSearchModelCompare1,
-                                        courseSearchModel2: controller1
-                                            .courseSearchModelCompare2,
-                                      ),
-                                    );
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Comparing(
+                                            courseSearchModel1: controller1
+                                                .courseSearchModelCompare1,
+                                            courseSearchModel2: controller1
+                                                .courseSearchModelCompare2,
+                                          ),
+                                        ));
+                                    // Get.to(
+                                    //   Comparing(
+                                    //     courseSearchModel1: controller1
+                                    //         .courseSearchModelCompare1,
+                                    //     courseSearchModel2: controller1
+                                    //         .courseSearchModelCompare2,
+                                    //   ),
+                                    // );
                                   } else {
                                     getToast(SnackBarConstants
                                         .courseSearchListPart3!);
@@ -333,6 +355,13 @@ class _CourseSearchListState extends State<CourseSearchList> {
     var res = await controller1.completeCourseDetailMethod(
         endpoint[0], endpoint[1], endpoint[2]);
     if (res != null) {
+      //TODO
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (context) => CourseSearchFullDetail(
+      //               completeCourseDetail: res,
+      //             )));
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));

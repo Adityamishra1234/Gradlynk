@@ -28,7 +28,8 @@ class _CustomDocumentViewerState extends State<CustomDocumentViewer> {
           onWebResourceError: (WebResourceError error) {},
         ),
       )
-      ..loadRequest(Uri.parse(widget.url));
+      ..loadRequest(Uri.parse(
+          "http://docs.google.com/gview?embedded=true&url=${widget.url}"));
     super.initState();
   }
 

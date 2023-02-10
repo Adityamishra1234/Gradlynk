@@ -84,6 +84,7 @@ class VisaSummary extends StatelessWidget {
                                       children: [
                                         InkWell(
                                           onTap: () {
+                                            //TODO
                                             Get.to(VisaDetail(
                                               applicationId: getNUllChecker(_
                                                           .modelList[index]

@@ -630,9 +630,15 @@ class _DashBoardState extends State<DashBoard> {
                                         ),
                                         TextButton(
                                             onPressed: () {
-                                              Get.to(UpcomingEvent(
-                                                model: _.upcomingModel,
-                                              ));
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UpcomingEvent(
+                                                            model:
+                                                                _.upcomingModel,
+                                                          )));
+
                                               // Get.snackbar(
                                               //   "DashBoard",
                                               //   "View All",

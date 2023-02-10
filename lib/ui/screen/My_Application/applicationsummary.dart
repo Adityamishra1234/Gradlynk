@@ -104,7 +104,7 @@ class ApplicationSummary extends StatelessWidget {
                                             //                 index]
                                             //             .id
                                             //             .toString());
-
+                                            //TODO
                                             Get.toNamed(
                                                 ApplicationCompleteDetails
                                                     .routeNamed,

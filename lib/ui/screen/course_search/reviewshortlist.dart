@@ -109,12 +109,22 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                     controller1
                                         .courseModelFilter.courseSearchList;
                               }
-                              Get.to(Filter(
-                                courseModelFilter:
-                                    controller1.courseModelFilter,
-                                previousRoute: ReviewShortList.routeNamed,
-                                filtermodel: widget.filtermodel,
-                              ));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Filter(
+                                            courseModelFilter:
+                                                controller1.courseModelFilter,
+                                            previousRoute:
+                                                ReviewShortList.routeNamed,
+                                            filtermodel: widget.filtermodel,
+                                          )));
+                              // Get.to(Filter(
+                              //   courseModelFilter:
+                              //       controller1.courseModelFilter,
+                              //   previousRoute: ReviewShortList.routeNamed,
+                              //   filtermodel: widget.filtermodel,
+                              // ));
                             },
                             child: Container(
                               height: 30,
@@ -282,14 +292,24 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                   null &&
                               controller1.courseSearchModelCompare2.id !=
                                   null) {
-                            Get.to(
-                              Comparing(
-                                courseSearchModel1:
-                                    controller1.courseSearchModelCompare1,
-                                courseSearchModel2:
-                                    controller1.courseSearchModelCompare2,
-                              ),
-                            );
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Comparing(
+                                    courseSearchModel1:
+                                        controller1.courseSearchModelCompare1,
+                                    courseSearchModel2:
+                                        controller1.courseSearchModelCompare2,
+                                  ),
+                                ));
+                            // Get.to(
+                            //   Comparing(
+                            //     courseSearchModel1:
+                            //         controller1.courseSearchModelCompare1,
+                            //     courseSearchModel2:
+                            //         controller1.courseSearchModelCompare2,
+                            //   ),
+                            // );
                           } else {
                             getToast(SnackBarConstants.courseSearchListPart3!);
                           }
@@ -381,6 +401,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
         endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
+      //TODO
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));

@@ -83,12 +83,22 @@ class _FinalShortListState extends State<FinalShortList> {
                                       controller1
                                           .courseModelFilter.courseSearchList;
                                 }
-                                Get.to(Filter(
-                                  previousRoute: FinalShortList.routeNamed,
-                                  courseModelFilter:
-                                      controller1.courseModelFilter,
-                                  filtermodel: widget.filterModel,
-                                ));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Filter(
+                                              previousRoute:
+                                                  FinalShortList.routeNamed,
+                                              courseModelFilter:
+                                                  controller1.courseModelFilter,
+                                              filtermodel: widget.filterModel,
+                                            )));
+                                // Get.to(Filter(
+                                //   previousRoute: FinalShortList.routeNamed,
+                                //   courseModelFilter:
+                                //       controller1.courseModelFilter,
+                                //   filtermodel: widget.filterModel,
+                                // ));
                               },
                               child: Container(
                                 height: 30,
@@ -263,14 +273,24 @@ class _FinalShortListState extends State<FinalShortList> {
                                     null &&
                                 controller1.courseSearchModelCompare2.id !=
                                     null) {
-                              Get.to(
-                                Comparing(
-                                  courseSearchModel1:
-                                      controller1.courseSearchModelCompare1,
-                                  courseSearchModel2:
-                                      controller1.courseSearchModelCompare2,
-                                ),
-                              );
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Comparing(
+                                      courseSearchModel1:
+                                          controller1.courseSearchModelCompare1,
+                                      courseSearchModel2:
+                                          controller1.courseSearchModelCompare2,
+                                    ),
+                                  ));
+                              // Get.to(
+                              //   Comparing(
+                              //     courseSearchModel1:
+                              //         controller1.courseSearchModelCompare1,
+                              //     courseSearchModel2:
+                              //         controller1.courseSearchModelCompare2,
+                              //   ),
+                              // );
                             } else {
                               getToast(
                                   SnackBarConstants.courseSearchListPart3!);
@@ -342,6 +362,17 @@ class _FinalShortListState extends State<FinalShortList> {
         endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
+      //TODO
+      // Navigator.push(
+      //                             context,
+      //                             MaterialPageRoute(
+      //                               builder: (context) => Comparing(
+      //                                 courseSearchModel1:
+      //                                     controller1.courseSearchModelCompare1,
+      //                                 courseSearchModel2:
+      //                                     controller1.courseSearchModelCompare2,
+      //                               ),
+      //                             ));
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));

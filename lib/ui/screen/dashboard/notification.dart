@@ -37,68 +37,62 @@ class NotificationScreen extends StatelessWidget {
 
         List<Widget> addWidget = [];
         for (var i = 0; i < _.notificationModel!.length; i++) {
-          addWidget.add(Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ThemeConstants.whitecolor,
-                  border: Border.all(color: const Color(0xFFE5E1FE)),
-                  borderRadius: const BorderRadius.all(Radius.circular(10))),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Container(
-                        width: 10.0,
-                        height: 10.0,
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.blackcolor,
-                          shape: BoxShape.circle,
+          addWidget.add(InkWell(
+            onTap: () {
+              String hashidsApplication = _
+                  .notificationModel![i].notificationBody
+                  .toString()
+                  .split("href='")[1]
+                  .split("'>")[0];
+              hashidsApplication = reverseStringUsingSplit(hashidsApplication);
+              hashidsApplication = hashidsApplication.split("/")[0];
+              hashidsApplication = reverseStringUsingSplit(hashidsApplication);
+
+              hashidsApplication =
+                  hashids.decode(hashidsApplication)[0].toString();
+              //TODO
+              Get.toNamed("/ApplicationCompleteDetails",
+                  arguments: hashidsApplication);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: ThemeConstants.whitecolor,
+                    border: Border.all(color: const Color(0xFFE5E1FE)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Container(
+                          width: 10.0,
+                          height: 10.0,
+                          decoration: BoxDecoration(
+                            color: ThemeConstants.blackcolor,
+                            shape: BoxShape.circle,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width - 75,
-                        child: Column(
-                          children: [
-                            CustomAutoSizeTextMontserrat(
-                              text: _.notificationModel![i].notificationTitle,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    String hashidsApplication = _
-                                        .notificationModel![i].notificationBody
-                                        .toString()
-                                        .split("href='")[1]
-                                        .split("'>")[0];
-                                    hashidsApplication =
-                                        reverseStringUsingSplit(
-                                            hashidsApplication);
-                                    hashidsApplication =
-                                        hashidsApplication.split("/")[0];
-                                    hashidsApplication =
-                                        reverseStringUsingSplit(
-                                            hashidsApplication);
-
-                                    hashidsApplication = hashids
-                                        .decode(hashidsApplication)[0]
-                                        .toString();
-                                    //TODO
-                                    Get.toNamed("/ApplicationCompleteDetails",
-                                        arguments: hashidsApplication);
-                                  },
-                                  child: SizedBox(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width - 75,
+                          child: Column(
+                            children: [
+                              CustomAutoSizeTextMontserrat(
+                                text: _.notificationModel![i].notificationTitle,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width - 100,
                                     child: HtmlWidget(
@@ -112,28 +106,28 @@ class NotificationScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional.topStart,
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "1 day ago",
-                                textColor: ThemeConstants.TextColor,
-                                fontSize: 12,
+                                ],
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional.topStart,
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "1 day ago",
+                                  textColor: ThemeConstants.TextColor,
+                                  fontSize: 12,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

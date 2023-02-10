@@ -195,7 +195,7 @@ class DisplayPictureScreen extends StatelessWidget {
 
                   // Get a specific camera from the list of available cameras.
                   final firstCamera = cameras.first;
-                  // String id = DateTime.now().toIso8601String();
+                  // String id = DateTime.now().toIso8601String();   //TODO
                   Get.to(TakePictureScreen(
                     camera: firstCamera,
                   ));
@@ -224,7 +224,7 @@ class DisplayPictureScreen extends StatelessWidget {
 
                   // Get a specific camera from the list of available cameras.
                   final firstCamera = cameras.first;
-                  // String id = DateTime.now().toIso8601String();
+                  // String id = DateTime.now().toIso8601String();   //TODO
                   Get.to(TakePictureScreen(
                     camera: firstCamera,
                   ));

@@ -1,41 +1,41 @@
 class ApplicationDetailModel {
-  String? offerStatus;
-  String? acknowledgementNumber;
-  String? acknowledgementFile;
-  String? submissionDate;
-  String? offerDate;
-  String? offerLapseDate;
-  String? conditionalOfferDate;
-  String? feeDeadline;
-  String? courseStartDate;
-  String? completionDate;
-  String? fullOfferDoc;
-  String? offerRejectReason;
-  String? rejectionDoc;
-  String? currencyCode;
-  String? conditionalOfferDoc;
-  String? totalfees;
-  String? totalfeesInr;
-  String? annualTutionFees;
-  String? annualTutionFeesInr;
-  String? oSHCFees;
-  String? acceptanceDate;
-  String? acceptanceStage;
-  String? paymentOption;
-  String? amountPaid;
-  String? dateOfPayment;
-  String? paidBy;
-  String? modeOfPayment;
-  String? balanceFee;
-  String? paymentReceipt;
-  String? coeRecevied;
-  String? coeLetter;
-  String? siecEmployee;
-  String? deferReason;
-  String? deferTill;
-  String? defermentStatus;
-  String? reasonOfWithdraw;
-  String? withdrawStatus;
+  var offerStatus;
+  var acknowledgementNumber;
+  var acknowledgementFile;
+  var submissionDate;
+  var offerDate;
+  var offerLapseDate;
+  var conditionalOfferDate;
+  var feeDeadline;
+  var courseStartDate;
+  var completionDate;
+  var fullOfferDoc;
+  var offerRejectReason;
+  var rejectionDoc;
+  var currencyCode;
+  var conditionalOfferDoc;
+  var totalfees;
+  var totalfeesInr;
+  var annualTutionFees;
+  var annualTutionFeesInr;
+  var oSHCFees;
+  var acceptanceDate;
+  var acceptanceStage;
+  var paymentOption;
+  var amountPaid;
+  var dateOfPayment;
+  var paidBy;
+  var modeOfPayment;
+  var balanceFee;
+  var paymentReceipt;
+  var coeRecevied;
+  var coeLetter;
+  var siecEmployee;
+  var deferReason;
+  var deferTill;
+  var defermentStatus;
+  var reasonOfWithdraw;
+  var withdrawStatus;
   List<Documents>? documents;
   List<AcknowledgementDocument>? acknowledgementDocument;
   List<OfferDocument>? offerDocument;
@@ -205,9 +205,9 @@ class ApplicationDetailModel {
 }
 
 class OfferDocument {
-  String? documentName;
-  String? viewLink;
-  String? downloadLink;
+  var documentName;
+  var viewLink;
+  var downloadLink;
 
   OfferDocument({this.documentName, this.viewLink, this.downloadLink});
 
@@ -227,9 +227,9 @@ class OfferDocument {
 }
 
 class FeeDocument {
-  String? documentName;
-  String? viewLink;
-  String? downloadLink;
+  var documentName;
+  var viewLink;
+  var downloadLink;
 
   FeeDocument({this.documentName, this.viewLink, this.downloadLink});
 
@@ -249,9 +249,9 @@ class FeeDocument {
 }
 
 class AcknowledgementDocument {
-  String? documentName;
-  String? viewLink;
-  String? downloadLink;
+  var documentName;
+  var viewLink;
+  var downloadLink;
 
   AcknowledgementDocument(
       {this.documentName, this.viewLink, this.downloadLink});
@@ -273,13 +273,13 @@ class AcknowledgementDocument {
 
 class Documents {
   int? id;
-  String? documentParentCategory;
-  String? requiredBy;
-  String? uploadedBy;
-  String? mandatoryStatus;
-  String? documentName;
-  String? viewLink;
-  String? downloadLink;
+  var documentParentCategory;
+  var requiredBy;
+  var uploadedBy;
+  var mandatoryStatus;
+  var documentName;
+  var viewLink;
+  var downloadLink;
 
   Documents(
       {this.documentParentCategory,
