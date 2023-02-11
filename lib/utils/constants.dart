@@ -257,3 +257,63 @@ getNotification(
             ),
           ))));
 }
+
+String reverseStringUsingSplit(String input) {
+  var chars = input.split('');
+  return chars.reversed.join();
+}
+
+getSourceSelected(Function callbackSelectedSource, String id, int index) {
+  Get.bottomSheet(Container(
+    color: ThemeConstants.whitecolor,
+    height: 300,
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: CustomAutoSizeTextMontserrat(
+            text: "Select Source",
+            fontSize: 18,
+            textColor: ThemeConstants.bluecolor,
+          ),
+        ),
+        const SizedBox(
+          height: 40,
+        ),
+        Row(
+          children: [
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                callbackSelectedSource("Camera,$id,$index");
+              },
+              child: Column(
+                children: [
+                  svgImage("cameracapture", ThemeConstants.bluecolor, 100, 100),
+                  CustomAutoSizeTextMontserrat(
+                    text: "Camera",
+                  )
+                ],
+              ),
+            ),
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                callbackSelectedSource("Gallery");
+              },
+              child: Column(
+                children: [
+                  svgImage("gallery", ThemeConstants.bluecolor, 100, 100),
+                  CustomAutoSizeTextMontserrat(
+                    text: "Gallery",
+                  )
+                ],
+              ),
+            ),
+            const Spacer(),
+          ],
+        ),
+      ],
+    ),
+  ));
+}
