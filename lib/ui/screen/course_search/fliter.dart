@@ -791,10 +791,10 @@ class _FilterState extends State<Filter> {
                           ),
                         ),
                       if (controller1.loadingfuncation.value == false)
-                        const Center(child: CircularProgressIndicator()),
+                         Center(child: getLoading(context),),
                     ],
                   )
-                : const CircularProgressIndicator()));
+                : getLoading(context),));
   }
 
   // Function

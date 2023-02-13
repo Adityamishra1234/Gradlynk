@@ -70,7 +70,9 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                 child: CameraPreview(_controller));
           } else {
             // Otherwise, display a loading indicator.
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: getLoading(context),
+            );
           }
         },
       ),

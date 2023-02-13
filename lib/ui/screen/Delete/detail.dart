@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart' as timeDate;
+import 'package:studentpanel/utils/constants.dart';
 
 class DetialScreen extends StatefulWidget {
   const DetialScreen({Key? key}) : super(key: key);
@@ -149,7 +150,9 @@ class _DetialScreenState extends State<DetialScreen>
                             }),
                       );
                     } else {
-                      return const Center(child: CircularProgressIndicator());
+                      return Center(
+                        child: getLoading(context),
+                      );
                     }
                   }),
               SizedBox(

@@ -1315,8 +1315,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
+          : Center(
+              child: getLoading(context),
             );
     });
   }

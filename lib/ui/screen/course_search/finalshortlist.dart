@@ -337,7 +337,7 @@ class _FinalShortListState extends State<FinalShortList> {
                           ),
                         ),
                       if (_.loadingCourseShortList.value == false)
-                        const CircularProgressIndicator()
+                        getLoading(context),
                     ],
                   ),
                 ),

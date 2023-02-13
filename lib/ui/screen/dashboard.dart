@@ -660,8 +660,8 @@ class _DashBoardState extends State<DashBoard> {
                   ),
                 ],
               )
-            : const Center(
-                child: CircularProgressIndicator(),
+            : Center(
+                child: getLoading(context),
               );
       }),
       floatingActionButtonLocation:

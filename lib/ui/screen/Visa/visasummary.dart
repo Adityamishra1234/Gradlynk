@@ -221,7 +221,7 @@ class VisaSummary extends StatelessWidget {
                             }),
                       ),
                     if (_.loadingVisaDetails.value == false)
-                      const Center(child: CircularProgressIndicator())
+                      Center(child: getLoading(context)),
                   ],
                 ),
               ),

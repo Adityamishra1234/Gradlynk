@@ -75,12 +75,13 @@ class CustomDrawer extends StatelessWidget {
                     height: 8,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: LinearProgressIndicator(
-                        value: 0.7,
-                        valueColor:
-                            AlwaysStoppedAnimation(ThemeConstants.GreenColor),
-                        backgroundColor: const Color(0xffD6D6D6),
-                      ),
+                      child: getLoading(context),
+                      // LinearProgressIndicator(
+                      //   value: 0.7,
+                      //   valueColor:
+                      //       AlwaysStoppedAnimation(ThemeConstants.GreenColor),
+                      //   backgroundColor: const Color(0xffD6D6D6),
+                      // ),
                     ),
                   )),
                   Center(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/visa.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -2096,6 +2097,8 @@ class _VisaDetailState extends State<VisaDetail> {
                       ),
                     ],
                   )
-                : const Center(child: CircularProgressIndicator())));
+                : Center(
+                    child: getLoading(context),
+                  )));
   }
 }

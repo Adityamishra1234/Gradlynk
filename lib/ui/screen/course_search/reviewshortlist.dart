@@ -355,7 +355,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
                         ),
                       ),
                     if (_.loadingCourseShortList.value == false)
-                      const CircularProgressIndicator()
+                      getLoading(context)
                   ],
                 ),
               ),

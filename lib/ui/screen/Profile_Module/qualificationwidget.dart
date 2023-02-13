@@ -790,8 +790,8 @@ class QualificationWidget extends StatelessWidget {
                 ],
               ),
             )
-          : const Center(
-              child: CircularProgressIndicator(),
+          : Center(
+              child: getLoading(context),
             );
     });
   }

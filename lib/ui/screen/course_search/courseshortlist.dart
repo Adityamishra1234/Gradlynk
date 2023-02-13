@@ -332,8 +332,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
                     ),
                   ],
                 )
-              : const Center(
-                  child: CircularProgressIndicator(),
+              : Center(
+                  child: getLoading(context),
                 );
         }));
   }

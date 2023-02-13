@@ -1308,8 +1308,8 @@ class _ApplicationCompleteDetailsState
                     ),
                   ],
                 )
-              : const Center(
-                  child: CircularProgressIndicator(),
+              : Center(
+                  child: getLoading(context),
                 );
         }));
   }
