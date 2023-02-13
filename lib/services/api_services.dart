@@ -1307,8 +1307,8 @@ class ApiServices extends StudentPanelBase {
         "${Endpoints.baseUrl}${Endpoints.applicationDocumentUpload}$enq_id&id=$id");
     var request = http.MultipartRequest("POST", url);
 
-    request.files.add(await http.MultipartFile.fromPath('doc', file.path,
-        filename: file.path));
+    request.files
+        .add(await http.MultipartFile.fromPath('doc', file, filename: file));
     var res = await request.send();
     var responsed = await http.Response.fromStream(res);
     if (responsed.statusCode == 200) {
@@ -1317,7 +1317,7 @@ class ApiServices extends StudentPanelBase {
       getsnakbar("Document Upload", status.status.toString());
       return status.viewLink;
     } else {
-      return "";
+      return null;
     }
   }
 }

@@ -1408,8 +1408,11 @@ class _ApplicationCompleteDetailsState
                                     ThemeConstants.whitecolor, // foreground
                               ),
                               onPressed: () {
-                                getSourceSelected(callbackSelectedSource,
-                                    model.documents![i].id.toString(), i);
+                                getSourceSelected(
+                                    callbackSelectedSource1,
+                                    model.documents![i].id.toString(),
+                                    i,
+                                    Get.arguments.toString());
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Upload",
@@ -1625,18 +1628,29 @@ class _ApplicationCompleteDetailsState
     print("aman7");
   }
 
-  callbackSelectedSource(data, String id, int index) async {
-    if (data.toString() == "Camera") {
-      final cameras = await availableCameras();
+  callbackSelectedSource1(data) async {
+    List temp = [];
+    temp = data.toString().split(",");
+    try {
+      if (temp[0].toString() == "Camera") {
+        final cameras = await availableCameras();
 
-      // Get a specific camera from the list of available cameras.
-      final firstCamera = cameras.first;
-      // String id = DateTime.now().toIso8601String();
-      Get.to(TakePictureScreen(
-        camera: firstCamera,
-      ));
-    } else {
-      controller.uploadDocument(id, index);
+        // Get a specific camera from the list of available cameras.
+        final firstCamera = cameras.first;
+        // String id = DateTime.now().toIso8601String();
+        Get.to(TakePictureScreen(
+          camera: firstCamera,
+          id: temp[1],
+          index: temp[2],
+          applicationId: Get.arguments.toString(),
+        ));
+      } else {
+        Get.find<ApplicationCompleteDetailsController>()
+            .uploadDocument(temp[1], int.parse(temp[2]));
+        // await controller.uploadDocument();
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

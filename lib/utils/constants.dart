@@ -263,7 +263,8 @@ String reverseStringUsingSplit(String input) {
   return chars.reversed.join();
 }
 
-getSourceSelected(Function callbackSelectedSource, String id, int index) {
+getSourceSelected(Function callbackSelectedSource, String id, int index,
+    String applicationId) {
   Get.bottomSheet(Container(
     color: ThemeConstants.whitecolor,
     height: 300,
@@ -285,7 +286,9 @@ getSourceSelected(Function callbackSelectedSource, String id, int index) {
             const Spacer(),
             InkWell(
               onTap: () {
-                callbackSelectedSource("Camera,$id,$index");
+                Get.back();
+                callbackSelectedSource(
+                    "Camera,${id.toString()},${index.toString()}");
               },
               child: Column(
                 children: [
@@ -299,7 +302,9 @@ getSourceSelected(Function callbackSelectedSource, String id, int index) {
             const Spacer(),
             InkWell(
               onTap: () {
-                callbackSelectedSource("Gallery");
+                Get.back();
+                callbackSelectedSource(
+                    "Gallery,${id.toString()},${index.toString()}");
               },
               child: Column(
                 children: [

@@ -3,16 +3,22 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class TakePictureScreen extends StatefulWidget {
-  const TakePictureScreen({
-    super.key,
-    required this.camera,
-  });
+  TakePictureScreen(
+      {super.key,
+      required this.camera,
+      required this.id,
+      required this.index,
+      required this.applicationId});
 
   final CameraDescription camera;
+  String? id;
+  String? index;
+  String? applicationId;
 
   @override
   TakePictureScreenState createState() => TakePictureScreenState();
@@ -33,7 +39,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       // Get a specific camera from the list of available cameras.
       widget.camera,
       // Define the resolution to use.
-      ResolutionPreset.ultraHigh,
+      ResolutionPreset.low,
     );
 
     // Next, initialize the controller. This returns a Future.
@@ -98,6 +104,9 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                             // Pass the automatically generated path to
                             // the DisplayPictureScreen widget.
                             imagePath: image.path,
+                            id: widget.id,
+                            index: widget.index,
+                            applicationId: widget.applicationId,
                           ),
                         ),
                       );
@@ -169,8 +178,16 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 // A widget that displays the picture taken by the user.
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
+  String? id;
+  String? index;
+  String? applicationId;
 
-  const DisplayPictureScreen({super.key, required this.imagePath});
+  DisplayPictureScreen(
+      {super.key,
+      required this.imagePath,
+      this.id,
+      this.index,
+      required this.applicationId});
 
   @override
   Widget build(BuildContext context) {
@@ -198,6 +215,9 @@ class DisplayPictureScreen extends StatelessWidget {
                   // String id = DateTime.now().toIso8601String();   //TODO
                   Get.to(TakePictureScreen(
                     camera: firstCamera,
+                    id: id,
+                    index: index,
+                    applicationId: applicationId,
                   ));
                 },
                 child: Container(
@@ -227,19 +247,29 @@ class DisplayPictureScreen extends StatelessWidget {
                   // String id = DateTime.now().toIso8601String();   //TODO
                   Get.to(TakePictureScreen(
                     camera: firstCamera,
+                    id: id,
+                    index: index,
+                    applicationId: applicationId,
                   ));
                 },
-                child: Container(
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                        color: ThemeConstants.bluecolor,
-                        shape: BoxShape.circle),
-                    child: Icon(
-                      Icons.check,
-                      size: 35,
-                      color: ThemeConstants.whitecolor,
-                    )),
+                child: InkWell(
+                  onTap: () {
+                    Get.find<ApplicationCompleteDetailsController>()
+                        .uploadFileCamera(
+                            id!, index!, imagePath, applicationId!);
+                  },
+                  child: Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                          color: ThemeConstants.bluecolor,
+                          shape: BoxShape.circle),
+                      child: Icon(
+                        Icons.check,
+                        size: 35,
+                        color: ThemeConstants.whitecolor,
+                      )),
+                ),
               ),
             ),
           )

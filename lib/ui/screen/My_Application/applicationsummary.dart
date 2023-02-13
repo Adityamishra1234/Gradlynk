@@ -97,14 +97,6 @@ class ApplicationSummary extends StatelessWidget {
                                       children: [
                                         InkWell(
                                           onTap: () async {
-                                            // controller
-                                            //     .getApplicationDetailComplete(
-                                            //         controller
-                                            //             .applicationSummaryModel[
-                                            //                 index]
-                                            //             .id
-                                            //             .toString());
-                                            //TODO
                                             Get.toNamed(
                                                 ApplicationCompleteDetails
                                                     .routeNamed,

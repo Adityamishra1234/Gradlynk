@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
+import 'package:studentpanel/ui/screen/My_Application/applicationcompletedetail.dart';
+import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
@@ -33,6 +35,7 @@ class ApplicationCompleteDetailsController extends GetxController {
   }
 
   uploadDocument(String id, int index) async {
+    print("aman");
     String uploadFilename = "";
     PlatformFile? csvFile2;
     final results = await FilePicker.platform.pickFiles(
@@ -54,7 +57,7 @@ class ApplicationCompleteDetailsController extends GetxController {
           getsnakbar("Document Upload", "Please file upload maximum 5 MB");
         } else {
           String? res = await apiServices.sendFile(
-              csvFile2,
+              csvFile2.path,
               uploadFilename,
               Get.find<BaseController>().model1.id.toString(),
               id,
@@ -64,5 +67,19 @@ class ApplicationCompleteDetailsController extends GetxController {
         }
       }
     }
+  }
+
+  uploadFileCamera(
+      String id, String index, String filePath, String applicationId) async {
+    print(filePath);
+    String? res = await apiServices.sendFile(
+        filePath,
+        filePath,
+        Get.find<BaseController>().model1.id.toString(),
+        id.toString(),
+        Endpoints.applicationDocumentUpload!);
+    model.documents![int.parse(index)].viewLink = res;
+    Get.offNamed(ApplicationCompleteDetails.routeNamed,
+        arguments: applicationId);
   }
 }
