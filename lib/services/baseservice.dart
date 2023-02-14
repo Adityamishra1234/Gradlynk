@@ -1,8 +1,8 @@
-
 import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 import 'error.dart';
 
@@ -16,6 +16,7 @@ class StudentPanelBase {
   }
 
   httpGet(String url) async {
+    await checkUserConnection();
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -32,7 +33,7 @@ class StudentPanelBase {
 
   httpPost(String url, var jsonData) async {
     // String? token = await getToken();
-
+    await checkUserConnection();
     var response = await http.post(Uri.parse(url),
         headers: {
           "Content-Type": "application/json",
@@ -66,6 +67,7 @@ class StudentPanelBase {
 
   httpPostNullBody(String url) async {
     // String? token = await getToken();
+    await checkUserConnection();
     var response = await http.post(
       Uri.parse(url),
     );
@@ -95,6 +97,7 @@ class StudentPanelBase {
 
 httpPut(String url, var jsonData) async {
   // String? token = await getToken();
+  await checkUserConnection();
   try {
     var response = await http.put(Uri.parse(url), body: jsonData, headers: {
       "Accept": "application/json",
@@ -114,6 +117,7 @@ httpPut(String url, var jsonData) async {
 
 httpDelete(String url, var jsonData) async {
   // String? token = await getToken();
+  await checkUserConnection();
   try {
     var response = await http.delete(
       Uri.parse(url),

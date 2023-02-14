@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/qualificationdetails.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';

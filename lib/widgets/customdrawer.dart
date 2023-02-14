@@ -38,25 +38,16 @@ class CustomDrawer extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 70),
-                        child: Container(
-                          height: 100,
-                          width: 100,
-                          decoration: const BoxDecoration(
-                            color: Colors.grey,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 70, right: 70),
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 180),
-                        child:
-                            svgImage("edit", ThemeConstants.bluecolor, 30, 30),
-                      )
-                    ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
@@ -75,13 +66,12 @@ class CustomDrawer extends StatelessWidget {
                     height: 8,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: getLoading(context),
-                      // LinearProgressIndicator(
-                      //   value: 0.7,
-                      //   valueColor:
-                      //       AlwaysStoppedAnimation(ThemeConstants.GreenColor),
-                      //   backgroundColor: const Color(0xffD6D6D6),
-                      // ),
+                      child: LinearProgressIndicator(
+                        value: 0.7,
+                        valueColor:
+                            AlwaysStoppedAnimation(ThemeConstants.GreenColor),
+                        backgroundColor: const Color(0xffD6D6D6),
+                      ),
                     ),
                   )),
                   Center(

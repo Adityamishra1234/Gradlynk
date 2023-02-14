@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
@@ -337,4 +342,36 @@ getLoading(BuildContext context) {
       ),
     ),
   );
+}
+
+late StreamSubscription subscription;
+bool isDeviceConnected = false;
+bool isAlertSet = false;
+
+bool ActiveConnection = false;
+String T = "";
+
+Future checkUserConnection() async {
+  try {
+    final result = await InternetAddress.lookup('google.com');
+
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      // var controller1 = Get.put(BaseController());
+      // controller1.refresh();
+      // // Get.find<BaseController>().refresh();
+      // Get.back();
+      if (ActiveConnection == false) {
+        Get.deleteAll();
+        Get.find<BaseController>().profiledetail();
+        Get.find<BaseController>().upcomingEvents();
+        Get.toNamed(DashBoard.routeNamed);
+        ActiveConnection = true;
+        T = "Turn off the data and repress again";
+      }
+    }
+  } on SocketException catch (_) {
+    ActiveConnection = false;
+    Get.toNamed(InternetConnectionStatusScreen.routeNamed);
+    // T = "Turn On the data and repress again";
+  }
 }

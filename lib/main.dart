@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:gif_view/gif_view.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
@@ -18,6 +19,7 @@ import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
@@ -267,6 +269,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: ApplicationCompleteDetails.routeNamed,
           page: () => ApplicationCompleteDetails(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: InternetConnectionStatusScreen.routeNamed,
+          page: () => InternetConnectionStatusScreen(),
           transition: Transition.fade,
         ),
       ],
