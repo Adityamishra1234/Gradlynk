@@ -1472,7 +1472,7 @@ class _ApplicationCompleteDetailsState
                                     .toString()
                                     .contains("pdf")) {
                                   //TODO
-                                  Get.to(CustomPDFViewer(
+                                  Get.to(CustomDocumentViewer(
                                     url:
                                         model.documents![i].viewLink.toString(),
                                   ));

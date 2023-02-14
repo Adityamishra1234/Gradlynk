@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class CustomImageViewer extends StatelessWidget {
@@ -14,8 +15,34 @@ class CustomImageViewer extends StatelessWidget {
         children: [
           SafeArea(
             child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Image.network(url)),
+              height: MediaQuery.of(context).size.height,
+              child: Image.network(
+                url,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                      color: ThemeConstants.whitecolor,
+                      alignment: Alignment.center,
+                      child: CustomAutoSizeTextMontserrat(
+                        text:
+                            "SomeThing went wrong \n Please try after some time !!",
+                        textColor: ThemeConstants.TextColor,
+                        fontWeight: FontWeight.bold,
+                      ));
+                },
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50, right: 20),

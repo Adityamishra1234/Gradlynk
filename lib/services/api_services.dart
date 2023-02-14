@@ -1303,21 +1303,25 @@ class ApiServices extends StudentPanelBase {
     String id,
     String endpoint,
   ) async {
-    var url = Uri.parse(
-        "${Endpoints.baseUrl}${Endpoints.applicationDocumentUpload}$enq_id&id=$id");
-    var request = http.MultipartRequest("POST", url);
+    try {
+      var url = Uri.parse(
+          "${Endpoints.baseUrl}${Endpoints.applicationDocumentUpload}$enq_id&id=$id");
+      var request = http.MultipartRequest("POST", url);
 
-    request.files
-        .add(await http.MultipartFile.fromPath('doc', file, filename: file));
-    var res = await request.send();
-    var responsed = await http.Response.fromStream(res);
-    if (responsed.statusCode == 200) {
-      var jsondata = json.decode(responsed.body);
-      FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
-      getsnakbar("Document Upload", status.status.toString());
-      return status.viewLink;
-    } else {
-      return null;
+      request.files
+          .add(await http.MultipartFile.fromPath('doc', file, filename: file));
+      var res = await request.send();
+      var responsed = await http.Response.fromStream(res);
+      if (responsed.statusCode == 200) {
+        var jsondata = json.decode(responsed.body);
+        FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
+        getsnakbar("Document Upload", status.status.toString());
+        return status.viewLink;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      getToast("Something went to wrong !!");
     }
   }
 }

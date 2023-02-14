@@ -35,7 +35,6 @@ class ApplicationCompleteDetailsController extends GetxController {
   }
 
   uploadDocument(String id, int index) async {
-    print("aman");
     String uploadFilename = "";
     PlatformFile? csvFile2;
     final results = await FilePicker.platform.pickFiles(
@@ -43,7 +42,6 @@ class ApplicationCompleteDetailsController extends GetxController {
       type: FileType.custom,
       allowedExtensions: ['jpg', 'jpeg', 'png', 'tiff', 'pdf', 'doc', 'docx'],
     );
-
     if (results != null) {
       csvFile2 = results.files.first;
       uploadFilename = results.files.first.name;
