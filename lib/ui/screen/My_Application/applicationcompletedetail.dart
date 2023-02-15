@@ -165,7 +165,10 @@ class _ApplicationCompleteDetailsState
                                             backgroundColor: ThemeConstants
                                                 .whitecolor, // foreground
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            downloadFile(
+                                                _.model.acknowledgementFile);
+                                          },
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Download",
                                             textColor: ThemeConstants.bluecolor,
@@ -185,7 +188,9 @@ class _ApplicationCompleteDetailsState
                                                 .whitecolor, // foreground
                                           ),
                                           onPressed: () {
-                                            // Get.to(CustomDownloadFile());
+                                            Get.to(CustomDocumentViewer(
+                                              url: _.model.acknowledgementFile,
+                                            ));
                                           },
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "View",
@@ -511,29 +516,13 @@ class _ApplicationCompleteDetailsState
                                           foregroundColor:
                                               ThemeConstants.whitecolor,
                                           side: BorderSide(
-                                              color: ThemeConstants.GreenColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {},
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Upload",
-                                          textColor: ThemeConstants.GreenColor,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
                                               color: ThemeConstants.bluecolor),
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          downloadFile(_.model.fullOfferDoc);
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Download",
                                           textColor: ThemeConstants.bluecolor,
@@ -552,7 +541,11 @@ class _ApplicationCompleteDetailsState
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(CustomDocumentViewer(
+                                            url: _.model.fullOfferDoc,
+                                          ));
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
                                           textColor: ThemeConstants.orangeColor,
@@ -575,29 +568,13 @@ class _ApplicationCompleteDetailsState
                                           foregroundColor:
                                               ThemeConstants.whitecolor,
                                           side: BorderSide(
-                                              color: ThemeConstants.GreenColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {},
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Upload",
-                                          textColor: ThemeConstants.GreenColor,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
                                               color: ThemeConstants.bluecolor),
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          downloadFile(_.model.rejectionDoc);
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Download",
                                           textColor: ThemeConstants.bluecolor,
@@ -616,7 +593,11 @@ class _ApplicationCompleteDetailsState
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(CustomDocumentViewer(
+                                            url: _.model.rejectionDoc,
+                                          ));
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
                                           textColor: ThemeConstants.orangeColor,
@@ -639,29 +620,14 @@ class _ApplicationCompleteDetailsState
                                           foregroundColor:
                                               ThemeConstants.whitecolor,
                                           side: BorderSide(
-                                              color: ThemeConstants.GreenColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {},
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Upload",
-                                          textColor: ThemeConstants.GreenColor,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
                                               color: ThemeConstants.bluecolor),
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          downloadFile(
+                                              _.model.conditionalOfferDoc);
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Download",
                                           textColor: ThemeConstants.bluecolor,
@@ -680,7 +646,11 @@ class _ApplicationCompleteDetailsState
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(CustomDocumentViewer(
+                                            url: _.model.conditionalOfferDoc,
+                                          ));
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
                                           textColor: ThemeConstants.orangeColor,
@@ -927,29 +897,13 @@ class _ApplicationCompleteDetailsState
                                           foregroundColor:
                                               ThemeConstants.whitecolor,
                                           side: BorderSide(
-                                              color: ThemeConstants.GreenColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {},
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Upload",
-                                          textColor: ThemeConstants.GreenColor,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
                                               color: ThemeConstants.bluecolor),
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          downloadFile(_.model.paymentReceipt);
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Download",
                                           textColor: ThemeConstants.bluecolor,
@@ -968,7 +922,11 @@ class _ApplicationCompleteDetailsState
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(CustomDocumentViewer(
+                                            url: _.model.paymentReceipt,
+                                          ));
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
                                           textColor: ThemeConstants.orangeColor,
@@ -991,29 +949,14 @@ class _ApplicationCompleteDetailsState
                                           foregroundColor:
                                               ThemeConstants.whitecolor,
                                           side: BorderSide(
-                                              color: ThemeConstants.GreenColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {},
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Upload",
-                                          textColor: ThemeConstants.GreenColor,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
                                               color: ThemeConstants.bluecolor),
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          downloadFile(
+                                              _.model.cas_i_20_coe_doc);
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Download",
                                           textColor: ThemeConstants.bluecolor,
@@ -1032,7 +975,11 @@ class _ApplicationCompleteDetailsState
                                           backgroundColor: ThemeConstants
                                               .whitecolor, // foreground
                                         ),
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Get.to(CustomDocumentViewer(
+                                            url: _.model.cas_i_20_coe_doc,
+                                          ));
+                                        },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
                                           textColor: ThemeConstants.orangeColor,
@@ -1416,14 +1363,6 @@ class _ApplicationCompleteDetailsState
                                     ThemeConstants.whitecolor, // foreground
                               ),
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             CustomDownloadFile(
-                                //               url: model.documents![i].viewLink,
-                                //             )));
-
                                 downloadFile(model.documents![i].viewLink);
                               },
                               child: CustomAutoSizeTextMontserrat(
@@ -1451,7 +1390,6 @@ class _ApplicationCompleteDetailsState
                                 if (model.documents![i].viewLink
                                     .toString()
                                     .contains("pdf")) {
-                                  //TODO
                                   Get.to(CustomDocumentViewer(
                                     url:
                                         model.documents![i].viewLink.toString(),
@@ -1459,19 +1397,16 @@ class _ApplicationCompleteDetailsState
                                 } else if (model.documents![i].viewLink
                                     .toString()
                                     .contains("doc")) {
-                                  //TODO
                                   Get.to(CustomDocumentViewer(
                                     url: model.documents![i].viewLink!,
                                   ));
                                 } else if (model.documents![i].viewLink
                                     .toString()
                                     .contains("docx")) {
-                                  //TODO
                                   Get.to(CustomDocumentViewer(
                                     url: model.documents![i].viewLink!,
                                   ));
                                 } else {
-                                  //TODO
                                   Get.to(CustomImageViewer(
                                     url: model.documents![i].viewLink!,
                                   ));
@@ -1532,20 +1467,16 @@ class _ApplicationCompleteDetailsState
         }
       } else {
         if (await _requestPermission(Permission.storage)) {
-          print("aman2");
           directory = await getApplicationDocumentsDirectory();
-          print("aman3");
         } else {
           return false;
         }
       }
       File saveFile = File("${directory.path}/$fileName");
       if (!await directory.exists()) {
-        print("aman4");
         await directory.create(recursive: true);
       }
       if (await directory.exists()) {
-        print("aman5");
         await dio.download(url, saveFile.path,
             onReceiveProgress: (value1, value2) {
           setState(() {
@@ -1554,8 +1485,6 @@ class _ApplicationCompleteDetailsState
           });
         });
         if (Platform.isIOS) {
-          print("aman6");
-
           shareFile(saveFile.path);
         }
         return true;
@@ -1600,12 +1529,10 @@ class _ApplicationCompleteDetailsState
   }
 
   Future<void> shareFile(String filepath) async {
-    print("aman1");
     await FlutterShare.shareFile(
       title: filepath,
       filePath: filepath,
     );
-    print("aman7");
   }
 
   callbackSelectedSource1(data) async {
