@@ -13,6 +13,7 @@ import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/fileupload.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/institutiondropdown.dart';
+import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/ui/models/passport.dart';
@@ -28,6 +29,7 @@ import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -36,7 +38,7 @@ import 'package:http/http.dart' as http;
 class ApiServices extends StudentPanelBase {
   StudentPanelBase? crmBase = StudentPanelBase();
 
-  login(String baseUrl, String endpoint) async {
+  dashboard(String baseUrl, String endpoint) async {
     try {
       StudentPanel studentPanel;
       var response;
@@ -1322,6 +1324,29 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       getToast("Something went to wrong !!");
+    }
+  }
+
+  getLogin(String? endpoint) async {
+    print(endpoint);
+    try {
+      var response =
+          await httpPostNullBody(Endpoints.baseUrl! + endpoint!, login: true);
+      if (response != null) {
+        LoginModel model = LoginModel.fromJson(json.decode(response));
+        return model;
+      }
+    } catch (e) {
+      Get.back();
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
     }
   }
 }

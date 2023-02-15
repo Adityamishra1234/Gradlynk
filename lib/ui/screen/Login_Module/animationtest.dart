@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
+import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 
@@ -21,11 +24,17 @@ class _AnimationTestState extends State<AnimationTest>
     controller = GifController(
       loop: false,
       onFinish: () {
-        Get.toNamed(LoginCopy.routeNamed);
+        if (controller1.phone != null) {
+          Get.offNamed(DashBoard.routeNamed, arguments: controller1.phone);
+        } else {
+          Get.offNamed(LoginScreen.routeNamed);
+        }
       },
     );
     super.initState();
   }
+
+  var controller1 = Get.put(AnimationtestController());
 
   @override
   Widget build(BuildContext context) {

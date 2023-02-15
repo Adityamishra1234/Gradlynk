@@ -31,8 +31,10 @@ class BaseController extends GetxController {
   }
 
   profiledetail() async {
-    var res = await apiServices.login(
-        Endpoints.baseUrl!, "${Endpoints.login!}8860373603");
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    var res = await apiServices.dashboard(
+        Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");
     if (res != null) {
       model1 = res;
       loadingStudentPanelData1 = true.obs;

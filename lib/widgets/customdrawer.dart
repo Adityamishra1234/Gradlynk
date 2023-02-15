@@ -54,7 +54,8 @@ class CustomDrawer extends StatelessWidget {
                   ),
                   Center(
                     child: CustomAutoSizeTextMontserrat(
-                      text: Get.find<BaseController>().model1.enquiryName,
+                      text: firstLetterChaptial(
+                          Get.find<BaseController>().model1.enquiryName),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),

@@ -161,26 +161,6 @@ class _ApplicationCompleteDetailsState
                                                 ThemeConstants.whitecolor,
                                             side: BorderSide(
                                                 color:
-                                                    ThemeConstants.GreenColor),
-                                            backgroundColor: ThemeConstants
-                                                .whitecolor, // foreground
-                                          ),
-                                          onPressed: () {},
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Upload",
-                                            textColor:
-                                                ThemeConstants.GreenColor,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            foregroundColor:
-                                                ThemeConstants.whitecolor,
-                                            side: BorderSide(
-                                                color:
                                                     ThemeConstants.bluecolor),
                                             backgroundColor: ThemeConstants
                                                 .whitecolor, // foreground

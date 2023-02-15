@@ -36,6 +36,7 @@ class ApplicationDetailModel {
   var defermentStatus;
   var reasonOfWithdraw;
   var withdrawStatus;
+  var cas_i_20_coe_doc;
   List<Documents>? documents;
   List<AcknowledgementDocument>? acknowledgementDocument;
   List<OfferDocument>? offerDocument;
@@ -43,6 +44,7 @@ class ApplicationDetailModel {
 
   ApplicationDetailModel(
       {this.offerStatus,
+      this.cas_i_20_coe_doc,
       this.acknowledgementNumber,
       this.acknowledgementFile,
       this.submissionDate,
@@ -85,6 +87,7 @@ class ApplicationDetailModel {
       this.feeDocument});
 
   ApplicationDetailModel.fromJson(Map<String, dynamic> json) {
+    cas_i_20_coe_doc = json["CAS_I20_COE_doc"];
     offerStatus = json['offer_status'].toString();
     acknowledgementNumber = json['acknowledgement_number'];
     acknowledgementFile = json['acknowledgement_file'];
@@ -150,6 +153,7 @@ class ApplicationDetailModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data["CAS_I20_COE_doc"] = cas_i_20_coe_doc;
     data['offer_status'] = offerStatus;
     data['acknowledgement_number'] = acknowledgementNumber;
     data['acknowledgement_file'] = acknowledgementFile;

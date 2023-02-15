@@ -5,7 +5,7 @@ class Endpoints {
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
-  static String? login = "student-panel-login?mobile_number=";
+  static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout";
   static String? userHistory = "login-logout-history";
   static String? getUserHistory = 'get-login-logout-history';
@@ -87,6 +87,8 @@ class Endpoints {
   static String? applicationStage = "get-application-stage";
   static String? applicationDocumentUpload =
       "upload-application-document?enq_id=";
+  static String? login = "login?mobile=";
+  static String? login2 = "&password=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

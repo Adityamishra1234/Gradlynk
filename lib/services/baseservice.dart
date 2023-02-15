@@ -16,7 +16,7 @@ class StudentPanelBase {
   }
 
   httpGet(String url) async {
-    await checkUserConnection();
+    checkUserConnection();
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -33,7 +33,7 @@ class StudentPanelBase {
 
   httpPost(String url, var jsonData) async {
     // String? token = await getToken();
-    await checkUserConnection();
+    checkUserConnection();
     var response = await http.post(Uri.parse(url),
         headers: {
           "Content-Type": "application/json",
@@ -65,9 +65,12 @@ class StudentPanelBase {
     }
   }
 
-  httpPostNullBody(String url) async {
+  httpPostNullBody(String url, {bool login = false}) async {
     // String? token = await getToken();
-    await checkUserConnection();
+    if (login == false) {
+      checkUserConnection();
+    }
+
     var response = await http.post(
       Uri.parse(url),
     );
@@ -97,7 +100,7 @@ class StudentPanelBase {
 
 httpPut(String url, var jsonData) async {
   // String? token = await getToken();
-  await checkUserConnection();
+  checkUserConnection();
   try {
     var response = await http.put(Uri.parse(url), body: jsonData, headers: {
       "Accept": "application/json",
@@ -117,7 +120,7 @@ httpPut(String url, var jsonData) async {
 
 httpDelete(String url, var jsonData) async {
   // String? token = await getToken();
-  await checkUserConnection();
+  checkUserConnection();
   try {
     var response = await http.delete(
       Uri.parse(url),

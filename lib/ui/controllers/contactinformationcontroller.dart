@@ -75,8 +75,8 @@ class ContactInformationController extends GetxController {
   void disposed() {}
 
   profiledetail() async {
-    var res = await apiServices.login(
-        Endpoints.baseUrl!, "${Endpoints.login!}8860373603");
+    var res = await apiServices.dashboard(
+        Endpoints.baseUrl!, "${Endpoints.dashboard!}8860373603");
     if (res != null) {
       model = res;
       loadingStudentPanelData = 1.obs;

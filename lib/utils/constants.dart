@@ -375,3 +375,20 @@ Future checkUserConnection() async {
     // T = "Turn On the data and repress again";
   }
 }
+
+firstLetterChaptial(String? data) {
+  String? dataReturn;
+  if (data != null) {
+    List temp = data.split("");
+    for (var i = 0; i < temp.length; i++) {
+      if (i == 0) {
+        dataReturn = temp[i].toUpperCase();
+      } else {
+        dataReturn = dataReturn! + temp[i];
+      }
+    }
+    return dataReturn;
+  } else {
+    return null;
+  }
+}

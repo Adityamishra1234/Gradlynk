@@ -97,8 +97,11 @@ class _DashBoardState extends State<DashBoard> {
                                               2,
                                           height: 50,
                                           child: CustomAutoSizeTextMontserrat(
-                                            text: _.personalModal.enquiryName ??
-                                                _.model1.enquiryName,
+                                            text: firstLetterChaptial(_
+                                                    .personalModal
+                                                    .enquiryName) ??
+                                                firstLetterChaptial(
+                                                    _.model1.enquiryName),
                                             maxLines: 2,
                                             fontSize: 40,
                                             fontWeight: FontWeight.bold,

@@ -18,6 +18,7 @@ import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
@@ -77,34 +78,34 @@ class _MyAppState extends State<MyApp> {
   UserModel? userModel;
   late final GifController controller;
 
-  @override
-  void initState() {
-    // getUserInfo();
-    controller = GifController(
-      loop: false,
-      onFinish: () {
-        Get.toNamed(LoginCopy.routeNamed);
-      },
-    );
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // getUserInfo();
+  //   controller = GifController(
+  //     loop: false,
+  //     onFinish: () {
+  //       Get.toNamed(LoginCopy.routeNamed);
+  //     },
+  //   );
+  //   super.initState();
+  // }
 
-  getUserInfo() async {
-    var temp = await Get.put(LoginController()).checkUserData();
-    if (temp == false) {
-      Get.toNamed(Login.routeNamed);
-    } else {
-      Get.toNamed(DashBoard.routeNamed);
-      getUserData();
-    }
-  }
+  // getUserInfo() async {
+  //   var temp = await Get.put(LoginController()).checkUserData();
+  //   if (temp == false) {
+  //     Get.toNamed(Login.routeNamed);
+  //   } else {
+  //     Get.toNamed(DashBoard.routeNamed);
+  //     getUserData();
+  //   }
+  // }
 
-  getUserData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    var jsondata =
-        json.decode(sharedPreferences.getString("UserModel").toString());
-    userModel = UserModel.fromJson(jsondata);
-  }
+  // getUserData() async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   var jsondata =
+  //       json.decode(sharedPreferences.getString("UserModel").toString());
+  //   userModel = UserModel.fromJson(jsondata);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -112,20 +113,28 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: DashBoard.routeNamed,
+      initialRoute: AnimationTest.routeNamed,
       // Create Route
       getPages: [
-        GetPage(name: "/", page: () => const Login(), binding: LoginBinding()),
         GetPage(
-            name: LoginCopy.routeNamed,
-            page: () => const LoginCopy(),
-            transition: Transition.fade,
-            binding: LoginBinding()),
+          name: "/",
+          page: () => const Login(),
+        ),
         GetPage(
-            name: Login.routeNamed,
-            page: () => const Login(),
-            transition: Transition.fade,
-            binding: LoginBinding()),
+          name: LoginCopy.routeNamed,
+          page: () => const LoginCopy(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: LoginScreen.routeNamed,
+          page: () => LoginScreen(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: Login.routeNamed,
+          page: () => const Login(),
+          transition: Transition.fade,
+        ),
         GetPage(
           name: MyDocument.routeNamed,
           page: () => const MyDocument(),
