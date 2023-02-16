@@ -68,6 +68,7 @@ class StudentPanelBase {
 
   httpPostNullBody(String url, {bool login = false}) async {
     // String? token = await getToken();
+    url = url.replaceAll('"null"', "");
     if (login == false) {
       await checkUserConnection();
     }
