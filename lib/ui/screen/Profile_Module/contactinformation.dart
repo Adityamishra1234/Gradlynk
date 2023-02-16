@@ -235,13 +235,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                           snapchatId.text,
                                           instagramId.text,
                                           secondaryEmail.text);
+                                      saveAndEdit = true;
+                                      setState(() {});
                                     }
                                   } catch (e) {
                                     print(StackTrace.current);
                                     getToast(e.toString());
                                   }
-                                  saveAndEdit = true;
-                                  setState(() {});
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "save",
@@ -1293,13 +1293,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                           snapchatId.text,
                                           instagramId.text,
                                           secondaryEmail.text);
+                                      saveAndEdit = true;
+                                      setState(() {});
                                     }
                                   } catch (e) {
                                     print(StackTrace.current);
                                     getToast(e.toString());
                                   }
-                                  saveAndEdit = true;
-                                  setState(() {});
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Save",

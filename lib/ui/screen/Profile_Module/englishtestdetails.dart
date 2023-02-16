@@ -236,6 +236,7 @@ class EnglishTestDetails extends StatelessWidget {
                                     reading.text;
                                 englishTestDetailsViewModel.production =
                                     writing.text;
+
                                 if (getNUllChecker(tentativeExamDate.text)) {
                                   englishTestDetailsViewModel.overAll =
                                       overallScoreController.text;

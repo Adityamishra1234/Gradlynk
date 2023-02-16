@@ -62,7 +62,7 @@ class ApplicationSummary extends StatelessWidget {
                         child: Align(
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Application Summary",
+                            text: "Track Application Summary",
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                             textColor: ThemeConstants.bluecolor,

@@ -1018,6 +1018,7 @@ class ApiServices extends StudentPanelBase {
       String? endpoint) async {
     try {
       String jsonData = json.encode(englishTestDetailsViewModel);
+      jsonData = jsonData.replaceAll('"null"', "");
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
         var jsondata = json.decode(response);
@@ -1233,6 +1234,7 @@ class ApiServices extends StudentPanelBase {
       OtherTestDetailsModel otherTestDetailModel, String? endpoint) async {
     try {
       String jsonData = json.encode(otherTestDetailModel);
+      jsonData = jsonData.replaceAll('"null"', "");
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
       if (response != null) {
         var jsondata = json.decode(response);

@@ -34,6 +34,7 @@ class StudentPanelBase {
   httpPost(String url, var jsonData) async {
     // String? token = await getToken();
     await checkUserConnection();
+    jsonData = jsonData.replaceAll('"null"', "");
     var response = await http.post(Uri.parse(url),
         headers: {
           "Content-Type": "application/json",

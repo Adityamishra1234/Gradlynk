@@ -144,7 +144,7 @@ class CustomDrawer extends StatelessWidget {
                             height: 30,
                             width: MediaQuery.of(context).size.width,
                             child: CustomAutoSizeTextMontserrat(
-                              text: "My Application",
+                              text: "Track Application",
                             ),
                           ),
                         )),

@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
@@ -499,7 +500,7 @@ class _DashBoardState extends State<DashBoard> {
                               // Track Application
                               InkWell(
                                 onTap: () {
-                                  Get.toNamed(TrackApplication.routeNamed);
+                                  Get.toNamed(ApplicationSummary.routeNamed);
                                 },
                                 child: Column(
                                   children: [
