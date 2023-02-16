@@ -59,11 +59,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     _.model.addtionalDetails![i].assigne!;
           }
         }
+        _.dob = _.model.dateOfBirth;
         firstName.text = _.model.enquiryName ?? "";
         lastName.text = _.model.lastname ?? "";
         mobileNumber.text = getNUllChecker(_.model.mobile) == false
             ? _.model.mobile.toString()
             : "";
+
         email.text = _.model.email ?? "";
         whatsappNumber.text =
             getNUllChecker(_.model.whatsappNumber.toString()) == false

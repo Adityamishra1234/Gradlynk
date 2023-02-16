@@ -66,6 +66,7 @@ class _ApplicationCompleteDetailsState
         appBar: CustomAppBar("title"),
         drawer: displayMobileLayout == false ? const CustomDrawer() : null,
         body: GetBuilder<ApplicationCompleteDetailsController>(builder: (_) {
+          _.model.documents = _.model.documents ?? [];
           return _.loadingApplicationCompleteDetails.value == true
               ? Row(
                   children: [
@@ -85,128 +86,140 @@ class _ApplicationCompleteDetailsState
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Card(
-                                elevation: 0,
-                                child: ConfigurableExpansionTile(
-                                  header: SizedBox(
-                                    width: width - 20,
-                                    height: 40,
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text:
-                                              "Application Submission Details",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        const Spacer(),
-                                        const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Table(
+                            if (getNUllChecker(_.model.offerStatus) == false ||
+                                getNUllChecker(_.model.acknowledgementNumber) ==
+                                    false ||
+                                getNUllChecker(_.model.acknowledgementFile) ==
+                                    false)
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Card(
+                                  elevation: 0,
+                                  child: ConfigurableExpansionTile(
+                                    header: SizedBox(
+                                      width: width - 20,
+                                      height: 40,
+                                      child: Row(
                                         children: [
-                                          TableRow(children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "Offer Status",
-                                              maxLines: 2,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "Acknowledgement Number",
-                                              maxLines: 2,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ]),
-                                          TableRow(children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text: _.model.offerStatus,
-                                              textColor:
-                                                  ThemeConstants.TextColor,
-                                              maxLines: 2,
-                                              fontSize: 12,
-                                            ),
-                                            CustomAutoSizeTextMontserrat(
-                                              text:
-                                                  _.model.acknowledgementNumber,
-                                              textColor:
-                                                  ThemeConstants.TextColor,
-                                              maxLines: 2,
-                                              fontSize: 12,
-                                            ),
-                                          ]),
+                                          CustomAutoSizeTextMontserrat(
+                                            text:
+                                                "Application Submission Details",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          const Spacer(),
+                                          const Icon(Icons.keyboard_arrow_down),
                                         ],
                                       ),
                                     ),
-                                    Align(
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "Acknowledgement Doc",
-                                        textColor: ThemeConstants.bluecolor,
-                                        fontWeight: FontWeight.bold,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Table(
+                                          children: [
+                                            TableRow(children: [
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "Offer Status",
+                                                maxLines: 2,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "Acknowledgement Number",
+                                                maxLines: 2,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ]),
+                                            TableRow(children: [
+                                              CustomAutoSizeTextMontserrat(
+                                                text: _.model.offerStatus,
+                                                textColor:
+                                                    ThemeConstants.TextColor,
+                                                maxLines: 2,
+                                                fontSize: 12,
+                                              ),
+                                              CustomAutoSizeTextMontserrat(
+                                                text: _.model
+                                                    .acknowledgementNumber,
+                                                textColor:
+                                                    ThemeConstants.TextColor,
+                                                maxLines: 2,
+                                                fontSize: 12,
+                                              ),
+                                            ]),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            foregroundColor:
-                                                ThemeConstants.whitecolor,
-                                            side: BorderSide(
-                                                color:
-                                                    ThemeConstants.bluecolor),
-                                            backgroundColor: ThemeConstants
-                                                .whitecolor, // foreground
-                                          ),
-                                          onPressed: () {
-                                            downloadFile(
-                                                _.model.acknowledgementFile);
-                                          },
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Download",
-                                            textColor: ThemeConstants.bluecolor,
-                                          ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Acknowledgement Doc",
+                                          textColor: ThemeConstants.bluecolor,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        const SizedBox(
-                                          width: 20,
-                                        ),
-                                        ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            foregroundColor:
-                                                ThemeConstants.whitecolor,
-                                            side: BorderSide(
-                                                color:
-                                                    ThemeConstants.orangeColor),
-                                            backgroundColor: ThemeConstants
-                                                .whitecolor, // foreground
+                                      ),
+                                      Row(
+                                        children: [
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              foregroundColor:
+                                                  ThemeConstants.whitecolor,
+                                              side: BorderSide(
+                                                  color:
+                                                      ThemeConstants.bluecolor),
+                                              backgroundColor: ThemeConstants
+                                                  .whitecolor, // foreground
+                                            ),
+                                            onPressed: () {
+                                              downloadFile(
+                                                  _.model.acknowledgementFile);
+                                            },
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Download",
+                                              textColor:
+                                                  ThemeConstants.bluecolor,
+                                            ),
                                           ),
-                                          onPressed: () {
-                                            Get.to(CustomDocumentViewer(
-                                              url: _.model.acknowledgementFile,
-                                            ));
-                                          },
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "View",
-                                            textColor:
-                                                ThemeConstants.orangeColor,
+                                          const SizedBox(
+                                            width: 20,
                                           ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              foregroundColor:
+                                                  ThemeConstants.whitecolor,
+                                              side: BorderSide(
+                                                  color: ThemeConstants
+                                                      .orangeColor),
+                                              backgroundColor: ThemeConstants
+                                                  .whitecolor, // foreground
+                                            ),
+                                            onPressed: () {
+                                              getViewDocument(
+                                                  _.model.acknowledgementFile);
+                                            },
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "View",
+                                              textColor:
+                                                  ThemeConstants.orangeColor,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Divider(
-                              color: ThemeConstants.TextColor,
-                            ),
+                            if (getNUllChecker(_.model.offerStatus) == false ||
+                                getNUllChecker(_.model.acknowledgementNumber) ==
+                                    false ||
+                                getNUllChecker(_.model.acknowledgementFile) ==
+                                    false)
+                              Divider(
+                                color: ThemeConstants.TextColor,
+                              ),
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: ConfigurableExpansionTile(
@@ -542,9 +555,7 @@ class _ApplicationCompleteDetailsState
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {
-                                          Get.to(CustomDocumentViewer(
-                                            url: _.model.fullOfferDoc,
-                                          ));
+                                          getViewDocument(_.model.fullOfferDoc);
                                         },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
@@ -594,9 +605,7 @@ class _ApplicationCompleteDetailsState
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {
-                                          Get.to(CustomDocumentViewer(
-                                            url: _.model.rejectionDoc,
-                                          ));
+                                          getViewDocument(_.model.rejectionDoc);
                                         },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
@@ -647,9 +656,8 @@ class _ApplicationCompleteDetailsState
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {
-                                          Get.to(CustomDocumentViewer(
-                                            url: _.model.conditionalOfferDoc,
-                                          ));
+                                          getViewDocument(
+                                              _.model.conditionalOfferDoc);
                                         },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
@@ -923,9 +931,8 @@ class _ApplicationCompleteDetailsState
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {
-                                          Get.to(CustomDocumentViewer(
-                                            url: _.model.paymentReceipt,
-                                          ));
+                                          getViewDocument(
+                                              _.model.paymentReceipt);
                                         },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
@@ -976,9 +983,8 @@ class _ApplicationCompleteDetailsState
                                               .whitecolor, // foreground
                                         ),
                                         onPressed: () {
-                                          Get.to(CustomDocumentViewer(
-                                            url: _.model.cas_i_20_coe_doc,
-                                          ));
+                                          getViewDocument(
+                                              _.model.cas_i_20_coe_doc);
                                         },
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "View",
@@ -1204,31 +1210,33 @@ class _ApplicationCompleteDetailsState
                             Divider(
                               color: ThemeConstants.TextColor,
                             ),
-                            Card(
-                              elevation: 0,
-                              shadowColor: ThemeConstants.lightgreycolor,
-                              child: ConfigurableExpansionTile(
-                                header: SizedBox(
-                                  width: width - 15,
-                                  height: 40,
-                                  child: Row(
-                                    children: [
-                                      CustomAutoSizeTextMontserrat(
-                                        text: "Document",
-                                        textColor: ThemeConstants.blackcolor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      const Spacer(),
-                                      const Icon(Icons.keyboard_arrow_down),
-                                    ],
+                            if (_.model.documents!.isNotEmpty)
+                              Card(
+                                elevation: 0,
+                                shadowColor: ThemeConstants.lightgreycolor,
+                                child: ConfigurableExpansionTile(
+                                  header: SizedBox(
+                                    width: width - 15,
+                                    height: 40,
+                                    child: Row(
+                                      children: [
+                                        CustomAutoSizeTextMontserrat(
+                                          text: "Document",
+                                          textColor: ThemeConstants.blackcolor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        const Spacer(),
+                                        const Icon(Icons.keyboard_arrow_down),
+                                      ],
+                                    ),
                                   ),
+                                  children: [...documentList(_.model, context)],
                                 ),
-                                children: [...documentList(_.model, context)],
                               ),
-                            ),
-                            Divider(
-                              color: ThemeConstants.TextColor,
-                            ),
+                            if (_.model.documents!.isNotEmpty)
+                              Divider(
+                                color: ThemeConstants.TextColor,
+                              ),
                           ],
                         ),
                       ),
@@ -1387,30 +1395,7 @@ class _ApplicationCompleteDetailsState
                                     ThemeConstants.whitecolor, // foreground
                               ),
                               onPressed: () {
-                                if (model.documents![i].viewLink
-                                    .toString()
-                                    .contains("pdf")) {
-                                  Get.to(CustomDocumentViewer(
-                                    url:
-                                        model.documents![i].viewLink.toString(),
-                                  ));
-                                } else if (model.documents![i].viewLink
-                                    .toString()
-                                    .contains("doc")) {
-                                  Get.to(CustomDocumentViewer(
-                                    url: model.documents![i].viewLink!,
-                                  ));
-                                } else if (model.documents![i].viewLink
-                                    .toString()
-                                    .contains("docx")) {
-                                  Get.to(CustomDocumentViewer(
-                                    url: model.documents![i].viewLink!,
-                                  ));
-                                } else {
-                                  Get.to(CustomImageViewer(
-                                    url: model.documents![i].viewLink!,
-                                  ));
-                                }
+                                getViewDocument(model.documents![i].viewLink);
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "View",
@@ -1558,6 +1543,26 @@ class _ApplicationCompleteDetailsState
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  getViewDocument(String url) {
+    if (url.contains("pdf")) {
+      return Get.to(CustomDocumentViewer(
+        url: url,
+      ));
+    } else if (url.contains("doc")) {
+      Get.to(CustomDocumentViewer(
+        url: url,
+      ));
+    } else if (url.contains("docx")) {
+      Get.to(CustomDocumentViewer(
+        url: url,
+      ));
+    } else {
+      Get.to(CustomImageViewer(
+        url: url,
+      ));
     }
   }
 }
