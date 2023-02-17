@@ -258,7 +258,8 @@ class DisplayPictureScreen extends StatelessWidget {
                   onTap: () {
                     print("object");
                     Get.find<UploadDocumentController>().uploadFileCamera(
-                        id!, index!, imagePath, applicationId!);
+                        id!, imagePath,
+                        orgName: applicationId!);
                   },
                   child: Container(
                       height: 60,

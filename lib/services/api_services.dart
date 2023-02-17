@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
+import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
@@ -1334,7 +1335,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  Future<String?> uploadDocumentCommon(
+  Future<CommonUploadStatus?> uploadDocumentCommon(
       file, uploadFilename, String enq_id, String id,
       {String orgname = ""}) async {
     try {
@@ -1348,11 +1349,9 @@ class ApiServices extends StudentPanelBase {
       var responsed = await http.Response.fromStream(res);
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
-        FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
+        CommonUploadStatus status = CommonUploadStatus.fromJson(jsondata);
         getsnakbar("Document Upload", status.status.toString());
-        return status.viewLink;
-      } else {
-        return null;
+        return status;
       }
     } catch (e) {
       getToast("Something went to wrong !!");

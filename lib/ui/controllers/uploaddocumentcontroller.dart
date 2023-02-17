@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
+import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/dropdownOrgName.dart';
 import 'package:studentpanel/ui/models/dropdownUploadDocument.dart';
 import 'package:studentpanel/ui/models/dropdowndocumenttype.dart';
@@ -49,6 +50,18 @@ class UploadDocumentController extends GetxController {
   }
 
   getDocumentType() async {
+    documentTypeSelectedName = null;
+    documentTypeSelectedID = null;
+    documentNameSelectedName = null;
+    documentNameSelectedID = null;
+    organizationSelectedName = null;
+    organizationSelectedID = null;
+    documenttypeName = [];
+    documenttypeId = [];
+    documentNameName = [];
+    documentNameId = [];
+    organizationName = [];
+    organizationId = [];
     documenttypeName = [];
     documenttypeId = [];
     documentTypeSelectedName = null;
@@ -125,10 +138,22 @@ class UploadDocumentController extends GetxController {
 
   uploadFileCamera(String id, String filePath, {String orgName = ""}) async {
     print(filePath);
-    String? res = await apiServices.uploadDocumentCommon(filePath, filePath,
+    var res = await apiServices.uploadDocumentCommon(filePath, filePath,
         Get.find<BaseController>().model1.id.toString(), id.toString(),
         orgname: orgName);
-    // model.documents![int.parse(index)].viewLink = res;
+    if (res != null) {
+      CommonUploadStatus model = CommonUploadStatus();
+      model = res;
+      if (model.status == "sucesss") {
+        documentModel.add(model.dataModal!);
+      }
+      getDocumentType();
+      getOrganizationName();
+    } else {
+      getDocumentType();
+      getOrganizationName();
+    }
+
     Get.offNamed(UploadDocument.routeNamed);
   }
 
@@ -152,13 +177,21 @@ class UploadDocumentController extends GetxController {
         if (sizeInMb > 5) {
           getsnakbar("Document Upload", "Please file upload maximum 5 MB");
         } else {
-          String? res = await apiServices.uploadDocumentCommon(
+          var res = await apiServices.uploadDocumentCommon(
               csvFile2.path,
               uploadFilename,
               Get.find<BaseController>().model1.id.toString(),
               id,
               orgname: orgname);
-          // model.documents![index].viewLink = res;
+          if (res != null) {
+            CommonUploadStatus model = CommonUploadStatus();
+            model = res;
+            if (model.status == "sucesss") {
+              documentModel.add(model.dataModal!);
+            }
+            getDocumentType();
+            getOrganizationName();
+          }
           update();
         }
       }
