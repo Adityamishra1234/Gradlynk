@@ -89,6 +89,25 @@ class Endpoints {
       "upload-application-document?enq_id=";
   static String? login = "login?mobile=";
   static String? login2 = "&password=";
+  static String? documentList = "my-document-list";
+  static String? orranizationWorkList = "organization-work-list?enq_id=";
+  static String? documentNameForDocumentTypePart1 =
+      "get-document-name-for-document-type?enq_id=";
+  static String? documentNameForDocumentTypePart2 = "&document_id=";
+  static String? documentNameForDocumentTypePart3 = "&organization_name=";
+  static String? commonUploadDocument = "get-common-uploaded-document?enq_id=";
+  static String? serviceAssigness = "service-assignees?enq_id=";
+  static String? scheduleAnExpertCallPart1 = "schedule-an-expert-call?enq_id=";
+  static String? scheduleAnExpertCallPart2 = "&expert_call_date=";
+  static String? scheduleAnExpertCallPart3 = "&expert_call_time";
+  static String? scheduleAnExpertCallPart4 = "&expert_call_counsellor";
+
+  static String? bookAnAppointmentpart1 = "book-an-appointment?enq_id=";
+  static String? bookAnAppointmentpart2 = "&appointment_date=";
+  static String? bookAnAppointmentpartpart3 = "&appointment_time=";
+  static String? bookAnAppointmentpartpart4 = "&appointment_counsellor=";
+
+  static String? uploadCommonDocumentPart1 = "upload-common-document?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

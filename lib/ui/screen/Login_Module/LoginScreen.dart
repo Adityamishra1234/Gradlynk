@@ -36,8 +36,7 @@ class LoginScreen extends StatelessWidget {
                     controller: phoneNumber,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                      border: InputBorder.none,
-                      focusedBorder: OutlineInputBorder(
+                      border: OutlineInputBorder(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15.0)),
                         borderSide: BorderSide(
@@ -45,8 +44,30 @@ class LoginScreen extends StatelessWidget {
                             color: ThemeConstants
                                 .bluelightgreycolor), //<-- SEE HERE
                       ),
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
+                      // focusedBorder: OutlineInputBorder(
+                      //   borderRadius:
+                      //       const BorderRadius.all(Radius.circular(15.0)),
+                      //   borderSide: BorderSide(
+                      //       width: 1,
+                      //       color: ThemeConstants
+                      //           .bluelightgreycolor), //<-- SEE HERE
+                      // ),
+                      // errorBorder: OutlineInputBorder(
+                      //   borderRadius:
+                      //       const BorderRadius.all(Radius.circular(15.0)),
+                      //   borderSide: BorderSide(
+                      //       width: 1,
+                      //       color: ThemeConstants
+                      //           .bluelightgreycolor), //<-- SEE HERE
+                      // ),
+                      // disabledBorder: OutlineInputBorder(
+                      //   borderRadius:
+                      //       const BorderRadius.all(Radius.circular(15.0)),
+                      //   borderSide: BorderSide(
+                      //       width: 1,
+                      //       color: ThemeConstants
+                      //           .bluelightgreycolor), //<-- SEE HERE
+                      // )
                       hintText: "Phone number",
                       enabledBorder: OutlineInputBorder(
                         borderRadius:

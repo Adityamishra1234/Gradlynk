@@ -668,23 +668,49 @@ class _DashBoardState extends State<DashBoard> {
                 child: getLoading(context),
               );
       }),
-      floatingActionButtonLocation:
-          showFab ? FloatingActionButtonLocation.miniCenterDocked : null,
-      floatingActionButton: Visibility(
-        visible: showFab,
-        child: FloatingActionButton(
-            tooltip: "SVO",
-            backgroundColor: ThemeConstants.bluecolor,
-            onPressed: () async {
-              // SVO Join Code
-              await _launchURL();
-              // isExtended: true,
-            },
-            child: svgImage("video-call", ThemeConstants.whitecolor, 40, 30)),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(right: 10, bottom: 10),
+        child: FloatingActionButton.extended(
+          tooltip: "SVO",
+          backgroundColor: ThemeConstants.bluecolor,
+          onPressed: () async {
+            // SVO Join Code
+            await _launchURL();
+            // isExtended: true,
+          },
+          icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
+          label: CustomAutoSizeTextMontserrat(
+            text: "Join SVO",
+            textColor: ThemeConstants.whitecolor,
+          ),
+        ),
       ),
-      bottomNavigationBar: BottomNavigation(
-        index: 0,
-      ),
+      // FloatingActionButton.extended(
+      //   backgroundColor: Colors.green,
+      //   foregroundColor: Colors.black,
+      //   onPressed: () {
+      //     // Respond to button press
+      //   },
+      //   icon: Icon(Icons.add),
+      //   label: Text('Floating Action Button'),
+      // ),
+      // floatingActionButtonLocation:
+      //     showFab ? FloatingActionButtonLocation.miniCenterDocked : null,
+      // floatingActionButton: Visibility(
+      //   visible: showFab,
+      //   child: FloatingActionButton(
+      //       tooltip: "SVO",
+      //       backgroundColor: ThemeConstants.bluecolor,
+      //       onPressed: () async {
+      //         // SVO Join Code
+      //         await _launchURL();
+      //         // isExtended: true,
+      //       },
+      //       child: svgImage("video-call", ThemeConstants.whitecolor, 40, 30)),
+      // ),
+      // bottomNavigationBar: BottomNavigation(
+      //   index: 0,
+      // ),
     );
   }
 
@@ -692,7 +718,7 @@ class _DashBoardState extends State<DashBoard> {
 
   _launchURL() async {
     const url =
-        'https://us04web.zoom.us/j/73812227646?pwd=JYb2LRrfiaZFuuBV3BTIzY4OT52QYr.1';
+        'https://zoom.us/j/97485138279?pwd=Y1cwcXRHUWZWOFN3aTZOdmhHZm4yQT09';
     // ignore: deprecated_member_use
     if (await canLaunch(url)) {
       // ignore: deprecated_member_use

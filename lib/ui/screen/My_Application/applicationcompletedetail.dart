@@ -1533,8 +1533,7 @@ class _ApplicationCompleteDetailsState
         Get.to(TakePictureScreen(
           camera: firstCamera,
           id: temp[1],
-          index: temp[2],
-          applicationId: Get.arguments.toString(),
+          orgname: temp[2],
         ));
       } else {
         Get.find<ApplicationCompleteDetailsController>()

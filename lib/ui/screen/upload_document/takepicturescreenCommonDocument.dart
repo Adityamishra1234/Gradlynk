@@ -1,28 +1,32 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
-class TakePictureScreen extends StatefulWidget {
-  TakePictureScreen({
-    super.key,
-    required this.camera,
-    required this.id,
-    this.orgname,
-  });
+class TakePictureScreenCommonDocument extends StatefulWidget {
+  TakePictureScreenCommonDocument(
+      {super.key,
+      required this.camera,
+      required this.id,
+      required this.orgName});
 
   final CameraDescription camera;
   String? id;
-  String? orgname;
+
+  String? orgName;
 
   @override
-  TakePictureScreenState createState() => TakePictureScreenState();
+  TakePictureScreenCommonDocumentState createState() =>
+      TakePictureScreenCommonDocumentState();
 }
 
-class TakePictureScreenState extends State<TakePictureScreen> {
+class TakePictureScreenCommonDocumentState
+    extends State<TakePictureScreenCommonDocument> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
   var cameras;
@@ -105,7 +109,8 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                             // the DisplayPictureScreen widget.
                             imagePath: image.path,
                             id: widget.id,
-                            orgName: widget.orgname,
+
+                            applicationId: widget.orgName,
                           ),
                         ),
                       );
@@ -178,15 +183,15 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
   String? id;
-  String? orgName;
+  String? index;
   String? applicationId;
 
-  DisplayPictureScreen({
-    super.key,
-    required this.imagePath,
-    this.id,
-    this.orgName,
-  });
+  DisplayPictureScreen(
+      {super.key,
+      required this.imagePath,
+      this.id,
+      this.index,
+      required this.applicationId});
 
   @override
   Widget build(BuildContext context) {
@@ -212,10 +217,10 @@ class DisplayPictureScreen extends StatelessWidget {
                   // Get a specific camera from the list of available cameras.
                   final firstCamera = cameras.first;
                   // String id = DateTime.now().toIso8601String();   //TODO
-                  Get.to(TakePictureScreen(
+                  Get.to(TakePictureScreenCommonDocument(
                     camera: firstCamera,
                     id: id,
-                    orgname: orgName,
+                    orgName: applicationId,
                   ));
                 },
                 child: Container(
@@ -243,19 +248,17 @@ class DisplayPictureScreen extends StatelessWidget {
                   // Get a specific camera from the list of available cameras.
                   final firstCamera = cameras.first;
                   // String id = DateTime.now().toIso8601String();   //TODO
-                  Get.to(TakePictureScreen(
+                  Get.to(TakePictureScreenCommonDocument(
                     camera: firstCamera,
                     id: id,
-                    orgname: orgName,
+                    orgName: applicationId,
                   ));
                 },
                 child: InkWell(
                   onTap: () {
+                    print("object");
                     Get.find<UploadDocumentController>().uploadFileCamera(
-                      id!,
-                      orgName: orgName!,
-                      imagePath,
-                    );
+                        id!, index!, imagePath, applicationId!);
                   },
                   child: Container(
                       height: 60,

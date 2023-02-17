@@ -6,9 +6,13 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
+import 'package:studentpanel/ui/models/commonuploaddocument.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
+import 'package:studentpanel/ui/models/dropdownOrgName.dart';
+import 'package:studentpanel/ui/models/dropdownUploadDocument.dart';
+import 'package:studentpanel/ui/models/dropdowndocumenttype.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/fileupload.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
@@ -30,6 +34,7 @@ import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -1329,6 +1334,31 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  Future<String?> uploadDocumentCommon(
+      file, uploadFilename, String enq_id, String id,
+      {String orgname = ""}) async {
+    try {
+      var url = Uri.parse(
+          "${Endpoints.baseUrl}${Endpoints.uploadCommonDocumentPart1}$enq_id&id=$id&orgname=$orgname");
+      var request = http.MultipartRequest("POST", url);
+
+      request.files
+          .add(await http.MultipartFile.fromPath('doc', file, filename: file));
+      var res = await request.send();
+      var responsed = await http.Response.fromStream(res);
+      if (responsed.statusCode == 200) {
+        var jsondata = json.decode(responsed.body);
+        FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
+        getsnakbar("Document Upload", status.status.toString());
+        return status.viewLink;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      getToast("Something went to wrong !!");
+    }
+  }
+
   getLogin(String? endpoint) async {
     print(endpoint);
     try {
@@ -1340,6 +1370,94 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       Get.back();
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getDropdownUploadDocument(String endpoint) async {
+    try {
+      List<DropDownDocumentType> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<DropDownDocumentType>.from(
+            json.decode(res).map((x) => DropDownDocumentType.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getDocumentName(String endpoint) async {
+    try {
+      List<DropDownDocumentName> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<DropDownDocumentName>.from(
+            json.decode(res).map((x) => DropDownDocumentName.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getOrganizationDropDown(String endpoint) async {
+    try {
+      List<DropDownorganisationName> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<DropDownorganisationName>.from(
+            json.decode(res).map((x) => DropDownorganisationName.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getcommondocument(String endpoint) async {
+    try {
+      List<CommonUploadDocument> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<CommonUploadDocument>.from(
+            json.decode(res).map((x) => CommonUploadDocument.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
       print(StackTrace.current);
       Fluttertoast.showToast(
           msg: e.toString(),

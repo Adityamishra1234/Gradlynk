@@ -32,7 +32,7 @@ class LoginController extends GetxController {
     } else {
       Get.snackbar(
         "Error",
-        "Please Retry email and Password",
+        "Please Retry phone number and Password",
         snackPosition: SnackPosition.BOTTOM,
       );
     }

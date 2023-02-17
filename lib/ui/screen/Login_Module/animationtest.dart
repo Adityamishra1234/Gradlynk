@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 
 import 'package:studentpanel/ui/screen/login%20copy.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 class AnimationTest extends StatefulWidget {
   const AnimationTest({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _AnimationTestState extends State<AnimationTest>
     controller = GifController(
       loop: false,
       onFinish: () {
-        if (controller1.phone != null) {
+        if (getNUllChecker(controller1.phone) == false) {
           Get.offNamed(DashBoard.routeNamed, arguments: controller1.phone);
         } else {
           Get.offNamed(LoginScreen.routeNamed);
