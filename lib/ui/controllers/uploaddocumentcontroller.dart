@@ -153,7 +153,6 @@ class UploadDocumentController extends GetxController {
       getDocumentType();
       getOrganizationName();
     }
-
     Get.offNamed(UploadDocument.routeNamed);
   }
 

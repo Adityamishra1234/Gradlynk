@@ -8,6 +8,8 @@ import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
+import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
+import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/ui/screen/test/uploadfile.dart';
@@ -137,113 +139,8 @@ class _DashBoardState extends State<DashBoard> {
                                       color: ThemeConstants
                                           .bluecolor), // foreground
                                 ),
-                                onPressed: () async {
-                                  Get.bottomSheet(Container(
-                                    height: 345,
-                                    decoration: BoxDecoration(
-                                      color: ThemeConstants.whitecolor,
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(15.0),
-                                          topLeft: Radius.circular(15.0)),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            height: 50,
-                                            width: displayMobileLayout == true
-                                                ? MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    240
-                                                : MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                            decoration: BoxDecoration(
-                                                color: ThemeConstants
-                                                    .lightblueColor,
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(10.0)),
-                                            child: Center(
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Schedule an Expert call",
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Select your Counsellor",
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: CustomDropDown(
-                                              border: true,
-                                              hint: "Select your Counsellor",
-                                              callbackFunction:
-                                                  callbackDropDownButton,
-                                              model: const ["1", "2", "3"]),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: CustomAutoSizeTextMontserrat(
-                                                text: "Select your Counsellor"),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: CustomDropDown(
-                                              border: true,
-                                              hint: "Select your Counsellor",
-                                              callbackFunction:
-                                                  callbackDropDownButton,
-                                              model: const ["1", "2", "3"]),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: CustomAutoSizeTextMontserrat(
-                                                text: "Select your Counsellor"),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: CustomDropDown(
-                                              border: true,
-                                              hint: "Select your Counsellor",
-                                              callbackFunction:
-                                                  callbackDropDownButton,
-                                              model: const ["1", "2", "3"]),
-                                        ),
-                                      ],
-                                    ),
-                                  ));
+                                onPressed: () {
+                                  Get.toNamed(ScheduleExpertCall.routeNamed);
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Schedule expert call",
@@ -263,108 +160,8 @@ class _DashBoardState extends State<DashBoard> {
                                       color: ThemeConstants
                                           .orangeColor), // foreground
                                 ),
-                                onPressed: () async {
-                                  Get.bottomSheet(Container(
-                                    height: 340,
-                                    decoration: BoxDecoration(
-                                      color: ThemeConstants.whitecolor,
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(15.0),
-                                          topLeft: Radius.circular(15.0)),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            height: 40,
-                                            width: displayMobileLayout == true
-                                                ? MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    240
-                                                : MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                            decoration: BoxDecoration(
-                                                color: ThemeConstants
-                                                    .lightblueColor,
-                                                borderRadius:
-                                                    BorderRadiusDirectional
-                                                        .circular(10.0)),
-                                            child: Center(
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Book an appointment",
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: CustomAutoSizeTextMontserrat(
-                                                text: "Book an appointment"),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: CustomDropDown(
-                                              border: true,
-                                              hint: "Select your Counsellor",
-                                              callbackFunction:
-                                                  callbackDropDownButton,
-                                              model: const ["1", "2", "3"]),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: CustomAutoSizeTextMontserrat(
-                                                text: "Select your Counsellor"),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: CustomDropDown(
-                                              border: true,
-                                              hint: "Select your Counsellor",
-                                              callbackFunction:
-                                                  callbackDropDownButton,
-                                              model: const ["1", "2", "3"]),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: CustomAutoSizeTextMontserrat(
-                                                text: "Select your Counsellor"),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: CustomDropDown(
-                                              border: true,
-                                              hint: "Select your Counsellor",
-                                              callbackFunction:
-                                                  callbackDropDownButton,
-                                              model: const ["1", "2", "3"]),
-                                        ),
-                                      ],
-                                    ),
-                                  ));
+                                onPressed: () {
+                                  Get.toNamed(BookAnAppointment.routeNamed);
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Book an appointment",

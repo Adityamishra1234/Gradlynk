@@ -25,6 +25,8 @@ import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/realtion.dart';
+import 'package:studentpanel/ui/models/serviceAssignesmodel.dart';
+import 'package:studentpanel/ui/models/status.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:get/get.dart';
@@ -1425,6 +1427,28 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  getServicesAssigned(String endpoint) async {
+    try {
+      List<ServiceAssigneersModel> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<ServiceAssigneersModel>.from(
+            json.decode(res).map((x) => ServiceAssigneersModel.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
   getOrganizationDropDown(String endpoint) async {
     try {
       List<DropDownorganisationName> model = [];
@@ -1455,6 +1479,28 @@ class ApiServices extends StudentPanelBase {
         model = List<CommonUploadDocument>.from(
             json.decode(res).map((x) => CommonUploadDocument.fromJson(x)));
         return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
+
+  getSheduleExpertCall(String endpoint) async {
+    try {
+      StatusModel model = StatusModel();
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = StatusModel.fromJson(json.decode(res));
+        getsnakbar("Schedule an Expert call", model.status!);
+        Get.toNamed(DashBoard.routeNamed);
       }
     } catch (e) {
       print(StackTrace.current);

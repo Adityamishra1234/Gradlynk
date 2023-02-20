@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -334,7 +332,7 @@ getLoading(BuildContext context) {
       height: MediaQuery.of(context).size.height * 0.50,
       width: MediaQuery.of(context).size.width * 0.50,
       child: Image.asset(
-        "assets/icons/loading.gif",
+        "assets/icons/loading1.gif",
         gaplessPlayback: false,
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -392,3 +390,141 @@ firstLetterChaptial(String? data) {
     return null;
   }
 }
+
+getTable(
+    {var firstField,
+    var secondField,
+    var firstFiledName,
+    var secondFieldName}) {
+  if (getNUllChecker(firstFiledName) == false ||
+      getNUllChecker(secondFieldName) == false) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Table(
+        children: [
+          TableRow(children: [
+            if (getNUllChecker(firstFiledName) == false)
+              CustomAutoSizeTextMontserrat(
+                text: firstField,
+                maxLines: 2,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            if (getNUllChecker(secondFieldName) == false)
+              CustomAutoSizeTextMontserrat(
+                text: secondField,
+                maxLines: 2,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+          ]),
+          TableRow(children: [
+            if (getNUllChecker(firstFiledName) == false)
+              CustomAutoSizeTextMontserrat(
+                text: firstFiledName,
+                textColor: ThemeConstants.TextColor,
+                maxLines: 2,
+                fontSize: 12,
+              ),
+            if (getNUllChecker(secondFieldName) == false)
+              CustomAutoSizeTextMontserrat(
+                text: secondFieldName,
+                textColor: ThemeConstants.TextColor,
+                maxLines: 2,
+                fontSize: 12,
+              ),
+          ]),
+        ],
+      ),
+    );
+  } else {
+    return Container();
+  }
+}
+
+// getScheduleExpertCall() {
+//   return Get.bottomSheet(Container(
+//     height: 345,
+//     decoration: BoxDecoration(
+//       color: ThemeConstants.whitecolor,
+//       borderRadius: const BorderRadius.only(
+//           topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0)),
+//     ),
+//     child: Column(
+//       children: [
+//         Padding(
+//           padding: const EdgeInsets.all(10),
+//           child: Container(
+//             height: 50,
+//             width: displayMobileLayout == true
+//                 ? MediaQuery.of(context).size.width - 240
+//                 : MediaQuery.of(context).size.width,
+//             decoration: BoxDecoration(
+//                 color: ThemeConstants.lightblueColor,
+//                 borderRadius: BorderRadiusDirectional.circular(10.0)),
+//             child: Center(
+//               child: CustomAutoSizeTextMontserrat(
+//                 text: "Schedule an Expert call",
+//                 textColor: ThemeConstants.bluecolor,
+//                 fontSize: 14,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//           ),
+//         ),
+//         const SizedBox(
+//           height: 10,
+//         ),
+//         Align(
+//           alignment: AlignmentDirectional.topStart,
+//           child: Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: CustomAutoSizeTextMontserrat(
+//               text: "Select your Counsellor",
+//               fontSize: 14,
+//               fontWeight: FontWeight.w600,
+//             ),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: CustomDropDown(
+//               border: true,
+//               hint: "Select your Counsellor",
+//               callbackFunction: callbackDropDownButton,
+//               model: const ["1", "2", "3"]),
+//         ),
+//         Align(
+//           alignment: AlignmentDirectional.topStart,
+//           child: Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: CustomAutoSizeTextMontserrat(text: "Select your Counsellor"),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: CustomDropDown(
+//               border: true,
+//               hint: "Select your Counsellor",
+//               callbackFunction: callbackDropDownButton,
+//               model: const ["1", "2", "3"]),
+//         ),
+//         Align(
+//           alignment: AlignmentDirectional.topStart,
+//           child: Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: CustomAutoSizeTextMontserrat(text: "Select your Counsellor"),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: CustomDropDown(
+//               border: true,
+//               hint: "Select your Counsellor",
+//               callbackFunction: callbackDropDownButton,
+//               model: const ["1", "2", "3"]),
+//         ),
+//       ],
+//     ),
+//   ));
+// }

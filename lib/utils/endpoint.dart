@@ -97,10 +97,11 @@ class Endpoints {
   static String? documentNameForDocumentTypePart3 = "&organization_name=";
   static String? commonUploadDocument = "get-common-uploaded-document?enq_id=";
   static String? serviceAssigness = "service-assignees?enq_id=";
+
   static String? scheduleAnExpertCallPart1 = "schedule-an-expert-call?enq_id=";
   static String? scheduleAnExpertCallPart2 = "&expert_call_date=";
-  static String? scheduleAnExpertCallPart3 = "&expert_call_time";
-  static String? scheduleAnExpertCallPart4 = "&expert_call_counsellor";
+  static String? scheduleAnExpertCallPart3 = "&expert_call_time=";
+  static String? scheduleAnExpertCallPart4 = "&expert_call_counsellor=";
 
   static String? bookAnAppointmentpart1 = "book-an-appointment?enq_id=";
   static String? bookAnAppointmentpart2 = "&appointment_date=";

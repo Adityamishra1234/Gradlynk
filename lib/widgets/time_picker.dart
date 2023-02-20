@@ -78,7 +78,10 @@ class _TimePickerExampleState extends State<TimePickerExample> {
                           // This is called when the user changes the timer's
                           // duration.
                           onTimerDurationChanged: (Duration newDuration) {
-                            setState(() => duration = newDuration);
+                            setState(() {
+                              duration = newDuration;
+                              widget.callbackDate(newDuration);
+                            });
                           },
                         ),
                       ),

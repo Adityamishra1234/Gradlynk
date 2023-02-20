@@ -114,44 +114,12 @@ class _ApplicationCompleteDetailsState
                                       ),
                                     ),
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 5),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Offer Status",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Acknowledgement Number",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ]),
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: _.model.offerStatus,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                maxLines: 2,
-                                                fontSize: 12,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: _.model
-                                                    .acknowledgementNumber,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                maxLines: 2,
-                                                fontSize: 12,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
+                                      getTable(
+                                          firstField: "Offer Status",
+                                          secondField: "Acknowledgement Number",
+                                          firstFiledName: _.model.offerStatus,
+                                          secondFieldName:
+                                              _.model.acknowledgementNumber),
                                       Align(
                                         alignment:
                                             AlignmentDirectional.topStart,
@@ -239,433 +207,262 @@ class _ApplicationCompleteDetailsState
                                   ),
                                 ),
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Application Submission Date",
-                                            maxLines: 2,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Offer Date",
-                                            maxLines: 2,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.submissionDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.offerDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Offer lapse Date",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Conditional offer date",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.offerLapseDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.conditionalOfferDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Fee Payment \nDeadline",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Course Start date",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.feeDeadline,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.courseStartDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Estimated Course Completion date",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Course Fees Currency",
-                                            fontSize: 14,
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.completionDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.currencyCode,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Course Fees in AUD",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Course Fees in INR",
-                                            fontSize: 14,
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "${_.model.annualTutionFees ?? ""} ${_.model.currencyCode ?? ""}",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                " ${_.model.annualTutionFeesInr ?? ""} INR",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "OSHC Fees",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Total Fees in ${_.model.currencyCode}",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.oSHCFees,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: (_.model.totalfees ?? "") +
-                                                (_.model.currencyCode ?? ""),
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
+                                  getTable(
+                                      firstField: "Application Submission Date",
+                                      secondField: "Offer Date",
+                                      firstFiledName: _.model.submissionDate,
+                                      secondFieldName: _.model.offerDate),
+                                  getTable(
+                                      firstField: "Offer lapse Date",
+                                      secondField: "Conditional offer date",
+                                      firstFiledName: _.model.offerLapseDate,
+                                      secondFieldName:
+                                          _.model.conditionalOfferDate),
+                                  getTable(
+                                      firstField: "Fee Payment \nDeadline",
+                                      secondField: "Course Start date",
+                                      firstFiledName: _.model.feeDeadline,
+                                      secondFieldName: _.model.courseStartDate),
+                                  getTable(
+                                      firstField:
+                                          "Estimated Course Completion date",
+                                      secondField: "Course Fees Currency",
+                                      firstFiledName: _.model.completionDate,
+                                      secondFieldName: _.model.currencyCode),
+                                  getTable(
+                                      firstField: "Course Fees in AUD",
+                                      secondField: "Course Fees in INR",
+                                      firstFiledName:
+                                          "${_.model.annualTutionFees ?? ""} ${_.model.currencyCode ?? ""}",
+                                      secondFieldName:
+                                          " ${_.model.annualTutionFeesInr ?? ""} INR"),
+                                  getTable(
+                                      firstField: "OSHC Fees",
+                                      secondField:
+                                          "Total Fees in ${_.model.currencyCode}",
+                                      firstFiledName: _.model.oSHCFees,
+                                      secondFieldName:
+                                          (_.model.totalfees ?? "") +
+                                              (_.model.currencyCode ?? "")),
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Total Fees in INR",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Reason of Rejected",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "9800 INR hardcode",
-                                            fontSize: 12,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "1000000 INR hard code",
-                                            fontSize: 12,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "Specify conditionals for conditional offer",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
+                                  getTable(
+                                    firstField: "Total Fees in INR",
+                                    secondField: "Reason of Rejected",
+                                    firstFiledName: _.model.totalfeesInr,
+                                    secondFieldName: _.model.offerRejectReason,
                                   ),
 
-                                  Align(
+                                  if (getNUllChecker(_.model
+                                          .SpecifyConditionsForConditionalOffer) ==
+                                      false)
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                  if (getNUllChecker(_.model
+                                          .SpecifyConditionsForConditionalOffer) ==
+                                      false)
+                                    Align(
                                       alignment: AlignmentDirectional.topStart,
                                       child: CustomAutoSizeTextMontserrat(
-                                        text: "........... hard code",
-                                        textColor: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      )),
+                                        text:
+                                            "Specify conditionals for conditional offer",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  if (getNUllChecker(_.model
+                                          .SpecifyConditionsForConditionalOffer) ==
+                                      false)
+                                    Align(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: _.model
+                                              .SpecifyConditionsForConditionalOffer,
+                                          textColor: ThemeConstants.TextColor,
+                                          fontSize: 12,
+                                        )),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "FUll Offer Letter Documnet",
-                                      textColor: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.bold,
+                                  if (getNUllChecker(_.model.fullOfferDoc) ==
+                                      false)
+                                    Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "FUll Offer Letter Documnet",
+                                        textColor: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color: ThemeConstants.bluecolor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                  if (getNUllChecker(_.model.fullOfferDoc) ==
+                                      false)
+                                    Row(
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.bluecolor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            downloadFile(_.model.fullOfferDoc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Download",
+                                            textColor: ThemeConstants.bluecolor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          downloadFile(_.model.fullOfferDoc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Download",
-                                          textColor: ThemeConstants.bluecolor,
+                                        const SizedBox(
+                                          width: 20,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color:
-                                                  ThemeConstants.orangeColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.orangeColor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            getViewDocument(
+                                                _.model.fullOfferDoc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "View",
+                                            textColor:
+                                                ThemeConstants.orangeColor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          getViewDocument(_.model.fullOfferDoc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "View",
-                                          textColor: ThemeConstants.orangeColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Rejection Document",
-                                      textColor: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.bold,
+                                      ],
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color: ThemeConstants.bluecolor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {
-                                          downloadFile(_.model.rejectionDoc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Download",
-                                          textColor: ThemeConstants.bluecolor,
-                                        ),
+                                  if (getNUllChecker(
+                                          _.model.reasonOfWithdraw) ==
+                                      false)
+                                    Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Rejection Document",
+                                        textColor: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color:
-                                                  ThemeConstants.orangeColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {
-                                          getViewDocument(_.model.rejectionDoc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "View",
-                                          textColor: ThemeConstants.orangeColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Conditional offer Document",
-                                      textColor: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color: ThemeConstants.bluecolor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                  if (getNUllChecker(
+                                          _.model.reasonOfWithdraw) ==
+                                      false)
+                                    Row(
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.bluecolor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            downloadFile(_.model.rejectionDoc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Download",
+                                            textColor: ThemeConstants.bluecolor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          downloadFile(
-                                              _.model.conditionalOfferDoc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Download",
-                                          textColor: ThemeConstants.bluecolor,
+                                        const SizedBox(
+                                          width: 20,
                                         ),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.orangeColor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            getViewDocument(
+                                                _.model.rejectionDoc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "View",
+                                            textColor:
+                                                ThemeConstants.orangeColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  if (getNUllChecker(
+                                          _.model.conditionalOfferDoc) ==
+                                      false)
+                                    Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Conditional offer Document",
+                                        textColor: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color:
-                                                  ThemeConstants.orangeColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                    ),
+                                  if (getNUllChecker(
+                                          _.model.conditionalOfferDoc) ==
+                                      false)
+                                    Row(
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.bluecolor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            downloadFile(
+                                                _.model.conditionalOfferDoc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Download",
+                                            textColor: ThemeConstants.bluecolor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          getViewDocument(
-                                              _.model.conditionalOfferDoc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "View",
-                                          textColor: ThemeConstants.orangeColor,
+                                        const SizedBox(
+                                          width: 20,
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.orangeColor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            getViewDocument(
+                                                _.model.conditionalOfferDoc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "View",
+                                            textColor:
+                                                ThemeConstants.orangeColor,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
 
                                   //
                                 ],
@@ -693,306 +490,182 @@ class _ApplicationCompleteDetailsState
                                   ),
                                 ),
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Offer Acceptance status",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Offer Acceptance Date",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.acceptanceStage,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.acceptanceDate,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Offer Acceptance status",
+                                    secondField: "Offer Acceptance Date",
+                                    firstFiledName: _.model.acceptanceStage,
+                                    secondFieldName: _.model.acceptanceDate,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Payment Option",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Amount Paid",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.paymentOption,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.amountPaid,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Payment Option",
+                                    secondField: "Amount Paid",
+                                    firstFiledName: _.model.paymentOption,
+                                    secondFieldName: _.model.amountPaid,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Date of Payment",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Transacted by",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.dateOfPayment,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "applicationDetailModel.",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Date of Payment",
+                                    secondField: "Transacted by",
+                                    firstFiledName: _.model.dateOfPayment,
+                                    secondFieldName: _.model.transactedBy,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "SIEC Person",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Mode of Payment",
-                                            fontSize: 14,
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.siecEmployee,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.modeOfPayment,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "SIEC Person",
+                                    secondField: "Mode of Payment",
+                                    firstFiledName: _.model.siecEmployee,
+                                    secondFieldName: _.model.modeOfPayment,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Balance Fee",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "COE/CAS/I-20 Receipt",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: _.model.balanceFee,
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "applicationDetailModel.coeRecevied",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Balance Fee",
+                                    secondField: "COE/CAS/I-20 Receipt",
+                                    firstFiledName: _.model.balanceFee,
+                                    secondFieldName: _.model.coeCasI20Recipt,
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Confirmation Received Date/Time",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  Align(
+                                  if (getNUllChecker(
+                                          _.model.conditionalOfferDate) ==
+                                      false)
+                                    Align(
                                       alignment: AlignmentDirectional.topStart,
                                       child: CustomAutoSizeTextMontserrat(
-                                        text: _.model.conditionalOfferDate,
-                                        textColor: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      )),
+                                        text: "Confirmation Received Date/Time",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  if (getNUllChecker(
+                                          _.model.conditionalOfferDate) ==
+                                      false)
+                                    Align(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: _.model.conditionalOfferDate,
+                                          textColor: ThemeConstants.TextColor,
+                                          fontSize: 12,
+                                        )),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Payment Receipt Doc",
-                                      textColor: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.bold,
+                                  if (getNUllChecker(_.model.paymentReceipt) ==
+                                      false)
+                                    Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Payment Receipt Doc",
+                                        textColor: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color: ThemeConstants.bluecolor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                  if (getNUllChecker(_.model.paymentReceipt) ==
+                                      false)
+                                    Row(
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.bluecolor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            downloadFile(
+                                                _.model.paymentReceipt);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Download",
+                                            textColor: ThemeConstants.bluecolor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          downloadFile(_.model.paymentReceipt);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Download",
-                                          textColor: ThemeConstants.bluecolor,
+                                        const SizedBox(
+                                          width: 20,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color:
-                                                  ThemeConstants.orangeColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.orangeColor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            getViewDocument(
+                                                _.model.paymentReceipt);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "View",
+                                            textColor:
+                                                ThemeConstants.orangeColor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          getViewDocument(
-                                              _.model.paymentReceipt);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "View",
-                                          textColor: ThemeConstants.orangeColor,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "CAS/I-20/COE Doc",
-                                      textColor: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.bold,
+                                      ],
                                     ),
-                                  ),
-                                  Row(
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color: ThemeConstants.bluecolor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
-                                        ),
-                                        onPressed: () {
-                                          downloadFile(
-                                              _.model.cas_i_20_coe_doc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Download",
-                                          textColor: ThemeConstants.bluecolor,
-                                        ),
+                                  if (getNUllChecker(
+                                          _.model.cas_i_20_coe_doc) ==
+                                      false)
+                                    Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "CAS/I-20/COE Doc",
+                                        textColor: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          side: BorderSide(
-                                              color:
-                                                  ThemeConstants.orangeColor),
-                                          backgroundColor: ThemeConstants
-                                              .whitecolor, // foreground
+                                    ),
+                                  if (getNUllChecker(
+                                          _.model.cas_i_20_coe_doc) ==
+                                      false)
+                                    Row(
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.bluecolor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            downloadFile(
+                                                _.model.cas_i_20_coe_doc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Download",
+                                            textColor: ThemeConstants.bluecolor,
+                                          ),
                                         ),
-                                        onPressed: () {
-                                          getViewDocument(
-                                              _.model.cas_i_20_coe_doc);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "View",
-                                          textColor: ThemeConstants.orangeColor,
+                                        const SizedBox(
+                                          width: 20,
                                         ),
-                                      ),
-                                    ],
-                                  )
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            side: BorderSide(
+                                                color:
+                                                    ThemeConstants.orangeColor),
+                                            backgroundColor: ThemeConstants
+                                                .whitecolor, // foreground
+                                          ),
+                                          onPressed: () {
+                                            getViewDocument(
+                                                _.model.cas_i_20_coe_doc);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "View",
+                                            textColor:
+                                                ThemeConstants.orangeColor,
+                                          ),
+                                        ),
+                                      ],
+                                    )
                                 ],
                               ),
                             ),
@@ -1018,59 +691,35 @@ class _ApplicationCompleteDetailsState
                                   ),
                                 ),
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Reason for Defer",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Defer Till",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Scholarship hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "March 2021 hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Reason for Defer",
+                                    secondField: "Defer Till",
+                                    firstFiledName: _.model.deferReason,
+                                    secondFieldName: _.model.deferTill,
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Deferment Status",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  Align(
+                                  if (getNUllChecker(_.model.defermentStatus) ==
+                                      false)
+                                    Align(
                                       alignment: AlignmentDirectional.topStart,
                                       child: CustomAutoSizeTextMontserrat(
-                                        text: "Defer Approved hard code",
-                                        textColor: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      )),
+                                        text: "Deferment Status",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  if (getNUllChecker(_.model.defermentStatus) ==
+                                      false)
+                                    Align(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: _.model.defermentStatus,
+                                          textColor: ThemeConstants.TextColor,
+                                          fontSize: 12,
+                                        )),
                                 ],
                               ),
                             ),
@@ -1096,113 +745,24 @@ class _ApplicationCompleteDetailsState
                                   ),
                                 ),
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Reason for Withdraw",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Withdrawal Status",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Plan Drop hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Request from Student hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Reason for Withdraw",
+                                    secondField: "Withdrawal Status",
+                                    firstFiledName: _.model.reasonOfWithdraw,
+                                    secondFieldName: _.model.withdrawStatus,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Applied for other University",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "How did you apply?",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Yes hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Self hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Applied for other University",
+                                    secondField: "How did you apply?",
+                                    firstFiledName:
+                                        _.model.applied_for_other_university,
+                                    secondFieldName: "Hard code",
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Table(
-                                      children: [
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Country Name",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "University Name",
-                                            maxLines: 2,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ]),
-                                        TableRow(children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Canada hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "University of the Fraser Valley hard code",
-                                            textColor: ThemeConstants.TextColor,
-                                            maxLines: 2,
-                                            fontSize: 12,
-                                          ),
-                                        ]),
-                                      ],
-                                    ),
+                                  getTable(
+                                    firstField: "Country Name",
+                                    secondField: "University Name",
+                                    firstFiledName: _.model.countryName,
+                                    secondFieldName: _.model.universityname,
                                   ),
                                 ],
                               ),
@@ -1250,6 +810,7 @@ class _ApplicationCompleteDetailsState
   }
 
   // Function
+  //create list of documetn
   List<Widget> documentList(
       ApplicationDetailModel model, BuildContext context) {
     List<Widget> documentlist = [];

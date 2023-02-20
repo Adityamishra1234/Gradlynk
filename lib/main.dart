@@ -19,6 +19,7 @@ import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
@@ -54,6 +55,7 @@ import 'package:studentpanel/widgets/scrolltabbar.dart';
 
 import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
+import 'ui/screen/dashboard/scheduleExpertCall.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -283,6 +285,16 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: InternetConnectionStatusScreen.routeNamed,
           page: () => InternetConnectionStatusScreen(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: ScheduleExpertCall.routeNamed,
+          page: () => ScheduleExpertCall(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: BookAnAppointment.routeNamed,
+          page: () => BookAnAppointment(),
           transition: Transition.fade,
         ),
       ],

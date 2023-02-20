@@ -7,7 +7,7 @@ import 'package:studentpanel/utils/theme.dart';
 class CustomAutoSizeTextMontserrat extends StatelessWidget {
   bool? underline;
   bool? mandatory;
-  String? text;
+  var text;
   int? maxLines, fontSize;
   FontWeight? fontWeight;
   Color? textColor;

@@ -1,4 +1,9 @@
 class ApplicationDetailModel {
+  var coeCasI20Recipt;
+  var universityname;
+  var transactedBy;
+  var applied_for_other_university;
+  var SpecifyConditionsForConditionalOffer;
   var offerStatus;
   var acknowledgementNumber;
   var acknowledgementFile;
@@ -37,58 +42,73 @@ class ApplicationDetailModel {
   var reasonOfWithdraw;
   var withdrawStatus;
   var cas_i_20_coe_doc;
+  var countryName;
   List<Documents>? documents;
-  List<AcknowledgementDocument>? acknowledgementDocument;
-  List<OfferDocument>? offerDocument;
-  List<FeeDocument>? feeDocument;
+  // List<AcknowledgementDocument>? acknowledgementDocument;
+  // List<OfferDocument>? offerDocument;
+  // List<FeeDocument>? feeDocument;
 
-  ApplicationDetailModel(
-      {this.offerStatus,
-      this.cas_i_20_coe_doc,
-      this.acknowledgementNumber,
-      this.acknowledgementFile,
-      this.submissionDate,
-      this.offerDate,
-      this.offerLapseDate,
-      this.conditionalOfferDate,
-      this.feeDeadline,
-      this.courseStartDate,
-      this.completionDate,
-      this.fullOfferDoc,
-      this.offerRejectReason,
-      this.rejectionDoc,
-      this.currencyCode,
-      this.conditionalOfferDoc,
-      this.totalfees,
-      this.totalfeesInr,
-      this.annualTutionFees,
-      this.annualTutionFeesInr,
-      this.oSHCFees,
-      this.acceptanceDate,
-      this.acceptanceStage,
-      this.paymentOption,
-      this.amountPaid,
-      this.dateOfPayment,
-      this.paidBy,
-      this.modeOfPayment,
-      this.balanceFee,
-      this.paymentReceipt,
-      this.coeRecevied,
-      this.coeLetter,
-      this.siecEmployee,
-      this.deferReason,
-      this.deferTill,
-      this.defermentStatus,
-      this.reasonOfWithdraw,
-      this.withdrawStatus,
-      this.documents,
-      this.acknowledgementDocument,
-      this.offerDocument,
-      this.feeDocument});
+  ApplicationDetailModel({
+    this.coeCasI20Recipt,
+    this.countryName,
+    this.universityname,
+    this.transactedBy,
+    this.applied_for_other_university,
+    this.SpecifyConditionsForConditionalOffer,
+    this.offerStatus,
+    this.cas_i_20_coe_doc,
+    this.acknowledgementNumber,
+    this.acknowledgementFile,
+    this.submissionDate,
+    this.offerDate,
+    this.offerLapseDate,
+    this.conditionalOfferDate,
+    this.feeDeadline,
+    this.courseStartDate,
+    this.completionDate,
+    this.fullOfferDoc,
+    this.offerRejectReason,
+    this.rejectionDoc,
+    this.currencyCode,
+    this.conditionalOfferDoc,
+    this.totalfees,
+    this.totalfeesInr,
+    this.annualTutionFees,
+    this.annualTutionFeesInr,
+    this.oSHCFees,
+    this.acceptanceDate,
+    this.acceptanceStage,
+    this.paymentOption,
+    this.amountPaid,
+    this.dateOfPayment,
+    this.paidBy,
+    this.modeOfPayment,
+    this.balanceFee,
+    this.paymentReceipt,
+    this.coeRecevied,
+    this.coeLetter,
+    this.siecEmployee,
+    this.deferReason,
+    this.deferTill,
+    this.defermentStatus,
+    this.reasonOfWithdraw,
+    this.withdrawStatus,
+    this.documents,
+    // this.acknowledgementDocument,
+    // this.offerDocument,
+    // this.feeDocument
+  });
 
   ApplicationDetailModel.fromJson(Map<String, dynamic> json) {
+    countryName = json["country_name"];
+    universityname = json["university_name"];
     cas_i_20_coe_doc = json["CAS_I20_COE_doc"];
-    offerStatus = json['offer_status'].toString();
+    coeCasI20Recipt = json["coeCasI20Recipt"];
+    transactedBy = json["transactedBy"];
+    applied_for_other_university = json["applied_for_other_university"];
+    SpecifyConditionsForConditionalOffer =
+        json["SpecifyConditionsForConditionalOffer"];
+    offerStatus = json['offer_status'];
     acknowledgementNumber = json['acknowledgement_number'];
     acknowledgementFile = json['acknowledgement_file'];
     submissionDate = json['submission_date'];
@@ -103,26 +123,26 @@ class ApplicationDetailModel {
     rejectionDoc = json['rejection_doc'];
     currencyCode = json['currencyCode'];
     conditionalOfferDoc = json['conditional_offer_doc'];
-    totalfees = json['totalfees'].toString();
-    totalfeesInr = json['totalfeesInr'].toString();
-    annualTutionFees = json['annualTutionFees'].toString();
-    annualTutionFeesInr = json['annualTutionFeesInr'].toString();
-    oSHCFees = json['OSHC_Fees'].toString();
-    acceptanceDate = json['acceptance_date'].toString();
-    acceptanceStage = json['acceptance_stage'].toString();
-    paymentOption = json['payment_option'].toString();
-    amountPaid = json['amount_paid'].toString();
-    dateOfPayment = json['date_of_payment'].toString();
-    paidBy = json['paidBy'].toString();
-    modeOfPayment = json['mode_of_payment'].toString();
-    balanceFee = json['balance_fee'].toString();
+    totalfees = json['totalfees'];
+    totalfeesInr = json['totalfeesInr'];
+    annualTutionFees = json['annualTutionFees'];
+    annualTutionFeesInr = json['annualTutionFeesInr'];
+    oSHCFees = json['OSHC_Fees'];
+    acceptanceDate = json['acceptance_date'];
+    acceptanceStage = json['acceptance_stage'];
+    paymentOption = json['payment_option'];
+    amountPaid = json['amount_paid'];
+    dateOfPayment = json['date_of_payment'];
+    paidBy = json['paidBy'];
+    modeOfPayment = json['mode_of_payment'];
+    balanceFee = json['balance_fee'];
     paymentReceipt = json['payment_receipt'];
-    coeRecevied = json['coe_recevied'].toString();
+    coeRecevied = json['coe_recevied'];
     coeLetter = json['coe_letter'];
     siecEmployee = json['siec_employee'];
-    deferReason = json['defer_reason'].toString();
-    deferTill = json['defer_till'].toString();
-    defermentStatus = json['deferment_status'].toString();
+    deferReason = json['defer_reason'];
+    deferTill = json['defer_till'];
+    defermentStatus = json['deferment_status'];
     reasonOfWithdraw = json['reason_of_withdraw'];
     withdrawStatus = json['withdraw_status'];
     if (json['documents'] != null) {
@@ -131,28 +151,30 @@ class ApplicationDetailModel {
         documents!.add(Documents.fromJson(v));
       });
     }
-    if (json['acknowledgement_document'] != null) {
-      acknowledgementDocument = <AcknowledgementDocument>[];
-      json['acknowledgement_document'].forEach((v) {
-        acknowledgementDocument!.add(AcknowledgementDocument.fromJson(v));
-      });
-    }
-    if (json['offer_document'] != null) {
-      offerDocument = <OfferDocument>[];
-      json['offer_document'].forEach((v) {
-        offerDocument!.add(OfferDocument.fromJson(v));
-      });
-    }
-    if (json['fee_document'] != null) {
-      feeDocument = <FeeDocument>[];
-      json['fee_document'].forEach((v) {
-        feeDocument!.add(FeeDocument.fromJson(v));
-      });
-    }
+    // if (json['acknowledgement_document'] != null) {
+    //   acknowledgementDocument = <AcknowledgementDocument>[];
+    //   json['acknowledgement_document'].forEach((v) {
+    //     acknowledgementDocument!.add(AcknowledgementDocument.fromJson(v));
+    //   });
+    // }
+    // if (json['offer_document'] != null) {
+    //   offerDocument = <OfferDocument>[];
+    //   json['offer_document'].forEach((v) {
+    //     offerDocument!.add(OfferDocument.fromJson(v));
+    //   });
+    // }
+    // if (json['fee_document'] != null) {
+    //   feeDocument = <FeeDocument>[];
+    //   json['fee_document'].forEach((v) {
+    //     feeDocument!.add(FeeDocument.fromJson(v));
+    //   });
+    // }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data["university_name"] = universityname;
+    data["country_name"] = countryName;
     data["CAS_I20_COE_doc"] = cas_i_20_coe_doc;
     data['offer_status'] = offerStatus;
     data['acknowledgement_number'] = acknowledgementNumber;
@@ -194,16 +216,16 @@ class ApplicationDetailModel {
     if (documents != null) {
       data['documents'] = documents!.map((v) => v.toJson()).toList();
     }
-    if (acknowledgementDocument != null) {
-      data['acknowledgement_document'] =
-          acknowledgementDocument!.map((v) => v.toJson()).toList();
-    }
-    if (offerDocument != null) {
-      data['offer_document'] = offerDocument!.map((v) => v.toJson()).toList();
-    }
-    if (feeDocument != null) {
-      data['fee_document'] = feeDocument!.map((v) => v.toJson()).toList();
-    }
+    // if (acknowledgementDocument != null) {
+    //   data['acknowledgement_document'] =
+    //       acknowledgementDocument!.map((v) => v.toJson()).toList();
+    // }
+    // if (offerDocument != null) {
+    //   data['offer_document'] = offerDocument!.map((v) => v.toJson()).toList();
+    // }
+    // if (feeDocument != null) {
+    //   data['fee_document'] = feeDocument!.map((v) => v.toJson()).toList();
+    // }
     return data;
   }
 }
@@ -276,7 +298,7 @@ class AcknowledgementDocument {
 }
 
 class Documents {
-  int? id;
+  var id;
   var documentParentCategory;
   var requiredBy;
   var uploadedBy;
