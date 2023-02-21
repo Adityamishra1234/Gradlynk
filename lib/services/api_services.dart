@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
@@ -36,6 +37,7 @@ import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -1514,4 +1516,38 @@ class ApiServices extends StudentPanelBase {
           fontSize: 16.0);
     }
   }
+
+  logout(String baseUrl, String endpoint, String token) async {
+    var jsonData = {"token": token};
+
+    try {
+      var response = await logoutPost(baseUrl + endpoint, jsonData, token);
+      if (response == true) {
+        return true;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // logout(String endpoint, String token) async {
+  //   try {
+  //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);
+  //     if (res != null) {
+  //       if (res["message"] == "Logged out") {
+  //         print("object");
+  //       }
+  //     }
+  //   } catch (e) {
+  //     print(StackTrace.current);
+  //     Fluttertoast.showToast(
+  //         msg: e.toString(),
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.BOTTOM,
+  //         timeInSecForIosWeb: 1,
+  //         backgroundColor: ThemeConstants.whitecolor,
+  //         textColor: ThemeConstants.blackcolor,
+  //         fontSize: 16.0);
+  //   }
+  // }
 }

@@ -101,10 +101,22 @@ class ApplicationSummary extends StatelessWidget {
                                             Get.toNamed(
                                                 ApplicationCompleteDetails
                                                     .routeNamed,
-                                                arguments: controller
-                                                    .applicationSummaryModel[
-                                                        index]
-                                                    .id);
+                                                arguments: [
+                                                  {
+                                                    "first": controller
+                                                        .applicationSummaryModel[
+                                                            index]
+                                                        .id
+                                                        .toString()
+                                                  },
+                                                  {
+                                                    "second": controller
+                                                        .applicationSummaryModel[
+                                                            index]
+                                                        .stageId
+                                                        .toString()
+                                                  }
+                                                ]);
                                           },
                                           child: CustomAutoSizeTextMontserrat(
                                             text: controller

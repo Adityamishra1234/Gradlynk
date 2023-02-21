@@ -20,7 +20,7 @@ class TimePickerExample extends StatefulWidget {
 }
 
 class _TimePickerExampleState extends State<TimePickerExample> {
-  Duration duration = const Duration(hours: 1, minutes: 23);
+  Duration duration = const Duration(hours: 0, minutes: 00);
   bool dateFormatError = false;
   DateTime date = DateTime(2016, 10, 26);
 

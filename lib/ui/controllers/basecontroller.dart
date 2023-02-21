@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class BaseController extends GetxController {
@@ -64,6 +65,20 @@ class BaseController extends GetxController {
       notificationModel = res;
       loadingnotificationModel = true.obs;
       update();
+    }
+  }
+
+  logout() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String token = sharedPreferences.getString("token").toString();
+    String id = sharedPreferences.getString("id").toString();
+    var res = await apiServices.logout(
+        Endpoints.baseUrl!, Endpoints.logout! + id, token);
+    if (res == true) {
+      sharedPreferences.clear();
+      print(sharedPreferences.getString("token").toString());
+      print(sharedPreferences.getString("id").toString());
+      Get.toNamed(LoginScreen.routeNamed);
     }
   }
 }

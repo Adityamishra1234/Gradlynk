@@ -27,6 +27,8 @@ class LoginController extends GetxController {
     if (responsive != null) {
       model = responsive;
       prefs.setString("phonenumber", model!.user!.mobile.toString());
+      prefs.setString("token", model!.token.toString());
+      prefs.setString("id", model!.user!.id.toString());
       Get.offAllNamed(DashBoard.routeNamed);
       return model;
     } else {

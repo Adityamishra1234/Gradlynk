@@ -66,6 +66,28 @@ class StudentPanelBase {
     }
   }
 
+  logoutPost(String url, var jsonData, String token) async {
+    try {
+      var response = await http.post(Uri.parse(url),
+          headers: {
+            // "Accept": "application/json",
+            // "Content-Type": "application/x-www-form-urlencoded",
+            'Authorization': 'Bearer $token',
+          },
+          body: jsonData);
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
   httpPostNullBody(String url, {bool login = false}) async {
     // String? token = await getToken();
     url = url.replaceAll('"null"', "");
@@ -98,48 +120,84 @@ class StudentPanelBase {
             'Something went to wrong : ${response.statusCode}');
     }
   }
-}
 
-httpPut(String url, var jsonData) async {
-  // String? token = await getToken();
-  await checkUserConnection();
-  try {
-    var response = await http.put(Uri.parse(url), body: jsonData, headers: {
-      "Accept": "application/json",
-      // 'Authorization': 'Bearer $token',
-    });
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      return null;
-    }
-  } catch (e) {
-    if (kDebugMode) {
-      print(e);
+  httplogout(String url, String token) async {
+    // String? token = await getToken();
+    // await checkUserConnection();
+
+    var response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': '*/*',
+        'Authorization': 'Bearer $token',
+      },
+    );
+    print(token);
+    print(response.body);
+
+    switch (response.statusCode) {
+      case 200:
+        return response.body.isNotEmpty
+            ? response.body
+            : throw EmptyDataException("440");
+      case 440:
+        throw EmptyDataException("440");
+      case 400:
+        throw BadRequestException(response.body.toString());
+      case 401:
+      case 403:
+        throw UnauthorisedException(response.body.toString());
+      case 502:
+        throw InternetError("Please try after sometime");
+      case 500:
+      default:
+        throw FetchDataException(
+            'Something went to wrong : ${response.statusCode}');
     }
   }
-}
 
-httpDelete(String url, var jsonData) async {
-  // String? token = await getToken();
-  await checkUserConnection();
-  try {
-    var response = await http.delete(
-      Uri.parse(url),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        // 'Authorization': 'Bearer $token'
-      },
-      body: jsonData,
-    );
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      return null;
+  httpPut(String url, var jsonData) async {
+    // String? token = await getToken();
+    await checkUserConnection();
+    try {
+      var response = await http.put(Uri.parse(url), body: jsonData, headers: {
+        "Accept": "application/json",
+        // 'Authorization': 'Bearer $token',
+      });
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
     }
-  } catch (e) {
-    if (kDebugMode) {
-      print(e);
+  }
+
+  httpDelete(String url, var jsonData) async {
+    // String? token = await getToken();
+    await checkUserConnection();
+    try {
+      var response = await http.delete(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          // 'Authorization': 'Bearer $token'
+        },
+        body: jsonData,
+      );
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

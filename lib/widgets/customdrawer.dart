@@ -301,21 +301,27 @@ class CustomDrawer extends StatelessWidget {
                     height: 60,
                   ),
                   Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.lightgreycolor,
-                          borderRadius: BorderRadius.circular(10.0)),
-                      height: 35,
-                      width: 200,
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          svgImage("logout", ThemeConstants.IconColor, 25, 25),
-                          CustomAutoSizeTextMontserrat(
-                            text: "Logout",
-                          ),
-                          const Spacer(),
-                        ],
+                    child: InkWell(
+                      onTap: () {
+                        Get.find<BaseController>().logout();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: ThemeConstants.lightgreycolor,
+                            borderRadius: BorderRadius.circular(10.0)),
+                        height: 35,
+                        width: 200,
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            svgImage(
+                                "logout", ThemeConstants.IconColor, 25, 25),
+                            CustomAutoSizeTextMontserrat(
+                              text: "Logout",
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
                       ),
                     ),
                   ),

@@ -17,7 +17,7 @@ class ApplicationCompleteDetailsController extends GetxController {
 
   @override
   void onInit() {
-    getApplicationDetailComplete(Get.arguments.toString());
+    getApplicationDetailComplete(Get.arguments[0]['first'].toString());
   }
 
 //Function
@@ -78,6 +78,6 @@ class ApplicationCompleteDetailsController extends GetxController {
         Endpoints.applicationDocumentUpload!);
     model.documents![int.parse(index)].viewLink = res;
     Get.offNamed(ApplicationCompleteDetails.routeNamed,
-        arguments: applicationId);
+        arguments: Get.arguments[0]['first']);
   }
 }
