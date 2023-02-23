@@ -47,6 +47,10 @@ bool getNUllChecker(var data) {
     return true;
   } else if (data == "0") {
     return true;
+  } else if (data == 0) {
+    return true;
+  } else if (data == 0.0) {
+    return true;
   } else {
     return false;
   }

@@ -43,12 +43,14 @@ class ApplicationDetailModel {
   var withdrawStatus;
   var cas_i_20_coe_doc;
   var countryName;
+  var stageID;
   List<Documents>? documents;
   // List<AcknowledgementDocument>? acknowledgementDocument;
   // List<OfferDocument>? offerDocument;
   // List<FeeDocument>? feeDocument;
 
   ApplicationDetailModel({
+    this.stageID,
     this.coeCasI20Recipt,
     this.countryName,
     this.universityname,
@@ -100,6 +102,7 @@ class ApplicationDetailModel {
   });
 
   ApplicationDetailModel.fromJson(Map<String, dynamic> json) {
+    stageID = json["stageId"];
     countryName = json["country_name"];
     universityname = json["university_name"];
     cas_i_20_coe_doc = json["CAS_I20_COE_doc"];
@@ -173,6 +176,7 @@ class ApplicationDetailModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data["stageId"] = stageID;
     data["university_name"] = universityname;
     data["country_name"] = countryName;
     data["CAS_I20_COE_doc"] = cas_i_20_coe_doc;
