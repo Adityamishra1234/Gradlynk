@@ -33,7 +33,11 @@ class ProfilePageCopy extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+        drawer: displayMobileLayout == false
+            ? CustomDrawer(
+                index: 1,
+              )
+            : null,
         body: GetBuilder<ProfilePageController>(
           builder: (_) => LayoutBuilder(
               builder: (BuildContext context, BoxConstraints cons) {
@@ -43,7 +47,10 @@ class ProfilePageCopy extends StatelessWidget {
             }
             return Row(
               children: [
-                if (displayMobileLayout == true) const CustomDrawer(),
+                if (displayMobileLayout == true)
+                  CustomDrawer(
+                    index: 1,
+                  ),
                 Container(
                     width: constraints - 240,
                     color: ThemeConstants.whitecolor,

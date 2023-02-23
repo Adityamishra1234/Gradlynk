@@ -74,7 +74,9 @@ class _FilterState extends State<Filter> {
     courseModelFilter.filterModel = controller.filterModel;
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: const CustomDrawer(),
+        drawer: CustomDrawer(
+          index: 3,
+        ),
         body: GetBuilder<FilterController>(
           builder: (controller1) => controller1.loadingfuncation.value == true
               ? Column(

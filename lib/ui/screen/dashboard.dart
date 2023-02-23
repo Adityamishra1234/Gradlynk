@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -14,6 +16,7 @@ import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
+import 'package:studentpanel/ui/screen/updatedialog.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -24,7 +27,6 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/test.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:new_version/new_version.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -43,47 +45,9 @@ class _DashBoardState extends State<DashBoard> {
     fontWeight: FontWeight.w800,
     fontSize: 17,
   );
-
   @override
   void initState() {
     super.initState();
-
-    // Instantiate NewVersion manager object (Using GCP Console app as example)
-    final newVersion = NewVersion(
-      iOSId: 'com.google.Vespa',
-      androidId: 'com.google.android.apps.cloudconsole',
-    );
-
-    // You can let the plugin handle fetching the status and showing a dialog,
-    // or you can fetch the status and display your own dialog, or no dialog.
-    const simpleBehavior = true;
-
-    if (simpleBehavior) {
-      basicStatusCheck(newVersion);
-    } else {
-      advancedStatusCheck(newVersion);
-    }
-  }
-
-  basicStatusCheck(NewVersion newVersion) {
-    newVersion.showAlertIfNecessary(context: context);
-  }
-
-  advancedStatusCheck(NewVersion newVersion) async {
-    final status = await newVersion.getVersionStatus();
-    if (status != null) {
-      debugPrint(status.releaseNotes);
-      debugPrint(status.appStoreLink);
-      debugPrint(status.localVersion);
-      debugPrint(status.storeVersion);
-      debugPrint(status.canUpdate.toString());
-      newVersion.showUpdateDialog(
-        context: context,
-        versionStatus: status,
-        dialogTitle: 'Custom Title',
-        dialogText: 'Custom Text',
-      );
-    }
   }
 
   @override
@@ -93,12 +57,19 @@ class _DashBoardState extends State<DashBoard> {
 
     return Scaffold(
       appBar: CustomAppBar("DashBoard"),
-      drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+      drawer: displayMobileLayout == false
+          ? CustomDrawer(
+              index: 0,
+            )
+          : null,
       body: GetBuilder<BaseController>(builder: (_) {
         return _.loadingStudentPanelData1.value == true
             ? Row(
                 children: [
-                  if (displayMobileLayout == true) const CustomDrawer(),
+                  if (displayMobileLayout == true)
+                    CustomDrawer(
+                      index: 0,
+                    ),
                   Container(
                     color: Colors.white,
                     child: SizedBox(

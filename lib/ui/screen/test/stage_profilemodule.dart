@@ -11,7 +11,9 @@ class StageProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: const CustomDrawer(),
+        drawer: CustomDrawer(
+          index: 7,
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [

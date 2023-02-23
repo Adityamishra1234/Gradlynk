@@ -23,7 +23,11 @@ class ApplicationSummary extends StatelessWidget {
     }
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+        drawer: displayMobileLayout == false
+            ? CustomDrawer(
+                index: 2,
+              )
+            : null,
         body: GetBuilder<ApplicationSummaryController>(builder: (_) {
           // For Update model with Staus Name
           if (_.loadingStatus.value == true &&
@@ -52,7 +56,10 @@ class ApplicationSummary extends StatelessWidget {
           }
           return Row(
             children: [
-              if (displayMobileLayout == true) const CustomDrawer(),
+              if (displayMobileLayout == true)
+                CustomDrawer(
+                  index: 2,
+                ),
               Flexible(
                 child: Column(
                   children: [

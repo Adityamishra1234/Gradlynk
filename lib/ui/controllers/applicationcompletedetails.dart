@@ -35,35 +35,43 @@ class ApplicationCompleteDetailsController extends GetxController {
   }
 
   uploadDocument(String id, int index) async {
-    String uploadFilename = "";
-    PlatformFile? csvFile2;
-    final results = await FilePicker.platform.pickFiles(
-      allowMultiple: false,
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'tiff', 'pdf', 'doc', 'docx'],
-    );
-    if (results != null) {
-      csvFile2 = results.files.first;
-      uploadFilename = results.files.first.name;
-    }
-    if (csvFile2 != null) {
-      if (csvFile2.path != null) {
-        final f = File(csvFile2.path!);
-        int sizeInBytes = f.lengthSync();
-        double sizeInMb = sizeInBytes / (1024 * 1024);
-        if (sizeInMb > 5) {
-          getsnakbar("Document Upload", "Please file upload maximum 5 MB");
-        } else {
-          String? res = await apiServices.sendFile(
-              csvFile2.path,
-              uploadFilename,
-              Get.find<BaseController>().model1.id.toString(),
-              id,
-              Endpoints.applicationDocumentUpload!);
-          model.documents![index].viewLink = res;
-          update();
+    try {
+      String uploadFilename = "";
+      PlatformFile? csvFile2;
+      final results = await FilePicker.platform.pickFiles(
+        allowMultiple: false,
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'tiff', 'pdf', 'doc', 'docx'],
+      );
+
+      if (results != null) {
+        csvFile2 = results.files.first;
+        uploadFilename = results.files.first.name;
+      } else {
+        model.documents![index].viewLink = "";
+        update();
+      }
+      if (csvFile2 != null) {
+        if (csvFile2.path != null) {
+          final f = File(csvFile2.path!);
+          int sizeInBytes = f.lengthSync();
+          double sizeInMb = sizeInBytes / (1024 * 1024);
+          if (sizeInMb > 5) {
+            getsnakbar("Document Upload", "Please file upload maximum 5 MB");
+          } else {
+            String? res = await apiServices.sendFile(
+                csvFile2.path,
+                uploadFilename,
+                Get.find<BaseController>().model1.id.toString(),
+                id,
+                Endpoints.applicationDocumentUpload!);
+            model.documents![index].viewLink = res;
+            update();
+          }
         }
       }
+    } catch (e) {
+      print("object");
     }
   }
 
@@ -78,6 +86,6 @@ class ApplicationCompleteDetailsController extends GetxController {
         Endpoints.applicationDocumentUpload!);
     model.documents![int.parse(index)].viewLink = res;
     Get.offNamed(ApplicationCompleteDetails.routeNamed,
-        arguments: Get.arguments[0]['first']);
+        arguments: applicationId.split("[{first: ")[1].split("}")[0]);
   }
 }

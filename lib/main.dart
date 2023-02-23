@@ -55,6 +55,7 @@ import 'package:studentpanel/widgets/scrolltabbar.dart';
 
 import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
+import 'ui/screen/countryGuide/countryguide.dart';
 import 'ui/screen/dashboard/scheduleExpertCall.dart';
 
 Future<void> main() async {
@@ -295,6 +296,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: BookAnAppointment.routeNamed,
           page: () => BookAnAppointment(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: CountryGuide.routeNamed,
+          page: () => CountryGuide(),
           transition: Transition.fade,
         ),
       ],

@@ -33,10 +33,10 @@ class CourseSearchFullDetail extends StatelessWidget {
 
     return Scaffold(
         // appBar: ,
-        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+        drawer: displayMobileLayout == false ? CustomDrawer() : null,
         body: Row(
           children: [
-            if (displayMobileLayout == true) const CustomDrawer(),
+            if (displayMobileLayout == true) CustomDrawer(),
             Flexible(
               child: NestedScrollView(
                 headerSliverBuilder:

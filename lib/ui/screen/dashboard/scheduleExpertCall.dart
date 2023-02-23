@@ -18,7 +18,9 @@ class ScheduleExpertCall extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: CustomDrawer(),
+        drawer: CustomDrawer(
+          index: 0,
+        ),
         body: GetBuilder<ScheduleExpertCallController>(
           builder: (_) => Column(
             children: [

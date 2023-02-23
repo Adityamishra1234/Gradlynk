@@ -186,20 +186,17 @@ class AddtionalDetail {
 }
 
 class OtherCountryOfInterest {
-  OtherCountryOfInterest({
-    this.countryName,
-  });
+  OtherCountryOfInterest({this.countryName, this.id});
 
   String? countryName;
+  int? id;
 
   factory OtherCountryOfInterest.fromJson(Map<String?, dynamic> json) =>
       OtherCountryOfInterest(
-        countryName: json["country_name"],
-      );
+          countryName: json["country_name"], id: json['sec_country_id']);
 
-  Map<String?, dynamic> toJson() => {
-        "country_name": countryName,
-      };
+  Map<String?, dynamic> toJson() =>
+      {"country_name": countryName, "sec_country_id": id};
 }
 
 class PassportDetail {

@@ -22,6 +22,8 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'takepicturescreenCommonDocument.dart';
+
 class UploadDocument extends StatefulWidget {
   UploadDocument({Key? key}) : super(key: key);
   static const routeNamed = '/UploadDocument';
@@ -44,12 +46,12 @@ class _UploadDocumentState extends State<UploadDocument> {
     }
     return Scaffold(
         appBar: CustomAppBar(""),
-        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+        drawer: displayMobileLayout == false ? CustomDrawer() : null,
         body: GetBuilder<UploadDocumentController>(builder: (_) {
           documentList(_.documentModel, context);
           return Row(
             children: [
-              if (displayMobileLayout == true) const CustomDrawer(),
+              if (displayMobileLayout == true) CustomDrawer(),
               Expanded(
                 child: ListView(
                   children: [
@@ -153,8 +155,6 @@ class _UploadDocumentState extends State<UploadDocument> {
                                     ThemeConstants.bluecolor, // foreground
                               ),
                               onPressed: () {
-                                print(
-                                    "${_.organizationSelectedName!.split("[")[0]}_${_.organizationSelectedID}");
                                 getSourceSelected(callbackSelectedSource1,
                                     _.documentNameSelectedID.toString(),
                                     OrgName: getNUllChecker(
@@ -565,7 +565,7 @@ class _UploadDocumentState extends State<UploadDocument> {
         // Get a specific camera from the list of available cameras.
         final firstCamera = cameras.first;
         // String id = DateTime.now().toIso8601String();
-        Get.to(TakePictureScreen(
+        Get.to(TakePictureScreenCommonDocument(
           camera: firstCamera,
           id: temp[1],
           orgname: temp[2],

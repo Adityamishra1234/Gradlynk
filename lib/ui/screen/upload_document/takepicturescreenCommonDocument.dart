@@ -1,24 +1,22 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class TakePictureScreenCommonDocument extends StatefulWidget {
-  TakePictureScreenCommonDocument(
-      {super.key,
-      required this.camera,
-      required this.id,
-      required this.orgName});
+  TakePictureScreenCommonDocument({
+    super.key,
+    required this.camera,
+    required this.id,
+    this.orgname,
+  });
 
   final CameraDescription camera;
   String? id;
-
-  String? orgName;
+  String? orgname;
 
   @override
   TakePictureScreenCommonDocumentState createState() =>
@@ -109,8 +107,7 @@ class TakePictureScreenCommonDocumentState
                             // the DisplayPictureScreen widget.
                             imagePath: image.path,
                             id: widget.id,
-
-                            applicationId: widget.orgName,
+                            orgName: widget.orgname,
                           ),
                         ),
                       );
@@ -183,15 +180,15 @@ class TakePictureScreenCommonDocumentState
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
   String? id;
-  String? index;
+  String? orgName;
   String? applicationId;
 
-  DisplayPictureScreen(
-      {super.key,
-      required this.imagePath,
-      this.id,
-      this.index,
-      required this.applicationId});
+  DisplayPictureScreen({
+    super.key,
+    required this.imagePath,
+    this.id,
+    this.orgName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -220,7 +217,7 @@ class DisplayPictureScreen extends StatelessWidget {
                   Get.to(TakePictureScreenCommonDocument(
                     camera: firstCamera,
                     id: id,
-                    orgName: applicationId,
+                    orgname: orgName,
                   ));
                 },
                 child: Container(
@@ -251,15 +248,16 @@ class DisplayPictureScreen extends StatelessWidget {
                   Get.to(TakePictureScreenCommonDocument(
                     camera: firstCamera,
                     id: id,
-                    orgName: applicationId,
+                    orgname: orgName,
                   ));
                 },
                 child: InkWell(
                   onTap: () {
-                    print("object");
                     Get.find<UploadDocumentController>().uploadFileCamera(
-                        id!, imagePath,
-                        orgName: applicationId!);
+                      id!,
+                      orgName: orgName!,
+                      imagePath,
+                    );
                   },
                   child: Container(
                       height: 60,

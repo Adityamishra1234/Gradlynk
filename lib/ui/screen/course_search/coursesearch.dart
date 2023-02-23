@@ -45,10 +45,17 @@ class _CourseSearchState extends State<CourseSearch> {
     }
     return Scaffold(
       appBar: CustomAppBar("title"),
-      drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+      drawer: displayMobileLayout == false
+          ? CustomDrawer(
+              index: 3,
+            )
+          : null,
       body: Row(
         children: [
-          if (displayMobileLayout == true) const CustomDrawer(),
+          if (displayMobileLayout == true)
+            CustomDrawer(
+              index: 3,
+            ),
           SizedBox(
               height: MediaQuery.of(context).size.height,
               width: width,

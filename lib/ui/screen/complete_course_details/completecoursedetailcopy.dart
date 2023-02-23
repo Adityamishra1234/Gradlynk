@@ -25,7 +25,7 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const CustomDrawer(),
+        drawer: CustomDrawer(),
         body: Stack(
           children: [
             //

@@ -78,7 +78,11 @@ class _CourseSearchListState extends State<CourseSearchList> {
     }
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+        drawer: displayMobileLayout == false
+            ? CustomDrawer(
+                index: 3,
+              )
+            : null,
         body: GetBuilder<CourseShortListController>(builder: (_) {
           if (widget.filterRedirect == false) {
             controller1.courseModelFilter = controller1.courseModelFilter;
@@ -88,7 +92,10 @@ class _CourseSearchListState extends State<CourseSearchList> {
           return _.loadingCourseSearch.value == true
               ? Row(
                   children: [
-                    if (displayMobileLayout == true) const CustomDrawer(),
+                    if (displayMobileLayout == true)
+                      CustomDrawer(
+                        index: 3,
+                      ),
                     Flexible(
                       child: Container(
                         color: ThemeConstants.whitecolor,

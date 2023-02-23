@@ -22,7 +22,9 @@ class Comparing extends StatelessWidget {
     courseSearchModel2.countryName = "";
     return Scaffold(
       appBar: CustomAppBar("title"),
-      drawer: const CustomDrawer(),
+      drawer: CustomDrawer(
+        index: 3,
+      ),
       body: ListView(
         controller: ScrollController(),
         children: [

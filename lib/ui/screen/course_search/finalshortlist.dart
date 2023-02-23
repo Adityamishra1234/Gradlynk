@@ -55,11 +55,18 @@ class _FinalShortListState extends State<FinalShortList> {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false ? const CustomDrawer() : null,
+        drawer: displayMobileLayout == false
+            ? CustomDrawer(
+                index: 5,
+              )
+            : null,
         body: GetBuilder<FinalShortListController>(
           builder: (_) => Row(
             children: [
-              if (displayMobileLayout == true) const CustomDrawer(),
+              if (displayMobileLayout == true)
+                CustomDrawer(
+                  index: 5,
+                ),
               Flexible(
                 child: Container(
                   color: ThemeConstants.whitecolor,

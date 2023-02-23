@@ -107,7 +107,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.9.3
-  new_version: ^0.3.1
+  new_app_version_alert: ^0.0.4
   
   
 

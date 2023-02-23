@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hashids2/hashids2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +8,10 @@ import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/ui/screen/updatedialog.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:new_app_version_alert/new_app_version_alert.dart';
 
 class BaseController extends GetxController {
   ApiServices apiServices = ApiServices();
@@ -19,6 +23,8 @@ class BaseController extends GetxController {
   RxBool loadingUpcomingEvents = false.obs;
   List<NotificationModel>? notificationModel;
   RxBool loadingnotificationModel = false.obs;
+  List<String> countrylist = [];
+  List<int> countryid = [];
 
   @override
   void onInit() {
@@ -29,7 +35,39 @@ class BaseController extends GetxController {
   @override
   onReady() {
     upcomingEvents();
+    NewVersionCheck.newVersionCheck(
+        // package name for android and Ios
+        //TODO
+        Get.context,
+        "org.telegram.messenger",
+        "org.telegram.messenger");
   }
+
+  // void checkNewVersion(NewVersion newVersion) async {
+  //   var status = await newVersion.getVersionStatus();
+  //   if (status != null) {
+  //     print(status);
+  //     if (status.canUpdate) {
+  //       showDialog(
+  //         context: Get.context!,
+  //         builder: (BuildContext context) {
+  //           return UpdateDialog(
+  //             allowDismissal: true,
+  //             description: status.releaseNotes!,
+  //             version: status.storeVersion,
+  //             appLink: status.appStoreLink,
+  //           );
+  //         },
+  //       );
+  //       // newVersion.showUpdateDialog(
+  //       //   context: context,
+  //       //   versionStatus: status,
+  //       //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
+  //       //   dialogTitle: 'Update is Available!',
+  //       // );
+  //     }
+  //   }
+  // }
 
   profiledetail() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -38,6 +76,22 @@ class BaseController extends GetxController {
         Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");
     if (res != null) {
       model1 = res;
+
+      if (model1.otherCountryOfInterest != null) {
+        model1.otherCountryOfInterest!.forEach((element) {
+          countrylist.add("Select your country");
+          countryid.add(0);
+          countryid.add(element.id!);
+          countrylist.add(element.countryName!);
+        });
+      }
+      if (getNUllChecker(model1.countryName) == false) {
+        countrylist.add(model1.countryName!);
+      }
+      if (getNUllChecker(model1.countryID) == false) {
+        countryid.add(model1.countryID!);
+      }
+
       loadingStudentPanelData1 = true.obs;
       update();
     }
