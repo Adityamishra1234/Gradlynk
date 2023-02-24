@@ -246,7 +246,7 @@ class _ApplicationCompleteDetailsState
                                         secondFieldName: _.model.currencyCode),
                                     getTable(
                                         firstField:
-                                            "Course Fees in ${_.model.currencyCode ?? ""}",
+                                            "Course Fees in ${_.model.currencyCode}",
                                         secondField: "Course Fees in INR",
                                         firstFiledName:
                                             _.model.annualTutionFees,
@@ -957,7 +957,7 @@ class _ApplicationCompleteDetailsState
                                       callbackSelectedSource1,
                                       model.documents![i].id.toString(),
                                       i,
-                                      Get.arguments[0]['first'].toString());
+                                      Get.arguments);
                                   controller.update();
                                 },
                                 child: CustomAutoSizeTextMontserrat(

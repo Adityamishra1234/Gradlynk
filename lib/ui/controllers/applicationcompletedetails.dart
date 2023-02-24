@@ -5,7 +5,6 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationcompletedetail.dart';
-import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
@@ -17,7 +16,7 @@ class ApplicationCompleteDetailsController extends GetxController {
 
   @override
   void onInit() {
-    getApplicationDetailComplete(Get.arguments[0]['first'].toString());
+    getApplicationDetailComplete(Get.arguments.toString());
   }
 
 //Function
@@ -86,6 +85,6 @@ class ApplicationCompleteDetailsController extends GetxController {
         Endpoints.applicationDocumentUpload!);
     model.documents![int.parse(index)].viewLink = res;
     Get.offNamed(ApplicationCompleteDetails.routeNamed,
-        arguments: applicationId.split("[{first: ")[1].split("}")[0]);
+        arguments: applicationId);
   }
 }

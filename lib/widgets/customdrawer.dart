@@ -313,43 +313,43 @@ class CustomDrawer extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: InkWell(
-                            highlightColor: ThemeConstants.whitecolor,
-                            onTap: () {
-                              Get.deleteAll();
-                              Get.toNamed(VisaSummary.routeNamed);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    color: index == 6
-                                        ? ThemeConstants.lightblueColor
-                                        : ThemeConstants.whitecolor,
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "My Visa",
-                                    textColor: index == 6
-                                        ? ThemeConstants.bluecolor
-                                        : ThemeConstants.blackcolor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20),
+                    //   child: Align(
+                    //       alignment: AlignmentDirectional.topStart,
+                    //       child: InkWell(
+                    //         highlightColor: ThemeConstants.whitecolor,
+                    //         onTap: () {
+                    //           Get.deleteAll();
+                    //           Get.toNamed(VisaSummary.routeNamed);
+                    //         },
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.only(right: 10),
+                    //           child: Container(
+                    //             height: 30,
+                    //             width: MediaQuery.of(context).size.width,
+                    //             decoration: BoxDecoration(
+                    //                 color: index == 6
+                    //                     ? ThemeConstants.lightblueColor
+                    //                     : ThemeConstants.whitecolor,
+                    //                 borderRadius: BorderRadius.circular(10.0)),
+                    //             child: Padding(
+                    //               padding:
+                    //                   const EdgeInsets.only(left: 10, top: 5),
+                    //               child: CustomAutoSizeTextMontserrat(
+                    //                 text: "My Visa",
+                    //                 textColor: index == 6
+                    //                     ? ThemeConstants.bluecolor
+                    //                     : ThemeConstants.blackcolor,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       )),
+                    // ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Align(

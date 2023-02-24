@@ -109,6 +109,8 @@ class Endpoints {
   static String? bookAnAppointmentpartpart4 = "&appointment_counsellor=";
 
   static String? uploadCommonDocumentPart1 = "upload-common-document?enq_id=";
+
+  static String? countryGuide = "get-country-guide-details?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

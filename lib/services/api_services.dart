@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/models/applicationmodel.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
 import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
+import 'package:studentpanel/ui/models/countryGuide.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/dataupdatestatus.dart';
 import 'package:studentpanel/ui/models/dropdownOrgName.dart';
@@ -1530,6 +1531,27 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  countryGuide(String endpoint) async {
+    try {
+      List<CountryGuideModel> model = [];
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = List<CountryGuideModel>.from(
+            json.decode(res).map((x) => CountryGuideModel.fromJson(x)));
+        return model;
+      }
+    } catch (e) {
+      print(StackTrace.current);
+      Fluttertoast.showToast(
+          msg: e.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: ThemeConstants.whitecolor,
+          textColor: ThemeConstants.blackcolor,
+          fontSize: 16.0);
+    }
+  }
   // logout(String endpoint, String token) async {
   //   try {
   //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);
