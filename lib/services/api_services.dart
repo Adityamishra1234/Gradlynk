@@ -286,6 +286,15 @@ class ApiServices extends StudentPanelBase {
             List<CompleteCourseDetail>.from(json
                 .decode(response)
                 .map((x) => CompleteCourseDetail.fromJson(x)));
+        var res = await httpPostNullBody(baseUrl +
+            Endpoints.countryIDWithUrl! +
+            completeCourseDetail[0].countryID);
+        if (res != null) {
+          List<CountryGuideModel> model = [];
+          model = List<CountryGuideModel>.from(
+              json.decode(res).map((x) => CountryGuideModel.fromJson(x)));
+          completeCourseDetail[0].countryID = model[0].document;
+        }
 
         return completeCourseDetail;
       }

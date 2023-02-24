@@ -111,6 +111,8 @@ class Endpoints {
   static String? uploadCommonDocumentPart1 = "upload-common-document?enq_id=";
 
   static String? countryGuide = "get-country-guide-details?enq_id=";
+
+  static String? countryIDWithUrl = "get-country-document?country_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

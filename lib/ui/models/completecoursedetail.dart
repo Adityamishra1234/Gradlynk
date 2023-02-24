@@ -73,9 +73,11 @@ class CompleteCourseDetail {
   var noOfIndianStudent;
   var regularApplicationDeadline;
   var countryName;
+  var countryID;
 
   CompleteCourseDetail(
       {this.countryName,
+      this.countryID,
       this.noOfIndianStudent,
       this.regularApplicationDeadline,
       this.noOfInternationStudent,
@@ -151,6 +153,7 @@ class CompleteCourseDetail {
       this.partTimeWorkOption});
 
   CompleteCourseDetail.fromJson(Map<String, dynamic> json) {
+    countryID = json["country_id"].toString();
     countryName = json['country_name'];
     regularApplicationDeadline = json['regular_application_deadline'];
     noOfInternationStudent = json['no_of_int_students'];
@@ -230,6 +233,7 @@ class CompleteCourseDetail {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data["course_country_id"] = countryID;
     data['course_name'] = courseName;
     data['university_name'] = universityName;
     data['course_duration'] = courseDuration;
