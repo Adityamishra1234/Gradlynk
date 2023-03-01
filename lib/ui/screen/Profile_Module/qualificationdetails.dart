@@ -72,7 +72,7 @@ class QualificationDetailsCopy extends StatelessWidget {
   }
 
   callbackEducationStatus(varTopic) {
-    for (var i = 0; i < controller.streamList.length; i++) {
+    for (var i = 0; i < controller.educationStatusList.length; i++) {
       if (i == 0) {
         controller.educationStatusSelected = null;
       } else {

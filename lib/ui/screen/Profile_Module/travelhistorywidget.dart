@@ -46,26 +46,31 @@ class TravelHistoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<TravelHistoryController>(builder: (_) {
       // For Edit
-      if (updateForEdit == false || _.loadingEdit.value == true) {
-        _.travelAbroadSelected = "Yes";
-        _.travelStatusSelected = _.modelList[index!].travelStatus;
-        _.countrySelected = _.modelList[index!].countryName;
-        _.countryCodeSelected = _.modelList[index!].chooseCountry.toString();
-        if (_.typeOfVisaList.isNotEmpty) {
-          for (var i = 0; i < _.typeOfVisaList.length; i++) {
-            if (_.typeofVisaCode[i].toString() ==
-                _.modelList[index!].typeOfVisa.toString()) {
-              _.typeOfVisaSelected = _.typeOfVisaList[i];
-              _.typeOfVisaCodeSelected =
-                  _.modelList[index!].typeOfVisa.toString();
+      try {
+        if (updateForEdit == false || _.loadingEdit.value == true) {
+          _.travelAbroadSelected = "Yes";
+          _.travelStatusSelected = _.modelList[index!].travelStatus;
+          _.countrySelected = _.modelList[index!].countryName;
+          _.countryCodeSelected = _.modelList[index!].chooseCountry.toString();
+          if (_.typeOfVisaList.isNotEmpty) {
+            for (var i = 0; i < _.typeOfVisaList.length; i++) {
+              if (_.typeofVisaCode[i].toString() ==
+                  _.modelList[index!].typeOfVisa.toString()) {
+                _.typeOfVisaSelected = _.typeOfVisaList[i];
+                _.typeOfVisaCodeSelected =
+                    _.modelList[index!].typeOfVisa.toString();
+              }
             }
           }
+          _.visaStatusSelected = _.modelList[index!].visaStatus;
+          applicationNumber.text = _.modelList[index!].applicationNumber ?? "";
+          dateOfApplication.text = _.modelList[index!].dateOfApplication ?? "";
+          reasonOfRejection.text = _.modelList[index!].reasonOfRejection ?? "";
         }
-        _.visaStatusSelected = _.modelList[index!].visaStatus;
-        applicationNumber.text = _.modelList[index!].applicationNumber ?? "";
-        dateOfApplication.text = _.modelList[index!].dateOfApplication ?? "";
-        reasonOfRejection.text = _.modelList[index!].reasonOfRejection ?? "";
+      } catch (e) {
+        print(e.toString());
       }
+
       return ListView(
         children: [
           Padding(

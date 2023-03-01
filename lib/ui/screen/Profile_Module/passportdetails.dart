@@ -19,45 +19,50 @@ class PassportDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PassportController>(builder: (_) {
-      if (_.loadingFirstTime.value == false &&
-          _.loadingCountry.value == true &&
-          _.loadingPassport.value == true &&
-          _.loadingPlaceOfIssuse.value == true) {
-        _.loadingFirstTime.value = true;
-        // citizen of, passport number ,country of issue, state of issue, place of issue ,date of issue, expiry date  ("Yes") / No => tentative Date
-        passportNumber.text =
-            getNUllChecker(_.passportModel.passportNumber) == false
-                ? _.passportModel.passportNumber!
-                : "";
-        _.dateOfIssue = getNUllChecker(_.passportModel.dateOfIssue) == false
-            ? _.passportModel.dateOfIssue!
-            : "";
-        _.expireDate = getNUllChecker(_.passportModel.expiryDate) == false
-            ? _.passportModel.expiryDate!
-            : "";
-        _.passportAvaliable =
-            (_.passportModel.passportAvailable == "1") ? false.obs : true.obs;
-        _.placeOfIssuseSelected =
-            getNUllChecker(_.passportModel.placeOfIssue) == false
-                ? _.passportModel.placeOfIssue!
-                : "";
+      try {
+        if (_.loadingFirstTime.value == false &&
+            _.loadingCountry.value == true &&
+            _.loadingPassport.value == true &&
+            _.loadingPlaceOfIssuse.value == true) {
+          _.loadingFirstTime.value = true;
+          // citizen of, passport number ,country of issue, state of issue, place of issue ,date of issue, expiry date  ("Yes") / No => tentative Date
+          passportNumber.text =
+              getNUllChecker(_.passportModel.passportNumber) == false
+                  ? _.passportModel.passportNumber!
+                  : "";
+          _.dateOfIssue = getNUllChecker(_.passportModel.dateOfIssue) == false
+              ? _.passportModel.dateOfIssue!
+              : "";
+          _.expireDate = getNUllChecker(_.passportModel.expiryDate) == false
+              ? _.passportModel.expiryDate!
+              : "";
+          _.passportAvaliable =
+              (_.passportModel.passportAvailable == "1") ? false.obs : true.obs;
+          _.placeOfIssuseSelected =
+              getNUllChecker(_.passportModel.placeOfIssue) == false
+                  ? _.passportModel.placeOfIssue!
+                  : "";
 
 //Citizen of Selected View at the Time of autoview
-        for (var i = 0; i < _.countryList.length; i++) {
-          if (_.countryCode[i] == _.passportModel.citizenOf) {
-            _.citizenCodeSelected = _.passportModel.citizenOf;
-            _.citizenSelected = _.countryList[i];
+          for (var i = 0; i < _.countryList.length; i++) {
+            if (_.countryCode[i] == _.passportModel.citizenOf) {
+              _.citizenCodeSelected = _.passportModel.citizenOf;
+              _.citizenSelected = _.countryList[i];
+            }
           }
-        }
 
-        for (var i = 0; i < _.countryList.length; i++) {
-          if (_.countryCode[i] == _.passportModel.countryOfIssue) {
-            _.countryCodeSelected = _.passportModel.countryOfIssue;
-            _.getState(_.countryCodeSelected!);
-            _.countrySelected = _.countryList[i];
+          for (var i = 0; i < _.countryList.length; i++) {
+            if (_.countryCode[i] == _.passportModel.countryOfIssue) {
+              _.countryCodeSelected = _.passportModel.countryOfIssue;
+              _.getState(_.countryCodeSelected!);
+              _.countrySelected = _.countryList[i];
+            }
           }
         }
+      } catch (e) {
+        print(e.toString());
       }
+
       return ListView(
         children: [
           Padding(

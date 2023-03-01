@@ -13,43 +13,49 @@ class UpcomingEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> addWidget = [];
-    for (var i = 0; i < model!.length; i++) {
-      addWidget.add(Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-        child: Container(
-          decoration: BoxDecoration(
-              color: ThemeConstants.whitecolor,
-              border: Border.all(color: const Color(0xFFE5E1FE)),
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-            child: Column(
-              children: [
-                CustomAutoSizeTextMontserrat(
-                  text: model![i].campaignName,
-                  fontWeight: FontWeight.bold,
-                ),
-                Row(
-                  children: [
-                    svgImage("calender", ThemeConstants.orangeColor, 15, 15),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    CustomAutoSizeTextMontserrat(
-                      text: model![i].campaignDate!.split(" -")[0],
-                      textColor: ThemeConstants.orangeColor,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                )
-              ],
+
+    try {
+      for (var i = 0; i < model!.length; i++) {
+        addWidget.add(Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+          child: Container(
+            decoration: BoxDecoration(
+                color: ThemeConstants.whitecolor,
+                border: Border.all(color: const Color(0xFFE5E1FE)),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+              child: Column(
+                children: [
+                  CustomAutoSizeTextMontserrat(
+                    text: model![i].campaignName,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  Row(
+                    children: [
+                      svgImage("calender", ThemeConstants.orangeColor, 15, 15),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      CustomAutoSizeTextMontserrat(
+                        text: model![i].campaignDate!.split(" -")[0],
+                        textColor: ThemeConstants.orangeColor,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      ));
+        ));
+      }
+    } catch (e) {
+      print(e.toString());
     }
+
     return Scaffold(
       appBar: CustomAppBar("title"),
       drawer: CustomDrawer(

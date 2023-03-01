@@ -416,7 +416,7 @@ class Comparing extends StatelessWidget {
                         text: getNUllChecker(
                                     courseSearchModel1.annualTutionFees) ==
                                 false
-                            ? "${courseSearchModel1.annualTutionFees!} ${courseSearchModel1.currencyCode!}\n${courseSearchModel1.annualTutionFeesInr ?? ""} INR"
+                            ? "${courseSearchModel1.annualTutionFees ?? ""} ${courseSearchModel1.currencyCode ?? ""}\n${courseSearchModel1.annualTutionFeesInr ?? ""} INR"
                             : "",
                         fontSize: 14,
                         textColor: ThemeConstants.TextColor,
@@ -432,7 +432,7 @@ class Comparing extends StatelessWidget {
                         text: getNUllChecker(
                                     courseSearchModel2.annualTutionFees) ==
                                 false
-                            ? "${courseSearchModel2.annualTutionFees!} ${courseSearchModel2.currencyCode!}\n${courseSearchModel2.annualTutionFeesInr ?? ""} INR"
+                            ? "${courseSearchModel2.annualTutionFees ?? ""} ${courseSearchModel2.currencyCode ?? ""}\n${courseSearchModel2.annualTutionFeesInr ?? ""} INR"
                             : "",
                         fontSize: 14,
                         textColor: ThemeConstants.TextColor,
@@ -466,7 +466,7 @@ class Comparing extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                         text: getNUllChecker(courseSearchModel1.totalFees) ==
                                 false
-                            ? "${courseSearchModel1.totalFees} ${courseSearchModel1.currencyCode!}\n${courseSearchModel1.totalFeesInr ?? ""} INR"
+                            ? "${courseSearchModel1.totalFees} ${courseSearchModel1.currencyCode ?? ""}\n${courseSearchModel1.totalFeesInr ?? ""} INR"
                             : "",
                         fontSize: 14,
                         textColor: ThemeConstants.TextColor,
@@ -481,7 +481,7 @@ class Comparing extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                         text: getNUllChecker(courseSearchModel2.totalFees) ==
                                 false
-                            ? "${courseSearchModel2.totalFees} ${courseSearchModel2.currencyCode!}\n${courseSearchModel2.totalFeesInr ?? ""} INR"
+                            ? "${courseSearchModel2.totalFees} ${courseSearchModel2.currencyCode ?? ""}\n${courseSearchModel2.totalFeesInr ?? ""} INR"
                             : "",
                         fontSize: 14,
                         textColor: ThemeConstants.TextColor,

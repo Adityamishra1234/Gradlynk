@@ -1240,142 +1240,152 @@ class EnglishTestDetails extends StatelessWidget {
   }
 
   List<Widget> overallScore(BuildContext context) {
-    double temp = 0;
-    if (controller.examNameSelected == "TOEFL") {
-      if (listening.text.isNotEmpty &&
-          writing.text.isNotEmpty &&
-          reading.text.isNotEmpty &&
-          speaking.text.isNotEmpty) {
-        temp = double.parse(listening.text) +
-            double.parse(writing.text) +
-            double.parse(reading.text) +
-            double.parse(speaking.text);
-        temp = (temp);
-      }
-      return [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-          child: Align(
-            alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "Overall Score",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        //toStringAsFixed(2)
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: overallScoreController,
-            readOnly: true,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+    try {
+      double temp = 0;
+      if (controller.examNameSelected == "TOEFL") {
+        if (listening.text.isNotEmpty &&
+            writing.text.isNotEmpty &&
+            reading.text.isNotEmpty &&
+            speaking.text.isNotEmpty) {
+          temp = double.parse(listening.text) +
+              double.parse(writing.text) +
+              double.parse(reading.text) +
+              double.parse(speaking.text);
+          temp = (temp);
+        }
+        return [
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+            child: Align(
+              alignment: AlignmentDirectional.topStart,
+              child: CustomAutoSizeTextMontserrat(
+                text: "Overall Score",
+                textColor: ThemeConstants.TextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
-        ),
-      ];
-    } else {
-      if (listening.text.isNotEmpty &&
-          writing.text.isNotEmpty &&
-          reading.text.isNotEmpty &&
-          speaking.text.isNotEmpty) {
-        temp = double.parse(listening.text) +
-            double.parse(writing.text) +
-            double.parse(reading.text) +
-            double.parse(speaking.text);
-        temp = (temp / 4);
-        overallScoreController.text = temp.toStringAsFixed(2);
-      }
+          //toStringAsFixed(2)
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              controller: overallScoreController,
+              readOnly: true,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              style: ThemeConstants.montserrattextstyle,
+            ),
+          ),
+        ];
+      } else {
+        if (listening.text.isNotEmpty &&
+            writing.text.isNotEmpty &&
+            reading.text.isNotEmpty &&
+            speaking.text.isNotEmpty) {
+          temp = double.parse(listening.text) +
+              double.parse(writing.text) +
+              double.parse(reading.text) +
+              double.parse(speaking.text);
+          temp = (temp / 4);
+          overallScoreController.text = temp.toStringAsFixed(2);
+        }
 
-      return [
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-          child: Align(
-            alignment: AlignmentDirectional.topStart,
-            child: CustomAutoSizeTextMontserrat(
-              text: "Overall Score",
-              textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: overallScoreController,
-            readOnly: true,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+        return [
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+            child: Align(
+              alignment: AlignmentDirectional.topStart,
+              child: CustomAutoSizeTextMontserrat(
+                text: "Overall Score",
+                textColor: ThemeConstants.TextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
-        ),
-      ];
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              controller: overallScoreController,
+              readOnly: true,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              style: ThemeConstants.montserrattextstyle,
+            ),
+          ),
+        ];
+      }
+    } catch (e) {
+      print(e.toString());
+      return [Container()];
     }
   }
 
   viewCondition() {
-    //exam status
-    controller.dateOfExamSelected =
-        controller.englishTestDetailsViewModel.dateOfExam;
-    controller.dateOfTestReportSelcted =
-        controller.englishTestDetailsViewModel.resultDate;
-    controller.testscoreExpirationDateSelcted =
-        controller.englishTestDetailsViewModel.expirationDate;
-    controller.tentativeExamDateSelcted =
-        controller.englishTestDetailsViewModel.tentativeExamDate;
-    overallScoreController.text =
-        getNUllChecker(controller.englishTestDetailsViewModel.overAll) == false
-            ? controller.englishTestDetailsViewModel.overAll.toString()
-            : "";
-    for (var i = 0; i < controller.examStatusCode.length; i++) {
-      if (controller.examStatusCode[i].toString() ==
-          controller.englishTestDetailsViewModel.examStatusID) {
-        controller.examStatusCodeSelected =
-            int.parse(controller.examStatusCode[i]);
-        controller.examStatusSelected = controller.examStatusList[i];
+    try {
+      //exam status
+      controller.dateOfExamSelected =
+          controller.englishTestDetailsViewModel.dateOfExam;
+      controller.dateOfTestReportSelcted =
+          controller.englishTestDetailsViewModel.resultDate;
+      controller.testscoreExpirationDateSelcted =
+          controller.englishTestDetailsViewModel.expirationDate;
+      controller.tentativeExamDateSelcted =
+          controller.englishTestDetailsViewModel.tentativeExamDate;
+      overallScoreController.text =
+          getNUllChecker(controller.englishTestDetailsViewModel.overAll) ==
+                  false
+              ? controller.englishTestDetailsViewModel.overAll.toString()
+              : "";
+      for (var i = 0; i < controller.examStatusCode.length; i++) {
+        if (controller.examStatusCode[i].toString() ==
+            controller.englishTestDetailsViewModel.examStatusID) {
+          controller.examStatusCodeSelected =
+              int.parse(controller.examStatusCode[i]);
+          controller.examStatusSelected = controller.examStatusList[i];
+        }
       }
-    }
 
-    //Exam Name
-    if (controller.englishTestDetailsViewModel.examName == "Duolingo") {
-      controller.duolingo.value = true;
-    } else {
-      controller.examNameSelected =
-          controller.englishTestDetailsViewModel.examName;
-      controller.duolingo.value = false;
+      //Exam Name
+      if (controller.englishTestDetailsViewModel.examName == "Duolingo") {
+        controller.duolingo.value = true;
+      } else {
+        controller.examNameSelected =
+            controller.englishTestDetailsViewModel.examName;
+        controller.duolingo.value = false;
+      }
+      //tentative / Definite
+      if (getNUllChecker(controller.englishTestDetailsViewModel.listening) ||
+          getNUllChecker(controller.englishTestDetailsViewModel.writing) ||
+          getNUllChecker(controller.englishTestDetailsViewModel.literacy) ||
+          getNUllChecker(
+              controller.englishTestDetailsViewModel.analyticalWriting)) {
+        controller.tentative.value = true;
+      }
+      controller.loadingFirstTime.value = true;
+      controller.update();
+    } catch (e) {
+      print(e.toString());
     }
-    //tentative / Definite
-    if (getNUllChecker(controller.englishTestDetailsViewModel.listening) ||
-        getNUllChecker(controller.englishTestDetailsViewModel.writing) ||
-        getNUllChecker(controller.englishTestDetailsViewModel.literacy) ||
-        getNUllChecker(
-            controller.englishTestDetailsViewModel.analyticalWriting)) {
-      controller.tentative.value = true;
-    }
-    controller.loadingFirstTime.value = true;
-    controller.update();
   }
 
   updateEnglishTestDetails(

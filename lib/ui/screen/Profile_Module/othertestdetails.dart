@@ -26,70 +26,78 @@ class OthertestDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<OtherTestDetailsController>(builder: (_) {
-      if (_.loadingEdit.value == false &&
-          _.loadingExamStaus.value == true &&
-          _.loadingExamName.value == true &&
-          _.loadingViewOtherTestDetails.value == true) {
-        _.examStatusSelectedID = _.otherTestDetailsModel.examStatus;
-        for (var i = 0; i < _.examStatusCode.length; i++) {
-          if (_.examStatusCode[i].toString() ==
-              _.otherTestDetailsModel.examStatus.toString()) {
-            _.examStatusSelected = _.examStatusList[i];
+      try {
+        if (_.loadingEdit.value == false &&
+            _.loadingExamStaus.value == true &&
+            _.loadingExamName.value == true &&
+            _.loadingViewOtherTestDetails.value == true) {
+          _.examStatusSelectedID = _.otherTestDetailsModel.examStatus;
+          for (var i = 0; i < _.examStatusCode.length; i++) {
+            if (_.examStatusCode[i].toString() ==
+                _.otherTestDetailsModel.examStatus.toString()) {
+              _.examStatusSelected = _.examStatusList[i];
+            }
           }
+          _.bookTestSelected = _.otherTestDetailsModel.testBook;
+          _.examNameSelected = _.otherTestDetailsModel.examName;
+          // _.specifyExamNameSelected=_.otherTestDetailsModel.
+          _.dateOfExamSelected = _.otherTestDetailsModel.dateOfExam;
+          _.tentativeDateSelected =
+              _.otherTestDetailsModel.tentativeExamDate ?? "";
+          _.dateOftestReportSelected = _.otherTestDetailsModel.resultDate ?? "";
+          _.testScoreExpirationDateSelected =
+              _.otherTestDetailsModel.expirationDate ?? "";
+          _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "Tentative";
+
+          analyticalWriting.text = getNUllChecker(
+                      _.otherTestDetailsModel.analyticalWriting.toString()) ==
+                  false
+              ? _.otherTestDetailsModel.analyticalWriting.toString()
+              : "";
+          verbalReasoning.text = getNUllChecker(
+                      _.otherTestDetailsModel.verbalReasoning.toString()) ==
+                  false
+              ? _.otherTestDetailsModel.verbalReasoning.toString()
+              : "";
+          quantitative.text = getNUllChecker(_
+                      .otherTestDetailsModel.quantitativeApptitude
+                      .toString()) ==
+                  false
+              ? _.otherTestDetailsModel.quantitativeApptitude.toString()
+              : "";
+          integrateedReasoning.text = getNUllChecker(
+                      _.otherTestDetailsModel.integratedReasoning.toString()) ==
+                  false
+              ? _.otherTestDetailsModel.integratedReasoning.toString()
+              : "";
+          overallScore.text =
+              getNUllChecker(_.otherTestDetailsModel.overAll.toString()) ==
+                      false
+                  ? _.otherTestDetailsModel.overAll.toString()
+                  : "";
+          reading.text =
+              getNUllChecker(_.otherTestDetailsModel.reading.toString()) ==
+                      false
+                  ? _.otherTestDetailsModel.reading.toString()
+                  : "";
+          writingAndLanguage.text =
+              getNUllChecker(_.otherTestDetailsModel.writing.toString()) ==
+                      false
+                  ? _.otherTestDetailsModel.writing.toString()
+                  : "";
+          essay.text =
+              getNUllChecker(_.otherTestDetailsModel.essay.toString()) == false
+                  ? _.otherTestDetailsModel.essay.toString()
+                  : "";
+          math.text =
+              getNUllChecker(_.otherTestDetailsModel.math.toString()) == false
+                  ? _.otherTestDetailsModel.math.toString()
+                  : "";
+
+          _.loadingEdit.value = true;
         }
-        _.bookTestSelected = _.otherTestDetailsModel.testBook;
-        _.examNameSelected = _.otherTestDetailsModel.examName;
-        // _.specifyExamNameSelected=_.otherTestDetailsModel.
-        _.dateOfExamSelected = _.otherTestDetailsModel.dateOfExam;
-        _.tentativeDateSelected =
-            _.otherTestDetailsModel.tentativeExamDate ?? "";
-        _.dateOftestReportSelected = _.otherTestDetailsModel.resultDate ?? "";
-        _.testScoreExpirationDateSelected =
-            _.otherTestDetailsModel.expirationDate ?? "";
-        _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "Tentative";
-
-        analyticalWriting.text = getNUllChecker(
-                    _.otherTestDetailsModel.analyticalWriting.toString()) ==
-                false
-            ? _.otherTestDetailsModel.analyticalWriting.toString()
-            : "";
-        verbalReasoning.text = getNUllChecker(
-                    _.otherTestDetailsModel.verbalReasoning.toString()) ==
-                false
-            ? _.otherTestDetailsModel.verbalReasoning.toString()
-            : "";
-        quantitative.text = getNUllChecker(
-                    _.otherTestDetailsModel.quantitativeApptitude.toString()) ==
-                false
-            ? _.otherTestDetailsModel.quantitativeApptitude.toString()
-            : "";
-        integrateedReasoning.text = getNUllChecker(
-                    _.otherTestDetailsModel.integratedReasoning.toString()) ==
-                false
-            ? _.otherTestDetailsModel.integratedReasoning.toString()
-            : "";
-        overallScore.text =
-            getNUllChecker(_.otherTestDetailsModel.overAll.toString()) == false
-                ? _.otherTestDetailsModel.overAll.toString()
-                : "";
-        reading.text =
-            getNUllChecker(_.otherTestDetailsModel.reading.toString()) == false
-                ? _.otherTestDetailsModel.reading.toString()
-                : "";
-        writingAndLanguage.text =
-            getNUllChecker(_.otherTestDetailsModel.writing.toString()) == false
-                ? _.otherTestDetailsModel.writing.toString()
-                : "";
-        essay.text =
-            getNUllChecker(_.otherTestDetailsModel.essay.toString()) == false
-                ? _.otherTestDetailsModel.essay.toString()
-                : "";
-        math.text =
-            getNUllChecker(_.otherTestDetailsModel.math.toString()) == false
-                ? _.otherTestDetailsModel.math.toString()
-                : "";
-
-        _.loadingEdit.value = true;
+      } catch (e) {
+        print(e.toString());
       }
 
       return SingleChildScrollView(

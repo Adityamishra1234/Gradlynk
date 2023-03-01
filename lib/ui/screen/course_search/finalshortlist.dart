@@ -199,35 +199,6 @@ class _FinalShortListState extends State<FinalShortList> {
                                 itemBuilder: (BuildContext context, int index) {
                                   return Column(
                                     children: [
-                                      //  CollagelistExpandedWidget(
-                                      //         callbackRemoveCourse:
-                                      //             callbackCompareCourseRemove,
-                                      //         courseSearchModelCompare1:
-                                      //             _.courseSearchModelCompare1,
-                                      //         courseSearchModelCompare2:
-                                      //             _.courseSearchModelCompare2,
-                                      //         previousRoute:
-                                      //             CourseSearchList.routeNamed,
-                                      //         index: index,
-                                      //         courseShortListFirst: true,
-                                      //         courseSearchModelCompare1Id:
-                                      //             _.courseSearchModelCompare1.id,
-                                      //         courseSearchModelCompare2Id:
-                                      //             _.courseSearchModelCompare2.id,
-                                      //         callbackForModelCompare:
-                                      //             callbackModelCompare,
-                                      //         callbackCompare: callbackCompare,
-                                      //         iscompare:
-                                      //             controller1.compareApply.value,
-                                      //         courseSearchModel: controller1
-                                      //             .courseModelFilter
-                                      //             .courseSearchList[index],
-                                      //         callbackFunction:
-                                      //             callbackCompleteDetailCourse,
-                                      //         callbackShortListButton:
-                                      //             CallbackShortListButton,
-                                      //         finalShortListFirst: false,
-                                      //       ),
                                       if (controller1.courseModelFilter
                                               .courseSearchList.length !=
                                           index)

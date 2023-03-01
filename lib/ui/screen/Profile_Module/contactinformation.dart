@@ -47,81 +47,87 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ContactInformationController>(builder: (_) {
-      if (_.loadingStudentPanelData.value == 1) {
-        for (var i = 0; i < _.model.addtionalDetails!.length; i++) {
-          if (_.model.addtionalDetails![i].serviceName == "Student Visa") {
-            assignedBranch.text = _.model.addtionalDetails![i].branchName ?? "";
-            service.text = _.model.addtionalDetails![i].serviceName ?? "";
-            firstCountryInterest.text =
-                _.model.addtionalDetails![i].countryName ?? "";
-            assignedAdvisors.text =
-                _.model.addtionalDetails![i].assigned_advisor! +
-                    _.model.addtionalDetails![i].assigne!;
-          }
-        }
-        _.dob = _.model.dateOfBirth;
-        firstName.text = _.model.enquiryName ?? "";
-        lastName.text = _.model.lastname ?? "";
-        mobileNumber.text = getNUllChecker(_.model.mobile) == false
-            ? _.model.mobile.toString()
-            : "";
-
-        email.text = _.model.email ?? "";
-        whatsappNumber.text =
-            getNUllChecker(_.model.whatsappNumber.toString()) == false
-                ? _.model.whatsappNumber.toString()
-                : "";
-        alt_Number.text =
-            getNUllChecker(_.model.alternateNumber.toString()) == false
-                ? _.model.alternateNumber.toString()
-                : "";
-        _.childrenCountSelected = _.model.child_count;
-        secondaryEmail.text = _.model.secondaryEmail ?? "";
-        street.text = _.model.street ?? "";
-        zipCode.text = getNUllChecker(_.model.pincode) == false
-            ? _.model.pincode.toString()
-            : "";
-        _.genderSelected = _.model.gender ?? gender[0];
-        for (var i = 0; i < gender.length; i++) {
-          if (gender[i].toString() == _.model.gender.toString()) {
-            controller.genderSelected = gender[i];
-            controller.genderIdSelected = i;
-            controller.update();
-          }
-        }
-        _.maritalStatusSelected = _.model.maritalStatus;
-        for (var i = 1; i < controller.martialStatusList.length; i++) {
-          if (controller.martialStatusList[i].toString() ==
-              _.model.maritalStatus.toString()) {
-            controller.maritalStatusSelected = controller.martialStatusList[i];
-            controller.maritalStatusIdSelected = i;
-            controller.update();
-          }
-        }
-        _.countrySelected = _.model.countryName;
-        _.stateSelected = _.model.stateName;
-        _.citySelected = _.model.cityName;
-        String? temp = "";
-        if (_.model.otherCountryOfInterest != null) {
-          for (var i = 0; i < _.model.otherCountryOfInterest!.length; i++) {
-            if (i == 0) {
-              temp = _.model.otherCountryOfInterest![i].countryName!;
-            } else {
-              temp =
-                  "${temp!},${_.model.otherCountryOfInterest![i].countryName!}";
+      try {
+        if (_.loadingStudentPanelData.value == 1) {
+          for (var i = 0; i < _.model.addtionalDetails!.length; i++) {
+            if (_.model.addtionalDetails![i].serviceName == "Student Visa") {
+              assignedBranch.text =
+                  _.model.addtionalDetails![i].branchName ?? "";
+              service.text = _.model.addtionalDetails![i].serviceName ?? "";
+              firstCountryInterest.text =
+                  _.model.addtionalDetails![i].countryName ?? "";
+              assignedAdvisors.text =
+                  _.model.addtionalDetails![i].assigned_advisor! +
+                      _.model.addtionalDetails![i].assigne!;
             }
           }
+          _.dob = _.model.dateOfBirth;
+          firstName.text = _.model.enquiryName ?? "";
+          lastName.text = _.model.lastname ?? "";
+          mobileNumber.text = getNUllChecker(_.model.mobile) == false
+              ? _.model.mobile.toString()
+              : "";
+
+          email.text = _.model.email ?? "";
+          whatsappNumber.text =
+              getNUllChecker(_.model.whatsappNumber.toString()) == false
+                  ? _.model.whatsappNumber.toString()
+                  : "";
+          alt_Number.text =
+              getNUllChecker(_.model.alternateNumber.toString()) == false
+                  ? _.model.alternateNumber.toString()
+                  : "";
+          _.childrenCountSelected = _.model.child_count;
+          secondaryEmail.text = _.model.secondaryEmail ?? "";
+          street.text = _.model.street ?? "";
+          zipCode.text = getNUllChecker(_.model.pincode) == false
+              ? _.model.pincode.toString()
+              : "";
+          _.genderSelected = _.model.gender ?? gender[0];
+          for (var i = 0; i < gender.length; i++) {
+            if (gender[i].toString() == _.model.gender.toString()) {
+              controller.genderSelected = gender[i];
+              controller.genderIdSelected = i;
+              controller.update();
+            }
+          }
+          _.maritalStatusSelected = _.model.maritalStatus;
+          for (var i = 1; i < controller.martialStatusList.length; i++) {
+            if (controller.martialStatusList[i].toString() ==
+                _.model.maritalStatus.toString()) {
+              controller.maritalStatusSelected =
+                  controller.martialStatusList[i];
+              controller.maritalStatusIdSelected = i;
+              controller.update();
+            }
+          }
+          _.countrySelected = _.model.countryName;
+          _.stateSelected = _.model.stateName;
+          _.citySelected = _.model.cityName;
+          String? temp = "";
+          if (_.model.otherCountryOfInterest != null) {
+            for (var i = 0; i < _.model.otherCountryOfInterest!.length; i++) {
+              if (i == 0) {
+                temp = _.model.otherCountryOfInterest![i].countryName!;
+              } else {
+                temp =
+                    "${temp!},${_.model.otherCountryOfInterest![i].countryName!}";
+              }
+            }
+          }
+          _.getState(_.model.countryID.toString());
+          _.getCity(_.model.stateID.toString());
+          _.stateIdSelected = _.model.stateID;
+          _.cityIdSelected = _.model.cityID;
+          _.countryIdSelected = _.model.countryID;
+          _.stateSelected = _.model.stateName;
+          _.citySelected = _.model.cityName;
+          otherCountryinterested.text = temp!;
+          _.loadingStudentPanelData.value = 3;
+          _.update();
         }
-        _.getState(_.model.countryID.toString());
-        _.getCity(_.model.stateID.toString());
-        _.stateIdSelected = _.model.stateID;
-        _.cityIdSelected = _.model.cityID;
-        _.countryIdSelected = _.model.countryID;
-        _.stateSelected = _.model.stateName;
-        _.citySelected = _.model.cityName;
-        otherCountryinterested.text = temp!;
-        _.loadingStudentPanelData.value = 3;
-        _.update();
+      } catch (e) {
+        print(e.toString());
       }
 
       return _.loadingStudentPanelData.value == 3

@@ -43,32 +43,6 @@ class BaseController extends GetxController {
         "org.telegram.messenger");
   }
 
-  // void checkNewVersion(NewVersion newVersion) async {
-  //   var status = await newVersion.getVersionStatus();
-  //   if (status != null) {
-  //     print(status);
-  //     if (status.canUpdate) {
-  //       showDialog(
-  //         context: Get.context!,
-  //         builder: (BuildContext context) {
-  //           return UpdateDialog(
-  //             allowDismissal: true,
-  //             description: status.releaseNotes!,
-  //             version: status.storeVersion,
-  //             appLink: status.appStoreLink,
-  //           );
-  //         },
-  //       );
-  //       // newVersion.showUpdateDialog(
-  //       //   context: context,
-  //       //   versionStatus: status,
-  //       //   dialogText: 'New Version is available in the store (${status.storeVersion}), update now!',
-  //       //   dialogTitle: 'Update is Available!',
-  //       // );
-  //     }
-  //   }
-  // }
-
   profiledetail() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String phonenumber = sharedPreferences.getString("phonenumber").toString();

@@ -38,25 +38,30 @@ class RelativeInformationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RelativeInformationController>(builder: (_) {
-      if (updatForEdit == false) {
-        realtiveEmail.text = _.modelList[index!].relativeEmailId ?? "";
-        contactOfRelative.text =
-            getNUllChecker(_.modelList[index!].contactOfRelative.toString()) ==
-                    false
-                ? _.modelList[index!].contactOfRelative.toString()
-                : "";
-        addresOfrelative.text = _.modelList[index!].addressOfRelative ?? "";
-        _.countryNameSelected =
-            _.modelList[index!].countryName ?? _.countryList[0];
+      try {
+        if (updatForEdit == false) {
+          realtiveEmail.text = _.modelList[index!].relativeEmailId ?? "";
+          contactOfRelative.text = getNUllChecker(
+                      _.modelList[index!].contactOfRelative.toString()) ==
+                  false
+              ? _.modelList[index!].contactOfRelative.toString()
+              : "";
+          addresOfrelative.text = _.modelList[index!].addressOfRelative ?? "";
+          _.countryNameSelected =
+              _.modelList[index!].countryName ?? _.countryList[0];
 
-        _.citizenShipStatusSelected =
-            _.modelList[index!].citizenshipStatus ?? _.citizenShipStatus[0];
-        _.relationSelected = _.modelList[index!].relationWithRelative;
-        _.anyRelativeCountryInterestedSelected =
-            _.modelList[index!].anyRelativeCountryInterested;
-        _.countryNameCodeSelected =
-            _.modelList[index!].relativeCountry.toString();
+          _.citizenShipStatusSelected =
+              _.modelList[index!].citizenshipStatus ?? _.citizenShipStatus[0];
+          _.relationSelected = _.modelList[index!].relationWithRelative;
+          _.anyRelativeCountryInterestedSelected =
+              _.modelList[index!].anyRelativeCountryInterested;
+          _.countryNameCodeSelected =
+              _.modelList[index!].relativeCountry.toString();
+        }
+      } catch (e) {
+        print(e.toString());
       }
+
       return ListView(
         children: [
           Padding(

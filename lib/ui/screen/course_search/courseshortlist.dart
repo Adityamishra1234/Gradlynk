@@ -84,11 +84,16 @@ class _CourseSearchListState extends State<CourseSearchList> {
               )
             : null,
         body: GetBuilder<CourseShortListController>(builder: (_) {
-          if (widget.filterRedirect == false) {
-            controller1.courseModelFilter = controller1.courseModelFilter;
-          } else {
-            controller1.courseModelFilter = widget.courseModelFilter!;
+          try {
+            if (widget.filterRedirect == false) {
+              controller1.courseModelFilter = controller1.courseModelFilter;
+            } else {
+              controller1.courseModelFilter = widget.courseModelFilter!;
+            }
+          } catch (e) {
+            print(e.toString());
           }
+
           return _.loadingCourseSearch.value == true
               ? Row(
                   children: [

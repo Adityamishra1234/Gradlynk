@@ -29,119 +29,124 @@ class NotificationScreen extends StatelessWidget {
         index: 0,
       ),
       body: GetBuilder<BaseController>(builder: (_) {
-        final hashids = HashIds(
-          salt: 'xmjXtQZXO6JryHPC',
-          minHashLength: 10,
-          alphabet:
-              'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
-        );
-        RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
-
         List<Widget> addWidget = [];
-        if (_.notificationModel != null) {
-          for (var i = 0; i < _.notificationModel!.length; i++) {
-            addWidget.add(InkWell(
-              onTap: () {
-                String hashidsApplication = _
-                    .notificationModel![i].notificationBody
-                    .toString()
-                    .split("href='")[1]
-                    .split("'>")[0];
-                hashidsApplication =
-                    reverseStringUsingSplit(hashidsApplication);
-                hashidsApplication = hashidsApplication.split("/")[0];
-                hashidsApplication =
-                    reverseStringUsingSplit(hashidsApplication);
+        try {
+          final hashids = HashIds(
+            salt: 'xmjXtQZXO6JryHPC',
+            minHashLength: 10,
+            alphabet:
+                'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890',
+          );
+          RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
 
-                hashidsApplication =
-                    hashids.decode(hashidsApplication)[0].toString();
-                //TODO
-                Get.toNamed("/ApplicationCompleteDetails",
-                    arguments: hashidsApplication);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: ThemeConstants.whitecolor,
-                      border: Border.all(color: const Color(0xFFE5E1FE)),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10))),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 10, right: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: Container(
-                            width: 10.0,
-                            height: 10.0,
-                            decoration: BoxDecoration(
-                              color: ThemeConstants.blackcolor,
-                              shape: BoxShape.circle,
+          if (_.notificationModel != null) {
+            for (var i = 0; i < _.notificationModel!.length; i++) {
+              addWidget.add(InkWell(
+                onTap: () {
+                  String hashidsApplication = _
+                      .notificationModel![i].notificationBody
+                      .toString()
+                      .split("href='")[1]
+                      .split("'>")[0];
+                  hashidsApplication =
+                      reverseStringUsingSplit(hashidsApplication);
+                  hashidsApplication = hashidsApplication.split("/")[0];
+                  hashidsApplication =
+                      reverseStringUsingSplit(hashidsApplication);
+
+                  hashidsApplication =
+                      hashids.decode(hashidsApplication)[0].toString();
+                  //TODO
+                  Get.toNamed("/ApplicationCompleteDetails",
+                      arguments: hashidsApplication);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.whitecolor,
+                        border: Border.all(color: const Color(0xFFE5E1FE)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Container(
+                              width: 10.0,
+                              height: 10.0,
+                              decoration: BoxDecoration(
+                                color: ThemeConstants.blackcolor,
+                                shape: BoxShape.circle,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width - 75,
-                            child: Column(
-                              children: [
-                                CustomAutoSizeTextMontserrat(
-                                  text:
-                                      _.notificationModel![i].notificationTitle,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width -
-                                          100,
-                                      child: HtmlWidget(
-                                        _.notificationModel![0]
-                                            .notificationBody!
-                                            .replaceAll(exp, ""),
-                                        renderMode: RenderMode.column,
-                                        textStyle: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w600,
-                                          color: ThemeConstants.TextColor,
-                                          fontSize: 12,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width - 75,
+                              child: Column(
+                                children: [
+                                  CustomAutoSizeTextMontserrat(
+                                    text: _.notificationModel![i]
+                                        .notificationTitle,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                100,
+                                        child: HtmlWidget(
+                                          _.notificationModel![0]
+                                              .notificationBody!
+                                              .replaceAll(exp, ""),
+                                          renderMode: RenderMode.column,
+                                          textStyle: GoogleFonts.montserrat(
+                                            fontWeight: FontWeight.w600,
+                                            color: ThemeConstants.TextColor,
+                                            fontSize: 12,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "1 day ago",
-                                    textColor: ThemeConstants.TextColor,
-                                    fontSize: 12,
+                                    ],
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                              ],
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional.topStart,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "1 day ago",
+                                      textColor: ThemeConstants.TextColor,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ));
+              ));
+            }
           }
+        } catch (e) {
+          print(e.toString());
         }
 
         return SingleChildScrollView(

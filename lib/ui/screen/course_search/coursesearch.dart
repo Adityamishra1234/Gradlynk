@@ -352,7 +352,7 @@ class _CourseSearchState extends State<CourseSearch> {
                                                       .selectCourseLevelCode ==
                                                   null) {
                                                 getToast(SnackBarConstants
-                                                    .courseSearchPart1!);
+                                                    .courseSearchPart2!);
                                               } else {
                                                 Navigator.push(
                                                     context,

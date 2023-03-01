@@ -23,80 +23,84 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
   String? initialSelectedValue2;
   @override
   Widget build(BuildContext context) {
-    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
-    return widget.choosefieldtype == false
-        ? Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Container(
-              height: 55,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: ThemeConstants.lightblueColor,
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: SizedBox(
+    try {
+      final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
+      return widget.choosefieldtype == false
+          ? Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Container(
+                height: 55,
                 width: MediaQuery.of(context).size.width,
-                child: DropdownButton(
-                  menuMaxHeight: 200,
-                  elevation: 0,
-                  underline: const SizedBox(),
-                  // Initial Value
-                  value: widget.initialSelectedValue,
-                  alignment: AlignmentDirectional.bottomEnd,
-                  // Down Arrow Icon
-                  icon: Icon(
-                    Icons.keyboard_arrow_down,
-                    color: ThemeConstants.blackcolor,
-                  ),
-                  iconEnabledColor: ThemeConstants.whitecolor,
+                decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: DropdownButton(
+                    menuMaxHeight: 200,
+                    elevation: 0,
+                    underline: const SizedBox(),
+                    // Initial Value
+                    value: widget.initialSelectedValue,
+                    alignment: AlignmentDirectional.bottomEnd,
+                    // Down Arrow Icon
+                    icon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: ThemeConstants.blackcolor,
+                    ),
+                    iconEnabledColor: ThemeConstants.whitecolor,
 
-                  // Array list of items
-                  items: widget.model!.toSet().toList().map((dynamic items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: SizedBox(
-                          //Todo
-                          width: displayMobileLayout == true
-                              ? MediaQuery.of(context).size.width - 300
-                              : MediaQuery.of(context).size.width - 70,
-                          child: CustomAutoSizeTextMontserrat(
-                            text: items,
-                            textColor: ThemeConstants.TextColor,
-                            fontSize: 14,
+                    // Array list of items
+                    items: widget.model!.toSet().toList().map((dynamic items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: SizedBox(
+                            //Todo
+                            width: displayMobileLayout == true
+                                ? MediaQuery.of(context).size.width - 300
+                                : MediaQuery.of(context).size.width - 70,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: items,
+                              textColor: ThemeConstants.TextColor,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }).toList(),
+                      );
+                    }).toList(),
 
-                  onChanged: (dynamic? newValue) {
-                    widget.initialSelectedValue = newValue!;
-                    // initialSelectedValue2 = newValue;
-                    widget.callbackFunction(newValue);
-                    setState(() {});
-                  },
+                    onChanged: (dynamic? newValue) {
+                      widget.initialSelectedValue = newValue!;
+                      // initialSelectedValue2 = newValue;
+                      widget.callbackFunction(newValue);
+                      setState(() {});
+                    },
+                  ),
                 ),
               ),
-            ),
-          )
-        : Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              maxLines: 1,
-              textInputAction: TextInputAction.next,
-              readOnly: true,
-              decoration: InputDecoration(
-                hintText: widget.initialSelectedValue,
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+            )
+          : Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                maxLines: 1,
+                textInputAction: TextInputAction.next,
+                readOnly: true,
+                decoration: InputDecoration(
+                  hintText: widget.initialSelectedValue,
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                 ),
+                style: ThemeConstants.montserrattextstyle2,
               ),
-              style: ThemeConstants.montserrattextstyle2,
-            ),
-          );
+            );
+    } catch (e) {
+      return Container();
+    }
   }
 }

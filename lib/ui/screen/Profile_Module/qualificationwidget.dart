@@ -47,43 +47,52 @@ class QualificationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<QualificationDetailsController>(builder: (controller1) {
-      if (updateForEdit == false) {
-        qualificationName.text = controller1.modelList[index!].courseName ?? "";
-        multiplier.text = controller1.modelList[index!].multiplier ?? "";
-        percentage.text = controller1.modelList[index!].percentage ?? "";
-        reApper.text = controller1.modelList[index!].reapperCount ?? "";
-      }
-      if (updateForEdit == false &&
-          controller1.loadingEditQualification.value == true) {
-        controller1.loadingEditQualification.value = false;
-        controller1.highestQualificationSelected =
-            controller1.modelList[index!].courseLevel;
+      try {
+        if (index != null) {
+          if (updateForEdit == false) {
+            qualificationName.text =
+                controller1.modelList[index!].courseName ?? "";
+            multiplier.text = controller1.modelList[index!].multiplier ?? "";
+            percentage.text = controller1.modelList[index!].percentage ?? "";
+            reApper.text = controller1.modelList[index!].reapperCount ?? "";
+          }
+          if (updateForEdit == false &&
+              controller1.loadingEditQualification.value == true) {
+            controller1.loadingEditQualification.value = false;
+            controller1.highestQualificationSelected =
+                controller1.modelList[index!].courseLevel;
 
-        controller1.streamSelected =
-            controller1.modelList[index!].streamName ?? "";
-        controller1.streamSelectedID =
-            getNUllChecker(controller1.modelList[index!].streamId.toString()) ==
+            controller1.streamSelected =
+                controller1.modelList[index!].streamName ?? "";
+            controller1.streamSelectedID = getNUllChecker(
+                        controller1.modelList[index!].streamId.toString()) ==
                     false
                 ? controller1.modelList[index!].streamId.toString()
                 : "";
-        controller1.educationStatusSelected =
-            controller1.modelList[index!].educationStatus ?? "";
-        controller1.yearOfPassingSelected =
-            controller1.modelList[index!].yearOfPassing ?? "";
-        controller1.countrySelected = controller1.modelList[index!].countryName;
-        Get.find<QualificationDetailsController>().loadingEdit.value = 1;
-        // cgpa.text = double.parse(controller1.modelList[index!].percentage.toString()) /;
-        controller1.getEdit(
-            controller1.modelList[index!].countryId!,
-            controller1.modelList[index!].stateName,
-            controller1.modelList[index!].stateId,
-            controller1.modelList[index!].cityName,
-            controller1.modelList[index!].cityId,
-            controller1.modelList[index!].affiliationName,
-            controller1.modelList[index!].affiliationId,
-            controller1.modelList[index!].universityName,
-            controller1.modelList[index!].passingInstId);
+            controller1.educationStatusSelected =
+                controller1.modelList[index!].educationStatus ?? "";
+            controller1.yearOfPassingSelected =
+                controller1.modelList[index!].yearOfPassing ?? "";
+            controller1.countrySelected =
+                controller1.modelList[index!].countryName;
+            Get.find<QualificationDetailsController>().loadingEdit.value = 1;
+            // cgpa.text = double.parse(controller1.modelList[index!].percentage.toString()) /;
+            controller1.getEdit(
+                controller1.modelList[index!].countryId!,
+                controller1.modelList[index!].stateName,
+                controller1.modelList[index!].stateId,
+                controller1.modelList[index!].cityName,
+                controller1.modelList[index!].cityId,
+                controller1.modelList[index!].affiliationName,
+                controller1.modelList[index!].affiliationId,
+                controller1.modelList[index!].universityName,
+                controller1.modelList[index!].passingInstId);
+          }
+        }
+      } catch (e) {
+        print(e.toString());
       }
+
       return controller1.loadingEdit.value != 1
           ? SingleChildScrollView(
               child: Column(

@@ -48,7 +48,7 @@ class StepsToVisa extends StatelessWidget {
                           child: Center(
                             child: CustomAutoSizeTextMontserrat(
                               text:
-                                  "${completeCourseDetail[0].visaFees!}${completeCourseDetail[0].countryCurrencyCode!}\n${double.parse(completeCourseDetail[0].visaFeesInr!).toStringAsFixed(2)}INR",
+                                  "${completeCourseDetail[0].visaFees ?? ""}${completeCourseDetail[0].countryCurrencyCode ?? ""}\n${double.parse(completeCourseDetail[0].visaFeesInr ?? "").toStringAsFixed(2)}INR",
                               textColor: ThemeConstants.blackcolor,
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
