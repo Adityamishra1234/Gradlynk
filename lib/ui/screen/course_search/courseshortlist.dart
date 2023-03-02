@@ -49,6 +49,7 @@ class CourseSearchList extends StatefulWidget {
 
 class _CourseSearchListState extends State<CourseSearchList> {
   var controller1 = Get.put(CourseShortListController());
+  final yourScrollController = ScrollController();
 
   // String state = "",
   // String city = "",
@@ -233,8 +234,11 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                 thumbVisibility: true,
                                 showTrackOnHover: true,
                                 radius: const Radius.circular(12.0),
-                                controller: ScrollController(),
+                                // isAlwaysShown: true,
+                                thickness: 10,
+                                controller: yourScrollController,
                                 child: ListView.builder(
+                                    controller: yourScrollController,
                                     itemCount: controller1.courseModelFilter
                                         .courseSearchList.length,
                                     itemBuilder:

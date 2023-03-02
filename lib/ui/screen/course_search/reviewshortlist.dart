@@ -32,6 +32,7 @@ class ReviewShortList extends StatefulWidget {
 
 class _ReviewShortListState extends State<ReviewShortList> {
   var controller1 = Get.put(ReviewShortListController());
+  final yourScrollController = ScrollController();
 
   @override
   void initState() {
@@ -214,10 +215,10 @@ class _ReviewShortListState extends State<ReviewShortList> {
                       Expanded(
                         child: Scrollbar(
                           thumbVisibility: true,
-                          controller: ScrollController(
-                              keepScrollOffset: true, initialScrollOffset: 2.0),
+                          thickness: 10,
+                          controller: yourScrollController,
                           child: ListView.builder(
-                              controller: ScrollController(),
+                              controller: yourScrollController,
                               itemCount: widget.courseModelFilter == null
                                   ? (controller1.courseSearchModel.length + 1)
                                   : widget.courseModelFilter!.courseSearchList

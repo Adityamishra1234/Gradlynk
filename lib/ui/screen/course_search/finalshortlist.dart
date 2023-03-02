@@ -31,6 +31,7 @@ class FinalShortList extends StatefulWidget {
 
 class _FinalShortListState extends State<FinalShortList> {
   var controller1 = Get.put(FinalShortListController());
+  final yourScrollController = ScrollController();
 
   @override
   void initState() {
@@ -189,10 +190,10 @@ class _FinalShortListState extends State<FinalShortList> {
                         Expanded(
                           child: Scrollbar(
                             thumbVisibility: true,
-                            controller: ScrollController(
-                                keepScrollOffset: true,
-                                initialScrollOffset: 2.0),
+                            thickness: 10,
+                            controller: yourScrollController,
                             child: ListView.builder(
+                                controller: yourScrollController,
                                 itemCount: controller1.courseModelFilter
                                         .courseSearchList.length +
                                     1,
