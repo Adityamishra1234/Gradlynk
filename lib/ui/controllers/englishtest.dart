@@ -37,16 +37,6 @@ class EnglishTestController extends GetxController {
   List examStatusCode = [];
   List examNameList = [];
 
-  //key
-  static final literacyKey = GlobalKey<FormState>();
-  static final comprehensionKey = GlobalKey<FormState>();
-  static final conversationKey = GlobalKey<FormState>();
-  static final productionkey = GlobalKey<FormState>();
-  static final listeningKey = GlobalKey<FormState>();
-  static final writingKey = GlobalKey<FormState>();
-  static final readingKey = GlobalKey<FormState>();
-  static final speakingKey = GlobalKey<FormState>();
-
   @override
   void onInit() {
     getExamName();

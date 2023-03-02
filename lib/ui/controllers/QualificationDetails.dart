@@ -70,10 +70,6 @@ class QualificationDetailsController extends GetxController {
       citySelectedID,
       institutionSelectedID;
 
-  GlobalKey<FormState> CGPAKey = GlobalKey<FormState>();
-  GlobalKey<FormState> MultiplierKey = GlobalKey<FormState>();
-  GlobalKey<FormState> PercentageKey = GlobalKey<FormState>();
-
   @override
   void onInit() {
     getHighestQualification();

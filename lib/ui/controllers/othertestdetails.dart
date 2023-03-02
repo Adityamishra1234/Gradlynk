@@ -38,17 +38,6 @@ class OtherTestDetailsController extends GetxController {
   String? testScoreExpirationDateSelected;
   String? tentativeDateSelected;
 
-  //Key
-  static final analyticalKey = GlobalKey<FormState>();
-  static final verbalKey = GlobalKey<FormState>();
-  static final quantitativeKey = GlobalKey<FormState>();
-  static final integratedKey = GlobalKey<FormState>();
-  static final overallKey = GlobalKey<FormState>();
-  static final readingKey = GlobalKey<FormState>();
-  static final writingKey = GlobalKey<FormState>();
-  static final essayKey = GlobalKey<FormState>();
-  static final mathKey = GlobalKey<FormState>();
-
   @override
   void onInit() {
     getExamName();

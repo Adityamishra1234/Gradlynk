@@ -9,7 +9,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   static const routeNamed = '/LoginScreen';
-  GlobalKey<FormState> phonenumber = GlobalKey<FormState>();
+
   var controller = Get.put(LoginController());
 
   static TextEditingController phoneNumber = TextEditingController();
@@ -30,63 +30,62 @@ class LoginScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child: Form(
-                  key: phonenumber,
-                  child: TextFormField(
-                    controller: phoneNumber,
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15.0)),
-                        borderSide: BorderSide(
-                            width: 1,
-                            color: ThemeConstants
-                                .bluelightgreycolor), //<-- SEE HERE
-                      ),
-                      // focusedBorder: OutlineInputBorder(
-                      //   borderRadius:
-                      //       const BorderRadius.all(Radius.circular(15.0)),
-                      //   borderSide: BorderSide(
-                      //       width: 1,
-                      //       color: ThemeConstants
-                      //           .bluelightgreycolor), //<-- SEE HERE
-                      // ),
-                      // errorBorder: OutlineInputBorder(
-                      //   borderRadius:
-                      //       const BorderRadius.all(Radius.circular(15.0)),
-                      //   borderSide: BorderSide(
-                      //       width: 1,
-                      //       color: ThemeConstants
-                      //           .bluelightgreycolor), //<-- SEE HERE
-                      // ),
-                      // disabledBorder: OutlineInputBorder(
-                      //   borderRadius:
-                      //       const BorderRadius.all(Radius.circular(15.0)),
-                      //   borderSide: BorderSide(
-                      //       width: 1,
-                      //       color: ThemeConstants
-                      //           .bluelightgreycolor), //<-- SEE HERE
-                      // )
-                      hintText: "Phone number",
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15.0)),
-                        borderSide: BorderSide(
-                            width: 1,
-                            color: ThemeConstants
-                                .bluelightgreycolor), //<-- SEE HERE
-                      ),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                  controller: phoneNumber,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                          width: 1,
+                          color:
+                              ThemeConstants.bluelightgreycolor), //<-- SEE HERE
                     ),
-                    onChanged: (value) {
-                      if (phonenumber.currentState!.validate()) {
-                        phonenumber.currentState!.save();
-                      }
-                    },
-                    validator: (value) {
-                      return getPhoneNumbervalidation(value);
-                    },
+                    // focusedBorder: OutlineInputBorder(
+                    //   borderRadius:
+                    //       const BorderRadius.all(Radius.circular(15.0)),
+                    //   borderSide: BorderSide(
+                    //       width: 1,
+                    //       color: ThemeConstants
+                    //           .bluelightgreycolor), //<-- SEE HERE
+                    // ),
+                    // errorBorder: OutlineInputBorder(
+                    //   borderRadius:
+                    //       const BorderRadius.all(Radius.circular(15.0)),
+                    //   borderSide: BorderSide(
+                    //       width: 1,
+                    //       color: ThemeConstants
+                    //           .bluelightgreycolor), //<-- SEE HERE
+                    // ),
+                    // disabledBorder: OutlineInputBorder(
+                    //   borderRadius:
+                    //       const BorderRadius.all(Radius.circular(15.0)),
+                    //   borderSide: BorderSide(
+                    //       width: 1,
+                    //       color: ThemeConstants
+                    //           .bluelightgreycolor), //<-- SEE HERE
+                    // )
+                    hintText: "Phone number",
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(15.0)),
+                      borderSide: BorderSide(
+                          width: 1,
+                          color:
+                              ThemeConstants.bluelightgreycolor), //<-- SEE HERE
+                    ),
                   ),
+                  // onChanged: (value) {
+                  //   if (phonenumber.currentState!.validate()) {
+                  //     phonenumber.currentState!.save();
+                  //   }
+                  // },
+                  validator: (value) {
+                    return getPhoneNumbervalidation(value);
+                  },
                 ),
               ),
               Padding(

@@ -31,7 +31,7 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> cityindexvaluelist = [];
   List<int> courseBoardFieldindexvaluelist = [];
   List<int> courseNarrowFieldIndexvalueList = [];
-  final GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
   bool size = false;
   bool isApplyCompare = false;
   late final BestTutorSite _site = BestTutorSite.Ascending;

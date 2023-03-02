@@ -31,10 +31,6 @@ class RelativeInformationWidget extends StatelessWidget {
   static final contactOfRelative = TextEditingController();
   static final addresOfrelative = TextEditingController();
 
-  //Keys
-  static final relativeemailkey = GlobalKey<FormState>();
-  static final contactkey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RelativeInformationController>(builder: (_) {
@@ -200,31 +196,30 @@ class RelativeInformationWidget extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Form(
-          key: relativeemailkey,
-          child: TextFormField(
-            controller: realtiveEmail,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Relative Email",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+        child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+
+          controller: realtiveEmail,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          decoration: InputDecoration(
+            hintText: "Enter Relative Email",
+            filled: true,
+            fillColor: ThemeConstants.lightblueColor,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(15.0),
             ),
-            style: ThemeConstants.montserrattextstyle,
-            onChanged: (value) {
-              if (relativeemailkey.currentState!.validate()) {
-                relativeemailkey.currentState!.save();
-              }
-            },
-            validator: (value) {
-              return getEmailvaliation(value);
-            },
           ),
+          style: ThemeConstants.montserrattextstyle,
+          // onChanged: (value) {
+          //   if (relativeemailkey.currentState!.validate()) {
+          //     relativeemailkey.currentState!.save();
+          //   }
+          // },
+          validator: (value) {
+            return getEmailvaliation(value);
+          },
         ),
       ),
       Padding(
@@ -242,32 +237,31 @@ class RelativeInformationWidget extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Form(
-          key: contactkey,
-          child: TextFormField(
-            controller: contactOfRelative,
-            keyboardType: TextInputType.number,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Contact Of Relative",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+        child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+
+          controller: contactOfRelative,
+          keyboardType: TextInputType.number,
+          scrollPadding: EdgeInsets.symmetric(
+              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          decoration: InputDecoration(
+            hintText: "Enter Contact Of Relative",
+            filled: true,
+            fillColor: ThemeConstants.lightblueColor,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(15.0),
             ),
-            style: ThemeConstants.montserrattextstyle,
-            onChanged: (value) {
-              if (contactkey.currentState!.validate()) {
-                contactkey.currentState!.save();
-              }
-            },
-            validator: (value) {
-              return getPhoneNumbervalidation(value);
-            },
           ),
+          style: ThemeConstants.montserrattextstyle,
+          // onChanged: (value) {
+          //   if (contactkey.currentState!.validate()) {
+          //     contactkey.currentState!.save();
+          //   }
+          // },
+          validator: (value) {
+            return getPhoneNumbervalidation(value);
+          },
         ),
       ),
       Padding(

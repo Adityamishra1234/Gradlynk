@@ -48,7 +48,13 @@ class SnackBarConstants {
   //Course Search.dart Toast
   static String? courseSearchPart1 = "Please Select Country";
   static String? courseSearchPart2 = "Please Select Course Level";
+  static String? coursesearchPart3 = "No course found";
 
   //CourseSearchList.dart Toast
   static String? courseSearchListPart3 = "Please select course";
+
+  static String? reviewcourselistPart1 = "No course avaliable in course review";
+  static String? finalcourselistPart1 = "No course avaliable in course review";
+  static String? applicationPart1 = "No application avaliable now";
+  static String? visaPart1 = "No visa application avaliable now ";
 }

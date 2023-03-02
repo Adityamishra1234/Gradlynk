@@ -57,6 +57,7 @@ import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
 import 'ui/screen/countryGuide/countryguide.dart';
 import 'ui/screen/dashboard/scheduleExpertCall.dart';
+import 'ui/screen/test/test.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -301,6 +302,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: CountryGuide.routeNamed,
           page: () => CountryGuide(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: TestWidget.routeNamed,
+          page: () => TestWidget(),
           transition: Transition.fade,
         ),
       ],

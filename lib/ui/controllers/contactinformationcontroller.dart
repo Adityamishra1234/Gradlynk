@@ -48,21 +48,6 @@ class ContactInformationController extends GetxController {
 
   StudentPanel model = StudentPanel();
 
-  //key
-  // Local key
-  GlobalKey<FormState> firstNameKey = GlobalKey<FormState>();
-  GlobalKey<FormState> lastNameKey = GlobalKey<FormState>();
-  GlobalKey<FormState> mobileNameKey = GlobalKey<FormState>();
-  GlobalKey<FormState> alternateNumberKey = GlobalKey<FormState>();
-  GlobalKey<FormState> emailKey = GlobalKey<FormState>();
-  GlobalKey<FormState> whatsappNumberkey = GlobalKey<FormState>();
-  GlobalKey<FormState> secondaryemailKey = GlobalKey<FormState>();
-  GlobalKey<FormState> streetkey = GlobalKey<FormState>();
-  GlobalKey<FormState> zipcodekey = GlobalKey<FormState>();
-  GlobalKey<FormState> instragramkey = GlobalKey<FormState>();
-  GlobalKey<FormState> facebookkey = GlobalKey<FormState>();
-  GlobalKey<FormState> snapchatkey = GlobalKey<FormState>();
-
   @override
   void onInit() {
     getCountry();

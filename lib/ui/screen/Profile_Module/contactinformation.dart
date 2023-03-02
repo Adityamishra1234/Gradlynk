@@ -40,7 +40,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   static TextEditingController assignedAdvisors = TextEditingController();
 
   var controller = Get.put(ContactInformationController());
-  GlobalKey globalKey = GlobalKey();
+
   bool socialMedia = false;
   List gender = ["Select gender", "Male", "Female", "Other"];
 
@@ -273,38 +273,37 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.firstNameKey,
-                      child: TextFormField(
-                        controller: firstName,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your First Name",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: firstName,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your First Name",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.firstNameKey.currentState!
-                              .validate()) {
-                            controller.firstNameKey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please enter First Name";
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.firstNameKey.currentState!
+                      //       .validate()) {
+                      //     controller.firstNameKey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        if (value == "") {
+                          return "Please enter First Name";
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
                   ),
                   Padding(
@@ -323,37 +322,36 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.lastNameKey,
-                      child: TextFormField(
-                        controller: lastName,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Last Name",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: lastName,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your Last Name",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.lastNameKey.currentState!.validate()) {
-                            controller.lastNameKey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please enter Last Name";
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.lastNameKey.currentState!.validate()) {
+                      //     controller.lastNameKey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        if (value == "") {
+                          return "Please enter Last Name";
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
                   ),
                   Padding(
@@ -464,38 +462,37 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.mobileNameKey,
-                      child: TextFormField(
-                        controller: mobileNumber,
-                        keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Mobile Number",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: mobileNumber,
+                      keyboardType: TextInputType.number,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Mobile Number",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          // RenderObject? object =
-                          //     globalKey.currentContext!.findRenderObject();
-                          // object!.showOnScreen();
-                          if (controller.mobileNameKey.currentState!
-                              .validate()) {
-                            controller.mobileNameKey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          return getPhoneNumbervalidation(value);
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   // RenderObject? object =
+                      //   //     globalKey.currentContext!.findRenderObject();
+                      //   // object!.showOnScreen();
+                      //   if (controller.mobileNameKey.currentState!
+                      //       .validate()) {
+                      //     controller.mobileNameKey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        return getPhoneNumbervalidation(value);
+                      },
                     ),
                   ),
                   Padding(
@@ -514,35 +511,34 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.alternateNumberKey,
-                      child: TextFormField(
-                        controller: alt_Number,
-                        keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Alternate Number",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: alt_Number,
+                      keyboardType: TextInputType.number,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Alternate Number",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.alternateNumberKey.currentState!
-                              .validate()) {
-                            controller.alternateNumberKey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          return getPhoneNumbervalidation(value);
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.alternateNumberKey.currentState!
+                      //       .validate()) {
+                      //     controller.alternateNumberKey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        return getPhoneNumbervalidation(value);
+                      },
                     ),
                   ),
                   Padding(
@@ -561,33 +557,31 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.emailKey,
-                      child: TextFormField(
-                        controller: email,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your email",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: email,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your email",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.emailKey.currentState!.validate()) {
-                            controller.emailKey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          return getEmailvaliation(value);
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.emailKey.currentState!.validate()) {
+                      //     controller.emailKey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        return getEmailvaliation(value);
+                      },
                     ),
                   ),
                   Padding(
@@ -605,35 +599,34 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.whatsappNumberkey,
-                      child: TextFormField(
-                        controller: whatsappNumber,
-                        keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Whatsapp Number",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: whatsappNumber,
+                      keyboardType: TextInputType.number,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your Whatsapp Number",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.whatsappNumberkey.currentState!
-                              .validate()) {
-                            controller.whatsappNumberkey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          return getPhoneNumbervalidation(value);
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.whatsappNumberkey.currentState!
+                      //       .validate()) {
+                      //     controller.whatsappNumberkey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        return getPhoneNumbervalidation(value);
+                      },
                     ),
                   ),
                   Padding(
@@ -651,34 +644,33 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.secondaryemailKey,
-                      child: TextFormField(
-                        controller: secondaryEmail,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Secondary Email",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: secondaryEmail,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your Secondary Email",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.secondaryemailKey.currentState!
-                              .validate()) {
-                            controller.secondaryemailKey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          return getEmailvaliation(value);
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.secondaryemailKey.currentState!
+                      //       .validate()) {
+                      //     controller.secondaryemailKey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        return getEmailvaliation(value);
+                      },
                     ),
                   ),
                   Padding(
@@ -764,37 +756,36 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.streetkey,
-                      child: TextFormField(
-                        controller: street,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Street",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: street,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your Street",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.streetkey.currentState!.validate()) {
-                            controller.streetkey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please enter street";
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.streetkey.currentState!.validate()) {
+                      //     controller.streetkey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        if (value == "") {
+                          return "Please enter street";
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
                   ),
                   Padding(
@@ -813,38 +804,37 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Form(
-                      key: controller.zipcodekey,
-                      child: TextFormField(
-                        controller: zipCode,
-                        keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Zip Code",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                    child: TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                      controller: zipCode,
+                      keyboardType: TextInputType.number,
+                      scrollPadding: EdgeInsets.symmetric(
+                          vertical:
+                              MediaQuery.of(context).viewInsets.bottom + 30),
+                      readOnly: saveAndEdit,
+                      decoration: InputDecoration(
+                        hintText: "Enter your Zip Code",
+                        filled: true,
+                        fillColor: ThemeConstants.lightblueColor,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        onChanged: (value) {
-                          if (controller.zipcodekey.currentState!.validate()) {
-                            controller.zipcodekey.currentState!.save();
-                          }
-                        },
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please enter Zip code";
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
+                      style: ThemeConstants.montserrattextstyle2,
+                      // onChanged: (value) {
+                      //   if (controller.zipcodekey.currentState!.validate()) {
+                      //     controller.zipcodekey.currentState!.save();
+                      //   }
+                      // },
+                      validator: (value) {
+                        if (value == "") {
+                          return "Please enter Zip code";
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
                   ),
                   CheckboxListTile(
@@ -876,39 +866,37 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   if (socialMedia == true)
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Form(
-                        key: controller.instragramkey,
-                        child: TextFormField(
-                          controller: instagramId,
-                          scrollPadding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).viewInsets.bottom +
-                                      30),
-                          readOnly: saveAndEdit,
-                          decoration: InputDecoration(
-                            hintText: "Enter your Instagram Id",
-                            filled: true,
-                            fillColor: ThemeConstants.lightblueColor,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: instagramId,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Instagram Id",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
                           ),
-                          style: ThemeConstants.montserrattextstyle2,
-                          onChanged: (value) {
-                            if (controller.instragramkey.currentState!
-                                .validate()) {
-                              controller.instragramkey.currentState!.save();
-                            }
-                          },
-                          validator: (value) {
-                            if (value == "") {
-                              return "Please enter Instagram";
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.instragramkey.currentState!
+                        //       .validate()) {
+                        //     controller.instragramkey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please enter Instagram";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   if (socialMedia == true)
@@ -928,39 +916,37 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   if (socialMedia == true)
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Form(
-                        key: controller.facebookkey,
-                        child: TextFormField(
-                          controller: facebookId,
-                          scrollPadding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).viewInsets.bottom +
-                                      30),
-                          readOnly: saveAndEdit,
-                          decoration: InputDecoration(
-                            hintText: "Enter your Facebook Id",
-                            filled: true,
-                            fillColor: ThemeConstants.lightblueColor,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: facebookId,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Facebook Id",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
                           ),
-                          style: ThemeConstants.montserrattextstyle2,
-                          onChanged: (value) {
-                            if (controller.facebookkey.currentState!
-                                .validate()) {
-                              controller.facebookkey.currentState!.save();
-                            }
-                          },
-                          validator: (value) {
-                            if (value == "") {
-                              return "Please enter Facebook";
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.facebookkey.currentState!
+                        //       .validate()) {
+                        //     controller.facebookkey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please enter Facebook";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   if (socialMedia == true)
@@ -980,39 +966,37 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                   if (socialMedia == true)
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Form(
-                        key: controller.snapchatkey,
-                        child: TextFormField(
-                          controller: snapchatId,
-                          scrollPadding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).viewInsets.bottom +
-                                      30),
-                          readOnly: saveAndEdit,
-                          decoration: InputDecoration(
-                            hintText: "Enter your Snapchat Id",
-                            filled: true,
-                            fillColor: ThemeConstants.lightblueColor,
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: snapchatId,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Snapchat Id",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
                           ),
-                          style: ThemeConstants.montserrattextstyle2,
-                          onChanged: (value) {
-                            if (controller.firstNameKey.currentState!
-                                .validate()) {
-                              controller.firstNameKey.currentState!.save();
-                            }
-                          },
-                          validator: (value) {
-                            if (value == "") {
-                              return "Please enter snapchat";
-                            } else {
-                              return null;
-                            }
-                          },
                         ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.firstNameKey.currentState!
+                        //       .validate()) {
+                        //     controller.firstNameKey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please enter snapchat";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
                   Padding(

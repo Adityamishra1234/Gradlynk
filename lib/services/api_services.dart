@@ -43,6 +43,7 @@ import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:http/http.dart' as http;
 
@@ -265,14 +266,7 @@ class ApiServices extends StudentPanelBase {
       return courseModelFilter;
     } catch (e) {
       Get.back();
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      getToast(SnackBarConstants.courseSearchListPart3!);
     }
   }
 
@@ -379,15 +373,7 @@ class ApiServices extends StudentPanelBase {
       return courseModelFilter;
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      getToast(SnackBarConstants.reviewcourselistPart1!);
     }
   }
 
@@ -433,15 +419,7 @@ class ApiServices extends StudentPanelBase {
       return courseModelFilter;
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      getToast(SnackBarConstants.finalcourselistPart1!);
     }
   }
 
@@ -457,15 +435,7 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      getToast(SnackBarConstants.applicationPart1!);
     }
   }
 
@@ -652,15 +622,7 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      getToast(SnackBarConstants.visaPart1!);
     }
   }
 
