@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/endpoint.dart';
 
 import 'error.dart';
 
@@ -102,22 +103,22 @@ class StudentPanelBase {
       case 200:
         return response.body.isNotEmpty &&
                 response.body != "" &&
-                response.body != "[]"
+                response.body != "[]" &&
+                response.body != []
             ? response.body
-            : throw EmptyDataException("440");
+            : throw EmptyDataException("440 :${response.body}");
       case 440:
-        throw EmptyDataException("440");
+        throw EmptyDataException("440 :${response.body}");
       case 400:
-        throw BadRequestException(response.body.toString());
+        throw BadRequestException("${response.statusCode} :${response.body}");
       case 401:
       case 403:
-        throw UnauthorisedException(response.body.toString());
+        throw UnauthorisedException("${response.statusCode} :${response.body}");
       case 502:
-        throw InternetError(response.body.toString());
+        throw InternetError("${response.statusCode} :${response.body}");
       case 500:
       default:
-        throw FetchDataException(
-            'Something went to wrong : ${response.statusCode}');
+        throw FetchDataException("${response.statusCode} :${response.body}");
     }
   }
 
@@ -199,5 +200,24 @@ class StudentPanelBase {
         print(e);
       }
     }
+  }
+
+  errorHandle(String enq_id, String error_message, String statusCode,
+      [String extra = ""]) async {
+    String endpoint = Endpoints.errorHandlePart1! +
+        enq_id +
+        Endpoints.errorHandlepart2! +
+        error_message +
+        Endpoints.errorHandlepart3! +
+        statusCode +
+        Endpoints.errorHandlepart4! +
+        extra.replaceAll("#", "");
+
+    try {
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        print(res);
+      }
+    } catch (e) {}
   }
 }

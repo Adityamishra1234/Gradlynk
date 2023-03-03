@@ -38,7 +38,6 @@ import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
-import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -73,15 +72,12 @@ class ApiServices extends StudentPanelBase {
         return false;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -92,15 +88,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -113,15 +106,12 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -135,15 +125,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -153,15 +140,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -175,15 +159,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -196,15 +177,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -219,15 +197,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -237,15 +212,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -265,6 +237,12 @@ class ApiServices extends StudentPanelBase {
 
       return courseModelFilter;
     } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
       Get.back();
       getToast(SnackBarConstants.courseSearchListPart3!);
     }
@@ -293,15 +271,12 @@ class ApiServices extends StudentPanelBase {
         return completeCourseDetail;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -320,15 +295,12 @@ class ApiServices extends StudentPanelBase {
         );
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -341,15 +313,12 @@ class ApiServices extends StudentPanelBase {
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -372,6 +341,12 @@ class ApiServices extends StudentPanelBase {
 
       return courseModelFilter;
     } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
       Get.back();
       getToast(SnackBarConstants.reviewcourselistPart1!);
     }
@@ -390,15 +365,12 @@ class ApiServices extends StudentPanelBase {
       return applicationSummaryModel;
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -418,6 +390,12 @@ class ApiServices extends StudentPanelBase {
       }
       return courseModelFilter;
     } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
       Get.back();
       getToast(SnackBarConstants.finalcourselistPart1!);
     }
@@ -434,12 +412,18 @@ class ApiServices extends StudentPanelBase {
         return applicationDetailModel;
       }
     } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
       Get.back();
       getToast(SnackBarConstants.applicationPart1!);
     }
   }
 
-  createFilter(CourseModelFilter courseModelFilter) {
+  createFilter(CourseModelFilter courseModelFilter) async {
     try {
       FilterModel filterModel = FilterModel();
 
@@ -606,7 +590,12 @@ class ApiServices extends StudentPanelBase {
 
       return filterModel;
     } catch (e) {
-      print(StackTrace.current);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
       throw Exception("Try after some time");
     }
   }
@@ -621,6 +610,12 @@ class ApiServices extends StudentPanelBase {
         return visaDetailModel;
       }
     } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
       Get.back();
       getToast(SnackBarConstants.visaPart1!);
     }
@@ -642,15 +637,12 @@ class ApiServices extends StudentPanelBase {
         return jsondata;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -663,15 +655,12 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -684,15 +673,12 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -709,15 +695,12 @@ class ApiServices extends StudentPanelBase {
         return viewCourseInformationList;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -753,15 +736,12 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -773,15 +753,12 @@ class ApiServices extends StudentPanelBase {
           json.decode(response).map((x) => StreamDropDown.fromJson(x)));
       return streamDropDown;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -793,15 +770,12 @@ class ApiServices extends StudentPanelBase {
 
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -815,15 +789,12 @@ class ApiServices extends StudentPanelBase {
               .map((x) => AffiliationDropDownModel.fromJson(x)));
       return affiliationDropDown;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -836,15 +807,12 @@ class ApiServices extends StudentPanelBase {
 
       return dropdown;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -858,15 +826,12 @@ class ApiServices extends StudentPanelBase {
               .map((x) => QualificationDetailsViewModel.fromJson(x)));
       return qualificationDetailsView;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -877,15 +842,12 @@ class ApiServices extends StudentPanelBase {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -899,15 +861,12 @@ class ApiServices extends StudentPanelBase {
               .map((x) => WorkHistoryViewModel.fromJson(x)));
       return workHistoryViewModel;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -931,15 +890,12 @@ class ApiServices extends StudentPanelBase {
         return dataUpdateStatus;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -957,15 +913,12 @@ class ApiServices extends StudentPanelBase {
         return englishTestDetailsViewModel;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -983,15 +936,12 @@ class ApiServices extends StudentPanelBase {
         return englishTestDetailsViewModel;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1010,15 +960,12 @@ class ApiServices extends StudentPanelBase {
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1035,15 +982,12 @@ class ApiServices extends StudentPanelBase {
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1059,15 +1003,12 @@ class ApiServices extends StudentPanelBase {
         return passportModel;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1080,15 +1021,12 @@ class ApiServices extends StudentPanelBase {
               json.decode(response).map((x) => TravelHistoryModel.fromJson(x)));
       return travelHistoryList;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1105,15 +1043,12 @@ class ApiServices extends StudentPanelBase {
         return true;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1125,15 +1060,12 @@ class ApiServices extends StudentPanelBase {
           json.decode(response).map((x) => RealtionModel.fromJson(x)));
       return model;
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1150,15 +1082,12 @@ class ApiServices extends StudentPanelBase {
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1175,15 +1104,12 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1200,15 +1126,12 @@ class ApiServices extends StudentPanelBase {
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1226,15 +1149,12 @@ class ApiServices extends StudentPanelBase {
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1248,15 +1168,13 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1270,15 +1188,12 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1345,15 +1260,12 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       Get.back();
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1367,15 +1279,12 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1389,15 +1298,12 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1411,15 +1317,12 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1433,15 +1336,12 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1455,15 +1355,12 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1477,15 +1374,12 @@ class ApiServices extends StudentPanelBase {
         Get.toNamed(DashBoard.routeNamed);
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1498,7 +1392,12 @@ class ApiServices extends StudentPanelBase {
         return true;
       }
     } catch (e) {
-      print(e);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1512,17 +1411,15 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.whitecolor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
+
   // logout(String endpoint, String token) async {
   //   try {
   //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);
