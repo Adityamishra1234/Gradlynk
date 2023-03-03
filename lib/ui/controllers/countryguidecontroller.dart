@@ -19,17 +19,26 @@ class CountryGuideController extends GetxController {
   }
 
   getCountryGuideModel() async {
-    var res = await apiServices.countryGuide(Endpoints.countryGuide! +
-        Get.find<BaseController>().model1.id.toString());
-    if (res != null) {
-      model = res;
-      model.forEach((element) {
-        countrylist.add(element.country);
-      });
-      url = model[0].document;
-      viewDetailsSelected = model[0].details;
-      loadingCountryGuide = true.obs;
-      update();
+    try {
+      var res = await apiServices.countryGuide(Endpoints.countryGuide! +
+          Get.find<BaseController>().model1.id.toString());
+      if (res != null) {
+        model = res;
+        model.forEach((element) {
+          countrylist.add(element.country);
+        });
+        url = model[0].document;
+        viewDetailsSelected = model[0].details;
+        loadingCountryGuide = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

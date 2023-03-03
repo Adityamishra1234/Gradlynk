@@ -214,9 +214,11 @@ class StudentPanelBase {
         extra.replaceAll("#", "");
 
     try {
-      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
-      if (res != null) {
-        print(res);
+      if (statusCode != "440") {
+        var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+        if (res != null) {
+          print(res);
+        }
       }
     } catch (e) {}
   }

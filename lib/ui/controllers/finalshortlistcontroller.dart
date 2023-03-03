@@ -79,27 +79,45 @@ class FinalShortListController extends GetxController {
 
   completeCourseDetailMethod(
       String universityId, String courseId, String instituteCourseId) async {
-    String endpoint = Endpoints.completeCoursePart1! +
-        universityId +
-        Endpoints.completeCoursePart2! +
-        courseId +
-        Endpoints.completeCoursePart3! +
-        instituteCourseId;
-    var res =
-        await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
-    if (res != null) {
-      completeCourseDetail = res;
-      return completeCourseDetail;
+    try {
+      String endpoint = Endpoints.completeCoursePart1! +
+          universityId +
+          Endpoints.completeCoursePart2! +
+          courseId +
+          Endpoints.completeCoursePart3! +
+          instituteCourseId;
+      var res =
+          await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
+      if (res != null) {
+        completeCourseDetail = res;
+        return completeCourseDetail;
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   getFinalShortlist(String? enqId) async {
-    var response = await apiservices.getFinalShortlist(
-        Endpoints.finalShortListDetail, enqId!);
-    if (response != null) {
-      courseModelFilter = response;
-      loadingCourseShortList = true.obs;
-      update();
+    try {
+      var response = await apiservices.getFinalShortlist(
+          Endpoints.finalShortListDetail, enqId!);
+      if (response != null) {
+        courseModelFilter = response;
+        loadingCourseShortList = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -111,26 +129,35 @@ class FinalShortListController extends GetxController {
     apiservices.setFinalShortListCourse(id, enqId);
   }
 
-  compare(String? varTopic) {
-    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
-      if (courseSearchModelCompare1.id == null) {
-        courseSearchModelCompare1 = courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
-        courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-        update();
-      } else if (courseSearchModelCompare2.id == null) {
-        courseSearchModelCompare2 = courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
-        courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-        update();
-      } else {
-        debugPrint(varTopic);
-      }
-      // Added Button For Comparing
-    } else {}
+  compare(String? varTopic) async {
+    try {
+      if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+        if (courseSearchModelCompare1.id == null) {
+          courseSearchModelCompare1 = courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+          courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+              .isSelected = true;
+          update();
+        } else if (courseSearchModelCompare2.id == null) {
+          courseSearchModelCompare2 = courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+          courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+              .isSelected = true;
+          update();
+        } else {
+          debugPrint(varTopic);
+        }
+        // Added Button For Comparing
+      } else {}
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 }

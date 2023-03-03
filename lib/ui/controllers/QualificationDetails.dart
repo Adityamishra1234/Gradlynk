@@ -91,17 +91,26 @@ class QualificationDetailsController extends GetxController {
       String? affiliation,
       String? affiliationID,
       String? institution,
-      String? institutionId) {
-    getStateEdit(countryId, state, stateID);
-    if (stateID != null) {
-      getCityEdit(stateID, city, cityID);
+      String? institutionId) async {
+    try {
+      getStateEdit(countryId, state, stateID);
+      if (stateID != null) {
+        getCityEdit(stateID, city, cityID);
+      }
+      getAffiliationEdit(countryId, affiliation, affiliationID);
+      if (cityID != null) {
+        geInstitutionEdit(cityID, institution, institutionId);
+      }
+      loadingEdit = 0.obs;
+      update();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    getAffiliationEdit(countryId, affiliation, affiliationID);
-    if (cityID != null) {
-      geInstitutionEdit(cityID, institution, institutionId);
-    }
-    loadingEdit = 0.obs;
-    update();
   }
 
   getStateEdit(String countryId, String? state, String? stateID) async {
@@ -129,8 +138,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -159,8 +172,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -187,8 +204,12 @@ class QualificationDetailsController extends GetxController {
         }
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -224,8 +245,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -249,8 +274,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -271,8 +300,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -297,42 +330,64 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   updateQualification(String enqId) async {
-    String endpoint = Endpoints.addQualification! + enqId;
-    for (var i = 0; i < modelList.length; i++) {
-      endpoint = endpoint +
-          getAddQualificationPart2(
-              i.toString(),
-              modelList[i].qualificationId ?? "",
-              modelList[i].courseName ?? "",
-              modelList[i].cityId ?? "",
-              modelList[i].stateId ?? "",
-              modelList[i].countryId ?? "",
-              modelList[i].reapperCount ?? "",
-              modelList[i].grade ?? "",
-              modelList[i].multiplier ?? "",
-              modelList[i].percentage ?? "",
-              modelList[i].passingInstId ?? "",
-              modelList[i].streamId ?? "",
-              modelList[i].affiliationId ?? "",
-              modelList[i].educationStatus ?? "",
-              modelList[i].yearOfPassing ?? "");
+    try {
+      String endpoint = Endpoints.addQualification! + enqId;
+      for (var i = 0; i < modelList.length; i++) {
+        endpoint = endpoint +
+            getAddQualificationPart2(
+                i.toString(),
+                modelList[i].qualificationId ?? "",
+                modelList[i].courseName ?? "",
+                modelList[i].cityId ?? "",
+                modelList[i].stateId ?? "",
+                modelList[i].countryId ?? "",
+                modelList[i].reapperCount ?? "",
+                modelList[i].grade ?? "",
+                modelList[i].multiplier ?? "",
+                modelList[i].percentage ?? "",
+                modelList[i].passingInstId ?? "",
+                modelList[i].streamId ?? "",
+                modelList[i].affiliationId ?? "",
+                modelList[i].educationStatus ?? "",
+                modelList[i].yearOfPassing ?? "");
+      }
+      await apiServices.updateQualification(endpoint);
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    await apiServices.updateQualification(endpoint);
   }
 
   viewQualification(String enqId) async {
-    var res = await apiServices.getQualificationDetails(
-        Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enqId);
-    if (res != null) {
-      modelList = res;
-      loadingViewQualification.value = true;
-      update();
+    try {
+      var res = await apiServices.getQualificationDetails(
+          Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enqId);
+      if (res != null) {
+        modelList = res;
+        loadingViewQualification.value = true;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -353,8 +408,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -371,8 +430,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -401,8 +464,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -431,8 +498,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -459,8 +530,12 @@ class QualificationDetailsController extends GetxController {
         }
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -484,8 +559,12 @@ class QualificationDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

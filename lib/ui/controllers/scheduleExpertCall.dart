@@ -28,31 +28,49 @@ class ScheduleExpertCallController extends GetxController {
   }
 
   getServiceAssigned() async {
-    var res = await apiServices.getServicesAssigned(
-        Endpoints.serviceAssigness! +
-            Get.find<BaseController>().model1.id.toString());
-    if (res != null) {
-      name.add("Select your counsellor");
-      nameID.add(0);
-      model = res;
-      model.forEach((element) {
-        name.add(element.name!);
-        nameID.add(element.id!);
-      });
-      loadingServiceAssigned = true.obs;
-      update();
+    try {
+      var res = await apiServices.getServicesAssigned(
+          Endpoints.serviceAssigness! +
+              Get.find<BaseController>().model1.id.toString());
+      if (res != null) {
+        name.add("Select your counsellor");
+        nameID.add(0);
+        model = res;
+        model.forEach((element) {
+          name.add(element.name!);
+          nameID.add(element.id!);
+        });
+        loadingServiceAssigned = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   addScheduleAnExpertCall() async {
-    var res = await apiServices.getSheduleExpertCall(
-        Endpoints.scheduleAnExpertCallPart1! +
-            Get.find<BaseController>().model1.id.toString() +
-            Endpoints.scheduleAnExpertCallPart2! +
-            dateSelected +
-            Endpoints.scheduleAnExpertCallPart3! +
-            timeSelected! +
-            Endpoints.scheduleAnExpertCallPart4! +
-            nameSelectedID.toString());
+    try {
+      var res = await apiServices.getSheduleExpertCall(
+          Endpoints.scheduleAnExpertCallPart1! +
+              Get.find<BaseController>().model1.id.toString() +
+              Endpoints.scheduleAnExpertCallPart2! +
+              dateSelected +
+              Endpoints.scheduleAnExpertCallPart3! +
+              timeSelected! +
+              Endpoints.scheduleAnExpertCallPart4! +
+              nameSelectedID.toString());
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 }

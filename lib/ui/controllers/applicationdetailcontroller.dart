@@ -12,12 +12,21 @@ class ApplicationDetailController extends GetxController {
   RxBool loadingApplicationDetails = false.obs;
 
   getApplicationDetailComplete(String? apliId) async {
-    var response = await apiServices.getApplicationDetails(
-        Endpoints.applicationDetail, apliId);
-    if (response != null) {
-      applicationDetailModel = response;
-      loadingApplicationDetails.value = true;
-      return applicationDetailModel;
+    try {
+      var response = await apiServices.getApplicationDetails(
+          Endpoints.applicationDetail, apliId);
+      if (response != null) {
+        applicationDetailModel = response;
+        loadingApplicationDetails.value = true;
+        return applicationDetailModel;
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

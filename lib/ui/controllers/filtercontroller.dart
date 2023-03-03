@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
@@ -50,228 +51,390 @@ class FilterController extends GetxController {
   bool loadingRanking = false;
 
   getBudget(String? data) async {
-    loadingfuncation.value = false;
-    update();
-    filterModel = FilterModel();
-    budget = data!.split(",");
-    budget.removeAt(0);
+    try {
+      loadingfuncation.value = false;
+      update();
+      filterModel = FilterModel();
+      budget = data!.split(",");
+      budget.removeAt(0);
 
-    more_30 = false;
-    between_15_30 = false;
-    between_7_15 = false;
-    less_7 = false;
+      more_30 = false;
+      between_15_30 = false;
+      between_7_15 = false;
+      less_7 = false;
 
-    if (budget.isNotEmpty) {
-      for (var i = 0; i < budget.length; i++) {
-        if (budget[i] == "15-30 lac") {
-          between_15_30 = true;
-        } else if (budget[i] == "7-15 Lac") {
-          between_7_15 = true;
-        } else if (budget[i] == "Below 7 Lac") {
-          less_7 = true;
-        } else if (budget[i] == "30 Lac or More") {
-          more_30 = true;
+      if (budget.isNotEmpty) {
+        for (var i = 0; i < budget.length; i++) {
+          if (budget[i] == "15-30 lac") {
+            between_15_30 = true;
+          } else if (budget[i] == "7-15 Lac") {
+            between_7_15 = true;
+          } else if (budget[i] == "Below 7 Lac") {
+            less_7 = true;
+          } else if (budget[i] == "30 Lac or More") {
+            more_30 = true;
+          }
         }
       }
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    filter();
   }
 
   // writen some code
   getAcademic(String? data) async {
-    loadingfuncation.value = false;
-    update();
-    filterModel = FilterModel();
-    academicpercentage = data!.split(",");
-    academicpercentage.removeAt(0);
+    try {
+      loadingfuncation.value = false;
+      update();
+      filterModel = FilterModel();
+      academicpercentage = data!.split(",");
+      academicpercentage.removeAt(0);
 
-    between_60_70 = false;
-    between_50_60 = false;
-    between_50 = false;
-    more_70 = false;
-    if (academicpercentage.isNotEmpty) {
-      for (var i = 0; i < academicpercentage.length; i++) {
-        if (academicpercentage[i] == "60%-70%") {
-          between_60_70 = true;
-        } else if (academicpercentage[i] == "50%-60%") {
-          between_50_60 = true;
-        } else if (academicpercentage[i] == "between 50") {
-          between_50 = true;
-        } else if (academicpercentage[i] == "70+") {
-          more_70 = true;
+      between_60_70 = false;
+      between_50_60 = false;
+      between_50 = false;
+      more_70 = false;
+      if (academicpercentage.isNotEmpty) {
+        for (var i = 0; i < academicpercentage.length; i++) {
+          if (academicpercentage[i] == "60%-70%") {
+            between_60_70 = true;
+          } else if (academicpercentage[i] == "50%-60%") {
+            between_50_60 = true;
+          } else if (academicpercentage[i] == "between 50") {
+            between_50 = true;
+          } else if (academicpercentage[i] == "70+") {
+            more_70 = true;
+          }
         }
       }
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    filter();
   }
 
   getRanking(
       int? indexSelect, int? firstIndexValue, int? secondIndexValue) async {
-    loadingfuncation.value = false;
-    update();
-    loadingRanking = true;
-    indexSelectRanking = indexSelect;
-    firstIndexValueRanking = firstIndexValue;
-    secondIndexValueRanking = secondIndexValue;
-    filterModel = FilterModel();
-    filter();
-  }
-
-  getUniversity(String? data) {
-    loadingfuncation.value = false;
-    List<String> temp = [];
-    update();
-    filterModel = FilterModel();
-    temp = data!.split(",");
-    temp.removeAt(0);
-    university = temp;
-    if (kDebugMode) {
-      print(university);
+    try {
+      loadingfuncation.value = false;
+      update();
+      loadingRanking = true;
+      indexSelectRanking = indexSelect;
+      firstIndexValueRanking = firstIndexValue;
+      secondIndexValueRanking = secondIndexValue;
+      filterModel = FilterModel();
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    filter();
   }
 
-  getOfferTAT(String? data) {
-    loadingfuncation.value = false;
-    update();
-
-    filterModel = FilterModel();
-    offerTAT = data!.split(",");
-    offerTAT.removeAt(0);
-    filter();
+  getUniversity(String? data) async {
+    try {
+      loadingfuncation.value = false;
+      List<String> temp = [];
+      update();
+      filterModel = FilterModel();
+      temp = data!.split(",");
+      temp.removeAt(0);
+      university = temp;
+      if (kDebugMode) {
+        print(university);
+      }
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
-  getVisaTAT(String? data) {
-    loadingfuncation.value = false;
-    update();
+  getOfferTAT(String? data) async {
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    visaTAT = data!.split(",");
-    visaTAT.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      offerTAT = data!.split(",");
+      offerTAT.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
-  getIntakeMonth(String? data) {
-    loadingfuncation.value = false;
-    update();
+  getVisaTAT(String? data) async {
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    intakeMonth = data!.split(",");
-    intakeMonth.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      visaTAT = data!.split(",");
+      visaTAT.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
-  getIntakeYear(String? data) {
-    loadingfuncation.value = false;
-    update();
+  getIntakeMonth(String? data) async {
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    intakeYear = data!.split(",");
-    intakeYear.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      intakeMonth = data!.split(",");
+      intakeMonth.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  getIntakeYear(String? data) async {
+    try {
+      loadingfuncation.value = false;
+      update();
+
+      filterModel = FilterModel();
+      intakeYear = data!.split(",");
+      intakeYear.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getInstituteLevel(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    instituteLevel = data!.split(",");
-    instituteLevel.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      instituteLevel = data!.split(",");
+      instituteLevel.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getScholarship(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    scholarship = data!.split(",");
-    scholarship.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      scholarship = data!.split(",");
+      scholarship.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getSiecPriority(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    siecPriority = data!.split(",");
-    siecPriority.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      siecPriority = data!.split(",");
+      siecPriority.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getConditionalOffer(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    conditionaloffer = data!.split(",");
-    conditionaloffer.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      conditionaloffer = data!.split(",");
+      conditionaloffer.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getBackLogAcceptable(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    backlogAcceptable = data!.split(",");
-    backlogAcceptable.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      backlogAcceptable = data!.split(",");
+      backlogAcceptable.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getApplicationFee(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    applicationfee = data!.split(",");
-    applicationfee.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      applicationfee = data!.split(",");
+      applicationfee.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getplacementSandwich(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    placementSandwichYear = data!.split(",");
-    placementSandwichYear.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      placementSandwichYear = data!.split(",");
+      placementSandwichYear.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getSiecRepresent(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    siecRepresent = data!.split(",");
-    siecRepresent.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      siecRepresent = data!.split(",");
+      siecRepresent.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getCountryName(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    countryName = data!.split(",");
-    countryName.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      countryName = data!.split(",");
+      countryName.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   getInstitutePublicPrivate(String? data) async {
-    loadingfuncation.value = false;
-    update();
+    try {
+      loadingfuncation.value = false;
+      update();
 
-    filterModel = FilterModel();
-    institutePublicPrivate = data!.split(",");
-    institutePublicPrivate.removeAt(0);
-    filter();
+      filterModel = FilterModel();
+      institutePublicPrivate = data!.split(",");
+      institutePublicPrivate.removeAt(0);
+      filter();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
-  setModificationFilter(List<CourseSearchModel>? courseSearchModellist) {
+  setModificationFilter(List<CourseSearchModel>? courseSearchModellist) async {
     try {
       for (var element in courseSearchModellist!) {
         if (getNUllChecker(element.intakeMonth) == false) {
@@ -497,15 +660,12 @@ class FilterController extends GetxController {
       loadingfuncation.value = true;
       update();
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.lightblueColor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -831,7 +991,7 @@ class FilterController extends GetxController {
       }
 
       if (loadingRanking == true) {
-        courseSearchModel2 = rankingfilter(indexSelectRanking!,
+        courseSearchModel2 = await rankingfilter(indexSelectRanking!,
             firstIndexValueRanking, secondIndexValueRanking, courseSearchModel);
         loadingRanking = false;
         courseSearchModel = courseSearchModel2;
@@ -839,68 +999,82 @@ class FilterController extends GetxController {
 
       await setModificationFilter(courseSearchModel2);
     } catch (e) {
-      print(StackTrace.current);
-      Fluttertoast.showToast(
-          msg: e.toString(),
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: ThemeConstants.lightblueColor,
-          textColor: ThemeConstants.blackcolor,
-          fontSize: 16.0);
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
-  List<CourseSearchModel> rankingfilter(int indexSelect, int? firstIndexValue,
-      int? secondIndexValue, List<CourseSearchModel> model) {
-    List<CourseSearchModel> courseModel = [];
-    switch (indexSelect) {
-      case 0:
-        for (int j = 0; j < model.length; j++) {
-          if (getNUllChecker(model[j].timesRank.toString()) == false) {
-            if (int.parse(model[j].timesRank.toString()) >= firstIndexValue! &&
-                int.parse(model[j].timesRank.toString()) <= secondIndexValue!) {
-              courseModel.add(model[j]);
+  Future<List<CourseSearchModel>> rankingfilter(
+      int indexSelect,
+      int? firstIndexValue,
+      int? secondIndexValue,
+      List<CourseSearchModel> model) async {
+    try {
+      List<CourseSearchModel> courseModel = [];
+      switch (indexSelect) {
+        case 0:
+          for (int j = 0; j < model.length; j++) {
+            if (getNUllChecker(model[j].timesRank.toString()) == false) {
+              if (int.parse(model[j].timesRank.toString()) >=
+                      firstIndexValue! &&
+                  int.parse(model[j].timesRank.toString()) <=
+                      secondIndexValue!) {
+                courseModel.add(model[j]);
+              }
             }
           }
-        }
-        break;
-      case 1:
-        for (int j = 0; j < model.length; j++) {
-          if (getNUllChecker(model[j].arwuRank.toString()) == false) {
-            if (int.parse(model[j].arwuRank.toString()) >= firstIndexValue! &&
-                int.parse(model[j].arwuRank.toString()) <= secondIndexValue!) {
-              courseModel.add(model[j]);
+          break;
+        case 1:
+          for (int j = 0; j < model.length; j++) {
+            if (getNUllChecker(model[j].arwuRank.toString()) == false) {
+              if (int.parse(model[j].arwuRank.toString()) >= firstIndexValue! &&
+                  int.parse(model[j].arwuRank.toString()) <=
+                      secondIndexValue!) {
+                courseModel.add(model[j]);
+              }
             }
           }
-        }
-        break;
-      case 2:
-        for (int j = 0; j < model.length; j++) {
-          if (getNUllChecker(model[j].usNewsRank.toString()) == false) {
-            if (int.parse(model[j].usNewsRank.toString()) >= firstIndexValue! &&
-                int.parse(model[j].usNewsRank.toString()) <=
-                    secondIndexValue!) {
-              courseModel.add(model[j]);
+          break;
+        case 2:
+          for (int j = 0; j < model.length; j++) {
+            if (getNUllChecker(model[j].usNewsRank.toString()) == false) {
+              if (int.parse(model[j].usNewsRank.toString()) >=
+                      firstIndexValue! &&
+                  int.parse(model[j].usNewsRank.toString()) <=
+                      secondIndexValue!) {
+                courseModel.add(model[j]);
+              }
             }
           }
-        }
-        break;
-      case 3:
-        for (int j = 0; j < model.length; j++) {
-          if (getNUllChecker(model[j].qsWorldRank.toString()) == false) {
-            if (int.parse(model[j].qsWorldRank.toString()) >=
-                    firstIndexValue! &&
-                int.parse(model[j].qsWorldRank.toString()) <=
-                    secondIndexValue!) {
-              courseModel.add(model[j]);
+          break;
+        case 3:
+          for (int j = 0; j < model.length; j++) {
+            if (getNUllChecker(model[j].qsWorldRank.toString()) == false) {
+              if (int.parse(model[j].qsWorldRank.toString()) >=
+                      firstIndexValue! &&
+                  int.parse(model[j].qsWorldRank.toString()) <=
+                      secondIndexValue!) {
+                courseModel.add(model[j]);
+              }
             }
           }
-        }
-        break;
-      default:
+          break;
+        default:
+      }
+      return courseModel;
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+      return model;
     }
-    return courseModel;
   }
 
   getcleanButton() {

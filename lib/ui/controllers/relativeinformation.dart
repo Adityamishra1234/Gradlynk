@@ -67,8 +67,12 @@ class RelativeInformationController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -85,8 +89,12 @@ class RelativeInformationController extends GetxController {
       loadingCitizen.value = true;
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -103,39 +111,61 @@ class RelativeInformationController extends GetxController {
       loadingRealtion.value = true;
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   viewRelativeHistory(String enqId) async {
-    var res = await apiServices.viewRelativeInformation(
-        Endpoints.baseUrl!, Endpoints.viewRelative! + enqId);
-    if (res != null) {
-      modelList = res;
-      loadingViewModelList.value = true;
-      update();
+    try {
+      var res = await apiServices.viewRelativeInformation(
+          Endpoints.baseUrl!, Endpoints.viewRelative! + enqId);
+      if (res != null) {
+        modelList = res;
+        loadingViewModelList.value = true;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   updateRelativeInformation(String enqId, String anyCountryInterested) async {
-    String endpoint = Endpoints.addRelativeInformationPart1! +
-        enqId +
-        Endpoints.addCourseInformationPart2! +
-        anyCountryInterested;
-    for (var i = 0; i < modelList.length; i++) {
-      endpoint = endpoint +
-          addRelativeInformationPart3(
-              i.toString(),
-              modelList[i].id.toString(),
-              modelList[i].anyRelativeCountryInterested,
-              modelList[i].citizenshipStatus,
-              modelList[i].relativeCountry.toString(),
-              modelList[i].relativeEmailId,
-              modelList[i].addressOfRelative,
-              modelList[i].contactOfRelative.toString(),
-              modelList[i].relationWithRelative);
+    try {
+      String endpoint = Endpoints.addRelativeInformationPart1! +
+          enqId +
+          Endpoints.addCourseInformationPart2! +
+          anyCountryInterested;
+      for (var i = 0; i < modelList.length; i++) {
+        endpoint = endpoint +
+            addRelativeInformationPart3(
+                i.toString(),
+                modelList[i].id.toString(),
+                modelList[i].anyRelativeCountryInterested,
+                modelList[i].citizenshipStatus,
+                modelList[i].relativeCountry.toString(),
+                modelList[i].relativeEmailId,
+                modelList[i].addressOfRelative,
+                modelList[i].contactOfRelative.toString(),
+                modelList[i].relationWithRelative);
+      }
+      var res = await apiServices.updateRelativeInformation(endpoint);
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    var res = await apiServices.updateRelativeInformation(endpoint);
   }
 }

@@ -49,8 +49,12 @@ class CourseInformationProfileController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -68,8 +72,12 @@ class CourseInformationProfileController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -91,8 +99,12 @@ class CourseInformationProfileController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -125,8 +137,12 @@ class CourseInformationProfileController extends GetxController {
       loadingViewCourseInformation.value = true;
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 

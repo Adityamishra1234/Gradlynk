@@ -60,12 +60,21 @@ class ContactInformationController extends GetxController {
   void disposed() {}
 
   profiledetail() async {
-    var res = await apiServices.dashboard(
-        Endpoints.baseUrl!, "${Endpoints.dashboard!}8860373603");
-    if (res != null) {
-      model = res;
-      loadingStudentPanelData = 1.obs;
-      update();
+    try {
+      var res = await apiServices.dashboard(Endpoints.baseUrl!,
+          "${Endpoints.dashboard!}${Get.find<BaseController>().model1.mobile.toString()}");
+      if (res != null) {
+        model = res;
+        loadingStudentPanelData = 1.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -90,8 +99,12 @@ class ContactInformationController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -109,8 +122,12 @@ class ContactInformationController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -139,8 +156,12 @@ class ContactInformationController extends GetxController {
       }
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -169,8 +190,12 @@ class ContactInformationController extends GetxController {
       }
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 

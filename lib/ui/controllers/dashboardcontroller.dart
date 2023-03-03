@@ -1,4 +1,5 @@
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -39,11 +40,20 @@ class DashboardController extends GetxController {
   }
 
   upcomingEvents() async {
-    var res = await apiservices.getUpComingEvent(Endpoints.upcomingEvents!);
-    if (res != null) {
-      upcomingEventlist = res;
-      loadingUpcomingEvents = true.obs;
-      update();
+    try {
+      var res = await apiservices.getUpComingEvent(Endpoints.upcomingEvents!);
+      if (res != null) {
+        upcomingEventlist = res;
+        loadingUpcomingEvents = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 

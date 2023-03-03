@@ -33,50 +33,79 @@ class CourseShortListController extends GetxController {
 
   completeCourseDetailMethod(
       String universityId, String courseId, String instituteCourseId) async {
-    String endpoint = Endpoints.completeCoursePart1! +
-        universityId +
-        Endpoints.completeCoursePart2! +
-        courseId +
-        Endpoints.completeCoursePart3! +
-        instituteCourseId;
-    var res =
-        await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
-    if (res != null) {
-      completeCourseDetail = res;
-      return completeCourseDetail;
+    try {
+      String endpoint = Endpoints.completeCoursePart1! +
+          universityId +
+          Endpoints.completeCoursePart2! +
+          courseId +
+          Endpoints.completeCoursePart3! +
+          instituteCourseId;
+      var res =
+          await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
+      if (res != null) {
+        completeCourseDetail = res;
+        return completeCourseDetail;
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   GetCourseShortList(String? enqId) async {
-    var response = await apiservices.courseShortlistDetail(enqId);
-    if (response != null) {
-      courseModelFilter = response;
-      loadingCourseShortList = true.obs;
-      update();
+    try {
+      var response = await apiservices.courseShortlistDetail(enqId);
+      if (response != null) {
+        courseModelFilter = response;
+        loadingCourseShortList = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
-  compare(String? varTopic) {
-    if (varTopic.toString().split(",")[0].toString() == true.toString()) {
-      if (courseSearchModelCompare1.id == null) {
-        courseSearchModelCompare1 = courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
-        courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-        update();
-      } else if (courseSearchModelCompare2.id == null) {
-        courseSearchModelCompare2 = courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
-        courseModelFilter
-            .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
-            .isSelected = true;
-        update();
-      } else {
-        debugPrint(varTopic);
-      }
-      // Added Button For Comparing
-    } else {}
+  compare(String? varTopic) async {
+    try {
+      if (varTopic.toString().split(",")[0].toString() == true.toString()) {
+        if (courseSearchModelCompare1.id == null) {
+          courseSearchModelCompare1 = courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+          courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+              .isSelected = true;
+          update();
+        } else if (courseSearchModelCompare2.id == null) {
+          courseSearchModelCompare2 = courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])];
+          courseModelFilter
+              .courseSearchList[int.parse(varTopic.toString().split(",")[1])]
+              .isSelected = true;
+          update();
+        }
+        //TODO
+        else {
+          debugPrint(varTopic);
+        }
+        // Added Button For Comparing
+      } else {}
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   callbackModelCompare(varTopic) {
@@ -105,46 +134,56 @@ class CourseShortListController extends GetxController {
 
   courseSearch(String country, String courseLevel, String enqId, String state,
       String city, String boarderIeld, String narrowField) async {
-    loadingCourseSearch = false.obs;
-    courseModelFilter = CourseModelFilter();
-    var now = DateTime.now();
-    var formatterYear = DateFormat('yyyy');
-    var formatterMonth = DateFormat('MM');
+    try {
+      loadingCourseSearch = false.obs;
+      courseModelFilter = CourseModelFilter();
+      var now = DateTime.now();
+      var formatterYear = DateFormat('yyyy');
+      var formatterMonth = DateFormat('MM');
 
-    String? endpoint = Endpoints.courseSearchPart1! +
-        country +
-        Endpoints.courseSearchPart2! +
-        courseLevel +
-        Endpoints.courseSearchPart3! +
-        state +
-        Endpoints.courseSearchPart4! +
-        city +
-        Endpoints.courseSearchPart5! +
-        boarderIeld +
-        Endpoints.courseSearchPart6! +
-        narrowField;
-    var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
-    if (res != null) {
-      courseModelFilter = res;
-      courseSearchModel = courseModelFilter.courseSearchList;
-      for (var i = 0; i < courseSearchModel.length; i++) {
-        if (courseSearchModel[i].listIntake!.isNotEmpty) {
-          for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
-            if (int.parse(courseSearchModel[i].listIntake![j].split("-")[1]) >=
-                int.parse(formatterYear.format(now))) {
+      String? endpoint = Endpoints.courseSearchPart1! +
+          country +
+          Endpoints.courseSearchPart2! +
+          courseLevel +
+          Endpoints.courseSearchPart3! +
+          state +
+          Endpoints.courseSearchPart4! +
+          city +
+          Endpoints.courseSearchPart5! +
+          boarderIeld +
+          Endpoints.courseSearchPart6! +
+          narrowField;
+      var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
+      if (res != null) {
+        courseModelFilter = res;
+        courseSearchModel = courseModelFilter.courseSearchList;
+        for (var i = 0; i < courseSearchModel.length; i++) {
+          if (courseSearchModel[i].listIntake!.isNotEmpty) {
+            for (var j = 0; j < courseSearchModel[i].listIntake!.length; j++) {
               if (int.parse(
-                      courseSearchModel[i].listIntake![j].split("-")[0]) >=
-                  int.parse(formatterMonth.format(now))) {
-                courseSearchModel[i].nearByIntake =
-                    courseSearchModel[i].listIntake![j];
+                      courseSearchModel[i].listIntake![j].split("-")[1]) >=
+                  int.parse(formatterYear.format(now))) {
+                if (int.parse(
+                        courseSearchModel[i].listIntake![j].split("-")[0]) >=
+                    int.parse(formatterMonth.format(now))) {
+                  courseSearchModel[i].nearByIntake =
+                      courseSearchModel[i].listIntake![j];
+                }
               }
             }
           }
         }
+        loadingCourseSearch = true.obs;
+        update();
+        return courseModelFilter;
       }
-      loadingCourseSearch = true.obs;
-      update();
-      return courseModelFilter;
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

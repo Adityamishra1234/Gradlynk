@@ -53,8 +53,12 @@ class WorkHistoryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -70,40 +74,62 @@ class WorkHistoryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   getWorkHistoryView(String? enqId) async {
-    var res = await apiServices.getWorkHistoryView(
-        Endpoints.baseUrl!, Endpoints.viewWorkHistoryDetails! + enqId!);
-    if (res != null) {
-      workHistoryViewModelList = res;
-      loadingWorkHistory.value = true;
-      update();
+    try {
+      var res = await apiServices.getWorkHistoryView(
+          Endpoints.baseUrl!, Endpoints.viewWorkHistoryDetails! + enqId!);
+      if (res != null) {
+        workHistoryViewModelList = res;
+        loadingWorkHistory.value = true;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   updatedWorkHistory() async {
-    String? endpoint;
-    endpoint = "${Endpoints.addworkHistoryDetailsPart1!}78623";
-    for (var i = 0; i < workHistoryViewModelList.length; i++) {
-      endpoint = endpoint! +
-          addWorkHistoryPart2(
-              workHistoryViewModelList[i].workingFrom,
-              workHistoryViewModelList[i].workingTill,
-              workHistoryViewModelList[i].jobType,
-              workHistoryViewModelList[i].organisationName,
-              workHistoryViewModelList[i].jobRole,
-              workHistoryViewModelList[i].jobIndustryId.toString(),
-              workHistoryViewModelList[i].income.toString(),
-              i);
+    try {
+      String? endpoint;
+      endpoint = "${Endpoints.addworkHistoryDetailsPart1!}78623";
+      for (var i = 0; i < workHistoryViewModelList.length; i++) {
+        endpoint = endpoint! +
+            addWorkHistoryPart2(
+                workHistoryViewModelList[i].workingFrom,
+                workHistoryViewModelList[i].workingTill,
+                workHistoryViewModelList[i].jobType,
+                workHistoryViewModelList[i].organisationName,
+                workHistoryViewModelList[i].jobRole,
+                workHistoryViewModelList[i].jobIndustryId.toString(),
+                workHistoryViewModelList[i].income.toString(),
+                i);
+      }
+      var res = await apiServices.addProfileModule(
+          Endpoints.baseUrl!, endpoint!, "Work History");
+      loadingWorkUpdate.value = true;
+      update();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
-    var res = await apiServices.addProfileModule(
-        Endpoints.baseUrl!, endpoint!, "Work History");
-    loadingWorkUpdate.value = true;
-    update();
   }
 
   setViewDetails(bool data) {

@@ -57,14 +57,23 @@ class PassportController extends GetxController {
   }
 
   getPassPortDetail(String? enqId) async {
-    var res = await apiServices.viewPassportDetail(
-        Endpoints.baseUrl!, Endpoints.viewPassport! + enqId!);
-    if (res != null) {
-      passportModel = res;
+    try {
+      var res = await apiServices.viewPassportDetail(
+          Endpoints.baseUrl!, Endpoints.viewPassport! + enqId!);
+      if (res != null) {
+        passportModel = res;
 
-      loadingPassport.value = true;
+        loadingPassport.value = true;
 
-      update();
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -88,8 +97,12 @@ class PassportController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -124,8 +137,12 @@ class PassportController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -140,8 +157,12 @@ class PassportController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

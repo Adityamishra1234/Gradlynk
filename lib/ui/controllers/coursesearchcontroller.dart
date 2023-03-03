@@ -80,8 +80,12 @@ class CourseSearchController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -99,8 +103,12 @@ class CourseSearchController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -118,8 +126,12 @@ class CourseSearchController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -141,8 +153,12 @@ class CourseSearchController extends GetxController {
       }
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -165,8 +181,12 @@ class CourseSearchController extends GetxController {
       }
       update();
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -189,8 +209,12 @@ class CourseSearchController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -239,8 +263,12 @@ class CourseSearchController extends GetxController {
           }
         }
       } catch (e) {
-        print(StackTrace.current);
-        getToast(e.toString());
+        await ApiServices().errorHandle(
+          Get.find<BaseController>().model1.id.toString(),
+          e.toString(),
+          "1111",
+          StackTrace.current.toString(),
+        );
       }
 
       return courseModelFilter;
@@ -249,17 +277,26 @@ class CourseSearchController extends GetxController {
 
   completeCourseDetailMethod(
       String universityId, String courseId, String instituteCourseId) async {
-    String endpoint = Endpoints.completeCoursePart1! +
-        universityId +
-        Endpoints.completeCoursePart2! +
-        courseId +
-        Endpoints.completeCoursePart3! +
-        instituteCourseId;
-    var res =
-        await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
-    if (res != null) {
-      completeCourseDetail = res;
-      return completeCourseDetail;
+    try {
+      String endpoint = Endpoints.completeCoursePart1! +
+          universityId +
+          Endpoints.completeCoursePart2! +
+          courseId +
+          Endpoints.completeCoursePart3! +
+          instituteCourseId;
+      var res =
+          await apiservices.completeCourseDetail(Endpoints.baseUrl!, endpoint);
+      if (res != null) {
+        completeCourseDetail = res;
+        return completeCourseDetail;
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 

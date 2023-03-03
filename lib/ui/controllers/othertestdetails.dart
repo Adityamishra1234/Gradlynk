@@ -58,8 +58,12 @@ class OtherTestDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -74,18 +78,31 @@ class OtherTestDetailsController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   getOtherTestDetails(String enqId) async {
-    var res = await apiServices.viewOtherTestDetails(
-        Endpoints.baseUrl!, Endpoints.viewOtherTestDetails! + enqId);
-    if (res != null) {
-      otherTestDetailsModel = res;
-      loadingViewOtherTestDetails.value = true;
-      update();
+    try {
+      var res = await apiServices.viewOtherTestDetails(
+          Endpoints.baseUrl!, Endpoints.viewOtherTestDetails! + enqId);
+      if (res != null) {
+        otherTestDetailsModel = res;
+        loadingViewOtherTestDetails.value = true;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 

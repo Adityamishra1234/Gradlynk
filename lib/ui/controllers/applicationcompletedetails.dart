@@ -21,15 +21,24 @@ class ApplicationCompleteDetailsController extends GetxController {
 
 //Function
   getApplicationDetailComplete(String? apliId) async {
-    loadingApplicationCompleteDetails.value = false;
-    var response = await apiServices.getApplicationDetails(
-        Endpoints.applicationDetail, apliId);
-    if (response != null) {
-      model = response;
-      loadingApplicationCompleteDetails.value = true;
-      update();
-    } else {
-      Get.back();
+    try {
+      loadingApplicationCompleteDetails.value = false;
+      var response = await apiServices.getApplicationDetails(
+          Endpoints.applicationDetail, apliId);
+      if (response != null) {
+        model = response;
+        loadingApplicationCompleteDetails.value = true;
+        update();
+      } else {
+        Get.back();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -70,21 +79,34 @@ class ApplicationCompleteDetailsController extends GetxController {
         }
       }
     } catch (e) {
-      print("object");
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   uploadFileCamera(
       String id, String index, String filePath, String applicationId) async {
-    print(filePath);
-    String? res = await apiServices.sendFile(
-        filePath,
-        filePath,
+    try {
+      String? res = await apiServices.sendFile(
+          filePath,
+          filePath,
+          Get.find<BaseController>().model1.id.toString(),
+          id.toString(),
+          Endpoints.applicationDocumentUpload!);
+      model.documents![int.parse(index)].viewLink = res;
+      Get.offNamed(ApplicationCompleteDetails.routeNamed,
+          arguments: applicationId);
+    } catch (e) {
+      await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
-        id.toString(),
-        Endpoints.applicationDocumentUpload!);
-    model.documents![int.parse(index)].viewLink = res;
-    Get.offNamed(ApplicationCompleteDetails.routeNamed,
-        arguments: applicationId);
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 }

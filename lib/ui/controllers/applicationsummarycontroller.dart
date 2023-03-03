@@ -33,24 +33,42 @@ class ApplicationSummaryController extends GetxController {
   }
 
   getApplicationDetail(String enqId) async {
-    var response = await apiServices.getApplicationSummaryList(enqId);
-    if (response != null) {
-      applicationSummaryModel = response;
-      loadingApplicationSummary = true.obs;
-      update();
+    try {
+      var response = await apiServices.getApplicationSummaryList(enqId);
+      if (response != null) {
+        applicationSummaryModel = response;
+        loadingApplicationSummary = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   getApplicationDetailComplete(String? apliId) async {
     loadingApplicationCompleteDetails.value = false;
-    var response = await apiServices.getApplicationDetails(
-        Endpoints.applicationDetail, apliId);
-    if (response != null) {
-      applicationDetailModel = response;
-      loadingApplicationCompleteDetails.value = true;
-      update();
-    } else {
-      Get.back();
+    try {
+      var response = await apiServices.getApplicationDetails(
+          Endpoints.applicationDetail, apliId);
+      if (response != null) {
+        applicationDetailModel = response;
+        loadingApplicationCompleteDetails.value = true;
+        update();
+      } else {
+        Get.back();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -66,8 +84,12 @@ class ApplicationSummaryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -83,8 +105,12 @@ class ApplicationSummaryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

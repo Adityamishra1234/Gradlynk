@@ -25,11 +25,21 @@ class VisaSummaryController extends GetxController {
   }
 
   getVisaDetails(String enqId) async {
-    var res = await apiServices.getvisaSummary(Endpoints.visaSummary! + enqId);
-    if (res != null) {
-      modelList = res;
-      loadingVisaDetails.value = true;
-      update();
+    try {
+      var res =
+          await apiServices.getvisaSummary(Endpoints.visaSummary! + enqId);
+      if (res != null) {
+        modelList = res;
+        loadingVisaDetails.value = true;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -45,8 +55,12 @@ class VisaSummaryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 }

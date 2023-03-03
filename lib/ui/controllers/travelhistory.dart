@@ -70,8 +70,12 @@ class TravelHistoryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -92,8 +96,12 @@ class TravelHistoryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -114,8 +122,12 @@ class TravelHistoryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -141,44 +153,66 @@ class TravelHistoryController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   getVisaTravelHistory(String enqId) async {
-    var res = await apiServices.getTravelHistory(
-        Endpoints.baseUrl!, Endpoints.viewTravelDetails! + enqId);
-    if (res != null) {
-      modelList = res;
-      loadingVisaTravelDetails.value = true;
-      update();
+    try {
+      var res = await apiServices.getTravelHistory(
+          Endpoints.baseUrl!, Endpoints.viewTravelDetails! + enqId);
+      if (res != null) {
+        modelList = res;
+        loadingVisaTravelDetails.value = true;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   updateTravelHistory(String enqId, String travelHistory) async {
-    String endpoint;
-    endpoint = Endpoints.addTravelHistoryPart1! +
-        enqId +
-        Endpoints.addTravelHistoryPart2! +
-        travelHistory;
-    for (var i = 0; i < modelList.length; i++) {
-      endpoint = endpoint +
-          addTravelHistoryPart3(
-              i.toString(),
-              modelList[i].travelStatus.toString(),
-              modelList[i].proofAvailable.toString(),
-              modelList[i].countryName,
-              modelList[i].chooseCountry.toString(),
-              modelList[i].typeOfVisa.toString(),
-              modelList[i].visaStatus,
-              modelList[i].dateOfRejection,
-              modelList[i].reasonOfRejection,
-              modelList[i].applicationNumber,
-              modelList[i].visaNumber,
-              modelList[i].dateOfApplication);
-    }
+    try {
+      String endpoint;
+      endpoint = Endpoints.addTravelHistoryPart1! +
+          enqId +
+          Endpoints.addTravelHistoryPart2! +
+          travelHistory;
+      for (var i = 0; i < modelList.length; i++) {
+        endpoint = endpoint +
+            addTravelHistoryPart3(
+                i.toString(),
+                modelList[i].travelStatus.toString(),
+                modelList[i].proofAvailable.toString(),
+                modelList[i].countryName,
+                modelList[i].chooseCountry.toString(),
+                modelList[i].typeOfVisa.toString(),
+                modelList[i].visaStatus,
+                modelList[i].dateOfRejection,
+                modelList[i].reasonOfRejection,
+                modelList[i].applicationNumber,
+                modelList[i].visaNumber,
+                modelList[i].dateOfApplication);
+      }
 
-    var res = await apiServices.updateTravelHistory(endpoint);
+      var res = await apiServices.updateTravelHistory(endpoint);
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 }

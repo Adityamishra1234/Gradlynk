@@ -57,8 +57,12 @@ class EnglishTestController extends GetxController {
         update();
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -72,18 +76,31 @@ class EnglishTestController extends GetxController {
         loadingExamName2 = true.obs;
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
   getEnglishTestDetails(String enqId) async {
-    var res = await apiServices.viewEnglishTestDetails(
-        Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enqId);
-    if (res != null) {
-      englishTestDetailsViewModel = res;
-      loadingViewEnglishTestDetails = true.obs;
-      update();
+    try {
+      var res = await apiServices.viewEnglishTestDetails(
+          Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enqId);
+      if (res != null) {
+        englishTestDetailsViewModel = res;
+        loadingViewEnglishTestDetails = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
     }
   }
 
