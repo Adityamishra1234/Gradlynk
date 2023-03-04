@@ -90,7 +90,7 @@ class RelativeInformation extends StatelessWidget {
   callbackDelete(data) {
     controller.modelList.removeAt(data);
     controller.updateRelativeInformation(
-        Get.find<BaseController>().model1.id.toString(), "1");
+        Get.find<BaseController>().model1.id.toString(), "1", "delete");
     controller.update();
   }
 

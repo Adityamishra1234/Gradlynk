@@ -8,7 +8,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
-class QualificationWidget extends StatelessWidget {
+class QualificationWidget extends StatefulWidget {
   bool updateForEdit;
   int? index;
   Function callbackHighestQualification;
@@ -45,48 +45,57 @@ class QualificationWidget extends StatelessWidget {
   static final reApper = TextEditingController();
 
   @override
+  State<QualificationWidget> createState() => _QualificationWidgetState();
+}
+
+class _QualificationWidgetState extends State<QualificationWidget> {
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<QualificationDetailsController>(builder: (controller1) {
       try {
-        if (index != null) {
-          if (updateForEdit == false) {
-            qualificationName.text =
-                controller1.modelList[index!].courseName ?? "";
-            multiplier.text = controller1.modelList[index!].multiplier ?? "";
-            percentage.text = controller1.modelList[index!].percentage ?? "";
-            reApper.text = controller1.modelList[index!].reapperCount ?? "";
+        if (widget.index != null) {
+          if (widget.updateForEdit == false) {
+            QualificationWidget.qualificationName.text =
+                controller1.modelList[widget.index!].courseName ?? "";
+            QualificationWidget.multiplier.text =
+                controller1.modelList[widget.index!].multiplier ?? "";
+            QualificationWidget.percentage.text =
+                controller1.modelList[widget.index!].percentage ?? "";
+            QualificationWidget.reApper.text =
+                controller1.modelList[widget.index!].reapperCount ?? "";
           }
-          if (updateForEdit == false &&
+          if (widget.updateForEdit == false &&
               controller1.loadingEditQualification.value == true) {
             controller1.loadingEditQualification.value = false;
             controller1.highestQualificationSelected =
-                controller1.modelList[index!].courseLevel;
+                controller1.modelList[widget.index!].courseLevel;
 
             controller1.streamSelected =
-                controller1.modelList[index!].streamName ?? "";
-            controller1.streamSelectedID = getNUllChecker(
-                        controller1.modelList[index!].streamId.toString()) ==
+                controller1.modelList[widget.index!].streamName ?? "";
+            controller1.streamSelectedID = getNUllChecker(controller1
+                        .modelList[widget.index!].streamId
+                        .toString()) ==
                     false
-                ? controller1.modelList[index!].streamId.toString()
+                ? controller1.modelList[widget.index!].streamId.toString()
                 : "";
             controller1.educationStatusSelected =
-                controller1.modelList[index!].educationStatus ?? "";
+                controller1.modelList[widget.index!].educationStatus ?? "";
             controller1.yearOfPassingSelected =
-                controller1.modelList[index!].yearOfPassing ?? "";
+                controller1.modelList[widget.index!].yearOfPassing ?? "";
             controller1.countrySelected =
-                controller1.modelList[index!].countryName;
+                controller1.modelList[widget.index!].countryName;
             Get.find<QualificationDetailsController>().loadingEdit.value = 1;
             // cgpa.text = double.parse(controller1.modelList[index!].percentage.toString()) /;
             controller1.getEdit(
-                controller1.modelList[index!].countryId!,
-                controller1.modelList[index!].stateName,
-                controller1.modelList[index!].stateId,
-                controller1.modelList[index!].cityName,
-                controller1.modelList[index!].cityId,
-                controller1.modelList[index!].affiliationName,
-                controller1.modelList[index!].affiliationId,
-                controller1.modelList[index!].universityName,
-                controller1.modelList[index!].passingInstId);
+                controller1.modelList[widget.index!].countryId!,
+                controller1.modelList[widget.index!].stateName,
+                controller1.modelList[widget.index!].stateId,
+                controller1.modelList[widget.index!].cityName,
+                controller1.modelList[widget.index!].cityId,
+                controller1.modelList[widget.index!].affiliationName,
+                controller1.modelList[widget.index!].affiliationId,
+                controller1.modelList[widget.index!].universityName,
+                controller1.modelList[widget.index!].passingInstId);
           }
         }
       } catch (e) {
@@ -141,7 +150,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.highestQualificationSelected,
                           controller1.highestQualificationList),
                       choosefieldtype: false,
-                      callbackFunction: callbackHighestQualification,
+                      callbackFunction: widget.callbackHighestQualification,
                     ),
                   ),
                   Padding(
@@ -161,7 +170,7 @@ class QualificationWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: TextField(
-                      controller: qualificationName,
+                      controller: QualificationWidget.qualificationName,
                       scrollPadding: EdgeInsets.symmetric(
                           vertical:
                               MediaQuery.of(context).viewInsets.bottom + 30),
@@ -201,7 +210,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.streamSelected,
                           controller1.streamList),
                       choosefieldtype: false,
-                      callbackFunction: callbackStream,
+                      callbackFunction: widget.callbackStream,
                     ),
                   ),
                   Padding(
@@ -230,7 +239,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.educationStatusSelected,
                           controller1.educationStatusList),
                       choosefieldtype: false,
-                      callbackFunction: callbackEducationStatus,
+                      callbackFunction: widget.callbackEducationStatus,
                     ),
                   ),
                   Padding(
@@ -258,7 +267,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.yearOfPassingSelected,
                           controller1.yearofPassing),
                       choosefieldtype: false,
-                      callbackFunction: callbackYearOfPassing,
+                      callbackFunction: widget.callbackYearOfPassing,
                     ),
                   ),
                   Padding(
@@ -278,8 +287,7 @@ class QualificationWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: cgpa,
+                      controller: QualificationWidget.cgpa,
                       keyboardType: TextInputType.number,
                       scrollPadding: EdgeInsets.symmetric(
                           vertical:
@@ -294,17 +302,23 @@ class QualificationWidget extends StatelessWidget {
                         ),
                       ),
                       style: ThemeConstants.montserrattextstyle,
-                      // onChanged: (value) {
-                      //   if (controller1.CGPAKey.currentState!.validate()) {
-                      //     controller1.CGPAKey.currentState!.save();
-                      //   }
-                      //   if (getNUllChecker(cgpa.text) == false &&
-                      //       getNUllChecker(multiplier.text) == false) {
-                      //     percentage.text = (double.parse(cgpa.text) *
-                      //             double.parse(multiplier.text))
-                      //         .toString();
-                      //   }
-                      // },
+                      onChanged: (value) {
+                        try {
+                          if (getNUllChecker(QualificationWidget.cgpa.text) ==
+                                  false &&
+                              getNUllChecker(
+                                      QualificationWidget.multiplier.text) ==
+                                  false) {
+                            QualificationWidget.percentage.text = (double.parse(
+                                        QualificationWidget.cgpa.text) *
+                                    double.parse(
+                                        QualificationWidget.multiplier.text))
+                                .toString();
+                          }
+                        } catch (e) {}
+
+                        setState(() {});
+                      },
                       validator: (value) {
                         if (getNUllChecker(value) == false) {
                           if (double.parse(value!) > 11) {
@@ -335,8 +349,7 @@ class QualificationWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: multiplier,
+                      controller: QualificationWidget.multiplier,
                       keyboardType: TextInputType.number,
                       scrollPadding: EdgeInsets.symmetric(
                           vertical:
@@ -351,18 +364,23 @@ class QualificationWidget extends StatelessWidget {
                         ),
                       ),
                       style: ThemeConstants.montserrattextstyle,
-                      // onChanged: (value) {
-                      //   if (controller1.MultiplierKey.currentState!
-                      //       .validate()) {
-                      //     controller1.MultiplierKey.currentState!.save();
-                      //   }
-                      //   if (getNUllChecker(cgpa.text) == false &&
-                      //       getNUllChecker(multiplier.text) == false) {
-                      //     percentage.text = (double.parse(cgpa.text) *
-                      //             double.parse(multiplier.text))
-                      //         .toString();
-                      //   }
-                      // },
+                      onChanged: (value) {
+                        try {
+                          if (getNUllChecker(QualificationWidget.cgpa.text) ==
+                                  false &&
+                              getNUllChecker(
+                                      QualificationWidget.multiplier.text) ==
+                                  false) {
+                            QualificationWidget.percentage.text = (double.parse(
+                                        QualificationWidget.cgpa.text) *
+                                    double.parse(
+                                        QualificationWidget.multiplier.text))
+                                .toString();
+                          }
+                        } catch (e) {}
+
+                        setState(() {});
+                      },
                       validator: (value) {
                         if (getNUllChecker(value) == false) {
                           if (double.parse(value!) > 11) {
@@ -393,8 +411,7 @@ class QualificationWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: TextFormField(
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: percentage,
+                      controller: QualificationWidget.percentage,
                       keyboardType: TextInputType.number,
                       scrollPadding: EdgeInsets.symmetric(
                           vertical:
@@ -409,15 +426,9 @@ class QualificationWidget extends StatelessWidget {
                         ),
                       ),
                       style: ThemeConstants.montserrattextstyle,
-                      // onChanged: (value) {
-                      //   if (controller1.PercentageKey.currentState!
-                      //       .validate()) {
-                      //     controller1.PercentageKey.currentState!.save();
-                      //   }
-                      // },
                       validator: (value) {
                         if (getNUllChecker(value) == false) {
-                          if (double.parse(value!) > 11) {
+                          if (double.parse(value!) > 101) {
                             return 'Percentage in Between 0 to 100';
                           } else {
                             return null;
@@ -452,7 +463,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.countrySelected,
                           controller1.countryList),
                       choosefieldtype: false,
-                      callbackFunction: callbackCountry,
+                      callbackFunction: widget.callbackCountry,
                     ),
                   ),
                   Padding(
@@ -478,7 +489,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.stateSelected,
                           controller1.stateList),
                       choosefieldtype: false,
-                      callbackFunction: callbackState,
+                      callbackFunction: widget.callbackState,
                     ),
                   ),
                   Padding(
@@ -504,7 +515,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.citySelected,
                           controller1.cityList),
                       choosefieldtype: false,
-                      callbackFunction: callbackCity,
+                      callbackFunction: widget.callbackCity,
                     ),
                   ),
                   Padding(
@@ -532,7 +543,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.affiliationNameSelected,
                           controller1.affiliationList),
                       choosefieldtype: false,
-                      callbackFunction: callbackAffiliation,
+                      callbackFunction: widget.callbackAffiliation,
                     ),
                   ),
                   Padding(
@@ -561,7 +572,7 @@ class QualificationWidget extends StatelessWidget {
                           controller1.institutionSelected,
                           controller1.institutionList),
                       choosefieldtype: false,
-                      callbackFunction: callbackInstitution,
+                      callbackFunction: widget.callbackInstitution,
                     ),
                   ),
                   Padding(
@@ -580,7 +591,7 @@ class QualificationWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: TextField(
-                      controller: reApper,
+                      controller: QualificationWidget.reApper,
                       scrollPadding: EdgeInsets.symmetric(
                           vertical:
                               MediaQuery.of(context).viewInsets.bottom + 30),
@@ -596,7 +607,7 @@ class QualificationWidget extends StatelessWidget {
                       style: ThemeConstants.montserrattextstyle,
                     ),
                   ),
-                  if (updateForEdit == true)
+                  if (widget.updateForEdit == true)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -619,7 +630,8 @@ class QualificationWidget extends StatelessWidget {
                                         null) {
                                       getToast(
                                           "Please select Highest Qualification");
-                                    } else if (qualificationName.text.isEmpty) {
+                                    } else if (QualificationWidget
+                                        .qualificationName.text.isEmpty) {
                                       getToast(
                                           "Please enter Qualification Name ");
                                     } else if (controller1.streamSelected ==
@@ -636,8 +648,9 @@ class QualificationWidget extends StatelessWidget {
                                     } else {
                                       controller1.modelList
                                           .add(QualificationDetailsViewModel(
-                                        grade: cgpa.text,
-                                        multiplier: multiplier.text,
+                                        grade: QualificationWidget.cgpa.text,
+                                        multiplier:
+                                            QualificationWidget.multiplier.text,
                                         applicantType: "",
                                         qualificationId: controller1
                                             .highestQualificationSelectedID
@@ -660,8 +673,10 @@ class QualificationWidget extends StatelessWidget {
                                             controller1.educationStatusSelected,
                                         yearOfPassing:
                                             controller1.yearOfPassingSelected,
-                                        percentage: percentage.text,
-                                        reapperCount: reApper.text,
+                                        percentage:
+                                            QualificationWidget.percentage.text,
+                                        reapperCount:
+                                            QualificationWidget.reApper.text,
                                         courseLevel: controller1
                                             .highestQualificationSelected,
                                         streamName: controller1.streamSelected,
@@ -673,14 +688,15 @@ class QualificationWidget extends StatelessWidget {
                                             controller1.affiliationNameSelected,
                                         universityName:
                                             controller1.institutionSelected,
-                                        courseName: qualificationName.text,
+                                        courseName: QualificationWidget
+                                            .qualificationName.text,
                                       ));
                                       controller1.updateQualification(
                                           Get.find<BaseController>()
                                               .model1
                                               .id
                                               .toString());
-                                      controller1.updteForEdit.value = false;
+                                      // controller1.updteForEdit.value = false;
                                       controller1.update();
                                     }
                                   },
@@ -693,7 +709,7 @@ class QualificationWidget extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (updateForEdit == false)
+                  if (widget.updateForEdit == false)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Row(
@@ -716,7 +732,8 @@ class QualificationWidget extends StatelessWidget {
                                         null) {
                                       getToast(
                                           "Please select Highest Qualification");
-                                    } else if (qualificationName.text.isEmpty) {
+                                    } else if (QualificationWidget
+                                        .qualificationName.text.isEmpty) {
                                       getToast(
                                           "Please enter Qualification Name ");
                                     } else if (controller1.streamSelected ==
@@ -733,8 +750,9 @@ class QualificationWidget extends StatelessWidget {
                                     } else {
                                       controller1.modelList
                                           .add(QualificationDetailsViewModel(
-                                        grade: cgpa.text,
-                                        multiplier: multiplier.text,
+                                        grade: QualificationWidget.cgpa.text,
+                                        multiplier:
+                                            QualificationWidget.multiplier.text,
                                         applicantType: "",
                                         qualificationId: controller1
                                             .highestQualificationSelectedID
@@ -757,8 +775,10 @@ class QualificationWidget extends StatelessWidget {
                                             controller1.educationStatusSelected,
                                         yearOfPassing:
                                             controller1.yearOfPassingSelected,
-                                        percentage: percentage.text,
-                                        reapperCount: reApper.text,
+                                        percentage:
+                                            QualificationWidget.percentage.text,
+                                        reapperCount:
+                                            QualificationWidget.reApper.text,
                                         courseLevel: controller1
                                             .highestQualificationSelected,
                                         streamName: controller1.streamSelected,
@@ -770,7 +790,8 @@ class QualificationWidget extends StatelessWidget {
                                             controller1.affiliationNameSelected,
                                         universityName:
                                             controller1.institutionSelected,
-                                        courseName: qualificationName.text,
+                                        courseName: QualificationWidget
+                                            .qualificationName.text,
                                       ));
                                       controller1.updateQualification(
                                           Get.find<BaseController>()
@@ -812,7 +833,7 @@ class QualificationWidget extends StatelessWidget {
   }
 
   String getSelectedDropDown(bool loading, String? selected, List model) {
-    if (loading == true) {
+    if (loading == true && model.isNotEmpty) {
       if (selected == null) {
         return model[0].toString();
       } else {

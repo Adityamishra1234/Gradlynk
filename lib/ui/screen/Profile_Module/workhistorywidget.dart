@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/workhistory.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -299,7 +300,7 @@ class WorkHistoryWidget extends StatelessWidget {
                               _.workHistoryViewModelList
                                   .add(WorkHistoryViewModel(
                                 applicantType: _.employementTypeCode,
-                                enqId: 78623,
+                                enqId: Get.find<BaseController>().model1.id!,
                                 organisationName: lastOrganisation.text,
                                 jobType: _.employementTypeSelected,
                                 jobRole: designation.text,
@@ -342,7 +343,7 @@ class WorkHistoryWidget extends StatelessWidget {
                             _.workHistoryViewModelList[index!] =
                                 WorkHistoryViewModel(
                               applicantType: _.employementTypeCode,
-                              enqId: 78623,
+                              enqId: Get.find<BaseController>().model1.id!,
                               organisationName: lastOrganisation.text,
                               jobType: _.employementTypeSelected,
                               jobRole:

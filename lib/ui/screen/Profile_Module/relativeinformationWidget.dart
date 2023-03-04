@@ -336,7 +336,9 @@ class RelativeInformationWidget extends StatelessWidget {
                       addressOfRelative: addresOfrelative.text,
                     ));
                     controller.updateRelativeInformation(
-                        Get.find<BaseController>().model1.id.toString(), "1");
+                        Get.find<BaseController>().model1.id.toString(),
+                        "1",
+                        "added");
                     controller.update();
                   },
                   child: CustomAutoSizeTextMontserrat(
@@ -373,7 +375,9 @@ class RelativeInformationWidget extends StatelessWidget {
                       addressOfRelative: addresOfrelative.text,
                     );
                     controller.updateRelativeInformation(
-                        Get.find<BaseController>().model1.id.toString(), "1");
+                        Get.find<BaseController>().model1.id.toString(),
+                        "1",
+                        "update");
                     controller.updateForEdit.value = true;
                     controller.update();
                   },

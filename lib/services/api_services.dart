@@ -870,22 +870,15 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  addProfileModule(
-      String baseUrl, String endpoints, String snakbarTitle) async {
+  addProfileModule(String baseUrl, String endpoints, String snakbarTitle,
+      String action) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoints);
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
-        Fluttertoast.showToast(
-            msg: "Work History Added ${dataUpdateStatus.status}",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: ThemeConstants.whitecolor,
-            textColor: ThemeConstants.blackcolor,
-            fontSize: 16.0);
+        getToast("Work History $action ${dataUpdateStatus.status}");
 
         return dataUpdateStatus;
       }
@@ -1030,7 +1023,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  updateTravelHistory(String? endpoint) async {
+  updateTravelHistory(String? endpoint, String action) async {
     try {
       var response = await httpPostNullBody(
         "${Endpoints.baseUrl}$endpoint",
@@ -1038,8 +1031,7 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar("Travel History:", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("Travel History $action ${dataUpdateStatus.status}");
         return true;
       }
     } catch (e) {
@@ -1069,7 +1061,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  updateRelativeInformation(String? endpoint) async {
+  updateRelativeInformation(String? endpoint, String action) async {
     try {
       var response = await httpPostNullBody(
         "${Endpoints.baseUrl}$endpoint",
@@ -1077,9 +1069,8 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar(
-            "Relative Infromation:", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+
+        getToast("Relative Infromation $action ${dataUpdateStatus.status}");
       }
     } catch (e) {
       await errorHandle(
@@ -1113,7 +1104,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  updateQualification(String? endpoint) async {
+  updateQualification(String? endpoint, [String action = ""]) async {
     try {
       var response = await httpPostNullBody(
         "${Endpoints.baseUrl}$endpoint",
@@ -1121,8 +1112,8 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar(
-            "Qualification Details:", dataUpdateStatus.status.toString(),
+        Get.snackbar("Qualification Details:",
+            action + " " + dataUpdateStatus.status.toString(),
             snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {

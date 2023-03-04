@@ -31,7 +31,7 @@ class CourseInformationProfileController extends GetxController {
   void onInit() {
     getCourseLevel();
     getCoursenarrow();
-    getCourseInformation(78623);
+    getCourseInformation(Get.find<BaseController>().model1.id!);
     super.onInit();
   }
 
@@ -90,6 +90,7 @@ class CourseInformationProfileController extends GetxController {
               courseNarrowFieldId.toString());
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
+
         courseBroadSelected =
             map.keys.toList().toString().split('[')[1].split(']')[0];
 
@@ -118,7 +119,7 @@ class CourseInformationProfileController extends GetxController {
     }
   }
 
-  updateCourseInformation(int enqId, int courseLevelId) async {
+  updateCourseInformation(int enqId, int courseLevelId, String action) async {
     try {
       String? endpoint;
       endpoint = Endpoints.addCourseInformationPart1! +
@@ -126,6 +127,7 @@ class CourseInformationProfileController extends GetxController {
           Endpoints.addCourseInformationPart2! +
           courseLevelId.toString();
       for (var i = 0; i < viewCourseInformationList.length; i++) {
+        print(i);
         endpoint = endpoint! +
             getaddCourseInformationPart3(
                 i,
@@ -133,7 +135,7 @@ class CourseInformationProfileController extends GetxController {
                 viewCourseInformationList[i].courseNarrowId!);
       }
       var res = await apiServices.addProfileModule(
-          Endpoints.baseUrl!, endpoint!, "Course Information");
+          Endpoints.baseUrl!, endpoint!, "Course Information", action);
       loadingViewCourseInformation.value = true;
       update();
     } catch (e) {
@@ -158,6 +160,19 @@ class CourseInformationProfileController extends GetxController {
       }
     }
   }
+
+  //   callbackCourseBoardField(String? data) {
+  //   for (var i = 0; i < .length; i++) {
+  //     if (i == 0) {
+  //     } else {
+  //       if (courseLevelList[i] == data) {
+  //         courseLevelSelectedId = courseLevelCode[i];
+  //         courseLevelSelected = courseLevelList[i];
+  //         update();
+  //       }
+  //     }
+  //   }
+  // }
 
   callbackCourseNarrow(String? data) {
     for (var i = 0; i < courseNarrowList.length; i++) {

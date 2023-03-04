@@ -59,8 +59,8 @@ class QualificationDetailsCopy extends StatelessWidget {
   callbackStream(varTopic) {
     for (var i = 0; i < controller.streamList.length; i++) {
       if (i == 0) {
-        controller.highestQualificationSelected = null;
-        controller.highestQualificationSelectedID = null;
+        controller.streamSelected = null;
+        controller.streamSelectedID = null;
       } else {
         if (controller.streamList[i] == varTopic) {
           controller.streamSelected = controller.streamList[i];
@@ -169,8 +169,8 @@ class QualificationDetailsCopy extends StatelessWidget {
 
   callbackDelete(data) {
     controller.modelList.removeAt(data);
-    controller
-        .updateQualification(Get.find<BaseController>().model1.id.toString());
+    controller.updateQualification(
+        Get.find<BaseController>().model1.id.toString(), "Delete");
     controller.update();
   }
 

@@ -139,7 +139,8 @@ class RelativeInformationController extends GetxController {
     }
   }
 
-  updateRelativeInformation(String enqId, String anyCountryInterested) async {
+  updateRelativeInformation(
+      String enqId, String anyCountryInterested, String action) async {
     try {
       String endpoint = Endpoints.addRelativeInformationPart1! +
           enqId +
@@ -158,7 +159,7 @@ class RelativeInformationController extends GetxController {
                 modelList[i].contactOfRelative.toString(),
                 modelList[i].relationWithRelative);
       }
-      var res = await apiServices.updateRelativeInformation(endpoint);
+      var res = await apiServices.updateRelativeInformation(endpoint, action);
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

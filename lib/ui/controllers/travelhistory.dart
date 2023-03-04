@@ -181,7 +181,7 @@ class TravelHistoryController extends GetxController {
     }
   }
 
-  updateTravelHistory(String enqId, String travelHistory) async {
+  updateTravelHistory(String enqId, String travelHistory, String action) async {
     try {
       String endpoint;
       endpoint = Endpoints.addTravelHistoryPart1! +
@@ -205,7 +205,7 @@ class TravelHistoryController extends GetxController {
                 modelList[i].dateOfApplication);
       }
 
-      var res = await apiServices.updateTravelHistory(endpoint);
+      var res = await apiServices.updateTravelHistory(endpoint, action);
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

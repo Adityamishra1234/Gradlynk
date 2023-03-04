@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -134,7 +135,9 @@ class CourseInformationWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 20, right: 20),
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants.whitecolor,
+                                foregroundColor: ThemeConstants.whitecolor,
+                                elevation: 0.0,
+                                backgroundColor: ThemeConstants.whitecolor,
                                 side:
                                     BorderSide(color: ThemeConstants.TextColor),
                                 // foreground
@@ -158,7 +161,10 @@ class CourseInformationWidget extends StatelessWidget {
                               width: 90,
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                                    foregroundColor: ThemeConstants.bluecolor,
+                                    elevation: 0.0,
+                                    backgroundColor:
+                                        ThemeConstants.bluecolor, // foreground
                                   ),
                                   onPressed: () async {
                                     if (controller1.loadingCourseBroad.value ==
@@ -174,8 +180,10 @@ class CourseInformationWidget extends StatelessWidget {
                                               narrowFieldName: controller1
                                                   .courseNarrowSelected));
                                       controller1.viewCourseInformationList;
-                                      controller1.updateCourseInformation(78623,
-                                          controller1.courseLevelSelectedId!);
+                                      controller1.updateCourseInformation(
+                                          Get.find<BaseController>().model1.id!,
+                                          controller1.courseLevelSelectedId!,
+                                          "added");
                                     } else {
                                       Fluttertoast.showToast(
                                           msg: "Please Wait",
@@ -206,7 +214,10 @@ class CourseInformationWidget extends StatelessWidget {
                             width: 110,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  foregroundColor: ThemeConstants.bluecolor, elevation: 0.0, backgroundColor: ThemeConstants.bluecolor, // foreground
+                                  foregroundColor: ThemeConstants.bluecolor,
+                                  elevation: 0.0,
+                                  backgroundColor:
+                                      ThemeConstants.bluecolor, // foreground
                                 ),
                                 onPressed: () async {
                                   controller1.viewCourseInformationList[index!]
@@ -223,8 +234,10 @@ class CourseInformationWidget extends StatelessWidget {
                                       controller1.courseNarrowSelected;
                                   controller1.viewCourseInformationList;
 
-                                  controller1.updateCourseInformation(78623,
-                                      controller1.courseLevelSelectedId!);
+                                  controller1.updateCourseInformation(
+                                      Get.find<BaseController>().model1.id!,
+                                      controller1.courseLevelSelectedId!,
+                                      "update");
                                   callbackUpdateButton(true);
                                 },
                                 child: CustomAutoSizeTextMontserrat(

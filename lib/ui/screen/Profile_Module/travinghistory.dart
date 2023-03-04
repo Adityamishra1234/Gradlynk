@@ -39,7 +39,8 @@ class TravingHistory extends StatelessWidget {
     controller.modelList.removeAt(data);
     controller.updateTravelHistory(
         Get.find<BaseController>().model1.id.toString(),
-        controller.travelAbroadSelectedID.toString());
+        controller.travelAbroadSelectedID.toString(),
+        "delete");
     controller.update();
   }
 

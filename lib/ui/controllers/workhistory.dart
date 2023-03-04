@@ -102,10 +102,11 @@ class WorkHistoryController extends GetxController {
     }
   }
 
-  updatedWorkHistory() async {
+  updatedWorkHistory(String action) async {
     try {
       String? endpoint;
-      endpoint = "${Endpoints.addworkHistoryDetailsPart1!}78623";
+      endpoint =
+          "${Endpoints.addworkHistoryDetailsPart1!}${Get.find<BaseController>().model1.id}";
       for (var i = 0; i < workHistoryViewModelList.length; i++) {
         endpoint = endpoint! +
             addWorkHistoryPart2(
@@ -119,7 +120,7 @@ class WorkHistoryController extends GetxController {
                 i);
       }
       var res = await apiServices.addProfileModule(
-          Endpoints.baseUrl!, endpoint!, "Work History");
+          Endpoints.baseUrl!, endpoint!, "Work History", action);
       loadingWorkUpdate.value = true;
       update();
     } catch (e) {

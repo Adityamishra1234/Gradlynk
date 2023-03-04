@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -6,7 +5,6 @@ import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/institutiondropdown.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class QualificationDetailsController extends GetxController {
@@ -95,11 +93,11 @@ class QualificationDetailsController extends GetxController {
     try {
       getStateEdit(countryId, state, stateID);
       if (stateID != null) {
-        getCityEdit(stateID, city, cityID);
+        await getCityEdit(stateID, city, cityID);
       }
-      getAffiliationEdit(countryId, affiliation, affiliationID);
+      await getAffiliationEdit(countryId, affiliation, affiliationID);
       if (cityID != null) {
-        geInstitutionEdit(cityID, institution, institutionId);
+        await geInstitutionEdit(cityID, institution, institutionId);
       }
       loadingEdit = 0.obs;
       update();
@@ -339,7 +337,7 @@ class QualificationDetailsController extends GetxController {
     }
   }
 
-  updateQualification(String enqId) async {
+  updateQualification(String enqId, [String action = ""]) async {
     try {
       String endpoint = Endpoints.addQualification! + enqId;
       for (var i = 0; i < modelList.length; i++) {
@@ -441,7 +439,6 @@ class QualificationDetailsController extends GetxController {
 
   getState(String countryId) async {
     try {
-      loadingState = false.obs;
       stateList = [];
       stateCode = [];
       var res = await apiServices.getState2(
@@ -458,6 +455,7 @@ class QualificationDetailsController extends GetxController {
         for (var element in temp) {
           stateCode.add(element.toString());
         }
+        print(stateList);
         // stateSelected = null;
         // stateSelectedID = null;
         loadingState = true.obs;

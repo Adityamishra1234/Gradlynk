@@ -373,7 +373,8 @@ class TravelHistoryWidget extends StatelessWidget {
                         _.update();
                         _.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
-                            _.travelAbroadSelected!);
+                            _.travelAbroadSelected!,
+                            "added");
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "Added",
@@ -401,24 +402,26 @@ class TravelHistoryWidget extends StatelessWidget {
                         backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
-                        // _.modelList.add(TravelHistoryModel(
-                        //     travelStatus: _.travelStatusSelected,
-                        //     chooseCountry:
-                        //         int.parse(_.countryCodeSelected!),
-                        //     typeOfVisa:
-                        //         int.parse(_.typeOfVisaCodeSelected!),
-                        //     visaStatus: _.visaStatusSelected,
-                        //     dateOfApplication: dateOfApplication.text,
-                        //     dateOfRejection: dateOfReject.text,
-                        //     reasonOfRejection: reasonOfRejection.text,
-                        //     proofAvailable:
-                        //         int.parse(_.proofAvailableSelected!),
-                        //     countryName: _.countrySelected,
-                        //     applicationNumber: applicationNumber.text,
-                        //     visaNumber: visaNumber.text));
-                        // _.update();
-                        // _.updateTravelHistory(
-                        //     "78623", _.travelAbroadSelected!);
+                        _.modelList.add(TravelHistoryModel(
+                            travelStatus: _.travelStatusSelected,
+                            chooseCountry:
+                                int.parse(_.countryCodeSelected ?? "0"),
+                            typeOfVisa:
+                                int.parse(_.typeOfVisaCodeSelected ?? "0"),
+                            visaStatus: _.visaStatusSelected,
+                            dateOfApplication: dateOfApplication.text,
+                            dateOfRejection: dateOfReject.text,
+                            reasonOfRejection: reasonOfRejection.text,
+                            proofAvailable:
+                                int.parse(_.proofAvailableSelectedID ?? "0"),
+                            countryName: _.countrySelected,
+                            applicationNumber: applicationNumber.text,
+                            visaNumber: visaNumber.text));
+                        _.update();
+                        _.updateTravelHistory(
+                            Get.find<BaseController>().model1.id.toString(),
+                            _.travelAbroadSelected!,
+                            "updated");
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "Update",

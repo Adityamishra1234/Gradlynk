@@ -59,7 +59,7 @@ class WorkHistoryCopy extends StatelessWidget {
 
   callbackDeleteButton(data) {
     controller.workHistoryViewModelList.removeAt(data);
-    controller.updatedWorkHistory();
+    controller.updatedWorkHistory("delete");
     controller.update();
   }
 
@@ -71,12 +71,12 @@ class WorkHistoryCopy extends StatelessWidget {
   }
 
   callbackAdded(data) {
-    controller.updatedWorkHistory();
+    controller.updatedWorkHistory("added");
     controller.update();
   }
 
   callbackUpdate(data) {
-    controller.updatedWorkHistory();
+    controller.updatedWorkHistory("updated");
     controller.updateForEdit.value = true;
     controller.update();
   }

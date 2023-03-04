@@ -67,8 +67,8 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
 
   callbackIndexDelete(data) {
     controller.viewCourseInformationList.removeAt(int.parse(data.toString()));
-    controller.updateCourseInformation(
-        78623, controller.viewCourseInformationList[0].courseBroadId!);
+    controller.updateCourseInformation(78623,
+        controller.viewCourseInformationList[0].courseBroadId!, "delete");
     setState(() {});
   }
 
@@ -79,8 +79,11 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
           controller.courseLevelCode[i].toString()) {
         controller.courseLevelSelectedId = controller.courseLevelCode[i];
         controller.courseLevelSelected = controller.courseLevelList[i];
+        controller.courseBroadSelectedId = temp.courseBroadId;
       }
     }
+    callbackCourseNarrow(temp.narrowFieldName);
+
     controller.courseBroadSelected = temp.broadFieldName;
     controller.courseNarrowSelected = temp.narrowFieldName;
     index = int.parse(data.toString());

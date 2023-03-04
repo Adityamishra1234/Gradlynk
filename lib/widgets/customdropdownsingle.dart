@@ -4,7 +4,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomDropDownSingle extends StatefulWidget {
   bool? choosefieldtype;
-  List? model;
+  List model;
   String? initialSelectedValue;
   final Function callbackFunction;
   CustomDropDownSingle({
@@ -23,6 +23,18 @@ class _CustomDropDownSingleState extends State<CustomDropDownSingle> {
   String? initialSelectedValue2;
   @override
   Widget build(BuildContext context) {
+    bool match = false;
+    if (widget.model.isNotEmpty) {
+      for (var i = 0; i < widget.model.length; i++) {
+        if (widget.initialSelectedValue == widget.model[i]) {
+          match = true;
+        }
+      }
+      if (match == false) {
+        widget.initialSelectedValue = widget.model[0];
+      }
+    }
+
     try {
       final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
       return widget.choosefieldtype == false
