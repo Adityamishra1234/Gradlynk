@@ -384,8 +384,8 @@ class RelativeInformationWidget extends StatelessWidget {
             ),
           ),
         ),
-      const SizedBox(
-        height: 160,
+      SizedBox(
+        height: MediaQuery.of(context).viewInsets.bottom,
       )
     ];
   }

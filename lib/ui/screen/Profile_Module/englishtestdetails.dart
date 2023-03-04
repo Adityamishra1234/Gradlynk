@@ -320,8 +320,8 @@ class EnglishTestDetails extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 120,
+            SizedBox(
+              height: MediaQuery.of(context).viewInsets.bottom,
             ),
           ],
         ),

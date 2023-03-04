@@ -39,8 +39,8 @@ class BaseController extends GetxController {
         // package name for android and Ios
         //TODO
         Get.context,
-        "org.telegram.messenger",
-        "org.telegram.messenger");
+        "com.example.studentpanel",
+        "com.example.studentpanel");
   }
 
   profiledetail() async {
