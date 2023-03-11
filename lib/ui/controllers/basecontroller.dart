@@ -39,8 +39,8 @@ class BaseController extends GetxController {
         // package name for android and Ios
         //TODO
         Get.context,
-        "com.example.studentpanel",
-        "com.example.studentpanel");
+        "com.downtownengineeers.gradlynk",
+        "com.downtownengineeers.gradlynk");
   }
 
   profiledetail() async {
