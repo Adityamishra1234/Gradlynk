@@ -9,7 +9,7 @@ class TicketDataModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
   }
@@ -35,7 +35,8 @@ class Data {
   int? isActive;
   int? createdBy;
   int? updatedBy;
-
+  String? createdAt;
+  String? updatedAt;
   List<Comments>? comments;
 
   Data(
@@ -49,6 +50,8 @@ class Data {
       this.isActive,
       this.createdBy,
       this.updatedBy,
+      this.createdAt,
+      this.updatedAt,
       this.comments});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -62,11 +65,12 @@ class Data {
     isActive = json['is_active'];
     createdBy = json['created_by'];
     updatedBy = json['updated_by'];
-
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
     if (json['comments'] != null) {
       comments = <Comments>[];
       json['comments'].forEach((v) {
-        comments!.add(Comments.fromJson(v));
+        comments!.add(new Comments.fromJson(v));
       });
     }
   }
@@ -83,7 +87,8 @@ class Data {
     data['is_active'] = isActive;
     data['created_by'] = createdBy;
     data['updated_by'] = updatedBy;
-
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     if (comments != null) {
       data['comments'] = comments!.map((v) => v.toJson()).toList();
     }
@@ -99,18 +104,19 @@ class Comments {
   int? isActive;
   int? createdBy;
   int? updatedBy;
-  // String? createdAt;
-  // String? updatedAt;
+  String? createdAt;
+  String? updatedAt;
 
-  Comments({
-    this.id,
-    this.queryId,
-    this.content,
-    this.senderBy,
-    this.isActive,
-    this.createdBy,
-    this.updatedBy,
-  });
+  Comments(
+      {this.id,
+      this.queryId,
+      this.content,
+      this.senderBy,
+      this.isActive,
+      this.createdBy,
+      this.updatedBy,
+      this.createdAt,
+      this.updatedAt});
 
   Comments.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -120,6 +126,8 @@ class Comments {
     isActive = json['is_active'];
     createdBy = json['created_by'];
     updatedBy = json['updated_by'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -131,7 +139,8 @@ class Comments {
     data['is_active'] = isActive;
     data['created_by'] = createdBy;
     data['updated_by'] = updatedBy;
-
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

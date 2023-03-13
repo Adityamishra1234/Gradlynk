@@ -32,6 +32,7 @@ import 'package:studentpanel/ui/models/status.dart';
 import 'package:studentpanel/ui/models/stream.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/models/ticketdatamodel.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
@@ -1250,13 +1251,13 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
-      Get.back();
-      await errorHandle(
-        Get.find<BaseController>().model1.id.toString(),
-        e.toString().split(":")[1].toString(),
-        e.toString().split(":")[0].toString(),
-        StackTrace.current.toString(),
-      );
+      // await errorHandle(
+      //   Get.find<BaseController>().model1.id.toString(),
+      //   e.toString().split(":")[1].toString(),
+      //   e.toString().split(":")[0].toString(),
+      //   StackTrace.current.toString(),
+      // );
+      return null;
     }
   }
 
@@ -1402,6 +1403,26 @@ class ApiServices extends StudentPanelBase {
         return model;
       }
     } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  getTrackYourTickets(String endpoint) async {
+    try {
+      TicketDataModel model = TicketDataModel();
+
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        model = TicketDataModel.fromJson(json.decode(res));
+        return model;
+      }
+    } catch (e) {
+      print(e.toString());
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),

@@ -59,6 +59,7 @@ class ThemeConstants {
   static Color bluelightgreycolor2 = const Color.fromARGB(255, 164, 178, 202);
   static Color Lightcian = const Color(0xFFE9FEFF);
   static Color cianColor = const Color(0xFF0EB0B5);
+  static Color bluechatColor = const Color(0xFFD9E6FF);
 
   static String icons = """<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 26.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->

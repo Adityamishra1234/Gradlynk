@@ -115,6 +115,8 @@ class Endpoints {
   static String? errorHandlepart2 = "&error_message=";
   static String? errorHandlepart3 = "&status_code=";
   static String? errorHandlepart4 = "&extra=";
+
+  static String? trackyourticket = "get-ticket-data?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

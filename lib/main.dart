@@ -57,6 +57,7 @@ import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
 import 'ui/screen/countryGuide/countryguide.dart';
 import 'ui/screen/dashboard/scheduleExpertCall.dart';
+import 'ui/screen/gradlynk_support.dart/track_your_tickets.dart';
 import 'ui/screen/test/test.dart';
 
 Future<void> main() async {
@@ -307,6 +308,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: TestWidget.routeNamed,
           page: () => TestWidget(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: TrackyourTickets.routeNamed,
+          page: () => TrackyourTickets(),
           transition: Transition.fade,
         ),
       ],
