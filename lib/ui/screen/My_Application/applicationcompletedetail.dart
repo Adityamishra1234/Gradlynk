@@ -1016,13 +1016,7 @@ class _ApplicationCompleteDetailsState
                           ],
                         ),
                       if (model.documents![i].viewLink == "test")
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Please wait for uploading document",
-                            textColor: ThemeConstants.TextColor,
-                          ),
-                        )
+                        const Center(child: CircularProgressIndicator())
                     ],
                   ),
                 ),
