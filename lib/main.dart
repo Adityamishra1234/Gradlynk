@@ -21,6 +21,7 @@ import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support.dart/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
@@ -313,6 +314,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: TrackyourTickets.routeNamed,
           page: () => TrackyourTickets(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: Suggestedimprovisation.routeNamed,
+          page: () => Suggestedimprovisation(),
           transition: Transition.fade,
         ),
       ],

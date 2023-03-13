@@ -24,4 +24,19 @@ class TrackYourTicketsController extends GetxController with StateMixin {
       change(null, status: RxStatus.success());
     }
   }
+
+  saveComment(String id, String content, int dataIndex) async {
+    // save-comment-data?id=10&content=test by aman 7&enq_id=78623
+    var responsive = await apiServices.saveComments(
+        Endpoints.saveCommentTrackYourTicketpart1! +
+            id +
+            Endpoints.saveCommentTrackYourTicketPart2! +
+            content +
+            Endpoints.saveCommentTrackYourTicketPar3! +
+            Get.find<BaseController>().model1.id.toString());
+    if (responsive != null) {
+      model.value!.data![dataIndex].comments!.add(responsive[0]);
+      update();
+    }
+  }
 }

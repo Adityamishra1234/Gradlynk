@@ -1,3 +1,4 @@
+import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support.dart/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support.dart/track_your_tickets.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -459,38 +461,100 @@ class CustomDrawer extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
+
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: InkWell(
-                            highlightColor: ThemeConstants.whitecolor,
-                            onTap: () {
-                              Get.toNamed(TrackyourTickets.routeNamed);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    color: index == 10
-                                        ? ThemeConstants.lightblueColor
-                                        : ThemeConstants.whitecolor,
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Track Your Ticket",
-                                    textColor: index == 10
-                                        ? ThemeConstants.bluecolor
-                                        : ThemeConstants.blackcolor,
-                                  ),
+                      padding: const EdgeInsets.only(left: 20.0),
+                      child: ConfigurableExpansionTile(
+                        borderColorEnd: Colors.transparent,
+                        bottomBorderOn: false,
+                        header: SizedBox(
+                          width: 220,
+                          height: 40,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Track Your Ticket",
                                 ),
                               ),
-                            ),
-                          )),
+                              const Spacer(),
+                              const Icon(Icons.keyboard_arrow_down),
+                            ],
+                          ),
+                        ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Align(
+                                alignment: AlignmentDirectional.topStart,
+                                child: InkWell(
+                                  highlightColor: ThemeConstants.whitecolor,
+                                  onTap: () {
+                                    Get.toNamed(TrackyourTickets.routeNamed);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Container(
+                                      height: 30,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                          color: index == 10
+                                              ? ThemeConstants.lightblueColor
+                                              : ThemeConstants.whitecolor,
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 5),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Track Issue ",
+                                          textColor: index == 10
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.blackcolor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Align(
+                                alignment: AlignmentDirectional.topStart,
+                                child: InkWell(
+                                  highlightColor: ThemeConstants.whitecolor,
+                                  onTap: () {
+                                    Get.toNamed(
+                                        Suggestedimprovisation.routeNamed);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Container(
+                                      height: 30,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                          color: index == 11
+                                              ? ThemeConstants.lightblueColor
+                                              : ThemeConstants.whitecolor,
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 5),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Track Improvisation",
+                                          textColor: index == 11
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.blackcolor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: 60,

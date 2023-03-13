@@ -1419,6 +1419,32 @@ class ApiServices extends StudentPanelBase {
       var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
       if (res != null) {
         model = TicketDataModel.fromJson(json.decode(res));
+
+        return model;
+      }
+    } catch (e) {
+      print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  saveComments(String endpoint) async {
+    try {
+      List<Comments> model = [];
+
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        getToast("Comment added" + jsondata["status"]);
+        // List<CountryGuideModel>.from(
+        //     json.decode(res).map((x) => CountryGuideModel.fromJson(x)));
+        model = List<Comments>.from(
+            jsondata["comments"].map((x) => Comments.fromJson(x)));
         return model;
       }
     } catch (e) {

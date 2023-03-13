@@ -26,8 +26,8 @@ class _CustomExpansiontileState extends State<CustomExpansiontile> {
   @override
   Widget build(BuildContext context) {
     return ConfigurableExpansionTile(
-      borderColorEnd: Colors.black,
-      bottomBorderOn: true,
+      borderColorEnd: Colors.transparent,
+      bottomBorderOn: false,
       header: SizedBox(
         width: 220,
         height: 40,

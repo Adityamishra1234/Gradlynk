@@ -10,6 +10,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:rounded_background_text/rounded_background_text.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class TrackyourTickets extends GetView<TrackYourTicketsController> {
   TrackyourTickets({super.key});
@@ -20,16 +21,22 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar('title'),
+      drawer: CustomDrawer(
+        index: 10,
+      ),
       body: controller.obx(
         onLoading: getLoading(context),
         (state) => Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomAutoSizeTextMontserrat(
-                text: "Track Your Tickets",
-                fontSize: 22,
-                textColor: ThemeConstants.bluecolor,
+            Align(
+              alignment: AlignmentDirectional.topStart,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomAutoSizeTextMontserrat(
+                  text: "Track Your Tickets",
+                  fontSize: 22,
+                  textColor: ThemeConstants.bluecolor,
+                ),
               ),
             ),
             Row(
@@ -230,62 +237,61 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                     ),
                                   Row(
                                     children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 20),
-                                        child: SizedBox(
-                                          width: 170,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                elevation: 0.0,
-                                                primary: ThemeConstants
-                                                    .bluecolor, // background
-                                                onPrimary: ThemeConstants
-                                                    .bluecolor, // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View Document",
-                                                textColor:
-                                                    ThemeConstants.whitecolor,
-                                              )),
+                                      Container(
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                            color: ThemeConstants.bluecolor,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, right: 10.0),
+                                          child: Center(
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "View Document",
+                                              textColor:
+                                                  ThemeConstants.whitecolor,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 20),
-                                        child: SizedBox(
-                                          width: 150,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                elevation: 0.0,
-                                                primary: ThemeConstants
-                                                    .bluecolor, // background
-                                                onPrimary: ThemeConstants
-                                                    .bluecolor, // foreground
-                                              ),
-                                              onPressed: () {
-                                                if (controller
-                                                    .model
-                                                    .value!
-                                                    .data![index]
-                                                    .comments!
-                                                    .isNotEmpty) {
-                                                  getDailogViewHistory(
-                                                      controller
-                                                          .model
-                                                          .value!
-                                                          .data![index]
-                                                          .comments!);
-                                                }
-                                              },
+                                      const SizedBox(
+                                        width: 20.0,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          if (controller
+                                              .model
+                                              .value!
+                                              .data![index]
+                                              .comments!
+                                              .isNotEmpty) {
+                                            getDailogViewHistory(
+                                                controller.model.value!
+                                                    .data![index].comments!,
+                                                index,
+                                                controller.model.value!
+                                                    .data![index].id!);
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                              color: ThemeConstants.bluecolor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Center(
                                               child:
                                                   CustomAutoSizeTextMontserrat(
                                                 text: "View History",
                                                 textColor:
                                                     ThemeConstants.whitecolor,
-                                              )),
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -361,64 +367,108 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                     ),
                                   Row(
                                     children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 20),
-                                        child: SizedBox(
-                                          width: 170,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                elevation: 0.0,
-                                                primary: ThemeConstants
-                                                    .bluecolor, // background
-                                                onPrimary: ThemeConstants
-                                                    .bluecolor, // foreground
-                                              ),
-                                              onPressed: () async {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View Document",
-                                                textColor:
-                                                    ThemeConstants.whitecolor,
-                                              )),
+                                      Container(
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                            color: ThemeConstants.bluecolor,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10.0, right: 10.0),
+                                          child: Center(
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "View Document",
+                                              textColor:
+                                                  ThemeConstants.whitecolor,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 20),
-                                        child: SizedBox(
-                                          width: 150,
-                                          child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                elevation: 0.0,
-                                                primary: ThemeConstants
-                                                    .bluecolor, // background
-                                                onPrimary: ThemeConstants
-                                                    .bluecolor, // foreground
-                                              ),
-                                              onPressed: () {
-                                                if (controller
-                                                    .model
-                                                    .value!
-                                                    .data![index]
-                                                    .comments!
-                                                    .isNotEmpty) {
-                                                  getDailogViewHistory(
-                                                      controller
-                                                          .model
-                                                          .value!
-                                                          .data![index]
-                                                          .comments!);
-                                                }
-                                              },
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View History",
-                                                textColor:
-                                                    ThemeConstants.whitecolor,
-                                              )),
-                                        ),
+                                      const SizedBox(
+                                        width: 20.0,
                                       ),
+                                      if (controller.model.value!.data![index]
+                                              .comments![0].senderBy !=
+                                          "2")
+                                        InkWell(
+                                          onTap: () {
+                                            if (controller
+                                                .model
+                                                .value!
+                                                .data![index]
+                                                .comments!
+                                                .isNotEmpty) {
+                                              getDailogViewHistory(
+                                                  controller.model.value!
+                                                      .data![index].comments!,
+                                                  index,
+                                                  controller.model.value!
+                                                      .data![index].id!);
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                color: ThemeConstants.bluecolor,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0, right: 10.0),
+                                              child: Center(
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View History",
+                                                  textColor:
+                                                      ThemeConstants.whitecolor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      if (controller.model.value!.data![index]
+                                              .comments![0].senderBy ==
+                                          "2")
+                                        InkWell(
+                                          onTap: () {
+                                            if (controller
+                                                .model
+                                                .value!
+                                                .data![index]
+                                                .comments!
+                                                .isNotEmpty) {
+                                              getDailogViewHistory(
+                                                  controller.model.value!
+                                                      .data![index].comments!,
+                                                  index,
+                                                  controller.model.value!
+                                                      .data![index].id!,
+                                                  true);
+                                            }
+                                          },
+                                          child: Container(
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                                color: ThemeConstants.bluecolor,
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        10.0)),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0, right: 10.0),
+                                              child: Center(
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Not Convinced",
+                                                  textColor:
+                                                      ThemeConstants.whitecolor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                     ],
                                   ),
                                 ],
@@ -438,145 +488,164 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
   }
 
   //Function
-  getDailogViewHistory(List<Comments> model) {
+  getDailogViewHistory(List<Comments> model, int dataIndex, int id,
+      [bool submitbutton = false]) {
+    TextEditingController addComment = TextEditingController();
     return Get.dialog(Center(
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: Container(
           decoration: BoxDecoration(
               color: ThemeConstants.whitecolor,
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          height: 450,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomAutoSizeTextMontserrat(
-                  text: "View History",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  textColor: ThemeConstants.bluecolor,
+              borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+          height: submitbutton == false ? 250 : 400,
+          child: StatefulBuilder(
+            builder: (context, setInnerState) => Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "View History",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    textColor: ThemeConstants.bluecolor,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15),
-                child: SizedBox(
-                    height: 200,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image:
-                                AssetImage("assets/images/chatbackground.png"),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                      child: ListView.builder(
-                          itemCount: model.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Align(
-                              alignment: model[index].senderBy == "2"
-                                  ? AlignmentDirectional.topStart
-                                  : AlignmentDirectional.topEnd,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, right: 10, top: 5, bottom: 5),
-                                child: RoundedBackgroundText(
-                                  model[index].content!,
-                                  textAlign: model[index].senderBy == "2"
-                                      ? TextAlign.left
-                                      : TextAlign.right,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold),
-                                  backgroundColor: model[index].senderBy == "2"
-                                      ? ThemeConstants.bluechatColor
-                                      : Colors.white,
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: SizedBox(
+                      height: 200,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  "assets/images/chatbackground.png"),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0))),
+                        child: ListView.builder(
+                            itemCount: model.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Align(
+                                alignment: model[index].senderBy == "2"
+                                    ? AlignmentDirectional.topStart
+                                    : AlignmentDirectional.topEnd,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10, top: 5, bottom: 5),
+                                  child: RoundedBackgroundText(
+                                    model[index].content!,
+                                    textAlign: model[index].senderBy == "2"
+                                        ? TextAlign.left
+                                        : TextAlign.right,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                    backgroundColor:
+                                        model[index].senderBy == "2"
+                                            ? ThemeConstants.bluechatColor
+                                            : Colors.white,
+                                  ),
+                                ),
+                              );
+                            }),
+                      )),
+                ),
+                if (submitbutton == true)
+                  SizedBox(
+                    height: 100,
+                    child: Material(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border:
+                                  Border.all(color: ThemeConstants.TextColor),
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(10.0))),
+                          child: TextField(
+                            controller: addComment,
+                            minLines: 3, // Set this
+                            maxLines: 6, // and this
+                            keyboardType: TextInputType.multiline,
+                            textAlign: TextAlign.center,
+
+                            decoration: InputDecoration(
+                              hintText: 'Please specify user concern',
+                              hintStyle: const TextStyle(fontSize: 16),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: const BorderSide(
+                                  width: 0,
+                                  style: BorderStyle.none,
                                 ),
                               ),
-                            );
-                          }),
-                    )),
-              ),
-              SizedBox(
-                height: 100,
-                child: Material(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: ThemeConstants.TextColor),
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
-                      child: TextField(
-                        minLines: 3, // Set this
-                        maxLines: 6, // and this
-                        keyboardType: TextInputType.multiline,
-                        textAlign: TextAlign.center,
-
-                        decoration: InputDecoration(
-                          hintText: 'Please specify user concern',
-                          hintStyle: TextStyle(fontSize: 16),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
+                              filled: true,
+                              fillColor: ThemeConstants.whitecolor,
+                              contentPadding: const EdgeInsets.all(16),
                             ),
                           ),
-                          filled: true,
-                          fillColor: ThemeConstants.whitecolor,
-                          contentPadding: EdgeInsets.all(16),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10, left: 10),
-                      child: SizedBox(
-                        width: 100,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0.0,
-                              primary:
-                                  ThemeConstants.lightgreycolor, // background
-                              onPrimary:
-                                  ThemeConstants.lightgreycolor, // foreground
-                            ),
-                            onPressed: () {},
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Clean",
-                              textColor: ThemeConstants.blackcolor,
-                            )),
-                      ),
+                if (submitbutton == true)
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10, left: 10),
+                          child: SizedBox(
+                            width: 100,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0.0,
+                                  primary: ThemeConstants
+                                      .lightgreycolor, // background
+                                  onPrimary: ThemeConstants
+                                      .lightgreycolor, // foreground
+                                ),
+                                onPressed: () {
+                                  setInnerState(() {
+                                    addComment.clear();
+                                  });
+                                },
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Clean",
+                                  textColor: ThemeConstants.blackcolor,
+                                )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: SizedBox(
+                            width: 150,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0.0,
+                                  primary:
+                                      ThemeConstants.bluecolor, // background
+                                  onPrimary:
+                                      ThemeConstants.bluecolor, // foreground
+                                ),
+                                onPressed: () async {
+                                  Get.back();
+                                  controller.saveComment(id.toString(),
+                                      addComment.text, dataIndex);
+                                },
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Submit",
+                                  textColor: ThemeConstants.whitecolor,
+                                )),
+                          ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: SizedBox(
-                        width: 150,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0.0,
-                              primary: ThemeConstants.bluecolor, // background
-                              onPrimary: ThemeConstants.bluecolor, // foreground
-                            ),
-                            onPressed: () {},
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Submit",
-                              textColor: ThemeConstants.whitecolor,
-                            )),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                  ),
+              ],
+            ),
           ),
         ),
       ),

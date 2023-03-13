@@ -117,6 +117,10 @@ class Endpoints {
   static String? errorHandlepart4 = "&extra=";
 
   static String? trackyourticket = "get-ticket-data?enq_id=";
+
+  static String? saveCommentTrackYourTicketpart1 = "save-comment-data?id=";
+  static String? saveCommentTrackYourTicketPart2 = "&content=";
+  static String? saveCommentTrackYourTicketPar3 = "&enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
