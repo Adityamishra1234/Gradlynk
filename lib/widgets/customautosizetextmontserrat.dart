@@ -5,6 +5,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class CustomAutoSizeTextMontserrat extends StatelessWidget {
+  bool? textalingCentre = false;
   bool? underline;
   bool? mandatory;
   var text;
@@ -14,6 +15,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
 
   CustomAutoSizeTextMontserrat(
       {Key? key,
+      this.textalingCentre,
       required this.text,
       this.maxLines,
       this.mandatory,
@@ -33,6 +35,7 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
             if (mandatory == true)
               TextSpan(text: '*', style: TextStyle(color: ThemeConstants.red))
           ]),
+      textAlign: textalingCentre == true ? TextAlign.center : null,
 
       maxLines: maxLines ?? 100000,
       overflow: TextOverflow.ellipsis,

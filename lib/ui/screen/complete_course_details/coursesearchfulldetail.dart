@@ -155,27 +155,36 @@ class CourseSearchFullDetail extends StatelessWidget {
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(10)),
                                         ),
-                                        child: Column(
-                                          children: [
-                                            const Spacer(),
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "Total Tutions Fees",
-                                              maxLines: 2,
-                                              textColor:
-                                                  ThemeConstants.GreenColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            CustomAutoSizeTextMontserrat(
-                                              text:
-                                                  "${completeCourseDetail![0].totalTutionFees}${completeCourseDetail![0].countryCurrencyCode} (${completeCourseDetail![0].totalTutionFeesInr}INR)",
-                                              // "347200 USD (INR 2,56,92,800)",
-                                              maxLines: 2,
-                                              fontSize: 14,
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                            ),
-                                            const Spacer()
-                                          ],
+                                        child: Center(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Spacer(),
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "Total Tutions Fees",
+                                                maxLines: 2,
+                                                textColor:
+                                                    ThemeConstants.GreenColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              if (getNUllChecker(
+                                                      completeCourseDetail![0]
+                                                          .totalTutionFees) ==
+                                                  false)
+                                                CustomAutoSizeTextMontserrat(
+                                                  textalingCentre: true,
+                                                  text:
+                                                      "${completeCourseDetail![0].totalTutionFees}${completeCourseDetail![0].countryCurrencyCode} (${completeCourseDetail![0].totalTutionFeesInr}INR)",
+                                                  // "347200 USD (INR 2,56,92)",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  textColor:
+                                                      ThemeConstants.blackcolor,
+                                                ),
+                                              const Spacer()
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       const Spacer(),

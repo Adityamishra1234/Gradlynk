@@ -350,6 +350,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                             child: Center(
                               child: CustomAutoSizeTextMontserrat(
                                 text: "View",
+                                fontSize: 10,
                                 fontWeight: FontWeight.w500,
                                 textColor: ThemeConstants.orangeColor,
                               ),

@@ -158,6 +158,10 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                                               Radius.circular(10)),
                                         ),
                                         child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             const Spacer(),
                                             CustomAutoSizeTextMontserrat(
@@ -167,14 +171,17 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                                                   ThemeConstants.orangeColor,
                                               fontWeight: FontWeight.bold,
                                             ),
-                                            CustomAutoSizeTextMontserrat(
-                                              text:
-                                                  "${completeCourseDetail![0].totalTutionFees}(${completeCourseDetail![0].totalTutionFeesInr}INR)",
-                                              // "347200 USD (INR 2,56,92,800)",
-                                              maxLines: 2,
-                                              fontSize: 14,
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
+                                            Center(
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text:
+                                                    "${completeCourseDetail![0].totalTutionFees}(${completeCourseDetail![0].totalTutionFeesInr}INR)",
+                                                // "347200 USD (INR 2,56,92,800)",
+                                                maxLines: 2,
+                                                fontSize: 14,
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                              ),
                                             ),
                                             const Spacer()
                                           ],

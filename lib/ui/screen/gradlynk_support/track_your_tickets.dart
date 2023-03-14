@@ -162,6 +162,7 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
+                                    maxLines: 2,
                                     text: controller
                                         .model.value!.data![index].issue,
                                     textColor: ThemeConstants.bluecolor,
@@ -212,6 +213,7 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
+                                    maxLines: 2,
                                     text: controller
                                         .model.value!.data![index].issue,
                                     textColor: ThemeConstants.bluecolor,
@@ -316,6 +318,7 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   CustomAutoSizeTextMontserrat(
+                                    maxLines: 2,
                                     text: controller
                                         .model.value!.data![index].issue,
                                     textColor: ThemeConstants.bluecolor,
