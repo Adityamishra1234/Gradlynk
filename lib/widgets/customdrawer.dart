@@ -11,8 +11,9 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support.dart/suggestedimprovisation.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support.dart/track_your_tickets.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -556,6 +557,40 @@ class CustomDrawer extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: InkWell(
+                            highlightColor: ThemeConstants.whitecolor,
+                            onTap: () {
+                              Get.toNamed(RaiseYourTicket.routeNamed);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Container(
+                                height: 30,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    color: index == 12
+                                        ? ThemeConstants.lightblueColor
+                                        : ThemeConstants.whitecolor,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 10, top: 5),
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Raise new ticket",
+                                    textColor: index == 12
+                                        ? ThemeConstants.bluecolor
+                                        : ThemeConstants.blackcolor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
+
                     const SizedBox(
                       height: 60,
                     ),

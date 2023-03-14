@@ -53,18 +53,19 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                     height: 30,
                     width: 80,
                     decoration: BoxDecoration(
-                        color: ThemeConstants.lightorangeColor,
+                        color: controller.chooseOption.value == 1
+                            ? ThemeConstants.orangeColor
+                            : ThemeConstants.whitecolor,
+                        border: Border.all(color: ThemeConstants.orangeColor),
                         borderRadius: BorderRadiusDirectional.circular(5.0)),
                     child: Center(
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 5),
-                        child: CustomAutoSizeTextMontserrat(
-                            text: "Waiting",
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700,
-                            textColor: ThemeConstants.orangeColor),
-                      ),
+                      child: CustomAutoSizeTextMontserrat(
+                          text: "Waiting",
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
+                          textColor: controller.chooseOption.value == 1
+                              ? ThemeConstants.whitecolor
+                              : ThemeConstants.orangeColor),
                     ),
                   ),
                 ),
@@ -79,17 +80,21 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                   child: Container(
                     height: 30,
                     decoration: BoxDecoration(
-                        color: ThemeConstants.lightgreentColor,
+                        color: controller.chooseOption.value == 2
+                            ? ThemeConstants.GreenColor
+                            : ThemeConstants.whitecolor,
+                        border: Border.all(color: ThemeConstants.GreenColor),
                         borderRadius: BorderRadiusDirectional.circular(5.0)),
                     child: Center(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 5),
+                        padding: const EdgeInsets.only(left: 10, right: 10),
                         child: CustomAutoSizeTextMontserrat(
                             text: "Resolving",
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
-                            textColor: ThemeConstants.GreenColor),
+                            textColor: controller.chooseOption.value == 2
+                                ? ThemeConstants.whitecolor
+                                : ThemeConstants.GreenColor),
                       ),
                     ),
                   ),
@@ -103,17 +108,24 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                   child: Container(
                     height: 30,
                     decoration: BoxDecoration(
-                        color: ThemeConstants.lightVioletColor,
+                        color: controller.chooseOption.value == 3
+                            ? ThemeConstants.VioletColor
+                            : ThemeConstants.whitecolor,
+                        border: Border.all(color: ThemeConstants.VioletColor),
                         borderRadius: BorderRadiusDirectional.circular(5.0)),
                     child: Center(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, right: 10, top: 5),
+                        padding: const EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                        ),
                         child: CustomAutoSizeTextMontserrat(
                             text: "Resolved",
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
-                            textColor: ThemeConstants.VioletColor),
+                            textColor: controller.chooseOption.value == 3
+                                ? ThemeConstants.whitecolor
+                                : ThemeConstants.VioletColor),
                       ),
                     ),
                   ),
@@ -235,10 +247,23 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                       textColor: ThemeConstants.TextColor,
                                       fontSize: 12,
                                     ),
-                                  Row(
-                                    children: [
-                                      Container(
+                                  Align(
+                                    alignment: AlignmentDirectional.topEnd,
+                                    child: InkWell(
+                                      onTap: () {
+                                        if (controller.model.value!.data![index]
+                                            .comments!.isNotEmpty) {
+                                          getDailogViewHistory(
+                                              controller.model.value!
+                                                  .data![index].comments!,
+                                              index,
+                                              controller.model.value!
+                                                  .data![index].id!);
+                                        }
+                                      },
+                                      child: Container(
                                         height: 35,
+                                        width: 150,
                                         decoration: BoxDecoration(
                                             color: ThemeConstants.bluecolor,
                                             borderRadius:
@@ -248,53 +273,14 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                               left: 10.0, right: 10.0),
                                           child: Center(
                                             child: CustomAutoSizeTextMontserrat(
-                                              text: "View Document",
+                                              text: "View History",
                                               textColor:
                                                   ThemeConstants.whitecolor,
                                             ),
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(
-                                        width: 20.0,
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          if (controller
-                                              .model
-                                              .value!
-                                              .data![index]
-                                              .comments!
-                                              .isNotEmpty) {
-                                            getDailogViewHistory(
-                                                controller.model.value!
-                                                    .data![index].comments!,
-                                                index,
-                                                controller.model.value!
-                                                    .data![index].id!);
-                                          }
-                                        },
-                                        child: Container(
-                                          height: 35,
-                                          decoration: BoxDecoration(
-                                              color: ThemeConstants.bluecolor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10.0, right: 10.0),
-                                            child: Center(
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View History",
-                                                textColor:
-                                                    ThemeConstants.whitecolor,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -365,112 +351,93 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                       textColor: ThemeConstants.TextColor,
                                       fontSize: 12,
                                     ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 35,
-                                        decoration: BoxDecoration(
-                                            color: ThemeConstants.bluecolor,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10.0, right: 10.0),
-                                          child: Center(
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "View Document",
-                                              textColor:
-                                                  ThemeConstants.whitecolor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 20.0,
-                                      ),
-                                      if (controller.model.value!.data![index]
-                                              .comments![0].senderBy !=
-                                          "2")
-                                        InkWell(
-                                          onTap: () {
-                                            if (controller
-                                                .model
-                                                .value!
-                                                .data![index]
-                                                .comments!
-                                                .isNotEmpty) {
-                                              getDailogViewHistory(
-                                                  controller.model.value!
-                                                      .data![index].comments!,
-                                                  index,
-                                                  controller.model.value!
-                                                      .data![index].id!);
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                                color: ThemeConstants.bluecolor,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0, right: 10.0),
-                                              child: Center(
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "View History",
-                                                  textColor:
-                                                      ThemeConstants.whitecolor,
-                                                ),
+                                  if (controller.model.value!.data![index]
+                                          .comments![0].senderBy !=
+                                      "2")
+                                    Align(
+                                      alignment: AlignmentDirectional.topEnd,
+                                      child: InkWell(
+                                        onTap: () {
+                                          if (controller
+                                              .model
+                                              .value!
+                                              .data![index]
+                                              .comments!
+                                              .isNotEmpty) {
+                                            getDailogViewHistory(
+                                                controller.model.value!
+                                                    .data![index].comments!,
+                                                index,
+                                                controller.model.value!
+                                                    .data![index].id!);
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 35,
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              color: ThemeConstants.bluecolor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Center(
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "View History",
+                                                textColor:
+                                                    ThemeConstants.whitecolor,
                                               ),
                                             ),
                                           ),
                                         ),
-                                      if (controller.model.value!.data![index]
-                                              .comments![0].senderBy ==
-                                          "2")
-                                        InkWell(
-                                          onTap: () {
-                                            if (controller
-                                                .model
-                                                .value!
-                                                .data![index]
-                                                .comments!
-                                                .isNotEmpty) {
-                                              getDailogViewHistory(
-                                                  controller.model.value!
-                                                      .data![index].comments!,
-                                                  index,
-                                                  controller.model.value!
-                                                      .data![index].id!,
-                                                  true);
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                                color: ThemeConstants.bluecolor,
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        10.0)),
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0, right: 10.0),
-                                              child: Center(
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "Not Convinced",
-                                                  textColor:
-                                                      ThemeConstants.whitecolor,
-                                                ),
+                                      ),
+                                    ),
+                                  if (controller.model.value!.data![index]
+                                          .comments![0].senderBy ==
+                                      "2")
+                                    Align(
+                                      alignment: AlignmentDirectional.topEnd,
+                                      child: InkWell(
+                                        onTap: () {
+                                          if (controller
+                                              .model
+                                              .value!
+                                              .data![index]
+                                              .comments!
+                                              .isNotEmpty) {
+                                            getDailogViewHistory(
+                                                controller.model.value!
+                                                    .data![index].comments!,
+                                                index,
+                                                controller.model.value!
+                                                    .data![index].id!,
+                                                true);
+                                          }
+                                        },
+                                        child: Container(
+                                          height: 35,
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                              color: ThemeConstants.bluecolor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10.0, right: 10.0),
+                                            child: Center(
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Not Convinced",
+                                                textColor:
+                                                    ThemeConstants.whitecolor,
                                               ),
                                             ),
                                           ),
                                         ),
-                                    ],
-                                  ),
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),

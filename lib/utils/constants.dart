@@ -118,7 +118,7 @@ getDashboardScreen(
                 // mainAxisAlignment: MainAxisAlignment.start,
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
+                  SizedBox(
                     width: 300,
                     height: 80.0,
                     child: Padding(
@@ -130,7 +130,7 @@ getDashboardScreen(
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 50,
                     width: 300,
                     child: Padding(
@@ -147,7 +147,7 @@ getDashboardScreen(
                     child: Align(
                       alignment: AlignmentDirectional.topStart,
                       child: CustomDropDownSingleDailog(
-                          model: ["sample"],
+                          model: const ["sample"],
                           callbackFunction: callback,
                           choosefieldtype: false,
                           initialSelectedValue: "sample"),
@@ -188,7 +188,7 @@ getEmailvaliation(String? value) {
   final regex = RegExp(pattern);
 
   if (value != null) {
-    return value!.isNotEmpty && !regex.hasMatch(value)
+    return value.isNotEmpty && !regex.hasMatch(value)
         ? 'Enter a valid email address'
         : null;
   } else if (value == null) {
@@ -332,7 +332,7 @@ getSourceSelected(Function callbackSelectedSource, String id, int index,
 
 getLoading(BuildContext context) {
   return Center(
-    child: Container(
+    child: SizedBox(
       height: MediaQuery.of(context).size.height * 0.50,
       width: MediaQuery.of(context).size.width * 0.50,
       child: Image.asset(
@@ -349,7 +349,6 @@ getLoading(BuildContext context) {
 late StreamSubscription subscription;
 bool isDeviceConnected = false;
 bool isAlertSet = false;
-
 bool ActiveConnection = false;
 String T = "";
 
@@ -534,5 +533,3 @@ getTable(
 // }
 
 
-//TODO
-// [WARNING:display_webview.cc(31)] WebView overlays are enabled!s

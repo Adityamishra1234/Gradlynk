@@ -40,7 +40,9 @@ class StudentPanel {
     // this.passportDetails,
     this.otherCountryOfInterest,
     // this.courseChoice,
+    this.loginproof,
   });
+  bool? loginproof;
   int? countryID;
   int? stateID;
   int? cityID;
@@ -77,6 +79,7 @@ class StudentPanel {
   // List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
+        loginproof: json['login_proof'],
         cityID: json['city_id'],
         stateID: json['state_id'],
         countryID: json['country_live_in'],
@@ -116,6 +119,7 @@ class StudentPanel {
       );
 
   Map<String?, dynamic> toJson() => {
+        "login_proof": loginproof,
         "gender": gender,
         "enquiry_name": enquiryName,
         "email": email,

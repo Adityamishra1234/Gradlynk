@@ -21,7 +21,8 @@ import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support.dart/suggestedimprovisation.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
@@ -58,7 +59,7 @@ import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
 import 'ui/screen/countryGuide/countryguide.dart';
 import 'ui/screen/dashboard/scheduleExpertCall.dart';
-import 'ui/screen/gradlynk_support.dart/track_your_tickets.dart';
+import 'ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'ui/screen/test/test.dart';
 
 Future<void> main() async {
@@ -319,6 +320,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: Suggestedimprovisation.routeNamed,
           page: () => Suggestedimprovisation(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: RaiseYourTicket.routeNamed,
+          page: () => RaiseYourTicket(),
           transition: Transition.fade,
         ),
       ],

@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:http_parser/http_parser.dart' show MediaType;
 import 'package:studentpanel/ui/screen/test/multipartrequest.dart';
+import 'package:studentpanel/utils/endpoint.dart';
 
 typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 
@@ -79,7 +80,7 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
 
   sendFile(file, uploadFilename, String enq_id, String id) async {
     var url = Uri.parse(
-        "http://14.97.86.202:205/api/upload-application-document?enq_id=$enq_id&id=$id");
+        "${Endpoints.baseUrl}upload-application-document?enq_id=$enq_id&id=$id");
     var request = http.MultipartRequest("POST", url);
 
     request.files.add(await http.MultipartFile.fromPath('doc', file.path,
@@ -97,7 +98,7 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
     assert(file != null);
 
     var url = Uri.parse(
-        "http://14.97.86.202:205/api/upload-application-document?enq_id=$enqId&id=$id");
+        "${Endpoints.baseUrl}upload-application-document?enq_id=$enqId&id=$id");
 
     final httpClient = getHttpClient();
 
@@ -169,7 +170,7 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
 
   getielUpload(file, onUploadProgress, String enqId, String id) async {
     var url = Uri.parse(
-        "http://14.97.86.202:205/api/upload-application-document?enq_id=$enqId&id=$id");
+        "${Endpoints.baseUrl}upload-application-document?enq_id=$enqId&id=$id");
     final request = MultipartRequest(
       'POST',
       url,
