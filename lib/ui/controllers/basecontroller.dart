@@ -107,6 +107,11 @@ class BaseController extends GetxController {
       print(sharedPreferences.getString("token").toString());
       print(sharedPreferences.getString("id").toString());
       Get.toNamed(LoginScreen.routeNamed);
+    } else {
+      sharedPreferences.clear();
+      print(sharedPreferences.getString("token").toString());
+      print(sharedPreferences.getString("id").toString());
+      Get.toNamed(LoginScreen.routeNamed);
     }
   }
 }

@@ -949,9 +949,9 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-
-        Get.snackbar("English Test Details", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("English test details updated successfully");
+        // Get.snackbar("English Test Details", dataUpdateStatus.status.toString(),
+        //     snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       await errorHandle(
@@ -971,9 +971,9 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-
-        Get.snackbar("Passport Details:", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("Passport details updated successfully");
+        // Get.snackbar("Passport Details:", dataUpdateStatus.status.toString(),
+        //     snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       await errorHandle(
@@ -1136,9 +1136,9 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-
-        Get.snackbar("Other Test Details:", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("Other test details updated successfully");
+        // Get.snackbar("Other Test Details:", dataUpdateStatus.status.toString(),
+        //     snackPosition: SnackPosition.BOTTOM);
       }
     } catch (e) {
       await errorHandle(

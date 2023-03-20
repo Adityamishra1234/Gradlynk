@@ -314,7 +314,7 @@ class WorkHistoryWidget extends StatelessWidget {
                             }
                           },
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Added",
+                            text: "Add",
                             textColor: ThemeConstants.whitecolor,
                           )),
                     ),

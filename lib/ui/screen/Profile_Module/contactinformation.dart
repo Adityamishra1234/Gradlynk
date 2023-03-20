@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
@@ -57,10 +58,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
               firstCountryInterest.text =
                   _.model.addtionalDetails![i].countryName ?? "";
               assignedAdvisors.text =
-                  _.model.addtionalDetails![i].assigned_advisor! +
-                      _.model.addtionalDetails![i].assigne!;
+                  _.model.addtionalDetails![i].assigned_advisor ?? "";
+              if (getNUllChecker(_.model.addtionalDetails![i].assigne) ==
+                  false) {
+                assignedAdvisors.text = assignedAdvisors.text +
+                    _.model.addtionalDetails![i].assigne!;
+              }
             }
           }
+
           _.dob = _.model.dateOfBirth;
           firstName.text = _.model.enquiryName ?? "";
           lastName.text = _.model.lastname ?? "";
@@ -127,7 +133,12 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           _.update();
         }
       } catch (e) {
-        print(e.toString());
+        ApiServices().errorHandle(
+          Get.find<BaseController>().model1.id.toString(),
+          e.toString(),
+          "1111",
+          StackTrace.current.toString(),
+        );
       }
 
       return _.loadingStudentPanelData.value == 3

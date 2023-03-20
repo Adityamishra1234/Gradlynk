@@ -102,7 +102,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(DashBoard.routeNamed);
                             },
                             child: Padding(
@@ -139,7 +139,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(ProfilePageCopy.routeNamed);
                             },
                             child: Padding(
@@ -176,7 +176,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(ApplicationSummary.routeNamed);
                             },
                             child: Padding(
@@ -213,7 +213,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(CourseSearch.routeNamed);
                             },
                             child: Padding(
@@ -250,7 +250,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(ReviewShortList.routeNamed);
                             },
                             child: Padding(
@@ -287,7 +287,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(FinalShortList.routeNamed);
                             },
                             child: Padding(
@@ -324,7 +324,7 @@ class CustomDrawer extends StatelessWidget {
                     //       child: InkWell(
                     //         highlightColor: ThemeConstants.whitecolor,
                     //         onTap: () {
-                    //           //Get.deleteAll();
+                    //           Get.deleteAll();
                     //           Get.toNamed(VisaSummary.routeNamed);
                     //         },
                     //         child: Padding(
@@ -361,7 +361,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
-                              //Get.deleteAll();
+                              Get.deleteAll();
                               Get.toNamed(StageProgress.routeNamed);
                             },
                             child: Padding(
@@ -398,6 +398,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
+                              Get.deleteAll();
                               Get.toNamed(CountryGuide.routeNamed);
                             },
                             child: Padding(
@@ -492,6 +493,7 @@ class CustomDrawer extends StatelessWidget {
                                 child: InkWell(
                                   highlightColor: ThemeConstants.whitecolor,
                                   onTap: () {
+                                    Get.deleteAll();
                                     Get.toNamed(TrackyourTickets.routeNamed);
                                   },
                                   child: Padding(
@@ -526,6 +528,7 @@ class CustomDrawer extends StatelessWidget {
                                 child: InkWell(
                                   highlightColor: ThemeConstants.whitecolor,
                                   onTap: () {
+                                    Get.deleteAll();
                                     Get.toNamed(
                                         Suggestedimprovisation.routeNamed);
                                   },
@@ -564,6 +567,7 @@ class CustomDrawer extends StatelessWidget {
                           child: InkWell(
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
+                              Get.deleteAll();
                               Get.toNamed(RaiseYourTicket.routeNamed);
                             },
                             child: Padding(
@@ -597,6 +601,7 @@ class CustomDrawer extends StatelessWidget {
                     Center(
                       child: InkWell(
                         onTap: () {
+                          Get.deleteAll();
                           Get.find<BaseController>().logout();
                         },
                         child: Container(

@@ -694,29 +694,29 @@ class EntryRequirement extends StatelessWidget {
                 ],
               ),
             ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15, left: 15),
-            child: Table(
-              children: [
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "Number",
-                    fontSize: 14,
-                    maxLines: 2,
-                  ),
-                ]),
-                TableRow(children: [
-                  CustomAutoSizeTextMontserrat(
-                    text: "completeCourseDetail[0].",
-                    textColor: ThemeConstants.TextColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    maxLines: 2,
-                  ),
-                ]),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 15, left: 15),
+          //   child: Table(
+          //     children: [
+          //       TableRow(children: [
+          //         CustomAutoSizeTextMontserrat(
+          //           text: "Number",
+          //           fontSize: 14,
+          //           maxLines: 2,
+          //         ),
+          //       ]),
+          //       TableRow(children: [
+          //         CustomAutoSizeTextMontserrat(
+          //           text: "completeCourseDetail[0].",
+          //           textColor: ThemeConstants.TextColor,
+          //           fontSize: 14,
+          //           fontWeight: FontWeight.w600,
+          //           maxLines: 2,
+          //         ),
+          //       ]),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     ));

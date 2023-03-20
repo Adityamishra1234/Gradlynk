@@ -529,7 +529,7 @@ class _CourseSearchState extends State<CourseSearch> {
       } else {
         if (controller.cityList[i] == data) {
           controller.selectCityName = data;
-          controller.selectCityCode = controller.stateCode[i];
+          controller.selectCityCode = controller.cityCode[i];
           controller.update();
         }
       }

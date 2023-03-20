@@ -51,8 +51,9 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                 fontWeight: FontWeight.bold,
               ),
               subtitle: CustomAutoSizeTextMontserrat(
-                text:
-                    "${widget.model1.countryName ?? ""},${widget.model1.stateName ?? ""},${widget.model1.cityName ?? ""}|${widget.model1.universityName ?? ""}",
+                text: "${widget.model1.countryName ?? ""}"
+                    " ${widget.model1.stateName ?? ""}"
+                    "${widget.model1.cityName ?? ""}|${widget.model1.universityName ?? ""}",
                 textColor: ThemeConstants.TextColor,
               ),
               autofocus: false,
@@ -82,8 +83,9 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                 fontWeight: FontWeight.bold,
               ),
               subtitle: CustomAutoSizeTextMontserrat(
-                text:
-                    "${widget.model2.countryName ?? ""},${widget.model2.stateName ?? ""},${widget.model2.cityName ?? ""}|${widget.model2.universityName ?? ""}",
+                text: "${widget.model2.countryName ?? ""}"
+                    "${widget.model2.stateName ?? ""}"
+                    "${widget.model2.cityName ?? ""}|${widget.model2.universityName ?? ""}",
                 textColor: ThemeConstants.TextColor,
               ),
               autofocus: false,
@@ -105,11 +107,14 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                   padding:
                       const EdgeInsets.only(right: 20, top: 20, bottom: 20),
                   child: SizedBox(
-                    width: 150,
+                    width: 120,
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: ThemeConstants.whitecolor, side: BorderSide(color: ThemeConstants.bluegreycolor), backgroundColor: ThemeConstants.whitecolor, // foreground
+                          foregroundColor: ThemeConstants.whitecolor,
+                          side: BorderSide(color: ThemeConstants.bluegreycolor),
+                          backgroundColor:
+                              ThemeConstants.whitecolor, // foreground
                         ),
                         onPressed: () {
                           Navigator.pop(context, true);
@@ -124,11 +129,13 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                   padding:
                       const EdgeInsets.only(right: 20, top: 20, bottom: 20),
                   child: SizedBox(
-                    width: 150,
+                    width: 120,
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, // foreground
+                          foregroundColor: ThemeConstants.bluecolor,
+                          backgroundColor:
+                              ThemeConstants.bluecolor, // foreground
                         ),
                         onPressed: () {
                           String temp = "";

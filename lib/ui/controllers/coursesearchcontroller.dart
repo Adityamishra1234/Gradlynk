@@ -136,6 +136,8 @@ class CourseSearchController extends GetxController {
   }
 
   getState(int country) async {
+    cityCode = [];
+    cityList = [];
     stateCode = [];
     stateList = [];
     loadingState.value = false;
