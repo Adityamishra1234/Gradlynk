@@ -21,6 +21,8 @@ class _LoginCopyState extends State<LoginCopy> {
   String? email, password;
   var controller = Get.put(LoginController());
 
+  static TextEditingController phoneNumber = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -53,14 +55,17 @@ class _LoginCopyState extends State<LoginCopy> {
   // }
 
   List<Widget> imglist1 = [
-    Image.network(
-      "https://sieceducation.in/assets/assets/images/login-page.png",
+    Image.asset(
+      "assets/images/login-page.png",
+      fit: BoxFit.fill,
     ),
-    Image.network(
-      "https://sieceducation.in/assets/assets/images/University-of-Melbourne.png",
+    Image.asset(
+      "assets/images/University-of-Melbourne.png",
+      fit: BoxFit.fill,
     ),
-    Image.network(
-      "https://sieceducation.in/assets/assets/images/University-of-Toronto.png",
+    Image.asset(
+      "assets/images/University-of-Toronto.png",
+      fit: BoxFit.fill,
     ),
   ];
 
@@ -88,7 +93,7 @@ class _LoginCopyState extends State<LoginCopy> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 0),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width - 20,
                     child: CustomAutoSizeTextMontserrat(
@@ -114,7 +119,7 @@ class _LoginCopyState extends State<LoginCopy> {
                     children: [
                       svgImage("location", ThemeConstants.whitecolor, 35, 35),
                       Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 0),
                         child: CustomAutoSizeTextMontserrat(
                           text: "University of Melbourne",
                           textColor: ThemeConstants.whitecolor,
@@ -124,7 +129,7 @@ class _LoginCopyState extends State<LoginCopy> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 0),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width - 20,
                     child: CustomAutoSizeTextMontserrat(
@@ -160,7 +165,7 @@ class _LoginCopyState extends State<LoginCopy> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
+                  padding: const EdgeInsets.only(top: 0),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width - 20,
                     child: CustomAutoSizeTextMontserrat(
@@ -233,7 +238,10 @@ class _LoginCopyState extends State<LoginCopy> {
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 20, left: 10, right: 10),
-                          child: TextField(
+                          child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            controller: phoneNumber,
                             keyboardType: TextInputType.number,
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly
@@ -267,10 +275,22 @@ class _LoginCopyState extends State<LoginCopy> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  Get.toNamed(OTPScreen.routeNamed);
+                                  if (getNUllChecker(phoneNumber.text) ==
+                                      true) {
+                                    getToast("Please enter your phone number");
+                                  }
+                                  // else if (getNUllChecker(password.text) ==
+                                  //     true) {
+                                  //   getToast("Please enter your password");
+                                  // }
+                                  else {
+                                    controller.Templogin(phoneNumber.text);
+                                  }
+
+                                  // Get.toNamed(OTPScreen.routeNamed);
                                 },
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "Log-In",
+                                  text: "Get OTP",
                                   textColor: Colors.white,
                                 )),
                           ),

@@ -26,9 +26,9 @@ class _AnimationTestState extends State<AnimationTest>
       loop: false,
       onFinish: () {
         if (getNUllChecker(controller1.phone) == false) {
-          Get.offNamed(DashBoard.routeNamed, arguments: controller1.phone);
+          Get.offNamed(LoginCopy.routeNamed, arguments: controller1.phone);
         } else {
-          Get.offNamed(LoginScreen.routeNamed);
+          Get.offNamed(DashBoard.routeNamed);
         }
       },
     );

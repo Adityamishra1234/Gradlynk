@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
@@ -66,6 +67,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(systemStatusBarContrastEnforced: true));
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
   // SystemChrome.setEnabledSystemUIOverlays([]);
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
@@ -125,7 +127,7 @@ class _MyAppState extends State<MyApp> {
       getPages: [
         GetPage(
           name: "/",
-          page: () => const Login(),
+          page: () => const LoginCopy(),
         ),
         GetPage(
           name: LoginCopy.routeNamed,

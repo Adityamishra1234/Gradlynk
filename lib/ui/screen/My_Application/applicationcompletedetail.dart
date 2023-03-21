@@ -6,6 +6,7 @@ import 'package:configurable_expansion_tile_null_safety/configurable_expansion_t
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
@@ -149,7 +150,7 @@ class _ApplicationCompleteDetailsState
                                               backgroundColor: ThemeConstants
                                                   .whitecolor, // foreground
                                             ),
-                                            onPressed: () {
+                                            onPressed: () async {
                                               downloadFile(
                                                   _.model.acknowledgementFile);
                                             },
@@ -1043,10 +1044,15 @@ class _ApplicationCompleteDetailsState
   }
 
   Future<bool> saveVideo(String url, String fileName) async {
-    Directory directory;
+    Directory? directory;
     try {
       if (Platform.isAndroid) {
         if (await _requestPermission(Permission.storage)) {
+          // if (await _requestPermission(Permission.storage) &&
+          //     // access media location needed for android 10/Q
+          //     await _requestPermission(Permission.accessMediaLocation) &&
+          //     // manage external storage needed for android 11/R
+          //     await _requestPermission(Permission.manageExternalStorage)) {}
           directory = (await getExternalStorageDirectory())!;
           String newPath = "";
           List<String> paths = directory.path.split("/");
@@ -1058,7 +1064,7 @@ class _ApplicationCompleteDetailsState
               break;
             }
           }
-          newPath = "$newPath/SIEC";
+          newPath = "$newPath/Gradlynk";
           directory = Directory(newPath);
         } else {
           return false;
@@ -1072,25 +1078,46 @@ class _ApplicationCompleteDetailsState
       }
       File saveFile = File("${directory.path}/$fileName");
       if (!await directory.exists()) {
-        await directory.create(recursive: true);
+        var status = await Permission.storage.status;
+
+        // var temp = await createFolderInAppDocDir(saveFile.path);
+        // await Permission.storage.request();
+        // print("aman");
+        // await directory.create();
       }
-      if (await directory.exists()) {
-        await dio.download(url, saveFile.path,
-            onReceiveProgress: (value1, value2) {
-          setState(() {
-            progress = value1 / value2;
-            print(progress);
-          });
+      // if (await directory.exists()) {
+      await dio.download(url, saveFile, onReceiveProgress: (value1, value2) {
+        setState(() {
+          progress = value1 / value2;
+          print(progress);
         });
-        if (Platform.isIOS) {
-          shareFile(saveFile.path);
-        }
-        return true;
+      });
+      if (Platform.isIOS) {
+        shareFile(saveFile.path);
       }
-      return false;
+      return true;
+      // }
+      // return false;
     } catch (e) {
       print(e);
       return false;
+    }
+  }
+
+  createFolderInAppDocDir(String folderName) async {
+    //Get this App Document Directory
+    final Directory _appDocDir = await getApplicationDocumentsDirectory();
+    //App Document Directory + folder name
+    final Directory _appDocDirFolder = Directory(folderName);
+
+    if (await _appDocDirFolder.exists()) {
+      //if folder already exists return path
+      return _appDocDirFolder.path;
+    } else {
+      //if folder not exists create folder and then return its path
+      final Directory _appDocDirNewFolder =
+          await _appDocDirFolder.create(recursive: true);
+      return _appDocDirNewFolder.path;
     }
   }
 
@@ -1107,23 +1134,38 @@ class _ApplicationCompleteDetailsState
   }
 
   downloadFile(String url) async {
-    setState(() {
-      loading = true;
-      progress = 0;
-    });
-    bool downloaded = await saveVideo(url,
-        reverseStringUsingSplit(reverseStringUsingSplit(url).split("/")[0]));
-    if (downloaded) {
-      if (Platform.isAndroid) {
-        Get.snackbar("File download", "complete download",
-            snackPosition: SnackPosition.BOTTOM);
-      }
+    print(url);
+    final permissionStatus = await Permission.storage.request();
+
+    if (permissionStatus.isGranted) {
+      final externalDir = await getExternalStorageDirectory();
+
+      final taskId = await FlutterDownloader.enqueue(
+        url: url,
+        savedDir: externalDir!.path,
+        showNotification: true,
+        openFileFromNotification: true,
+      );
     } else {
-      print("Problem Downloading File");
+      print('Permission denied');
     }
-    setState(() {
-      loading = false;
-    });
+    // setState(() {
+    //   loading = true;
+    //   progress = 0;
+    // });
+    // bool downloaded = await saveVideo(url,
+    //     reverseStringUsingSplit(reverseStringUsingSplit(url).split("/")[0]));
+    // if (downloaded) {
+    //   if (Platform.isAndroid) {
+    //     Get.snackbar("File download", "complete download",
+    //         snackPosition: SnackPosition.BOTTOM);
+    //   }
+    // } else {
+    //   getToast("Problem Downloading File");
+    // }
+    // setState(() {
+    //   loading = false;
+    // });
   }
 
   Future<void> shareFile(String filepath) async {

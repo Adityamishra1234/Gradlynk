@@ -21,7 +21,6 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'takepicturescreenCommonDocument.dart';
 
 class UploadDocument extends StatefulWidget {

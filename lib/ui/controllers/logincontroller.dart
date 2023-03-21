@@ -50,6 +50,31 @@ class LoginController extends GetxController with StateMixin {
     }
   }
 
+  Templogin(String phone) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // change(null, status: RxStatus.loading());
+    // var responsive = await services.getLogin(
+    //   Endpoints.login! + phone + Endpoints.login2! + password,
+    // );
+
+    // if (responsive != null) {
+    //   model = responsive;
+    prefs.setString("phonenumber", phone);
+    // prefs.setString("token", model!.token.toString());
+    // prefs.setString("id", model!.user!.id.toString());
+    // change(null, status: RxStatus.success());
+    Get.offAllNamed(DashBoard.routeNamed);
+    return model;
+    // } else {
+    //   change(null, status: RxStatus.success());
+    //   Get.snackbar(
+    //     "Error",
+    //     "Please Retry phone number and Password",
+    //     snackPosition: SnackPosition.BOTTOM,
+    //   );
+    // }
+  }
+
   // checkUserData() async {
   //   SharedPreferences prefs = await SharedPreferences.getInstance();
   //   var Userlogincheck = prefs.getString("UserModel");

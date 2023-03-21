@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/updatedialog.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -104,14 +105,10 @@ class BaseController extends GetxController {
         Endpoints.baseUrl!, Endpoints.logout! + id, token);
     if (res == true) {
       sharedPreferences.clear();
-      print(sharedPreferences.getString("token").toString());
-      print(sharedPreferences.getString("id").toString());
-      Get.toNamed(LoginScreen.routeNamed);
+      Get.toNamed(LoginCopy.routeNamed);
     } else {
       sharedPreferences.clear();
-      print(sharedPreferences.getString("token").toString());
-      print(sharedPreferences.getString("id").toString());
-      Get.toNamed(LoginScreen.routeNamed);
+      Get.toNamed(LoginCopy.routeNamed);
     }
   }
 }
