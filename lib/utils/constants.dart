@@ -445,6 +445,74 @@ getTable(
   }
 }
 
+getDailogForAgree(
+  BuildContext context,
+) {
+  return showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                      width: 300.0,
+                      height: 60.0,
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                        text: "Welcome to SIEC Gradlynk Student Panel",
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                        textColor: ThemeConstants.bluecolor,
+                      ))),
+                  SizedBox(
+                      width: 300.0,
+                      height: 40.0,
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                        text: "I, agree to the following :",
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        textColor: ThemeConstants.blackcolor,
+                      ))),
+                  SizedBox(
+                      width: 300.0,
+                      height: 150.0,
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                        text:
+                            """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
+2. All the information submitted is correct and collaborates with my legal documents.
+3. In case of any discrepancy in information, SIC will not be liable for any halt throughout the process.
+4.I, agree to all SIEC's Terms & Conditions.""",
+                        fontSize: 18,
+                        textColor: ThemeConstants.blackcolor,
+                      ))),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 35,
+                      width: 300,
+                      decoration: BoxDecoration(
+                          color: ThemeConstants.bluecolor,
+                          borderRadius: BorderRadius.circular(10.0)),
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                        text: "I Agree",
+                        textColor: ThemeConstants.whitecolor,
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ));
+}
+
+
 // getScheduleExpertCall() {
 //   return Get.bottomSheet(Container(
 //     height: 345,

@@ -1,6 +1,7 @@
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:typed_data';
-
+import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:dio/dio.dart';
@@ -55,6 +56,77 @@ class _ApplicationCompleteDetailsState
   ]);
 
   var controller = Get.put(ApplicationCompleteDetailsController());
+
+  Future download(String url) async {
+    var status = await Permission.storage.request();
+    if (await Permission.storage.request().isGranted) {
+      final Directory tempDir = await getTemporaryDirectory();
+
+      final Directory appDocumentsDir =
+          await getApplicationDocumentsDirectory();
+
+      bool dirDownloadExists = true;
+      var directory;
+      if (Platform.isIOS) {
+        directory = await getDownloadsDirectory();
+      } else {
+        directory = "/storage/emulated/0/Download/";
+
+        dirDownloadExists = await Directory(directory).exists();
+        if (dirDownloadExists) {
+          directory = "/storage/emulated/0/Download/";
+        } else {
+          directory = "/storage/emulated/0/Downloads/";
+        }
+      }
+      await FlutterDownloader.enqueue(
+        url: 'https://download.samplelib.com/mp4/sample-5s.mp4',
+
+        headers: {}, // optional: header send with url (auth token etc)
+        savedDir: directory,
+        saveInPublicStorage: true,
+        showNotification:
+            true, // show download progress in status bar (for Android)
+        openFileFromNotification:
+            true, // click on notification to open downloaded file (for Android)
+      );
+    }
+  }
+
+  ReceivePort _port = ReceivePort();
+
+  @override
+  void initState() {
+    super.initState();
+
+    IsolateNameServer.registerPortWithName(
+        _port.sendPort, 'downloader_send_port');
+    _port.listen((dynamic data) {
+      String id = data[0];
+      DownloadTaskStatus status = data[1];
+      int progress = data[2];
+      if (status == DownloadTaskStatus.complete) {
+        print("file downloaded");
+      }
+      setState(() {});
+    });
+
+    FlutterDownloader.registerCallback(downloadCallback);
+  }
+
+  @override
+  void dispose() {
+    IsolateNameServer.removePortNameMapping('downloader_send_port');
+    super.dispose();
+  }
+
+  @pragma('vm:entry-point')
+  static void downloadCallback(
+      String id, DownloadTaskStatus status, int progress) {
+    final SendPort? send =
+        IsolateNameServer.lookupPortByName('downloader_send_port');
+    send!.send([id, status, progress]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,8 +223,7 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () async {
-                                              downloadFile(
-                                                  _.model.acknowledgementFile);
+                                              // Download code
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -330,8 +401,7 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              downloadFile(
-                                                  _.model.fullOfferDoc);
+                                              download("url");
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -392,8 +462,7 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              downloadFile(
-                                                  _.model.rejectionDoc);
+                                              download("url");
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -454,8 +523,7 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              downloadFile(
-                                                  _.model.conditionalOfferDoc);
+                                              download("url");
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -607,8 +675,7 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              downloadFile(
-                                                  _.model.paymentReceipt);
+                                              download("url");
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -669,8 +736,7 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              downloadFile(
-                                                  _.model.cas_i_20_coe_doc);
+                                              download("url");
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -983,7 +1049,7 @@ class _ApplicationCompleteDetailsState
                                       ThemeConstants.whitecolor, // foreground
                                 ),
                                 onPressed: () {
-                                  downloadFile(model.documents![i].viewLink);
+                                  download("url");
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Download",
@@ -1041,131 +1107,6 @@ class _ApplicationCompleteDetailsState
       documentlist.addAll(list[i].entries.first.value);
     }
     return documentlist;
-  }
-
-  Future<bool> saveVideo(String url, String fileName) async {
-    Directory? directory;
-    try {
-      if (Platform.isAndroid) {
-        if (await _requestPermission(Permission.storage)) {
-          // if (await _requestPermission(Permission.storage) &&
-          //     // access media location needed for android 10/Q
-          //     await _requestPermission(Permission.accessMediaLocation) &&
-          //     // manage external storage needed for android 11/R
-          //     await _requestPermission(Permission.manageExternalStorage)) {}
-          directory = (await getExternalStorageDirectory())!;
-          String newPath = "";
-          List<String> paths = directory.path.split("/");
-          for (int x = 1; x < paths.length; x++) {
-            String folder = paths[x];
-            if (folder != "Android") {
-              newPath += "/$folder";
-            } else {
-              break;
-            }
-          }
-          newPath = "$newPath/Gradlynk";
-          directory = Directory(newPath);
-        } else {
-          return false;
-        }
-      } else {
-        if (await _requestPermission(Permission.storage)) {
-          directory = await getApplicationDocumentsDirectory();
-        } else {
-          return false;
-        }
-      }
-      File saveFile = File("${directory.path}/$fileName");
-      if (!await directory.exists()) {
-        var status = await Permission.storage.status;
-
-        // var temp = await createFolderInAppDocDir(saveFile.path);
-        // await Permission.storage.request();
-        // print("aman");
-        // await directory.create();
-      }
-      // if (await directory.exists()) {
-      await dio.download(url, saveFile, onReceiveProgress: (value1, value2) {
-        setState(() {
-          progress = value1 / value2;
-          print(progress);
-        });
-      });
-      if (Platform.isIOS) {
-        shareFile(saveFile.path);
-      }
-      return true;
-      // }
-      // return false;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-  createFolderInAppDocDir(String folderName) async {
-    //Get this App Document Directory
-    final Directory _appDocDir = await getApplicationDocumentsDirectory();
-    //App Document Directory + folder name
-    final Directory _appDocDirFolder = Directory(folderName);
-
-    if (await _appDocDirFolder.exists()) {
-      //if folder already exists return path
-      return _appDocDirFolder.path;
-    } else {
-      //if folder not exists create folder and then return its path
-      final Directory _appDocDirNewFolder =
-          await _appDocDirFolder.create(recursive: true);
-      return _appDocDirNewFolder.path;
-    }
-  }
-
-  Future<bool> _requestPermission(Permission permission) async {
-    if (await permission.isGranted) {
-      return true;
-    } else {
-      var result = await permission.request();
-      if (result == PermissionStatus.granted) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  downloadFile(String url) async {
-    print(url);
-    final permissionStatus = await Permission.storage.request();
-
-    if (permissionStatus.isGranted) {
-      final externalDir = await getExternalStorageDirectory();
-
-      final taskId = await FlutterDownloader.enqueue(
-        url: url,
-        savedDir: externalDir!.path,
-        showNotification: true,
-        openFileFromNotification: true,
-      );
-    } else {
-      print('Permission denied');
-    }
-    // setState(() {
-    //   loading = true;
-    //   progress = 0;
-    // });
-    // bool downloaded = await saveVideo(url,
-    //     reverseStringUsingSplit(reverseStringUsingSplit(url).split("/")[0]));
-    // if (downloaded) {
-    //   if (Platform.isAndroid) {
-    //     Get.snackbar("File download", "complete download",
-    //         snackPosition: SnackPosition.BOTTOM);
-    //   }
-    // } else {
-    //   getToast("Problem Downloading File");
-    // }
-    // setState(() {
-    //   loading = false;
-    // });
   }
 
   Future<void> shareFile(String filepath) async {

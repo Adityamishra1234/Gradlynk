@@ -67,7 +67,15 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(systemStatusBarContrastEnforced: true));
-  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+
+  // Plugin must be initialized before using
+  await FlutterDownloader.initialize(
+      debug:
+          true, // optional: set to false to disable printing logs to console (default: true)
+      ignoreSsl:
+          true // option: set to false to disable working with http links (default: false)
+      );
+
   // SystemChrome.setEnabledSystemUIOverlays([]);
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,

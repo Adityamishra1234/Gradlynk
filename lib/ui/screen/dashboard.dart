@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bulleted_list/bulleted_list.dart';
+import 'package:coachmaker/coachmaker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
@@ -48,6 +49,97 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     super.initState();
+  }
+
+  getintro(BuildContext context) {
+    CoachMaker(
+      context,
+      // firstDelay: Duration(seconds: 10),
+      // duration: Duration(milliseconds: 600),
+      initialList: [
+        CoachModel(
+          initial: '1',
+          title: 'Keong Racun',
+          maxWidth: 400,
+          subtitle: [
+            'Dasar kau keong racun\nBaru kenal eh ngajak tidur\nNgomong nggak sopan santun\nKau anggap aku ayam kampung',
+          ],
+          header: Image.network(
+            'https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512',
+            height: 50,
+            width: 50,
+          ),
+        ),
+        CoachModel(
+            initial: '2',
+            title: 'Burung Bangau yang Angkuh',
+            maxWidth: 400,
+            alignment: Alignment.centerRight,
+            subtitle: [
+              'Seekor bangau berjalan dengan langkah yang anggun di sepanjang sebuah sungai kecil, matanya menatap air sungai yang jernih, leher dan paruhnya yang panjang siap untuk menangkap mangsa di air sebagai sarapan paginya. Saat itu, sungai dipenuhi dengan ikan-ikan yang berenang, tetapi sang Bangau merasa sedikit angkuh di pagi hari itu.',
+              'bagian 2'
+            ],
+            header: Image.network(
+              'https://lh3.googleusercontent.com/3_OFn2skqHXk-UQ-9RUdNrDl_HQJrMCxks5teQcUrF_bOSeDG1hD8j83FeD31W8hASZCvubzsGfumuJq8kvvSAq03wY87RZ7Otx_DF4',
+              height: 50,
+              width: 50,
+            )),
+        CoachModel(
+            initial: '3',
+            title: 'Burung perkutut, burung kuthilang',
+            maxWidth: 400,
+            alignment: Alignment.centerRight,
+            subtitle: [
+              'kamu kentut enggak bilang bilang ',
+            ],
+            header: Image.network(
+              'https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA',
+              height: 50,
+              width: 50,
+            )),
+        CoachModel(
+            initial: '4',
+            title: 'Balonku ada lima',
+            maxWidth: 400,
+            alignment: Alignment.center,
+            subtitle: [
+              'Rupa-rupa warnanya\nHijau, kuning, kelabu\n\nMerah muda dan biru\nMeletus balon hijau DOR!',
+            ],
+            header: Image.asset(
+              'images/logo.png',
+              height: 50,
+              width: 50,
+            )),
+      ],
+      nextStep: CoachMakerControl.next,
+      skip: () {},
+      // customNavigator: (onSkip, onNext) {
+      //   return Row(
+      //     children: [
+      //       IconButton(
+      //         onPressed: () {
+      //           onSkip!();
+      //         },
+      //         icon: Icon(Icons.close),
+      //       ),
+      //       IconButton(
+      //         onPressed: () {
+      //           onNext();
+      //         },
+      //         icon: Icon(Icons.arrow_forward),
+      //       )
+      //     ],
+      //   );
+      // },
+      buttonOptions: CoachButtonOptions(
+        skipTitle: 'Lewati',
+        buttonTitle: 'Lanjut',
+        buttonStyle: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.green),
+          elevation: MaterialStateProperty.all(0),
+        ),
+      ),
+    ).show();
   }
 
   @override
@@ -99,12 +191,21 @@ class _DashBoardState extends State<DashBoard> {
                                         child: Align(
                                           alignment:
                                               AlignmentDirectional.topStart,
-                                          child: Text(
-                                            "Hi,",
-                                            style: GoogleFonts.roboto(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 30,
-                                                textStyle: const TextStyle()),
+                                          child: CoachPoint(
+                                            initial: '1',
+                                            child: InkWell(
+                                              onTap: () {
+                                                getDailogForAgree(context);
+                                              },
+                                              child: Text(
+                                                "Hi,",
+                                                style: GoogleFonts.roboto(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 30,
+                                                    textStyle:
+                                                        const TextStyle()),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -151,52 +252,59 @@ class _DashBoardState extends State<DashBoard> {
                                   //   width: 20,
                                   // ),
                                   const Spacer(),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      foregroundColor:
-                                          ThemeConstants.whitecolor,
-                                      elevation: 0,
-                                      backgroundColor:
-                                          ThemeConstants.whitecolor,
-                                      shadowColor:
-                                          ThemeConstants.lightblueColor,
-                                      side: BorderSide(
-                                          color: ThemeConstants
-                                              .bluecolor), // foreground
-                                    ),
-                                    onPressed: () {
-                                      Get.toNamed(
-                                          ScheduleExpertCall.routeNamed);
-                                    },
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Schedule expert call",
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      textColor: ThemeConstants.bluecolor,
+                                  CoachPoint(
+                                    initial: '2',
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor:
+                                            ThemeConstants.whitecolor,
+                                        elevation: 0,
+                                        backgroundColor:
+                                            ThemeConstants.whitecolor,
+                                        shadowColor:
+                                            ThemeConstants.lightblueColor,
+                                        side: BorderSide(
+                                            color: ThemeConstants
+                                                .bluecolor), // foreground
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(
+                                            ScheduleExpertCall.routeNamed);
+                                      },
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Schedule expert call",
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                        textColor: ThemeConstants.bluecolor,
+                                      ),
                                     ),
                                   ),
                                   const Spacer(),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      foregroundColor:
-                                          ThemeConstants.whitecolor,
-                                      elevation: 0,
-                                      backgroundColor:
-                                          ThemeConstants.whitecolor,
-                                      shadowColor:
-                                          ThemeConstants.lightorangeColor,
-                                      side: BorderSide(
-                                          color: ThemeConstants
-                                              .orangeColor), // foreground
-                                    ),
-                                    onPressed: () {
-                                      Get.toNamed(BookAnAppointment.routeNamed);
-                                    },
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Book an appointment",
-                                      fontSize: 12,
-                                      textColor: ThemeConstants.orangeColor,
-                                      fontWeight: FontWeight.bold,
+                                  CoachPoint(
+                                    initial: '3',
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        foregroundColor:
+                                            ThemeConstants.whitecolor,
+                                        elevation: 0,
+                                        backgroundColor:
+                                            ThemeConstants.whitecolor,
+                                        shadowColor:
+                                            ThemeConstants.lightorangeColor,
+                                        side: BorderSide(
+                                            color: ThemeConstants
+                                                .orangeColor), // foreground
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(
+                                            BookAnAppointment.routeNamed);
+                                      },
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Book an appointment",
+                                        fontSize: 12,
+                                        textColor: ThemeConstants.orangeColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   // const SizedBox(
@@ -216,50 +324,54 @@ class _DashBoardState extends State<DashBoard> {
                                 runAlignment: WrapAlignment.center,
                                 children: [
                                   // Create profile
-                                  InkWell(
-                                    onTap: () async {
-                                      // final cameras = await availableCameras();
+                                  CoachPoint(
+                                    initial: '4',
+                                    child: InkWell(
+                                      onTap: () async {
+                                        // final cameras = await availableCameras();
 
-                                      // // Get a specific camera from the list of available cameras.
-                                      // final firstCamera = cameras.first;
-                                      // // String id = DateTime.now().toIso8601String();
-                                      // Get.to(TakePictureScreen(
-                                      //   camera: firstCamera,
-                                      // ));
+                                        // // Get a specific camera from the list of available cameras.
+                                        // final firstCamera = cameras.first;
+                                        // // String id = DateTime.now().toIso8601String();
+                                        // Get.to(TakePictureScreen(
+                                        //   camera: firstCamera,
+                                        // ));
 
-                                      Get.toNamed(ProfilePageCopy.routeNamed);
-                                      // Get.to(DownloadFileTest());
-                                      // Get.to(CustomFileUpload());
-                                      // getDashboardScreen(context, callbackDropDownButton);
-                                    },
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                            height: 130,
-                                            width: 160,
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    width: 0,
-                                                    color: const Color(
-                                                        0xFFF1F0FF)),
-                                                color: const Color(0xFFF1F0FF),
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                        Radius.circular(20))),
-                                            child: svgImage(
-                                                "create_profile",
-                                                const Color(0xFF6F61FF),
-                                                80,
-                                                80)),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 10),
-                                          child: Text(
-                                            "Create your profile",
-                                            style: _textStyle,
-                                          ),
-                                        )
-                                      ],
+                                        Get.toNamed(ProfilePageCopy.routeNamed);
+                                        // Get.to(DownloadFileTest());
+                                        // Get.to(CustomFileUpload());
+                                        // getDashboardScreen(context, callbackDropDownButton);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                              height: 130,
+                                              width: 160,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: 0,
+                                                      color: const Color(
+                                                          0xFFF1F0FF)),
+                                                  color:
+                                                      const Color(0xFFF1F0FF),
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(20))),
+                                              child: svgImage(
+                                                  "create_profile",
+                                                  const Color(0xFF6F61FF),
+                                                  80,
+                                                  80)),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              "Create your profile",
+                                              style: _textStyle,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   //Upload Document

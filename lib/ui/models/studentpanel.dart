@@ -6,42 +6,43 @@ StudentPanel? studentPanelFromJson(String? str) =>
 String? studentPanelToJson(StudentPanel data) => json.encode(data.toJson());
 
 class StudentPanel {
-  StudentPanel({
-    this.countryID,
-    this.stateID,
-    this.cityID,
-    this.child_count,
-    this.alternateNumber,
-    this.whatsappNumber,
-    this.secondaryemail,
-    this.instagramId,
-    this.facebookId,
-    this.snapchatId,
-    this.lastname,
-    this.gender,
-    this.enquiryName,
-    this.email,
-    this.secondaryEmail,
-    this.mobile,
-    this.maritalStatus,
-    this.countryName,
-    this.stateName,
-    this.cityName,
-    this.applicantType,
-    this.id,
-    this.passportName,
-    this.address,
-    this.street,
-    this.pincode,
-    this.dateOfBirth,
-    this.passportAvailable,
-    this.addtionalDetails,
-    // this.testDetails,
-    // this.passportDetails,
-    this.otherCountryOfInterest,
-    // this.courseChoice,
-    this.loginproof,
-  });
+  StudentPanel(
+      {this.countryID,
+      this.stateID,
+      this.cityID,
+      this.child_count,
+      this.alternateNumber,
+      this.whatsappNumber,
+      this.secondaryemail,
+      this.instagramId,
+      this.facebookId,
+      this.snapchatId,
+      this.lastname,
+      this.gender,
+      this.enquiryName,
+      this.email,
+      this.secondaryEmail,
+      this.mobile,
+      this.maritalStatus,
+      this.countryName,
+      this.stateName,
+      this.cityName,
+      this.applicantType,
+      this.id,
+      this.passportName,
+      this.address,
+      this.street,
+      this.pincode,
+      this.dateOfBirth,
+      this.passportAvailable,
+      this.addtionalDetails,
+      // this.testDetails,
+      // this.passportDetails,
+      this.otherCountryOfInterest,
+      // this.courseChoice,
+      this.loginproof,
+      this.is_block});
+  int? is_block;
   bool? loginproof;
   int? countryID;
   int? stateID;
@@ -80,6 +81,7 @@ class StudentPanel {
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
         loginproof: json['login_proof'],
+        is_block: json['is_blocked'],
         cityID: json['city_id'],
         stateID: json['state_id'],
         countryID: json['country_live_in'],
@@ -119,6 +121,7 @@ class StudentPanel {
       );
 
   Map<String?, dynamic> toJson() => {
+        "is_blocked": is_block,
         "login_proof": loginproof,
         "gender": gender,
         "enquiry_name": enquiryName,

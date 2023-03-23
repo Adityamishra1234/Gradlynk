@@ -52,19 +52,23 @@ class BaseController extends GetxController {
     if (res != null) {
       model1 = res;
 
-      if (model1.otherCountryOfInterest != null) {
-        model1.otherCountryOfInterest!.forEach((element) {
-          countrylist.add("Select your country");
-          countryid.add(0);
-          countryid.add(element.id!);
-          countrylist.add(element.countryName!);
-        });
-      }
-      if (getNUllChecker(model1.countryName) == false) {
-        countrylist.add(model1.countryName!);
-      }
-      if (getNUllChecker(model1.countryID) == false) {
-        countryid.add(model1.countryID!);
+      if (model1.is_block == 1) {
+        logout();
+      } else {
+        if (model1.otherCountryOfInterest != null) {
+          model1.otherCountryOfInterest!.forEach((element) {
+            countrylist.add("Select your country");
+            countryid.add(0);
+            countryid.add(element.id!);
+            countrylist.add(element.countryName!);
+          });
+        }
+        if (getNUllChecker(model1.countryName) == false) {
+          countrylist.add(model1.countryName!);
+        }
+        if (getNUllChecker(model1.countryID) == false) {
+          countryid.add(model1.countryID!);
+        }
       }
 
       loadingStudentPanelData1 = true.obs;

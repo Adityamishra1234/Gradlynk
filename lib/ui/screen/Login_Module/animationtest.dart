@@ -4,7 +4,6 @@ import 'package:gif_view/gif_view.dart';
 import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
-
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/utils/constants.dart';
 
@@ -26,9 +25,9 @@ class _AnimationTestState extends State<AnimationTest>
       loop: false,
       onFinish: () {
         if (getNUllChecker(controller1.phone) == false) {
-          Get.offNamed(LoginCopy.routeNamed, arguments: controller1.phone);
-        } else {
           Get.offNamed(DashBoard.routeNamed);
+        } else {
+          Get.offNamed(LoginScreen.routeNamed, arguments: controller1.phone);
         }
       },
     );
