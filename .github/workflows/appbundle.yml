@@ -14,6 +14,7 @@ jobs:
         with:
           java-version: '12.x'
           flutter-version: '3.x'
+          dart-version: '2.12.x'
       - uses: subosito/flutter-action@v1
         with:
           channel: 'beta'
