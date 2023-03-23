@@ -15,8 +15,9 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
         with:
-          channel: 'beta'
-      - run: pub upgrade    
+          channel: 'beta'   
+      - run: flutter pub get
+      - run: pub upgrade 
       - run: flutter pub get
       - run: flutter build apk
       - uses: actions/upload-artifact@v1
