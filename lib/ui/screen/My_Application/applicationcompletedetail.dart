@@ -407,10 +407,13 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              if (Platform.isAndroid) {
+                                              getToast(
+                                                  "Please wait for download");
+
+                                              if (Platform.isIOS) {
                                                 downloadFile(
                                                     _.model.fullOfferDoc);
-                                              } else if (Platform.isIOS) {
+                                              } else {
                                                 download(_.model.fullOfferDoc);
                                               }
                                             },
@@ -473,10 +476,12 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              if (Platform.isAndroid) {
+                                              getToast(
+                                                  "Please wait for download");
+                                              if (Platform.isIOS) {
                                                 downloadFile(
                                                     _.model.rejectionDoc);
-                                              } else if (Platform.isIOS) {
+                                              } else {
                                                 download(_.model.rejectionDoc);
                                               }
                                             },
@@ -539,10 +544,12 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              if (Platform.isAndroid) {
+                                              getToast(
+                                                  "Please wait for download");
+                                              if (Platform.isIOS) {
                                                 downloadFile(_
                                                     .model.conditionalOfferDoc);
-                                              } else if (Platform.isIOS) {
+                                              } else {
                                                 download(_
                                                     .model.conditionalOfferDoc);
                                               }
@@ -697,10 +704,12 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              if (Platform.isAndroid) {
+                                              getToast(
+                                                  "Please wait for download");
+                                              if (Platform.isIOS) {
                                                 downloadFile(
                                                     _.model.paymentReceipt);
-                                              } else if (Platform.isIOS) {
+                                              } else {
                                                 download(
                                                     _.model.paymentReceipt);
                                               }
@@ -764,10 +773,12 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              if (Platform.isAndroid) {
+                                              getToast(
+                                                  "Please wait for download");
+                                              if (Platform.isIOS) {
                                                 downloadFile(
                                                     _.model.cas_i_20_coe_doc);
-                                              } else if (Platform.isIOS) {
+                                              } else {
                                                 download(
                                                     _.model.cas_i_20_coe_doc);
                                               }
@@ -1083,10 +1094,11 @@ class _ApplicationCompleteDetailsState
                                       ThemeConstants.whitecolor, // foreground
                                 ),
                                 onPressed: () {
+                                  getToast("Please wait for download");
                                   if (Platform.isAndroid) {
-                                    downloadFile(model.documents![i].viewLink);
-                                  } else if (Platform.isIOS) {
                                     download(model.documents![i].viewLink);
+                                  } else if (Platform.isIOS) {
+                                    downloadFile(model.documents![i].viewLink);
                                   }
                                 },
                                 child: CustomAutoSizeTextMontserrat(
