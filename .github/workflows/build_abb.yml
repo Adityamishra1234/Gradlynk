@@ -19,8 +19,8 @@ jobs:
           channel: 'stable'
       - run: flutter upgrade    
       - run: flutter pub get
-      - run: flutter build apk
+      - run: flutter build appbundle
       - uses: actions/upload-artifact@v1
         with:
-          name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          name: app-release
+          path: build/app/outputs/bundle/release/app-release.aab
