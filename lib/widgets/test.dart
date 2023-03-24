@@ -1,5 +1,4 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +24,7 @@ class MyButtons extends StatelessWidget {
         child: Center(
           child: Text(
             topic,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            style: const TextStyle(fontSize: 20, color: Colors.white),
           ),
         ),
       ),
@@ -75,8 +74,9 @@ class CustomDropDown extends StatelessWidget {
                     : TextDecoration.none
                 : TextDecoration.none,
           ),
-          dropdownSearchDecoration:
-              border == true ? null : InputDecoration(border: InputBorder.none),
+          dropdownSearchDecoration: border == true
+              ? null
+              : const InputDecoration(border: InputBorder.none),
         ),
         popupProps: PopupProps.menu(
           showSearchBox: true,
