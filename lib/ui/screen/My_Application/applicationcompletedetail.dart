@@ -68,7 +68,7 @@ class _ApplicationCompleteDetailsState
       bool dirDownloadExists = true;
       var directory;
       if (Platform.isIOS) {
-        directory = await getDownloadsDirectory();
+        directory = (await getApplicationDocumentsDirectory()).path;
       } else {
         directory = "/storage/emulated/0/Download/";
 
@@ -79,8 +79,8 @@ class _ApplicationCompleteDetailsState
           directory = "/storage/emulated/0/Downloads/";
         }
       }
-      await FlutterDownloader.enqueue(
-        url: 'https://download.samplelib.com/mp4/sample-5s.mp4',
+      var res = await FlutterDownloader.enqueue(
+        url: url,
 
         headers: {}, // optional: header send with url (auth token etc)
         savedDir: directory,
@@ -223,7 +223,13 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () async {
-                                              // Download code
+                                              if (Platform.isAndroid) {
+                                                downloadFile(_
+                                                    .model.acknowledgementFile);
+                                              } else if (Platform.isIOS) {
+                                                download(_
+                                                    .model.acknowledgementFile);
+                                              }
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -401,7 +407,12 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              download("url");
+                                              if (Platform.isAndroid) {
+                                                downloadFile(
+                                                    _.model.fullOfferDoc);
+                                              } else if (Platform.isIOS) {
+                                                download(_.model.fullOfferDoc);
+                                              }
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -462,7 +473,12 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              download("url");
+                                              if (Platform.isAndroid) {
+                                                downloadFile(
+                                                    _.model.rejectionDoc);
+                                              } else if (Platform.isIOS) {
+                                                download(_.model.rejectionDoc);
+                                              }
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -523,7 +539,13 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              download("url");
+                                              if (Platform.isAndroid) {
+                                                downloadFile(_
+                                                    .model.conditionalOfferDoc);
+                                              } else if (Platform.isIOS) {
+                                                download(_
+                                                    .model.conditionalOfferDoc);
+                                              }
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -675,7 +697,13 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              download("url");
+                                              if (Platform.isAndroid) {
+                                                downloadFile(
+                                                    _.model.paymentReceipt);
+                                              } else if (Platform.isIOS) {
+                                                download(
+                                                    _.model.paymentReceipt);
+                                              }
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -736,7 +764,13 @@ class _ApplicationCompleteDetailsState
                                                   .whitecolor, // foreground
                                             ),
                                             onPressed: () {
-                                              download("url");
+                                              if (Platform.isAndroid) {
+                                                downloadFile(
+                                                    _.model.cas_i_20_coe_doc);
+                                              } else if (Platform.isIOS) {
+                                                download(
+                                                    _.model.cas_i_20_coe_doc);
+                                              }
                                             },
                                             child: CustomAutoSizeTextMontserrat(
                                               text: "Download",
@@ -1049,7 +1083,11 @@ class _ApplicationCompleteDetailsState
                                       ThemeConstants.whitecolor, // foreground
                                 ),
                                 onPressed: () {
-                                  download("url");
+                                  if (Platform.isAndroid) {
+                                    downloadFile(model.documents![i].viewLink);
+                                  } else if (Platform.isIOS) {
+                                    download(model.documents![i].viewLink);
+                                  }
                                 },
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Download",
@@ -1107,6 +1145,94 @@ class _ApplicationCompleteDetailsState
       documentlist.addAll(list[i].entries.first.value);
     }
     return documentlist;
+  }
+
+  //Funcation
+
+  Future<bool> saveVideo(String url, String fileName) async {
+    var directory;
+    try {
+      if (Platform.isAndroid) {
+        //TODO
+        download(url);
+        // if (await _requestPermission(Permission.storage)) {
+        //   directory = (await getExternalStorageDirectory())!;
+        //   String newPath = "";
+        //   List<String> paths = directory.path.split("/");
+        //   for (int x = 1; x < paths.length; x++) {
+        //     String folder = paths[x];
+        //     if (folder != "Android") {
+        //       newPath += "/$folder";
+        //     } else {
+        //       break;
+        //     }
+        //   }
+        //   newPath = "$newPath/SIEC";
+        //   directory = Directory(newPath);
+        // } else {
+        //   return false;
+        // }
+      } else {
+        if (await _requestPermission(Permission.storage)) {
+          directory = await getApplicationDocumentsDirectory();
+        } else {
+          return false;
+        }
+      }
+      File saveFile = File("${directory.path}/$fileName");
+      if (!await directory.exists()) {
+        await directory.create(recursive: true);
+      }
+      if (await directory.exists()) {
+        await dio.download(url, saveFile.path,
+            onReceiveProgress: (value1, value2) {
+          setState(() {
+            progress = value1 / value2;
+            print(progress);
+          });
+        });
+        if (Platform.isIOS) {
+          shareFile(saveFile.path);
+        }
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> _requestPermission(Permission permission) async {
+    if (await permission.isGranted) {
+      return true;
+    } else {
+      var result = await permission.request();
+      if (result == PermissionStatus.granted) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  downloadFile(String url) async {
+    setState(() {
+      loading = true;
+      progress = 0;
+    });
+    bool downloaded = await saveVideo(url,
+        reverseStringUsingSplit(reverseStringUsingSplit(url).split("/")[0]));
+    if (downloaded) {
+      // if (Platform.isAndroid) {
+      //   Get.snackbar("File download", "complete download",
+      //       snackPosition: SnackPosition.BOTTOM);
+      // }
+    } else {
+      print("Problem Downloading File");
+    }
+    setState(() {
+      loading = false;
+    });
   }
 
   Future<void> shareFile(String filepath) async {
