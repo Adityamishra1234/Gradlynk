@@ -1,9 +1,7 @@
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/customexpansiontile.dart';
-import 'package:studentpanel/widgets/customgroupcheckbox.dart';
 import 'package:studentpanel/widgets/multiselectdialog.dart';
 
 class DrawerFilter extends StatelessWidget {
@@ -17,15 +15,13 @@ class DrawerFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         width: 220,
-        child: ListView(children: [
+        child: ListView(controller: ScrollController(), children: [
           //University Name
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: CustomMultiSelectDialog(
-                data: const ["1", "2", "3"],
-                title: "University Name",
-              ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: CustomMultiSelectDialog(
+              data: const ["1", "2", "3"],
+              title: "University Name",
             ),
           ),
           // Intake Month

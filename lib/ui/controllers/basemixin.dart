@@ -1,7 +1,3 @@
-import 'dart:async';
-import 'dart:io';
-import 'package:get/get.dart';
-
 mixin BaseMaxin {
   // void startTimer(String currentScreen, RxBool temp) {
   //   debugPrint(currentScreen);

@@ -2,20 +2,18 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:studentpanel/ui/controllers/basemixin.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/detailcontroller.dart';
 import 'package:get/get.dart';
 
-class TextScreenController extends BaseController {
+class TextScreenController extends GetxController {
   RxBool temp = false.obs;
 
   void startTimer(String currentScreen) {
-    debugPrint(currentScreen.toString());
     const maxmin = 20;
     int min = maxmin;
     Timer? timer;
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      // ignore: unrelated_type_equality_checks
       if (temp == true) {
         timer.cancel();
       }

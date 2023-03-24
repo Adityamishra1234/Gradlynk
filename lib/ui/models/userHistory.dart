@@ -27,14 +27,14 @@ class UserHistory {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['user_id'] = userId;
-    _data['login_time'] = loginTime;
-    _data['logout_time'] = logoutTime;
-    _data['reason'] = reason;
-    _data['created_at'] = createdAt;
-    _data['updated_at'] = updatedAt;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['login_time'] = loginTime;
+    data['logout_time'] = logoutTime;
+    data['reason'] = reason;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    return data;
   }
 }

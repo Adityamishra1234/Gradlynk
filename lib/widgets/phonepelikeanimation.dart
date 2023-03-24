@@ -1,10 +1,5 @@
-import 'dart:async';
-
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:phlox_animations/phlox_animations.dart';
 
 class AnimationaPhonepe extends StatefulWidget {
@@ -23,9 +18,9 @@ class _AnimationaPhonepeState extends State<AnimationaPhonepe>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Test"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("Test"),
+      // ),
       body: NotificationListener<UserScrollNotification>(
         onNotification: (notification) {
           setState(() {
@@ -48,9 +43,7 @@ class _AnimationaPhonepeState extends State<AnimationaPhonepe>
                 itemCount: 200,
                 //   controller: _scrollController,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text('Item $index'),
-                  );
+                  return const ListTile();
                 },
               ),
             ),

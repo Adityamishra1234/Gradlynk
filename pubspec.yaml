@@ -15,7 +15,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+1
+
+version: 1.1.0+7
+
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -34,8 +36,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  file_picker: ^4.6.1
-  syncfusion_flutter_pdfviewer: ^20.1.61-beta
+  # file_picker: ^4.6.1
+  syncfusion_flutter_pdfviewer: ^20.4.38
   get: ^4.6.5
   http: ^0.13.4
   shared_preferences: ^2.0.15
@@ -45,19 +47,60 @@ dependencies:
   back_pressed: ^0.0.2
   dropdown_search: ^5.0.2
   flutter_svg: ^1.1.1+1
-  multiselect: ^0.0.7
   multi_select_flutter: ^4.1.2
   checkbox_grouped: ^1.8.1
   configurable_expansion_tile_null_safety: ^2.0.3
   bulleted_list: ^0.0.1+0.1a
   auto_size_text: ^3.0.0
-  dependencies:
+  expandable: ^5.0.1
+  dotted_line: ^3.1.0
+  animate_icons: ^2.0.0
+  expansion_tile_card: ^2.0.0
+  easy_search_bar: ^2.3.1
+  flutter_widget_from_html_core: ^0.8.5+3
+  scroll_to_index: ^3.0.1
+  web_date_picker: ^1.0.0+3
+  time_picker_sheet: ^0.0.2+1
+  fluttertoast: ^8.0.9
+  flutter_limited_checkbox: ^0.0.1
+  webview_flutter: ^4.0.1
   phlox_animations: ^2.1.1
   container_tab_indicator: ^0.3.0
+  carousel_slider: ^4.1.1
+  smooth_page_indicator: ^1.0.0+2
+  otp_text_field: ^1.1.3
+  url_launcher: ^6.1.6
+  dio: ^4.0.6
+  permission_handler: ^10.2.0
+  image_gallery_saver: ^1.7.1
+  wakelock: ^0.6.2
+  flutter_file_downloader: ^1.1.0+1
+  file_picker: ^5.2.4
+  camera: ^0.8.1+1 
+  gif_view: ^0.3.1
+  # flutter_advanced_networkimage_2: ^2.0.1
+  cached_network_svg_image: ^0.0.3
+  another_flutter_splash_screen: ^1.1.4
+  hashids2: ^2.0.0
+  flutter_share: ^2.0.0
+  connectivity_plus: ^3.0.3
+  internet_connection_checker: ^1.0.0+1
+  change_app_package_name: ^1.1.0
+  rounded_background_text: ^0.3.0
+  flutter_downloader: ^1.10.2
+  coachmaker: ^0.2.1
+  # flutter_webview_plugin: ^0.4.0
+  # flutter_native_splash: ^2.2.16
+  #   path: "assets/images/logotest1.jpg"
+  #   andoid: true
+  #   ios: true
+  # flutter_native_splash:
+  #   image: assets/images/logotest1.jpg 
+  #   android: true
+  #   ios: true
 
-
-
- 
+  
+  
 
 dev_dependencies:
   flutter_test:
@@ -68,9 +111,9 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
   flutter_launcher_icons: ^0.9.3
-  new_version: ^0.3.1
+  new_app_version_alert: ^0.0.4
   
   
 
@@ -78,7 +121,7 @@ flutter_icons:
   name: "Gradlynk"
   android: true
   ios: true
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/logotest1.jpg"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

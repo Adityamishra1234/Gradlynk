@@ -1,91 +1,32 @@
-import 'dart:convert';
-
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
-import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DashboardController extends BaseController {
+class DashboardController extends GetxController {
   DropDownModel? dropDownModel;
-  StudentPanel studentPanel = StudentPanel();
   ApiServices apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
-  List<UpcomingEvent>? upcomingEventlist;
+  List<UpcomingEventModel>? upcomingEventlist;
   List<UpcomingHoliday>? upcomingholidayslist;
   RxBool loadingUpcomingEvents = false.obs;
   RxBool loadingNewsAndUpdates = false.obs;
   RxBool loadingUpcomingHolidays = false.obs;
   RxBool loadingStudentPanelData = false.obs;
   RxBool loadingCreateModel = false.obs;
-  RxBool loadingBranchname = false.obs;
+
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
-  RxString? dropdown1 = "".obs;
 
-// helo word
   @override
   void onInit() {
     super.onInit();
-    login();
-    createModelForDropdown();
-    // newAndUpdates();
-    // upcomingEvents();
-    // upcomingholidays();
-  }
-
-  setdropdown1(String? data) {
-    dropdown1 = data!.obs;
-    update();
-    loadingBranchname = true.obs;
-    update();
-  }
-
-  List<String>? createModelForDropdown() {
-    if (loadingStudentPanelData.value == true) {
-      studentPanel.addtionalDetails!.forEach((element) {
-        model!.add(element.branchType!);
-      });
-    }
-    model = model!.toSet().toList();
-    loadingCreateModel = true.obs;
-    update();
-
-    return model;
-  }
-
-  List<String>? createDropDownData(
-    String choose1, [
-    String choose2 = "",
-    String choose3 = "",
-    String choose4 = "",
-  ]) {
-    print("choose1" + choose1);
-    List<String>? tempModel = [];
-
-    studentPanel.addtionalDetails!.forEach((element) {
-      if (choose1 == element.branchType) {
-        tempModel!.add(element.branchName!);
-      }
-    });
-
-    tempModel = tempModel!.toSet().toList();
-    return tempModel;
-  }
-
-  login() async {
-    var res = await apiservices.login(
-        Endpoints.baseUrl!, Endpoints.login!, "8860373603");
-    if (res != null) {
-      studentPanel = res;
-      loadingStudentPanelData = true.obs;
-      update();
-    }
+    upcomingEvents();
   }
 
   newAndUpdates() async {
@@ -99,14 +40,21 @@ class DashboardController extends BaseController {
   }
 
   upcomingEvents() async {
-    // var res = await apiservices.upcomingEvents(
-    //     Endpoints.baseUrl!, Endpoints.upcomingEvents!);
-
-    // if (res != null) {
-    //   upcomingEventlist = res;
-    //   loadingUpcomingEvents = true.obs;
-    //   update();
-    // } else {}
+    try {
+      var res = await apiservices.getUpComingEvent(Endpoints.upcomingEvents!);
+      if (res != null) {
+        upcomingEventlist = res;
+        loadingUpcomingEvents = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   upcomingholidays() async {
@@ -130,5 +78,4 @@ class DashboardController extends BaseController {
   }
 
 // Notification Api call
-
 }

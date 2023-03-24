@@ -3,7 +3,7 @@ name: Flutter CI
 on:
   push:
     branches:
-      - student_panel_aman
+      - main
 
 # 4
 jobs:

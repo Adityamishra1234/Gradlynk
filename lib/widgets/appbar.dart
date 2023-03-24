@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/dashboard/notification.dart';
+import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/drawerfilter.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
@@ -15,54 +20,58 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 0),
       child: AppBar(
         elevation: 0,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/menu.svg",
-                color: const Color.fromARGB(255, 99, 99, 99),
-                height: 30,
-                width: 30,
-              ),
-              onPressed: () {},
+          if (displayMobileLayout == true)
+            IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Get.back(),
             ),
-          ),
-          SvgPicture.asset(
-            "assets/icons/work.svg",
-            width: 32,
-            color: Colors.transparent,
-          ),
+          if (displayMobileLayout == false)
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: IconButton(
+                icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                  DrawerFilter();
+                },
+              ),
+            ),
+          svgImage("work", Colors.transparent, 32, 32),
+
           const Spacer(),
           Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: Image.asset(
-              "assets/images/logo.png",
+            child: Image.network(
+              "https://sieceducation.in/assets/assets/images/logo.png",
               width: 150,
               height: 50,
             ),
           ),
           const Spacer(),
           IconButton(
-            icon: SvgPicture.asset(
-              "assets/icons/notification.svg",
-              color: const Color.fromARGB(255, 99, 99, 99),
-              height: 27,
-            ),
-            onPressed: () {},
+            icon: svgImage("notification", ThemeConstants.IconColor, 30, 30),
+            onPressed: () {
+              //TODO
+              Get.to(NotificationScreen());
+            },
           ),
-          IconButton(
-            icon: SvgPicture.asset(
-              "assets/icons/profile.svg",
-              height: 30,
-              color: const Color.fromARGB(255, 99, 99, 99),
-            ),
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     "assets/icons/profile.svg",
+          //     height: 30,
+          //     color: const Color.fromARGB(255, 99, 99, 99),
+          //   ),
+          //   onPressed: () {
+          //     Get.toNamed(ProfilePage.routeNamed);
+          //   },
+          // ),
+
           const SizedBox(
             width: 5,
           )
@@ -74,5 +83,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: Colors.white,
       ),
     );
+  }
+
+  //Funcation
+  callbacktest(data) {
+    print(data);
   }
 }

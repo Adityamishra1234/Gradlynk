@@ -6,30 +6,56 @@ StudentPanel? studentPanelFromJson(String? str) =>
 String? studentPanelToJson(StudentPanel data) => json.encode(data.toJson());
 
 class StudentPanel {
-  StudentPanel({
-    this.gender,
-    this.enquiryName,
-    this.email,
-    this.secondaryEmail,
-    this.mobile,
-    this.maritalStatus,
-    this.countryName,
-    this.stateName,
-    this.cityName,
-    this.applicantType,
-    this.id,
-    this.passportName,
-    this.address,
-    this.street,
-    this.pincode,
-    this.dateOfBirth,
-    this.passportAvailable,
-    this.addtionalDetails,
-    this.testDetails,
-    this.passportDetails,
-    this.otherCountryOfInterest,
-  });
-
+  StudentPanel(
+      {this.countryID,
+      this.stateID,
+      this.cityID,
+      this.child_count,
+      this.alternateNumber,
+      this.whatsappNumber,
+      this.secondaryemail,
+      this.instagramId,
+      this.facebookId,
+      this.snapchatId,
+      this.lastname,
+      this.gender,
+      this.enquiryName,
+      this.email,
+      this.secondaryEmail,
+      this.mobile,
+      this.maritalStatus,
+      this.countryName,
+      this.stateName,
+      this.cityName,
+      this.applicantType,
+      this.id,
+      this.passportName,
+      this.address,
+      this.street,
+      this.pincode,
+      this.dateOfBirth,
+      this.passportAvailable,
+      this.addtionalDetails,
+      // this.testDetails,
+      // this.passportDetails,
+      this.otherCountryOfInterest,
+      // this.courseChoice,
+      this.loginproof,
+      this.is_block});
+  int? is_block;
+  bool? loginproof;
+  int? countryID;
+  int? stateID;
+  int? cityID;
+  int? child_count;
+  int? alternateNumber;
+  int? whatsappNumber;
+  String? secondaryemail;
+  String? instagramId;
+  String? facebookId;
+  String? snapchatId;
+  String? lastname;
+  //
   String? gender;
   String? enquiryName;
   String? email;
@@ -48,11 +74,23 @@ class StudentPanel {
   String? dateOfBirth;
   String? passportAvailable;
   List<AddtionalDetail>? addtionalDetails;
-  TestDetails? testDetails;
-  List<PassportDetail>? passportDetails;
+  // TestDetails? testDetails;
+  // List<PassportDetail>? passportDetails;
   List<OtherCountryOfInterest>? otherCountryOfInterest;
+  // List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
+        loginproof: json['login_proof'],
+        is_block: json['is_blocked'],
+        cityID: json['city_id'],
+        stateID: json['state_id'],
+        countryID: json['country_live_in'],
+        child_count: json['children_count'],
+        alternateNumber: json['secondary_mobile'],
+        whatsappNumber: json['whatsup_no'],
+        instagramId: json['instagram_id'],
+        snapchatId: json['snapchat_id'],
+        lastname: json['family_name'],
         gender: json["gender"],
         enquiryName: json["enquiry_name"],
         email: json["email"],
@@ -72,15 +110,19 @@ class StudentPanel {
         passportAvailable: json["passport_available"],
         addtionalDetails: List<AddtionalDetail>.from(
             json["addtionalDetails"].map((x) => AddtionalDetail.fromJson(x))),
-        testDetails: TestDetails.fromJson(json["testDetails"]),
-        passportDetails: List<PassportDetail>.from(
-            json["passportDetails"].map((x) => PassportDetail.fromJson(x))),
+        // testDetails: TestDetails.fromJson(json["testDetails"] ?? ""),
+        // courseChoice: List<CourseChoice>.from(
+        //     json["courseChoice"].map((x) => CourseChoice.fromJson(x))),
+        // passportDetails: List<PassportDetail>.from(
+        //     json["passportDetails"].map((x) => PassportDetail.fromJson(x))),
         otherCountryOfInterest: List<OtherCountryOfInterest>.from(
             json["otherCountryOfInterest"]
                 .map((x) => OtherCountryOfInterest.fromJson(x))),
       );
 
   Map<String?, dynamic> toJson() => {
+        "is_blocked": is_block,
+        "login_proof": loginproof,
         "gender": gender,
         "enquiry_name": enquiryName,
         "email": email,
@@ -100,28 +142,33 @@ class StudentPanel {
         "passport_available": passportAvailable,
         "addtionalDetails":
             List<dynamic>.from(addtionalDetails!.map((x) => x.toJson())),
-        "testDetails": testDetails!.toJson(),
-        "passportDetails":
-            List<dynamic>.from(passportDetails!.map((x) => x.toJson())),
+        // "testDetails": testDetails!.toJson(),
+        // "courseChoice":
+        //     List<dynamic>.from(courseChoice!.map((x) => x.toJson())),
+        // "passportDetails":
+        //     List<dynamic>.from(passportDetails!.map((x) => x.toJson())),
         "otherCountryOfInterest":
             List<dynamic>.from(otherCountryOfInterest!.map((x) => x.toJson())),
       };
 }
 
 class AddtionalDetail {
-  AddtionalDetail({
-    this.branchType,
-    this.branchName,
-    this.serviceName,
-    this.subService,
-    this.countryName,
-  });
+  AddtionalDetail(
+      {this.branchType,
+      this.branchName,
+      this.serviceName,
+      this.subService,
+      this.countryName,
+      this.assigned_advisor,
+      this.assigne});
 
   String? branchType;
   String? branchName;
   String? serviceName;
   String? subService;
   String? countryName;
+  String? assigned_advisor;
+  String? assigne;
 
   factory AddtionalDetail.fromJson(Map<String?, dynamic> json) =>
       AddtionalDetail(
@@ -130,46 +177,33 @@ class AddtionalDetail {
         serviceName: json["service_name"],
         subService: json["sub_service"],
         countryName: json["country_name"],
+        assigned_advisor: json['assigned_advisor'],
+        assigne: json['assignee'],
       );
 
   Map<String?, dynamic> toJson() => {
-        "branch_type": branchType ?? null,
-        "branch_name": branchName ?? null,
-        "service_name": serviceName ?? null,
-        "sub_service": subService ?? null,
-        "country_name": countryName ?? null,
+        "branch_type": branchType,
+        "branch_name": branchName,
+        "service_name": serviceName,
+        "sub_service": subService,
+        "country_name": countryName,
+        "assigned_advisor": assigned_advisor,
+        "assignee": assigne,
       };
 }
 
-// enum BranchName { WEST_DELHI, PUNE }
-
-// final branchNameValues =
-//     EnumValues({"Pune": BranchName.PUNE, "West Delhi": BranchName.WEST_DELHI});
-
-// enum BranchType { BRANCH }
-
-// final branchTypeValues = EnumValues({"Branch": BranchType.BRANCH});
-
-// enum CountryName { AUSTRALIA, IRELAND }
-
-// final countryNameValues = EnumValues(
-//     {"Australia": CountryName.AUSTRALIA, "Ireland": CountryName.IRELAND});
-
 class OtherCountryOfInterest {
-  OtherCountryOfInterest({
-    this.countryName,
-  });
+  OtherCountryOfInterest({this.countryName, this.id});
 
   String? countryName;
+  int? id;
 
   factory OtherCountryOfInterest.fromJson(Map<String?, dynamic> json) =>
       OtherCountryOfInterest(
-        countryName: json["country_name"],
-      );
+          countryName: json["country_name"], id: json['sec_country_id']);
 
-  Map<String?, dynamic> toJson() => {
-        "country_name": countryName,
-      };
+  Map<String?, dynamic> toJson() =>
+      {"country_name": countryName, "sec_country_id": id};
 }
 
 class PassportDetail {
@@ -190,25 +224,21 @@ class PassportDetail {
   String? expiryDate;
 
   factory PassportDetail.fromJson(Map<String?, dynamic> json) => PassportDetail(
-        citizenOf: json["citizen_of"] == null ? null : json["citizen_of"],
-        countryOfIssue:
-            json["country_of_issue"] == null ? null : json["country_of_issue"],
-        passportNumber:
-            json["passport_number"] == null ? null : json["passport_number"],
-        placeOfIssue:
-            json["place_of_issue"] == null ? null : json["place_of_issue"],
-        dateOfIssue:
-            json["date_of_issue"] == null ? null : json["date_of_issue"],
-        expiryDate: json["expiry_date"] == null ? null : json["expiry_date"],
+        citizenOf: json["citizen_of"],
+        countryOfIssue: json["country_of_issue"],
+        passportNumber: json["passport_number"],
+        placeOfIssue: json["place_of_issue"],
+        dateOfIssue: json["date_of_issue"],
+        expiryDate: json["expiry_date"],
       );
 
   Map<String?, dynamic> toJson() => {
-        "citizen_of": citizenOf == null ? null : citizenOf,
-        "country_of_issue": countryOfIssue == null ? null : countryOfIssue,
-        "passport_number": passportNumber == null ? null : passportNumber,
-        "place_of_issue": placeOfIssue == null ? null : placeOfIssue,
-        "date_of_issue": dateOfIssue == null ? null : dateOfIssue,
-        "expiry_date": expiryDate == null ? null : expiryDate,
+        "citizen_of": citizenOf,
+        "country_of_issue": countryOfIssue,
+        "passport_number": passportNumber,
+        "place_of_issue": placeOfIssue,
+        "date_of_issue": dateOfIssue,
+        "expiry_date": expiryDate,
       };
 }
 
@@ -271,16 +301,26 @@ class TestDetails {
       };
 }
 
-// class EnumValues<T> {
-//   Map<String?, T> map;
-//   Map<T, String?> reverseMap;
+class CourseChoice {
+  CourseChoice({
+    this.broadFieldName,
+    this.narrowFieldName,
+    this.courseLevel,
+  });
 
-//   EnumValues(this.map);
+  String? broadFieldName;
+  String? narrowFieldName;
+  String? courseLevel;
 
-//   Map<T, String?> get reverse {
-//     if (reverseMap == null) {
-//       reverseMap = map.map((k, v) => new MapEntry(v, k));
-//     }
-//     return reverseMap;
-//   }
-// }
+  factory CourseChoice.fromJson(Map<String?, dynamic> json) => CourseChoice(
+        broadFieldName: json["broad_field_name"],
+        narrowFieldName: json["narrow_field_name"],
+        courseLevel: json["course_level"],
+      );
+
+  Map<String?, dynamic> toJson() => {
+        "broad_field_name": broadFieldName,
+        "narrow_field_name": narrowFieldName,
+        "course_level": courseLevel,
+      };
+}

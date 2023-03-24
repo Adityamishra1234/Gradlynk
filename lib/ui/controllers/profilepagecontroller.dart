@@ -1,23 +1,33 @@
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 
 import 'package:get/get.dart';
 
-class ProfilePageController extends BaseController with StateMixin<UserModel> {
+class ProfilePageController extends GetxController with StateMixin<UserModel> {
+  //Create Local Screen Variable
+  DropDownModel? dropDownModel;
+
+  RxBool iconSwipe = false.obs;
+  RxBool iconSwipetrue = true.obs;
+
+  //Using For Loading Progress
+  RxString? swipeDirection = "left".obs;
   RxInt? chooseIndex = 0.obs;
   RxBool? englishTestDetail = true.obs;
   RxBool? showAnimation = false.obs;
   RxBool? firstTimeAnimation = false.obs;
-
-  DropDownModel? dropDownModel;
-  StudentPanel studentPanel = StudentPanel();
-  RxBool loadingStudentPanelData = false.obs;
-  RxBool loadingCreateModel = false.obs;
-  RxBool loadingBranchname = false.obs;
-  List<String>? model = [];
   RxString? dropdown1 = "".obs;
+  RxBool loadingBranchname = false.obs;
+  List<RxBool> loading = [];
+
+  //Create Class  Object
+  StudentPanel studentPanel = StudentPanel();
+
+  setSwipeDirection(String data) {
+    swipeDirection!.value = data;
+    update();
+  }
 
   setdropdown1(String? data) {
     dropdown1 = data!.obs;
@@ -26,18 +36,34 @@ class ProfilePageController extends BaseController with StateMixin<UserModel> {
     update();
   }
 
-  List<String>? createModelForDropdown() {
-    if (loadingStudentPanelData.value == true) {
-      studentPanel.addtionalDetails!.forEach((element) {
-        model!.add(element.branchType!);
-      });
-    }
-    model = model!.toSet().toList();
-    loadingCreateModel = true.obs;
+  setIconSwipe(bool data) {
+    iconSwipe.value = data;
     update();
-
-    return model;
   }
+
+  setIconSwipeTrue(bool data) {
+    iconSwipetrue.value = data;
+    update();
+  }
+  // setdropdown1(String? data) {
+  //   dropdown1 = data!.obs;
+  //   update();
+  //   loadingBranchname = true.obs;
+  //   update();
+  // }
+
+  // List<String>? createModelForDropdown() {
+  //   if (loadingStudentPanelData.value == true) {
+  //     studentPanel.addtionalDetails!.forEach((element) {
+  //       model!.add(element.branchType!);
+  //     });
+  //   }
+  //   model = model!.toSet().toList();
+  //   loadingCreateModel = true.obs;
+  //   update();
+
+  //   return model;
+  // }
 
   List<String>? createDropDownData(
     String choose1, [
@@ -45,16 +71,15 @@ class ProfilePageController extends BaseController with StateMixin<UserModel> {
     String choose3 = "",
     String choose4 = "",
   ]) {
-    print("choose1" + choose1);
     List<String>? tempModel = [];
 
-    studentPanel.addtionalDetails!.forEach((element) {
+    for (var element in studentPanel.addtionalDetails!) {
       if (choose1 == element.branchType) {
-        tempModel!.add(element.branchName!);
+        tempModel.add(element.branchName!);
       }
-    });
+    }
 
-    tempModel = tempModel!.toSet().toList();
+    tempModel = tempModel.toSet().toList();
     return tempModel;
   }
 

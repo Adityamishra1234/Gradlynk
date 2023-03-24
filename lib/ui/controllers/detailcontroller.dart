@@ -2,28 +2,19 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/basemixin.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/userHistory.dart';
-import 'package:studentpanel/utils/endpoint.dart';
 
-class DetailController extends BaseController {
+class DetailController extends GetxController {
   ApiServices apiServices = ApiServices();
 
   List<UserHistory>? userHistoryList;
   RxBool isLoading = false.obs;
   RxBool temp = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    // getUserHistory();
-  }
-
   void startTimer(String currentScreen) {
-    debugPrint(currentScreen);
     const maxmin = 5220;
     int min = maxmin;
     Timer? timer;
@@ -42,11 +33,11 @@ class DetailController extends BaseController {
   }
 
   // getUserHistory() async {
-  //   // userHistoryList = await apiServices.getUserHistory(
-  //   //     Endpoints.baseUrl!, Endpoints.getUserHistory!);
-  //   // if (userHistoryList != null) {
-  //   //   isLoading.value = true;
-  //   //   update();
+  //   userHistoryList = await apiServices.getUserHistory(
+  //       Endpoints.baseUrl!, Endpoints.getUserHistory!);
+  //   if (userHistoryList != null) {
+  //     isLoading.value = true;
+  //     update();
   //   }
 
   //   return userHistoryList!;
