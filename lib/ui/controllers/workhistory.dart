@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -5,7 +6,7 @@ import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class WorkHistoryController extends GetxController {
+class WorkHistoryController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<WorkHistoryViewModel> workHistoryViewModelList = [];
 
@@ -33,11 +34,20 @@ class WorkHistoryController extends GetxController {
   int? industryNameCode, employementTypeCode;
   int? index;
 
+  static final Rx<TextEditingController> lastOrganisation =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> designation =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> income = TextEditingController().obs;
+
   @override
   void onInit() {
     getIndustries();
     emplyoymentType();
     getWorkHistoryView(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -136,5 +146,26 @@ class WorkHistoryController extends GetxController {
   setViewDetails(bool data) {
     viewDetails.value = data;
     update();
+  }
+
+  getUpdateWorkHistory() {
+    change(null, status: RxStatus.loading());
+    // if (update == false && loadingEdit.value == false) {
+    //   loadingEdit.value = true;
+    //   // update = true;
+    lastOrganisation.value.text =
+        workHistoryViewModelList[index!].organisationName ?? "";
+    industryNameSelected = workHistoryViewModelList[index!].jobIndustryName;
+    industryNameCode = workHistoryViewModelList[index!].jobIndustryId;
+    employementTypeSelected = workHistoryViewModelList[index!].jobType;
+    workingFromSelected = workHistoryViewModelList[index!].workingFrom ?? "";
+    workingTillSelected = workHistoryViewModelList[index!].workingTill ?? "";
+    designation.value.text = workHistoryViewModelList[index!].jobRole ?? "";
+    income.value.text =
+        getNUllChecker(workHistoryViewModelList[index!].income.toString()) ==
+                false
+            ? workHistoryViewModelList[index!].income!.toString()
+            : "";
+    change(null, status: RxStatus.success());
   }
 }

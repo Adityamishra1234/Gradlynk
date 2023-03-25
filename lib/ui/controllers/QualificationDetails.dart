@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -5,9 +6,10 @@ import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/institutiondropdown.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class QualificationDetailsController extends GetxController {
+class QualificationDetailsController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<QualificationDetailsViewModel> modelList = [];
 
@@ -68,6 +70,19 @@ class QualificationDetailsController extends GetxController {
       citySelectedID,
       institutionSelectedID;
 
+  static final Rx<TextEditingController> qualificationName =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> multiplier =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> cgpa = TextEditingController().obs;
+
+  static final Rx<TextEditingController> percentage =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> reApper = TextEditingController().obs;
+
   @override
   void onInit() {
     getHighestQualification();
@@ -76,6 +91,7 @@ class QualificationDetailsController extends GetxController {
     getYearOfpassing();
     getEducationStatus();
     viewQualification(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -563,6 +579,48 @@ class QualificationDetailsController extends GetxController {
         "1111",
         StackTrace.current.toString(),
       );
+    }
+  }
+
+  getUpdateQualificationDetails(int index) async {
+    try {
+      change(null, status: RxStatus.loading());
+      if (index != null) {
+        // if (updateForEdit == false) {
+        qualificationName.value.text = modelList[index].courseName ?? "";
+        multiplier.value.text = modelList[index].multiplier ?? "";
+        percentage.value.text = modelList[index].percentage ?? "";
+        reApper.value.text = modelList[index].reapperCount ?? "";
+        // }
+        // if (updateForEdit == false && loadingEditQualification.value == true) {
+        loadingEditQualification.value = false;
+        highestQualificationSelected = modelList[index].courseLevel;
+
+        streamSelected = modelList[index].streamName ?? "";
+        streamSelectedID =
+            getNUllChecker(modelList[index].streamId.toString()) == false
+                ? modelList[index].streamId.toString()
+                : "";
+        educationStatusSelected = modelList[index].educationStatus ?? "";
+        yearOfPassingSelected = modelList[index].yearOfPassing ?? "";
+        countrySelected = modelList[index].countryName;
+        Get.find<QualificationDetailsController>().loadingEdit.value = 1;
+        // cgpa.text = double.parse(modelList[index].percentage.toString()) /;
+        await getEdit(
+            modelList[index].countryId!,
+            modelList[index].stateName,
+            modelList[index].stateId,
+            modelList[index].cityName,
+            modelList[index].cityId,
+            modelList[index].affiliationName,
+            modelList[index].affiliationId,
+            modelList[index].universityName,
+            modelList[index].passingInstId);
+        change(null, status: RxStatus.success());
+        // }
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

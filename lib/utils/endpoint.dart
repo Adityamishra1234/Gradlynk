@@ -121,6 +121,10 @@ class Endpoints {
   static String? saveCommentTrackYourTicketpart1 = "save-comment-data?id=";
   static String? saveCommentTrackYourTicketPart2 = "&content=";
   static String? saveCommentTrackYourTicketPar3 = "&enq_id=";
+  static String? qualificationUpdateDropdownPart1 =
+      "get-qualification-at-edit?country_id=";
+  static String? qualificationUpdateDropdownPart2 = "&state_id=";
+  static String? qualificationUpdateDropdownPart3 = "&city_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
