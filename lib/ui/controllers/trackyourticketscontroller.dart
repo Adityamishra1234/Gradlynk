@@ -21,6 +21,15 @@ class TrackYourTicketsController extends GetxController with StateMixin {
             Get.find<BaseController>().model1.id.toString());
     if (responsive != null) {
       model.value = responsive;
+      if (model.value!.data!.isNotEmpty) {
+        for (var i = 0; i < model.value!.data!.length; i++) {
+          if (model.value!.data![i].comments!.isNotEmpty) {
+            model.value!.data![i].firstComment =
+                model.value!.data![i].comments![0].content;
+          }
+        }
+      }
+
       change(null, status: RxStatus.success());
     }
   }

@@ -46,9 +46,26 @@ class _DashBoardState extends State<DashBoard> {
     fontWeight: FontWeight.w800,
     fontSize: 17,
   );
+
+  final _key1 = GlobalKey();
+  final _key2 = GlobalKey();
+  final _key3 = GlobalKey();
+  final _key4 = GlobalKey();
+
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _key1.currentState!.dispose();
+    _key2.currentState!.dispose();
+    _key3.currentState!.dispose();
+    _key4.currentState!.dispose();
+    // ignore: avoid_print
+    print('Dispose used');
+    super.dispose();
   }
 
   getintro(BuildContext context) {
@@ -195,7 +212,8 @@ class _DashBoardState extends State<DashBoard> {
                                             initial: '1',
                                             child: InkWell(
                                               onTap: () {
-                                                getDailogForAgree(context);
+                                                // getDailogForAgree(context);
+                                                getintro(context);
                                               },
                                               child: Text(
                                                 "Hi,",
