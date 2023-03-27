@@ -179,6 +179,6 @@ class QualificationDetailsCopy extends StatelessWidget {
     controller.updteForEdit.value = false;
     controller.addedQualification.value = false;
     controller.loadingEditQualification.value = true;
-    controller.update();
+    controller.getUpdateQualificationDetails(controller.modelindex!);
   }
 }

@@ -1312,6 +1312,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Padding(
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom)),

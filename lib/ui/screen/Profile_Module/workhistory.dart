@@ -67,7 +67,7 @@ class WorkHistoryCopy extends StatelessWidget {
     controller.index = data;
     controller.updateForEdit.value = false;
     controller.viewDetails.value = false;
-    controller.update();
+    controller.getUpdateWorkHistory();
   }
 
   callbackAdded(data) {
