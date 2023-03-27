@@ -89,6 +89,7 @@ dependencies:
   rounded_background_text: ^0.3.0
   flutter_downloader: ^1.10.2
   coachmaker: ^0.2.1
+  showcaseview: ^2.0.2
   # flutter_webview_plugin: ^0.4.0
   # flutter_native_splash: ^2.2.16
   #   path: "assets/images/logotest1.jpg"
