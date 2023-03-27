@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/travelhistory.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
@@ -42,30 +41,38 @@ class TravelHistoryWidget extends StatelessWidget {
   static final applicationNumber = TextEditingController();
   static final visaNumber = TextEditingController();
 
+  var controller = Get.put(TravelHistoryController());
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TravelHistoryController>(builder: (_) {
+    return controller.obx((state) {
       // For Edit
       try {
-        if (updateForEdit == false || _.loadingEdit.value == true) {
-          _.travelAbroadSelected = "Yes";
-          _.travelStatusSelected = _.modelList[index!].travelStatus;
-          _.countrySelected = _.modelList[index!].countryName;
-          _.countryCodeSelected = _.modelList[index!].chooseCountry.toString();
-          if (_.typeOfVisaList.isNotEmpty) {
-            for (var i = 0; i < _.typeOfVisaList.length; i++) {
-              if (_.typeofVisaCode[i].toString() ==
-                  _.modelList[index!].typeOfVisa.toString()) {
-                _.typeOfVisaSelected = _.typeOfVisaList[i];
-                _.typeOfVisaCodeSelected =
-                    _.modelList[index!].typeOfVisa.toString();
+        if (updateForEdit == false || controller.loadingEdit.value == true) {
+          controller.travelAbroadSelected = "Yes";
+          controller.travelStatusSelected =
+              controller.modelList[index!].travelStatus;
+          controller.countrySelected = controller.modelList[index!].countryName;
+          controller.countryCodeSelected =
+              controller.modelList[index!].chooseCountry.toString();
+          if (controller.typeOfVisaList.isNotEmpty) {
+            for (var i = 0; i < controller.typeOfVisaList.length; i++) {
+              if (controller.typeofVisaCode[i].toString() ==
+                  controller.modelList[index!].typeOfVisa.toString()) {
+                controller.typeOfVisaSelected = controller.typeOfVisaList[i];
+                controller.typeOfVisaCodeSelected =
+                    controller.modelList[index!].typeOfVisa.toString();
               }
             }
           }
-          _.visaStatusSelected = _.modelList[index!].visaStatus;
-          applicationNumber.text = _.modelList[index!].applicationNumber ?? "";
-          dateOfApplication.text = _.modelList[index!].dateOfApplication ?? "";
-          reasonOfRejection.text = _.modelList[index!].reasonOfRejection ?? "";
+          controller.visaStatusSelected =
+              controller.modelList[index!].visaStatus;
+          applicationNumber.text =
+              controller.modelList[index!].applicationNumber ?? "";
+          dateOfApplication.text =
+              controller.modelList[index!].dateOfApplication ?? "";
+          reasonOfRejection.text =
+              controller.modelList[index!].reasonOfRejection ?? "";
         }
       } catch (e) {
         print(e.toString());
@@ -88,8 +95,8 @@ class TravelHistoryWidget extends StatelessWidget {
                   height: 30,
                   child: TextButton(
                       onPressed: () {
-                        _.viewDetails.value = true;
-                        _.update();
+                        controller.viewDetails.value = true;
+                        controller.update();
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "View Details",
@@ -104,25 +111,25 @@ class TravelHistoryWidget extends StatelessWidget {
             child: CustomDropDownSingle(
               model: const ["Yes", "No"],
               initialSelectedValue:
-                  getNUllChecker(_.travelAbroadSelected) == true
+                  getNUllChecker(controller.travelAbroadSelected) == true
                       ? "No"
-                      : _.travelAbroadSelected == "Yes"
+                      : controller.travelAbroadSelected == "Yes"
                           ? "Yes"
                           : "No",
               choosefieldtype: false,
               callbackFunction: callbackTravelAbroad,
             ),
           ),
-          if (_.travelAbroadSelected == "Yes")
-            ...getTravelledAbroad(_, context),
+          if (controller.travelAbroadSelected == "Yes")
+            ...getTravelledAbroad(controller, context),
         ],
       );
-    });
+    }, onLoading: getLoading(context));
   }
 
   //Funcation
   List<Widget> getTravelledAbroad(
-      TravelHistoryController _, BuildContext context) {
+      TravelHistoryController controller, BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -139,10 +146,12 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: getDropdownModel(_.loadingtravelStatus.value,
-              _.travelStatusSelected, _.travelStatus),
-          initialSelectedValue: getSelectedDropDown(_.loadingtravelStatus.value,
-              _.travelStatusSelected, _.travelStatus),
+          model: getDropdownModel(controller.loadingtravelStatus.value,
+              controller.travelStatusSelected, controller.travelStatus),
+          initialSelectedValue: getSelectedDropDown(
+              controller.loadingtravelStatus.value,
+              controller.travelStatusSelected,
+              controller.travelStatus),
           choosefieldtype: false,
           callbackFunction: callbackTravelStatus,
         ),
@@ -162,10 +171,12 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: getDropdownModel(
-              _.loadingCountry.value == true, _.countrySelected, _.countryList),
+          model: getDropdownModel(controller.loadingCountry.value == true,
+              controller.countrySelected, controller.countryList),
           initialSelectedValue: getSelectedDropDown(
-              _.loadingCountry.value == true, _.countrySelected, _.countryList),
+              controller.loadingCountry.value == true,
+              controller.countrySelected,
+              controller.countryList),
           choosefieldtype: false,
           callbackFunction: callbackCountry,
         ),
@@ -185,10 +196,14 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: getDropdownModel(_.loadingTypeVisa.value, _.typeOfVisaSelected,
-              _.typeOfVisaList.toSet().toList()),
-          initialSelectedValue: getSelectedDropDown(_.loadingTypeVisa.value,
-              _.typeOfVisaSelected, _.typeOfVisaList.toSet().toList()),
+          model: getDropdownModel(
+              controller.loadingTypeVisa.value,
+              controller.typeOfVisaSelected,
+              controller.typeOfVisaList.toSet().toList()),
+          initialSelectedValue: getSelectedDropDown(
+              controller.loadingTypeVisa.value,
+              controller.typeOfVisaSelected,
+              controller.typeOfVisaList.toSet().toList()),
           choosefieldtype: false,
           callbackFunction: callbackTypeOfVisa,
         ),
@@ -208,15 +223,17 @@ class TravelHistoryWidget extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: getDropdownModel(_.loadingVisaStatus.value,
-              _.visaStatusSelected, _.visaStatusList),
-          initialSelectedValue: getSelectedDropDown(_.loadingVisaStatus.value,
-              _.visaStatusSelected, _.visaStatusList),
+          model: getDropdownModel(controller.loadingVisaStatus.value,
+              controller.visaStatusSelected, controller.visaStatusList),
+          initialSelectedValue: getSelectedDropDown(
+              controller.loadingVisaStatus.value,
+              controller.visaStatusSelected,
+              controller.visaStatusList),
           choosefieldtype: false,
           callbackFunction: callbackVisaStatus,
         ),
       ),
-      if (_.applicationNumberField.value == true)
+      if (controller.applicationNumberField.value == true)
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
           child: Align(
@@ -229,7 +246,7 @@ class TravelHistoryWidget extends StatelessWidget {
             ),
           ),
         ),
-      if (_.applicationNumberField.value == true)
+      if (controller.applicationNumberField.value == true)
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextField(
@@ -265,7 +282,7 @@ class TravelHistoryWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: DatePickerExample(
             enableField: false,
-            date: _.dateOfApplicatiton,
+            date: controller.dateOfApplicatiton,
             callbackDate: callbackDateOfApplciation),
       ),
       Padding(
@@ -284,7 +301,7 @@ class TravelHistoryWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: DatePickerExample(
             enableField: false,
-            date: _.dateOfReject,
+            date: controller.dateOfReject,
             callbackDate: callbackDateOfReject),
       ),
       Padding(
@@ -333,7 +350,7 @@ class TravelHistoryWidget extends StatelessWidget {
         height: 50,
         child: CustomDropDownSingle(
           model: const ["Yes", "No"],
-          initialSelectedValue: _.proofAvailableSelected,
+          initialSelectedValue: controller.proofAvailableSelected,
           choosefieldtype: false,
           callbackFunction: callbackProofAvailable,
         ),
@@ -355,25 +372,25 @@ class TravelHistoryWidget extends StatelessWidget {
                         backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
-                        _.modelList.add(TravelHistoryModel(
-                            travelStatus: _.travelStatusSelected,
-                            chooseCountry:
-                                int.parse(_.countryCodeSelected ?? "0"),
-                            typeOfVisa:
-                                int.parse(_.typeOfVisaCodeSelected ?? "0"),
-                            visaStatus: _.visaStatusSelected,
+                        controller.modelList.add(TravelHistoryModel(
+                            travelStatus: controller.travelStatusSelected,
+                            chooseCountry: int.parse(
+                                controller.countryCodeSelected ?? "0"),
+                            typeOfVisa: int.parse(
+                                controller.typeOfVisaCodeSelected ?? "0"),
+                            visaStatus: controller.visaStatusSelected,
                             dateOfApplication: dateOfApplication.text,
                             dateOfRejection: dateOfReject.text,
                             reasonOfRejection: reasonOfRejection.text,
-                            proofAvailable:
-                                int.parse(_.proofAvailableSelectedID ?? "0"),
-                            countryName: _.countrySelected,
+                            proofAvailable: int.parse(
+                                controller.proofAvailableSelectedID ?? "0"),
+                            countryName: controller.countrySelected,
                             applicationNumber: applicationNumber.text,
                             visaNumber: visaNumber.text));
-                        _.update();
-                        _.updateTravelHistory(
+                        controller.update();
+                        controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
-                            _.travelAbroadSelected!,
+                            controller.travelAbroadSelected!,
                             "added");
                       },
                       child: CustomAutoSizeTextMontserrat(
@@ -402,25 +419,25 @@ class TravelHistoryWidget extends StatelessWidget {
                         backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
-                        _.modelList.add(TravelHistoryModel(
-                            travelStatus: _.travelStatusSelected,
-                            chooseCountry:
-                                int.parse(_.countryCodeSelected ?? "0"),
-                            typeOfVisa:
-                                int.parse(_.typeOfVisaCodeSelected ?? "0"),
-                            visaStatus: _.visaStatusSelected,
+                        controller.modelList.add(TravelHistoryModel(
+                            travelStatus: controller.travelStatusSelected,
+                            chooseCountry: int.parse(
+                                controller.countryCodeSelected ?? "0"),
+                            typeOfVisa: int.parse(
+                                controller.typeOfVisaCodeSelected ?? "0"),
+                            visaStatus: controller.visaStatusSelected,
                             dateOfApplication: dateOfApplication.text,
                             dateOfRejection: dateOfReject.text,
                             reasonOfRejection: reasonOfRejection.text,
-                            proofAvailable:
-                                int.parse(_.proofAvailableSelectedID ?? "0"),
-                            countryName: _.countrySelected,
+                            proofAvailable: int.parse(
+                                controller.proofAvailableSelectedID ?? "0"),
+                            countryName: controller.countrySelected,
                             applicationNumber: applicationNumber.text,
                             visaNumber: visaNumber.text));
-                        _.update();
-                        _.updateTravelHistory(
+                        controller.update();
+                        controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
-                            _.travelAbroadSelected!,
+                            controller.travelAbroadSelected!,
                             "updated");
                       },
                       child: CustomAutoSizeTextMontserrat(

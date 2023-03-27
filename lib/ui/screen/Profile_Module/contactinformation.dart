@@ -47,90 +47,97 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ContactInformationController>(builder: (_) {
+    return controller.obx((state) {
       try {
-        if (_.loadingStudentPanelData.value == 1) {
-          for (var i = 0; i < _.model.addtionalDetails!.length; i++) {
-            if (_.model.addtionalDetails![i].serviceName == "Student Visa") {
+        if (controller.loadingStudentPanelData.value == 1) {
+          for (var i = 0; i < controller.model.addtionalDetails!.length; i++) {
+            if (controller.model.addtionalDetails![i].serviceName ==
+                "Student Visa") {
               assignedBranch.text =
-                  _.model.addtionalDetails![i].branchName ?? "";
-              service.text = _.model.addtionalDetails![i].serviceName ?? "";
+                  controller.model.addtionalDetails![i].branchName ?? "";
+              service.text =
+                  controller.model.addtionalDetails![i].serviceName ?? "";
               firstCountryInterest.text =
-                  _.model.addtionalDetails![i].countryName ?? "";
+                  controller.model.addtionalDetails![i].countryName ?? "";
               assignedAdvisors.text =
-                  _.model.addtionalDetails![i].assigned_advisor ?? "";
-              if (getNUllChecker(_.model.addtionalDetails![i].assigne) ==
+                  controller.model.addtionalDetails![i].assigned_advisor ?? "";
+              if (getNUllChecker(
+                      controller.model.addtionalDetails![i].assigne) ==
                   false) {
                 assignedAdvisors.text = assignedAdvisors.text +
-                    _.model.addtionalDetails![i].assigne!;
+                    controller.model.addtionalDetails![i].assigne!;
               }
             }
           }
 
-          _.dob = _.model.dateOfBirth;
-          firstName.text = _.model.enquiryName ?? "";
-          lastName.text = _.model.lastname ?? "";
-          mobileNumber.text = getNUllChecker(_.model.mobile) == false
-              ? _.model.mobile.toString()
+          controller.dob = controller.model.dateOfBirth;
+          firstName.text = controller.model.enquiryName ?? "";
+          lastName.text = controller.model.lastname ?? "";
+          mobileNumber.text = getNUllChecker(controller.model.mobile) == false
+              ? controller.model.mobile.toString()
               : "";
 
-          email.text = _.model.email ?? "";
+          email.text = controller.model.email ?? "";
           whatsappNumber.text =
-              getNUllChecker(_.model.whatsappNumber.toString()) == false
-                  ? _.model.whatsappNumber.toString()
+              getNUllChecker(controller.model.whatsappNumber.toString()) ==
+                      false
+                  ? controller.model.whatsappNumber.toString()
                   : "";
           alt_Number.text =
-              getNUllChecker(_.model.alternateNumber.toString()) == false
-                  ? _.model.alternateNumber.toString()
+              getNUllChecker(controller.model.alternateNumber.toString()) ==
+                      false
+                  ? controller.model.alternateNumber.toString()
                   : "";
-          _.childrenCountSelected = _.model.child_count;
-          secondaryEmail.text = _.model.secondaryEmail ?? "";
-          street.text = _.model.street ?? "";
-          zipCode.text = getNUllChecker(_.model.pincode) == false
-              ? _.model.pincode.toString()
+          controller.childrenCountSelected = controller.model.child_count;
+          secondaryEmail.text = controller.model.secondaryEmail ?? "";
+          street.text = controller.model.street ?? "";
+          zipCode.text = getNUllChecker(controller.model.pincode) == false
+              ? controller.model.pincode.toString()
               : "";
-          _.genderSelected = _.model.gender ?? gender[0];
+          controller.genderSelected = controller.model.gender ?? gender[0];
           for (var i = 0; i < gender.length; i++) {
-            if (gender[i].toString() == _.model.gender.toString()) {
+            if (gender[i].toString() == controller.model.gender.toString()) {
               controller.genderSelected = gender[i];
               controller.genderIdSelected = i;
               controller.update();
             }
           }
-          _.maritalStatusSelected = _.model.maritalStatus;
+          controller.maritalStatusSelected = controller.model.maritalStatus;
           for (var i = 1; i < controller.martialStatusList.length; i++) {
             if (controller.martialStatusList[i].toString() ==
-                _.model.maritalStatus.toString()) {
+                controller.model.maritalStatus.toString()) {
               controller.maritalStatusSelected =
                   controller.martialStatusList[i];
               controller.maritalStatusIdSelected = i;
               controller.update();
             }
           }
-          _.countrySelected = _.model.countryName;
-          _.stateSelected = _.model.stateName;
-          _.citySelected = _.model.cityName;
+          controller.countrySelected = controller.model.countryName;
+          controller.stateSelected = controller.model.stateName;
+          controller.citySelected = controller.model.cityName;
           String? temp = "";
-          if (_.model.otherCountryOfInterest != null) {
-            for (var i = 0; i < _.model.otherCountryOfInterest!.length; i++) {
+          if (controller.model.otherCountryOfInterest != null) {
+            for (var i = 0;
+                i < controller.model.otherCountryOfInterest!.length;
+                i++) {
               if (i == 0) {
-                temp = _.model.otherCountryOfInterest![i].countryName!;
+                temp = controller.model.otherCountryOfInterest![i].countryName!;
               } else {
                 temp =
-                    "${temp!},${_.model.otherCountryOfInterest![i].countryName!}";
+                    "${temp!},${controller.model.otherCountryOfInterest![i].countryName!}";
               }
             }
           }
-          _.getState(_.model.countryID.toString());
-          _.getCity(_.model.stateID.toString());
-          _.stateIdSelected = _.model.stateID;
-          _.cityIdSelected = _.model.cityID;
-          _.countryIdSelected = _.model.countryID;
-          _.stateSelected = _.model.stateName;
-          _.citySelected = _.model.cityName;
+          controller.getState(controller.model.countryID.toString());
+          controller.getCity(controller.model.stateID.toString());
+          controller.stateIdSelected = controller.model.stateID;
+          controller.cityIdSelected = controller.model.cityID;
+          controller.countryIdSelected = controller.model.countryID;
+          controller.stateSelected = controller.model.stateName;
+          controller.citySelected = controller.model.cityName;
           otherCountryinterested.text = temp!;
-          _.loadingStudentPanelData.value = 3;
-          _.update();
+          controller.loadingStudentPanelData.value = 3;
+          controller.update();
         }
       } catch (e) {
         ApiServices().errorHandle(
@@ -141,7 +148,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         );
       }
 
-      return _.loadingStudentPanelData.value == 3
+      return controller.loadingStudentPanelData.value == 3
           ? SingleChildScrollView(
               reverse: false,
               child: Column(
@@ -196,15 +203,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                     } else if (getNUllChecker(lastName.text) ==
                                         true) {
                                       getToast("Please Enter your last name");
-                                    } else if (getNUllChecker(_.dob)) {
+                                    } else if (getNUllChecker(controller.dob)) {
                                       getToast(
                                           "Please Enter your date of birth");
                                     } else if (getNUllChecker(
-                                            _.genderIdSelected) ==
+                                            controller.genderIdSelected) ==
                                         true) {
                                       getToast("Please select your gender");
                                     } else if (getNUllChecker(
-                                            _.maritalStatusSelected) ==
+                                            controller.maritalStatusSelected) ==
                                         true) {
                                       getToast(
                                           "Please select your marital status");
@@ -221,12 +228,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                     } else if (getNUllChecker(email.text)) {
                                       getToast("Please Enter your email");
                                     } else if (getNUllChecker(
-                                        _.countrySelected)) {
+                                        controller.countrySelected)) {
                                       getToast("Please select  your country");
                                     } else if (getNUllChecker(
-                                        _.stateSelected)) {
+                                        controller.stateSelected)) {
                                       getToast("Please select your state");
-                                    } else if (getNUllChecker(_.citySelected)) {
+                                    } else if (getNUllChecker(
+                                        controller.citySelected)) {
                                       getToast("Please select your city");
                                     } else if (getNUllChecker(zipCode.text)) {
                                       getToast("Please enter your zip code");
@@ -235,17 +243,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                           Get.find<BaseController>().model1.id!,
                                           firstName.text,
                                           lastName.text,
-                                          _.dob,
-                                          _.genderIdSelected!,
-                                          _.maritalStatusIdSelected!,
-                                          _.childrenCountSelected!,
+                                          controller.dob,
+                                          controller.genderIdSelected!,
+                                          controller.maritalStatusIdSelected!,
+                                          controller.childrenCountSelected!,
                                           mobileNumber.text,
                                           email.text,
                                           int.parse(whatsappNumber.text),
                                           int.parse(alt_Number.text),
-                                          _.countryIdSelected!,
-                                          _.stateIdSelected!,
-                                          _.cityIdSelected!,
+                                          controller.countryIdSelected!,
+                                          controller.stateIdSelected!,
+                                          controller.cityIdSelected!,
                                           street.text,
                                           int.parse(zipCode.text),
                                           facebookId.text,
@@ -383,7 +391,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: DatePickerExample(
                       enableField: saveAndEdit,
-                      date: getNUllChecker(_.dob) == false ? _.dob : "",
+                      date: getNUllChecker(controller.dob) == false
+                          ? controller.dob
+                          : "",
                       callbackDate: callbackDOB,
                     ),
                   ),
@@ -402,10 +412,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                   ),
                   CustomDropDownSingle(
-                    model: getDropdownModel(true, _.genderSelected, gender),
+                    model: getDropdownModel(
+                        true, controller.genderSelected, gender),
                     callbackFunction: callbackGender,
-                    initialSelectedValue:
-                        getSelectedDropDown(true, _.genderSelected, gender),
+                    initialSelectedValue: getSelectedDropDown(
+                        true, controller.genderSelected, gender),
                     choosefieldtype: saveAndEdit,
                   ),
                   Padding(
@@ -423,17 +434,19 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                   ),
                   CustomDropDownSingle(
-                    model: getDropdownModel(_.loadingmartialStatus.value,
-                        _.maritalStatusSelected, _.martialStatusList),
+                    model: getDropdownModel(
+                        controller.loadingmartialStatus.value,
+                        controller.maritalStatusSelected,
+                        controller.martialStatusList),
                     callbackFunction: callbackMaritalStatus,
                     initialSelectedValue: getSelectedDropDown(
-                        _.loadingmartialStatus.value,
-                        _.maritalStatusSelected,
-                        _.martialStatusList),
+                        controller.loadingmartialStatus.value,
+                        controller.maritalStatusSelected,
+                        controller.martialStatusList),
                     choosefieldtype: saveAndEdit,
                   ),
-                  if (_.maritalStatusIdSelected == 1 ||
-                      _.maritalStatusIdSelected == 3)
+                  if (controller.maritalStatusIdSelected == 1 ||
+                      controller.maritalStatusIdSelected == 3)
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -447,14 +460,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                       ),
                     ),
-                  if (_.maritalStatusIdSelected == 1 ||
-                      _.maritalStatusIdSelected == 3)
+                  if (controller.maritalStatusIdSelected == 1 ||
+                      controller.maritalStatusIdSelected == 3)
                     CustomDropDownSingle(
                       model: const ["0", "1", "2", "3", "4"],
                       callbackFunction: callbackChildrenCount,
-                      initialSelectedValue: _.childrenCountSelected != null
-                          ? _.childrenCountSelected.toString()
-                          : "0",
+                      initialSelectedValue:
+                          controller.childrenCountSelected != null
+                              ? controller.childrenCountSelected.toString()
+                              : "0",
                       choosefieldtype: saveAndEdit,
                     ),
                   Padding(
@@ -699,13 +713,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                   ),
                   CustomDropDownSingle(
-                    model: getDropdownModel(_.loadingCountry.value,
-                        _.countrySelected, _.countryList),
+                    model: getDropdownModel(controller.loadingCountry.value,
+                        controller.countrySelected, controller.countryList),
                     callbackFunction: callbackCountry,
                     initialSelectedValue: getSelectedDropDown(
-                        _.loadingCountry.value,
-                        _.countrySelected,
-                        _.countryList),
+                        controller.loadingCountry.value,
+                        controller.countrySelected,
+                        controller.countryList),
                     choosefieldtype: saveAndEdit,
                   ),
                   Padding(
@@ -723,11 +737,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                   ),
                   CustomDropDownSingle(
-                    model: getDropdownModel(
-                        _.loadingState.value, _.stateSelected, _.stateList),
+                    model: getDropdownModel(controller.loadingState.value,
+                        controller.stateSelected, controller.stateList),
                     callbackFunction: calllbackState,
                     initialSelectedValue: getSelectedDropDown(
-                        _.loadingState.value, _.stateSelected, _.stateList),
+                        controller.loadingState.value,
+                        controller.stateSelected,
+                        controller.stateList),
                     choosefieldtype: saveAndEdit,
                   ),
                   Padding(
@@ -745,11 +761,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                   ),
                   CustomDropDownSingle(
-                    model: getDropdownModel(
-                        _.loadingCity.value, _.citySelected, _.cityList),
+                    model: getDropdownModel(controller.loadingCity.value,
+                        controller.citySelected, controller.cityList),
                     callbackFunction: callbackCity,
                     initialSelectedValue: getSelectedDropDown(
-                        _.loadingCity.value, _.citySelected, _.cityList),
+                        controller.loadingCity.value,
+                        controller.citySelected,
+                        controller.cityList),
                     choosefieldtype: saveAndEdit,
                   ),
                   Padding(
@@ -1238,15 +1256,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                     } else if (getNUllChecker(lastName.text) ==
                                         true) {
                                       getToast("Please Enter your last name");
-                                    } else if (getNUllChecker(_.dob)) {
+                                    } else if (getNUllChecker(controller.dob)) {
                                       getToast(
                                           "Please Enter your date of birth");
                                     } else if (getNUllChecker(
-                                            _.genderIdSelected) ==
+                                            controller.genderIdSelected) ==
                                         true) {
                                       getToast("Please select your gender");
                                     } else if (getNUllChecker(
-                                            _.maritalStatusSelected) ==
+                                            controller.maritalStatusSelected) ==
                                         true) {
                                       getToast(
                                           "Please select your marital status");
@@ -1263,12 +1281,13 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                     } else if (getNUllChecker(email.text)) {
                                       getToast("Please Enter your email");
                                     } else if (getNUllChecker(
-                                        _.countrySelected)) {
+                                        controller.countrySelected)) {
                                       getToast("Please select  your country");
                                     } else if (getNUllChecker(
-                                        _.stateSelected)) {
+                                        controller.stateSelected)) {
                                       getToast("Please select your state");
-                                    } else if (getNUllChecker(_.citySelected)) {
+                                    } else if (getNUllChecker(
+                                        controller.citySelected)) {
                                       getToast("Please select your city");
                                     } else if (getNUllChecker(zipCode.text)) {
                                       getToast("Please enter your zip code");
@@ -1277,17 +1296,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                           Get.find<BaseController>().model1.id!,
                                           firstName.text,
                                           lastName.text,
-                                          _.dob,
-                                          _.genderIdSelected!,
-                                          _.maritalStatusIdSelected!,
-                                          _.childrenCountSelected!,
+                                          controller.dob,
+                                          controller.genderIdSelected!,
+                                          controller.maritalStatusIdSelected!,
+                                          controller.childrenCountSelected!,
                                           mobileNumber.text,
                                           email.text,
                                           int.parse(whatsappNumber.text),
                                           int.parse(alt_Number.text),
-                                          _.countryIdSelected!,
-                                          _.stateIdSelected!,
-                                          _.cityIdSelected!,
+                                          controller.countryIdSelected!,
+                                          controller.stateIdSelected!,
+                                          controller.cityIdSelected!,
                                           street.text,
                                           int.parse(zipCode.text),
                                           facebookId.text,
@@ -1324,7 +1343,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           : Center(
               child: getLoading(context),
             );
-    });
+    }, onLoading: getLoading(context));
   }
 
   // Funcation

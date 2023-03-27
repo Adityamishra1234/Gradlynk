@@ -25,76 +25,88 @@ class OthertestDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<OtherTestDetailsController>(builder: (_) {
+    return controller.obx((state) {
       try {
-        if (_.loadingEdit.value == false &&
-            _.loadingExamStaus.value == true &&
-            _.loadingExamName.value == true &&
-            _.loadingViewOtherTestDetails.value == true) {
-          _.examStatusSelectedID = _.otherTestDetailsModel.examStatus;
-          for (var i = 0; i < _.examStatusCode.length; i++) {
-            if (_.examStatusCode[i].toString() ==
-                _.otherTestDetailsModel.examStatus.toString()) {
-              _.examStatusSelected = _.examStatusList[i];
+        if (controller.loadingEdit.value == false &&
+            controller.loadingExamStaus.value == true &&
+            controller.loadingExamName.value == true &&
+            controller.loadingViewOtherTestDetails.value == true) {
+          controller.examStatusSelectedID =
+              controller.otherTestDetailsModel.examStatus;
+          for (var i = 0; i < controller.examStatusCode.length; i++) {
+            if (controller.examStatusCode[i].toString() ==
+                controller.otherTestDetailsModel.examStatus.toString()) {
+              controller.examStatusSelected = controller.examStatusList[i];
             }
           }
-          _.bookTestSelected = _.otherTestDetailsModel.testBook;
-          _.examNameSelected = _.otherTestDetailsModel.examName;
-          // _.specifyExamNameSelected=_.otherTestDetailsModel.
-          _.dateOfExamSelected = _.otherTestDetailsModel.dateOfExam;
-          _.tentativeDateSelected =
-              _.otherTestDetailsModel.tentativeExamDate ?? "";
-          _.dateOftestReportSelected = _.otherTestDetailsModel.resultDate ?? "";
-          _.testScoreExpirationDateSelected =
-              _.otherTestDetailsModel.expirationDate ?? "";
-          _.tentaiveDefinite = _.otherTestDetailsModel.scoreType ?? "Tentative";
+          controller.bookTestSelected =
+              controller.otherTestDetailsModel.testBook;
+          controller.examNameSelected =
+              controller.otherTestDetailsModel.examName;
+          // controller.specifyExamNameSelected=controller.otherTestDetailsModel.
+          controller.dateOfExamSelected =
+              controller.otherTestDetailsModel.dateOfExam;
+          controller.tentativeDateSelected =
+              controller.otherTestDetailsModel.tentativeExamDate ?? "";
+          controller.dateOftestReportSelected =
+              controller.otherTestDetailsModel.resultDate ?? "";
+          controller.testScoreExpirationDateSelected =
+              controller.otherTestDetailsModel.expirationDate ?? "";
+          controller.tentaiveDefinite =
+              controller.otherTestDetailsModel.scoreType ?? "Tentative";
 
-          analyticalWriting.text = getNUllChecker(
-                      _.otherTestDetailsModel.analyticalWriting.toString()) ==
+          analyticalWriting.text = getNUllChecker(controller
+                      .otherTestDetailsModel.analyticalWriting
+                      .toString()) ==
                   false
-              ? _.otherTestDetailsModel.analyticalWriting.toString()
+              ? controller.otherTestDetailsModel.analyticalWriting.toString()
               : "";
-          verbalReasoning.text = getNUllChecker(
-                      _.otherTestDetailsModel.verbalReasoning.toString()) ==
+          verbalReasoning.text = getNUllChecker(controller
+                      .otherTestDetailsModel.verbalReasoning
+                      .toString()) ==
                   false
-              ? _.otherTestDetailsModel.verbalReasoning.toString()
+              ? controller.otherTestDetailsModel.verbalReasoning.toString()
               : "";
-          quantitative.text = getNUllChecker(_
+          quantitative.text = getNUllChecker(controller
                       .otherTestDetailsModel.quantitativeApptitude
                       .toString()) ==
                   false
-              ? _.otherTestDetailsModel.quantitativeApptitude.toString()
+              ? controller.otherTestDetailsModel.quantitativeApptitude
+                  .toString()
               : "";
-          integrateedReasoning.text = getNUllChecker(
-                      _.otherTestDetailsModel.integratedReasoning.toString()) ==
+          integrateedReasoning.text = getNUllChecker(controller
+                      .otherTestDetailsModel.integratedReasoning
+                      .toString()) ==
                   false
-              ? _.otherTestDetailsModel.integratedReasoning.toString()
+              ? controller.otherTestDetailsModel.integratedReasoning.toString()
               : "";
-          overallScore.text =
-              getNUllChecker(_.otherTestDetailsModel.overAll.toString()) ==
-                      false
-                  ? _.otherTestDetailsModel.overAll.toString()
-                  : "";
-          reading.text =
-              getNUllChecker(_.otherTestDetailsModel.reading.toString()) ==
-                      false
-                  ? _.otherTestDetailsModel.reading.toString()
-                  : "";
-          writingAndLanguage.text =
-              getNUllChecker(_.otherTestDetailsModel.writing.toString()) ==
-                      false
-                  ? _.otherTestDetailsModel.writing.toString()
-                  : "";
-          essay.text =
-              getNUllChecker(_.otherTestDetailsModel.essay.toString()) == false
-                  ? _.otherTestDetailsModel.essay.toString()
-                  : "";
-          math.text =
-              getNUllChecker(_.otherTestDetailsModel.math.toString()) == false
-                  ? _.otherTestDetailsModel.math.toString()
-                  : "";
+          overallScore.text = getNUllChecker(
+                      controller.otherTestDetailsModel.overAll.toString()) ==
+                  false
+              ? controller.otherTestDetailsModel.overAll.toString()
+              : "";
+          reading.text = getNUllChecker(
+                      controller.otherTestDetailsModel.reading.toString()) ==
+                  false
+              ? controller.otherTestDetailsModel.reading.toString()
+              : "";
+          writingAndLanguage.text = getNUllChecker(
+                      controller.otherTestDetailsModel.writing.toString()) ==
+                  false
+              ? controller.otherTestDetailsModel.writing.toString()
+              : "";
+          essay.text = getNUllChecker(
+                      controller.otherTestDetailsModel.essay.toString()) ==
+                  false
+              ? controller.otherTestDetailsModel.essay.toString()
+              : "";
+          math.text = getNUllChecker(
+                      controller.otherTestDetailsModel.math.toString()) ==
+                  false
+              ? controller.otherTestDetailsModel.math.toString()
+              : "";
 
-          _.loadingEdit.value = true;
+          controller.loadingEdit.value = true;
         }
       } catch (e) {
         print(e.toString());
@@ -117,21 +129,21 @@ class OthertestDetail extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const Spacer(),
-                    if (_.editSave.value == true)
+                    if (controller.editSave.value == true)
                       TextButton(
                           onPressed: () {
-                            _.editSave.value = false;
-                            _.update();
+                            controller.editSave.value = false;
+                            controller.update();
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "edit",
                             textColor: ThemeConstants.bluecolor,
                           )),
-                    if (_.editSave.value == false)
+                    if (controller.editSave.value == false)
                       TextButton(
                           onPressed: () {
-                            _.editSave.value = true;
-                            _.update();
+                            controller.editSave.value = true;
+                            controller.update();
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "save",
@@ -144,28 +156,31 @@ class OthertestDetail extends StatelessWidget {
             SizedBox(
               height: 50,
               child: CustomDropDownSingle(
-                model: _.loadingExamStaus.value == true
-                    ? _.examStatusList
+                model: controller.loadingExamStaus.value == true
+                    ? controller.examStatusList
                     : ["No Data"],
-                initialSelectedValue: _.loadingExamStaus.value == true
-                    ? getNUllChecker(_.examStatusSelected) == false
-                        ? _.examStatusSelected.toString()
-                        : _.examStatusList[0]
+                initialSelectedValue: controller.loadingExamStaus.value == true
+                    ? getNUllChecker(controller.examStatusSelected) == false
+                        ? controller.examStatusSelected.toString()
+                        : controller.examStatusList[0]
                     : "No Data",
-                choosefieldtype: _.editSave.value == true ? true : false,
+                choosefieldtype:
+                    controller.editSave.value == true ? true : false,
                 callbackFunction: callbackExamStatus,
               ),
             ),
-            if (_.examStatusSelectedID == "1") ...register(context),
-            if (_.examStatusSelectedID == "2") ...notYetRegister(context),
-            if (_.examStatusSelectedID == "3") ...testAlreadyTaken(context),
+            if (controller.examStatusSelectedID == "1") ...register(context),
+            if (controller.examStatusSelectedID == "2")
+              ...notYetRegister(context),
+            if (controller.examStatusSelectedID == "3")
+              ...testAlreadyTaken(context),
             Align(
               alignment: AlignmentDirectional.topEnd,
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, right: 20),
                 child: SizedBox(
                   width: 90,
-                  child: _.editSave.value == false
+                  child: controller.editSave.value == false
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             foregroundColor: ThemeConstants.bluecolor,
@@ -177,168 +192,183 @@ class OthertestDetail extends StatelessWidget {
                             //register=> exam status,exam name
                             //not yet => exam status,  exam name,book test
                             //test already taken => exam status, exam name,
-                            if (_.examStatusSelected == "Not Yet Registered") {
-                              if (_.bookTestSelected == null) {
+                            if (controller.examStatusSelected ==
+                                "Not Yet Registered") {
+                              if (controller.bookTestSelected == null) {
                                 getToast("Please select book text");
                               }
                             }
-                            if (_.examStatusSelected == null) {
+                            if (controller.examStatusSelected == null) {
                               getToast("Please select exam status");
-                            } else if (_.examStatusSelected ==
+                            } else if (controller.examStatusSelected ==
                                 "Not Yet Registered") {
-                              if (_.bookTestSelected == null) {
+                              if (controller.bookTestSelected == null) {
                                 getToast("Please select book text");
                               } else {
                                 // DropDown
-                                _.otherTestDetailsModel.examStatus =
-                                    _.examStatusSelectedID ?? "";
-                                if (getNUllChecker(_.examNameSelected) ==
+                                controller.otherTestDetailsModel.examStatus =
+                                    controller.examStatusSelectedID ?? "";
+                                if (getNUllChecker(
+                                        controller.examNameSelected) ==
                                     false) {
-                                  _.otherTestDetailsModel.examName =
-                                      _.examNameSelected;
+                                  controller.otherTestDetailsModel.examName =
+                                      controller.examNameSelected;
                                 } else {
-                                  _.otherTestDetailsModel.examName = null;
+                                  controller.otherTestDetailsModel.examName =
+                                      null;
                                 }
-                                _.otherTestDetailsModel.testBook =
-                                    _.bookTestSelectedID;
-                                _.otherTestDetailsModel.scoreType =
-                                    _.tentaiveDefinite;
+                                controller.otherTestDetailsModel.testBook =
+                                    controller.bookTestSelectedID;
+                                controller.otherTestDetailsModel.scoreType =
+                                    controller.tentaiveDefinite;
 
                                 // text field
-                                _.otherTestDetailsModel.dateOfExam =
-                                    _.dateOfExamSelected;
-                                _.otherTestDetailsModel.tentativeExamDate =
-                                    _.tentativeDateSelected;
-                                _.otherTestDetailsModel.resultDate =
-                                    _.dateOftestReportSelected;
-                                _.otherTestDetailsModel.expirationDate =
-                                    _.testScoreExpirationDateSelected;
+                                controller.otherTestDetailsModel.dateOfExam =
+                                    controller.dateOfExamSelected;
+                                controller.otherTestDetailsModel
+                                        .tentativeExamDate =
+                                    controller.tentativeDateSelected;
+                                controller.otherTestDetailsModel.resultDate =
+                                    controller.dateOftestReportSelected;
+                                controller
+                                        .otherTestDetailsModel.expirationDate =
+                                    controller.testScoreExpirationDateSelected;
 
                                 // int condition for null
-                                _.otherTestDetailsModel.analyticalWriting =
+                                controller.otherTestDetailsModel
+                                        .analyticalWriting =
                                     getNUllChecker(analyticalWriting.text) ==
                                             false
                                         ? int.parse(analyticalWriting.text)
                                         : 0;
-                                _.otherTestDetailsModel.verbalReasoning =
+                                controller
+                                        .otherTestDetailsModel.verbalReasoning =
                                     getNUllChecker(verbalReasoning.text) ==
                                             false
                                         ? int.parse(verbalReasoning.text)
                                         : 0;
 
-                                _.otherTestDetailsModel.quantitativeApptitude =
+                                controller.otherTestDetailsModel
+                                        .quantitativeApptitude =
                                     getNUllChecker(quantitative.text) == false
                                         ? int.parse(quantitative.text)
                                         : 0;
-                                _.otherTestDetailsModel.integratedReasoning =
+                                controller.otherTestDetailsModel
+                                        .integratedReasoning =
                                     getNUllChecker(integrateedReasoning.text) ==
                                             false
                                         ? int.parse(integrateedReasoning.text)
                                         : 0;
-                                _.otherTestDetailsModel.reading =
+                                controller.otherTestDetailsModel.reading =
                                     getNUllChecker(reading.text) == false
                                         ? int.parse(reading.text)
                                         : 0;
-                                _.otherTestDetailsModel.writing =
+                                controller.otherTestDetailsModel.writing =
                                     getNUllChecker(writingAndLanguage.text) ==
                                             false
                                         ? int.parse(writingAndLanguage.text)
                                         : 0;
-                                _.otherTestDetailsModel.essay =
+                                controller.otherTestDetailsModel.essay =
                                     getNUllChecker(essay.text) == false
                                         ? int.parse(essay.text)
                                         : 0;
-                                _.otherTestDetailsModel.math =
+                                controller.otherTestDetailsModel.math =
                                     getNUllChecker(math.text) == false
                                         ? int.parse(math.text)
                                         : 0;
-                                _.otherTestDetailsModel.overAll =
+                                controller.otherTestDetailsModel.overAll =
                                     getNUllChecker(overallScore.text) == false
                                         ? int.parse(overallScore.text)
                                         : 0;
-                                _.editSave.value = true;
-                                _.updateOtherTestDetails(
+                                controller.editSave.value = true;
+                                controller.updateOtherTestDetails(
                                     Get.find<BaseController>()
                                         .model1
                                         .id
                                         .toString());
-                                _.update();
+                                controller.update();
                               }
-                            } else if (_.examNameSelected == null) {
+                            } else if (controller.examNameSelected == null) {
                               getToast("Please select exam name");
                             } else {
                               // DropDown
-                              _.otherTestDetailsModel.examStatus =
-                                  _.examStatusSelectedID ?? "";
-                              if (getNUllChecker(_.examNameSelected) == false) {
-                                _.otherTestDetailsModel.examName =
-                                    _.examNameSelected;
+                              controller.otherTestDetailsModel.examStatus =
+                                  controller.examStatusSelectedID ?? "";
+                              if (getNUllChecker(controller.examNameSelected) ==
+                                  false) {
+                                controller.otherTestDetailsModel.examName =
+                                    controller.examNameSelected;
                               } else {
-                                _.otherTestDetailsModel.examName = null;
+                                controller.otherTestDetailsModel.examName =
+                                    null;
                               }
-                              _.otherTestDetailsModel.testBook =
-                                  _.bookTestSelectedID;
-                              _.otherTestDetailsModel.scoreType =
-                                  _.tentaiveDefinite;
+                              controller.otherTestDetailsModel.testBook =
+                                  controller.bookTestSelectedID;
+                              controller.otherTestDetailsModel.scoreType =
+                                  controller.tentaiveDefinite;
 
                               // text field
-                              _.otherTestDetailsModel.dateOfExam =
-                                  _.dateOfExamSelected;
-                              _.otherTestDetailsModel.tentativeExamDate =
-                                  _.tentativeDateSelected;
-                              _.otherTestDetailsModel.resultDate =
-                                  _.dateOftestReportSelected;
-                              _.otherTestDetailsModel.expirationDate =
-                                  _.testScoreExpirationDateSelected;
+                              controller.otherTestDetailsModel.dateOfExam =
+                                  controller.dateOfExamSelected;
+                              controller
+                                      .otherTestDetailsModel.tentativeExamDate =
+                                  controller.tentativeDateSelected;
+                              controller.otherTestDetailsModel.resultDate =
+                                  controller.dateOftestReportSelected;
+                              controller.otherTestDetailsModel.expirationDate =
+                                  controller.testScoreExpirationDateSelected;
 
                               // int condition for null
-                              _.otherTestDetailsModel.analyticalWriting =
+                              controller
+                                      .otherTestDetailsModel.analyticalWriting =
                                   getNUllChecker(analyticalWriting.text) ==
                                           false
                                       ? int.parse(analyticalWriting.text)
                                       : 0;
-                              _.otherTestDetailsModel.verbalReasoning =
+                              controller.otherTestDetailsModel.verbalReasoning =
                                   getNUllChecker(verbalReasoning.text) == false
                                       ? int.parse(verbalReasoning.text)
                                       : 0;
 
-                              _.otherTestDetailsModel.quantitativeApptitude =
+                              controller.otherTestDetailsModel
+                                      .quantitativeApptitude =
                                   getNUllChecker(quantitative.text) == false
                                       ? int.parse(quantitative.text)
                                       : 0;
-                              _.otherTestDetailsModel.integratedReasoning =
+                              controller.otherTestDetailsModel
+                                      .integratedReasoning =
                                   getNUllChecker(integrateedReasoning.text) ==
                                           false
                                       ? int.parse(integrateedReasoning.text)
                                       : 0;
-                              _.otherTestDetailsModel.reading =
+                              controller.otherTestDetailsModel.reading =
                                   getNUllChecker(reading.text) == false
                                       ? int.parse(reading.text)
                                       : 0;
-                              _.otherTestDetailsModel.writing =
+                              controller.otherTestDetailsModel.writing =
                                   getNUllChecker(writingAndLanguage.text) ==
                                           false
                                       ? int.parse(writingAndLanguage.text)
                                       : 0;
-                              _.otherTestDetailsModel.essay =
+                              controller.otherTestDetailsModel.essay =
                                   getNUllChecker(essay.text) == false
                                       ? int.parse(essay.text)
                                       : 0;
-                              _.otherTestDetailsModel.math =
+                              controller.otherTestDetailsModel.math =
                                   getNUllChecker(math.text) == false
                                       ? int.parse(math.text)
                                       : 0;
-                              _.otherTestDetailsModel.overAll =
+                              controller.otherTestDetailsModel.overAll =
                                   getNUllChecker(overallScore.text) == false
                                       ? int.parse(overallScore.text)
                                       : 0;
-                              _.editSave.value = true;
-                              _.updateOtherTestDetails(
+                              controller.editSave.value = true;
+                              controller.updateOtherTestDetails(
                                   Get.find<BaseController>()
                                       .model1
                                       .id
                                       .toString());
-                              _.update();
+                              controller.update();
                             }
                           },
                           child: CustomAutoSizeTextMontserrat(
@@ -353,8 +383,8 @@ class OthertestDetail extends StatelessWidget {
                                 ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            _.editSave.value = false;
-                            _.update();
+                            controller.editSave.value = false;
+                            controller.update();
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "Edit",
@@ -369,7 +399,7 @@ class OthertestDetail extends StatelessWidget {
           ],
         ),
       );
-    });
+    }, onLoading: getLoading(context));
   }
 
 // Function
