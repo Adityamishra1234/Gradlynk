@@ -18,44 +18,52 @@ class PassportDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PassportController>(builder: (_) {
+    return controller.obx((state) {
       try {
-        if (_.loadingFirstTime.value == false &&
-            _.loadingCountry.value == true &&
-            _.loadingPassport.value == true &&
-            _.loadingPlaceOfIssuse.value == true) {
-          _.loadingFirstTime.value = true;
+        if (controller.loadingFirstTime.value == false &&
+            controller.loadingCountry.value == true &&
+            controller.loadingPassport.value == true &&
+            controller.loadingPlaceOfIssuse.value == true) {
+          controller.loadingFirstTime.value = true;
           // citizen of, passport number ,country of issue, state of issue, place of issue ,date of issue, expiry date  ("Yes") / No => tentative Date
           passportNumber.text =
-              getNUllChecker(_.passportModel.passportNumber) == false
-                  ? _.passportModel.passportNumber!
+              getNUllChecker(controller.passportModel.passportNumber) == false
+                  ? controller.passportModel.passportNumber!
                   : "";
-          _.dateOfIssue = getNUllChecker(_.passportModel.dateOfIssue) == false
-              ? _.passportModel.dateOfIssue!
-              : "";
-          _.expireDate = getNUllChecker(_.passportModel.expiryDate) == false
-              ? _.passportModel.expiryDate!
-              : "";
-          _.passportAvaliable =
-              (_.passportModel.passportAvailable == "1") ? false.obs : true.obs;
-          _.placeOfIssuseSelected =
-              getNUllChecker(_.passportModel.placeOfIssue) == false
-                  ? _.passportModel.placeOfIssue!
+          controller.dateOfIssue =
+              getNUllChecker(controller.passportModel.dateOfIssue) == false
+                  ? controller.passportModel.dateOfIssue!
+                  : "";
+          controller.expireDate =
+              getNUllChecker(controller.passportModel.expiryDate) == false
+                  ? controller.passportModel.expiryDate!
+                  : "";
+          controller.passportAvaliable =
+              (controller.passportModel.passportAvailable == "1")
+                  ? false.obs
+                  : true.obs;
+          controller.placeOfIssuseSelected =
+              getNUllChecker(controller.passportModel.placeOfIssue) == false
+                  ? controller.passportModel.placeOfIssue!
                   : "";
 
 //Citizen of Selected View at the Time of autoview
-          for (var i = 0; i < _.countryList.length; i++) {
-            if (_.countryCode[i] == _.passportModel.citizenOf) {
-              _.citizenCodeSelected = _.passportModel.citizenOf;
-              _.citizenSelected = _.countryList[i];
+          for (var i = 0; i < controller.countryList.length; i++) {
+            if (controller.countryCode[i] ==
+                controller.passportModel.citizenOf) {
+              controller.citizenCodeSelected =
+                  controller.passportModel.citizenOf;
+              controller.citizenSelected = controller.countryList[i];
             }
           }
 
-          for (var i = 0; i < _.countryList.length; i++) {
-            if (_.countryCode[i] == _.passportModel.countryOfIssue) {
-              _.countryCodeSelected = _.passportModel.countryOfIssue;
-              _.getState(_.countryCodeSelected!);
-              _.countrySelected = _.countryList[i];
+          for (var i = 0; i < controller.countryList.length; i++) {
+            if (controller.countryCode[i] ==
+                controller.passportModel.countryOfIssue) {
+              controller.countryCodeSelected =
+                  controller.passportModel.countryOfIssue;
+              controller.getState(controller.countryCodeSelected!);
+              controller.countrySelected = controller.countryList[i];
             }
           }
         }
@@ -77,27 +85,27 @@ class PassportDetails extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 const Spacer(),
-                if (_.editSave.value == true)
+                if (controller.editSave.value == true)
                   TextButton(
                       onPressed: () {
-                        if (_.passportAvaliable.value == true) {
+                        if (controller.passportAvaliable.value == true) {
                           controller.editSave.value = false;
                           controller.update();
                           updatePassport();
                         } else {
-                          if (_.citizenSelected == null) {
+                          if (controller.citizenSelected == null) {
                             getToast("please enter citizen of");
                           } else if (passportNumber.text.isEmpty) {
                             getToast("please enter passport number");
-                          } else if (_.countrySelected == null) {
+                          } else if (controller.countrySelected == null) {
                             getToast("please enter country");
-                          } else if (_.stateSelected == null) {
+                          } else if (controller.stateSelected == null) {
                             getToast("please enter state");
-                          } else if (_.placeOfIssuseSelected == null) {
+                          } else if (controller.placeOfIssuseSelected == null) {
                             getToast("please enter place of issuse");
-                          } else if (_.dateOfIssue == null) {
+                          } else if (controller.dateOfIssue == null) {
                             getToast("please enter date of issue");
-                          } else if (_.expireDate == null) {
+                          } else if (controller.expireDate == null) {
                             getToast("please enter expire date");
                           } else {
                             controller.editSave.value = false;
@@ -112,7 +120,7 @@ class PassportDetails extends StatelessWidget {
                         fontSize: 18,
                         textColor: ThemeConstants.bluecolor,
                       )),
-                if (_.editSave.value == false)
+                if (controller.editSave.value == false)
                   TextButton(
                       onPressed: () {
                         controller.editSave.value = true;
@@ -132,25 +140,25 @@ class PassportDetails extends StatelessWidget {
             child: CustomDropDownSingle(
               model: const ["Yes", "No"],
               initialSelectedValue:
-                  getNUllChecker(_.passportAvaliable.value) == true
+                  getNUllChecker(controller.passportAvaliable.value) == true
                       ? "No"
-                      : _.passportAvaliable.value == false
+                      : controller.passportAvaliable.value == false
                           ? "Yes"
                           : "No",
               choosefieldtype: controller.editSave.value == false,
               callbackFunction: callbackPassportAvaliables,
             ),
           ),
-          if (_.passportAvaliable.value == false)
-            ...getPassportAvaliable(_, context),
+          if (controller.passportAvaliable.value == false)
+            ...getPassportAvaliable(controller, context),
         ],
       );
-    });
+    }, onLoading: getLoading(context));
   }
 
   // Widget Function
   List<Widget> getPassportAvaliable(
-      PassportController _, BuildContext context) {
+      PassportController controller, BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -168,12 +176,15 @@ class PassportDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingCountry.value == true ? _.countryList : ["No Data"],
-          initialSelectedValue: getNUllChecker(_.citizenSelected) == false
-              ? _.citizenSelected
-              : _.loadingCountry.value == true
-                  ? _.countryList[0]
-                  : "No Data",
+          model: controller.loadingCountry.value == true
+              ? controller.countryList
+              : ["No Data"],
+          initialSelectedValue:
+              getNUllChecker(controller.citizenSelected) == false
+                  ? controller.citizenSelected
+                  : controller.loadingCountry.value == true
+                      ? controller.countryList[0]
+                      : "No Data",
           choosefieldtype: controller.editSave.value == false,
           callbackFunction: callbackCitizenOf,
         ),
@@ -226,12 +237,15 @@ class PassportDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingCountry.value == true ? _.countryList : ["No Data"],
-          initialSelectedValue: getNUllChecker(_.countrySelected) == false
-              ? _.countrySelected
-              : _.loadingCountry.value == true
-                  ? _.countryList[0]
-                  : "No Data",
+          model: controller.loadingCountry.value == true
+              ? controller.countryList
+              : ["No Data"],
+          initialSelectedValue:
+              getNUllChecker(controller.countrySelected) == false
+                  ? controller.countrySelected
+                  : controller.loadingCountry.value == true
+                      ? controller.countryList[0]
+                      : "No Data",
           choosefieldtype: controller.editSave.value == false,
           callbackFunction: callbackCountry,
         ),
@@ -252,12 +266,15 @@ class PassportDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingState.value == true ? _.stateList : ["No Data"],
-          initialSelectedValue: getNUllChecker(_.stateSelected) == false
-              ? _.stateSelected
-              : _.loadingState.value == true
-                  ? _.stateList[0]
-                  : "No Data",
+          model: controller.loadingState.value == true
+              ? controller.stateList
+              : ["No Data"],
+          initialSelectedValue:
+              getNUllChecker(controller.stateSelected) == false
+                  ? controller.stateSelected
+                  : controller.loadingState.value == true
+                      ? controller.stateList[0]
+                      : "No Data",
           choosefieldtype: controller.editSave.value == false,
           callbackFunction: calllbackState,
         ),
@@ -278,14 +295,15 @@ class PassportDetails extends StatelessWidget {
       SizedBox(
         height: 50,
         child: CustomDropDownSingle(
-          model: _.loadingPlaceOfIssuse.value == true
-              ? _.placeOfIssuse
+          model: controller.loadingPlaceOfIssuse.value == true
+              ? controller.placeOfIssuse
               : ["No Data"],
-          initialSelectedValue: getNUllChecker(_.placeOfIssuseSelected) == false
-              ? _.placeOfIssuseSelected
-              : _.loadingPlaceOfIssuse.value == true
-                  ? _.placeOfIssuse[0]
-                  : "No Data",
+          initialSelectedValue:
+              getNUllChecker(controller.placeOfIssuseSelected) == false
+                  ? controller.placeOfIssuseSelected
+                  : controller.loadingPlaceOfIssuse.value == true
+                      ? controller.placeOfIssuse[0]
+                      : "No Data",
           choosefieldtype: controller.editSave.value == false,
           callbackFunction: callbackPlaceOfIssuse,
         ),
@@ -306,8 +324,8 @@ class PassportDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: DatePickerExample(
-            enableField: _.editSave.value == true ? false : true,
-            date: _.dateOfIssue,
+            enableField: controller.editSave.value == true ? false : true,
+            date: controller.dateOfIssue,
             callbackDate: callbackDateOfIssue),
       ),
       Padding(
@@ -326,8 +344,8 @@ class PassportDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: DatePickerExample(
-            enableField: _.editSave.value == true ? false : true,
-            date: _.expireDate,
+            enableField: controller.editSave.value == true ? false : true,
+            date: controller.expireDate,
             callbackDate: callbackExpireDate),
       ),
       Padding(
@@ -335,7 +353,7 @@ class PassportDetails extends StatelessWidget {
         child: Row(
           children: [
             const Spacer(),
-            if (_.editSave.value == false)
+            if (controller.editSave.value == false)
               Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: SizedBox(
@@ -358,7 +376,7 @@ class PassportDetails extends StatelessWidget {
                   ),
                 ),
               ),
-            if (_.editSave.value == true)
+            if (controller.editSave.value == true)
               Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: SizedBox(
@@ -371,24 +389,24 @@ class PassportDetails extends StatelessWidget {
                       backgroundColor: ThemeConstants.whitecolor, // foreground
                     ),
                     onPressed: () {
-                      if (_.passportAvaliable.value == true) {
+                      if (controller.passportAvaliable.value == true) {
                         controller.editSave.value = false;
                         controller.update();
                         updatePassport();
                       } else {
-                        if (_.citizenSelected == null) {
+                        if (controller.citizenSelected == null) {
                           getToast("please enter citizen of");
                         } else if (passportNumber.text.isEmpty) {
                           getToast("please enter passport number");
-                        } else if (_.countrySelected == null) {
+                        } else if (controller.countrySelected == null) {
                           getToast("please enter country");
-                        } else if (_.stateSelected == null) {
+                        } else if (controller.stateSelected == null) {
                           getToast("please enter state");
-                        } else if (_.placeOfIssuseSelected == null) {
+                        } else if (controller.placeOfIssuseSelected == null) {
                           getToast("please enter place of issuse");
-                        } else if (_.dateOfIssue == null) {
+                        } else if (controller.dateOfIssue == null) {
                           getToast("please enter date of issue");
-                        } else if (_.expireDate == null) {
+                        } else if (controller.expireDate == null) {
                           getToast("please enter expire date");
                         } else {
                           controller.editSave.value = false;

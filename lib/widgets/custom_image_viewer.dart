@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -21,14 +22,14 @@ class CustomImageViewer extends StatelessWidget {
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
                   if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  );
+                  return Center(child: getLoading(context));
+                  //   CircularProgressIndicator(
+                  //     value: loadingProgress.expectedTotalBytes != null
+                  //         ? loadingProgress.cumulativeBytesLoaded /
+                  //             loadingProgress.expectedTotalBytes!
+                  //         : null,
+                  //   ),
+                  // );
                 },
                 errorBuilder: (context, error, stackTrace) {
                   return Container(

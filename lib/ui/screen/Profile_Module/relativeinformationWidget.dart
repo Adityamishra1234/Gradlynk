@@ -30,29 +30,36 @@ class RelativeInformationWidget extends StatelessWidget {
   static final realtiveEmail = TextEditingController();
   static final contactOfRelative = TextEditingController();
   static final addresOfrelative = TextEditingController();
+  var controller = Get.put(RelativeInformationController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RelativeInformationController>(builder: (_) {
+    return controller.obx((state) {
       try {
         if (updatForEdit == false) {
-          realtiveEmail.text = _.modelList[index!].relativeEmailId ?? "";
-          contactOfRelative.text = getNUllChecker(
-                      _.modelList[index!].contactOfRelative.toString()) ==
+          realtiveEmail.text =
+              controller.modelList[index!].relativeEmailId ?? "";
+          contactOfRelative.text = getNUllChecker(controller
+                      .modelList[index!].contactOfRelative
+                      .toString()) ==
                   false
-              ? _.modelList[index!].contactOfRelative.toString()
+              ? controller.modelList[index!].contactOfRelative.toString()
               : "";
-          addresOfrelative.text = _.modelList[index!].addressOfRelative ?? "";
-          _.countryNameSelected =
-              _.modelList[index!].countryName ?? _.countryList[0];
+          addresOfrelative.text =
+              controller.modelList[index!].addressOfRelative ?? "";
+          controller.countryNameSelected =
+              controller.modelList[index!].countryName ??
+                  controller.countryList[0];
 
-          _.citizenShipStatusSelected =
-              _.modelList[index!].citizenshipStatus ?? _.citizenShipStatus[0];
-          _.relationSelected = _.modelList[index!].relationWithRelative;
-          _.anyRelativeCountryInterestedSelected =
-              _.modelList[index!].anyRelativeCountryInterested;
-          _.countryNameCodeSelected =
-              _.modelList[index!].relativeCountry.toString();
+          controller.citizenShipStatusSelected =
+              controller.modelList[index!].citizenshipStatus ??
+                  controller.citizenShipStatus[0];
+          controller.relationSelected =
+              controller.modelList[index!].relationWithRelative;
+          controller.anyRelativeCountryInterestedSelected =
+              controller.modelList[index!].anyRelativeCountryInterested;
+          controller.countryNameCodeSelected =
+              controller.modelList[index!].relativeCountry.toString();
         }
       } catch (e) {
         print(e.toString());
@@ -76,21 +83,22 @@ class RelativeInformationWidget extends StatelessWidget {
             height: 50,
             child: CustomDropDownSingle(
               model: const ["Yes", "No"],
-              initialSelectedValue:
-                  getNUllChecker(_.anyRelativeCountryInterestedSelected) == true
-                      ? "No"
-                      : _.anyRelativeCountryInterestedSelected == "1"
-                          ? "Yes"
-                          : "No",
+              initialSelectedValue: getNUllChecker(
+                          controller.anyRelativeCountryInterestedSelected) ==
+                      true
+                  ? "No"
+                  : controller.anyRelativeCountryInterestedSelected == "1"
+                      ? "Yes"
+                      : "No",
               choosefieldtype: false,
               callbackFunction: callbackAnyRelativeCountryInterested,
             ),
           ),
-          if (_.anyRelativeCountryInterestedSelected == "1")
-            ...interestedCountry(_, context),
+          if (controller.anyRelativeCountryInterestedSelected == "1")
+            ...interestedCountry(controller, context),
         ],
       );
-    });
+    }, onLoading: getLoading(context));
   }
 
   //Funcation
@@ -361,7 +369,20 @@ class RelativeInformationWidget extends StatelessWidget {
                     backgroundColor: ThemeConstants.bluecolor, // foreground
                   ),
                   onPressed: () async {
-                    controller.modelList[index!] = RealtionModel(
+                    if (controller.countryNameSelected == null) {
+                      getToast("please select country");
+                    } else if (controller.citizenShipStatusSelected == null) {
+                      getToast("please select citizenShip Status");
+                    } else if (controller.relationSelected == null) {
+                      getToast("please select relation");
+                    } else if (realtiveEmail.text.isEmpty) {
+                      getToast("please enter  relative email");
+                    } else if (contactOfRelative.text.isEmpty) {
+                      getToast("please enter  relative contact number");
+                    } else if (addresOfrelative.text.isEmpty) {
+                      getToast("please enter  address of relative");
+                    }
+                    controller.modelList.add(RealtionModel(
                       countryName: controller.countryNameSelected,
                       relationWithRelative: controller.relationSelected,
                       id: "",
@@ -373,13 +394,11 @@ class RelativeInformationWidget extends StatelessWidget {
                       relativeEmailId: realtiveEmail.text,
                       contactOfRelative: int.parse(contactOfRelative.text),
                       addressOfRelative: addresOfrelative.text,
-                    );
+                    ));
                     controller.updateRelativeInformation(
                         Get.find<BaseController>().model1.id.toString(),
                         "1",
-                        "update");
-                    controller.updateForEdit.value = true;
-                    controller.update();
+                        "Updated");
                   },
                   child: CustomAutoSizeTextMontserrat(
                     text: "Update",

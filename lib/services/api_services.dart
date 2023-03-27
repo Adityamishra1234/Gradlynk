@@ -632,8 +632,7 @@ class ApiServices extends StudentPanelBase {
         Get.find<BaseController>().getPersonalModal(personalInformationModel);
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("Profile details update ${dataUpdateStatus.status} ");
 
         return jsondata;
       }

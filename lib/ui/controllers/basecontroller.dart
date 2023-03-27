@@ -53,6 +53,7 @@ class BaseController extends GetxController {
       model1 = res;
 
       if (model1.is_block == 1) {
+        getToast("User will blocked by Gradlynk");
         logout();
       } else {
         if (model1.otherCountryOfInterest != null) {

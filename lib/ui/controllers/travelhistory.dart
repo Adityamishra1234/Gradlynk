@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class TravelHistoryController extends GetxController {
+class TravelHistoryController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<TravelHistoryModel> modelList = [];
 
@@ -54,6 +54,7 @@ class TravelHistoryController extends GetxController {
     getCountry();
     getTypeOfVisa();
     getVisaTravelHistory(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -182,6 +183,7 @@ class TravelHistoryController extends GetxController {
   }
 
   updateTravelHistory(String enqId, String travelHistory, String action) async {
+    change(null, status: RxStatus.loading());
     try {
       String endpoint;
       endpoint = Endpoints.addTravelHistoryPart1! +
@@ -206,6 +208,7 @@ class TravelHistoryController extends GetxController {
       }
 
       var res = await apiServices.updateTravelHistory(endpoint, action);
+      change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

@@ -6,7 +6,7 @@ import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class OtherTestDetailsController extends GetxController {
+class OtherTestDetailsController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   OtherTestDetailsModel otherTestDetailsModel = OtherTestDetailsModel();
 
@@ -43,6 +43,7 @@ class OtherTestDetailsController extends GetxController {
     getExamName();
     getExamStatus();
     getOtherTestDetails(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -107,7 +108,9 @@ class OtherTestDetailsController extends GetxController {
   }
 
   updateOtherTestDetails(String? enqId) async {
+    change(null, status: RxStatus.loading());
     await apiServices.updateOtherTestDetails(
         otherTestDetailsModel, Endpoints.otherTestDetails! + enqId!);
+    change(null, status: RxStatus.success());
   }
 }

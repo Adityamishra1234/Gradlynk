@@ -113,6 +113,7 @@ class WorkHistoryController extends GetxController with StateMixin {
   }
 
   updatedWorkHistory(String action) async {
+    change(null, status: RxStatus.loading());
     try {
       String? endpoint;
       endpoint =
@@ -132,7 +133,7 @@ class WorkHistoryController extends GetxController with StateMixin {
       var res = await apiServices.addProfileModule(
           Endpoints.baseUrl!, endpoint!, "Work History", action);
       loadingWorkUpdate.value = true;
-      update();
+      change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

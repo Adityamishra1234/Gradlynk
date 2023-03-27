@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class RelativeInformationController extends GetxController {
+class RelativeInformationController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<RealtionModel> modelList = [];
   int? index;
@@ -39,6 +39,7 @@ class RelativeInformationController extends GetxController {
     getCitizenShipStatus();
     getRealtionWithStatus();
     viewRelativeHistory(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -141,6 +142,7 @@ class RelativeInformationController extends GetxController {
 
   updateRelativeInformation(
       String enqId, String anyCountryInterested, String action) async {
+    change(null, status: RxStatus.loading());
     try {
       String endpoint = Endpoints.addRelativeInformationPart1! +
           enqId +
@@ -160,6 +162,7 @@ class RelativeInformationController extends GetxController {
                 modelList[i].relationWithRelative);
       }
       var res = await apiServices.updateRelativeInformation(endpoint, action);
+      change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

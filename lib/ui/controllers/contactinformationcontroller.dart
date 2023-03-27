@@ -7,7 +7,7 @@ import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ContactInformationController extends GetxController {
+class ContactInformationController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
 
 // Selected fields
@@ -54,10 +54,8 @@ class ContactInformationController extends GetxController {
     getMartialStatus();
     profiledetail();
     super.onInit();
+    change(null, status: RxStatus.success());
   }
-
-  @override
-  void disposed() {}
 
   profiledetail() async {
     try {
@@ -199,8 +197,10 @@ class ContactInformationController extends GetxController {
     }
   }
 
-  updateData(PersonalInformationModel personalInformationModel) {
-    apiServices.personalInformationDataUpdate(
+  updateData(PersonalInformationModel personalInformationModel) async {
+    change(null, status: RxStatus.loading());
+    await apiServices.personalInformationDataUpdate(
         personalInformationModel, Endpoints.personalDetailUpdate);
+    change(null, status: RxStatus.success());
   }
 }
