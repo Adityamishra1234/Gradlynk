@@ -34,11 +34,16 @@ class LoginController extends GetxController with StateMixin {
 
     if (responsive != null) {
       model = responsive;
+      if (prefs.getBool("showcaseEnable") == false ||
+          prefs.getBool("showcaseEnable") == null) {
+        prefs.setBool("showcaseEnable", false);
+      }
+
       prefs.setString("phonenumber", model!.user!.mobile.toString());
       prefs.setString("token", model!.token.toString());
       prefs.setString("id", model!.user!.id.toString());
       change(null, status: RxStatus.success());
-      Get.offAllNamed(DashBoard.routeNamed);
+      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
       return model;
     } else {
       change(null, status: RxStatus.success());

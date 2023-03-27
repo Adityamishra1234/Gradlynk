@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:coachmaker/coachmaker.dart';
@@ -53,11 +54,16 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
-    ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-      (_) => Future.delayed(const Duration(milliseconds: 200), () {
-        ShowCaseWidget.of(myContext!).startShowCase([_one, _two]);
-      }),
-    );
+    try {
+      if (Get.arguments) {
+        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+          (_) => Future.delayed(const Duration(milliseconds: 200), () {
+            ShowCaseWidget.of(myContext!).startShowCase([_one, _two]);
+          }),
+        );
+      }
+    } catch (e) {}
+
     super.initState();
   }
 
@@ -176,7 +182,16 @@ class _DashBoardState extends State<DashBoard> {
                                                                 BoxShape.circle,
                                                           ),
                                                           child: IconButton(
-                                                              onPressed: () {
+                                                              onPressed:
+                                                                  () async {
+                                                                SharedPreferences
+                                                                    prefs =
+                                                                    await SharedPreferences
+                                                                        .getInstance();
+                                                                await prefs.setBool(
+                                                                    "showcaseEnable",
+                                                                    true);
+                                                                // ignore: use_build_context_synchronously
                                                                 ShowCaseWidget.of(
                                                                         context)
                                                                     .dismiss();

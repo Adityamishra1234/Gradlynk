@@ -110,10 +110,10 @@ class BaseController extends GetxController {
         Endpoints.baseUrl!, Endpoints.logout! + id, token);
     if (res == true) {
       sharedPreferences.clear();
-      Get.toNamed(LoginCopy.routeNamed);
+      Get.toNamed(LoginScreen.routeNamed);
     } else {
       sharedPreferences.clear();
-      Get.toNamed(LoginCopy.routeNamed);
+      Get.toNamed(LoginScreen.routeNamed);
     }
   }
 }
