@@ -880,7 +880,7 @@ class ApiServices extends StudentPanelBase {
 
         getToast("Work History $action ${dataUpdateStatus.status}");
 
-        return dataUpdateStatus;
+        return true;
       }
     } catch (e) {
       await errorHandle(
@@ -1071,6 +1071,7 @@ class ApiServices extends StudentPanelBase {
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
         getToast("Relative Infromation $action ${dataUpdateStatus.status}");
+        return true;
       }
     } catch (e) {
       await errorHandle(
@@ -1112,9 +1113,8 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar("Qualification Details:",
-            action + " " + dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("Qualification Details $action ${dataUpdateStatus.status}");
+        return true;
       }
     } catch (e) {
       await errorHandle(

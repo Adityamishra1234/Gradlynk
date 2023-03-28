@@ -42,6 +42,20 @@ class WorkHistoryController extends GetxController with StateMixin {
 
   static final Rx<TextEditingController> income = TextEditingController().obs;
 
+  resetfields() {
+    income.value.text = "";
+    designation.value.text = "";
+    lastOrganisation.value.text = "";
+
+    industryNameSelected = null;
+    employementTypeSelected = null;
+    workingFromSelected = null;
+    workingTillSelected = null;
+    industryNameCode = null;
+    employementTypeCode = null;
+    updateForEdit = true.obs;
+  }
+
   @override
   void onInit() {
     getIndustries();
@@ -132,7 +146,10 @@ class WorkHistoryController extends GetxController with StateMixin {
       }
       var res = await apiServices.addProfileModule(
           Endpoints.baseUrl!, endpoint!, "Work History", action);
-      loadingWorkUpdate.value = true;
+      if (res == true) {
+        resetfields();
+        loadingWorkUpdate.value = true;
+      }
       change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(

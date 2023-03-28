@@ -27,9 +27,6 @@ class RelativeInformationWidget extends StatelessWidget {
       required this.callbackRelation})
       : super(key: key);
 
-  static final realtiveEmail = TextEditingController();
-  static final contactOfRelative = TextEditingController();
-  static final addresOfrelative = TextEditingController();
   var controller = Get.put(RelativeInformationController());
 
   @override
@@ -37,15 +34,15 @@ class RelativeInformationWidget extends StatelessWidget {
     return controller.obx((state) {
       try {
         if (updatForEdit == false) {
-          realtiveEmail.text =
+          RelativeInformationController.realtiveEmail.text =
               controller.modelList[index!].relativeEmailId ?? "";
-          contactOfRelative.text = getNUllChecker(controller
-                      .modelList[index!].contactOfRelative
-                      .toString()) ==
+          RelativeInformationController.contactOfRelative.text = getNUllChecker(
+                      controller.modelList[index!].contactOfRelative
+                          .toString()) ==
                   false
               ? controller.modelList[index!].contactOfRelative.toString()
               : "";
-          addresOfrelative.text =
+          RelativeInformationController.addresOfrelative.text =
               controller.modelList[index!].addressOfRelative ?? "";
           controller.countryNameSelected =
               controller.modelList[index!].countryName ??
@@ -207,7 +204,7 @@ class RelativeInformationWidget extends StatelessWidget {
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-          controller: realtiveEmail,
+          controller: RelativeInformationController.realtiveEmail,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
@@ -248,7 +245,7 @@ class RelativeInformationWidget extends StatelessWidget {
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-          controller: contactOfRelative,
+          controller: RelativeInformationController.contactOfRelative,
           keyboardType: TextInputType.number,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -288,7 +285,7 @@ class RelativeInformationWidget extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          controller: addresOfrelative,
+          controller: RelativeInformationController.addresOfrelative,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
@@ -323,31 +320,41 @@ class RelativeInformationWidget extends StatelessWidget {
                       getToast("please select citizenShip Status");
                     } else if (controller.relationSelected == null) {
                       getToast("please select relation");
-                    } else if (realtiveEmail.text.isEmpty) {
+                    } else if (RelativeInformationController
+                        .realtiveEmail.text.isEmpty) {
                       getToast("please enter  relative email");
-                    } else if (contactOfRelative.text.isEmpty) {
+                    } else if (RelativeInformationController
+                        .contactOfRelative.text.isEmpty) {
                       getToast("please enter  relative contact number");
-                    } else if (addresOfrelative.text.isEmpty) {
+                    } else if (RelativeInformationController
+                        .addresOfrelative.text.isEmpty) {
                       getToast("please enter  address of relative");
+                    } else {
+                      controller.modelList.add(RealtionModel(
+                        countryName: controller.countryNameSelected,
+                        relationWithRelative: controller.relationSelected,
+                        id: "",
+                        anyRelativeCountryInterested:
+                            controller.anyRelativeCountryInterestedSelected,
+                        citizenshipStatus: controller.citizenShipStatusSelected,
+                        relativeCountry:
+                            int.parse(controller.countryNameCodeSelected!),
+                        relativeEmailId:
+                            RelativeInformationController.realtiveEmail.text,
+                        contactOfRelative: int.parse(
+                            RelativeInformationController
+                                .contactOfRelative.text),
+                        addressOfRelative:
+                            RelativeInformationController.addresOfrelative.text,
+                      ));
+
+                      controller.updateRelativeInformation(
+                          Get.find<BaseController>().model1.id.toString(),
+                          "1",
+                          "added");
+
+                      controller.update();
                     }
-                    controller.modelList.add(RealtionModel(
-                      countryName: controller.countryNameSelected,
-                      relationWithRelative: controller.relationSelected,
-                      id: "",
-                      anyRelativeCountryInterested:
-                          controller.anyRelativeCountryInterestedSelected,
-                      citizenshipStatus: controller.citizenShipStatusSelected,
-                      relativeCountry:
-                          int.parse(controller.countryNameCodeSelected!),
-                      relativeEmailId: realtiveEmail.text,
-                      contactOfRelative: int.parse(contactOfRelative.text),
-                      addressOfRelative: addresOfrelative.text,
-                    ));
-                    controller.updateRelativeInformation(
-                        Get.find<BaseController>().model1.id.toString(),
-                        "1",
-                        "added");
-                    controller.update();
                   },
                   child: CustomAutoSizeTextMontserrat(
                     text: "Added",
@@ -375,30 +382,41 @@ class RelativeInformationWidget extends StatelessWidget {
                       getToast("please select citizenShip Status");
                     } else if (controller.relationSelected == null) {
                       getToast("please select relation");
-                    } else if (realtiveEmail.text.isEmpty) {
+                    } else if (RelativeInformationController
+                        .realtiveEmail.text.isEmpty) {
                       getToast("please enter  relative email");
-                    } else if (contactOfRelative.text.isEmpty) {
+                    } else if (RelativeInformationController
+                        .contactOfRelative.text.isEmpty) {
                       getToast("please enter  relative contact number");
-                    } else if (addresOfrelative.text.isEmpty) {
+                    } else if (RelativeInformationController
+                        .addresOfrelative.text.isEmpty) {
                       getToast("please enter  address of relative");
+                    } else {
+                      RealtionModel model = RealtionModel();
+
+                      model = RealtionModel(
+                        countryName: controller.countryNameSelected,
+                        relationWithRelative: controller.relationSelected,
+                        id: "",
+                        anyRelativeCountryInterested:
+                            controller.anyRelativeCountryInterestedSelected,
+                        citizenshipStatus: controller.citizenShipStatusSelected,
+                        relativeCountry:
+                            int.parse(controller.countryNameCodeSelected!),
+                        relativeEmailId:
+                            RelativeInformationController.realtiveEmail.text,
+                        contactOfRelative: int.parse(
+                            RelativeInformationController
+                                .contactOfRelative.text),
+                        addressOfRelative:
+                            RelativeInformationController.addresOfrelative.text,
+                      );
+                      controller.modelList[index!] = model;
+                      controller.updateRelativeInformation(
+                          Get.find<BaseController>().model1.id.toString(),
+                          "1",
+                          "Updated");
                     }
-                    controller.modelList.add(RealtionModel(
-                      countryName: controller.countryNameSelected,
-                      relationWithRelative: controller.relationSelected,
-                      id: "",
-                      anyRelativeCountryInterested:
-                          controller.anyRelativeCountryInterestedSelected,
-                      citizenshipStatus: controller.citizenShipStatusSelected,
-                      relativeCountry:
-                          int.parse(controller.countryNameCodeSelected!),
-                      relativeEmailId: realtiveEmail.text,
-                      contactOfRelative: int.parse(contactOfRelative.text),
-                      addressOfRelative: addresOfrelative.text,
-                    ));
-                    controller.updateRelativeInformation(
-                        Get.find<BaseController>().model1.id.toString(),
-                        "1",
-                        "Updated");
                   },
                   child: CustomAutoSizeTextMontserrat(
                     text: "Update",

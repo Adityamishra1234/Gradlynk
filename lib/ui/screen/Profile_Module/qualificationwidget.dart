@@ -719,8 +719,9 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                               } else if (controller.countrySelected == null) {
                                 getToast("Please select Country");
                               } else {
-                                controller.modelList
-                                    .add(QualificationDetailsViewModel(
+                                QualificationDetailsViewModel model =
+                                    QualificationDetailsViewModel();
+                                model = QualificationDetailsViewModel(
                                   grade: QualificationDetailsController
                                       .cgpa.value.text,
                                   multiplier: QualificationDetailsController
@@ -762,7 +763,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                                       controller.institutionSelected,
                                   courseName: QualificationDetailsController
                                       .qualificationName.value.text,
-                                ));
+                                );
+                                controller.modelList[widget.index!] = model;
                                 controller.updateQualification(
                                     Get.find<BaseController>()
                                         .model1
