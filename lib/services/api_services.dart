@@ -1069,7 +1069,6 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-
         getToast("Relative Infromation $action ${dataUpdateStatus.status}");
         return true;
       }

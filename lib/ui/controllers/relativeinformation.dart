@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -32,6 +33,21 @@ class RelativeInformationController extends GetxController with StateMixin {
   String? citizenShipStatusSelected;
   String? citizenShipStatusCodeSelected;
   String? relationSelected;
+
+  static final realtiveEmail = TextEditingController();
+  static final contactOfRelative = TextEditingController();
+  static final addresOfrelative = TextEditingController();
+
+  resetfields() {
+    anyRelativeCountryInterestedSelected = null;
+    countryNameSelected = null;
+    countryNameCodeSelected = null;
+    citizenShipStatusSelected = null;
+    citizenShipStatusCodeSelected = null;
+    relationSelected = null;
+    index = null;
+    updateForEdit = true.obs;
+  }
 
   @override
   void onInit() {
@@ -162,6 +178,10 @@ class RelativeInformationController extends GetxController with StateMixin {
                 modelList[i].relationWithRelative);
       }
       var res = await apiServices.updateRelativeInformation(endpoint, action);
+      if (res == true) {
+        resetfields();
+      }
+
       change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
