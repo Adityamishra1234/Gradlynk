@@ -512,6 +512,210 @@ getDailogForAgree(
           ));
 }
 
+const html = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://student.siecindia.com/css/app.css">
+    <link rel="stylesheet" href="https://student.siecindia.com/css/custom.css">
+    <link rel="stylesheet" href="https://student.siecindia.com/css/media.css">
+    <title>Document</title>
+    <style>
+        .main-panel{width:100%;}
+        .student-back{min-height:auto;}
+    </style>
+</head>
+<body>
+
+
+<div class="main-panel">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="student-back">
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                    <div class="white-box pb-3 student-detail top-information">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h2 class="h2-f mb-2 text-blue">Welcome to SIEC Gradlynk Student Panel</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <h4 class="text-dark mb-4 font-weight-normal">In order to start with your application,Please follow the below steps -</h4>
+
+
+                                            <div id="content" class="mobile-show mobile-instruction" style="display:inherit;">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                    <a href="#"> <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/upload-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">1. To Get Started,Upload Identity Proof</h3>
+                                                            </div>
+                                                        </div></a>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/user-profile-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">2. Complete your Profile Information</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/book-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">3. Start your Course Search</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6"> 
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/file-svgrepo.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">4. Create your Course Shortlist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/shortlist.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">5. Finalize your Application Shortlist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/document.svg" class="img-fluid mt-0" width="40">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">6. Get customized Document Checklist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">   
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/track.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">7. Track your Application Progress</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/receive-app.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">8. Receive Decision on your Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/fee-payment.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">9. Fee Payment <br><span class="text-success">(SIEC facilitates Education Loan as well)</span></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/visa-application.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">10. Document preparation for Visa Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/visa-sub.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">11. Visa Submission</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/decision-visa.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">12. Decision on Visa Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/worldwide-aeroplane.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">13. Pre Departure - <br> <span>Book your Accomodation &amp; Tickets</span></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                        
+                                                    </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>""";
 
 // getScheduleExpertCall() {
 //   return Get.bottomSheet(Container(
