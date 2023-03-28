@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -33,6 +34,10 @@ class RelativeInformationController extends GetxController with StateMixin {
   String? citizenShipStatusCodeSelected;
   String? relationSelected;
 
+  static final realtiveEmail = TextEditingController();
+  static final contactOfRelative = TextEditingController();
+  static final addresOfrelative = TextEditingController();
+
   @override
   void onInit() {
     getCountry();
@@ -41,6 +46,17 @@ class RelativeInformationController extends GetxController with StateMixin {
     viewRelativeHistory(Get.find<BaseController>().model1.id.toString());
     change(null, status: RxStatus.success());
     super.onInit();
+  }
+
+  resetfields() {
+    anyRelativeCountryInterestedSelected = null;
+    countryNameSelected = null;
+    countryNameCodeSelected = null;
+    citizenShipStatusSelected = null;
+    citizenShipStatusCodeSelected = null;
+    relationSelected = null;
+    index = null;
+    updateForEdit = true.obs;
   }
 
   setViewDetails(bool data) {
@@ -162,6 +178,9 @@ class RelativeInformationController extends GetxController with StateMixin {
                 modelList[i].relationWithRelative);
       }
       var res = await apiServices.updateRelativeInformation(endpoint, action);
+      if (res == true) {
+        resetfields();
+      }
       change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(

@@ -95,6 +95,34 @@ class QualificationDetailsController extends GetxController with StateMixin {
     super.onInit();
   }
 
+  resetFields() {
+    //Text fields resets
+    reApper.value.text = "";
+    cgpa.value.text = "";
+    percentage.value.text = "";
+    reApper.value.text = "";
+    multiplier.value.text = "";
+    qualificationName.value.text = "";
+
+    //Dropdown
+    highestQualificationSelected = null;
+    affiliationCodeSelected = null;
+    streamSelected = null;
+    educationStatusSelected = null;
+    yearOfPassingSelected = null;
+    countrySelected = null;
+    stateSelected = null;
+    citySelected = null;
+    highestQualificationSelectedID = null;
+    streamSelectedID = null;
+    countrySelectedID = null;
+    stateSelectedID = null;
+    citySelectedID = null;
+    institutionSelectedID = null;
+
+    updteForEdit.value = true;
+  }
+
 //use for Edit case
   getEdit(
       String countryId,
@@ -354,6 +382,7 @@ class QualificationDetailsController extends GetxController with StateMixin {
   }
 
   updateQualification(String enqId, [String action = ""]) async {
+    change(null, status: RxStatus.loading());
     try {
       String endpoint = Endpoints.addQualification! + enqId;
       for (var i = 0; i < modelList.length; i++) {
@@ -375,7 +404,12 @@ class QualificationDetailsController extends GetxController with StateMixin {
                 modelList[i].educationStatus ?? "",
                 modelList[i].yearOfPassing ?? "");
       }
-      await apiServices.updateQualification(endpoint);
+      var res = await apiServices.updateQualification(endpoint);
+      if (res == true) {
+        resetFields();
+      }
+
+      change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

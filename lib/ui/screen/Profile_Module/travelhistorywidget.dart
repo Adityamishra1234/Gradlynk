@@ -35,48 +35,12 @@ class TravelHistoryWidget extends StatelessWidget {
     required this.callbackDateOfReject,
   }) : super(key: key);
 
-  static final dateOfApplication = TextEditingController();
-  static final dateOfReject = TextEditingController();
-  static final reasonOfRejection = TextEditingController();
-  static final applicationNumber = TextEditingController();
-  static final visaNumber = TextEditingController();
-
   var controller = Get.put(TravelHistoryController());
 
   @override
   Widget build(BuildContext context) {
     return controller.obx((state) {
       // For Edit
-      try {
-        if (updateForEdit == false || controller.loadingEdit.value == true) {
-          controller.travelAbroadSelected = "Yes";
-          controller.travelStatusSelected =
-              controller.modelList[index!].travelStatus;
-          controller.countrySelected = controller.modelList[index!].countryName;
-          controller.countryCodeSelected =
-              controller.modelList[index!].chooseCountry.toString();
-          if (controller.typeOfVisaList.isNotEmpty) {
-            for (var i = 0; i < controller.typeOfVisaList.length; i++) {
-              if (controller.typeofVisaCode[i].toString() ==
-                  controller.modelList[index!].typeOfVisa.toString()) {
-                controller.typeOfVisaSelected = controller.typeOfVisaList[i];
-                controller.typeOfVisaCodeSelected =
-                    controller.modelList[index!].typeOfVisa.toString();
-              }
-            }
-          }
-          controller.visaStatusSelected =
-              controller.modelList[index!].visaStatus;
-          applicationNumber.text =
-              controller.modelList[index!].applicationNumber ?? "";
-          dateOfApplication.text =
-              controller.modelList[index!].dateOfApplication ?? "";
-          reasonOfRejection.text =
-              controller.modelList[index!].reasonOfRejection ?? "";
-        }
-      } catch (e) {
-        print(e.toString());
-      }
 
       return ListView(
         children: [
@@ -247,23 +211,25 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       if (controller.applicationNumberField.value == true)
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: applicationNumber,
-            keyboardType: TextInputType.number,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Application number",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+        Obx(
+          () => Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              controller: TravelHistoryController.applicationNumber.value,
+              keyboardType: TextInputType.number,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Application number",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       Padding(
@@ -316,22 +282,24 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: reasonOfRejection,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter reason of rejection",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      Obx(
+        () => Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: TravelHistoryController.reasonOfRejection.value,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter reason of rejection",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
       ),
       Padding(
@@ -379,14 +347,19 @@ class TravelHistoryWidget extends StatelessWidget {
                             typeOfVisa: int.parse(
                                 controller.typeOfVisaCodeSelected ?? "0"),
                             visaStatus: controller.visaStatusSelected,
-                            dateOfApplication: dateOfApplication.text,
-                            dateOfRejection: dateOfReject.text,
-                            reasonOfRejection: reasonOfRejection.text,
+                            dateOfApplication: TravelHistoryController
+                                .dateOfApplication.value.text,
+                            dateOfRejection: TravelHistoryController
+                                .dateOfReject1.value.text,
+                            reasonOfRejection: TravelHistoryController
+                                .reasonOfRejection.value.text,
                             proofAvailable: int.parse(
                                 controller.proofAvailableSelectedID ?? "0"),
                             countryName: controller.countrySelected,
-                            applicationNumber: applicationNumber.text,
-                            visaNumber: visaNumber.text));
+                            applicationNumber: TravelHistoryController
+                                .applicationNumber.value.text,
+                            visaNumber:
+                                TravelHistoryController.visaNumber.value.text));
                         controller.update();
                         controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
@@ -419,21 +392,29 @@ class TravelHistoryWidget extends StatelessWidget {
                         backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
-                        controller.modelList.add(TravelHistoryModel(
+                        TravelHistoryModel model = TravelHistoryModel();
+
+                        model = TravelHistoryModel(
                             travelStatus: controller.travelStatusSelected,
                             chooseCountry: int.parse(
                                 controller.countryCodeSelected ?? "0"),
                             typeOfVisa: int.parse(
                                 controller.typeOfVisaCodeSelected ?? "0"),
                             visaStatus: controller.visaStatusSelected,
-                            dateOfApplication: dateOfApplication.text,
-                            dateOfRejection: dateOfReject.text,
-                            reasonOfRejection: reasonOfRejection.text,
+                            dateOfApplication: TravelHistoryController
+                                .dateOfApplication.value.text,
+                            dateOfRejection: TravelHistoryController
+                                .dateOfReject1.value.text,
+                            reasonOfRejection: TravelHistoryController
+                                .reasonOfRejection.value.text,
                             proofAvailable: int.parse(
                                 controller.proofAvailableSelectedID ?? "0"),
                             countryName: controller.countrySelected,
-                            applicationNumber: applicationNumber.text,
-                            visaNumber: visaNumber.text));
+                            applicationNumber: TravelHistoryController
+                                .applicationNumber.value.text,
+                            visaNumber:
+                                TravelHistoryController.visaNumber.value.text);
+                        controller.modelList[index!] = model;
                         controller.update();
                         controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),

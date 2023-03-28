@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -47,6 +48,41 @@ class TravelHistoryController extends GetxController with StateMixin {
   String? reasonOfReject;
 
   int? index;
+
+  static final Rx<TextEditingController> dateOfApplication =
+      TextEditingController().obs;
+  static final Rx<TextEditingController> dateOfReject1 =
+      TextEditingController().obs;
+  static final Rx<TextEditingController> reasonOfRejection =
+      TextEditingController().obs;
+  static final Rx<TextEditingController> applicationNumber =
+      TextEditingController().obs;
+  static final Rx<TextEditingController> visaNumber =
+      TextEditingController().obs;
+
+  resetfields() {
+    updateForEdit = true.obs;
+    travelAbroadSelected = null;
+    travelAbroadSelectedID = null;
+    travelStatusSelected = null;
+    countrySelected = null;
+    countryCodeSelected = null;
+    typeOfVisaSelected = null;
+    typeOfVisaCodeSelected = null;
+    visaStatusSelected = null;
+    proofAvailableSelectedID = null;
+    proofAvailableSelected = "No";
+    dateOfApplicatiton = null;
+    dateOfReject = null;
+    reasonOfReject = null;
+    index = null;
+
+    dateOfApplication.value.text = "";
+    dateOfReject1.value.text = "";
+    reasonOfRejection.value.text = "";
+    applicationNumber.value.text = "";
+    visaNumber.value.text = "";
+  }
 
   @override
   void onInit() {
@@ -208,6 +244,9 @@ class TravelHistoryController extends GetxController with StateMixin {
       }
 
       var res = await apiServices.updateTravelHistory(endpoint, action);
+      if (res == true) {
+        resetfields();
+      }
       change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
@@ -217,5 +256,27 @@ class TravelHistoryController extends GetxController with StateMixin {
         StackTrace.current.toString(),
       );
     }
+  }
+
+  getUpdateCondition(int index) {
+    change(null, status: RxStatus.loading());
+    travelAbroadSelected = "Yes";
+    travelStatusSelected = modelList[index].travelStatus;
+    countrySelected = modelList[index].countryName;
+    countryCodeSelected = modelList[index].chooseCountry.toString();
+    if (typeOfVisaList.isNotEmpty) {
+      for (var i = 0; i < typeOfVisaList.length; i++) {
+        if (typeofVisaCode[i].toString() ==
+            modelList[index].typeOfVisa.toString()) {
+          typeOfVisaSelected = typeOfVisaList[i];
+          typeOfVisaCodeSelected = modelList[index].typeOfVisa.toString();
+        }
+      }
+    }
+    visaStatusSelected = modelList[index].visaStatus;
+    applicationNumber.value.text = modelList[index].applicationNumber ?? "";
+    dateOfApplication.value.text = modelList[index].dateOfApplication ?? "";
+    reasonOfRejection.value.text = modelList[index].reasonOfRejection ?? "";
+    change(null, status: RxStatus.success());
   }
 }

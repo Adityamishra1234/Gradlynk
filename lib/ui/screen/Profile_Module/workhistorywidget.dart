@@ -356,19 +356,16 @@ class WorkHistoryWidget extends StatelessWidget {
                                 ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            controller.workHistoryViewModelList[index!] =
-                                WorkHistoryViewModel(
+                            WorkHistoryViewModel model = WorkHistoryViewModel();
+
+                            model = WorkHistoryViewModel(
                               applicantType: controller.employementTypeCode,
                               enqId: Get.find<BaseController>().model1.id!,
                               organisationName: WorkHistoryController
                                   .lastOrganisation.value.text,
                               jobType: controller.employementTypeSelected,
-                              jobRole: getNUllChecker(WorkHistoryController
-                                      .designation.value.text
-                                      .toString())
-                                  ? WorkHistoryController.designation.value.text
-                                  : controller
-                                      .workHistoryViewModelList[index!].jobRole,
+                              jobRole:
+                                  WorkHistoryController.designation.value.text,
                               jobIndustryId: getNUllChecker(
                                       controller.industryNameCode.toString())
                                   ? controller.industryNameCode
@@ -385,6 +382,7 @@ class WorkHistoryWidget extends StatelessWidget {
                                   : controller.workHistoryViewModelList[index!]
                                       .jobIndustryName,
                             );
+                            controller.workHistoryViewModelList[index!] = model;
                             callbackUpdate(true);
                           },
                           child: CustomAutoSizeTextMontserrat(
