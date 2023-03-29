@@ -143,15 +143,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           children: [
             Stack(
               children: [
-                if (courseSearchModel.siecRep == "Yes")
-                  Positioned(
-                      top: 8,
-                      right: 10,
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: svgImage(
-                            "star", ThemeConstants.orangeColor, 20, 20),
-                      )),
+                // if (courseSearchModel.siecRep == "Yes")
+                //   Positioned(
+                //       top: 8,
+                //       right: 10,
+                //       child: Padding(
+                //         padding: const EdgeInsets.all(5),
+                //         child: svgImage(
+                //             "star", ThemeConstants.orangeColor, 20, 20),
+                //       )),
                 Column(
                   children: [
                     Align(

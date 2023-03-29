@@ -29,6 +29,8 @@ class RelativeInformationWidget extends StatelessWidget {
 
   var controller = Get.put(RelativeInformationController());
 
+  GlobalKey<FormState> relativePageKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return controller.obx((state) {
@@ -62,38 +64,41 @@ class RelativeInformationWidget extends StatelessWidget {
         print(e.toString());
       }
 
-      return ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Any relatives residing in the Interested Country",
-                textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+      return Form(
+        key: relativePageKey,
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+              child: Align(
+                alignment: AlignmentDirectional.topStart,
+                child: CustomAutoSizeTextMontserrat(
+                  text: "Any relatives residing in the Interested Country",
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: const ["Yes", "No"],
-              initialSelectedValue: getNUllChecker(
-                          controller.anyRelativeCountryInterestedSelected) ==
-                      true
-                  ? "No"
-                  : controller.anyRelativeCountryInterestedSelected == "1"
-                      ? "Yes"
-                      : "No",
-              choosefieldtype: false,
-              callbackFunction: callbackAnyRelativeCountryInterested,
+            SizedBox(
+              height: 50,
+              child: CustomDropDownSingle(
+                model: const ["Yes", "No"],
+                initialSelectedValue: getNUllChecker(
+                            controller.anyRelativeCountryInterestedSelected) ==
+                        true
+                    ? "No"
+                    : controller.anyRelativeCountryInterestedSelected == "1"
+                        ? "Yes"
+                        : "No",
+                choosefieldtype: false,
+                callbackFunction: callbackAnyRelativeCountryInterested,
+              ),
             ),
-          ),
-          if (controller.anyRelativeCountryInterestedSelected == "1")
-            ...interestedCountry(controller, context),
-        ],
+            if (controller.anyRelativeCountryInterestedSelected == "1")
+              ...interestedCountry(controller, context),
+          ],
+        ),
       );
     }, onLoading: getLoading(context));
   }
@@ -223,6 +228,7 @@ class RelativeInformationWidget extends StatelessWidget {
           //   }
           // },
           validator: (value) {
+            print(value);
             return getEmailvaliation(value);
           },
         ),
@@ -314,8 +320,11 @@ class RelativeInformationWidget extends StatelessWidget {
                   ),
                   onPressed: () async {
                     //country, citizenship,relation,relative email,contact,address.
+                    print(relativePageKey.currentState!.validate());
                     if (controller.countryNameSelected == null) {
                       getToast("please select country");
+                    } else if (relativePageKey.currentState!.validate()) {
+                      getToast("Please check fileds");
                     } else if (controller.citizenShipStatusSelected == null) {
                       getToast("please select citizenShip Status");
                     } else if (controller.relationSelected == null) {
@@ -378,6 +387,8 @@ class RelativeInformationWidget extends StatelessWidget {
                   onPressed: () async {
                     if (controller.countryNameSelected == null) {
                       getToast("please select country");
+                    } else if (relativePageKey.currentState!.validate()) {
+                      getToast("Please check fileds");
                     } else if (controller.citizenShipStatusSelected == null) {
                       getToast("please select citizenShip Status");
                     } else if (controller.relationSelected == null) {

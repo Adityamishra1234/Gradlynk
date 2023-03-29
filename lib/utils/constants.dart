@@ -187,12 +187,12 @@ getEmailvaliation(String? value) {
       r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
   final regex = RegExp(pattern);
 
-  if (value != null) {
+  if (value == null || value == "") {
+    return "Please enter email address";
+  } else {
     return value.isNotEmpty && !regex.hasMatch(value)
         ? 'Enter a valid email address'
         : null;
-  } else if (value == null) {
-    return "Please enter email address";
   }
 }
 
