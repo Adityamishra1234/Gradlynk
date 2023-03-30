@@ -46,13 +46,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   List gender = ["Select gender", "Male", "Female", "Other"];
 
   GlobalKey<FormState> profilePageKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   @override
   void dispose() {
     // TODO: implement dispose

@@ -476,15 +476,15 @@ class ApiServices extends StudentPanelBase {
         //annual tutionFee and Budget
         if (getNUllChecker(element.annualTutionFeesInr) == false) {
           if (double.parse(element.annualTutionFeesInr!) < 700000) {
-            filterModel.budget[3].update("Below 7 Lac", (value) => true);
+            filterModel.budget[3].update("Below 7 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
               double.parse(element.annualTutionFeesInr!) < 1500000) {
-            filterModel.budget[2].update("7-15 Lac", (value) => true);
+            filterModel.budget[2].update("7-15 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
               double.parse(element.annualTutionFeesInr!) < 3000000) {
-            filterModel.budget[1].update("15-30 lac", (value) => true);
+            filterModel.budget[1].update("15-30 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
-            filterModel.budget[0].update("30 Lac or More", (value) => true);
+            filterModel.budget[0].update("30 Lakh or More", (value) => true);
           }
           // !.add(element.allFeesInr ?? "");
         }

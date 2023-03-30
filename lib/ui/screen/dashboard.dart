@@ -700,15 +700,22 @@ class _DashBoardState extends State<DashBoard> {
   callbackDropDownButton(varTopic) {}
 
   _launchURL() async {
-    const url =
-        'https://zoom.us/j/97485138279?pwd=Y1cwcXRHUWZWOFN3aTZOdmhHZm4yQT09';
-    // ignore: deprecated_member_use
-    if (await canLaunch(url)) {
-      // ignore: deprecated_member_use
-      await launch(url);
+    final call = Uri.parse('tel:+91 8394049598');
+    if (await canLaunchUrl(call)) {
+      launchUrl(call);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $call';
     }
+
+    // const url =
+    //     'https://zoom.us/j/97485138279?pwd=Y1cwcXRHUWZWOFN3aTZOdmhHZm4yQT09';
+    // // ignore: deprecated_member_use
+    // if (await canLaunch(url)) {
+    //   // ignore: deprecated_member_use
+    //   await launch(url);
+    // } else {
+    //   throw 'Could not launch $url';
+    // }
   }
 }
 

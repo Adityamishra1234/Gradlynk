@@ -73,9 +73,7 @@ class _FilterState extends State<Filter> {
     courseModelFilter.filterModel = controller.filterModel;
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: CustomDrawer(
-          index: 3,
-        ),
+        drawer: CustomDrawer(),
         body: GetBuilder<FilterController>(
           builder: (controller1) => controller1.loadingfuncation.value == true
               ? SingleChildScrollView(

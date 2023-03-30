@@ -20,10 +20,10 @@ class FilterModel {
     {"Between 50%": false}
   ];
   List<Map<String, bool>> budget = [
-    {"30 Lac or More": false},
-    {"15-30 lac": false},
-    {"7-15 Lac": false},
-    {"Below 7 Lac": false}
+    {"30 Lakh or More": false},
+    {"15-30 Lakh": false},
+    {"7-15 Lakh": false},
+    {"Below 7 Lakh": false}
   ];
   List<String>? offerTAT = [];
   List<String>? visaTAT = [];
