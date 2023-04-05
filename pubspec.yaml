@@ -91,6 +91,15 @@ dependencies:
   coachmaker: ^0.2.1
   showcaseview: ^2.0.2
   flutter_html: ^3.0.0-alpha.6
+  argon_buttons_flutter_fix: ^1.1.3
+
+
+  # When depending on this package from a real application you should use:
+  #   flutter_splash_screen: ^x.y.z
+  # See https://dart.dev/tools/pub/dependencies#version-constraints
+  # The example app is bundled with the plugin so we use a path dependency on
+  # the parent directory to use the current plugin's version.
+
   # flutter_webview_plugin: ^0.4.0
   # flutter_native_splash: ^2.2.16
   #   path: "assets/images/logotest1.jpg"
@@ -116,8 +125,16 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_launcher_icons: ^0.9.3
   new_app_version_alert: ^0.0.4
+  flutter_splash_screen: ^1.0.0+6
+
   
   
+
+
+
+flutter_splash_screen:
+  path: "assets/images/logo.png"
+
 
 flutter_icons:
   name: "Gradlynk"

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+// import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
@@ -55,13 +55,13 @@ import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
-
 import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
 import 'ui/screen/countryGuide/countryguide.dart';
 import 'ui/screen/dashboard/scheduleExpertCall.dart';
 import 'ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'ui/screen/test/test.dart';
+import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,17 +95,24 @@ class _MyAppState extends State<MyApp> {
   UserModel? userModel;
   late final GifController controller;
 
-  // @override
-  // void initState() {
-  //   // getUserInfo();
-  //   controller = GifController(
-  //     loop: false,
-  //     onFinish: () {
-  //       Get.toNamed(LoginCopy.routeNamed);
-  //     },
-  //   );
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    // // getUserInfo();
+    // controller = GifController(
+    //   loop: false,
+    //   onFinish: () {
+    //     Get.toNamed(LoginCopy.routeNamed);
+    //   },
+    // );
+    hideScreen();
+    super.initState();
+  }
+
+  Future<void> hideScreen() async {
+    Future.delayed(Duration(milliseconds: 3600), () {
+      FlutterSplashScreen.hide();
+    });
+  }
 
   // getUserInfo() async {
   //   var temp = await Get.put(LoginController()).checkUserData();
