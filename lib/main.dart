@@ -114,10 +114,6 @@ class _MyAppState extends State<MyApp> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String phonenumber = sharedPreferences.getString("phonenumber").toString();
 
-    if (getNUllChecker(phonenumber) == false) {
-      print("aman");
-    }
-
     return phonenumber;
   }
 
