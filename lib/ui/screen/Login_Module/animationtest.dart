@@ -22,20 +22,18 @@ class _AnimationTestState extends State<AnimationTest>
 
   @override
   void initState() {
-    controller = GifController(
-      loop: false,
-      onFinish: () {
-        if (getNUllChecker(controller1.phone) == false) {
-          Get.offNamed(DashBoard.routeNamed);
-        } else {
-          Get.offNamed(LoginScreen.routeNamed, arguments: controller1.phone);
-        }
-      },
-    );
+    // controller = GifController(
+    //   loop: false,
+    //   onFinish: () {
+    //     if (getNUllChecker(controller1.phone) == false) {
+    //       Get.offNamed(DashBoard.routeNamed);
+    //     } else {
+    //       Get.offNamed(LoginScreen.routeNamed, arguments: controller1.phone);
+    //     }
+    //   },
+    // );
     super.initState();
   }
-
-  var controller1 = Get.put(AnimationtestController());
 
   @override
   Widget build(BuildContext context) {

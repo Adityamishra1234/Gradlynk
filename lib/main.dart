@@ -16,6 +16,7 @@ import 'package:studentpanel/binding/reviewshortlist.dart';
 import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
+import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
@@ -53,6 +54,7 @@ import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 import 'ui/screen/Login_Module/animationtest.dart';
@@ -94,22 +96,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   UserModel? userModel;
   late final GifController controller;
+  var controller1 = Get.put(AnimationtestController());
+  bool dashboardscreen = false;
 
   @override
   void initState() {
-    // // getUserInfo();
-    // controller = GifController(
-    //   loop: false,
-    //   onFinish: () {
-    //     Get.toNamed(LoginCopy.routeNamed);
-    //   },
-    // );
     hideScreen();
+
+    if (getUserData() != null) {
+      dashboardscreen = true;
+    } else {
+      dashboardscreen = false;
+    }
     super.initState();
   }
 
+  getUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    return phonenumber;
+  }
+
   Future<void> hideScreen() async {
-    Future.delayed(Duration(milliseconds: 3600), () {
+    Future.delayed(Duration(milliseconds: 5100), () {
       FlutterSplashScreen.hide();
     });
   }
@@ -137,7 +146,9 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: AnimationTest.routeNamed,
+      initialRoute: dashboardscreen == true
+          ? DashBoard.routeNamed
+          : LoginScreen.routeNamed,
       // Create Route
       getPages: [
         GetPage(

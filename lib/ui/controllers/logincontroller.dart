@@ -4,11 +4,13 @@ import 'dart:convert';
 
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
 import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class LoginController extends GetxController with StateMixin {
@@ -16,9 +18,13 @@ class LoginController extends GetxController with StateMixin {
   RxInt currentindex = 0.obs;
   ApiServices services = ApiServices();
   LoginModel? model;
+  var controller1 = Get.put(AnimationtestController());
 
   @override
   void onInit() {
+    // if (getNUllChecker(controller1.phone) == false) {
+    //   Get.offNamed(DashBoard.routeNamed);
+    // }
     change(null, status: RxStatus.success());
   }
 

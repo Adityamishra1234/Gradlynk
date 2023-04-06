@@ -91,7 +91,7 @@ dependencies:
   coachmaker: ^0.2.1
   showcaseview: ^2.0.2
   flutter_html: ^3.0.0-alpha.6
-  argon_buttons_flutter_fix: ^1.1.3
+  nice_loading_button: ^0.0.1
 
 
   # When depending on this package from a real application you should use:

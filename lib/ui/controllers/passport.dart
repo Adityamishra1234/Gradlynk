@@ -116,6 +116,8 @@ class PassportController extends GetxController with StateMixin {
       stateCodeSelected = null;
       stateSelected = null;
       loadingState.value = false;
+      loadingPlaceOfIssuse.value = false;
+
       var res = await apiServices.getState2(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -151,6 +153,7 @@ class PassportController extends GetxController with StateMixin {
 
   getPlaceOfIssue() async {
     try {
+      placeOfIssuse = [];
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.passportPlaceOfIssuse!);
       if (res != null) {

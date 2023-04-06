@@ -9,6 +9,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
+import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -30,6 +31,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:studentpanel/widgets/loading_button.dart';
 
 class ApplicationCompleteDetails extends StatefulWidget {
   static const routeNamed = '/ApplicationCompleteDetails';
@@ -45,6 +47,7 @@ class _ApplicationCompleteDetailsState
   final Dio dio = Dio();
   bool loading = false;
   double progress = 0;
+  bool downloadloading = false;
 
   final rowSpacer2 = const TableRow(children: [
     SizedBox(
@@ -1050,6 +1053,8 @@ class _ApplicationCompleteDetailsState
                       ),
                       if (model.documents![i].viewLink != "test")
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             //Upload
                             if (getNUllChecker(model.documents![i].viewLink) ==
@@ -1085,27 +1090,46 @@ class _ApplicationCompleteDetailsState
                             //Download
                             if (getNUllChecker(model.documents![i].viewLink) ==
                                 false)
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: ThemeConstants.whitecolor,
-                                  side: BorderSide(
-                                      color: ThemeConstants.bluecolor),
-                                  backgroundColor:
-                                      ThemeConstants.whitecolor, // foreground
-                                ),
-                                onPressed: () {
-                                  getToast("Please wait for download");
-                                  if (Platform.isAndroid) {
-                                    download(model.documents![i].viewLink);
-                                  } else if (Platform.isIOS) {
-                                    downloadFile(model.documents![i].viewLink);
-                                  }
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Download test",
-                                  textColor: ThemeConstants.bluecolor,
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: LoadingButton(
+                                  height: 35,
+                                  borderRadius: 8,
+                                  animate: true,
+                                  color: Colors.indigo,
+                                  width: 120,
+                                  loader: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    width: 30,
+                                    height: 30,
+                                    child: const CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    ),
+                                  ),
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Download",
+                                    textColor: ThemeConstants.whitecolor,
+                                  ),
+                                  onTap: (startLoading, stopLoading,
+                                      buttonState) async {
+                                    if (buttonState == ButtonState.idle) {
+                                      startLoading();
+                                      // Do something here
+                                      // getToast("Please wait for download");
+                                      if (Platform.isAndroid) {
+                                        await download(
+                                            model.documents![i].viewLink);
+                                      } else if (Platform.isIOS) {
+                                        await downloadFile(
+                                            model.documents![i].viewLink);
+                                      }
+                                      stopLoading();
+                                    }
+                                  },
                                 ),
                               ),
+
                             if (getNUllChecker(model.documents![i].viewLink) ==
                                 false)
                               const SizedBox(

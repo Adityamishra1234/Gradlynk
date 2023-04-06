@@ -472,6 +472,7 @@ class PassportDetails extends StatelessWidget {
     for (var i = 0; i < controller.stateList.length; i++) {
       if (controller.stateList[i] == varTopic) {
         controller.stateCodeSelected = controller.stateCode[i].toString();
+        controller.getPlaceOfIssue();
       }
     }
     controller.update();

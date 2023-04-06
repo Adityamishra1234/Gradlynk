@@ -131,6 +131,10 @@ class ContactInformationController extends GetxController with StateMixin {
 
   getState(String countryId) async {
     try {
+      loadingCity.value = false;
+      cityCode = [];
+      cityList = [];
+      citySelected = null;
       loadingState.value = false;
       stateList = [];
       stateCode = [];

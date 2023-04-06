@@ -4,6 +4,7 @@ import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
@@ -272,62 +273,96 @@ String reverseStringUsingSplit(String input) {
 
 getSourceSelected(Function callbackSelectedSource, String id, int index,
     String applicationId) {
-  Get.bottomSheet(Container(
-    color: ThemeConstants.whitecolor,
-    height: 300,
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Select Source",
-            fontSize: 18,
-            textColor: ThemeConstants.bluecolor,
+  Get.bottomSheet(
+      Stack(
+        children: [
+          Container(
+            color: ThemeConstants.whitecolor,
+            height: 200,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Select Source",
+                    fontSize: 18,
+                    textColor: ThemeConstants.bluecolor,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                        callbackSelectedSource(
+                            "Camera,${id.toString()},${index.toString()}");
+                      },
+                      child: Column(
+                        children: [
+                          svgImage("cameracapture", ThemeConstants.bluecolor,
+                              50, 50),
+                          CustomAutoSizeTextMontserrat(
+                            text: "Camera",
+                          )
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                        callbackSelectedSource(
+                            "Gallery,${id.toString()},${index.toString()}");
+                      },
+                      child: Column(
+                        children: [
+                          svgImage("gallery", ThemeConstants.bluecolor, 50, 50),
+                          CustomAutoSizeTextMontserrat(
+                            text: "Gallery",
+                          )
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        Row(
-          children: [
-            const Spacer(),
-            InkWell(
-              onTap: () {
-                Get.back();
-                callbackSelectedSource(
-                    "Camera,${id.toString()},${index.toString()}");
-              },
-              child: Column(
-                children: [
-                  svgImage("cameracapture", ThemeConstants.bluecolor, 100, 100),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Camera",
-                  )
-                ],
-              ),
-            ),
-            const Spacer(),
-            InkWell(
-              onTap: () {
-                Get.back();
-                callbackSelectedSource(
-                    "Gallery,${id.toString()},${index.toString()}");
-              },
-              child: Column(
-                children: [
-                  svgImage("gallery", ThemeConstants.bluecolor, 100, 100),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Gallery",
-                  )
-                ],
-              ),
-            ),
-            const Spacer(),
-          ],
-        ),
-      ],
-    ),
-  ));
+          Positioned(
+              right: 10,
+              top: 10,
+              child: InkWell(
+                onTap: () {
+                  Get.find<ApplicationCompleteDetailsController>()
+                      .model
+                      .documents![index]
+                      .viewLink = "";
+                  Get.find<ApplicationCompleteDetailsController>().update();
+                  Get.back();
+                },
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.close,
+                      color: ThemeConstants.blackcolor,
+                    ),
+                  ),
+                ),
+              ))
+        ],
+      ),
+      isDismissible: false);
 }
 
 getLoading(BuildContext context) {

@@ -140,6 +140,9 @@ class CourseSearchController extends GetxController {
     cityList = [];
     stateCode = [];
     stateList = [];
+    selectCityCode = null;
+    selectCityName = null;
+    loadingCity.value = false;
     loadingState.value = false;
     selectStateCode = null;
     try {
