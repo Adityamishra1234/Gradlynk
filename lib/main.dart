@@ -102,11 +102,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     hideScreen();
-
-    if (getUserData() != null) {
-      dashboardscreen = true;
-    } else {
+    if (getNUllChecker(getUserData()) == false) {
       dashboardscreen = false;
+    } else {
+      dashboardscreen = true;
     }
     super.initState();
   }
@@ -114,6 +113,11 @@ class _MyAppState extends State<MyApp> {
   getUserData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String phonenumber = sharedPreferences.getString("phonenumber").toString();
+
+    if (getNUllChecker(phonenumber) == false) {
+      print("aman");
+    }
+
     return phonenumber;
   }
 
