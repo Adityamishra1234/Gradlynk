@@ -111,6 +111,7 @@ class BaseController extends GetxController {
     var res = await apiServices.logout(
         Endpoints.baseUrl!, Endpoints.logout! + id, token);
     if (res == true) {
+      Get.deleteAll();
       sharedPreferences.clear();
       Get.toNamed(LoginScreen.routeNamed);
     } else {

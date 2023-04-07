@@ -44,7 +44,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                   return [
                     SliverList(
                       delegate: SliverChildListDelegate([
-                        CustomAppBar("title"),
+                        CustomAppBar("title", false),
                         const Padding(
                           padding: EdgeInsets.only(left: 20, right: 20, top: 5),
                           child: Divider(

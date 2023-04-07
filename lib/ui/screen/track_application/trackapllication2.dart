@@ -67,7 +67,7 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: CustomAppBar("title", false),
       body: ListView(
         controller: ScrollController(),
         children: [

@@ -22,7 +22,7 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('title'),
+      appBar: CustomAppBar('title', false),
       drawer: CustomDrawer(
         index: 10,
       ),

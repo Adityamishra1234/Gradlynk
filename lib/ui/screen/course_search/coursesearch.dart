@@ -44,7 +44,7 @@ class _CourseSearchState extends State<CourseSearch> {
       width = width - 240;
     }
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: CustomAppBar("title", false),
       drawer: displayMobileLayout == false
           ? CustomDrawer(
               index: 3,

@@ -17,7 +17,7 @@ class BookAnAppointment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: CustomAppBar("title", false),
         drawer: CustomDrawer(
           index: 0,
         ),

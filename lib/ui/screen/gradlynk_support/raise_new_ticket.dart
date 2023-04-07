@@ -28,7 +28,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("sd"),
+        appBar: CustomAppBar("sd", false),
         drawer: CustomDrawer(
           index: 12,
         ),

@@ -13,6 +13,7 @@ import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
+import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
@@ -27,6 +28,7 @@ import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+import 'package:studentpanel/widgets/drawerfilter.dart';
 import 'package:studentpanel/widgets/test.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -47,20 +49,45 @@ class _DashBoardState extends State<DashBoard> {
     fontWeight: FontWeight.w800,
     fontSize: 17,
   );
-
+  bool appbar = false;
+  bool showcase = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey _one = GlobalKey();
   final GlobalKey _two = GlobalKey();
+  final GlobalKey _three = GlobalKey();
+  final GlobalKey _four = GlobalKey();
+  final GlobalKey _five = GlobalKey();
+  final GlobalKey _six = GlobalKey();
+  final GlobalKey _seven = GlobalKey();
+  final GlobalKey _eight = GlobalKey();
+  final GlobalKey _nine = GlobalKey();
+  final GlobalKey _ten = GlobalKey();
   BuildContext? myContext;
 
   @override
   void initState() {
     try {
+      print(Get.arguments);
       if (Get.arguments) {
         ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
           (_) => Future.delayed(const Duration(milliseconds: 200), () {
-            ShowCaseWidget.of(myContext!).startShowCase([_one, _two]);
+            ShowCaseWidget.of(myContext!).startShowCase([
+              _one,
+              _two,
+              _three,
+              _four,
+              _five,
+              _six,
+              _seven,
+              _eight,
+              _nine,
+              _ten
+            ]);
           }),
         );
+        showcase = true;
+      } else {
+        appbar = true;
       }
     } catch (e) {}
     // Get.find<BaseController>().profiledetail();
@@ -73,13 +100,94 @@ class _DashBoardState extends State<DashBoard> {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
 
-    return ShowCaseWidget(builder: Builder(builder: (context) {
+    return ShowCaseWidget(onComplete: (p0, p1) {
+      print(p0);
+      if (p0 == 5) {
+        appbar = true;
+        setState(() {});
+      }
+    }, builder: Builder(builder: (context) {
       myContext = context;
       return GetBuilder<BaseController>(builder: (_) {
         return Scaffold(
-          appBar: controller.loadingStudentPanelData1.value == true
-              ? CustomAppBar("DashBoard")
-              : null,
+          key: _scaffoldKey,
+          appBar: AppBar(
+            elevation: 0,
+            actions: [
+              if (displayMobileLayout == true)
+                IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () => Get.back(),
+                ),
+              if (displayMobileLayout == false)
+                Showcase(
+                  key: _nine,
+                  description:
+                      "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: IconButton(
+                      icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
+                      onPressed: () {
+                        _scaffoldKey.currentState!.openDrawer();
+
+                        DrawerFilter();
+                      },
+                    ),
+                  ),
+                ),
+              svgImage("work", Colors.transparent, 32, 32),
+
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Image.network(
+                  "https://sieceducation.in/assets/assets/images/logo.png",
+                  width: 150,
+                  height: 50,
+                ),
+              ),
+              const Spacer(),
+              Showcase(
+                key: _ten,
+                description:
+                    "The bell rings with an updated notification at your doors.",
+                child: IconButton(
+                  icon: svgImage(
+                      "notification", ThemeConstants.IconColor, 30, 30),
+                  onPressed: () {
+                    //TODO
+                    Get.to(NotificationScreen());
+                  },
+                ),
+              ),
+              // IconButton(
+              //   icon: SvgPicture.asset(
+              //     "assets/icons/profile.svg",
+              //     height: 30,
+              //     color: const Color.fromARGB(255, 99, 99, 99),
+              //   ),
+              //   onPressed: () {
+              //     Get.toNamed(ProfilePage.routeNamed);
+              //   },
+              // ),
+
+              const SizedBox(
+                width: 5,
+              )
+            ],
+            // title: Text(
+            //   title,
+            //   style: const TextStyle(color: Colors.black),
+            // ),
+            backgroundColor: Colors.white,
+          ),
+
+          // appbar == true
+          //     ? controller.loadingStudentPanelData1.value == true
+          //         ? CustomAppBar("DashBoard", true)
+          //         : null
+          //     : null,
           drawer: displayMobileLayout == false
               ? CustomDrawer(
                   index: 0,
@@ -120,104 +228,12 @@ class _DashBoardState extends State<DashBoard> {
                                           child: Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
-                                            child: Showcase.withWidget(
-                                              disableMovingAnimation: true,
-
-                                              // disposeOnTap: true,
-                                              key: _one,
-                                              // title: 'Title',
-                                              // description: 'Desc',
-                                              container: InkWell(
-                                                onTap: () {
-                                                  ShowCaseWidget.of(context)
-                                                      .next();
-                                                },
-                                                child: SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                      .size
-                                                      .height,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child: Stack(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            color:
-                                                                ThemeConstants
-                                                                    .whitecolor,
-                                                            border:
-                                                                Border.all(),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10.0)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child:
-                                                              CustomAutoSizeTextMontserrat(
-                                                            text:
-                                                                "Please tap on Hi ",
-                                                            textColor:
-                                                                ThemeConstants
-                                                                    .blackcolor,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Positioned(
-                                                        top: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            0.7,
-                                                        right: 40,
-                                                        child: Container(
-                                                          height: 50,
-                                                          width: 50,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            color: Colors.white,
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: IconButton(
-                                                              onPressed:
-                                                                  () async {
-                                                                SharedPreferences
-                                                                    prefs =
-                                                                    await SharedPreferences
-                                                                        .getInstance();
-                                                                await prefs.setBool(
-                                                                    "showcaseEnable",
-                                                                    true);
-                                                                // ignore: use_build_context_synchronously
-                                                                ShowCaseWidget.of(
-                                                                        context)
-                                                                    .dismiss();
-                                                              },
-                                                              icon: Icon(
-                                                                Icons.skip_next,
-                                                                color: ThemeConstants
-                                                                    .GreenColor,
-                                                              )),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              height: 100,
-                                              width: 100,
-                                              child: Text(
-                                                "Hi,",
-                                                style: GoogleFonts.roboto(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 30,
-                                                    textStyle:
-                                                        const TextStyle()),
-                                              ),
+                                            child: Text(
+                                              "Hi,",
+                                              style: GoogleFonts.roboto(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 30,
+                                                  textStyle: const TextStyle()),
                                             ),
                                           ),
                                         ),
@@ -233,16 +249,37 @@ class _DashBoardState extends State<DashBoard> {
                                                         .width /
                                                     2,
                                                 height: 50,
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: firstLetterChaptial(_
-                                                          .personalModal
-                                                          .enquiryName) ??
-                                                      firstLetterChaptial(
-                                                          _.model1.enquiryName),
-                                                  maxLines: 2,
-                                                  fontSize: 40,
-                                                  fontWeight: FontWeight.bold,
+                                                child: Showcase(
+                                                  overlayColor: Colors.black54,
+                                                  overlayOpacity: 0.40,
+                                                  tooltipPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 5,
+                                                          right: 5,
+                                                          top: 10,
+                                                          bottom: 10),
+                                                  targetShapeBorder:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                  key: _one,
+                                                  description:
+                                                      'Hi, Welcome to Gradlynk. Your international Education Partner.',
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: firstLetterChaptial(_
+                                                            .personalModal
+                                                            .enquiryName) ??
+                                                        firstLetterChaptial(_
+                                                            .model1
+                                                            .enquiryName),
+                                                    maxLines: 2,
+                                                    fontSize: 40,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               )),
                                         ),
@@ -264,53 +301,85 @@ class _DashBoardState extends State<DashBoard> {
                                     //   width: 20,
                                     // ),
                                     const Spacer(),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        foregroundColor:
-                                            ThemeConstants.whitecolor,
-                                        elevation: 0,
-                                        backgroundColor:
-                                            ThemeConstants.whitecolor,
-                                        shadowColor:
-                                            ThemeConstants.lightblueColor,
-                                        side: BorderSide(
-                                            color: ThemeConstants
-                                                .bluecolor), // foreground
-                                      ),
-                                      onPressed: () {
-                                        Get.toNamed(
-                                            ScheduleExpertCall.routeNamed);
-                                      },
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "Schedule expert call",
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        textColor: ThemeConstants.bluecolor,
+                                    Showcase(
+                                      overlayColor: Colors.black54,
+                                      overlayOpacity: 0.40,
+                                      tooltipPadding: const EdgeInsets.only(
+                                          left: 5,
+                                          right: 5,
+                                          top: 10,
+                                          bottom: 10),
+                                      targetShapeBorder:
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                      key: _six,
+                                      description:
+                                          "Your Expert is a call away. Schedule the call with your best available slot.",
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
+                                          elevation: 0,
+                                          backgroundColor:
+                                              ThemeConstants.whitecolor,
+                                          shadowColor:
+                                              ThemeConstants.lightblueColor,
+                                          side: BorderSide(
+                                              color: ThemeConstants
+                                                  .bluecolor), // foreground
+                                        ),
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              ScheduleExpertCall.routeNamed);
+                                        },
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Schedule expert call",
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          textColor: ThemeConstants.bluecolor,
+                                        ),
                                       ),
                                     ),
                                     const Spacer(),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        foregroundColor:
-                                            ThemeConstants.whitecolor,
-                                        elevation: 0,
-                                        backgroundColor:
-                                            ThemeConstants.whitecolor,
-                                        shadowColor:
-                                            ThemeConstants.lightorangeColor,
-                                        side: BorderSide(
-                                            color: ThemeConstants
-                                                .orangeColor), // foreground
-                                      ),
-                                      onPressed: () {
-                                        Get.toNamed(
-                                            BookAnAppointment.routeNamed);
-                                      },
-                                      child: CustomAutoSizeTextMontserrat(
-                                        text: "Book an appointment",
-                                        fontSize: 12,
-                                        textColor: ThemeConstants.orangeColor,
-                                        fontWeight: FontWeight.bold,
+                                    Showcase(
+                                      overlayColor: Colors.black54,
+                                      overlayOpacity: 0.40,
+                                      tooltipPadding: const EdgeInsets.only(
+                                          left: 5,
+                                          right: 5,
+                                          top: 10,
+                                          bottom: 10),
+                                      targetShapeBorder:
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                      key: _seven,
+                                      description:
+                                          "Appointments compliments time management. Book an Appointment with your advisor now and save your time.",
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          foregroundColor:
+                                              ThemeConstants.whitecolor,
+                                          elevation: 0,
+                                          backgroundColor:
+                                              ThemeConstants.whitecolor,
+                                          shadowColor:
+                                              ThemeConstants.lightorangeColor,
+                                          side: BorderSide(
+                                              color: ThemeConstants
+                                                  .orangeColor), // foreground
+                                        ),
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              BookAnAppointment.routeNamed);
+                                        },
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Book an appointment",
+                                          fontSize: 12,
+                                          textColor: ThemeConstants.orangeColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                     // const SizedBox(
@@ -331,10 +400,20 @@ class _DashBoardState extends State<DashBoard> {
                                   children: [
                                     // Create profile
                                     Showcase(
+                                      overlayColor: Colors.black54,
+                                      overlayOpacity: 0.40,
+                                      tooltipPadding: const EdgeInsets.only(
+                                          left: 5,
+                                          right: 5,
+                                          top: 10,
+                                          bottom: 10),
+                                      targetShapeBorder:
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
                                       key: _two,
-                                      title: 'Create Profile ',
                                       description:
-                                          'you can create your profile',
+                                          'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
                                       child: InkWell(
                                         onTap: () async {
                                           // final cameras = await availableCameras();
@@ -386,14 +465,85 @@ class _DashBoardState extends State<DashBoard> {
                                       ),
                                     ),
                                     //Upload Document
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(UploadDocument.routeNamed);
-                                      },
-                                      child: Ink(
-                                        height: 160,
-                                        width: 160,
-                                        color: Colors.amber,
+                                    Showcase(
+                                      overlayColor: Colors.black54,
+                                      overlayOpacity: 0.40,
+                                      tooltipPadding: const EdgeInsets.only(
+                                          left: 5,
+                                          right: 5,
+                                          top: 10,
+                                          bottom: 10),
+                                      targetShapeBorder:
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                      key: _three,
+                                      description:
+                                          "All documents required for your Application to be uploaded here.",
+                                      child: InkWell(
+                                        onTap: () {
+                                          Get.toNamed(
+                                              UploadDocument.routeNamed);
+                                        },
+                                        child: Ink(
+                                          height: 160,
+                                          width: 160,
+                                          color: Colors.amber,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 130,
+                                                  width: 160,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          width: 0,
+                                                          color: const Color(
+                                                              0xFFFEF6E6)),
+                                                      color: const Color(
+                                                          0xFFFEF6E6),
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  20))),
+                                                  child: svgImage(
+                                                      "upload_document",
+                                                      const Color(0xFFF8A300),
+                                                      80,
+                                                      80)),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10),
+                                                child: Text(
+                                                  "Upload document",
+                                                  style: _textStyle,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    //Course Search
+                                    Showcase(
+                                      overlayColor: Colors.black54,
+                                      overlayOpacity: 0.40,
+                                      tooltipPadding: const EdgeInsets.only(
+                                          left: 5,
+                                          right: 5,
+                                          top: 10,
+                                          bottom: 10),
+                                      targetShapeBorder:
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                      key: _four,
+                                      description:
+                                          "Course Search assists you in searching your desired course across the globe.",
+                                      child: InkWell(
+                                        onTap: () {
+                                          Get.toNamed(CourseSearch.routeNamed);
+                                        },
                                         child: Column(
                                           children: [
                                             Container(
@@ -403,105 +553,86 @@ class _DashBoardState extends State<DashBoard> {
                                                     border: Border.all(
                                                         width: 0,
                                                         color: const Color(
-                                                            0xFFFEF6E6)),
+                                                            0xFFFEF0F0)),
                                                     color:
-                                                        const Color(0xFFFEF6E6),
+                                                        const Color(0xFFFEF0F0),
                                                     borderRadius:
                                                         const BorderRadius.all(
                                                             Radius.circular(
                                                                 20))),
                                                 child: svgImage(
-                                                    "upload_document",
-                                                    const Color(0xFFF8A300),
+                                                    "course",
+                                                    const Color(0xFFF16660),
                                                     80,
                                                     80)),
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   top: 10),
                                               child: Text(
-                                                "Upload document",
+                                                "Course Search",
                                                 style: _textStyle,
                                               ),
-                                            ),
+                                            )
                                           ],
                                         ),
                                       ),
                                     ),
-                                    //Course Search
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(CourseSearch.routeNamed);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Container(
+                                    // Track Application
+                                    Showcase(
+                                      overlayColor: Colors.black54,
+                                      overlayOpacity: 0.40,
+                                      tooltipPadding: const EdgeInsets.only(
+                                          left: 5,
+                                          right: 5,
+                                          top: 10,
+                                          bottom: 10),
+                                      targetShapeBorder:
+                                          const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                      key: _five,
+                                      description:
+                                          "You can keep a track on your Application Stage and Status.",
+                                      child: InkWell(
+                                        onTap: () {
+                                          Get.toNamed(
+                                              ApplicationSummary.routeNamed);
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Container(
                                               height: 130,
                                               width: 160,
                                               decoration: BoxDecoration(
                                                   border: Border.all(
                                                       width: 0,
                                                       color: const Color(
-                                                          0xFFFEF0F0)),
+                                                          0xFFE8FAFD)),
                                                   color:
-                                                      const Color(0xFFFEF0F0),
+                                                      const Color(0xFFE8FAFD),
                                                   borderRadius:
                                                       const BorderRadius.all(
                                                           Radius.circular(20))),
-                                              child: svgImage(
-                                                  "course",
-                                                  const Color(0xFFF16660),
-                                                  80,
-                                                  80)),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "Course Search",
-                                              style: _textStyle,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(30.0),
+                                                child: svgImage(
+                                                    "track",
+                                                    const Color(0xFF05B4D2),
+                                                    80,
+                                                    80),
+                                              ),
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    // Track Application
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(
-                                            ApplicationSummary.routeNamed);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: 130,
-                                            width: 160,
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    width: 0,
-                                                    color: const Color(
-                                                        0xFFE8FAFD)),
-                                                color: const Color(0xFFE8FAFD),
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                        Radius.circular(20))),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(30.0),
-                                              child: svgImage(
-                                                  "track",
-                                                  const Color(0xFF05B4D2),
-                                                  80,
-                                                  80),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10),
+                                              child: Text(
+                                                "Track application",
+                                                style: _textStyle,
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "Track application",
-                                              style: _textStyle,
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -649,20 +780,31 @@ class _DashBoardState extends State<DashBoard> {
                   : Center(
                       child: getLoading(context),
                     ),
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.only(right: 10, bottom: 10),
-            child: FloatingActionButton.extended(
-              tooltip: "SVO",
-              backgroundColor: ThemeConstants.bluecolor,
-              onPressed: () async {
-                // SVO Join Code
-                await _launchURL();
-                // isExtended: true,
-              },
-              icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
-              label: CustomAutoSizeTextMontserrat(
-                text: "Join SVO",
-                textColor: ThemeConstants.whitecolor,
+          floatingActionButton: Showcase(
+            overlayColor: Colors.black54,
+            overlayOpacity: 0.40,
+            tooltipPadding:
+                const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
+            targetShapeBorder: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            key: _eight,
+            description:
+                "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10, bottom: 10),
+              child: FloatingActionButton.extended(
+                tooltip: "SVO",
+                backgroundColor: ThemeConstants.bluecolor,
+                onPressed: () async {
+                  // SVO Join Code
+                  await _launchURL();
+                  // isExtended: true,
+                },
+                icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
+                label: CustomAutoSizeTextMontserrat(
+                  text: "Join SVO",
+                  textColor: ThemeConstants.whitecolor,
+                ),
               ),
             ),
           ),
@@ -701,22 +843,22 @@ class _DashBoardState extends State<DashBoard> {
   callbackDropDownButton(varTopic) {}
 
   _launchURL() async {
-    final call = Uri.parse('tel:+91 8394049598');
-    if (await canLaunchUrl(call)) {
-      launchUrl(call);
-    } else {
-      throw 'Could not launch $call';
-    }
-
-    // const url =
-    //     'https://zoom.us/j/97485138279?pwd=Y1cwcXRHUWZWOFN3aTZOdmhHZm4yQT09';
-    // // ignore: deprecated_member_use
-    // if (await canLaunch(url)) {
-    //   // ignore: deprecated_member_use
-    //   await launch(url);
+    // final call = Uri.parse('tel:+91 8394049598');
+    // if (await canLaunchUrl(call)) {
+    //   launchUrl(call);
     // } else {
-    //   throw 'Could not launch $url';
+    //   throw 'Could not launch $call';
     // }
+
+    const url =
+        'https://zoom.us/j/97485138279?pwd=Y1cwcXRHUWZWOFN3aTZOdmhHZm4yQT09';
+    // ignore: deprecated_member_use
+    if (await canLaunch(url)) {
+      // ignore: deprecated_member_use
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

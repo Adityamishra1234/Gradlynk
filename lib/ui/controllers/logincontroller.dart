@@ -110,7 +110,9 @@ class LoginController extends GetxController with StateMixin {
     String phonenumber = sharedPreferences.getString("phonenumber").toString();
     print(phonenumber);
     if (getNUllChecker(phonenumber) == false) {
-      Get.toNamed(DashBoard.routeNamed);
+      print(sharedPreferences.getBool("showcaseEnable"));
+      Get.toNamed(DashBoard.routeNamed,
+          arguments: sharedPreferences.getBool("showcaseEnable"));
     } else {
       Get.toNamed(LoginScreen.routeNamed);
     }

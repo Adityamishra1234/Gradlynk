@@ -140,7 +140,7 @@ class _ApplicationCompleteDetailsState
       width = MediaQuery.of(context).size.width - 240;
     }
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: CustomAppBar("title", false),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 2,

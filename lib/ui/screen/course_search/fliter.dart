@@ -72,7 +72,7 @@ class _FilterState extends State<Filter> {
   Widget build(BuildContext context) {
     courseModelFilter.filterModel = controller.filterModel;
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: CustomAppBar("title", false),
         drawer: CustomDrawer(),
         body: GetBuilder<FilterController>(
           builder: (controller1) => controller1.loadingfuncation.value == true

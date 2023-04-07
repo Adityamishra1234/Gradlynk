@@ -15,7 +15,7 @@ class Suggestedimprovisation extends GetView<TrackYourTicketsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: CustomAppBar("title", false),
       drawer: CustomDrawer(index: 11),
       body: controller.obx(
         onLoading: getLoading(context),

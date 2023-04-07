@@ -21,7 +21,7 @@ class Comparing extends StatelessWidget {
     courseSearchModel1.countryName = "";
     courseSearchModel2.countryName = "";
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: CustomAppBar("title", false),
       drawer: CustomDrawer(
         index: 3,
       ),
