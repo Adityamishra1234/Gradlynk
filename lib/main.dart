@@ -97,7 +97,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   UserModel? userModel;
   late final GifController controller;
-  var controller1 = Get.put(BaseController(), permanent: true);
+
   bool dashboardscreen = false;
 
   @override
@@ -119,9 +119,7 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: Get.find<BaseController>().dashboard == true
-          ? DashBoard.routeNamed
-          : LoginScreen.routeNamed,
+      initialRoute: LoginScreen.routeNamed,
       // Create Route
       getPages: [
         GetPage(

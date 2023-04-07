@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -22,9 +23,7 @@ class LoginController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    // if (getNUllChecker(controller1.phone) == false) {
-    //   Get.offNamed(DashBoard.routeNamed);
-    // }
+    getUserData();
     change(null, status: RxStatus.success());
   }
 
@@ -105,4 +104,15 @@ class LoginController extends GetxController with StateMixin {
   //     return false;
   //   }
   // }
+
+  getUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    print(phonenumber);
+    if (getNUllChecker(phonenumber) == false) {
+      Get.toNamed(DashBoard.routeNamed);
+    } else {
+      Get.toNamed(LoginScreen.routeNamed);
+    }
+  }
 }

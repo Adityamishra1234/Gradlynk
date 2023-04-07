@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hashids2/hashids2.dart';
@@ -115,15 +116,6 @@ class BaseController extends GetxController {
     } else {
       sharedPreferences.clear();
       Get.toNamed(LoginScreen.routeNamed);
-    }
-  }
-
-  getUserData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String phonenumber = sharedPreferences.getString("phonenumber").toString();
-    print(phonenumber);
-    if (getNUllChecker(phonenumber) == false) {
-      dashboard = true;
     }
   }
 }
