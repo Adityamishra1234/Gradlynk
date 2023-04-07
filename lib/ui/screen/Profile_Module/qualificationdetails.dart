@@ -104,6 +104,8 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.countrySelected = controller.countryList[i];
           controller.countrySelectedID = controller.countryCode[i];
           controller.getState(controller.countrySelectedID.toString());
+          controller.getInstitution(controller.countrySelectedID,
+              controller.stateSelectedID, controller.citySelectedID);
           controller.getAffiliation(controller.countrySelectedID!);
           controller.update();
         }
@@ -121,6 +123,8 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.stateSelected = controller.stateList[i];
           controller.stateSelectedID = controller.stateCode[i];
           controller.getCity(controller.stateSelectedID!);
+          controller.getInstitution(controller.countrySelectedID,
+              controller.stateSelectedID, controller.citySelectedID);
           controller.update();
         }
       }
@@ -136,7 +140,8 @@ class QualificationDetailsCopy extends StatelessWidget {
       } else {
         if (controller.affiliationList[i].toString() == data.toString()) {
           controller.affiliationNameSelected = controller.affiliationList[i];
-          controller.affiliationCodeSelected = controller.affiliationCode[i];
+          controller.affiliationCodeSelected =
+              controller.affiliationCode[i].toString();
           controller.update();
         }
       }
@@ -152,7 +157,8 @@ class QualificationDetailsCopy extends StatelessWidget {
         if (controller.cityList[i].toString() == varTopic.toString()) {
           controller.citySelected = controller.cityList[i];
           controller.citySelectedID = controller.cityCode[i];
-          controller.geInstitution(controller.citySelectedID!);
+          controller.getInstitution(controller.countrySelectedID,
+              controller.stateSelectedID, controller.citySelectedID);
           controller.update();
         }
       }

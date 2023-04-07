@@ -63,6 +63,7 @@ class _DashBoardState extends State<DashBoard> {
         );
       }
     } catch (e) {}
+    // Get.find<BaseController>().profiledetail();
 
     super.initState();
   }

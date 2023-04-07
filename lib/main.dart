@@ -17,6 +17,7 @@ import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
@@ -96,25 +97,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   UserModel? userModel;
   late final GifController controller;
-  var controller1 = Get.put(AnimationtestController());
+  var controller1 = Get.put(BaseController(), permanent: true);
   bool dashboardscreen = false;
 
   @override
   void initState() {
     hideScreen();
-    if (getNUllChecker(getUserData()) == false) {
-      dashboardscreen = false;
-    } else {
-      dashboardscreen = true;
-    }
+
     super.initState();
-  }
-
-  getUserData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String phonenumber = sharedPreferences.getString("phonenumber").toString();
-
-    return phonenumber;
   }
 
   Future<void> hideScreen() async {
@@ -123,30 +113,13 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  // getUserInfo() async {
-  //   var temp = await Get.put(LoginController()).checkUserData();
-  //   if (temp == false) {
-  //     Get.toNamed(Login.routeNamed);
-  //   } else {
-  //     Get.toNamed(DashBoard.routeNamed);
-  //     getUserData();
-  //   }
-  // }
-
-  // getUserData() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   var jsondata =
-  //       json.decode(sharedPreferences.getString("UserModel").toString());
-  //   userModel = UserModel.fromJson(jsondata);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: dashboardscreen == true
+      initialRoute: Get.find<BaseController>().dashboard == true
           ? DashBoard.routeNamed
           : LoginScreen.routeNamed,
       // Create Route

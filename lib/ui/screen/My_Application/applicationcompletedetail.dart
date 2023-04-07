@@ -31,6 +31,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:studentpanel/widgets/file_download.dart';
 import 'package:studentpanel/widgets/loading_button.dart';
 
 class ApplicationCompleteDetails extends StatefulWidget {
@@ -215,31 +216,8 @@ class _ApplicationCompleteDetailsState
                                       ),
                                       Row(
                                         children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  ThemeConstants.whitecolor,
-                                              side: BorderSide(
-                                                  color:
-                                                      ThemeConstants.bluecolor),
-                                              backgroundColor: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () async {
-                                              if (Platform.isAndroid) {
-                                                downloadFile(_
-                                                    .model.acknowledgementFile);
-                                              } else if (Platform.isIOS) {
-                                                download(_
-                                                    .model.acknowledgementFile);
-                                              }
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Download",
-                                              textColor:
-                                                  ThemeConstants.bluecolor,
-                                            ),
-                                          ),
+                                          FileDownload(
+                                              url: _.model.acknowledgementFile),
                                           const SizedBox(
                                             width: 20,
                                           ),
@@ -399,33 +377,8 @@ class _ApplicationCompleteDetailsState
                                         false)
                                       Row(
                                         children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  ThemeConstants.whitecolor,
-                                              side: BorderSide(
-                                                  color:
-                                                      ThemeConstants.bluecolor),
-                                              backgroundColor: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () {
-                                              getToast(
-                                                  "Please wait for download");
-
-                                              if (Platform.isIOS) {
-                                                downloadFile(
-                                                    _.model.fullOfferDoc);
-                                              } else {
-                                                download(_.model.fullOfferDoc);
-                                              }
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Download",
-                                              textColor:
-                                                  ThemeConstants.bluecolor,
-                                            ),
-                                          ),
+                                          FileDownload(
+                                              url: _.model.fullOfferDoc),
                                           const SizedBox(
                                             width: 20,
                                           ),
@@ -468,32 +421,8 @@ class _ApplicationCompleteDetailsState
                                         false)
                                       Row(
                                         children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  ThemeConstants.whitecolor,
-                                              side: BorderSide(
-                                                  color:
-                                                      ThemeConstants.bluecolor),
-                                              backgroundColor: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () {
-                                              getToast(
-                                                  "Please wait for download");
-                                              if (Platform.isIOS) {
-                                                downloadFile(
-                                                    _.model.rejectionDoc);
-                                              } else {
-                                                download(_.model.rejectionDoc);
-                                              }
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Download",
-                                              textColor:
-                                                  ThemeConstants.bluecolor,
-                                            ),
-                                          ),
+                                          FileDownload(
+                                              url: _.model.rejectionDoc),
                                           const SizedBox(
                                             width: 20,
                                           ),
@@ -536,33 +465,8 @@ class _ApplicationCompleteDetailsState
                                         false)
                                       Row(
                                         children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  ThemeConstants.whitecolor,
-                                              side: BorderSide(
-                                                  color:
-                                                      ThemeConstants.bluecolor),
-                                              backgroundColor: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () {
-                                              getToast(
-                                                  "Please wait for download");
-                                              if (Platform.isIOS) {
-                                                downloadFile(_
-                                                    .model.conditionalOfferDoc);
-                                              } else {
-                                                download(_
-                                                    .model.conditionalOfferDoc);
-                                              }
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Download",
-                                              textColor:
-                                                  ThemeConstants.bluecolor,
-                                            ),
-                                          ),
+                                          FileDownload(
+                                              url: _.model.conditionalOfferDoc),
                                           const SizedBox(
                                             width: 20,
                                           ),
@@ -696,33 +600,8 @@ class _ApplicationCompleteDetailsState
                                         false)
                                       Row(
                                         children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  ThemeConstants.whitecolor,
-                                              side: BorderSide(
-                                                  color:
-                                                      ThemeConstants.bluecolor),
-                                              backgroundColor: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () {
-                                              getToast(
-                                                  "Please wait for download");
-                                              if (Platform.isIOS) {
-                                                downloadFile(
-                                                    _.model.paymentReceipt);
-                                              } else {
-                                                download(
-                                                    _.model.paymentReceipt);
-                                              }
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Download",
-                                              textColor:
-                                                  ThemeConstants.bluecolor,
-                                            ),
-                                          ),
+                                          FileDownload(
+                                              url: _.model.paymentReceipt),
                                           const SizedBox(
                                             width: 20,
                                           ),
@@ -765,33 +644,8 @@ class _ApplicationCompleteDetailsState
                                         false)
                                       Row(
                                         children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              foregroundColor:
-                                                  ThemeConstants.whitecolor,
-                                              side: BorderSide(
-                                                  color:
-                                                      ThemeConstants.bluecolor),
-                                              backgroundColor: ThemeConstants
-                                                  .whitecolor, // foreground
-                                            ),
-                                            onPressed: () {
-                                              getToast(
-                                                  "Please wait for download");
-                                              if (Platform.isIOS) {
-                                                downloadFile(
-                                                    _.model.cas_i_20_coe_doc);
-                                              } else {
-                                                download(
-                                                    _.model.cas_i_20_coe_doc);
-                                              }
-                                            },
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Download",
-                                              textColor:
-                                                  ThemeConstants.bluecolor,
-                                            ),
-                                          ),
+                                          FileDownload(
+                                              url: _.model.cas_i_20_coe_doc),
                                           const SizedBox(
                                             width: 20,
                                           ),
@@ -1091,44 +945,9 @@ class _ApplicationCompleteDetailsState
                             if (getNUllChecker(model.documents![i].viewLink) ==
                                 false)
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 5),
-                                child: LoadingButton(
-                                  height: 35,
-                                  borderRadius: 8,
-                                  animate: true,
-                                  color: Colors.indigo,
-                                  width: 120,
-                                  loader: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    width: 30,
-                                    height: 30,
-                                    child: const CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white),
-                                    ),
-                                  ),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Download",
-                                    textColor: ThemeConstants.whitecolor,
-                                  ),
-                                  onTap: (startLoading, stopLoading,
-                                      buttonState) async {
-                                    if (buttonState == ButtonState.idle) {
-                                      startLoading();
-                                      // Do something here
-                                      // getToast("Please wait for download");
-                                      if (Platform.isAndroid) {
-                                        await download(
-                                            model.documents![i].viewLink);
-                                      } else if (Platform.isIOS) {
-                                        await downloadFile(
-                                            model.documents![i].viewLink);
-                                      }
-                                      stopLoading();
-                                    }
-                                  },
-                                ),
-                              ),
+                                  padding: const EdgeInsets.only(bottom: 5),
+                                  child: FileDownload(
+                                      url: model.documents![i].viewLink)),
 
                             if (getNUllChecker(model.documents![i].viewLink) ==
                                 false)

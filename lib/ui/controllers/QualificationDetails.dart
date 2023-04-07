@@ -591,14 +591,14 @@ class QualificationDetailsController extends GetxController with StateMixin {
     }
   }
 
-  geInstitution(String cityId) async {
+  getInstitution([String? countryId, String? stateId, String? cityId]) async {
     try {
       List<InstitutionDropDown> institutionDropDown = [];
       institutionList = [];
       institutionCode = [];
       loadingInstitution.value = false;
-      var res = await apiServices.getInstitute(
-          Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
+      var res = await apiServices.getInstitute(Endpoints.baseUrl!,
+          "${Endpoints.instituteForCity!}${cityId}country_id=${countryId}state_id=$stateId");
       if (res != null) {
         institutionDropDown = res;
         institutionList.add("Select Institution");

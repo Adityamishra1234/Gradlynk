@@ -26,6 +26,7 @@ class BaseController extends GetxController {
   RxBool loadingnotificationModel = false.obs;
   List<String> countrylist = [];
   List<int> countryid = [];
+  bool dashboard = false;
 
   @override
   void onInit() {
@@ -114,6 +115,15 @@ class BaseController extends GetxController {
     } else {
       sharedPreferences.clear();
       Get.toNamed(LoginScreen.routeNamed);
+    }
+  }
+
+  getUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    print(phonenumber);
+    if (getNUllChecker(phonenumber) == false) {
+      dashboard = true;
     }
   }
 }

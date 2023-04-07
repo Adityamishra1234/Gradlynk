@@ -6,6 +6,7 @@ import 'package:configurable_expansion_tile_null_safety/configurable_expansion_t
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
+import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
@@ -21,6 +22,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:studentpanel/widgets/file_download.dart';
 import 'takepicturescreenCommonDocument.dart';
 
 class UploadDocument extends StatefulWidget {
@@ -308,31 +310,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                           ),
                         ),
                         const Spacer(),
-                        InkWell(
-                          onTap: () {
-                            // Download code
-                          },
-                          child: Container(
-                            height: 35,
-                            width: 90,
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: ThemeConstants.bluecolor),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(10.0))),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Download",
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 10,
-                                  textColor: ThemeConstants.bluecolor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        FileDownload(url: model[i].viewlink!),
                         const Spacer(),
                         InkWell(
                           onTap: () {

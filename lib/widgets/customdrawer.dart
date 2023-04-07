@@ -2,6 +2,7 @@ import 'package:configurable_expansion_tile_null_safety/configurable_expansion_t
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
@@ -663,30 +664,60 @@ class CustomDrawer extends StatelessWidget {
                       height: 60,
                     ),
                     Center(
-                      child: InkWell(
-                        onTap: () {
-                          Get.deleteAll();
-                          Get.find<BaseController>().logout();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: ThemeConstants.lightgreycolor,
-                              borderRadius: BorderRadius.circular(10.0)),
-                          height: 35,
-                          width: 200,
-                          child: Row(
-                            children: [
-                              const Spacer(),
-                              svgImage(
-                                  "logout", ThemeConstants.IconColor, 25, 25),
-                              CustomAutoSizeTextMontserrat(
-                                text: "Logout",
-                              ),
-                              const Spacer(),
-                            ],
+                      child: LoadingButton(
+                        height: 35,
+                        borderRadius: 8,
+                        animate: true,
+                        color: Colors.indigo,
+                        width: 120,
+                        loader: Container(
+                          padding: const EdgeInsets.all(10),
+                          width: 30,
+                          height: 30,
+                          child: const CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
                           ),
                         ),
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Logout",
+                          textColor: ThemeConstants.whitecolor,
+                        ),
+                        onTap: (startLoading, stopLoading, buttonState) async {
+                          if (buttonState == ButtonState.idle) {
+                            startLoading();
+                            // Do something here
+                            Get.deleteAll();
+                            await Get.find<BaseController>().logout();
+                            stopLoading();
+                          }
+                        },
                       ),
+
+                      // InkWell(
+                      //   onTap: () {
+                      //     Get.deleteAll();
+                      //     Get.find<BaseController>().logout();
+                      //   },
+                      //   child: Container(
+                      //     decoration: BoxDecoration(
+                      //         color: ThemeConstants.lightgreycolor,
+                      //         borderRadius: BorderRadius.circular(10.0)),
+                      //     height: 35,
+                      //     width: 200,
+                      //     child: Row(
+                      //       children: [
+                      //         const Spacer(),
+                      //         svgImage(
+                      //             "logout", ThemeConstants.IconColor, 25, 25),
+                      //         CustomAutoSizeTextMontserrat(
+                      //           text: "Logout",
+                      //         ),
+                      //         const Spacer(),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ]),
                 ),

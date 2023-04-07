@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
@@ -47,9 +48,10 @@ import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:http/http.dart' as http;
 
-class ApiServices extends StudentPanelBase {
+class ApiServices extends StudentPanelBase implements api {
   StudentPanelBase? crmBase = StudentPanelBase();
 
+  @override
   dashboard(String baseUrl, String endpoint) async {
     try {
       StudentPanel studentPanel;
@@ -82,6 +84,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCountry(String baseUrl, String endpoint) async {
     var response;
     try {
@@ -98,6 +101,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseLevel(String baseUrl, String endpoint) async {
     var response;
 
@@ -116,6 +120,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getState(String baseUrl, String endpoint, String countrydata) async {
     var temp = countrydata.split('[');
     var temp2 = temp[1].split(']')[0];
@@ -135,6 +140,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getState2(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
@@ -150,6 +156,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCity(String baseUrl, String endpoint, String statedata) async {
     var temp = statedata.split('[');
     var temp2 = temp[1].split(']')[0];
@@ -169,6 +176,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCity2(
     String baseUrl,
     String endpoint,
@@ -187,6 +195,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCoursenarrowField(
       String baseUrl, String endpoint, String broadFieldId) async {
     var temp = broadFieldId.split('[');
@@ -207,6 +216,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseBoardField(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
@@ -222,6 +232,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseSearch(String baseUrl, String endpoint) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     List<CourseSearchModel> courseSearchModel = [];
@@ -249,6 +260,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   completeCourseDetail(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
@@ -281,6 +293,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   setShortListCourse(String? id, String? enqId) async {
     try {
       var response = await httpPostNullBody(
@@ -305,6 +318,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   setFinalShortListCourse(String? id, String? enqId) async {
     try {
       var response = await httpPostNullBody(
@@ -323,6 +337,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   courseShortlistDetail(String? enqId) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     try {
@@ -353,6 +368,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getApplicationSummaryList(String enqId) async {
     try {
       List<ApplicationSummaryModel> applicationSummaryModel = [];
@@ -375,6 +391,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getFinalShortlist(String? endpoints, String enqId) async {
     try {
       CourseModelFilter courseModelFilter = CourseModelFilter();
@@ -402,6 +419,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getApplicationDetails(String? endpoints, String? apliId) async {
     try {
       ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
@@ -601,6 +619,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getVisaDetail(String? endpoint) async {
     try {
       VisaDetailModel visaDetailModel = VisaDetailModel();
@@ -622,6 +641,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   personalInformationDataUpdate(
       PersonalInformationModel personalInformationModel,
       String? endpoint) async {
@@ -646,6 +666,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseNarrowProfile(String baseUrl, String endpoint) async {
     var response;
 
@@ -664,6 +685,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseBroadFiledByNarrowField(String baseUrl, String endpoint) async {
     var response;
 
@@ -682,6 +704,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseInformation(String baseUrl, String endpoint) async {
     var response;
 
@@ -728,6 +751,7 @@ class ApiServices extends StudentPanelBase {
   //   }
   // }
 
+  @override
   getHighestQualification(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -745,6 +769,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getStream(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -762,6 +787,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getEducationStatus(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -779,6 +805,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getAffiliation(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -798,6 +825,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getInstitute(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -816,6 +844,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getQualificationDetails(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -835,6 +864,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   dropDown1(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -851,6 +881,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getWorkHistoryView(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -870,6 +901,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   addProfileModule(String baseUrl, String endpoints, String snakbarTitle,
       String action) async {
     try {
@@ -892,6 +924,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewEnglishTestDetails(
     String baseUrl,
     String endpoints,
@@ -915,6 +948,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewOtherTestDetails(
     String baseUrl,
     String endpoints,
@@ -938,6 +972,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateEnglishTestDetails(
       EnglishTestDetailsViewModel englishTestDetailsViewModel,
       String? endpoint) async {
@@ -962,6 +997,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updatePassport(PassportModel passportModel, String? endpoint) async {
     try {
       String jsonData = jsonEncode(passportModel);
@@ -984,6 +1020,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewPassportDetail(
     String baseUrl,
     String endpoints,
@@ -1005,6 +1042,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getTravelHistory(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -1023,6 +1061,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateTravelHistory(String? endpoint, String action) async {
     try {
       var response = await httpPostNullBody(
@@ -1044,6 +1083,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewRelativeInformation(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -1061,6 +1101,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateRelativeInformation(String? endpoint, String action) async {
     try {
       var response = await httpPostNullBody(
@@ -1082,6 +1123,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getvisaSummary(String? endpoint) async {
     try {
       var response = await httpPostNullBody(
@@ -1104,6 +1146,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateQualification(String? endpoint, [String action = ""]) async {
     try {
       var response = await httpPostNullBody(
@@ -1125,6 +1168,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateOtherTestDetails(
       OtherTestDetailsModel otherTestDetailModel, String? endpoint) async {
     try {
@@ -1148,6 +1192,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getUpComingEvent(String endpoint) async {
     try {
       List<UpcomingEventModel> model = [];
@@ -1168,6 +1213,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getNotification(String endpoint) async {
     try {
       List<NotificationModel> model = [];
@@ -1187,6 +1233,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   Future<String?> sendFile(
     file,
     uploadFilename,
@@ -1216,6 +1263,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   Future<CommonUploadStatus?> uploadDocumentCommon(
       file, uploadFilename, String enq_id, String id,
       {String orgname = ""}) async {
@@ -1239,6 +1287,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getLogin(String? endpoint) async {
     print(endpoint);
     try {
@@ -1259,6 +1308,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getDropdownUploadDocument(String endpoint) async {
     try {
       List<DropDownDocumentType> model = [];
@@ -1278,6 +1328,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getDocumentName(String endpoint) async {
     try {
       List<DropDownDocumentName> model = [];
@@ -1297,6 +1348,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getServicesAssigned(String endpoint) async {
     try {
       List<ServiceAssigneersModel> model = [];
@@ -1316,6 +1368,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getOrganizationDropDown(String endpoint) async {
     try {
       List<DropDownorganisationName> model = [];
@@ -1335,6 +1388,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getcommondocument(String endpoint) async {
     try {
       List<CommonUploadDocument> model = [];
@@ -1354,6 +1408,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getSheduleExpertCall(String endpoint) async {
     try {
       StatusModel model = StatusModel();
@@ -1373,6 +1428,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   logout(String baseUrl, String endpoint, String token) async {
     var jsonData = {"token": token};
 
@@ -1391,6 +1447,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   countryGuide(String endpoint) async {
     try {
       List<CountryGuideModel> model = [];
@@ -1410,6 +1467,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getTrackYourTickets(String endpoint) async {
     try {
       TicketDataModel model = TicketDataModel();
@@ -1431,6 +1489,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   saveComments(String endpoint) async {
     try {
       List<Comments> model = [];
@@ -1456,6 +1515,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   qualificationUpdateDropdown(String endpoint) async {
     try {
       List<Comments> model = [];
