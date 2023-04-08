@@ -72,7 +72,7 @@ class _TrackApplicationState extends State<TrackApplication> {
         return [
           SliverList(
             delegate: SliverChildListDelegate([
-              CustomAppBar("title", false),
+              CustomAppBar("title"),
               const Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: Divider(

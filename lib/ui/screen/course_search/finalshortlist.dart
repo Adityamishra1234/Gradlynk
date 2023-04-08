@@ -55,7 +55,7 @@ class _FinalShortListState extends State<FinalShortList> {
     }
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
-        appBar: CustomAppBar("title", false),
+        appBar: CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 5,

@@ -32,7 +32,7 @@ class ProfilePageCopy extends StatelessWidget {
     final bool displayMobileLayout900 = MediaQuery.of(conx).size.width > 900;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar("title", false),
+        appBar: CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 1,

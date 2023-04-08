@@ -12,7 +12,7 @@ class MyDocument extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title", false),
+      appBar: CustomAppBar("title"),
       body: Container(
           color: ThemeConstants.whitecolor,
           child: Column(

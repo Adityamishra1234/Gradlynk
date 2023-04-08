@@ -17,7 +17,7 @@ class _AssigneeInformationCopyState extends State<AssigneeInformationCopy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title", false),
+      appBar: CustomAppBar("title"),
       body: ListView(
         controller: ScrollController(),
         children: [

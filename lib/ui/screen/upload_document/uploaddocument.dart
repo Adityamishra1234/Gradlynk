@@ -46,7 +46,7 @@ class _UploadDocumentState extends State<UploadDocument> {
       width = width - 240;
     }
     return Scaffold(
-        appBar: CustomAppBar("", false),
+        appBar: CustomAppBar(""),
         drawer: displayMobileLayout == false ? CustomDrawer() : null,
         body: GetBuilder<UploadDocumentController>(builder: (_) {
           documentList(_.documentModel, context);

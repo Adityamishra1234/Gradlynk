@@ -69,31 +69,30 @@ class CustomDrawer extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    //Progress Bar
-                    // Center(
-                    //     child: Container(
-                    //   margin: const EdgeInsets.symmetric(vertical: 5),
-                    //   width: 200,
-                    //   height: 8,
-                    //   child: ClipRRect(
-                    //     borderRadius:
-                    //         const BorderRadius.all(Radius.circular(10)),
-                    //     child: LinearProgressIndicator(
-                    //       value: 0.7,
-                    //       valueColor:
-                    //           AlwaysStoppedAnimation(ThemeConstants.GreenColor),
-                    //       backgroundColor: const Color(0xffD6D6D6),
-                    //     ),
-                    //   ),
-                    // )),
-                    // Center(
-                    //   child: CustomAutoSizeTextMontserrat(
-                    //     text: "Profile: 70% complete",
-                    //     fontSize: 14,
-                    //     textColor: ThemeConstants.TextColor,
-                    //     fontWeight: FontWeight.w500,
-                    //   ),
-                    // ),
+                    Center(
+                        child: Container(
+                      margin: const EdgeInsets.symmetric(vertical: 5),
+                      width: 200,
+                      height: 8,
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        child: LinearProgressIndicator(
+                          value: 0.7,
+                          valueColor:
+                              AlwaysStoppedAnimation(ThemeConstants.GreenColor),
+                          backgroundColor: const Color(0xffD6D6D6),
+                        ),
+                      ),
+                    )),
+                    Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Profile: 70% complete",
+                        fontSize: 14,
+                        textColor: ThemeConstants.TextColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                     const SizedBox(
                       height: 15,
                     ),
@@ -427,42 +426,40 @@ class CustomDrawer extends StatelessWidget {
                             ),
                           )),
                     ),
-
-                    // Pre Depature Kit
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 20),
-                    //   child: Align(
-                    //       alignment: AlignmentDirectional.topStart,
-                    //       child: InkWell(
-                    //         highlightColor: ThemeConstants.whitecolor,
-                    //         onTap: () {},
-                    //         child: Padding(
-                    //           padding: const EdgeInsets.only(right: 10),
-                    //           child: Container(
-                    //             height: 30,
-                    //             width: MediaQuery.of(context).size.width,
-                    //             decoration: BoxDecoration(
-                    //                 color: index == 9
-                    //                     ? ThemeConstants.lightblueColor
-                    //                     : ThemeConstants.whitecolor,
-                    //                 borderRadius: BorderRadius.circular(10.0)),
-                    //             child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(left: 10, top: 5),
-                    //               child: CustomAutoSizeTextMontserrat(
-                    //                 text: "Pre Depature Kit",
-                    //                 textColor: index == 9
-                    //                     ? ThemeConstants.bluecolor
-                    //                     : ThemeConstants.blackcolor,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       )),
-                    // ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: InkWell(
+                            highlightColor: ThemeConstants.whitecolor,
+                            onTap: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Container(
+                                height: 30,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    color: index == 9
+                                        ? ThemeConstants.lightblueColor
+                                        : ThemeConstants.whitecolor,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 10, top: 5),
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Pre Depature Kit",
+                                    textColor: index == 9
+                                        ? ThemeConstants.bluecolor
+                                        : ThemeConstants.blackcolor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
+                    ),
 
                     const SizedBox(
                       height: 5,
@@ -471,6 +468,8 @@ class CustomDrawer extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
                       child: ConfigurableExpansionTile(
+                        borderColorEnd: Colors.transparent,
+                        bottomBorderOn: false,
                         header: SizedBox(
                           width: 220,
                           height: 40,
@@ -479,123 +478,24 @@ class CustomDrawer extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: CustomAutoSizeTextMontserrat(
-                                  text: "gradlynk Support",
+                                  text: "Track Your Ticket",
                                 ),
                               ),
                               const Spacer(),
-                              // const Icon(Icons.keyboard_arrow_down),
+                              const Icon(Icons.keyboard_arrow_down),
                             ],
                           ),
                         ),
                         children: [
-                          ConfigurableExpansionTile(
-                            borderColorEnd: Colors.transparent,
-                            bottomBorderOn: false,
-                            header: SizedBox(
-                              width: 220,
-                              height: 40,
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Track Your Ticket",
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                ],
-                              ),
-                            ),
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: InkWell(
-                                      highlightColor: ThemeConstants.whitecolor,
-                                      onTap: () {
-                                        Get.deleteAll();
-                                        Get.toNamed(
-                                            TrackyourTickets.routeNamed);
-                                      },
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 10),
-                                        child: Container(
-                                          height: 30,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                              color: index == 10
-                                                  ? ThemeConstants
-                                                      .lightblueColor
-                                                  : ThemeConstants.whitecolor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10, top: 5),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Track Issue ",
-                                              textColor: index == 10
-                                                  ? ThemeConstants.bluecolor
-                                                  : ThemeConstants.blackcolor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Align(
-                                    alignment: AlignmentDirectional.topStart,
-                                    child: InkWell(
-                                      highlightColor: ThemeConstants.whitecolor,
-                                      onTap: () {
-                                        Get.deleteAll();
-                                        Get.toNamed(
-                                            Suggestedimprovisation.routeNamed);
-                                      },
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 10),
-                                        child: Container(
-                                          height: 30,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                              color: index == 11
-                                                  ? ThemeConstants
-                                                      .lightblueColor
-                                                  : ThemeConstants.whitecolor,
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10, top: 5),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Track Improvisation",
-                                              textColor: index == 11
-                                                  ? ThemeConstants.bluecolor
-                                                  : ThemeConstants.blackcolor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                              ),
-                            ],
-                          ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 0),
+                            padding: const EdgeInsets.only(left: 20),
                             child: Align(
                                 alignment: AlignmentDirectional.topStart,
                                 child: InkWell(
                                   highlightColor: ThemeConstants.whitecolor,
                                   onTap: () {
                                     Get.deleteAll();
-                                    Get.toNamed(RaiseYourTicket.routeNamed);
+                                    Get.toNamed(TrackyourTickets.routeNamed);
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 10),
@@ -603,7 +503,7 @@ class CustomDrawer extends StatelessWidget {
                                       height: 30,
                                       width: MediaQuery.of(context).size.width,
                                       decoration: BoxDecoration(
-                                          color: index == 12
+                                          color: index == 10
                                               ? ThemeConstants.lightblueColor
                                               : ThemeConstants.whitecolor,
                                           borderRadius:
@@ -612,8 +512,44 @@ class CustomDrawer extends StatelessWidget {
                                         padding: const EdgeInsets.only(
                                             left: 10, top: 5),
                                         child: CustomAutoSizeTextMontserrat(
-                                          text: "Raise new ticket",
-                                          textColor: index == 12
+                                          text: "Track Issue ",
+                                          textColor: index == 10
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.blackcolor,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Align(
+                                alignment: AlignmentDirectional.topStart,
+                                child: InkWell(
+                                  highlightColor: ThemeConstants.whitecolor,
+                                  onTap: () {
+                                    Get.deleteAll();
+                                    Get.toNamed(
+                                        Suggestedimprovisation.routeNamed);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Container(
+                                      height: 30,
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                          color: index == 11
+                                              ? ThemeConstants.lightblueColor
+                                              : ThemeConstants.whitecolor,
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 5),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Track Improvisation",
+                                          textColor: index == 11
                                               ? ThemeConstants.bluecolor
                                               : ThemeConstants.blackcolor,
                                         ),
@@ -625,99 +561,75 @@ class CustomDrawer extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 20),
-                    //   child: Align(
-                    //       alignment: AlignmentDirectional.topStart,
-                    //       child: InkWell(
-                    //         highlightColor: ThemeConstants.whitecolor,
-                    //         onTap: () {
-                    //           Get.deleteAll();
-                    //           Get.toNamed(RaiseYourTicket.routeNamed);
-                    //         },
-                    //         child: Padding(
-                    //           padding: const EdgeInsets.only(right: 10),
-                    //           child: Container(
-                    //             height: 30,
-                    //             width: MediaQuery.of(context).size.width,
-                    //             decoration: BoxDecoration(
-                    //                 color: index == 12
-                    //                     ? ThemeConstants.lightblueColor
-                    //                     : ThemeConstants.whitecolor,
-                    //                 borderRadius: BorderRadius.circular(10.0)),
-                    //             child: Padding(
-                    //               padding:
-                    //                   const EdgeInsets.only(left: 10, top: 5),
-                    //               child: CustomAutoSizeTextMontserrat(
-                    //                 text: "Raise new ticket",
-                    //                 textColor: index == 12
-                    //                     ? ThemeConstants.bluecolor
-                    //                     : ThemeConstants.blackcolor,
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       )),
-                    // ),
-
-                    const SizedBox(
-                      height: 60,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: InkWell(
+                            highlightColor: ThemeConstants.whitecolor,
+                            onTap: () {
+                              Get.deleteAll();
+                              Get.toNamed(RaiseYourTicket.routeNamed);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Container(
+                                height: 30,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    color: index == 12
+                                        ? ThemeConstants.lightblueColor
+                                        : ThemeConstants.whitecolor,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 10, top: 5),
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Raise new ticket",
+                                    textColor: index == 12
+                                        ? ThemeConstants.bluecolor
+                                        : ThemeConstants.blackcolor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )),
                     ),
-                    Center(
-                      child: LoadingButton(
-                        height: 35,
-                        borderRadius: 8,
-                        animate: true,
-                        color: Colors.indigo,
-                        width: 120,
-                        loader: Container(
-                          padding: const EdgeInsets.all(10),
-                          width: 30,
-                          height: 30,
-                          child: const CircularProgressIndicator(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.white),
-                          ),
-                        ),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Logout",
-                          textColor: ThemeConstants.whitecolor,
-                        ),
-                        onTap: (startLoading, stopLoading, buttonState) async {
-                          if (buttonState == ButtonState.idle) {
-                            startLoading();
-                            // Do something here
-                            Get.deleteAll();
-                            await Get.find<BaseController>().logout();
-                            stopLoading();
-                          }
-                        },
-                      ),
 
-                      // InkWell(
-                      //   onTap: () {
-                      //     Get.deleteAll();
-                      //     Get.find<BaseController>().logout();
-                      //   },
-                      //   child: Container(
-                      //     decoration: BoxDecoration(
-                      //         color: ThemeConstants.lightgreycolor,
-                      //         borderRadius: BorderRadius.circular(10.0)),
-                      //     height: 35,
-                      //     width: 200,
-                      //     child: Row(
-                      //       children: [
-                      //         const Spacer(),
-                      //         svgImage(
-                      //             "logout", ThemeConstants.IconColor, 25, 25),
-                      //         CustomAutoSizeTextMontserrat(
-                      //           text: "Logout",
-                      //         ),
-                      //         const Spacer(),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20, top: 20),
+                      child: Center(
+                        child: LoadingButton(
+                          height: 35,
+                          borderRadius: 8,
+                          animate: true,
+                          color: Colors.indigo,
+                          width: 120,
+                          loader: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: 30,
+                            height: 30,
+                            child: const CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          ),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Logout",
+                            textColor: ThemeConstants.whitecolor,
+                          ),
+                          onTap:
+                              (startLoading, stopLoading, buttonState) async {
+                            if (buttonState == ButtonState.idle) {
+                              startLoading();
+                              // Do something here
+                              Get.deleteAll();
+                              await Get.find<BaseController>().logout();
+                              stopLoading();
+                            }
+                          },
+                        ),
+                      ),
                     ),
                   ]),
                 ),

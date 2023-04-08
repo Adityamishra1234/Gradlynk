@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:math' as math;
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:bulleted_list/bulleted_list.dart';
@@ -29,6 +31,7 @@ import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
+import 'package:studentpanel/widgets/file_download.dart';
 import 'package:studentpanel/widgets/test.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -52,6 +55,7 @@ class _DashBoardState extends State<DashBoard> {
   bool appbar = false;
   bool showcase = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   final GlobalKey _one = GlobalKey();
   final GlobalKey _two = GlobalKey();
   final GlobalKey _three = GlobalKey();
@@ -68,27 +72,27 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     try {
       print(Get.arguments);
-      if (Get.arguments) {
-        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-          (_) => Future.delayed(const Duration(milliseconds: 200), () {
-            ShowCaseWidget.of(myContext!).startShowCase([
-              _one,
-              _two,
-              _three,
-              _four,
-              _five,
-              _six,
-              _seven,
-              _eight,
-              _nine,
-              _ten
-            ]);
-          }),
-        );
-        showcase = true;
-      } else {
-        appbar = true;
-      }
+      // if (Get.arguments) {
+      ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+        (_) => Future.delayed(const Duration(milliseconds: 200), () {
+          ShowCaseWidget.of(myContext!).startShowCase([
+            _one,
+            _two,
+            _three,
+            _four,
+            _five,
+            _six,
+            _seven,
+            _eight,
+            _nine,
+            _ten
+          ]);
+        }),
+      );
+      showcase = true;
+      // } else {
+      //   appbar = true;
+      // }
     } catch (e) {}
     // Get.find<BaseController>().profiledetail();
 
@@ -116,11 +120,14 @@ class _DashBoardState extends State<DashBoard> {
             actions: [
               if (displayMobileLayout == true)
                 IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () => Get.back(),
                 ),
               if (displayMobileLayout == false)
                 Showcase(
+                  descTextStyle:
+                      TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+                  tooltipBackgroundColor: ThemeConstants.bluecolor,
                   key: _nine,
                   description:
                       "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
@@ -149,6 +156,9 @@ class _DashBoardState extends State<DashBoard> {
               ),
               const Spacer(),
               Showcase(
+                descTextStyle:
+                    TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+                tooltipBackgroundColor: ThemeConstants.bluecolor,
                 key: _ten,
                 description:
                     "The bell rings with an updated notification at your doors.",
@@ -157,7 +167,7 @@ class _DashBoardState extends State<DashBoard> {
                       "notification", ThemeConstants.IconColor, 30, 30),
                   onPressed: () {
                     //TODO
-                    Get.to(NotificationScreen());
+                    Get.to(const NotificationScreen());
                   },
                 ),
               ),
@@ -249,15 +259,28 @@ class _DashBoardState extends State<DashBoard> {
                                                         .width /
                                                     2,
                                                 height: 50,
-                                                child: Showcase(
+                                                child: Showcase.withWidget(
+                                                  disableDefaultTargetGestures:
+                                                      true,
+                                                  onTargetClick: () {
+                                                    ShowCaseWidget.of(context)
+                                                        .next();
+                                                  },
+                                                  disableMovingAnimation: true,
+                                                  // descTextStyle: TextStyle(
+                                                  //     color: ThemeConstants
+                                                  //         .whitecolor,
+                                                  //     fontSize: 18),
+                                                  // tooltipBackgroundColor:
+                                                  //     ThemeConstants.bluecolor,
                                                   overlayColor: Colors.black54,
                                                   overlayOpacity: 0.40,
-                                                  tooltipPadding:
-                                                      const EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 10,
-                                                          bottom: 10),
+                                                  // tooltipPadding:
+                                                  //     const EdgeInsets.only(
+                                                  //         left: 5,
+                                                  //         right: 5,
+                                                  //         top: 10,
+                                                  //         bottom: 10),
                                                   targetShapeBorder:
                                                       const RoundedRectangleBorder(
                                                           borderRadius:
@@ -266,8 +289,116 @@ class _DashBoardState extends State<DashBoard> {
                                                                       .circular(
                                                                           20))),
                                                   key: _one,
-                                                  description:
-                                                      'Hi, Welcome to Gradlynk. Your international Education Partner.',
+                                                  // description:
+                                                  //     'Hi, Welcome to Gradlynk. Your international Education Partner.',
+                                                  container: InkWell(
+                                                    onTap: () {
+                                                      ShowCaseWidget.of(context)
+                                                          .next();
+                                                    },
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 10),
+                                                      child: Container(
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.7,
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        child: Column(
+                                                          children: [
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional
+                                                                      .topStart,
+                                                              child: Container(
+                                                                decoration: BoxDecoration(
+                                                                    color: ThemeConstants
+                                                                        .bluecolor,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0)),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          10.0),
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.8,
+                                                                    child:
+                                                                        CustomAutoSizeTextMontserrat(
+                                                                      text:
+                                                                          "Hi, Welcome to Gradlynk. Your international Education Partner.",
+                                                                      textColor:
+                                                                          ThemeConstants
+                                                                              .whitecolor,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const Spacer(),
+                                                            InkWell(
+                                                              onTap: () {
+                                                                ShowCaseWidget.of(
+                                                                        context)
+                                                                    .dismiss();
+                                                              },
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            40,
+                                                                        bottom:
+                                                                            60),
+                                                                child: Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional
+                                                                            .topEnd,
+                                                                    child: Row(
+                                                                      children: [
+                                                                        const Spacer(),
+                                                                        CustomAutoSizeTextMontserrat(
+                                                                          text:
+                                                                              "Skip",
+                                                                          textColor:
+                                                                              ThemeConstants.whitecolor,
+                                                                          fontSize:
+                                                                              18,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                        Icon(
+                                                                          Icons
+                                                                              .skip_next,
+                                                                          color:
+                                                                              ThemeConstants.whitecolor,
+                                                                        )
+                                                                      ],
+                                                                    )),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  height: MediaQuery.of(context)
+                                                      .size
+                                                      .height,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
                                                     text: firstLetterChaptial(_
@@ -302,6 +433,11 @@ class _DashBoardState extends State<DashBoard> {
                                     // ),
                                     const Spacer(),
                                     Showcase(
+                                      descTextStyle: TextStyle(
+                                          color: ThemeConstants.whitecolor,
+                                          fontSize: 18),
+                                      tooltipBackgroundColor:
+                                          ThemeConstants.bluecolor,
                                       overlayColor: Colors.black54,
                                       overlayOpacity: 0.40,
                                       tooltipPadding: const EdgeInsets.only(
@@ -343,6 +479,11 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
                                     const Spacer(),
                                     Showcase(
+                                      descTextStyle: TextStyle(
+                                          color: ThemeConstants.whitecolor,
+                                          fontSize: 18),
+                                      tooltipBackgroundColor:
+                                          ThemeConstants.bluecolor,
                                       overlayColor: Colors.black54,
                                       overlayOpacity: 0.40,
                                       tooltipPadding: const EdgeInsets.only(
@@ -400,6 +541,11 @@ class _DashBoardState extends State<DashBoard> {
                                   children: [
                                     // Create profile
                                     Showcase(
+                                      descTextStyle: TextStyle(
+                                          color: ThemeConstants.whitecolor,
+                                          fontSize: 18),
+                                      tooltipBackgroundColor:
+                                          ThemeConstants.bluecolor,
                                       overlayColor: Colors.black54,
                                       overlayOpacity: 0.40,
                                       tooltipPadding: const EdgeInsets.only(
@@ -466,6 +612,11 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
                                     //Upload Document
                                     Showcase(
+                                      descTextStyle: TextStyle(
+                                          color: ThemeConstants.whitecolor,
+                                          fontSize: 18),
+                                      tooltipBackgroundColor:
+                                          ThemeConstants.bluecolor,
                                       overlayColor: Colors.black54,
                                       overlayOpacity: 0.40,
                                       tooltipPadding: const EdgeInsets.only(
@@ -526,6 +677,11 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
                                     //Course Search
                                     Showcase(
+                                      descTextStyle: TextStyle(
+                                          color: ThemeConstants.whitecolor,
+                                          fontSize: 18),
+                                      tooltipBackgroundColor:
+                                          ThemeConstants.bluecolor,
                                       overlayColor: Colors.black54,
                                       overlayOpacity: 0.40,
                                       tooltipPadding: const EdgeInsets.only(
@@ -579,6 +735,11 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
                                     // Track Application
                                     Showcase(
+                                      descTextStyle: TextStyle(
+                                          color: ThemeConstants.whitecolor,
+                                          fontSize: 18),
+                                      tooltipBackgroundColor:
+                                          ThemeConstants.bluecolor,
                                       overlayColor: Colors.black54,
                                       overlayOpacity: 0.40,
                                       tooltipPadding: const EdgeInsets.only(
@@ -768,6 +929,7 @@ class _DashBoardState extends State<DashBoard> {
                                           ),
                                         )),
                                   ),
+
                                 const SizedBox(
                                   height: 40,
                                 ),
@@ -781,6 +943,9 @@ class _DashBoardState extends State<DashBoard> {
                       child: getLoading(context),
                     ),
           floatingActionButton: Showcase(
+            descTextStyle:
+                TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+            tooltipBackgroundColor: ThemeConstants.bluecolor,
             overlayColor: Colors.black54,
             overlayOpacity: 0.40,
             tooltipPadding:

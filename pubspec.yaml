@@ -94,6 +94,7 @@ dependencies:
   nice_loading_button: ^0.0.1
 
 
+
   # When depending on this package from a real application you should use:
   #   flutter_splash_screen: ^x.y.z
   # See https://dart.dev/tools/pub/dependencies#version-constraints

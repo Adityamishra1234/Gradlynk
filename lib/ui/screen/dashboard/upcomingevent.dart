@@ -57,7 +57,7 @@ class UpcomingEvent extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CustomAppBar("title", false),
+      appBar: CustomAppBar("title"),
       drawer: CustomDrawer(
         index: 0,
       ),
