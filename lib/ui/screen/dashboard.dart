@@ -124,15 +124,15 @@ class _DashBoardState extends State<DashBoard> {
                   onPressed: () => Get.back(),
                 ),
               if (displayMobileLayout == false)
-                Showcase(
-                  descTextStyle:
-                      TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
-                  tooltipBackgroundColor: ThemeConstants.bluecolor,
-                  key: _nine,
-                  description:
-                      "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Showcase(
+                    descTextStyle: TextStyle(
+                        color: ThemeConstants.whitecolor, fontSize: 18),
+                    tooltipBackgroundColor: ThemeConstants.bluecolor,
+                    key: _nine,
+                    description:
+                        "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
                     child: IconButton(
                       icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
                       onPressed: () {
@@ -445,35 +445,34 @@ class _DashBoardState extends State<DashBoard> {
                                           right: 5,
                                           top: 10,
                                           bottom: 10),
-                                      targetShapeBorder:
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
                                       key: _six,
                                       description:
                                           "Your Expert is a call away. Schedule the call with your best available slot.",
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          elevation: 0,
-                                          backgroundColor:
-                                              ThemeConstants.whitecolor,
-                                          shadowColor:
-                                              ThemeConstants.lightblueColor,
-                                          side: BorderSide(
-                                              color: ThemeConstants
-                                                  .bluecolor), // foreground
-                                        ),
-                                        onPressed: () {
-                                          Get.toNamed(
-                                              ScheduleExpertCall.routeNamed);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Schedule expert call",
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          textColor: ThemeConstants.bluecolor,
+                                      child: SizedBox(
+                                        height: 40,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            elevation: 0,
+                                            backgroundColor:
+                                                ThemeConstants.whitecolor,
+                                            shadowColor:
+                                                ThemeConstants.lightblueColor,
+                                            side: BorderSide(
+                                                color: ThemeConstants
+                                                    .bluecolor), // foreground
+                                          ),
+                                          onPressed: () {
+                                            Get.toNamed(
+                                                ScheduleExpertCall.routeNamed);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Schedule expert call",
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold,
+                                            textColor: ThemeConstants.bluecolor,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -498,28 +497,32 @@ class _DashBoardState extends State<DashBoard> {
                                       key: _seven,
                                       description:
                                           "Appointments compliments time management. Book an Appointment with your advisor now and save your time.",
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor:
-                                              ThemeConstants.whitecolor,
-                                          elevation: 0,
-                                          backgroundColor:
-                                              ThemeConstants.whitecolor,
-                                          shadowColor:
-                                              ThemeConstants.lightorangeColor,
-                                          side: BorderSide(
-                                              color: ThemeConstants
-                                                  .orangeColor), // foreground
-                                        ),
-                                        onPressed: () {
-                                          Get.toNamed(
-                                              BookAnAppointment.routeNamed);
-                                        },
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Book an appointment",
-                                          fontSize: 12,
-                                          textColor: ThemeConstants.orangeColor,
-                                          fontWeight: FontWeight.bold,
+                                      child: SizedBox(
+                                        height: 40,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor:
+                                                ThemeConstants.whitecolor,
+                                            elevation: 0,
+                                            backgroundColor:
+                                                ThemeConstants.whitecolor,
+                                            shadowColor:
+                                                ThemeConstants.lightorangeColor,
+                                            side: BorderSide(
+                                                color: ThemeConstants
+                                                    .orangeColor), // foreground
+                                          ),
+                                          onPressed: () {
+                                            Get.toNamed(
+                                                BookAnAppointment.routeNamed);
+                                          },
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Book an appointment",
+                                            fontSize: 12,
+                                            textColor:
+                                                ThemeConstants.orangeColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -540,46 +543,34 @@ class _DashBoardState extends State<DashBoard> {
                                   runAlignment: WrapAlignment.center,
                                   children: [
                                     // Create profile
-                                    Showcase(
-                                      descTextStyle: TextStyle(
-                                          color: ThemeConstants.whitecolor,
-                                          fontSize: 18),
-                                      tooltipBackgroundColor:
-                                          ThemeConstants.bluecolor,
-                                      overlayColor: Colors.black54,
-                                      overlayOpacity: 0.40,
-                                      tooltipPadding: const EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 10,
-                                          bottom: 10),
-                                      targetShapeBorder:
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
-                                      key: _two,
-                                      description:
-                                          'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
-                                      child: InkWell(
-                                        onTap: () async {
-                                          // final cameras = await availableCameras();
-
-                                          // // Get a specific camera from the list of available cameras.
-                                          // final firstCamera = cameras.first;
-                                          // // String id = DateTime.now().toIso8601String();
-                                          // Get.to(TakePictureScreen(
-                                          //   camera: firstCamera,
-                                          // ));
-
-                                          Get.toNamed(
-                                              ProfilePageCopy.routeNamed);
-                                          // Get.to(DownloadFileTest());
-                                          // Get.to(CustomFileUpload());
-                                          // getDashboardScreen(context, callbackDropDownButton);
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Container(
+                                    InkWell(
+                                      onTap: () async {
+                                        // getDailogForAgree(context);
+                                        Get.toNamed(ProfilePageCopy.routeNamed);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Showcase(
+                                            descTextStyle: TextStyle(
+                                                color:
+                                                    ThemeConstants.whitecolor,
+                                                fontSize: 18),
+                                            tooltipBackgroundColor:
+                                                ThemeConstants.bluecolor,
+                                            overlayColor: Colors.black54,
+                                            overlayOpacity: 0.40,
+                                            tooltipPadding:
+                                                const EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                    top: 10,
+                                                    bottom: 10),
+                                            targetBorderRadius:
+                                                BorderRadius.circular(18.0),
+                                            key: _two,
+                                            description:
+                                                'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
+                                            child: Container(
                                                 height: 130,
                                                 width: 160,
                                                 decoration: BoxDecoration(
@@ -598,51 +589,56 @@ class _DashBoardState extends State<DashBoard> {
                                                     const Color(0xFF6F61FF),
                                                     80,
                                                     80)),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10),
-                                              child: Text(
-                                                "Create your profile",
-                                                style: _textStyle,
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              "Create your profile",
+                                              style: _textStyle,
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                     //Upload Document
-                                    Showcase(
-                                      descTextStyle: TextStyle(
-                                          color: ThemeConstants.whitecolor,
-                                          fontSize: 18),
-                                      tooltipBackgroundColor:
-                                          ThemeConstants.bluecolor,
-                                      overlayColor: Colors.black54,
-                                      overlayOpacity: 0.40,
-                                      tooltipPadding: const EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 10,
-                                          bottom: 10),
-                                      targetShapeBorder:
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
-                                      key: _three,
-                                      description:
-                                          "All documents required for your Application to be uploaded here.",
-                                      child: InkWell(
-                                        onTap: () {
-                                          Get.toNamed(
-                                              UploadDocument.routeNamed);
-                                        },
-                                        child: Ink(
-                                          height: 160,
-                                          width: 160,
-                                          color: Colors.amber,
-                                          child: Column(
-                                            children: [
-                                              Container(
+                                    InkWell(
+                                      onTap: () {
+                                        Get.toNamed(UploadDocument.routeNamed);
+                                      },
+                                      child: Ink(
+                                        height: 160,
+                                        width: 160,
+                                        color: Colors.amber,
+                                        child: Column(
+                                          children: [
+                                            Showcase(
+                                              targetBorderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              descTextStyle: TextStyle(
+                                                  color:
+                                                      ThemeConstants.whitecolor,
+                                                  fontSize: 18),
+                                              tooltipBackgroundColor:
+                                                  ThemeConstants.bluecolor,
+                                              overlayColor: Colors.black54,
+                                              overlayOpacity: 0.40,
+                                              tooltipPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 5,
+                                                      right: 5,
+                                                      top: 10,
+                                                      bottom: 10),
+                                              targetShapeBorder:
+                                                  const RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20))),
+                                              key: _three,
+                                              description:
+                                                  "All documents required for your Application to be uploaded here.",
+                                              child: Container(
                                                   height: 130,
                                                   width: 160,
                                                   decoration: BoxDecoration(
@@ -662,47 +658,47 @@ class _DashBoardState extends State<DashBoard> {
                                                       const Color(0xFFF8A300),
                                                       80,
                                                       80)),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: Text(
-                                                  "Upload document",
-                                                  style: _textStyle,
-                                                ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 10),
+                                              child: Text(
+                                                "Upload document",
+                                                style: _textStyle,
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
                                     //Course Search
-                                    Showcase(
-                                      descTextStyle: TextStyle(
-                                          color: ThemeConstants.whitecolor,
-                                          fontSize: 18),
-                                      tooltipBackgroundColor:
-                                          ThemeConstants.bluecolor,
-                                      overlayColor: Colors.black54,
-                                      overlayOpacity: 0.40,
-                                      tooltipPadding: const EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 10,
-                                          bottom: 10),
-                                      targetShapeBorder:
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
-                                      key: _four,
-                                      description:
-                                          "Course Search assists you in searching your desired course across the globe.",
-                                      child: InkWell(
-                                        onTap: () {
-                                          Get.toNamed(CourseSearch.routeNamed);
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Container(
+                                    InkWell(
+                                      onTap: () {
+                                        Get.toNamed(CourseSearch.routeNamed);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Showcase(
+                                            descTextStyle: TextStyle(
+                                                color:
+                                                    ThemeConstants.whitecolor,
+                                                fontSize: 18),
+                                            tooltipBackgroundColor:
+                                                ThemeConstants.bluecolor,
+                                            overlayColor: Colors.black54,
+                                            overlayOpacity: 0.40,
+                                            tooltipPadding:
+                                                const EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                    top: 10,
+                                                    bottom: 10),
+                                            targetBorderRadius:
+                                                BorderRadius.circular(18.0),
+                                            key: _four,
+                                            description:
+                                                "Course Search assists you in searching your desired course across the globe.",
+                                            child: Container(
                                                 height: 130,
                                                 width: 160,
                                                 decoration: BoxDecoration(
@@ -721,47 +717,47 @@ class _DashBoardState extends State<DashBoard> {
                                                     const Color(0xFFF16660),
                                                     80,
                                                     80)),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10),
-                                              child: Text(
-                                                "Course Search",
-                                                style: _textStyle,
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              "Course Search",
+                                              style: _textStyle,
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                     // Track Application
-                                    Showcase(
-                                      descTextStyle: TextStyle(
-                                          color: ThemeConstants.whitecolor,
-                                          fontSize: 18),
-                                      tooltipBackgroundColor:
-                                          ThemeConstants.bluecolor,
-                                      overlayColor: Colors.black54,
-                                      overlayOpacity: 0.40,
-                                      tooltipPadding: const EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 10,
-                                          bottom: 10),
-                                      targetShapeBorder:
-                                          const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(20))),
-                                      key: _five,
-                                      description:
-                                          "You can keep a track on your Application Stage and Status.",
-                                      child: InkWell(
-                                        onTap: () {
-                                          Get.toNamed(
-                                              ApplicationSummary.routeNamed);
-                                        },
-                                        child: Column(
-                                          children: [
-                                            Container(
+                                    InkWell(
+                                      onTap: () {
+                                        Get.toNamed(
+                                            ApplicationSummary.routeNamed);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          Showcase(
+                                            descTextStyle: TextStyle(
+                                                color:
+                                                    ThemeConstants.whitecolor,
+                                                fontSize: 18),
+                                            tooltipBackgroundColor:
+                                                ThemeConstants.bluecolor,
+                                            overlayColor: Colors.black54,
+                                            overlayOpacity: 0.40,
+                                            tooltipPadding:
+                                                const EdgeInsets.only(
+                                                    left: 5,
+                                                    right: 5,
+                                                    top: 10,
+                                                    bottom: 10),
+                                            targetBorderRadius:
+                                                BorderRadius.circular(18.0),
+                                            key: _five,
+                                            description:
+                                                "You can keep a track on your Application Stage and Status.",
+                                            child: Container(
                                               height: 130,
                                               width: 160,
                                               decoration: BoxDecoration(
@@ -784,16 +780,16 @@ class _DashBoardState extends State<DashBoard> {
                                                     80),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10),
-                                              child: Text(
-                                                "Track application",
-                                                style: _textStyle,
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 10),
+                                            child: Text(
+                                              "Track application",
+                                              style: _textStyle,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -948,6 +944,7 @@ class _DashBoardState extends State<DashBoard> {
             tooltipBackgroundColor: ThemeConstants.bluecolor,
             overlayColor: Colors.black54,
             overlayOpacity: 0.40,
+            targetBorderRadius: BorderRadius.circular(25.0),
             tooltipPadding:
                 const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
             targetShapeBorder: const RoundedRectangleBorder(
@@ -955,21 +952,18 @@ class _DashBoardState extends State<DashBoard> {
             key: _eight,
             description:
                 "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
-            child: Padding(
-              padding: const EdgeInsets.only(right: 10, bottom: 10),
-              child: FloatingActionButton.extended(
-                tooltip: "SVO",
-                backgroundColor: ThemeConstants.bluecolor,
-                onPressed: () async {
-                  // SVO Join Code
-                  await _launchURL();
-                  // isExtended: true,
-                },
-                icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
-                label: CustomAutoSizeTextMontserrat(
-                  text: "Join SVO",
-                  textColor: ThemeConstants.whitecolor,
-                ),
+            child: FloatingActionButton.extended(
+              tooltip: "SVO",
+              backgroundColor: ThemeConstants.bluecolor,
+              onPressed: () async {
+                // SVO Join Code
+                await _launchURL();
+                // isExtended: true,
+              },
+              icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
+              label: CustomAutoSizeTextMontserrat(
+                text: "Join SVO",
+                textColor: ThemeConstants.whitecolor,
               ),
             ),
           ),
