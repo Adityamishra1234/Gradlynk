@@ -29,6 +29,7 @@ class _FileDownloadState extends State<FileDownload> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.url);
     return LoadingButton(
       height: 35,
       borderRadius: 8,

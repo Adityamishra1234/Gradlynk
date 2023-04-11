@@ -1114,7 +1114,7 @@ class _ApplicationCompleteDetailsState
           applicationId: Get.arguments.toString(),
         ));
       } else {
-        Get.find<ApplicationCompleteDetailsController>()
+        await Get.find<ApplicationCompleteDetailsController>()
             .uploadDocument(temp[1], int.parse(temp[2]));
         // await controller.uploadDocument();
       }
@@ -1124,6 +1124,7 @@ class _ApplicationCompleteDetailsState
   }
 
   getViewDocument(String url) {
+    print(url);
     if (url.contains("pdf")) {
       return Get.to(CustomDocumentViewer(
         url: url,

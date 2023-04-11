@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class Endpoints {
-  static String? baseUrl = "http://14.97.86.202:205/api/";
+  static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
