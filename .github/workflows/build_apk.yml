@@ -21,7 +21,6 @@ jobs:
       - run: flutter upgrade    
       - run: flutter pub get
       - run: flutter build apk
-      - uses: actions/cache@v1
       - uses: actions/upload-artifact@v1
         with:
           name: release-apk
