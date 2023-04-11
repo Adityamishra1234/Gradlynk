@@ -108,15 +108,15 @@ class BaseController extends GetxController {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String token = sharedPreferences.getString("token").toString();
     String id = sharedPreferences.getString("id").toString();
-    var res = await apiServices.logout(
-        Endpoints.baseUrl!, Endpoints.logout! + id, token);
-    if (res == true) {
-      Get.deleteAll();
-      sharedPreferences.clear();
-      Get.toNamed(LoginScreen.routeNamed);
-    } else {
-      sharedPreferences.clear();
-      Get.toNamed(LoginScreen.routeNamed);
-    }
+    // var res = await apiServices.logout(
+    //     Endpoints.baseUrl!, Endpoints.logout! + id, token);
+    // if (res == true) {
+    Get.deleteAll();
+    sharedPreferences.clear();
+    Get.toNamed(LoginScreen.routeNamed);
+    // } else {
+    //   sharedPreferences.clear();
+    //   Get.toNamed(LoginScreen.routeNamed);
+    // }
   }
 }
