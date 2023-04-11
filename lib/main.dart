@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 // import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -103,14 +104,19 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     hideScreen();
-
     super.initState();
   }
 
   Future<void> hideScreen() async {
-    Future.delayed(Duration(milliseconds: 5100), () {
-      FlutterSplashScreen.hide();
-    });
+    if (Platform.isIOS) {
+      Future.delayed(const Duration(milliseconds: 2500), () {
+        FlutterSplashScreen.hide();
+      });
+    } else {
+      Future.delayed(const Duration(milliseconds: 5100), () {
+        FlutterSplashScreen.hide();
+      });
+    }
   }
 
   @override

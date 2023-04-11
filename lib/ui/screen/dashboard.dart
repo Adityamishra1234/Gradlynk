@@ -72,27 +72,27 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     try {
       print(Get.arguments);
-      // if (Get.arguments) {
-      ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-        (_) => Future.delayed(const Duration(milliseconds: 200), () {
-          ShowCaseWidget.of(myContext!).startShowCase([
-            _one,
-            _two,
-            _three,
-            _four,
-            _five,
-            _six,
-            _seven,
-            _eight,
-            _nine,
-            _ten
-          ]);
-        }),
-      );
-      showcase = true;
-      // } else {
-      //   appbar = true;
-      // }
+      if (Get.arguments) {
+        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+          (_) => Future.delayed(const Duration(milliseconds: 200), () {
+            ShowCaseWidget.of(myContext!).startShowCase([
+              _one,
+              _two,
+              _three,
+              _four,
+              _five,
+              _six,
+              _seven,
+              _eight,
+              _nine,
+              _ten
+            ]);
+          }),
+        );
+        showcase = true;
+      } else {
+        appbar = true;
+      }
     } catch (e) {}
     // Get.find<BaseController>().profiledetail();
 
