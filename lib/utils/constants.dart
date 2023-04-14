@@ -484,6 +484,7 @@ getDailogForAgree(
   BuildContext context,
 ) {
   return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (ctx) => AlertDialog(
             shape: const RoundedRectangleBorder(
@@ -506,13 +507,15 @@ getDailogForAgree(
                   SizedBox(
                       width: 300.0,
                       height: 40.0,
-                      child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                        text: "I, agree to the following :",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        textColor: ThemeConstants.blackcolor,
-                      ))),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "I, agree to the following :",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          textColor: ThemeConstants.blackcolor,
+                        ),
+                      )),
                   SizedBox(
                       width: 300.0,
                       height: 150.0,
@@ -526,19 +529,24 @@ getDailogForAgree(
                         fontSize: 18,
                         textColor: ThemeConstants.blackcolor,
                       ))),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 35,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.bluecolor,
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                        text: "I Agree",
-                        textColor: ThemeConstants.whitecolor,
-                      )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        height: 35,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            color: ThemeConstants.bluecolor,
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Center(
+                            child: CustomAutoSizeTextMontserrat(
+                          text: "I Agree",
+                          textColor: ThemeConstants.whitecolor,
+                        )),
+                      ),
                     ),
                   )
                 ],

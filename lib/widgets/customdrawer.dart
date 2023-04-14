@@ -69,30 +69,31 @@ class CustomDrawer extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Center(
-                        child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
-                      width: 200,
-                      height: 8,
-                      child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        child: LinearProgressIndicator(
-                          value: 0.7,
-                          valueColor:
-                              AlwaysStoppedAnimation(ThemeConstants.GreenColor),
-                          backgroundColor: const Color(0xffD6D6D6),
-                        ),
-                      ),
-                    )),
-                    Center(
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Profile: 70% complete",
-                        fontSize: 14,
-                        textColor: ThemeConstants.TextColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    // Center(
+                    //     child: Container(
+                    //   margin: const EdgeInsets.symmetric(vertical: 5),
+                    //   width: 200,
+                    //   height: 8,
+                    //   child: ClipRRect(
+                    //     borderRadius:
+                    //         const BorderRadius.all(Radius.circular(10)),
+                    //     child: LinearProgressIndicator(
+                    //       value: 0.7,
+                    //       valueColor:
+                    //           AlwaysStoppedAnimation(ThemeConstants.GreenColor),
+                    //       backgroundColor: const Color(0xffD6D6D6),
+                    //     ),
+                    //   ),
+                    // )),
+                    // Center(
+                    //   child: CustomAutoSizeTextMontserrat(
+                    //     text: "Profile: 70% complete",
+                    //     fontSize: 14,
+                    //     textColor: ThemeConstants.TextColor,
+                    //     fontWeight: FontWeight.w500,
+                    //   ),
+                    // ),
+
                     const SizedBox(
                       height: 15,
                     ),
@@ -429,41 +430,41 @@ class CustomDrawer extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: InkWell(
-                            highlightColor: ThemeConstants.whitecolor,
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    color: index == 9
-                                        ? ThemeConstants.lightblueColor
-                                        : ThemeConstants.whitecolor,
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Pre Depature Kit",
-                                    textColor: index == 9
-                                        ? ThemeConstants.bluecolor
-                                        : ThemeConstants.blackcolor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20),
+                    //   child: Align(
+                    //       alignment: AlignmentDirectional.topStart,
+                    //       child: InkWell(
+                    //         highlightColor: ThemeConstants.whitecolor,
+                    //         onTap: () {},
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.only(right: 10),
+                    //           child: Container(
+                    //             height: 30,
+                    //             width: MediaQuery.of(context).size.width,
+                    //             decoration: BoxDecoration(
+                    //                 color: index == 9
+                    //                     ? ThemeConstants.lightblueColor
+                    //                     : ThemeConstants.whitecolor,
+                    //                 borderRadius: BorderRadius.circular(10.0)),
+                    //             child: Padding(
+                    //               padding:
+                    //                   const EdgeInsets.only(left: 10, top: 5),
+                    //               child: CustomAutoSizeTextMontserrat(
+                    //                 text: "Pre Depature Kit",
+                    //                 textColor: index == 9
+                    //                     ? ThemeConstants.bluecolor
+                    //                     : ThemeConstants.blackcolor,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       )),
+                    // ),
 
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
 
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
@@ -482,7 +483,7 @@ class CustomDrawer extends StatelessWidget {
                                 ),
                               ),
                               const Spacer(),
-                              const Icon(Icons.keyboard_arrow_down),
+                              // const Icon(Icons.keyboard_arrow_down),
                             ],
                           ),
                         ),

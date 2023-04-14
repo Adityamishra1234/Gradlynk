@@ -184,11 +184,12 @@ class _FileDownloadState extends State<FileDownload> {
 
         headers: {}, // optional: header send with url (auth token etc)
         savedDir: directory,
+
         saveInPublicStorage: true,
         showNotification:
             true, // show download progress in status bar (for Android)
         openFileFromNotification:
-            true, // click on notification to open downloaded file (for Android)
+            false, // click on notification to open downloaded file (for Android)
       );
     }
   }

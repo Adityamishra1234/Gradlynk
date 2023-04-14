@@ -18,9 +18,7 @@ class BookAnAppointment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: CustomDrawer(
-          index: 0,
-        ),
+        drawer: CustomDrawer(),
         body: GetBuilder<BookAnAppointmentController>(
           builder: (_) => Column(
             children: [
