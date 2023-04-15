@@ -371,7 +371,6 @@ class _CourseSearchListState extends State<CourseSearchList> {
     var res = await controller1.completeCourseDetailMethod(
         endpoint[0], endpoint[1], endpoint[2]);
     if (res != null) {
-      //TODO
       // Navigator.push(
       //     context,
       //     MaterialPageRoute(

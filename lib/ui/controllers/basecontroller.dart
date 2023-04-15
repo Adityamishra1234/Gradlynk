@@ -38,12 +38,8 @@ class BaseController extends GetxController {
   @override
   onReady() {
     upcomingEvents();
-    NewVersionCheck.newVersionCheck(
-        // package name for android and Ios
-        //TODO
-        Get.context,
-        "com.downtownengineeers.gradlynk",
-        "com.downtownengineeers.gradlynk");
+    NewVersionCheck.newVersionCheck(Get.context,
+        "com.downtownengineeers.gradlynk", "com.downtownengineeers.gradlynk");
   }
 
   profiledetail() async {

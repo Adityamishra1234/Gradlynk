@@ -341,17 +341,6 @@ class _FinalShortListState extends State<FinalShortList> {
         endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
-      //TODO
-      // Navigator.push(
-      //                             context,
-      //                             MaterialPageRoute(
-      //                               builder: (context) => Comparing(
-      //                                 courseSearchModel1:
-      //                                     controller1.courseSearchModelCompare1,
-      //                                 courseSearchModel2:
-      //                                     controller1.courseSearchModelCompare2,
-      //                               ),
-      //                             ));
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));

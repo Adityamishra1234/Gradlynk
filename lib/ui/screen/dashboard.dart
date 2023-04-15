@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:bulleted_list/bulleted_list.dart';
-import 'package:coachmaker/coachmaker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
@@ -166,7 +165,6 @@ class _DashBoardState extends State<DashBoard> {
                   icon: svgImage(
                       "notification", ThemeConstants.IconColor, 30, 30),
                   onPressed: () {
-                    //TODO
                     Get.to(const NotificationScreen());
                   },
                 ),

@@ -1008,7 +1008,6 @@ class _ApplicationCompleteDetailsState
     var directory;
     try {
       if (Platform.isAndroid) {
-        //TODO
         download(url);
         // if (await _requestPermission(Permission.storage)) {
         //   directory = (await getExternalStorageDirectory())!;

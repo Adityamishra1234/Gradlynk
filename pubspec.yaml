@@ -88,7 +88,6 @@ dependencies:
   change_app_package_name: ^1.1.0
   rounded_background_text: ^0.3.0
   flutter_downloader: ^1.10.2
-  coachmaker: ^0.2.1
   showcaseview: ^2.0.2
   flutter_html: ^3.0.0-alpha.6
   nice_loading_button: ^0.0.1

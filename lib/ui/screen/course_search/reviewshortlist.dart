@@ -409,7 +409,6 @@ class _ReviewShortListState extends State<ReviewShortList> {
         endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
-      //TODO
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));
