@@ -91,6 +91,7 @@ dependencies:
   showcaseview: ^2.0.2
   flutter_html: ^3.0.0-alpha.6
   nice_loading_button: ^0.0.1
+  salomon_bottom_bar: ^3.3.2
 
 
 
