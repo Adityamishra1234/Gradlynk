@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
+import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
+import 'package:studentpanel/ui/controllers/englishtest.dart';
+import 'package:studentpanel/ui/controllers/othertestdetails.dart';
+import 'package:studentpanel/ui/controllers/passport.dart';
 import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
+import 'package:studentpanel/ui/controllers/relativeinformation.dart';
+import 'package:studentpanel/ui/controllers/travelhistory.dart';
+import 'package:studentpanel/ui/controllers/workhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/englishtestdetails.dart';
@@ -25,6 +33,14 @@ class ProfilePageCopy extends StatelessWidget {
   ScrollController controller = ScrollController();
   // ScrollPhysics scrollPhysics = ScrollPhysics();
   var profilePageController = Get.put(ProfilePageController());
+  var controller1 = Get.put(CourseInformationProfileController());
+  var controller2 = Get.put(QualificationDetailsController());
+  var controller3 = Get.put(WorkHistoryController());
+  var controller4 = Get.put(EnglishTestController());
+  var controller5 = Get.put(OtherTestDetailsController());
+  var controller6 = Get.put(PassportController());
+  var controller7 = Get.put(TravelHistoryController());
+  var controller8 = Get.put(RelativeInformationController());
 
   @override
   Widget build(BuildContext conx) {

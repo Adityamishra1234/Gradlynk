@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:bulleted_list/bulleted_list.dart';
-import 'package:coachmaker/coachmaker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
@@ -66,7 +66,11 @@ class _DashBoardState extends State<DashBoard> {
   final GlobalKey _eight = GlobalKey();
   final GlobalKey _nine = GlobalKey();
   final GlobalKey _ten = GlobalKey();
+  final GlobalKey _11 = GlobalKey();
+  final GlobalKey _12 = GlobalKey();
   BuildContext? myContext;
+
+  var _currentIndex = 0;
 
   @override
   void initState() {
@@ -83,7 +87,9 @@ class _DashBoardState extends State<DashBoard> {
               _five,
               _six,
               _seven,
+              _11,
               _eight,
+              _12,
               _nine,
               _ten
             ]);
@@ -130,6 +136,8 @@ class _DashBoardState extends State<DashBoard> {
                     descTextStyle: TextStyle(
                         color: ThemeConstants.whitecolor, fontSize: 18),
                     tooltipBackgroundColor: ThemeConstants.bluecolor,
+                    overlayColor: Colors.black54,
+                    overlayOpacity: 0.40,
                     key: _nine,
                     description:
                         "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
@@ -159,6 +167,8 @@ class _DashBoardState extends State<DashBoard> {
                 descTextStyle:
                     TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
                 tooltipBackgroundColor: ThemeConstants.bluecolor,
+                overlayColor: Colors.black54,
+                overlayOpacity: 0.40,
                 key: _ten,
                 description:
                     "The bell rings with an updated notification at your doors.",
@@ -938,35 +948,116 @@ class _DashBoardState extends State<DashBoard> {
                   : Center(
                       child: getLoading(context),
                     ),
-          floatingActionButton: Showcase(
-            descTextStyle:
-                TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
-            tooltipBackgroundColor: ThemeConstants.bluecolor,
-            overlayColor: Colors.black54,
-            overlayOpacity: 0.40,
-            targetBorderRadius: BorderRadius.circular(25.0),
-            tooltipPadding:
-                const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
-            targetShapeBorder: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            key: _eight,
-            description:
-                "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
-            child: FloatingActionButton.extended(
-              tooltip: "SVO",
-              backgroundColor: ThemeConstants.bluecolor,
-              onPressed: () async {
-                // SVO Join Code
-                await _launchURL();
-                // isExtended: true,
-              },
-              icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
-              label: CustomAutoSizeTextMontserrat(
-                text: "Join SVO",
-                textColor: ThemeConstants.whitecolor,
+
+          bottomNavigationBar: SalomonBottomBar(
+            currentIndex: _currentIndex,
+            onTap: (i) => setState(() => _currentIndex = i),
+            items: [
+              /// Home
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.home),
+                title: const Text("Home"),
+                selectedColor: ThemeConstants.bluecolor,
               ),
-            ),
+
+              /// Likes
+              ///
+              SalomonBottomBarItem(
+                icon: Showcase(
+                    descTextStyle: TextStyle(
+                        color: ThemeConstants.whitecolor, fontSize: 18),
+                    tooltipBackgroundColor: ThemeConstants.bluecolor,
+                    overlayColor: Colors.black54,
+                    overlayOpacity: 0.40,
+                    // targetBorderRadius: BorderRadius.circular(25.0),
+                    // tooltipPadding: const EdgeInsets.only(0.0)
+                    targetShapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    key: _11,
+                    description:
+                        "You can track updates on your ticket from this section.",
+                    child: const Icon(Icons.track_changes_sharp)),
+                title: const Text("Track Issue"),
+                selectedColor: ThemeConstants.bluecolor,
+              ),
+              //SVO
+              SalomonBottomBarItem(
+                icon: Showcase(
+                    descTextStyle: TextStyle(
+                        color: ThemeConstants.whitecolor, fontSize: 18),
+                    tooltipBackgroundColor: ThemeConstants.bluecolor,
+                    overlayColor: Colors.black54,
+                    overlayOpacity: 0.40,
+                    // targetBorderRadius: BorderRadius.circular(25.0),
+                    // tooltipPadding: const EdgeInsets.only(0.0)
+                    targetShapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    key: _eight,
+                    description:
+                        "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
+                    child: const Icon(Icons.video_call)),
+                title: const Text("Join SVO"),
+                selectedColor: ThemeConstants.bluecolor,
+              ),
+
+              /// Search
+              SalomonBottomBarItem(
+                icon: Showcase(
+                    descTextStyle: TextStyle(
+                        color: ThemeConstants.whitecolor, fontSize: 18),
+                    tooltipBackgroundColor: ThemeConstants.bluecolor,
+                    overlayColor: Colors.black54,
+                    overlayOpacity: 0.40,
+                    // targetBorderRadius: BorderRadius.circular(25.0),
+                    // tooltipPadding: const EdgeInsets.only(0.0)
+                    targetShapeBorder: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    key: _12,
+                    description:
+                        "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
+                    child: const Icon(Icons.help_outline_sharp)),
+                title: const Text("Raise issuse"),
+                selectedColor: ThemeConstants.bluecolor,
+              ),
+
+              /// Profile
+              SalomonBottomBarItem(
+                icon: const Icon(Icons.person),
+                title: const Text("Profile"),
+                selectedColor: ThemeConstants.bluecolor,
+              ),
+            ],
           ),
+
+          // floatingActionButton: Showcase(
+          //   descTextStyle:
+          //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+          //   tooltipBackgroundColor: ThemeConstants.bluecolor,
+          //   overlayColor: Colors.black54,
+          //   overlayOpacity: 0.40,
+          //   targetBorderRadius: BorderRadius.circular(25.0),
+          //   tooltipPadding:
+          //       const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
+          //   targetShapeBorder: const RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.all(Radius.circular(20))),
+          //   key: _eight,
+          //   description:
+          //       "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
+          //   child: FloatingActionButton.extended(
+          //     tooltip: "SVO",
+          //     backgroundColor: ThemeConstants.bluecolor,
+          //     onPressed: () async {
+          //       // SVO Join Code
+          //       await _launchURL();
+          //       // isExtended: true,
+          //     },
+          //     icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
+          //     label: CustomAutoSizeTextMontserrat(
+          //       text: "Join SVO",
+          //       textColor: ThemeConstants.whitecolor,
+          //     ),
+          //   ),
+          // ),
 
           // FloatingActionButton.extended(
           //   backgroundColor: Colors.green,
