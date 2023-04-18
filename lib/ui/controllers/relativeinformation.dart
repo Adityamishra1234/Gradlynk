@@ -34,9 +34,14 @@ class RelativeInformationController extends GetxController with StateMixin {
   String? citizenShipStatusCodeSelected;
   String? relationSelected;
 
-  static final realtiveEmail = TextEditingController();
-  static final contactOfRelative = TextEditingController();
-  static final addresOfrelative = TextEditingController();
+  static final Rx<TextEditingController> realtiveEmail =
+      TextEditingController().obs;
+  static final Rx<TextEditingController> contactOfRelative =
+      TextEditingController().obs;
+  static final Rx<TextEditingController> addresOfrelative =
+      TextEditingController().obs;
+
+  GlobalKey<FormState> relativePageKey = GlobalKey<FormState>();
 
   resetfields() {
     anyRelativeCountryInterestedSelected = null;

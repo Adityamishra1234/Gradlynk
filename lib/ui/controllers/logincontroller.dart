@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/login%20copy.dart';
+import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
@@ -20,6 +22,8 @@ class LoginController extends GetxController with StateMixin {
   ApiServices services = ApiServices();
   LoginModel? model;
   var controller1 = Get.put(AnimationtestController());
+
+  RxBool optverify = false.obs;
 
   @override
   void onInit() {
@@ -32,11 +36,11 @@ class LoginController extends GetxController with StateMixin {
     update();
   }
 
-  login(String phone, String password) async {
+  login(String phone, String otp) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     change(null, status: RxStatus.loading());
     var responsive = await services.getLogin(
-      Endpoints.login! + phone + Endpoints.login2! + password,
+      Endpoints.login! + phone + Endpoints.login2! + otp,
     );
 
     if (responsive != null) {
@@ -114,7 +118,14 @@ class LoginController extends GetxController with StateMixin {
       Get.toNamed(DashBoard.routeNamed,
           arguments: sharedPreferences.getBool("showcaseEnable"));
     } else {
-      Get.toNamed(LoginScreen.routeNamed);
+      Get.toNamed(LoginCopy.routeNamed);
+    }
+  }
+
+  phonenumberVerfiy(String phonenumber) async {
+    var res = await services.phonenumberVerfiy(phonenumber);
+    if (res == true) {
+      Get.toNamed(OTPScreen.routeNamed, arguments: phonenumber);
     }
   }
 }

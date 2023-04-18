@@ -52,9 +52,10 @@ class SnackBarConstants {
 
   //CourseSearchList.dart Toast
   static String? courseSearchListPart3 = "Please select course";
-
-  static String? reviewcourselistPart1 = "No course avaliable in course review";
-  static String? finalcourselistPart1 = "No course avaliable in course review";
+  static String? reviewcourselistPart1 =
+      "No course avaliable in review course list";
+  static String? finalcourselistPart1 =
+      "No course avaliable in final course list";
   static String? applicationPart1 = "No application avaliable now";
   static String? visaPart1 = "No visa application avaliable now ";
 }

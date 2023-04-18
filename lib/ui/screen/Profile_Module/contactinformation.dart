@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -314,9 +315,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
                         controller: firstName,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your First Name",
@@ -363,9 +364,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
                         controller: lastName,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your Last Name",
@@ -510,9 +511,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
                         controller: mobileNumber,
                         keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: true,
                         decoration: InputDecoration(
                           hintText: "Mobile Number",
@@ -559,9 +560,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
                         controller: alt_Number,
                         keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Alternate Number",
@@ -603,9 +604,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         controller: email,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your email",
@@ -647,9 +648,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
                         controller: whatsappNumber,
                         keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your Whatsapp Number",
@@ -691,9 +692,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
                         controller: secondaryEmail,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your Secondary Email",
@@ -807,9 +808,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
                         controller: street,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your Street",
@@ -856,9 +857,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
                         controller: zipCode,
                         keyboardType: TextInputType.number,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your Zip Code",
@@ -917,10 +918,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
 
                           controller: instagramId,
-                          scrollPadding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).viewInsets.bottom +
-                                      30),
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom +
+                                  40),
                           readOnly: saveAndEdit,
                           decoration: InputDecoration(
                             hintText: "Enter your Instagram Id",
@@ -968,10 +968,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
 
                           controller: facebookId,
-                          scrollPadding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).viewInsets.bottom +
-                                      30),
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom +
+                                  40),
                           readOnly: saveAndEdit,
                           decoration: InputDecoration(
                             hintText: "Enter your Facebook Id",
@@ -1019,10 +1018,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
 
                           controller: snapchatId,
-                          scrollPadding: EdgeInsets.symmetric(
-                              vertical:
-                                  MediaQuery.of(context).viewInsets.bottom +
-                                      30),
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom +
+                                  40),
                           readOnly: saveAndEdit,
                           decoration: InputDecoration(
                             hintText: "Enter your Snapchat Id",

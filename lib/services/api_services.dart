@@ -1536,6 +1536,27 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  phonenumberVerfiy(String phoneNumber) async {
+    try {
+      var res = await httpPostNullBody(
+          Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber,
+          login: true);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        getToast(jsondata["message"]);
+        print(jsondata["data"]);
+        return true;
+      }
+    } catch (e) {
+      print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
   // logout(String endpoint, String token) async {
   //   try {
   //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);
