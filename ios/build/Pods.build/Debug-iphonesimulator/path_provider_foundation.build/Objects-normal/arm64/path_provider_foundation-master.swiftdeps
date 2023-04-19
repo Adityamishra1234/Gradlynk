@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "d404d80e8c05cedf30526d552b2ab19535b113d023929c5e3149184b7cda75c9"
+build_start_time: [1681885364, 670436000]
+build_end_time: [1681885364, 861596000]
+inputs:
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/path_provider_foundation-2.1.3/ios/Classes/PathProviderPlugin.swift": [1678518794, 890571560]
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/path_provider_foundation-2.1.3/ios/Classes/messages.g.swift": [1678518794, 890026107]

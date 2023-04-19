@@ -1,0 +1,26 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ arm64-ios ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/syncfusion_flutter_pdfviewer.framework/syncfusion_flutter_pdfviewer'
+swift-abi-version: 7
+exports:
+  - targets:         [ arm64-ios ]
+    symbols:         [ '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginC10dispatcherSo17OS_dispatch_queueCvpfi', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginC12documentRepoSDySSSo16CGPDFDocumentRefaSgGvpfi', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginC6handle_6resultySo0F10MethodCallC_yypSgctF', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginC6handle_6resultySo0F10MethodCallC_yypSgctFTq', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginC8register4withySo0fI9Registrar_p_tFZ', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginCACycfC', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginCACycfc', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginCMa', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginCMn', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginCN', 
+                       '_$s28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPluginCfD', 
+                       _Swift50Overrides, _Swift51Overrides, __Z34_swiftoverride_class_getSuperclassPKN5swift14TargetMetadataINS_9InProcessEEE, 
+                       __ZN5swift34swift50override_conformsToProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEPFPKNS_18TargetWitnessTableIS1_EES4_S8_E, 
+                       __ZN5swift39swift51override_conformsToSwiftProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEN7__swift9__runtime4llvm9StringRefEPFPKNS_35TargetProtocolConformanceDescriptorIS1_EES4_S8_SC_E, 
+                       _syncfusion_flutter_pdfviewerVersionNumber, _syncfusion_flutter_pdfviewerVersionString ]
+    objc-classes:    [ PodsDummy_syncfusion_flutter_pdfviewer, SyncfusionFlutterPdfViewerPlugin, 
+                       _TtC28syncfusion_flutter_pdfviewer37SwiftSyncfusionFlutterPdfViewerPlugin ]
+...

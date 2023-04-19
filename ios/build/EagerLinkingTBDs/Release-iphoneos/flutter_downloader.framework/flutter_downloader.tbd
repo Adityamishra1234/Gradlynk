@@ -1,0 +1,10 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ arm64-ios ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/flutter_downloader.framework/flutter_downloader'
+exports:
+  - targets:         [ arm64-ios ]
+    symbols:         [ _flutter_downloaderVersionNumber, _flutter_downloaderVersionString ]
+    objc-classes:    [ DBManager, FlutterDownloaderPlugin, PodsDummy_flutter_downloader ]
+...

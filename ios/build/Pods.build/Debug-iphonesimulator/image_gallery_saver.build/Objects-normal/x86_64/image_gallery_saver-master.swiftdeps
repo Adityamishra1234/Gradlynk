@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "2115d8dcac195c4fbdf3f5470e689f2edcd9547a8d39490a166447e3d4e600fd"
+build_start_time: [1681885364, 660915000]
+build_end_time: [1681885364, 866999000]
+inputs:
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/image_gallery_saver-1.7.1/ios/Classes/SwiftImageGallerySaverPlugin.swift": [1674809909, 52487009]
