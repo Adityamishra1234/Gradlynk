@@ -1,0 +1,15 @@
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Fetch.swift":
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.d"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.o"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.dia"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Fetch.swiftdeps"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset.swift":
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset.o"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset.swiftdeps"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset.dia"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset.d"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Export.swift":
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.d"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.dia"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.swiftdeps"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/arm64/DKAsset+Export.o"

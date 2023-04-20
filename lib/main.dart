@@ -109,7 +109,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> hideScreen() async {
     if (Platform.isIOS) {
-      Future.delayed(const Duration(milliseconds: 2500), () {
+      Future.delayed(const Duration(milliseconds: 1500), () {
         FlutterSplashScreen.hide();
       });
     } else {
@@ -125,12 +125,12 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: LoginCopy.routeNamed,
+      initialRoute: LoginScreen.routeNamed,
       // Create Route
       getPages: [
         GetPage(
           name: "/",
-          page: () => const LoginCopy(),
+          page: () => LoginScreen(),
         ),
         GetPage(
           name: LoginCopy.routeNamed,

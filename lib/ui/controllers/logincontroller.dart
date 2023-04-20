@@ -118,7 +118,7 @@ class LoginController extends GetxController with StateMixin {
       Get.toNamed(DashBoard.routeNamed,
           arguments: sharedPreferences.getBool("showcaseEnable"));
     } else {
-      Get.toNamed(LoginCopy.routeNamed);
+      Get.toNamed(LoginScreen.routeNamed);
     }
   }
 

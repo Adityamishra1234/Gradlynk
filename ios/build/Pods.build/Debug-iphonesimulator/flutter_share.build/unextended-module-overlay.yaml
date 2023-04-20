@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Debug-iphonesimulator/flutter_share/flutter_share.framework/Modules"
+    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/build/ios/Debug-iphonesimulator/flutter_share/flutter_share.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",
@@ -13,7 +13,7 @@
     },
     {
     'type': 'directory',
-    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Debug-iphonesimulator/flutter_share/flutter_share.framework/Headers"
+    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/build/ios/Debug-iphonesimulator/flutter_share/flutter_share.framework/Headers"
     'contents': [{
       'type': 'file',
       'name': "flutter_share-Swift.h",

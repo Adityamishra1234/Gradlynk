@@ -69,30 +69,32 @@ class CustomDrawer extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Center(
-                        child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
-                      width: 200,
-                      height: 8,
-                      child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        child: LinearProgressIndicator(
-                          value: 0.7,
-                          valueColor:
-                              AlwaysStoppedAnimation(ThemeConstants.GreenColor),
-                          backgroundColor: const Color(0xffD6D6D6),
-                        ),
-                      ),
-                    )),
-                    Center(
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Profile: 70% complete",
-                        fontSize: 14,
-                        textColor: ThemeConstants.TextColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    // Center(
+                    //     child: Container(
+                    //   margin: const EdgeInsets.symmetric(vertical: 5),
+                    //   width: 200,
+                    //   height: 8,
+                    //   child: ClipRRect(
+                    //     borderRadius:
+                    //         const BorderRadius.all(Radius.circular(10)),
+                    //     child: LinearProgressIndicator(
+                    //       value: 0.7,
+                    //       valueColor:
+                    //           AlwaysStoppedAnimation(ThemeConstants.GreenColor),
+                    //       backgroundColor: const Color(0xffD6D6D6),
+                    //     ),
+                    //   ),
+                    // )),
+
+                    // Center(
+                    //   child: CustomAutoSizeTextMontserrat(
+                    //     text: "Profile: 70% complete",
+                    //     fontSize: 14,
+                    //     textColor: ThemeConstants.TextColor,
+                    //     fontWeight: FontWeight.w500,
+                    //   ),
+                    // ),
+
                     const SizedBox(
                       height: 15,
                     ),
@@ -639,44 +641,43 @@ class CustomDrawer extends StatelessWidget {
                                     ),
                                   )),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 20, top: 20),
-                              child: Center(
-                                child: LoadingButton(
-                                  height: 35,
-                                  borderRadius: 8,
-                                  animate: true,
-                                  color: Colors.indigo,
-                                  width: 120,
-                                  loader: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    width: 30,
-                                    height: 30,
-                                    child: const CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white),
-                                    ),
-                                  ),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Logout",
-                                    textColor: ThemeConstants.whitecolor,
-                                  ),
-                                  onTap: (startLoading, stopLoading,
-                                      buttonState) async {
-                                    if (buttonState == ButtonState.idle) {
-                                      startLoading();
-                                      // Do something here
-                                      Get.deleteAll();
-                                      await Get.find<BaseController>().logout();
-                                      stopLoading();
-                                    }
-                                  },
-                                ),
-                              ),
-                            ),
                           ],
                         )),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20, top: 20),
+                      child: Center(
+                        child: LoadingButton(
+                          height: 35,
+                          borderRadius: 8,
+                          animate: true,
+                          color: Colors.indigo,
+                          width: 120,
+                          loader: Container(
+                            padding: const EdgeInsets.all(10),
+                            width: 30,
+                            height: 30,
+                            child: const CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          ),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Logout",
+                            textColor: ThemeConstants.whitecolor,
+                          ),
+                          onTap:
+                              (startLoading, stopLoading, buttonState) async {
+                            if (buttonState == ButtonState.idle) {
+                              startLoading();
+                              // Do something here
+                              Get.deleteAll();
+                              await Get.find<BaseController>().logout();
+                              stopLoading();
+                            }
+                          },
+                        ),
+                      ),
+                    ),
                   ]),
                 ),
               ],

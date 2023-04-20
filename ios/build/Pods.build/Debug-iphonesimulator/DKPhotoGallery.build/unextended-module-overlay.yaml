@@ -4,7 +4,7 @@
   'case-sensitive': 'false',
   'roots': [{
     'type': 'directory',
-    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Debug-iphonesimulator/DKPhotoGallery/DKPhotoGallery.framework/Modules"
+    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/build/ios/Debug-iphonesimulator/DKPhotoGallery/DKPhotoGallery.framework/Modules"
     'contents': [{
       'type': 'file',
       'name': "module.modulemap",
@@ -13,7 +13,7 @@
     },
     {
     'type': 'directory',
-    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Debug-iphonesimulator/DKPhotoGallery/DKPhotoGallery.framework/Headers"
+    'name': "/Users/siecadmin/Downloads/StudentPortal project/sp_app/build/ios/Debug-iphonesimulator/DKPhotoGallery/DKPhotoGallery.framework/Headers"
     'contents': [{
       'type': 'file',
       'name': "DKPhotoGallery-Swift.h",

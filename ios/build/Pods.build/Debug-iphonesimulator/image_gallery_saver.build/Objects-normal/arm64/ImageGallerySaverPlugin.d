@@ -20,4 +20,4 @@ dependencies: \
   /opt/homebrew/Caskroom/flutter/3.3.10/flutter/bin/cache/artifacts/engine/ios/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Headers/FlutterHeadlessDartRunner.h \
   /opt/homebrew/Caskroom/flutter/3.3.10/flutter/bin/cache/artifacts/engine/ios/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h \
   /opt/homebrew/Caskroom/flutter/3.3.10/flutter/bin/cache/artifacts/engine/ios/Flutter.xcframework/ios-arm64_x86_64-simulator/Flutter.framework/Headers/FlutterViewController.h \
-  /Users/siecadmin/Downloads/StudentPortal\ project/sp_app/ios/build/Debug-iphonesimulator/image_gallery_saver/image_gallery_saver.framework/Headers/image_gallery_saver-Swift.h
+  /Users/siecadmin/Downloads/StudentPortal\ project/sp_app/build/ios/Debug-iphonesimulator/image_gallery_saver/image_gallery_saver.framework/Headers/image_gallery_saver-Swift.h

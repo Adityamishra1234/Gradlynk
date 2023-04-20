@@ -1,0 +1,15 @@
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Resource/DKPhotoGalleryResource.swift":
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.d"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.o"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.swiftdeps"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryResource.dia"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionController.swift":
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.d"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.o"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.swiftdeps"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryTransitionController.dia"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryScrollView.swift":
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.d"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.o"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.dia"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoGalleryScrollView.swiftdeps"

@@ -1,0 +1,15 @@
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupCellItemProtocol.swift":
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupCellItemProtocol.o"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupCellItemProtocol.d"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupCellItemProtocol.swiftdeps"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupCellItemProtocol.dia"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailBaseCell.swift":
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupDetailBaseCell.o"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupDetailBaseCell.dia"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupDetailBaseCell.swiftdeps"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroupDetailBaseCell.d"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAssetGroup.swift":
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroup.swiftdeps"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroup.d"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroup.o"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKImagePickerController.build/Objects-normal/x86_64/DKAssetGroup.dia"

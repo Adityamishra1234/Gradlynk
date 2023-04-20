@@ -1,11 +1,11 @@
 version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "4b98ec67a3d2e289858cbcde296b68f3c4a033c7e1f8736e104b8619e6ccc891"
-build_start_time: [1681885364, 831403000]
-build_end_time: [1681885364, 911171000]
+options: "61446499de42c0b8bba3d513929f7e5127b84d1870453a7b559bfcd4861e0996"
+build_start_time: [1681967003, 786960000]
+build_end_time: [1681967012, 556364000]
 inputs:
-  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1681794153, 326772275]
-  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1681794153, 327789475]
-  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift": [1681794153, 326987190]
-  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/SwiftyGifManager.swift": [1681794153, 327564393]
-  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift": [1681794153, 327174564]
-  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift": [1681794153, 326492944]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1681904423, 807627886]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1681904423, 808244548]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift": [1681904423, 807745593]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/SwiftyGifManager.swift": [1681904423, 808090466]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift": [1681904423, 807864842]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift": [1681904423, 807356929]
