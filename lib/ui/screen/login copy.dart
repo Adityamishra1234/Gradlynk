@@ -284,7 +284,13 @@ class _LoginCopyState extends State<LoginCopy> {
                                   //   getToast("Please enter your password");
                                   // }
                                   else {
-                                    controller.Templogin(phoneNumber.text);
+                                    if (phoneNumber.text.length == 10) {
+                                      controller
+                                          .phonenumberVerfiy(phoneNumber.text);
+                                    } else {
+                                      getToast(
+                                          "Please enter a valid phone number");
+                                    }
                                   }
 
                                   // Get.toNamed(OTPScreen.routeNamed);

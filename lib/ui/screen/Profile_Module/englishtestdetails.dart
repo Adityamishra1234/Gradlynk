@@ -764,8 +764,8 @@ class EnglishTestDetails extends StatelessWidget {
             }
             return null;
           },
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: getNUllChecker(
                         controller.englishTestDetailsViewModel.listening) ==
@@ -804,8 +804,8 @@ class EnglishTestDetails extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: writing,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
@@ -887,8 +887,8 @@ class EnglishTestDetails extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: reading,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
@@ -970,8 +970,8 @@ class EnglishTestDetails extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: speaking,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
@@ -1057,8 +1057,8 @@ class EnglishTestDetails extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: listening,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Literacy",
             filled: true,
@@ -1102,8 +1102,8 @@ class EnglishTestDetails extends StatelessWidget {
 
           controller: writing,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Comprehension",
             filled: true,
@@ -1158,8 +1158,8 @@ class EnglishTestDetails extends StatelessWidget {
 
           controller: reading,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Conversation",
             filled: true,
@@ -1214,8 +1214,8 @@ class EnglishTestDetails extends StatelessWidget {
 
           controller: speaking,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Production",
             filled: true,

@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "09291aab9f69489b1247f5f3da28a909e36e7486121b1f451937a4725f37b0ff"
+build_start_time: [1681890249, 280580000]
+build_end_time: [1681890250, 153298000]
+inputs:
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/connectivity_plus-3.0.3/ios/Classes/ConnectivityProvider.swift": [1676360225, 829006374]
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/connectivity_plus-3.0.3/ios/Classes/PathMonitorConnectivityProvider.swift": [1676360225, 829311374]
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/connectivity_plus-3.0.3/ios/Classes/ReachabilityConnectivityProvider.swift": [1676360225, 829159916]
+  "/Users/siecadmin/.pub-cache/hosted/pub.dev/connectivity_plus-3.0.3/ios/Classes/SwiftConnectivityPlusPlugin.swift": [1676360225, 828707916]

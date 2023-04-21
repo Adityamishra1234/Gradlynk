@@ -88,7 +88,7 @@ class Endpoints {
   static String? applicationDocumentUpload =
       "upload-application-document?enq_id=";
   static String? login = "login?mobile=";
-  static String? login2 = "&password=";
+  static String? login2 = "&otp=";
   static String? documentList = "my-document-list";
   static String? orranizationWorkList = "organization-work-list?enq_id=";
   static String? documentNameForDocumentTypePart1 =
@@ -125,6 +125,7 @@ class Endpoints {
       "get-qualification-at-edit?country_id=";
   static String? qualificationUpdateDropdownPart2 = "&state_id=";
   static String? qualificationUpdateDropdownPart3 = "&city_id=";
+  static String? phoneNuberverfiy = "verify-number?mobile=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

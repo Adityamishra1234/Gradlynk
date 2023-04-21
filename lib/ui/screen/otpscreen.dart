@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/controllers/otpscreencontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -11,6 +12,7 @@ class OTPScreen extends StatelessWidget {
   OTPScreen({Key? key}) : super(key: key);
   static const routeNamed = '/OTPScreen';
   var controller = Get.put(OTPScreenController());
+  String? otp;
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +52,9 @@ class OTPScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
-              Image.asset(
-                "assets/images/otp.png",
-                height: 350,
+              Image.network(
+                "https://sieceducation.in/assets/assets/images/otp.png",
+                height: MediaQuery.of(context).size.height * 0.4,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,
@@ -88,7 +90,7 @@ class OTPScreen extends StatelessWidget {
                             child: OTPTextField(
                               contentPadding:
                                   const EdgeInsets.only(top: 0, bottom: 10),
-                              length: 5,
+                              length: 6,
                               width: MediaQuery.of(context).size.width,
                               fieldWidth: 25,
                               style: const TextStyle(fontSize: 17),
@@ -96,6 +98,7 @@ class OTPScreen extends StatelessWidget {
                               fieldStyle: FieldStyle.underline,
                               onCompleted: (pin) {
                                 debugPrint("Completed: $pin");
+                                otp = pin;
                               },
                             ),
                           ),
@@ -115,7 +118,12 @@ class OTPScreen extends StatelessWidget {
                                 ),
                               ),
                               onPressed: () {
-                                Get.toNamed(DashBoard.routeNamed);
+                                if (otp != null) {
+                                  if (otp!.length == 6) {
+                                    Get.find<LoginController>()
+                                        .login(Get.arguments, otp!);
+                                  }
+                                }
                               },
                               child: CustomAutoSizeTextMontserrat(
                                 text: "Submit",

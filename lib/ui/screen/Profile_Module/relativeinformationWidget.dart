@@ -29,22 +29,20 @@ class RelativeInformationWidget extends StatelessWidget {
 
   var controller = Get.put(RelativeInformationController());
 
-  GlobalKey<FormState> relativePageKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return controller.obx((state) {
       try {
         if (updatForEdit == false) {
-          RelativeInformationController.realtiveEmail.text =
+          RelativeInformationController.realtiveEmail.value.text =
               controller.modelList[index!].relativeEmailId ?? "";
-          RelativeInformationController.contactOfRelative.text = getNUllChecker(
-                      controller.modelList[index!].contactOfRelative
+          RelativeInformationController.contactOfRelative.value.text =
+              getNUllChecker(controller.modelList[index!].contactOfRelative
                           .toString()) ==
-                  false
-              ? controller.modelList[index!].contactOfRelative.toString()
-              : "";
-          RelativeInformationController.addresOfrelative.text =
+                      false
+                  ? controller.modelList[index!].contactOfRelative.toString()
+                  : "";
+          RelativeInformationController.addresOfrelative.value.text =
               controller.modelList[index!].addressOfRelative ?? "";
           controller.countryNameSelected =
               controller.modelList[index!].countryName ??
@@ -65,39 +63,41 @@ class RelativeInformationWidget extends StatelessWidget {
       }
 
       return Form(
-        key: relativePageKey,
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-              child: Align(
-                alignment: AlignmentDirectional.topStart,
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Any relatives residing in the Interested Country",
-                  textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+        key: controller.relativePageKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+                child: Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Any relatives residing in the Interested Country",
+                    textColor: ThemeConstants.TextColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: const ["Yes", "No"],
-                initialSelectedValue: getNUllChecker(
-                            controller.anyRelativeCountryInterestedSelected) ==
-                        true
-                    ? "No"
-                    : controller.anyRelativeCountryInterestedSelected == "1"
-                        ? "Yes"
-                        : "No",
-                choosefieldtype: false,
-                callbackFunction: callbackAnyRelativeCountryInterested,
+              SizedBox(
+                height: 50,
+                child: CustomDropDownSingle(
+                  model: const ["Yes", "No"],
+                  initialSelectedValue: getNUllChecker(controller
+                              .anyRelativeCountryInterestedSelected) ==
+                          true
+                      ? "No"
+                      : controller.anyRelativeCountryInterestedSelected == "1"
+                          ? "Yes"
+                          : "No",
+                  choosefieldtype: false,
+                  callbackFunction: callbackAnyRelativeCountryInterested,
+                ),
               ),
-            ),
-            if (controller.anyRelativeCountryInterestedSelected == "1")
-              ...interestedCountry(controller, context),
-          ],
+              if (controller.anyRelativeCountryInterestedSelected == "1")
+                ...interestedCountry(controller, context),
+            ],
+          ),
         ),
       );
     }, onLoading: getLoading(context));
@@ -204,35 +204,35 @@ class RelativeInformationWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-
-          controller: RelativeInformationController.realtiveEmail,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Relative Email",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      Obx(() => Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextFormField(
+              autofocus: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              controller: RelativeInformationController.realtiveEmail.value,
+              scrollPadding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+              decoration: InputDecoration(
+                hintText: "Enter Relative Email",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              style: ThemeConstants.montserrattextstyle,
+              // onChanged: (value) {
+              //   if (relativeemailkey.currentState!.validate()) {
+              //     relativeemailkey.currentState!.save();
+              //   }
+              // },
+              validator: (value) {
+                print(value);
+                return getEmailvaliation(value);
+              },
             ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-          // onChanged: (value) {
-          //   if (relativeemailkey.currentState!.validate()) {
-          //     relativeemailkey.currentState!.save();
-          //   }
-          // },
-          validator: (value) {
-            print(value);
-            return getEmailvaliation(value);
-          },
-        ),
-      ),
+          )),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -246,33 +246,36 @@ class RelativeInformationWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+      Obx(
+        () => Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextFormField(
+            autofocus: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
 
-          controller: RelativeInformationController.contactOfRelative,
-          keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Contact Of Relative",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+            controller: RelativeInformationController.contactOfRelative.value,
+            keyboardType: TextInputType.number,
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+            decoration: InputDecoration(
+              hintText: "Enter Contact Of Relative",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
+            // onChanged: (value) {
+            //   if (contactkey.currentState!.validate()) {
+            //     contactkey.currentState!.save();
+            //   }
+            // },
+            validator: (value) {
+              return getPhoneNumbervalidation(value);
+            },
           ),
-          style: ThemeConstants.montserrattextstyle,
-          // onChanged: (value) {
-          //   if (contactkey.currentState!.validate()) {
-          //     contactkey.currentState!.save();
-          //   }
-          // },
-          validator: (value) {
-            return getPhoneNumbervalidation(value);
-          },
         ),
       ),
       Padding(
@@ -288,22 +291,25 @@ class RelativeInformationWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: RelativeInformationController.addresOfrelative,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter Contact Of Relative",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      Obx(
+        () => Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            autofocus: true,
+            controller: RelativeInformationController.addresOfrelative.value,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter Contact Of Relative",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
       ),
       if (updatForEdit == true)
@@ -320,23 +326,24 @@ class RelativeInformationWidget extends StatelessWidget {
                   ),
                   onPressed: () async {
                     //country, citizenship,relation,relative email,contact,address.
-                    print(relativePageKey.currentState!.validate());
+                    print(controller.relativePageKey.currentState!.validate());
                     if (controller.countryNameSelected == null) {
                       getToast("please select country");
-                    } else if (relativePageKey.currentState!.validate()) {
+                    } else if (controller.relativePageKey.currentState!
+                        .validate()) {
                       getToast("Please check fileds");
                     } else if (controller.citizenShipStatusSelected == null) {
                       getToast("please select citizenShip Status");
                     } else if (controller.relationSelected == null) {
                       getToast("please select relation");
                     } else if (RelativeInformationController
-                        .realtiveEmail.text.isEmpty) {
+                        .realtiveEmail.value.text.isEmpty) {
                       getToast("please enter  relative email");
                     } else if (RelativeInformationController
-                        .contactOfRelative.text.isEmpty) {
+                        .contactOfRelative.value.text.isEmpty) {
                       getToast("please enter  relative contact number");
                     } else if (RelativeInformationController
-                        .addresOfrelative.text.isEmpty) {
+                        .addresOfrelative.value.text.isEmpty) {
                       getToast("please enter  address of relative");
                     } else {
                       controller.modelList.add(RealtionModel(
@@ -348,25 +355,25 @@ class RelativeInformationWidget extends StatelessWidget {
                         citizenshipStatus: controller.citizenShipStatusSelected,
                         relativeCountry:
                             int.parse(controller.countryNameCodeSelected!),
-                        relativeEmailId:
-                            RelativeInformationController.realtiveEmail.text,
+                        relativeEmailId: RelativeInformationController
+                            .realtiveEmail.value.text,
                         contactOfRelative: int.parse(
                             RelativeInformationController
-                                .contactOfRelative.text),
-                        addressOfRelative:
-                            RelativeInformationController.addresOfrelative.text,
+                                .contactOfRelative.value.text),
+                        addressOfRelative: RelativeInformationController
+                            .addresOfrelative.value.text,
                       ));
 
                       controller.updateRelativeInformation(
                           Get.find<BaseController>().model1.id.toString(),
                           "1",
-                          "added");
+                          "add");
 
                       controller.update();
                     }
                   },
                   child: CustomAutoSizeTextMontserrat(
-                    text: "Added",
+                    text: "Add",
                     textColor: ThemeConstants.whitecolor,
                   )),
             ),
@@ -387,20 +394,21 @@ class RelativeInformationWidget extends StatelessWidget {
                   onPressed: () async {
                     if (controller.countryNameSelected == null) {
                       getToast("please select country");
-                    } else if (relativePageKey.currentState!.validate()) {
+                    } else if (controller.relativePageKey.currentState!
+                        .validate()) {
                       getToast("Please check fileds");
                     } else if (controller.citizenShipStatusSelected == null) {
                       getToast("please select citizenShip Status");
                     } else if (controller.relationSelected == null) {
                       getToast("please select relation");
                     } else if (RelativeInformationController
-                        .realtiveEmail.text.isEmpty) {
+                        .realtiveEmail.value.text.isEmpty) {
                       getToast("please enter  relative email");
                     } else if (RelativeInformationController
-                        .contactOfRelative.text.isEmpty) {
+                        .contactOfRelative.value.text.isEmpty) {
                       getToast("please enter  relative contact number");
                     } else if (RelativeInformationController
-                        .addresOfrelative.text.isEmpty) {
+                        .addresOfrelative.value.text.isEmpty) {
                       getToast("please enter  address of relative");
                     } else {
                       RealtionModel model = RealtionModel();
@@ -414,13 +422,13 @@ class RelativeInformationWidget extends StatelessWidget {
                         citizenshipStatus: controller.citizenShipStatusSelected,
                         relativeCountry:
                             int.parse(controller.countryNameCodeSelected!),
-                        relativeEmailId:
-                            RelativeInformationController.realtiveEmail.text,
+                        relativeEmailId: RelativeInformationController
+                            .realtiveEmail.value.text,
                         contactOfRelative: int.parse(
                             RelativeInformationController
-                                .contactOfRelative.text),
-                        addressOfRelative:
-                            RelativeInformationController.addresOfrelative.text,
+                                .contactOfRelative.value.text),
+                        addressOfRelative: RelativeInformationController
+                            .addresOfrelative.value.text,
                       );
                       controller.modelList[index!] = model;
                       controller.updateRelativeInformation(

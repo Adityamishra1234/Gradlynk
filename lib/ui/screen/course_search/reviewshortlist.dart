@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
@@ -184,6 +185,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                           const Spacer(),
                           InkWell(
                             onTap: () {
+                              controller1.loadingCourseShortList.value = false;
+                              controller1.update();
                               Get.toNamed(FinalShortList.routeNamed);
                             },
                             child: Container(
@@ -456,6 +459,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].finalList ==
           "";
     }
+
     controller1.courseFinalShortlist(
         id, Get.find<BaseController>().model1.id.toString());
   }

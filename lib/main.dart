@@ -1,5 +1,3 @@
-// ashutosh.joshi@downtownengineers.com
-
 import 'dart:convert';
 import 'dart:io';
 // import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
@@ -111,7 +109,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> hideScreen() async {
     if (Platform.isIOS) {
-      Future.delayed(const Duration(milliseconds: 2500), () {
+      Future.delayed(const Duration(milliseconds: 1500), () {
         FlutterSplashScreen.hide();
       });
     } else {
@@ -132,7 +130,7 @@ class _MyAppState extends State<MyApp> {
       getPages: [
         GetPage(
           name: "/",
-          page: () => const LoginCopy(),
+          page: () => LoginScreen(),
         ),
         GetPage(
           name: LoginCopy.routeNamed,

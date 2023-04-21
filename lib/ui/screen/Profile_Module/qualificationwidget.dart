@@ -277,8 +277,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: QualificationDetailsController.cgpa.value,
                   keyboardType: TextInputType.number,
-                  scrollPadding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                  scrollPadding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 40),
                   decoration: InputDecoration(
                     hintText: "CGPA",
                     filled: true,
@@ -341,8 +341,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: QualificationDetailsController.multiplier.value,
                   keyboardType: TextInputType.number,
-                  scrollPadding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                  scrollPadding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 40),
                   decoration: InputDecoration(
                     hintText: "Multiplier",
                     filled: true,
@@ -405,8 +405,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: QualificationDetailsController.percentage.value,
                   keyboardType: TextInputType.number,
-                  scrollPadding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                  scrollPadding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom + 40),
                   decoration: InputDecoration(
                     hintText: "Enter your Percentage",
                     filled: true,

@@ -1,0 +1,13 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/camera.framework/camera'
+exports:
+  - targets:         [ x86_64-ios-simulator, arm64-ios-simulator ]
+    symbols:         [ _cameraVersionNumber, _cameraVersionString, _errorMethod, 
+                       _videoFormat ]
+    objc-classes:    [ CameraPlugin, FLTCam, FLTImageStreamHandler, FLTSavePhotoDelegate, 
+                       PodsDummy_camera ]
+    objc-eh-types:   [ NSError ]
+...

@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "a72d801aadf6785a833b29d99b975ea61428572ddef08adf2f09033f3270f113"
+build_start_time: [1681890244, 684467000]
+build_end_time: [1681890249, 799279000]
+inputs:
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/ReachabilitySwift/Sources/Reachability.swift": [1681794153, 258012759]

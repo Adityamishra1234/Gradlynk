@@ -554,8 +554,8 @@ class _DashBoardState extends State<DashBoard> {
                                     // Create profile
                                     InkWell(
                                       onTap: () async {
-                                        getDailogForAgree(context);
-                                        // Get.toNamed(ProfilePageCopy.routeNamed);
+                                        // getDailogForAgree(context);
+                                        Get.toNamed(ProfilePageCopy.routeNamed);
                                       },
                                       child: Column(
                                         children: [

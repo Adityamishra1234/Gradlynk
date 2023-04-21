@@ -3,11 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/finalshortlistcontroller.dart';
+import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/course_search/compare.dart';
 import 'package:studentpanel/ui/screen/complete_course_details/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/course_search/fliter.dart';
+import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -54,276 +56,295 @@ class _FinalShortListState extends State<FinalShortList> {
       }
     }
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
-    return Scaffold(
-        appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false
-            ? CustomDrawer(
-                index: 5,
-              )
-            : null,
-        body: GetBuilder<FinalShortListController>(
-          builder: (_) => Row(
-            children: [
-              if (displayMobileLayout == true)
-                CustomDrawer(
+    return WillPopScope(
+      onWillPop: () async {
+        print("object");
+        await Get.find<ReviewShortListController>().GetCourseShortList(
+            Get.find<BaseController>().model1.id.toString());
+        Get.find<ReviewShortListController>().update();
+        print("back");
+        Get.back();
+        return await true;
+      },
+      child: Scaffold(
+          appBar: CustomAppBar("title"),
+          drawer: displayMobileLayout == false
+              ? CustomDrawer(
                   index: 5,
-                ),
-              Flexible(
-                child: Container(
-                  color: ThemeConstants.whitecolor,
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      if (_.loadingCourseShortList.value == true)
-                        Row(
-                          children: [
-                            const Spacer(),
-                            InkWell(
-                              onTap: () {
-                                if (controller1.courseModelFilter
-                                        .previousCourseSearchList.length <=
+                )
+              : null,
+          body: GetBuilder<FinalShortListController>(
+            builder: (_) => Row(
+              children: [
+                if (displayMobileLayout == true)
+                  CustomDrawer(
+                    index: 5,
+                  ),
+                Flexible(
+                  child: Container(
+                    color: ThemeConstants.whitecolor,
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        if (_.loadingCourseShortList.value == true)
+                          Row(
+                            children: [
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  if (controller1.courseModelFilter
+                                          .previousCourseSearchList.length <=
+                                      controller1.courseModelFilter
+                                          .courseSearchList.length) {
                                     controller1.courseModelFilter
-                                        .courseSearchList.length) {
-                                  controller1.courseModelFilter
-                                          .previousCourseSearchList =
-                                      controller1
-                                          .courseModelFilter.courseSearchList;
-                                }
+                                            .previousCourseSearchList =
+                                        controller1
+                                            .courseModelFilter.courseSearchList;
+                                  }
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Filter(
+                                                previousRoute:
+                                                    FinalShortList.routeNamed,
+                                                courseModelFilter: controller1
+                                                    .courseModelFilter,
+                                                filtermodel: widget.filterModel,
+                                              )));
+                                  // Get.to(Filter(
+                                  //   previousRoute: FinalShortList.routeNamed,
+                                  //   courseModelFilter:
+                                  //       controller1.courseModelFilter,
+                                  //   filtermodel: widget.filterModel,
+                                  // ));
+                                },
+                                child: Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.lightorangeColor,
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Filter",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          textColor:
+                                              ThemeConstants.orangeColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  if (controller1.compareApply.value == false) {
+                                    controller1.setCompare(true.obs);
+                                  } else {
+                                    controller1.setCompare(false.obs);
+                                  }
+                                },
+                                child: Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.lightgreentColor,
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Compare",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          textColor: ThemeConstants.GreenColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Get.snackbar("Start Application", "Test",
+                                      snackPosition: SnackPosition.BOTTOM);
+                                },
+                                child: Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.lightVioletColor,
+                                      borderRadius:
+                                          BorderRadiusDirectional.circular(
+                                              5.0)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Start Application",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          textColor:
+                                              ThemeConstants.VioletColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        if (_.loadingCourseShortList.value == true)
+                          Expanded(
+                            child: Scrollbar(
+                              thumbVisibility: true,
+                              thickness: 10,
+                              controller: yourScrollController,
+                              child: ListView.builder(
+                                  controller: yourScrollController,
+                                  itemCount: controller1.courseModelFilter
+                                          .courseSearchList.length +
+                                      1,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return Column(
+                                      children: [
+                                        if (controller1.courseModelFilter
+                                                .courseSearchList.length !=
+                                            index)
+                                          CollagelistExpandedWidget(
+                                            callbackRemoveCourse:
+                                                callbackCompareCourseRemove,
+                                            courseSearchModelCompare1:
+                                                _.courseSearchModelCompare1,
+                                            courseSearchModelCompare2:
+                                                _.courseSearchModelCompare2,
+                                            previousRoute:
+                                                FinalShortList.routeNamed,
+                                            index: index,
+                                            courseShortListFirst: false,
+                                            courseSearchModelCompare1Id:
+                                                controller1
+                                                    .courseSearchModelCompare1
+                                                    .id,
+                                            courseSearchModelCompare2Id:
+                                                controller1
+                                                    .courseSearchModelCompare2
+                                                    .id,
+                                            callbackForModelCompare:
+                                                callbackModelCompare,
+                                            callbackCompare: callbackCompare,
+                                            //done
+                                            iscompare:
+                                                controller1.compareApply.value,
+                                            // currentPage: controller1
+                                            //     .currentPage
+                                            //     .toString(),
+                                            // lastPage: controller1.lastPage
+                                            //     .toString(),
+                                            courseSearchModel: controller1
+                                                .courseModelFilter
+                                                .courseSearchList[index],
+                                            callbackFunction:
+                                                callbackCompleteDetailCourse,
+                                            finalShortListFirst: true,
+                                            callbackFinalShortListButton:
+                                                CallbackFinalShortList,
+                                          ),
+                                      ],
+                                    );
+                                  }),
+                            ),
+                          ),
+                        if (controller1.compareApply.value == true)
+                          InkWell(
+                            onTap: () {
+                              if (controller1.courseSearchModelCompare1.id !=
+                                      null &&
+                                  controller1.courseSearchModelCompare2.id !=
+                                      null) {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Filter(
-                                              previousRoute:
-                                                  FinalShortList.routeNamed,
-                                              courseModelFilter:
-                                                  controller1.courseModelFilter,
-                                              filtermodel: widget.filterModel,
-                                            )));
-                                // Get.to(Filter(
-                                //   previousRoute: FinalShortList.routeNamed,
-                                //   courseModelFilter:
-                                //       controller1.courseModelFilter,
-                                //   filtermodel: widget.filterModel,
-                                // ));
-                              },
-                              child: Container(
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.lightorangeColor,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(5.0)),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    child: CustomAutoSizeTextMontserrat(
-                                        text: "Filter",
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        textColor: ThemeConstants.orangeColor),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Spacer(),
-                            InkWell(
-                              onTap: () {
-                                if (controller1.compareApply.value == false) {
-                                  controller1.setCompare(true.obs);
-                                } else {
-                                  controller1.setCompare(false.obs);
-                                }
-                              },
-                              child: Container(
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.lightgreentColor,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(5.0)),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    child: CustomAutoSizeTextMontserrat(
-                                        text: "Compare",
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        textColor: ThemeConstants.GreenColor),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Spacer(),
-                            InkWell(
-                              onTap: () {
-                                Get.snackbar("Start Application", "Test",
-                                    snackPosition: SnackPosition.BOTTOM);
-                              },
-                              child: Container(
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.lightVioletColor,
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(5.0)),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10),
-                                    child: CustomAutoSizeTextMontserrat(
-                                        text: "Start Application",
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        textColor: ThemeConstants.VioletColor),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Spacer(),
-                          ],
-                        ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      if (_.loadingCourseShortList.value == true)
-                        Expanded(
-                          child: Scrollbar(
-                            thumbVisibility: true,
-                            thickness: 10,
-                            controller: yourScrollController,
-                            child: ListView.builder(
-                                controller: yourScrollController,
-                                itemCount: controller1.courseModelFilter
-                                        .courseSearchList.length +
-                                    1,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Column(
-                                    children: [
-                                      if (controller1.courseModelFilter
-                                              .courseSearchList.length !=
-                                          index)
-                                        CollagelistExpandedWidget(
-                                          callbackRemoveCourse:
-                                              callbackCompareCourseRemove,
-                                          courseSearchModelCompare1:
-                                              _.courseSearchModelCompare1,
-                                          courseSearchModelCompare2:
-                                              _.courseSearchModelCompare2,
-                                          previousRoute:
-                                              FinalShortList.routeNamed,
-                                          index: index,
-                                          courseShortListFirst: false,
-                                          courseSearchModelCompare1Id:
-                                              controller1
-                                                  .courseSearchModelCompare1.id,
-                                          courseSearchModelCompare2Id:
-                                              controller1
-                                                  .courseSearchModelCompare2.id,
-                                          callbackForModelCompare:
-                                              callbackModelCompare,
-                                          callbackCompare: callbackCompare,
-                                          //done
-                                          iscompare:
-                                              controller1.compareApply.value,
-                                          // currentPage: controller1
-                                          //     .currentPage
-                                          //     .toString(),
-                                          // lastPage: controller1.lastPage
-                                          //     .toString(),
-                                          courseSearchModel: controller1
-                                              .courseModelFilter
-                                              .courseSearchList[index],
-                                          callbackFunction:
-                                              callbackCompleteDetailCourse,
-                                          finalShortListFirst: true,
-                                          callbackFinalShortListButton:
-                                              CallbackFinalShortList,
-                                        ),
-                                    ],
-                                  );
-                                }),
-                          ),
-                        ),
-                      if (controller1.compareApply.value == true)
-                        InkWell(
-                          onTap: () {
-                            if (controller1.courseSearchModelCompare1.id !=
-                                    null &&
-                                controller1.courseSearchModelCompare2.id !=
-                                    null) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Comparing(
-                                      courseSearchModel1:
-                                          controller1.courseSearchModelCompare1,
-                                      courseSearchModel2:
-                                          controller1.courseSearchModelCompare2,
-                                    ),
-                                  ));
+                                      builder: (context) => Comparing(
+                                        courseSearchModel1: controller1
+                                            .courseSearchModelCompare1,
+                                        courseSearchModel2: controller1
+                                            .courseSearchModelCompare2,
+                                      ),
+                                    ));
+                                // Get.to(
+                                //   Comparing(
+                                //     courseSearchModel1:
+                                //         controller1.courseSearchModelCompare1,
+                                //     courseSearchModel2:
+                                //         controller1.courseSearchModelCompare2,
+                                //   ),
+                                // );
+                              } else {
+                                getToast(
+                                    SnackBarConstants.courseSearchListPart3!);
+                              }
                               // Get.to(
                               //   Comparing(
                               //     courseSearchModel1:
-                              //         controller1.courseSearchModelCompare1,
+                              //         Get.find<FinalShortListController>()
+                              //             .courseSearchModelCompare1,
                               //     courseSearchModel2:
-                              //         controller1.courseSearchModelCompare2,
+                              //         Get.find<FinalShortListController>()
+                              //             .courseSearchModelCompare2,
                               //   ),
                               // );
-                            } else {
-                              getToast(
-                                  SnackBarConstants.courseSearchListPart3!);
-                            }
-                            // Get.to(
-                            //   Comparing(
-                            //     courseSearchModel1:
-                            //         Get.find<FinalShortListController>()
-                            //             .courseSearchModelCompare1,
-                            //     courseSearchModel2:
-                            //         Get.find<FinalShortListController>()
-                            //             .courseSearchModelCompare2,
-                            //   ),
-                            // );
-                          },
-                          child: Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                color: ThemeConstants.bluecolor,
-                                borderRadius:
-                                    const BorderRadiusDirectional.only(
-                                  topStart: Radius.circular(20.0),
-                                  topEnd: Radius.circular(20.0),
-                                )),
-                            child: Center(
-                              child: Row(
-                                children: [
-                                  const Spacer(),
-                                  svgImage("compare", ThemeConstants.whitecolor,
-                                      30, 30),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  CustomAutoSizeTextMontserrat(
-                                    text: "Compare",
-                                    fontSize: 20,
-                                    textColor: ThemeConstants.whitecolor,
-                                  ),
-                                  const Spacer(),
-                                ],
+                            },
+                            child: Container(
+                              height: 60,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  color: ThemeConstants.bluecolor,
+                                  borderRadius:
+                                      const BorderRadiusDirectional.only(
+                                    topStart: Radius.circular(20.0),
+                                    topEnd: Radius.circular(20.0),
+                                  )),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    const Spacer(),
+                                    svgImage("compare",
+                                        ThemeConstants.whitecolor, 30, 30),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    CustomAutoSizeTextMontserrat(
+                                      text: "Compare",
+                                      fontSize: 20,
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                    const Spacer(),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      if (_.loadingCourseShortList.value == false)
-                        getLoading(context),
-                    ],
+                        if (_.loadingCourseShortList.value == false)
+                          getLoading(context),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ));
+              ],
+            ),
+          )),
+    );
   }
 
   // Function

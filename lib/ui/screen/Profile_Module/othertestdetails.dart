@@ -704,8 +704,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Analytical Writing",
               filled: true,
@@ -764,8 +764,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Verbal Reasoning",
               filled: true,
@@ -824,8 +824,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Quantitative Aptitude",
               filled: true,
@@ -884,8 +884,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Integrated Reasoning",
               filled: true,
@@ -942,8 +942,8 @@ class OthertestDetail extends StatelessWidget {
             return null;
           },
           readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
@@ -1006,8 +1006,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Reading (Other Test)",
               filled: true,
@@ -1065,8 +1065,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Writing and Language",
               filled: true,
@@ -1122,8 +1122,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Essay(optional)",
               filled: true,
@@ -1181,8 +1181,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Math",
               filled: true,
@@ -1226,8 +1226,8 @@ class OthertestDetail extends StatelessWidget {
             return null;
           },
           readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
@@ -1290,8 +1290,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Analytical Writing",
               filled: true,
@@ -1349,8 +1349,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Verbal Reasoning",
               filled: true,
@@ -1408,8 +1408,8 @@ class OthertestDetail extends StatelessWidget {
               return null;
             },
             readOnly: controller.editSave.value == true ? true : false,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            scrollPadding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
               hintText: "Enter Quantitative Aptitude",
               filled: true,
@@ -1465,8 +1465,8 @@ class OthertestDetail extends StatelessWidget {
             return null;
           },
           readOnly: controller.editSave.value == true ? true : false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
