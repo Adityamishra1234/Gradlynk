@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
 options: "e8b239beef7d9c632cfe004ae0edf3a6f1c32619d58c03f58c043cda1b41094a"
-build_start_time: [1681967003, 776062000]
-build_end_time: [1681967012, 551517000]
+build_start_time: [1682052632, 654127000]
+build_end_time: [1682052632, 863607000]
 inputs:
   "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1681904423, 807627886]
   "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1681904423, 808244548]

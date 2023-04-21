@@ -1,6 +1,6 @@
 version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
 options: "5edd77fdc4d9e47f5ae6e46a1c7c0a68e2f2d6a02acc4d81407d641aecb6b370"
-build_start_time: [1681967003, 766579000]
-build_end_time: [1681967012, 42863000]
+build_start_time: [1682052632, 653182000]
+build_end_time: [1682052632, 853088000]
 inputs:
   "/Users/siecadmin/.pub-cache/hosted/pub.dev/flutter_share-2.0.0/ios/Classes/SwiftFlutterSharePlugin.swift": [1675920678, 21328145]
