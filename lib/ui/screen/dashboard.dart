@@ -18,6 +18,8 @@ import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
+import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
@@ -950,7 +952,20 @@ class _DashBoardState extends State<DashBoard> {
 
           bottomNavigationBar: SalomonBottomBar(
             currentIndex: _currentIndex,
-            onTap: (i) => setState(() => _currentIndex = i),
+            onTap: (i) {
+              if (i == 0) {
+                Get.toNamed(DashBoard.routeNamed);
+              } else if (i == 1) {
+                Get.toNamed(TrackyourTickets.routeNamed);
+              } else if (i == 2) {
+                print("svo");
+              } else if (i == 3) {
+                Get.toNamed(RaiseYourTicket.routeNamed);
+              } else if (i == 4) {
+                Get.toNamed(ProfilePageCopy.routeNamed);
+              }
+            },
+            // setState(() => _currentIndex = i),
             items: [
               /// Home
               SalomonBottomBarItem(
@@ -960,7 +975,6 @@ class _DashBoardState extends State<DashBoard> {
               ),
 
               /// Likes
-              ///
               SalomonBottomBarItem(
                 icon: Showcase(
                     descTextStyle: TextStyle(
