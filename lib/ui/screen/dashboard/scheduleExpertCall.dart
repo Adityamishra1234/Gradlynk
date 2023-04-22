@@ -9,6 +9,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:studentpanel/widgets/time_picker.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class ScheduleExpertCall extends StatelessWidget {
   ScheduleExpertCall({super.key});
@@ -52,17 +53,13 @@ class ScheduleExpertCall extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                // width: 300,
-                height: 50,
-                child: CustomDropDownSingle(
-                  model: getDropdownModel(
-                      _.loadingServiceAssigned.value, _.nameSelected, _.name),
-                  initialSelectedValue: getSelectedDropDown(
-                      _.loadingServiceAssigned.value, _.nameSelected, _.name),
-                  choosefieldtype: false,
-                  callbackFunction: callbackServiceAssigned,
-                ),
+              CustomDropDownSingle(
+                model: getDropdownModel(
+                    _.loadingServiceAssigned.value, _.nameSelected, _.name),
+                initialSelectedValue: getSelectedDropDown(
+                    _.loadingServiceAssigned.value, _.nameSelected, _.name),
+                choosefieldtype: false,
+                callbackFunction: callbackServiceAssigned,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

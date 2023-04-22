@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/controllers/englishtest.dart';
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
-
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -139,21 +139,17 @@ class EnglishTestDetails extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: controller.loadingExamStaus.value == true
-                    ? controller.examStatusList
-                    : ["No Data"],
-                initialSelectedValue: controller.loadingExamStaus.value == true
-                    ? getNUllChecker(controller.examStatusSelected) == true
-                        ? controller.examStatusList[0]
-                        : controller.examStatusSelected.toString()
-                    : "No Data",
-                choosefieldtype:
-                    controller.editSave.value == true ? true : false,
-                callbackFunction: callbackExamStatus,
-              ),
+            CustomDropDownSingle(
+              model: controller.loadingExamStaus.value == true
+                  ? controller.examStatusList
+                  : ["No Data"],
+              initialSelectedValue: controller.loadingExamStaus.value == true
+                  ? getNUllChecker(controller.examStatusSelected) == true
+                      ? controller.examStatusList[0]
+                      : controller.examStatusSelected.toString()
+                  : "No Data",
+              choosefieldtype: controller.editSave.value == true ? true : false,
+              callbackFunction: callbackExamStatus,
             ),
             if (getNUllChecker(controller.examStatusSelected) == false)
               if (controller.examStatusCodeSelected == 1)
@@ -428,20 +424,17 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       GetBuilder<EnglishTestController>(builder: (controller) {
-        return SizedBox(
-          height: 50,
-          child: CustomDropDownSingle(
-            model: controller.loadingExamName2.value == true
-                ? controller.examNameList
-                : ["No Data"],
-            initialSelectedValue: controller.loadingExamName2.value == true
-                ? getNUllChecker(controller.examNameSelected) == true
-                    ? controller.examNameList[0]
-                    : controller.examNameSelected.toString()
-                : "No Data",
-            choosefieldtype: controller.editSave.value == true ? true : false,
-            callbackFunction: callbackExamName,
-          ),
+        return CustomDropDownSingle(
+          model: controller.loadingExamName2.value == true
+              ? controller.examNameList
+              : ["No Data"],
+          initialSelectedValue: controller.loadingExamName2.value == true
+              ? getNUllChecker(controller.examNameSelected) == true
+                  ? controller.examNameList[0]
+                  : controller.examNameSelected.toString()
+              : "No Data",
+          choosefieldtype: controller.editSave.value == true ? true : false,
+          callbackFunction: callbackExamName,
         );
       }),
       Padding(
@@ -486,14 +479,11 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Yes", "No"],
-          initialSelectedValue: controller.bookTestSelcted ?? "No",
-          choosefieldtype: editsave,
-          callbackFunction: callback,
-        ),
+      CustomDropDownSingle(
+        model: const ["Yes", "No"],
+        initialSelectedValue: controller.bookTestSelcted ?? "No",
+        choosefieldtype: editsave,
+        callbackFunction: callback,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -508,18 +498,15 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName2.value == true
-              ? controller.examNameList
-              : ["No data"],
-          initialSelectedValue: controller.loadingExamName2.value == true
-              ? controller.examNameSelected
-              : "No data",
-          choosefieldtype: editsave,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName2.value == true
+            ? controller.examNameList
+            : ["No data"],
+        initialSelectedValue: controller.loadingExamName2.value == true
+            ? controller.examNameSelected
+            : "No data",
+        choosefieldtype: editsave,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -561,20 +548,17 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName2.value == true
-              ? controller.examNameList
-              : ["No Data"],
-          initialSelectedValue: controller.loadingExamName2.value == true
-              ? getNUllChecker(controller.examNameSelected) == true
-                  ? controller.examNameList[0]
-                  : controller.examNameSelected.toString()
-              : "No Data",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName2.value == true
+            ? controller.examNameList
+            : ["No Data"],
+        initialSelectedValue: controller.loadingExamName2.value == true
+            ? getNUllChecker(controller.examNameSelected) == true
+                ? controller.examNameList[0]
+                : controller.examNameSelected.toString()
+            : "No Data",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -643,15 +627,12 @@ class EnglishTestDetails extends StatelessWidget {
       const SizedBox(
         height: 10,
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Tentative", "Definite"],
-          initialSelectedValue:
-              controller.tentative.value == true ? "Tentative" : "Definite",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackTentativeDefinite,
-        ),
+      CustomDropDownSingle(
+        model: const ["Tentative", "Definite"],
+        initialSelectedValue:
+            controller.tentative.value == true ? "Tentative" : "Definite",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackTentativeDefinite,
       ),
     ];
   }

@@ -143,7 +143,6 @@ getDashboardScreen(
                     ),
                   ),
                   SizedBox(
-                    height: 40,
                     width: 300,
                     child: Align(
                       alignment: AlignmentDirectional.topStart,

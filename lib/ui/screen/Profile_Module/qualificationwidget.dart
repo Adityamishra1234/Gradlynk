@@ -7,6 +7,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class QualificationWidget extends StatefulWidget {
   bool updateForEdit;
@@ -130,20 +131,17 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(
-                    controller.loadingHighestQualification.value,
-                    controller.highestQualificationSelected,
-                    controller.highestQualificationList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingHighestQualification.value,
-                    controller.highestQualificationSelected,
-                    controller.highestQualificationList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackHighestQualification,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(
+                  controller.loadingHighestQualification.value,
+                  controller.highestQualificationSelected,
+                  controller.highestQualificationList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingHighestQualification.value,
+                  controller.highestQualificationSelected,
+                  controller.highestQualificationList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackHighestQualification,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -192,18 +190,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(controller.loadingStream.value,
-                    controller.streamSelected, controller.streamList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingStream.value,
-                    controller.streamSelected,
-                    controller.streamList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackStream,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(controller.loadingStream.value,
+                  controller.streamSelected, controller.streamList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingStream.value,
+                  controller.streamSelected,
+                  controller.streamList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackStream,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -218,20 +213,17 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(
-                    controller.loadingEducationStatus.value,
-                    controller.educationStatusSelected,
-                    controller.educationStatusList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingEducationStatus.value,
-                    controller.educationStatusSelected,
-                    controller.educationStatusList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackEducationStatus,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(
+                  controller.loadingEducationStatus.value,
+                  controller.educationStatusSelected,
+                  controller.educationStatusList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingEducationStatus.value,
+                  controller.educationStatusSelected,
+                  controller.educationStatusList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackEducationStatus,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -245,18 +237,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(controller.loadingyearOfpassing.value,
-                    controller.yearOfPassingSelected, controller.yearofPassing),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingyearOfpassing.value,
-                    controller.yearOfPassingSelected,
-                    controller.yearofPassing),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackYearOfPassing,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(controller.loadingyearOfpassing.value,
+                  controller.yearOfPassingSelected, controller.yearofPassing),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingyearOfpassing.value,
+                  controller.yearOfPassingSelected,
+                  controller.yearofPassing),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackYearOfPassing,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -444,18 +433,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(controller.loadingCountry.value,
-                    controller.countrySelected, controller.countryList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingCountry.value,
-                    controller.countrySelected,
-                    controller.countryList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackCountry,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(controller.loadingCountry.value,
+                  controller.countrySelected, controller.countryList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingCountry.value,
+                  controller.countrySelected,
+                  controller.countryList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackCountry,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -469,18 +455,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(controller.loadingState.value,
-                    controller.stateSelected, controller.stateList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingState.value,
-                    controller.stateSelected,
-                    controller.stateList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackState,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(controller.loadingState.value,
+                  controller.stateSelected, controller.stateList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingState.value,
+                  controller.stateSelected,
+                  controller.stateList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackState,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -494,18 +477,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(controller.loadingCity.value,
-                    controller.citySelected, controller.cityList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingCity.value,
-                    controller.citySelected,
-                    controller.cityList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackCity,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(controller.loadingCity.value,
+                  controller.citySelected, controller.cityList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingCity.value,
+                  controller.citySelected,
+                  controller.cityList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackCity,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -519,20 +499,17 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(
-                    controller.loadingAffiliation.value,
-                    controller.affiliationNameSelected,
-                    controller.affiliationList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingAffiliation.value,
-                    controller.affiliationNameSelected,
-                    controller.affiliationList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackAffiliation,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(
+                  controller.loadingAffiliation.value,
+                  controller.affiliationNameSelected,
+                  controller.affiliationList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingAffiliation.value,
+                  controller.affiliationNameSelected,
+                  controller.affiliationList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackAffiliation,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -547,18 +524,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: getDropdownModel(controller.loadingInstitution.value,
-                    controller.institutionSelected, controller.institutionList),
-                initialSelectedValue: getSelectedDropDown(
-                    controller.loadingInstitution.value,
-                    controller.institutionSelected,
-                    controller.institutionList),
-                choosefieldtype: false,
-                callbackFunction: widget.callbackInstitution,
-              ),
+            CustomDropDownSingle(
+              model: getDropdownModel(controller.loadingInstitution.value,
+                  controller.institutionSelected, controller.institutionList),
+              initialSelectedValue: getSelectedDropDown(
+                  controller.loadingInstitution.value,
+                  controller.institutionSelected,
+                  controller.institutionList),
+              choosefieldtype: false,
+              callbackFunction: widget.callbackInstitution,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

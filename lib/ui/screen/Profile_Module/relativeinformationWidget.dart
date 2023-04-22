@@ -7,6 +7,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class RelativeInformationWidget extends StatelessWidget {
   int? index;
@@ -79,20 +80,17 @@ class RelativeInformationWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 50,
-                child: CustomDropDownSingle(
-                  model: const ["Yes", "No"],
-                  initialSelectedValue: getNUllChecker(controller
-                              .anyRelativeCountryInterestedSelected) ==
-                          true
-                      ? "No"
-                      : controller.anyRelativeCountryInterestedSelected == "1"
-                          ? "Yes"
-                          : "No",
-                  choosefieldtype: false,
-                  callbackFunction: callbackAnyRelativeCountryInterested,
-                ),
+              CustomDropDownSingle(
+                model: const ["Yes", "No"],
+                initialSelectedValue: getNUllChecker(
+                            controller.anyRelativeCountryInterestedSelected) ==
+                        true
+                    ? "No"
+                    : controller.anyRelativeCountryInterestedSelected == "1"
+                        ? "Yes"
+                        : "No",
+                choosefieldtype: false,
+                callbackFunction: callbackAnyRelativeCountryInterested,
               ),
               if (controller.anyRelativeCountryInterestedSelected == "1")
                 ...interestedCountry(controller, context),
@@ -120,20 +118,17 @@ class RelativeInformationWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingCountry.value == true
-              ? controller.countryList
-              : ["No data"],
-          initialSelectedValue: controller.loadingCountry.value == true
-              ? updatForEdit == false
-                  ? controller.countryNameSelected
-                  : controller.countryList[0]
-              : "No data",
-          choosefieldtype: false,
-          callbackFunction: callbackCountry,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingCountry.value == true
+            ? controller.countryList
+            : ["No data"],
+        initialSelectedValue: controller.loadingCountry.value == true
+            ? updatForEdit == false
+                ? controller.countryNameSelected
+                : controller.countryList[0]
+            : "No data",
+        choosefieldtype: false,
+        callbackFunction: callbackCountry,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -148,20 +143,17 @@ class RelativeInformationWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingCitizen.value == true
-              ? controller.citizenShipStatus
-              : ["No data"],
-          initialSelectedValue: controller.loadingCitizen.value == true
-              ? updatForEdit == false
-                  ? controller.citizenShipStatusSelected
-                  : controller.citizenShipStatus[0]
-              : "No data",
-          choosefieldtype: false,
-          callbackFunction: callbackCitizenShip,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingCitizen.value == true
+            ? controller.citizenShipStatus
+            : ["No data"],
+        initialSelectedValue: controller.loadingCitizen.value == true
+            ? updatForEdit == false
+                ? controller.citizenShipStatusSelected
+                : controller.citizenShipStatus[0]
+            : "No data",
+        choosefieldtype: false,
+        callbackFunction: callbackCitizenShip,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -176,20 +168,17 @@ class RelativeInformationWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingRealtion.value == true
-              ? controller.realtion
-              : ["No data"],
-          initialSelectedValue: controller.loadingRealtion.value == true
-              ? updatForEdit == false
-                  ? controller.relationSelected
-                  : controller.realtion[0]
-              : "No data",
-          choosefieldtype: false,
-          callbackFunction: callbackRelation,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingRealtion.value == true
+            ? controller.realtion
+            : ["No data"],
+        initialSelectedValue: controller.loadingRealtion.value == true
+            ? updatForEdit == false
+                ? controller.relationSelected
+                : controller.realtion[0]
+            : "No data",
+        choosefieldtype: false,
+        callbackFunction: callbackRelation,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

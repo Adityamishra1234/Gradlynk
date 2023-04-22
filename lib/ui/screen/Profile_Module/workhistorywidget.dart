@@ -8,6 +8,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class WorkHistoryWidget extends StatelessWidget {
   Function callbackUpdate;
@@ -160,21 +161,18 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: controller.loadingIndustries.value == true
-                  ? controller.industriesList
-                  : ["No data"],
-              initialSelectedValue: controller.loadingIndustries.value == true
-                  ? update == false
-                      ? controller
-                          .workHistoryViewModelList[index!].jobIndustryName
-                      : controller.industriesList[0]
-                  : "No data",
-              choosefieldtype: false,
-              callbackFunction: callbackIndustry,
-            ),
+          CustomDropDownSingle(
+            model: controller.loadingIndustries.value == true
+                ? controller.industriesList
+                : ["No data"],
+            initialSelectedValue: controller.loadingIndustries.value == true
+                ? update == false
+                    ? controller
+                        .workHistoryViewModelList[index!].jobIndustryName
+                    : controller.industriesList[0]
+                : "No data",
+            choosefieldtype: false,
+            callbackFunction: callbackIndustry,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -222,21 +220,17 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: controller.loadingEmploymentType.value == true
-                  ? controller.employmentTypeList
-                  : ["No Data"],
-              initialSelectedValue:
-                  controller.loadingEmploymentType.value == true
-                      ? update == false
-                          ? controller.workHistoryViewModelList[index!].jobType
-                          : controller.employmentTypeList[0]
-                      : "No Data",
-              choosefieldtype: false,
-              callbackFunction: callbackEmployementType,
-            ),
+          CustomDropDownSingle(
+            model: controller.loadingEmploymentType.value == true
+                ? controller.employmentTypeList
+                : ["No Data"],
+            initialSelectedValue: controller.loadingEmploymentType.value == true
+                ? update == false
+                    ? controller.workHistoryViewModelList[index!].jobType
+                    : controller.employmentTypeList[0]
+                : "No Data",
+            choosefieldtype: false,
+            callbackFunction: callbackEmployementType,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

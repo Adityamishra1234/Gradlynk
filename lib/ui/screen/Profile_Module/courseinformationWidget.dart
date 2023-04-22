@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
@@ -46,21 +47,17 @@ class CourseInformationWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    // width: 300,
-                    height: 50,
-                    child: CustomDropDownSingle(
-                      model: getDropdownModel(
-                          controller1.loadingCourseLevel.value,
-                          controller1.courseLevelSelected,
-                          controller1.courseLevelList),
-                      initialSelectedValue: getSelectedDropDown(
-                          controller1.loadingCourseLevel.value,
-                          controller1.courseLevelSelected,
-                          controller1.courseLevelList),
-                      choosefieldtype: false,
-                      callbackFunction: callbackCourseLevel,
-                    ),
+                  CustomDropDownSingle(
+                    model: getDropdownModel(
+                        controller1.loadingCourseLevel.value,
+                        controller1.courseLevelSelected,
+                        controller1.courseLevelList),
+                    initialSelectedValue: getSelectedDropDown(
+                        controller1.loadingCourseLevel.value,
+                        controller1.courseLevelSelected,
+                        controller1.courseLevelList),
+                    choosefieldtype: false,
+                    callbackFunction: callbackCourseLevel,
                   ),
                   Padding(
                     padding:
@@ -111,21 +108,18 @@ class CourseInformationWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 50,
-                    child: CustomDropDownSingle(
-                      //Todo
-                      model: getDropdownModel(
-                          controller1.loadingCourseNarrow.value,
-                          controller1.courseNarrowSelected,
-                          controller1.courseNarrowList),
-                      initialSelectedValue: getSelectedDropDown(
-                          controller1.loadingCourseNarrow.value,
-                          controller1.courseNarrowSelected,
-                          controller1.courseNarrowList),
-                      choosefieldtype: false,
-                      callbackFunction: callbackCourseNarrow,
-                    ),
+                  CustomDropDownSingle(
+                    //Todo
+                    model: getDropdownModel(
+                        controller1.loadingCourseNarrow.value,
+                        controller1.courseNarrowSelected,
+                        controller1.courseNarrowList),
+                    initialSelectedValue: getSelectedDropDown(
+                        controller1.loadingCourseNarrow.value,
+                        controller1.courseNarrowSelected,
+                        controller1.courseNarrowList),
+                    choosefieldtype: false,
+                    callbackFunction: callbackCourseNarrow,
                   ),
                   if (update == true)
                     Row(

@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "528cc79b3ef1dbd197f4b5d14db7a81edd8788b28643491e77c4d2cb220e073a"
-build_start_time: [1681968684, 500204000]
-build_end_time: [1681968684, 617158000]
-inputs:
-  ? "/Users/siecadmin/.pub-cache/hosted/pub.dev/syncfusion_flutter_pdfviewer-20.4.53/ios/Classes/SwiftSyncfusionFlutterPdfViewerPlugin.swift"
-  : [1678518794, 805441254]

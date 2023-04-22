@@ -8,6 +8,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class TravelHistoryWidget extends StatelessWidget {
   int? index;
@@ -70,19 +71,16 @@ class TravelHistoryWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: const ["Yes", "No"],
-              initialSelectedValue:
-                  getNUllChecker(controller.travelAbroadSelected) == true
-                      ? "No"
-                      : controller.travelAbroadSelected == "Yes"
-                          ? "Yes"
-                          : "No",
-              choosefieldtype: false,
-              callbackFunction: callbackTravelAbroad,
-            ),
+          CustomDropDownSingle(
+            model: const ["Yes", "No"],
+            initialSelectedValue:
+                getNUllChecker(controller.travelAbroadSelected) == true
+                    ? "No"
+                    : controller.travelAbroadSelected == "Yes"
+                        ? "Yes"
+                        : "No",
+            choosefieldtype: false,
+            callbackFunction: callbackTravelAbroad,
           ),
           if (controller.travelAbroadSelected == "Yes")
             ...getTravelledAbroad(controller, context),
@@ -107,18 +105,15 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(controller.loadingtravelStatus.value,
-              controller.travelStatusSelected, controller.travelStatus),
-          initialSelectedValue: getSelectedDropDown(
-              controller.loadingtravelStatus.value,
-              controller.travelStatusSelected,
-              controller.travelStatus),
-          choosefieldtype: false,
-          callbackFunction: callbackTravelStatus,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(controller.loadingtravelStatus.value,
+            controller.travelStatusSelected, controller.travelStatus),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingtravelStatus.value,
+            controller.travelStatusSelected,
+            controller.travelStatus),
+        choosefieldtype: false,
+        callbackFunction: callbackTravelStatus,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -132,18 +127,15 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(controller.loadingCountry.value == true,
-              controller.countrySelected, controller.countryList),
-          initialSelectedValue: getSelectedDropDown(
-              controller.loadingCountry.value == true,
-              controller.countrySelected,
-              controller.countryList),
-          choosefieldtype: false,
-          callbackFunction: callbackCountry,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(controller.loadingCountry.value == true,
+            controller.countrySelected, controller.countryList),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingCountry.value == true,
+            controller.countrySelected,
+            controller.countryList),
+        choosefieldtype: false,
+        callbackFunction: callbackCountry,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -157,20 +149,17 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(
-              controller.loadingTypeVisa.value,
-              controller.typeOfVisaSelected,
-              controller.typeOfVisaList.toSet().toList()),
-          initialSelectedValue: getSelectedDropDown(
-              controller.loadingTypeVisa.value,
-              controller.typeOfVisaSelected,
-              controller.typeOfVisaList.toSet().toList()),
-          choosefieldtype: false,
-          callbackFunction: callbackTypeOfVisa,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(
+            controller.loadingTypeVisa.value,
+            controller.typeOfVisaSelected,
+            controller.typeOfVisaList.toSet().toList()),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingTypeVisa.value,
+            controller.typeOfVisaSelected,
+            controller.typeOfVisaList.toSet().toList()),
+        choosefieldtype: false,
+        callbackFunction: callbackTypeOfVisa,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -184,18 +173,15 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(controller.loadingVisaStatus.value,
-              controller.visaStatusSelected, controller.visaStatusList),
-          initialSelectedValue: getSelectedDropDown(
-              controller.loadingVisaStatus.value,
-              controller.visaStatusSelected,
-              controller.visaStatusList),
-          choosefieldtype: false,
-          callbackFunction: callbackVisaStatus,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(controller.loadingVisaStatus.value,
+            controller.visaStatusSelected, controller.visaStatusList),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingVisaStatus.value,
+            controller.visaStatusSelected,
+            controller.visaStatusList),
+        choosefieldtype: false,
+        callbackFunction: callbackVisaStatus,
       ),
       if (controller.applicationNumberField.value == true)
         Padding(
@@ -314,14 +300,11 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Yes", "No"],
-          initialSelectedValue: controller.proofAvailableSelected,
-          choosefieldtype: false,
-          callbackFunction: callbackProofAvailable,
-        ),
+      CustomDropDownSingle(
+        model: const ["Yes", "No"],
+        initialSelectedValue: controller.proofAvailableSelected,
+        choosefieldtype: false,
+        callbackFunction: callbackProofAvailable,
       ),
       if (updateForEdit == true)
         Padding(

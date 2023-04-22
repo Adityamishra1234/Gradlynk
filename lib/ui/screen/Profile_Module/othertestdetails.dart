@@ -8,6 +8,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class OthertestDetail extends StatelessWidget {
   OthertestDetail({Key? key}) : super(key: key);
@@ -153,21 +154,17 @@ class OthertestDetail extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: controller.loadingExamStaus.value == true
-                    ? controller.examStatusList
-                    : ["No Data"],
-                initialSelectedValue: controller.loadingExamStaus.value == true
-                    ? getNUllChecker(controller.examStatusSelected) == false
-                        ? controller.examStatusSelected.toString()
-                        : controller.examStatusList[0]
-                    : "No Data",
-                choosefieldtype:
-                    controller.editSave.value == true ? true : false,
-                callbackFunction: callbackExamStatus,
-              ),
+            CustomDropDownSingle(
+              model: controller.loadingExamStaus.value == true
+                  ? controller.examStatusList
+                  : ["No Data"],
+              initialSelectedValue: controller.loadingExamStaus.value == true
+                  ? getNUllChecker(controller.examStatusSelected) == false
+                      ? controller.examStatusSelected.toString()
+                      : controller.examStatusList[0]
+                  : "No Data",
+              choosefieldtype: controller.editSave.value == true ? true : false,
+              callbackFunction: callbackExamStatus,
             ),
             if (controller.examStatusSelectedID == "1") ...register(context),
             if (controller.examStatusSelectedID == "2")
@@ -424,20 +421,17 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName.value == true
-              ? controller.examNameList
-              : ["No Data"],
-          initialSelectedValue: controller.loadingExamName.value == true
-              ? getNUllChecker(controller.examNameSelected) == false
-                  ? controller.examNameSelected.toString()
-                  : controller.examNameList[0]
-              : "No Data",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName.value == true
+            ? controller.examNameList
+            : ["No Data"],
+        initialSelectedValue: controller.loadingExamName.value == true
+            ? getNUllChecker(controller.examNameSelected) == false
+                ? controller.examNameSelected.toString()
+                : controller.examNameList[0]
+            : "No Data",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -481,14 +475,11 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Yes", "No"],
-          initialSelectedValue: controller.bookTestSelected ?? "No",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackBookTest,
-        ),
+      CustomDropDownSingle(
+        model: const ["Yes", "No"],
+        initialSelectedValue: controller.bookTestSelected ?? "No",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackBookTest,
       ),
       //Yes
       Padding(
@@ -508,20 +499,17 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName.value == true
-              ? controller.examNameList
-              : ["No Data"],
-          initialSelectedValue: controller.loadingExamName.value == true
-              ? getNUllChecker(controller.examNameSelected) == false
-                  ? controller.examNameSelected.toString()
-                  : controller.examNameList[0]
-              : "No Data",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName.value == true
+            ? controller.examNameList
+            : ["No Data"],
+        initialSelectedValue: controller.loadingExamName.value == true
+            ? getNUllChecker(controller.examNameSelected) == false
+                ? controller.examNameSelected.toString()
+                : controller.examNameList[0]
+            : "No Data",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -564,20 +552,17 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName.value == true
-              ? controller.examNameList
-              : ["No Data"],
-          initialSelectedValue: controller.loadingExamName.value == true
-              ? getNUllChecker(controller.examNameSelected) == false
-                  ? controller.examNameSelected.toString()
-                  : controller.examNameList[0]
-              : "No Data",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName.value == true
+            ? controller.examNameList
+            : ["No Data"],
+        initialSelectedValue: controller.loadingExamName.value == true
+            ? getNUllChecker(controller.examNameSelected) == false
+                ? controller.examNameSelected.toString()
+                : controller.examNameList[0]
+            : "No Data",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -638,14 +623,11 @@ class OthertestDetail extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: SizedBox(
-          height: 50,
-          child: CustomDropDownSingle(
-            model: const ["Tentative", "Definite"],
-            initialSelectedValue: controller.tentaiveDefinite,
-            choosefieldtype: controller.editSave.value == true ? true : false,
-            callbackFunction: callbackTentativeDefinite,
-          ),
+        child: CustomDropDownSingle(
+          model: const ["Tentative", "Definite"],
+          initialSelectedValue: controller.tentaiveDefinite,
+          choosefieldtype: controller.editSave.value == true ? true : false,
+          callbackFunction: callbackTentativeDefinite,
         ),
       ),
       if (controller.examNameSelected == "GMAT")

@@ -11,6 +11,7 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 enum BestTutorSite { Ascending, Deascending }
 
@@ -86,23 +87,19 @@ class _CourseSearchState extends State<CourseSearch> {
                             const SizedBox(
                               height: 5,
                             ),
-                            SizedBox(
-                              // width: 300,
-                              height: 45,
-                              child: CustomDropDownSingle(
-                                model: getDropdownModel(
-                                  _.loadingCountry.value,
-                                  _.selectCountryName,
-                                  _.countryList,
-                                ),
-                                initialSelectedValue: getSelectedDropDown(
-                                  _.loadingCountry.value,
-                                  _.selectCountryName,
-                                  _.countryList,
-                                ),
-                                choosefieldtype: false,
-                                callbackFunction: callbackCountry,
+                            CustomDropDownSingle(
+                              model: getDropdownModel(
+                                _.loadingCountry.value,
+                                _.selectCountryName,
+                                _.countryList,
                               ),
+                              initialSelectedValue: getSelectedDropDown(
+                                _.loadingCountry.value,
+                                _.selectCountryName,
+                                _.countryList,
+                              ),
+                              choosefieldtype: false,
+                              callbackFunction: callbackCountry,
                             ),
                             const SizedBox(
                               height: 10,
@@ -121,19 +118,15 @@ class _CourseSearchState extends State<CourseSearch> {
                             const SizedBox(
                               height: 5,
                             ),
-                            SizedBox(
-                              // width: 300,
-                              height: 45,
-                              child: CustomDropDownSingle(
-                                model: getDropdownModel(_.loadingState.value,
-                                    _.selectStateName, _.stateList),
-                                initialSelectedValue: getSelectedDropDown(
-                                    _.loadingState.value,
-                                    _.selectStateName,
-                                    _.stateList),
-                                choosefieldtype: false,
-                                callbackFunction: callbackState,
-                              ),
+                            CustomDropDownSingle(
+                              model: getDropdownModel(_.loadingState.value,
+                                  _.selectStateName, _.stateList),
+                              initialSelectedValue: getSelectedDropDown(
+                                  _.loadingState.value,
+                                  _.selectStateName,
+                                  _.stateList),
+                              choosefieldtype: false,
+                              callbackFunction: callbackState,
                             ),
                             const SizedBox(
                               height: 10,
@@ -152,19 +145,15 @@ class _CourseSearchState extends State<CourseSearch> {
                             const SizedBox(
                               height: 5,
                             ),
-                            SizedBox(
-                              // width: 300,
-                              height: 45,
-                              child: CustomDropDownSingle(
-                                model: getDropdownModel(_.loadingCity.value,
-                                    _.selectCityName, _.cityList),
-                                initialSelectedValue: getSelectedDropDown(
-                                    _.loadingCity.value,
-                                    _.selectCityName,
-                                    _.cityList),
-                                choosefieldtype: false,
-                                callbackFunction: callbackCity,
-                              ),
+                            CustomDropDownSingle(
+                              model: getDropdownModel(_.loadingCity.value,
+                                  _.selectCityName, _.cityList),
+                              initialSelectedValue: getSelectedDropDown(
+                                  _.loadingCity.value,
+                                  _.selectCityName,
+                                  _.cityList),
+                              choosefieldtype: false,
+                              callbackFunction: callbackCity,
                             ),
                             const SizedBox(
                               height: 10,
@@ -184,21 +173,17 @@ class _CourseSearchState extends State<CourseSearch> {
                             const SizedBox(
                               height: 5,
                             ),
-                            SizedBox(
-                              // width: 300,
-                              height: 45,
-                              child: CustomDropDownSingle(
-                                model: getDropdownModel(
-                                    _.loadingCourseLevel.value,
-                                    _.selectCourseLevelName,
-                                    _.courseLevelList),
-                                initialSelectedValue: getSelectedDropDown(
-                                    _.loadingCourseLevel.value,
-                                    _.selectCourseLevelName,
-                                    _.courseLevelList),
-                                choosefieldtype: false,
-                                callbackFunction: callbackCourseLevel,
-                              ),
+                            CustomDropDownSingle(
+                              model: getDropdownModel(
+                                  _.loadingCourseLevel.value,
+                                  _.selectCourseLevelName,
+                                  _.courseLevelList),
+                              initialSelectedValue: getSelectedDropDown(
+                                  _.loadingCourseLevel.value,
+                                  _.selectCourseLevelName,
+                                  _.courseLevelList),
+                              choosefieldtype: false,
+                              callbackFunction: callbackCourseLevel,
                             ),
                             const SizedBox(
                               height: 10,
@@ -217,21 +202,17 @@ class _CourseSearchState extends State<CourseSearch> {
                             const SizedBox(
                               height: 5,
                             ),
-                            SizedBox(
-                              // width: 300,
-                              height: 45,
-                              child: CustomDropDownSingle(
-                                model: getDropdownModel(
-                                    _.loadingCourseBoardField.value,
-                                    _.selectCourseBoardFieldName,
-                                    _.courseBoardList),
-                                initialSelectedValue: getSelectedDropDown(
-                                    _.loadingCourseBoardField.value,
-                                    _.selectCourseBoardFieldName,
-                                    _.courseBoardList),
-                                choosefieldtype: false,
-                                callbackFunction: callbackCourseBroadField,
-                              ),
+                            CustomDropDownSingle(
+                              model: getDropdownModel(
+                                  _.loadingCourseBoardField.value,
+                                  _.selectCourseBoardFieldName,
+                                  _.courseBoardList),
+                              initialSelectedValue: getSelectedDropDown(
+                                  _.loadingCourseBoardField.value,
+                                  _.selectCourseBoardFieldName,
+                                  _.courseBoardList),
+                              choosefieldtype: false,
+                              callbackFunction: callbackCourseBroadField,
                             ),
                             const SizedBox(
                               height: 10,
@@ -250,21 +231,17 @@ class _CourseSearchState extends State<CourseSearch> {
                             const SizedBox(
                               height: 5,
                             ),
-                            SizedBox(
-                              // width: 300,
-                              height: 45,
-                              child: CustomDropDownSingle(
-                                model: getDropdownModel(
-                                    _.loadingCourseNarrowField.value,
-                                    _.selectCourseNarrowFieldName,
-                                    _.courseNarrowList),
-                                initialSelectedValue: getSelectedDropDown(
-                                    _.loadingCourseNarrowField.value,
-                                    _.selectCourseNarrowFieldName,
-                                    _.courseNarrowList),
-                                choosefieldtype: false,
-                                callbackFunction: callbackCoursenarrowField,
-                              ),
+                            CustomDropDownSingle(
+                              model: getDropdownModel(
+                                  _.loadingCourseNarrowField.value,
+                                  _.selectCourseNarrowFieldName,
+                                  _.courseNarrowList),
+                              initialSelectedValue: getSelectedDropDown(
+                                  _.loadingCourseNarrowField.value,
+                                  _.selectCourseNarrowFieldName,
+                                  _.courseNarrowList),
+                              choosefieldtype: false,
+                              callbackFunction: callbackCoursenarrowField,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),

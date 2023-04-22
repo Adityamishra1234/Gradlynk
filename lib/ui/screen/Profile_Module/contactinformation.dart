@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/personalinformation.dart';
 
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
@@ -1070,6 +1071,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
                           hintText: assignedAdvisors.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
@@ -1105,6 +1107,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
                           hintText: assignedBranch.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
@@ -1140,6 +1143,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
                           hintText: service.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
@@ -1175,6 +1179,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
                           hintText: firstCountryInterest.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
@@ -1211,6 +1216,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
                           hintText: otherCountryinterested.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,

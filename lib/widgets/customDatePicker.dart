@@ -100,7 +100,6 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                       text: dateFormatError == true
                           ? "0000-00-00"
                           : '${date.year}-${date.month}-${date.day}',
-                      fontSize: 14,
                     ),
                   )),
             ),
@@ -113,6 +112,7 @@ class _DatePickerExampleState extends State<DatePickerExample> {
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
               readOnly: true,
               decoration: InputDecoration(
+                hintStyle: ThemeConstants.montserrattextstyle2,
                 hintText: dateFormatError == true
                     ? "0000-00-00"
                     : '${date.year}-${date.month}-${date.day}',
