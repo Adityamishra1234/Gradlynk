@@ -13,8 +13,7 @@ class AboutCourse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
+    return Container(
       color: ThemeConstants.whitecolor,
       child: SingleChildScrollView(
         child: Column(
@@ -347,6 +346,6 @@ class AboutCourse extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }

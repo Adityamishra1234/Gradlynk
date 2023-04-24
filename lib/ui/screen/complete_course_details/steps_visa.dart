@@ -12,8 +12,7 @@ class StepsToVisa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(
@@ -107,16 +106,17 @@ class StepsToVisa extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: SfPdfViewer.network(
-              canShowScrollHead: false,
-              'https://www.africau.edu/images/default/sample.pdf',
-              key: _pdfViewerKey,
+          if (false)
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: SfPdfViewer.network(
+                canShowScrollHead: false,
+                'https://www.africau.edu/images/default/sample.pdf',
+                key: _pdfViewerKey,
+              ),
             ),
-          ),
         ],
       ),
-    ));
+    );
   }
 }

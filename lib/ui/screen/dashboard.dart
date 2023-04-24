@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
@@ -557,7 +558,9 @@ class _DashBoardState extends State<DashBoard> {
                                     InkWell(
                                       onTap: () async {
                                         // getDailogForAgree(context);
-                                        Get.toNamed(ProfilePageCopy.routeNamed);
+                                        // Get.to(ProfilePageCopy1());
+                                        Get.toNamed(
+                                            ProfilePageCopy1.routeNamed);
                                       },
                                       child: Column(
                                         children: [
@@ -962,7 +965,7 @@ class _DashBoardState extends State<DashBoard> {
               } else if (i == 3) {
                 Get.toNamed(RaiseYourTicket.routeNamed);
               } else if (i == 4) {
-                Get.toNamed(ProfilePageCopy.routeNamed);
+                Get.toNamed(ProfilePageCopy1.routeNamed);
               }
             },
             // setState(() => _currentIndex = i),

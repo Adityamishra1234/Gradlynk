@@ -347,7 +347,7 @@ class CourseSearchFullDetailCopy extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(left: 20, top: 10),
                               child: CustomAutoSizeTextMontserrat(
-                                text: "About Institute",
+                                text: "About Institute ",
                                 fontWeight: FontWeight.bold,
                                 textColor: ThemeConstants.bluecolor,
                               ),

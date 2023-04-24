@@ -22,8 +22,7 @@ class _StepsToAdmissionsState extends State<StepsToAdmissions> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -188,6 +187,6 @@ class _StepsToAdmissionsState extends State<StepsToAdmissions> {
                       Image.network(widget.completeCourseDetail[0].countryID))),
         ],
       ),
-    ));
+    );
   }
 }

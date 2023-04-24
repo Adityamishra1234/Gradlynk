@@ -23,6 +23,7 @@ import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
@@ -159,9 +160,9 @@ class _MyAppState extends State<MyApp> {
           page: () => const DashBoard(),
         ),
         GetPage(
-            name: ProfilePageCopy.routeNamed,
+            name: ProfilePageCopy1.routeNamed,
             transition: Transition.cupertino,
-            page: () => ProfilePageCopy(),
+            page: () => ProfilePageCopy1(),
             binding: ProfilePageBinding()),
         GetPage(
             name: DetialScreen.routeNamed,

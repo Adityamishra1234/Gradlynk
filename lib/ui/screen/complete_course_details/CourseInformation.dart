@@ -14,8 +14,7 @@ class CourseInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: SingleChildScrollView(
         child: Column(
@@ -735,6 +734,6 @@ class CourseInformation extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }

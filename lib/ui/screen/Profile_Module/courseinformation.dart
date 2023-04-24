@@ -6,7 +6,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/courseinformationview.dart
 
 class CourseInformationCopy extends StatefulWidget {
   double? width;
-  CourseInformationCopy({Key? key, required this.width}) : super(key: key);
+  CourseInformationCopy({Key? key, this.width}) : super(key: key);
 
   static const routeNamed = '/CourseInformationCopy';
 
