@@ -109,7 +109,7 @@ class BaseController extends GetxController {
     // if (res == true) {
     Get.deleteAll();
     sharedPreferences.clear();
-    Get.toNamed(LoginScreen.routeNamed);
+    Get.toNamed(LoginCopy.routeNamed);
     // } else {
     //   sharedPreferences.clear();
     //   Get.toNamed(LoginScreen.routeNamed);

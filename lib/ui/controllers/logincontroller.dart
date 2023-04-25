@@ -24,6 +24,7 @@ class LoginController extends GetxController with StateMixin {
   var controller1 = Get.put(AnimationtestController());
 
   RxBool optverify = false.obs;
+  RxBool otpEnable = false.obs;
 
   @override
   void onInit() {
@@ -118,14 +119,15 @@ class LoginController extends GetxController with StateMixin {
       Get.toNamed(DashBoard.routeNamed,
           arguments: sharedPreferences.getBool("showcaseEnable"));
     } else {
-      Get.toNamed(LoginScreen.routeNamed);
+      Get.toNamed(LoginCopy.routeNamed);
     }
   }
 
   phonenumberVerfiy(String phonenumber) async {
     var res = await services.phonenumberVerfiy(phonenumber);
     if (res == true) {
-      Get.toNamed(OTPScreen.routeNamed, arguments: phonenumber);
+      otpEnable.value = true;
+      update();
     }
   }
 }

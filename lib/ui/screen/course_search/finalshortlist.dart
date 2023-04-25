@@ -58,11 +58,10 @@ class _FinalShortListState extends State<FinalShortList> {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return WillPopScope(
       onWillPop: () async {
-        print("object");
         await Get.find<ReviewShortListController>().GetCourseShortList(
             Get.find<BaseController>().model1.id.toString());
         Get.find<ReviewShortListController>().update();
-        print("back");
+
         Get.back();
         return await true;
       },
@@ -171,32 +170,32 @@ class _FinalShortListState extends State<FinalShortList> {
                                 ),
                               ),
                               const Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  Get.snackbar("Start Application", "Test",
-                                      snackPosition: SnackPosition.BOTTOM);
-                                },
-                                child: Container(
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      color: ThemeConstants.lightVioletColor,
-                                      borderRadius:
-                                          BorderRadiusDirectional.circular(
-                                              5.0)),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, right: 10),
-                                      child: CustomAutoSizeTextMontserrat(
-                                          text: "Start Application",
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          textColor:
-                                              ThemeConstants.VioletColor),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // InkWell(
+                              //   onTap: () {
+                              //     Get.snackbar("Start Application", "Test",
+                              //         snackPosition: SnackPosition.BOTTOM);
+                              //   },
+                              //   child: Container(
+                              //     height: 30,
+                              //     decoration: BoxDecoration(
+                              //         color: ThemeConstants.lightVioletColor,
+                              //         borderRadius:
+                              //             BorderRadiusDirectional.circular(
+                              //                 5.0)),
+                              //     child: Center(
+                              //       child: Padding(
+                              //         padding: const EdgeInsets.only(
+                              //             left: 10, right: 10),
+                              //         child: CustomAutoSizeTextMontserrat(
+                              //             text: "Start Application",
+                              //             fontSize: 14,
+                              //             fontWeight: FontWeight.w600,
+                              //             textColor:
+                              //                 ThemeConstants.VioletColor),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                               const Spacer(),
                             ],
                           ),

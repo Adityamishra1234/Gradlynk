@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
@@ -143,7 +144,7 @@ class CustomDrawer extends StatelessWidget {
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
                               Get.deleteAll();
-                              Get.toNamed(ProfilePageCopy.routeNamed);
+                              Get.toNamed(ProfilePageCopy1.routeNamed);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10),

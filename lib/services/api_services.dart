@@ -1543,11 +1543,11 @@ class ApiServices extends StudentPanelBase implements api {
           login: true);
       if (res != null) {
         var jsondata = json.decode(res);
-        getToast(jsondata["message"]);
-        print(jsondata["data"]);
+        getToast("Please check the OTP your register phone number");
         return true;
       }
     } catch (e) {
+      getToast("Phone number not found in Gradlynk");
       print(e.toString());
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),

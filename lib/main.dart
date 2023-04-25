@@ -126,12 +126,12 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: LoginScreen.routeNamed,
+      initialRoute: LoginCopy.routeNamed,
       // Create Route
       getPages: [
         GetPage(
           name: "/",
-          page: () => LoginScreen(),
+          page: () => LoginCopy(),
         ),
         GetPage(
           name: LoginCopy.routeNamed,
