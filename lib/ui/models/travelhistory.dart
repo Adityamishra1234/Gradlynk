@@ -1,7 +1,7 @@
 class TravelHistoryModel {
   String? travelStatus;
   int? chooseCountry;
-  int? typeOfVisa;
+  String? typeOfVisa;
   String? visaStatus;
   String? dateOfApplication;
   String? dateOfRejection;
@@ -27,7 +27,7 @@ class TravelHistoryModel {
   TravelHistoryModel.fromJson(Map<String, dynamic> json) {
     travelStatus = json['travel_status'];
     chooseCountry = json['choose_country'];
-    typeOfVisa = json['type_of_visa'];
+    typeOfVisa = json['type_of_visa'].toString();
     visaStatus = json['visa_status'];
     dateOfApplication = json['date_of_application'];
     dateOfRejection = json['date_of_rejection'];

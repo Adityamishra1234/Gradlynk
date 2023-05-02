@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/workhistory.dart';
+
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -237,7 +239,7 @@ class WorkHistoryWidget extends StatelessWidget {
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Income As per ITR",
+                text: "Income as per ITR",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
@@ -287,21 +289,22 @@ class WorkHistoryWidget extends StatelessWidget {
                             //name of organisation, working from, industry, designation,employmenttype,income as per itr
                             if (WorkHistoryController
                                 .lastOrganisation.value.text.isEmpty) {
-                              getToast("Please enter last organisation");
+                              getToast(SnackBarConstants.lastOrg!);
                             } else if (controller.workingFromSelected == null) {
-                              getToast("please select working from");
+                              getToast(SnackBarConstants.workingFromSelect!);
                             } else if (controller.industryNameSelected ==
                                 null) {
-                              getToast("please select industry name");
+                              getToast(SnackBarConstants.industryNameSelect!);
                             } else if (WorkHistoryController
                                 .designation.value.text.isEmpty) {
-                              getToast("please enter designation");
+                              getToast(SnackBarConstants.designation!);
                             } else if (controller.employementTypeSelected ==
                                 null) {
-                              getToast("please select employement type");
+                              getToast(
+                                  SnackBarConstants.employementTypeSelect!);
                             } else if (WorkHistoryController
                                 .income.value.text.isEmpty) {
-                              getToast("please select Income as per ITR");
+                              getToast(SnackBarConstants.income!);
                             } else {
                               controller.workHistoryViewModelList
                                   .add(WorkHistoryViewModel(

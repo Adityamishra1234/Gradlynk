@@ -14,6 +14,7 @@ import 'package:studentpanel/ui/screen/updatedialog.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class BaseController extends GetxController {
   ApiServices apiServices = ApiServices();
@@ -38,8 +39,11 @@ class BaseController extends GetxController {
   @override
   onReady() {
     upcomingEvents();
+  }
+
+  getUpdateNotitifcation() {
     NewVersionCheck.newVersionCheck(Get.context,
-        "com.downtownengineeers.gradlynk", "com.downtownengineeers.gradlynk");
+        "com.downtownengineers.gradlynk", "com.downtownengineers.gradlynk");
   }
 
   profiledetail() async {
@@ -51,9 +55,10 @@ class BaseController extends GetxController {
       model1 = res;
 
       if (model1.is_block == 1) {
-        getToast("User will blocked by Gradlynk");
+        getToast(SnackBarConstants.userBlock!);
         logout();
       } else {
+        // if(model1.p)
         if (model1.otherCountryOfInterest != null) {
           model1.otherCountryOfInterest!.forEach((element) {
             countrylist.add("Select your country");
@@ -69,7 +74,6 @@ class BaseController extends GetxController {
           countryid.add(model1.countryID!);
         }
       }
-
       loadingStudentPanelData1 = true.obs;
       update();
     }
@@ -109,7 +113,8 @@ class BaseController extends GetxController {
     // if (res == true) {
     Get.deleteAll();
     sharedPreferences.clear();
-    Get.toNamed(LoginCopy.routeNamed);
+    Get.offAll(LoginCopy());
+    // Get.toNamed(LoginCopy.routeNamed);
     // } else {
     //   sharedPreferences.clear();
     //   Get.toNamed(LoginScreen.routeNamed);

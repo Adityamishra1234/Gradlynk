@@ -50,13 +50,19 @@ class CustomDrawer extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 70, right: 70),
-                      child: Container(
-                        height: 100,
-                        width: 100,
-                        decoration: const BoxDecoration(
-                          color: Colors.grey,
-                          shape: BoxShape.circle,
-                        ),
+                      child: CircleAvatar(
+                        onBackgroundImageError: (exception, stackTrace) {
+                          print(exception);
+                          print(stackTrace.toString());
+                        },
+                        // onForegroundImageError: (exception, stackTrace) {
+                        //   print(exception);
+                        //   print(stackTrace.toString());
+                        // },
+                        radius: 50.0,
+                        backgroundImage: const NetworkImage(
+                            "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
+                        backgroundColor: Colors.transparent,
                       ),
                     ),
                     const SizedBox(
@@ -308,7 +314,7 @@ class CustomDrawer extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.only(left: 10, top: 5),
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "Final Course",
+                                    text: "Final Shortlist",
                                     textColor: index == 5
                                         ? ThemeConstants.bluecolor
                                         : ThemeConstants.blackcolor,
@@ -358,43 +364,43 @@ class CustomDrawer extends StatelessWidget {
                     // const SizedBox(
                     //   height: 5,
                     // ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: InkWell(
-                            highlightColor: ThemeConstants.whitecolor,
-                            onTap: () {
-                              Get.deleteAll();
-                              Get.toNamed(StageProgress.routeNamed);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    color: index == 7
-                                        ? ThemeConstants.lightblueColor
-                                        : ThemeConstants.whitecolor,
-                                    borderRadius: BorderRadius.circular(10.0)),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Processes",
-                                    textColor: index == 7
-                                        ? ThemeConstants.bluecolor
-                                        : ThemeConstants.blackcolor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20),
+                    //   child: Align(
+                    //       alignment: AlignmentDirectional.topStart,
+                    //       child: InkWell(
+                    //         highlightColor: ThemeConstants.whitecolor,
+                    //         onTap: () {
+                    //           Get.deleteAll();
+                    //           Get.toNamed(StageProgress.routeNamed);
+                    //         },
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.only(right: 10),
+                    //           child: Container(
+                    //             height: 30,
+                    //             width: MediaQuery.of(context).size.width,
+                    //             decoration: BoxDecoration(
+                    //                 color: index == 7
+                    //                     ? ThemeConstants.lightblueColor
+                    //                     : ThemeConstants.whitecolor,
+                    //                 borderRadius: BorderRadius.circular(10.0)),
+                    //             child: Padding(
+                    //               padding:
+                    //                   const EdgeInsets.only(left: 10, top: 5),
+                    //               child: CustomAutoSizeTextMontserrat(
+                    //                 text: "Processes",
+                    //                 textColor: index == 7
+                    //                     ? ThemeConstants.bluecolor
+                    //                     : ThemeConstants.blackcolor,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       )),
+                    // ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Align(
@@ -592,7 +598,7 @@ class CustomDrawer extends StatelessWidget {
                                                     left: 0, top: 5),
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
-                                                  text: "Track Improvisation",
+                                                  text: "Track your Feedback",
                                                   textColor: index == 11
                                                       ? ThemeConstants.bluecolor
                                                       : ThemeConstants

@@ -41,6 +41,7 @@ class CustomDropDownSingle extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: CustomizableDropdown(
+                selectedItem: initialSelectedValue,
                 maxHeight: 150,
                 height: 50,
                 icon: const Icon(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/scheduleExpertCall.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
@@ -115,11 +116,11 @@ class ScheduleExpertCall extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (getNUllChecker(_.nameSelected)) {
-                              getToast("please select your counsellor");
+                              getToast(SnackBarConstants.counsellorError!);
                             } else if (getNUllChecker(_.dateSelected)) {
-                              getToast("please select your preferred date");
+                              getToast(SnackBarConstants.preferresDateError!);
                             } else if (getNUllChecker(_.timeSelected)) {
-                              getToast("please select your preferred time");
+                              getToast(SnackBarConstants.preferresTimeError!);
                             } else {
                               _.addScheduleAnExpertCall();
                             }

@@ -18,6 +18,7 @@ import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
 import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/constantsWithId.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/custom_doc_viewer.dart';
@@ -202,7 +203,10 @@ class _ApplicationCompleteDetailsState
                                       getTable(
                                           firstField: "Offer Status",
                                           secondField: "Acknowledgement Number",
-                                          firstFiledName: _.model.offerStatus,
+                                          firstFiledName:
+                                              ConstantsWithId.getOfferStatus(_
+                                                  .model.offerStatus
+                                                  .toString()),
                                           secondFieldName:
                                               _.model.acknowledgementNumber),
                                       Align(
@@ -526,13 +530,17 @@ class _ApplicationCompleteDetailsState
                                     getTable(
                                       firstField: "Offer Acceptance status",
                                       secondField: "Offer Acceptance Date",
-                                      firstFiledName: _.model.acceptanceStage,
+                                      //TODO
+                                      // firstFiledName: _.model.acceptanceStage,
+                                      firstFiledName: "",
                                       secondFieldName: _.model.acceptanceDate,
                                     ),
                                     getTable(
                                       firstField: "Payment Option",
                                       secondField: "Amount Paid",
-                                      firstFiledName: _.model.paymentOption,
+                                      firstFiledName:
+                                          ConstantsWithId.getPaymentOption(
+                                              _.model.paymentOption),
                                       secondFieldName: _.model.amountPaid,
                                     ),
                                     getTable(
@@ -545,7 +553,9 @@ class _ApplicationCompleteDetailsState
                                       firstField: "SIEC Person",
                                       secondField: "Mode of Payment",
                                       firstFiledName: _.model.siecEmployee,
-                                      secondFieldName: _.model.modeOfPayment,
+                                      secondFieldName:
+                                          ConstantsWithId.getPaymentMode(
+                                              _.model.modeOfPayment),
                                     ),
                                     getTable(
                                       firstField: "Balance Fee",

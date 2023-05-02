@@ -1,0 +1,11 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "e8b239beef7d9c632cfe004ae0edf3a6f1c32619d58c03f58c043cda1b41094a"
+build_start_time: [1683006178, 156151000]
+build_end_time: [1683006185, 426920000]
+inputs:
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImage+SwiftyGif.swift": [1683006165, 550055466]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/NSImageView+SwiftyGif.swift": [1683006165, 550844035]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/ObjcAssociatedWeakObject.swift": [1683006165, 550273712]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/SwiftyGifManager.swift": [1683006165, 550700454]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/UIImage+SwiftyGif.swift": [1683006165, 550456292]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/SwiftyGif/SwiftyGif/UIImageView+SwiftyGif.swift": [1683006165, 549816512]

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
@@ -107,9 +108,9 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.bottomEnd,
                 child: TextButton(
                     onPressed: () {
-                      if (controller.loadingViewQualification.value == true) {
-                        controller.setaddedQualification(true);
-                      }
+                      // if (controller.loadingViewQualification.value == true) {
+                      controller.setaddedQualification(true);
+                      // }
                     },
                     child: CustomAutoSizeTextMontserrat(
                       text: "View Details",
@@ -516,7 +517,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               child: Align(
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
-                  text: "name of the Institution",
+                  text: "Name of the Institution",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
                   fontSize: 14,
@@ -587,17 +588,20 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                             onPressed: () async {
                               if (controller.highestQualificationSelected ==
                                   null) {
-                                getToast("Please select Highest Qualification");
+                                getToast(SnackBarConstants
+                                    .qualificationSelectError!);
                               } else if (QualificationDetailsController
                                   .qualificationName.value.text.isEmpty) {
-                                getToast("Please enter Qualification Name ");
+                                getToast(
+                                    SnackBarConstants.qualificationNameErrors!);
                               } else if (controller.streamSelected == null) {
-                                getToast("Please select Stream");
+                                getToast(SnackBarConstants.streamSelectError!);
                               } else if (controller.educationStatusSelected ==
                                   null) {
-                                getToast("Please select education status");
+                                getToast(SnackBarConstants
+                                    .educationStatusSelectError!);
                               } else if (controller.countrySelected == null) {
-                                getToast("Please select Country");
+                                getToast(SnackBarConstants.countrySelect!);
                               } else {
                                 controller.modelList
                                     .add(QualificationDetailsViewModel(
@@ -647,13 +651,14 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                                     Get.find<BaseController>()
                                         .model1
                                         .id
-                                        .toString());
+                                        .toString(),
+                                    "added");
                                 // controller.updteForEdit.value = false;
                                 controller.update();
                               }
                             },
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Added",
+                              text: "Add",
                               textColor: ThemeConstants.whitecolor,
                             )),
                       ),
@@ -681,17 +686,20 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                             onPressed: () async {
                               if (controller.highestQualificationSelected ==
                                   null) {
-                                getToast("Please select Highest Qualification");
+                                getToast(SnackBarConstants
+                                    .qualificationSelectError!);
                               } else if (QualificationDetailsController
                                   .qualificationName.value.text.isEmpty) {
-                                getToast("Please enter Qualification Name ");
+                                getToast(
+                                    SnackBarConstants.qualificationNameErrors!);
                               } else if (controller.streamSelected == null) {
-                                getToast("Please select Stream");
+                                getToast(SnackBarConstants.streamSelectError!);
                               } else if (controller.educationStatusSelected ==
                                   null) {
-                                getToast("Please select education status");
+                                getToast(SnackBarConstants
+                                    .educationStatusSelectError!);
                               } else if (controller.countrySelected == null) {
-                                getToast("Please select Country");
+                                getToast(SnackBarConstants.countrySelect!);
                               } else {
                                 QualificationDetailsViewModel model =
                                     QualificationDetailsViewModel();
@@ -743,7 +751,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                                     Get.find<BaseController>()
                                         .model1
                                         .id
-                                        .toString());
+                                        .toString(),
+                                    "updated");
                                 controller.updteForEdit.value = false;
                                 controller.update();
                               }

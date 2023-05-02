@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/travelhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/travinghistoryview.dart';
 import 'travelhistorywidget.dart';
 

@@ -1,0 +1,15 @@
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoPreviewFactory.swift":
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoPreviewFactory.swiftdeps"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoPreviewFactory.dia"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoPreviewFactory.o"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoPreviewFactory.d"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicatorProtocol.swift":
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicatorProtocol.swiftdeps"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicatorProtocol.d"
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicatorProtocol.o"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicatorProtocol.dia"
+"/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicator.swift":
+  object: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicator.o"
+  swift-dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicator.swiftdeps"
+  dependencies: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicator.d"
+  diagnostics: "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/build/Pods.build/Debug-iphonesimulator/DKPhotoGallery.build/Objects-normal/x86_64/DKPhotoProgressIndicator.dia"

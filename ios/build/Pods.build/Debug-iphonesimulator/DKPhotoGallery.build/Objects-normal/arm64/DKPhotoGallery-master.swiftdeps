@@ -1,0 +1,50 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "6d6e2b7aea9321c26e73a496797fa52b27a61c37e2ffae35303c758b9cbe127a"
+build_start_time: [1683006185, 85748000]
+build_end_time: [1683006190, 182747000]
+inputs:
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoGallery.swift": [1683006165, 482389997]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryContentVC.swift": [1683006165, 482586160]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryItem.swift": [1683006165, 482932112]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoGalleryScrollView.swift": [1683006165, 487012329]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoIncrementalIndicator.swift": [1683006165, 482759407]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoPreviewFactory.swift": [1683006165, 480873775]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoBasePreviewVC.swift"
+  : [1683006165, 483910302]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoContentAnimationView.swift"
+  : [1683006165, 486680752]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicator.swift"
+  : [1683006165, 486842040]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicatorProtocol.swift"
+  : [1683006165, 485989473]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoBaseImagePreviewVC.swift"
+  : [1683006165, 484988574]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageDownloader.swift"
+  : [1683006165, 484224880]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImagePreviewVC.swift"
+  : [1683006165, 484395919]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageUtility.swift"
+  : [1683006165, 484568540]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/ImagePreview/DKPhotoImageView.swift"
+  : [1683006165, 484721746]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PDFPreview/DKPDFView.swift"
+  : [1683006165, 486364132]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PDFPreview/DKPhotoPDFPreviewVC.swift"
+  : [1683006165, 486524296]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPhotoPlayerPreviewVC.swift"
+  : [1683006165, 483754972]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/PlayerPreview/DKPlayerView.swift"
+  : [1683006165, 483582684]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/QRCode/DKPhotoQRCodeResultVC.swift"
+  : [1683006165, 485733061]
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/QRCode/DKPhotoWebVC.swift": [1683006165, 485361817]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Resource/DKPhotoGalleryResource.swift"
+  : [1683006165, 494492609]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryInteractiveTransition.swift"
+  : [1683006165, 481666302]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionController.swift"
+  : [1683006165, 481360641]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionDismiss.swift"
+  : [1683006165, 482194167]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKPhotoGallery/DKPhotoGallery/Transition/DKPhotoGalleryTransitionPresent.swift"
+  : [1683006165, 481915297]

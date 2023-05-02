@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/workhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 
 class WorkHistoryBinding implements Bindings {
   @override

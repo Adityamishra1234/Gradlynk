@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
+
+import 'package:studentpanel/ui/screen/Profile_Module/controller/courseinformationprofile.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformationWidget.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformationview.dart';
 

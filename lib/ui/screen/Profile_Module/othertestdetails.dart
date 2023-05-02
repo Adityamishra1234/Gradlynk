@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/othertestdetails.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetails.dart';
+
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -192,15 +193,17 @@ class OthertestDetail extends StatelessWidget {
                             if (controller.examStatusSelected ==
                                 "Not Yet Registered") {
                               if (controller.bookTestSelected == null) {
-                                getToast("Please select book text");
+                                getToast(
+                                    SnackBarConstants.bookTestSelectedError!);
                               }
                             }
                             if (controller.examStatusSelected == null) {
-                              getToast("Please select exam status");
+                              getToast(SnackBarConstants.examStatusError!);
                             } else if (controller.examStatusSelected ==
                                 "Not Yet Registered") {
                               if (controller.bookTestSelected == null) {
-                                getToast("Please select book text");
+                                getToast(
+                                    SnackBarConstants.bookTestSelectedError!);
                               } else {
                                 // DropDown
                                 controller.otherTestDetailsModel.examStatus =
@@ -286,7 +289,7 @@ class OthertestDetail extends StatelessWidget {
                                 controller.update();
                               }
                             } else if (controller.examNameSelected == null) {
-                              getToast("Please select exam name");
+                              getToast(SnackBarConstants.examnameError!);
                             } else {
                               // DropDown
                               controller.otherTestDetailsModel.examStatus =
@@ -438,7 +441,7 @@ class OthertestDetail extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Exam",
+            text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -569,7 +572,7 @@ class OthertestDetail extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Exam",
+            text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -588,7 +591,7 @@ class OthertestDetail extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Test Report",
+            text: "Date of Test Report",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -620,6 +623,18 @@ class OthertestDetail extends StatelessWidget {
             enableField: controller.editSave.value == true ? true : false,
             date: controller.testScoreExpirationDateSelected,
             callbackDate: callbackTextScoreExpirationdate),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Exam Score Status",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10),
@@ -885,7 +900,7 @@ class OthertestDetail extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Overall Score (Other Test)",
+            text: "Overall Score ",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,

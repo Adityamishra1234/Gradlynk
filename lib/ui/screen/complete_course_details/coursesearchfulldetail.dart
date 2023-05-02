@@ -123,7 +123,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                           children: [
                                             const Spacer(),
                                             CustomAutoSizeTextMontserrat(
-                                              text: "Course Duration",
+                                              text: "Course Duration ",
                                               maxLines: 2,
                                               textColor:
                                                   ThemeConstants.bluecolor,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/profilepagecontroller.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomTab extends StatelessWidget {

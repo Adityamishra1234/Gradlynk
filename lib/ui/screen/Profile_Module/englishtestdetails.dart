@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/englishtest.dart';
+
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -68,14 +69,15 @@ class EnglishTestDetails extends StatelessWidget {
                             if (controller.examStatusSelected ==
                                 "Not Yet Registered") {
                               if (controller.bookTestSelcted == null) {
-                                getToast("Please select book test");
+                                getToast(
+                                    SnackBarConstants.bookTestSelectedError!);
                               }
                             }
                             if (controller.examStatusSelected == null) {
-                              getToast("Please select Exam Status");
+                              getToast(SnackBarConstants.examStatusError!);
                             } else {
                               if (controller.examNameSelected == null) {
-                                getToast("Please select Exam Name");
+                                getToast(SnackBarConstants.examnameError!);
                               } else {
                                 EnglishTestDetailsViewModel
                                     englishTestDetailsViewModel =
@@ -185,11 +187,12 @@ class EnglishTestDetails extends StatelessWidget {
                           ),
                           onPressed: () async {
                             if (controller.examStatusSelected == null) {
-                              getToast("Please select Exam Status");
+                              getToast(SnackBarConstants.examStatusError!);
                             } else if (controller.examStatusSelected ==
                                 "Not Yet Registered") {
                               if (controller.bookTestSelcted == null) {
-                                getToast("Please select book test");
+                                getToast(
+                                    SnackBarConstants.bookTestSelectedError!);
                               } else {
                                 EnglishTestDetailsViewModel
                                     englishTestDetailsViewModel =
@@ -246,7 +249,7 @@ class EnglishTestDetails extends StatelessWidget {
                               }
                             } else {
                               if (controller.examNameSelected == null) {
-                                getToast("Please select Exam Name");
+                                getToast(SnackBarConstants.examnameError!);
                               } else {
                                 EnglishTestDetailsViewModel
                                     englishTestDetailsViewModel =
@@ -442,7 +445,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Exam",
+            text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -565,7 +568,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Exam",
+            text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -589,7 +592,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Test Report",
+            text: "Date of Test Report",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -626,6 +629,18 @@ class EnglishTestDetails extends StatelessWidget {
       ),
       const SizedBox(
         height: 10,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Exam Score Status",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       CustomDropDownSingle(
         model: const ["Tentative", "Definite"],

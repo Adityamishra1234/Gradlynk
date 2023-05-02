@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/travelhistory.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
@@ -120,7 +120,7 @@ class TravelHistoryWidget extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Selected Country",
+            text: "Country you travelled to? ",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -142,7 +142,7 @@ class TravelHistoryWidget extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Type Of Visa",
+            text: "Type of Visa",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -242,7 +242,7 @@ class TravelHistoryWidget extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date of reject",
+            text: "Date of rejection",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -327,8 +327,7 @@ class TravelHistoryWidget extends StatelessWidget {
                             travelStatus: controller.travelStatusSelected,
                             chooseCountry: int.parse(
                                 controller.countryCodeSelected ?? "0"),
-                            typeOfVisa: int.parse(
-                                controller.typeOfVisaCodeSelected ?? "0"),
+                            typeOfVisa: controller.typeOfVisaCodeSelected,
                             visaStatus: controller.visaStatusSelected,
                             dateOfApplication: TravelHistoryController
                                 .dateOfApplication.value.text,
@@ -381,8 +380,7 @@ class TravelHistoryWidget extends StatelessWidget {
                             travelStatus: controller.travelStatusSelected,
                             chooseCountry: int.parse(
                                 controller.countryCodeSelected ?? "0"),
-                            typeOfVisa: int.parse(
-                                controller.typeOfVisaCodeSelected ?? "0"),
+                            typeOfVisa: controller.typeOfVisaCodeSelected,
                             visaStatus: controller.visaStatusSelected,
                             dateOfApplication: TravelHistoryController
                                 .dateOfApplication.value.text,

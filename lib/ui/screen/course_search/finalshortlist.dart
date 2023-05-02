@@ -47,6 +47,13 @@ class _FinalShortListState extends State<FinalShortList> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    controller1.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (widget.filterRedirect == false) {
       controller1.courseModelFilter = controller1.courseModelFilter;
@@ -123,6 +130,9 @@ class _FinalShortListState extends State<FinalShortList> {
                                   height: 30,
                                   decoration: BoxDecoration(
                                       color: ThemeConstants.lightorangeColor,
+                                      border: Border.all(
+                                        color: ThemeConstants.orangeColor,
+                                      ),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(
                                               5.0)),
@@ -153,6 +163,9 @@ class _FinalShortListState extends State<FinalShortList> {
                                   height: 30,
                                   decoration: BoxDecoration(
                                       color: ThemeConstants.lightgreentColor,
+                                      border: Border.all(
+                                        color: ThemeConstants.GreenColor,
+                                      ),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(
                                               5.0)),

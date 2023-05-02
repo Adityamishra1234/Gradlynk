@@ -78,7 +78,6 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     try {
-      print(Get.arguments);
       if (Get.arguments) {
         ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
           (_) => Future.delayed(const Duration(milliseconds: 200), () {
@@ -156,7 +155,6 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                   ),
                 svgImage("work", Colors.transparent, 32, 32),
-
                 const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
@@ -988,7 +986,10 @@ class _DashBoardState extends State<DashBoard> {
                 backgroundColor: ThemeConstants.bluecolor,
                 child:
                     svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
-                onPressed: () {
+                onPressed: () async {
+                  // SVO Join Code
+                  await _launchURL();
+                  // isExtended: true,
                   // Overlay.of(context).insert(entry);
                 },
               ),

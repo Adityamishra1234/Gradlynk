@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/utils/constantsWithId.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -85,7 +86,8 @@ class WorkHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: model[index].applicantType.toString(),
+                                    text: ConstantsWithId.getApplicationType(
+                                        model[index].applicantType.toString()),
                                     textColor: ThemeConstants.TextColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
@@ -264,8 +266,11 @@ class WorkHistoryView extends StatelessWidget {
                                     const EdgeInsets.only(top: 20, right: 20),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants
-                                          .whitecolor,
+                                      foregroundColor:
+                                          ThemeConstants.whitecolor,
+                                      elevation: 0.0,
+                                      backgroundColor:
+                                          ThemeConstants.whitecolor,
                                       side: BorderSide(
                                           color: ThemeConstants.TextColor),
                                       // foreground
@@ -285,8 +290,10 @@ class WorkHistoryView extends StatelessWidget {
                                   width: 90,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: ThemeConstants
-                                            .bluecolor, elevation: 0.0, backgroundColor: ThemeConstants
+                                        foregroundColor:
+                                            ThemeConstants.bluecolor,
+                                        elevation: 0.0,
+                                        backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {

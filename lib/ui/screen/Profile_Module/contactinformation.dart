@@ -3,10 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
 
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
@@ -211,50 +212,54 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                       if (getNUllChecker(firstName.text) ==
                                           true) {
                                         getToast(
-                                            "Please Enter your first name");
+                                            SnackBarConstants.firstNameError!);
                                       } else if (profilePageKey.currentState!
                                           .validate()) {
-                                        getToast("Please check fileds");
+                                        getToast(SnackBarConstants
+                                            .contactInformationErrorForAllFields!);
                                       } else if (getNUllChecker(
                                               lastName.text) ==
                                           true) {
-                                        getToast("Please Enter your last name");
+                                        getToast(
+                                            SnackBarConstants.lastNameError!);
                                       } else if (getNUllChecker(
                                           controller.dob)) {
-                                        getToast(
-                                            "Please Enter your date of birth");
+                                        getToast(SnackBarConstants.dobError!);
                                       } else if (getNUllChecker(
                                               controller.genderIdSelected) ==
                                           true) {
-                                        getToast("Please select your gender");
+                                        getToast(
+                                            SnackBarConstants.genderError!);
                                       } else if (getNUllChecker(controller
                                               .maritalStatusSelected) ==
                                           true) {
-                                        getToast(
-                                            "Please select your marital status");
+                                        getToast(SnackBarConstants
+                                            .maritalStatusError!);
                                       } else if (getNUllChecker(
                                               mobileNumber.text) ==
                                           true) {
-                                        getToast(
-                                            "Please Enter your mobile number");
+                                        getToast(SnackBarConstants
+                                            .mobileNumberError!);
                                       } else if (getNUllChecker(
                                               alt_Number.text) ==
                                           true) {
-                                        getToast(
-                                            "Please Enter your Alternate number");
+                                        getToast(SnackBarConstants
+                                            .alternateNumberError!);
                                       } else if (getNUllChecker(email.text)) {
-                                        getToast("Please Enter your email");
+                                        getToast(SnackBarConstants.emailError!);
                                       } else if (getNUllChecker(
                                           controller.countrySelected)) {
-                                        getToast("Please select  your country");
+                                        getToast(
+                                            SnackBarConstants.countryError!);
                                       } else if (getNUllChecker(
                                           controller.stateSelected)) {
-                                        getToast("Please select your state");
+                                        getToast(SnackBarConstants.stateError!);
                                       } else if (getNUllChecker(
                                           controller.citySelected)) {
-                                        getToast("Please select your city");
+                                        getToast(SnackBarConstants.cityError!);
                                       } else if (getNUllChecker(zipCode.text)) {
-                                        getToast("Please enter your zip code");
+                                        getToast(
+                                            SnackBarConstants.zipCodeError!);
                                       } else {
                                         updatePesonalDetail(
                                             Get.find<BaseController>()
@@ -284,7 +289,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                       }
                                     } catch (e) {
                                       print(StackTrace.current);
-                                      getToast(e.toString());
+                                      getToast(SnackBarConstants.errorMsg!);
                                     }
                                   },
                                   child: CustomAutoSizeTextMontserrat(
@@ -300,7 +305,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                     setState(() {});
                                   },
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: "edit",
+                                    text: "Edit",
                                     // fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                     textColor: ThemeConstants.bluecolor,
@@ -747,7 +752,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: Align(
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
-                          text: "Select State",
+                          text: "State",
                           mandatory: true,
                           //textColor: ThemeConstants.TextColor,
                           fontSize: 16,
@@ -771,7 +776,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: Align(
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
-                          text: "Select City",
+                          text: "City",
                           mandatory: true,
                           //textColor: ThemeConstants.TextColor,
                           fontSize: 16,
@@ -795,7 +800,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: Align(
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
-                          text: "street",
+                          text: "Street",
                           //textColor: ThemeConstants.TextColor,
                           fontSize: 16,
                           // fontWeight: FontWeight.bold,
@@ -1277,50 +1282,54 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                       if (getNUllChecker(firstName.text) ==
                                           true) {
                                         getToast(
-                                            "Please Enter your first name");
+                                            SnackBarConstants.firstNameError!);
                                       } else if (profilePageKey.currentState!
-                                              .validate() ==
-                                          false) {
-                                        getToast("Please check fileds");
-                                      } else if (getNUllChecker(lastName.text) ==
+                                          .validate()) {
+                                        getToast(SnackBarConstants
+                                            .contactInformationErrorForAllFields!);
+                                      } else if (getNUllChecker(
+                                              lastName.text) ==
                                           true) {
-                                        getToast("Please Enter your last name");
+                                        getToast(
+                                            SnackBarConstants.lastNameError!);
                                       } else if (getNUllChecker(
                                           controller.dob)) {
-                                        getToast(
-                                            "Please Enter your date of birth");
+                                        getToast(SnackBarConstants.dobError!);
                                       } else if (getNUllChecker(
                                               controller.genderIdSelected) ==
                                           true) {
-                                        getToast("Please select your gender");
+                                        getToast(
+                                            SnackBarConstants.genderError!);
                                       } else if (getNUllChecker(controller
                                               .maritalStatusSelected) ==
                                           true) {
-                                        getToast(
-                                            "Please select your marital status");
+                                        getToast(SnackBarConstants
+                                            .maritalStatusError!);
                                       } else if (getNUllChecker(
                                               mobileNumber.text) ==
                                           true) {
-                                        getToast(
-                                            "Please Enter your mobile number");
+                                        getToast(SnackBarConstants
+                                            .mobileNumberError!);
                                       } else if (getNUllChecker(
                                               alt_Number.text) ==
                                           true) {
-                                        getToast(
-                                            "Please Enter your Alternate number");
+                                        getToast(SnackBarConstants
+                                            .alternateNumberError!);
                                       } else if (getNUllChecker(email.text)) {
-                                        getToast("Please Enter your email");
+                                        getToast(SnackBarConstants.emailError!);
                                       } else if (getNUllChecker(
                                           controller.countrySelected)) {
-                                        getToast("Please select  your country");
+                                        getToast(
+                                            SnackBarConstants.countryError!);
                                       } else if (getNUllChecker(
                                           controller.stateSelected)) {
-                                        getToast("Please select your state");
+                                        getToast(SnackBarConstants.stateError!);
                                       } else if (getNUllChecker(
                                           controller.citySelected)) {
-                                        getToast("Please select your city");
+                                        getToast(SnackBarConstants.cityError!);
                                       } else if (getNUllChecker(zipCode.text)) {
-                                        getToast("Please enter your zip code");
+                                        getToast(
+                                            SnackBarConstants.zipCodeError!);
                                       } else {
                                         updatePesonalDetail(
                                             Get.find<BaseController>()

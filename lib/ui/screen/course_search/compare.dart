@@ -47,7 +47,7 @@ class Comparing extends StatelessWidget {
                         child: Center(
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 5, right: 5),
+                            top: 15, bottom: 15, left: 15, right: 5),
                         child: CustomAutoSizeTextMontserrat(
                             text: "University & Campus Name",
                             fontSize: 14,
@@ -93,7 +93,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Country",
                             fontWeight: FontWeight.bold,
@@ -134,7 +134,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "State",
                             fontWeight: FontWeight.bold,
@@ -176,7 +176,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "City",
                             fontWeight: FontWeight.bold,
@@ -219,7 +219,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Name",
                             fontSize: 14,
@@ -262,7 +262,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Level",
                             fontSize: 14,
@@ -305,7 +305,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Course Duration",
                             fontSize: 14,
@@ -354,7 +354,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Scholarship",
                             fontSize: 14,
@@ -398,7 +398,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Annual Tuition Fees  ",
                             fontSize: 14,
@@ -449,7 +449,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Total  Fees ",
                             fontSize: 14,
@@ -499,7 +499,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Application Fees",
                             fontSize: 14,
@@ -542,7 +542,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: SizedBox(
                             height: 60,
                             child: CustomAutoSizeTextMontserrat(
@@ -594,7 +594,7 @@ class Comparing extends StatelessWidget {
                         color: ThemeConstants.lightgreycolor,
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 15, bottom: 15, left: 5, right: 5),
+                              top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Tests Required- ",
                             fontSize: 14,

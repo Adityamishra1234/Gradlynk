@@ -38,8 +38,9 @@ class LoginController extends GetxController with StateMixin {
   }
 
   login(String phone, String otp) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     change(null, status: RxStatus.loading());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     var responsive = await services.getLogin(
       Endpoints.login! + phone + Endpoints.login2! + otp,
     );
@@ -56,6 +57,7 @@ class LoginController extends GetxController with StateMixin {
       prefs.setString("id", model!.user!.id.toString());
       change(null, status: RxStatus.success());
       Get.offAllNamed(DashBoard.routeNamed, arguments: true);
+
       return model;
     } else {
       change(null, status: RxStatus.success());
@@ -124,9 +126,14 @@ class LoginController extends GetxController with StateMixin {
   }
 
   phonenumberVerfiy(String phonenumber) async {
+    change(null, status: RxStatus.loading());
     var res = await services.phonenumberVerfiy(phonenumber);
     if (res == true) {
       otpEnable.value = true;
+      change(null, status: RxStatus.success());
+      update();
+    } else {
+      change(null, status: RxStatus.success());
       update();
     }
   }

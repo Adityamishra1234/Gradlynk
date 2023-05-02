@@ -61,9 +61,13 @@ class CustomizableDropdown extends StatefulWidget {
   /// Give the margin of the dropdown container
   final EdgeInsetsGeometry? marginDropDown;
 
+  // Selected Dropdown
+  final String? selectedItem;
+
   /// Here we go the dropdown StateFull Widget
   const CustomizableDropdown({
     Key? key,
+    this.selectedItem,
     required this.itemList,
     required this.onSelectedItem,
     required this.placeholder,
@@ -92,6 +96,7 @@ class CustomizableDropdown extends StatefulWidget {
 class _CustomizableDropdownState extends State<CustomizableDropdown>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  final ScrollController scrollControler = ScrollController();
 
   /// If the [Placeholder] is null
   /// this will displayed the selected index of List
@@ -100,6 +105,12 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
   /// this variable is used to open/close the drop down is user touch dropdown container or list of dropdown selected
   /// Default is false to it hide the dropdown
   bool isExpanded = false;
+
+// Create list using for search
+  List items = [];
+
+  // For Search field
+  TextEditingController editingController = TextEditingController();
 
   //Finally its removing the animated Controller
   @override
@@ -121,6 +132,7 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
 
   @override
   Widget build(BuildContext context) {
+    selectedItem = widget.selectedItem;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -202,47 +214,80 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
       height: 50,
       expand: isExpanded,
       child: SizedBox(
-        height: widget.maxHeight,
-        child: Scrollbar(
-          child: ListView.builder(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(2),
-            itemCount: widget.itemList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                  onTap: () {
-                    print("aman");
-                    widget.onSelectedItem(widget.itemList[index]);
-                    isExpanded
-                        ? _controller.reverse(from: 0.5)
-                        : _controller.forward(from: 0.25);
-                    isExpanded = !isExpanded;
-                    selectedItem = widget.itemList[index];
-                    setState(() {
-                      /// it detects the user click and display the new selected value
-                      // of onChanged callback here.
-                    });
+        height: 225,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                onChanged: (value) {
+                  filterSearchResults(value);
+                },
+                controller: editingController,
+                decoration: const InputDecoration(
+                    labelText: "Search",
+                    hintText: "Search",
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+              ),
+            ),
+            SizedBox(
+              height: widget.maxHeight,
+              child: Scrollbar(
+                isAlwaysShown: true,
+                controller: scrollControler,
+                child: ListView.builder(
+                  controller: scrollControler,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(2),
+                  itemCount: widget.itemList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                        onTap: () {
+                          widget.onSelectedItem(widget.itemList[index]);
+                          isExpanded
+                              ? _controller.reverse(from: 0.5)
+                              : _controller.forward(from: 0.25);
+                          isExpanded = !isExpanded;
+                          selectedItem = widget.itemList[index];
+                          setState(() {
+                            /// it detects the user click and display the new selected value
+                            // of onChanged callback here.
+                          });
+                        },
+                        child: Container(
+                            height: 40,
+                            width: MediaQuery.of(context).size.width,
+                            // color: Colors.red,
+                            color: widget.listColor,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: widget.listTitle ??
+                                  Text(widget.itemList.elementAt(index),
+                                      textAlign: TextAlign.start,
+                                      style: widget.titleStyle),
+                            )));
                   },
-                  child: Container(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width,
-                      // color: Colors.red,
-                      color: widget.listColor,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: widget.listTitle ??
-                            Text(widget.itemList.elementAt(index),
-                                textAlign: TextAlign.start,
-                                style: widget.titleStyle),
-                      )));
-            },
-            // separatorBuilder: (BuildContext context, int index) =>
-            //     widget.seperator ??
-            //     const Divider(
-            //       thickness: 0.5,
-            //     ),
-          ),
+                  // separatorBuilder: (BuildContext context, int index) =>
+                  //     widget.seperator ??
+                  //     const Divider(
+                  //       thickness: 0.5,
+                  //     ),
+                ),
+              ),
+            ),
+          ],
         ),
       ));
+
+  //Function
+  void filterSearchResults(String query) {
+    setState(() {
+      items = widget.itemList
+          .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
 }

@@ -4,6 +4,7 @@ import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -479,6 +480,7 @@ getTable(
   }
 }
 
+ApiServices apiservice = ApiServices();
 getDailogForAgree(
   BuildContext context,
 ) {
@@ -523,17 +525,17 @@ getDailogForAgree(
                         text:
                             """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
 2. All the information submitted is correct and collaborates with my legal documents.
-3. In case of any discrepancy in information, SIC will not be liable for any halt throughout the process.
+3. In case of any discrepancy in information, SIEC will not be liable for any halt throughout the process.
 4.I, agree to all SIEC's Terms & Conditions.""",
                         fontSize: 18,
                         textColor: ThemeConstants.blackcolor,
                       ))),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: InkWell(
+                      onTap: () async {
+                        await apiservice.agree(context);
+                      },
                       child: Container(
                         height: 35,
                         width: 300,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/workhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistorywidget.dart';
 

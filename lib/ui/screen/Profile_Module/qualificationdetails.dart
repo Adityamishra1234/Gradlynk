@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/qualificationdetailsview.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/qualificationwidget.dart';

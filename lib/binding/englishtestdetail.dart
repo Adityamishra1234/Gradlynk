@@ -1,6 +1,7 @@
 import 'package:studentpanel/ui/controllers/detailcontroller.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/englishtest.dart';
+
+import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
 
 class EnglishDetailsBinding implements Bindings {
   @override

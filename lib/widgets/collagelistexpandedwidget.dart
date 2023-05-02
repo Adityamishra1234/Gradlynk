@@ -154,50 +154,56 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 //       )),
                 Column(
                   children: [
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(right: 50, left: 10, top: 10),
-                        child: InkWell(
-                          onTap: () {
-                            var temp =
-                                "${courseSearchModel.universityId},${courseSearchModel.courseId},${courseSearchModel.id}";
-                            widget.callbackFunction(temp);
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: courseSearchModel.courseName ?? "",
-                            maxLines: 3,
-                            textColor: ThemeConstants.bluecolor,
-                            fontWeight: FontWeight.bold,
+                    InkWell(
+                      onTap: () {
+                        var temp =
+                            "${courseSearchModel.universityId},${courseSearchModel.courseId},${courseSearchModel.id}";
+                        widget.callbackFunction(temp);
+                      },
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 50, left: 10, top: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel.courseName ?? "",
+                                maxLines: 3,
+                                textColor: ThemeConstants.bluecolor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: CustomAutoSizeTextMontserrat(
-                          text:
-                              "${courseSearchModel.countryName ?? ""},${courseSearchModel.stateName ?? ""},${courseSearchModel.cityName ?? ""}\n${courseSearchModel.universityName ?? ""}",
-                          // "Australia,Victor,Melbourne | RMIT University",
-                          maxLines: 3,
-                          textColor: ThemeConstants.bluegreycolor,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: courseSearchModel.campusName,
-                          maxLines: 3,
-                          textColor: ThemeConstants.bluegreycolor,
-                          fontSize: 14,
-                        ),
+                          Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text:
+                                    "${courseSearchModel.countryName ?? ""},${courseSearchModel.stateName ?? ""},${courseSearchModel.cityName ?? ""}\n${courseSearchModel.universityName ?? ""}",
+                                // "Australia,Victor,Melbourne | RMIT University",
+                                maxLines: 3,
+                                textColor: ThemeConstants.bluegreycolor,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text: courseSearchModel.campusName,
+                                maxLines: 3,
+                                textColor: ThemeConstants.bluegreycolor,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Padding(
@@ -837,9 +843,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                       height: 35,
                       decoration: BoxDecoration(
                           color: ThemeConstants.lightblueColor,
-                          // border: Border.all(
-                          //   color: ThemeConstants.bluecolor,
-                          // ),
+                          border: Border.all(
+                            color: ThemeConstants.bluecolor,
+                          ),
                           borderRadius: BorderRadius.circular(5.0)),
                       child: Center(
                         child: Padding(
@@ -1066,16 +1072,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               child: Container(
                 height: 35,
                 decoration: BoxDecoration(
-                    border: Border.all(
-                      color: ThemeConstants.TextColor,
-                    ),
+                    color: ThemeConstants.lightRed,
+                    border: Border.all(color: ThemeConstants.red, width: 0.5),
                     borderRadius: BorderRadius.circular(5.0)),
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 3, right: 3),
                     child: CustomAutoSizeTextMontserrat(
                       text: "Remove ShortList",
-                      textColor: ThemeConstants.TextColor,
+                      textColor: ThemeConstants.red,
                       fontWeight: FontWeight.w600,
                       fontSize: 8,
                     ),
@@ -1103,16 +1108,16 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               child: Container(
                 height: 35,
                 decoration: BoxDecoration(
+                    color: ThemeConstants.lightgreentColor,
                     border: Border.all(
-                      color: ThemeConstants.TextColor,
-                    ),
+                        color: ThemeConstants.GreenColor, width: 0.5),
                     borderRadius: BorderRadius.circular(5.0)),
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 3, right: 3),
                     child: CustomAutoSizeTextMontserrat(
                       text: "Add to ShortList",
-                      textColor: ThemeConstants.TextColor,
+                      textColor: ThemeConstants.GreenColor,
                       fontWeight: FontWeight.w600,
                       fontSize: 8,
                     ),
@@ -1141,16 +1146,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             child: Container(
               height: 35,
               decoration: BoxDecoration(
-                  border: Border.all(
-                    color: ThemeConstants.TextColor,
-                  ),
+                  color: ThemeConstants.lightRed,
+                  border: Border.all(color: ThemeConstants.red, width: 0.5),
                   borderRadius: BorderRadius.circular(5.0)),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(),
+                  padding: const EdgeInsets.only(left: 2, right: 2),
                   child: CustomAutoSizeTextMontserrat(
                     text: "Remove ShortList",
-                    textColor: ThemeConstants.TextColor,
+                    textColor: ThemeConstants.red,
                     fontWeight: FontWeight.w600,
                     fontSize: 8,
                   ),
@@ -1179,16 +1183,16 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             child: Container(
               height: 35,
               decoration: BoxDecoration(
-                  border: Border.all(
-                    color: ThemeConstants.TextColor,
-                  ),
+                  color: ThemeConstants.lightgreentColor,
+                  border:
+                      Border.all(color: ThemeConstants.GreenColor, width: 0.5),
                   borderRadius: BorderRadius.circular(5.0)),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 3, right: 3),
                   child: CustomAutoSizeTextMontserrat(
                     text: "Add to ShortList",
-                    textColor: ThemeConstants.TextColor,
+                    textColor: ThemeConstants.GreenColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 8,
                   ),
@@ -1231,16 +1235,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           child: Container(
             height: 35,
             decoration: BoxDecoration(
-                border: Border.all(
-                  color: ThemeConstants.TextColor,
-                ),
+                color: ThemeConstants.lightRed,
+                border: Border.all(color: ThemeConstants.red, width: 0.5),
                 borderRadius: BorderRadius.circular(5.0)),
             child: Padding(
               padding: const EdgeInsets.only(left: 3, right: 3),
               child: Center(
                 child: CustomAutoSizeTextMontserrat(
                   text: "Remove Final ShortList",
-                  textColor: ThemeConstants.TextColor,
+                  textColor: ThemeConstants.red,
                   fontWeight: FontWeight.w600,
                   fontSize: 8,
                 ),
@@ -1264,16 +1267,16 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             child: Container(
               height: 35,
               decoration: BoxDecoration(
-                  border: Border.all(
-                    color: ThemeConstants.TextColor,
-                  ),
+                  color: ThemeConstants.lightgreentColor,
+                  border:
+                      Border.all(color: ThemeConstants.GreenColor, width: 0.5),
                   borderRadius: BorderRadius.circular(5.0)),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 3, right: 3),
                   child: CustomAutoSizeTextMontserrat(
                     text: "Add to Final ShortList",
-                    textColor: ThemeConstants.TextColor,
+                    textColor: ThemeConstants.GreenColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 8,
                   ),
@@ -1297,16 +1300,15 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             child: Container(
               height: 35,
               decoration: BoxDecoration(
-                  border: Border.all(
-                    color: ThemeConstants.TextColor,
-                  ),
+                  color: ThemeConstants.lightRed,
+                  border: Border.all(color: ThemeConstants.red, width: 0.5),
                   borderRadius: BorderRadius.circular(5.0)),
               child: Padding(
                 padding: const EdgeInsets.only(left: 3, right: 3),
                 child: Center(
                   child: CustomAutoSizeTextMontserrat(
                     text: "Remove Final ShortList",
-                    textColor: ThemeConstants.TextColor,
+                    textColor: ThemeConstants.red,
                     fontWeight: FontWeight.w600,
                     fontSize: 8,
                   ),

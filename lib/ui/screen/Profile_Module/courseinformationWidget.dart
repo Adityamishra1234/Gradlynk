@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/courseinformationprofile.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -87,7 +87,7 @@ class CourseInformationWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 10),
                           child: CustomAutoSizeTextMontserrat(
                             text: controller1.courseBroadSelected ??
-                                "Broad Field Automatically selected",
+                                "Broad Field will be autofilled",
                             //textColor: ThemeConstants.TextColor,
                           ),
                         ),

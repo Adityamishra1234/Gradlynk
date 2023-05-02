@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
-import 'package:studentpanel/ui/controllers/courseinformationprofile.dart';
-import 'package:studentpanel/ui/controllers/englishtest.dart';
-import 'package:studentpanel/ui/controllers/othertestdetails.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
+
 import 'package:studentpanel/ui/controllers/passport.dart';
-import 'package:studentpanel/ui/controllers/profilepagecontroller.dart';
-import 'package:studentpanel/ui/controllers/relativeinformation.dart';
-import 'package:studentpanel/ui/controllers/travelhistory.dart';
-import 'package:studentpanel/ui/controllers/workhistory.dart';
+
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/courseinformationprofile.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetails.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/profilepagecontroller.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/englishtestdetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/othertestdetails.dart';
@@ -24,6 +25,8 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+
+import 'controller/relativeinformation.dart';
 
 class ProfilePageCopy extends StatelessWidget {
   ProfilePageCopy({

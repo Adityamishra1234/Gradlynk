@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> hideScreen() async {
     if (Platform.isIOS) {
-      Future.delayed(const Duration(milliseconds: 1500), () {
+      Future.delayed(const Duration(milliseconds: 2000), () {
         FlutterSplashScreen.hide();
       });
     } else {

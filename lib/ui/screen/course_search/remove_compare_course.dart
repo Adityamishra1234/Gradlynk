@@ -36,7 +36,7 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: CustomAutoSizeTextMontserrat(
-                text: "You can compare up to 2 courses at time",
+                text: "Opps, You can compare only 2 courses at a time!",
                 fontWeight: FontWeight.bold,
               ),
             ),

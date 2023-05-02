@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -95,19 +96,19 @@ class PassportDetails extends StatelessWidget {
                           updatePassport();
                         } else {
                           if (controller.citizenSelected == null) {
-                            getToast("please enter citizen of");
+                            getToast(SnackBarConstants.citizenSelectError!);
                           } else if (passportNumber.text.isEmpty) {
-                            getToast("please enter passport number");
+                            getToast(SnackBarConstants.passportNumberError!);
                           } else if (controller.countrySelected == null) {
-                            getToast("please enter country");
+                            getToast(SnackBarConstants.countrySelectError!);
                           } else if (controller.stateSelected == null) {
-                            getToast("please enter state");
+                            getToast(SnackBarConstants.stateError!);
                           } else if (controller.placeOfIssuseSelected == null) {
-                            getToast("please enter place of issuse");
+                            getToast(SnackBarConstants.placeSelectError!);
                           } else if (controller.dateOfIssue == null) {
-                            getToast("please enter date of issue");
+                            getToast(SnackBarConstants.dateOfISsueSelectError!);
                           } else if (controller.expireDate == null) {
-                            getToast("please enter expire date");
+                            getToast(SnackBarConstants.expireDateError!);
                           } else {
                             controller.editSave.value = false;
                             controller.update();
@@ -314,7 +315,7 @@ class PassportDetails extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Issue",
+            text: "Date of Issue",
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
@@ -396,19 +397,19 @@ class PassportDetails extends StatelessWidget {
                         updatePassport();
                       } else {
                         if (controller.citizenSelected == null) {
-                          getToast("please enter citizen of");
+                          getToast(SnackBarConstants.citizenSelectError!);
                         } else if (passportNumber.text.isEmpty) {
-                          getToast("please enter passport number");
+                          getToast(SnackBarConstants.passportNumberError!);
                         } else if (controller.countrySelected == null) {
-                          getToast("please enter country");
+                          getToast(SnackBarConstants.countrySelectError!);
                         } else if (controller.stateSelected == null) {
-                          getToast("please enter state");
+                          getToast(SnackBarConstants.stateError!);
                         } else if (controller.placeOfIssuseSelected == null) {
-                          getToast("please enter place of issuse");
+                          getToast(SnackBarConstants.placeSelectError!);
                         } else if (controller.dateOfIssue == null) {
-                          getToast("please enter date of issue");
+                          getToast(SnackBarConstants.dateOfISsueSelectError!);
                         } else if (controller.expireDate == null) {
-                          getToast("please enter expire date");
+                          getToast(SnackBarConstants.expireDateError!);
                         } else {
                           controller.editSave.value = false;
                           controller.update();

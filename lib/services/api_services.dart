@@ -256,7 +256,7 @@ class ApiServices extends StudentPanelBase implements api {
         StackTrace.current.toString(),
       );
       Get.back();
-      getToast(SnackBarConstants.courseSearchListPart3!);
+      getToast(SnackBarConstants.courseSearchListPart4!);
     }
   }
 
@@ -299,14 +299,7 @@ class ApiServices extends StudentPanelBase implements api {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        Get.snackbar(
-          "Course ShortList",
-          duration: const Duration(seconds: 2),
-          response,
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.white.withOpacity(0.0),
-          margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-        );
+        getToast(SnackBarConstants.courseShortList! + response);
       }
     } catch (e) {
       await errorHandle(
@@ -324,8 +317,7 @@ class ApiServices extends StudentPanelBase implements api {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        Get.snackbar("Course ShortList", response,
-            snackPosition: SnackPosition.BOTTOM);
+        getToast(SnackBarConstants.courseShortList! + response);
       }
     } catch (e) {
       await errorHandle(
@@ -652,7 +644,8 @@ class ApiServices extends StudentPanelBase implements api {
         Get.find<BaseController>().getPersonalModal(personalInformationModel);
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Profile details update ${dataUpdateStatus.status} ");
+        getToast(
+            SnackBarConstants.contactInformation! + dataUpdateStatus.status!);
 
         return jsondata;
       }
@@ -910,7 +903,7 @@ class ApiServices extends StudentPanelBase implements api {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
-        getToast("Work History $action ${dataUpdateStatus.status}");
+        getToast("$snakbarTitle $action ${dataUpdateStatus.status}");
 
         return true;
       }
@@ -983,7 +976,7 @@ class ApiServices extends StudentPanelBase implements api {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("English test details updated successfully");
+        getToast(SnackBarConstants.englishTestDetails!);
         // Get.snackbar("English Test Details", dataUpdateStatus.status.toString(),
         //     snackPosition: SnackPosition.BOTTOM);
       }
@@ -1006,9 +999,7 @@ class ApiServices extends StudentPanelBase implements api {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Passport details updated successfully");
-        // Get.snackbar("Passport Details:", dataUpdateStatus.status.toString(),
-        //     snackPosition: SnackPosition.BOTTOM);
+        getToast(SnackBarConstants.passportDetails!);
       }
     } catch (e) {
       await errorHandle(
@@ -1050,6 +1041,7 @@ class ApiServices extends StudentPanelBase implements api {
       List<TravelHistoryModel> travelHistoryList =
           List<TravelHistoryModel>.from(
               json.decode(response).map((x) => TravelHistoryModel.fromJson(x)));
+
       return travelHistoryList;
     } catch (e) {
       await errorHandle(
@@ -1070,7 +1062,7 @@ class ApiServices extends StudentPanelBase implements api {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Travel History $action ${dataUpdateStatus.status}");
+        getToast("Travel history $action ${dataUpdateStatus.status}");
         return true;
       }
     } catch (e) {
@@ -1110,7 +1102,7 @@ class ApiServices extends StudentPanelBase implements api {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Relative Infromation $action ${dataUpdateStatus.status}");
+        getToast("Relative infromation $action ${dataUpdateStatus.status}");
         return true;
       }
     } catch (e) {
@@ -1155,7 +1147,7 @@ class ApiServices extends StudentPanelBase implements api {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Qualification Details $action ${dataUpdateStatus.status}");
+        getToast("Qualification details $action ${dataUpdateStatus.status}");
         return true;
       }
     } catch (e) {
@@ -1178,9 +1170,7 @@ class ApiServices extends StudentPanelBase implements api {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Other test details updated successfully");
-        // Get.snackbar("Other Test Details:", dataUpdateStatus.status.toString(),
-        //     snackPosition: SnackPosition.BOTTOM);
+        getToast(SnackBarConstants.otherTestDetail!);
       }
     } catch (e) {
       await errorHandle(
@@ -1253,13 +1243,13 @@ class ApiServices extends StudentPanelBase implements api {
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
         FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
-        getsnakbar("Document Upload", status.status.toString());
+        getToast(SnackBarConstants.documentUpload! + status.status.toString());
         return status.viewLink;
       } else {
         return null;
       }
     } catch (e) {
-      getToast("Something went to wrong !!");
+      getToast(SnackBarConstants.errorMsg!);
     }
   }
 
@@ -1279,11 +1269,11 @@ class ApiServices extends StudentPanelBase implements api {
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
         CommonUploadStatus status = CommonUploadStatus.fromJson(jsondata);
-        getsnakbar("Document Upload", status.status.toString());
+        getToast(SnackBarConstants.documentUpload! + status.status.toString());
         return status;
       }
     } catch (e) {
-      getToast("Something went to wrong !!");
+      getToast(SnackBarConstants.errorMsg!);
     }
   }
 
@@ -1409,13 +1399,13 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   @override
-  getSheduleExpertCall(String endpoint) async {
+  getSheduleExpertCall(String endpoint, String snackbar) async {
     try {
       StatusModel model = StatusModel();
       var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
       if (res != null) {
         model = StatusModel.fromJson(json.decode(res));
-        getsnakbar("Schedule an Expert call", model.status!);
+        getToast(snackbar + model.status!);
         Get.toNamed(DashBoard.routeNamed);
       }
     } catch (e) {
@@ -1497,7 +1487,7 @@ class ApiServices extends StudentPanelBase implements api {
       var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
       if (res != null) {
         var jsondata = json.decode(res);
-        getToast("Comment added" + jsondata["status"]);
+        getToast(SnackBarConstants.saveComments! + jsondata["status"]);
         // List<CountryGuideModel>.from(
         //     json.decode(res).map((x) => CountryGuideModel.fromJson(x)));
         model = List<Comments>.from(
@@ -1543,12 +1533,33 @@ class ApiServices extends StudentPanelBase implements api {
           login: true);
       if (res != null) {
         var jsondata = json.decode(res);
-        getToast("Please check the OTP your register phone number");
+        getToast(SnackBarConstants.phoneNumber!);
         return true;
       }
     } catch (e) {
-      getToast("Phone number not found in Gradlynk");
+      getToast(SnackBarConstants.phoneNumberError!);
       print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+      return false;
+    }
+  }
+
+  agree(BuildContext context) async {
+    try {
+      var res = await httpPostNullBody(
+        Endpoints.baseUrl! +
+            Endpoints.agree! +
+            Get.find<BaseController>().model1.id.toString(),
+      );
+      if (res != null) {
+        Navigator.pop(context);
+      }
+    } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
@@ -1557,6 +1568,7 @@ class ApiServices extends StudentPanelBase implements api {
       );
     }
   }
+
   // logout(String endpoint, String token) async {
   //   try {
   //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);

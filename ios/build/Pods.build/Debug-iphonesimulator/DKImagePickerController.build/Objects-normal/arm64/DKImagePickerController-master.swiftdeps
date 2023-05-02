@@ -1,0 +1,51 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "d748e00031d968249016ffce94adef414f5d6ee0274530dea06767d392918dbe"
+build_start_time: [1683006187, 470587000]
+build_end_time: [1683006191, 227262000]
+inputs:
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageBaseManager.swift"
+  : [1683006165, 452289798]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageDataManager.swift"
+  : [1683006165, 451912930]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/DKImageGroupDataManager.swift"
+  : [1683006165, 452078594]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Export.swift"
+  : [1683006165, 452667958]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset+Fetch.swift"
+  : [1683006165, 452881288]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAsset.swift"
+  : [1683006165, 452988286]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImageDataManager/Model/DKAssetGroup.swift"
+  : [1683006165, 452774581]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImageAssetExporter.swift"
+  : [1683006165, 453441277]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImageExtensionController.swift"
+  : [1683006165, 453203573]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerController.swift"
+  : [1683006165, 453623940]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKImagePickerControllerBaseUIDelegate.swift"
+  : [1683006165, 453754771]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/DKPopoverViewController.swift"
+  : [1683006165, 453874894]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/Resource/DKImagePickerControllerResource.swift"
+  : [1683006165, 470921082]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupCellItemProtocol.swift"
+  : [1683006165, 455008332]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailBaseCell.swift"
+  : [1683006165, 455161162]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailCameraCell.swift"
+  : [1683006165, 454628214]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailImageCell.swift"
+  : [1683006165, 455310243]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/Cell/DKAssetGroupDetailVideoCell.swift"
+  : [1683006165, 454758753]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupDetailVC.swift"
+  : [1683006165, 454388968]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupGridLayout.swift"
+  : [1683006165, 454210638]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKAssetGroupListVC.swift"
+  : [1683006165, 455462240]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/DKImagePickerController/View/DKPermissionView.swift"
+  : [1683006165, 454091515]
+  ? "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Pods/DKImagePickerController/Sources/Extensions/DKImageExtensionGallery.swift"
+  : [1683006165, 451306650]
