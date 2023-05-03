@@ -54,6 +54,7 @@ class QualificationDetailsCopy extends StatelessWidget {
         }
       }
     }
+    controller.update();
   }
 
   callbackStream(varTopic) {
@@ -65,10 +66,10 @@ class QualificationDetailsCopy extends StatelessWidget {
         if (controller.streamList[i] == varTopic) {
           controller.streamSelected = controller.streamList[i];
           controller.streamSelectedID = controller.streamCode[i].toString();
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackEducationStatus(varTopic) {
@@ -79,10 +80,10 @@ class QualificationDetailsCopy extends StatelessWidget {
         if (controller.educationStatusList[i] == varTopic) {
           controller.educationStatusSelected =
               controller.educationStatusList[i];
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackYearOfPassing(varTopic) {
@@ -107,10 +108,10 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.getInstitution(controller.countrySelectedID,
               controller.stateSelectedID, controller.citySelectedID);
           controller.getAffiliation(controller.countrySelectedID!);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackState(varTopic) {
@@ -125,13 +126,13 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.getCity(controller.stateSelectedID!);
           controller.getInstitution(controller.countrySelectedID,
               controller.stateSelectedID, controller.citySelectedID);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
-  // Function callbackAffiliation;
+  // Function callback
   callbackAffiliation(data) {
     for (var i = 0; i < controller.affiliationList.length; i++) {
       if (i == 0) {
@@ -142,10 +143,10 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.affiliationNameSelected = controller.affiliationList[i];
           controller.affiliationCodeSelected =
               controller.affiliationCode[i].toString();
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackCity(varTopic) {
@@ -159,10 +160,10 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.citySelectedID = controller.cityCode[i];
           controller.getInstitution(controller.countrySelectedID,
               controller.stateSelectedID, controller.citySelectedID);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackInstitution(varTopic) {

@@ -596,7 +596,7 @@ class Comparing extends StatelessWidget {
                           padding: const EdgeInsets.only(
                               top: 15, bottom: 15, left: 15, right: 5),
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Tests Required- ",
+                            text: "Language tests Required- ",
                             fontSize: 14,
                             textColor: ThemeConstants.blackcolor,
                             fontWeight: FontWeight.bold,

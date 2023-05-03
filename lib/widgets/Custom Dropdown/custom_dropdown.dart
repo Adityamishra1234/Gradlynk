@@ -18,6 +18,7 @@ class CustomDropDownSingle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(initialSelectedValue);
     return choosefieldtype == true
         ? Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),

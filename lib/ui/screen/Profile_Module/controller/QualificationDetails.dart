@@ -163,6 +163,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       loadingInstitution = false.obs;
       stateList = [];
       stateCode = [];
+      stateSelected = null;
+      stateSelectedID = null;
       var res = await apiServices.getState2(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -198,6 +200,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       loadingInstitution = false.obs;
       cityCode = [];
       cityList = [];
+      citySelected = null;
+      citySelectedID = null;
       var res = await apiServices.getCity2(
           Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
       if (res != null) {
@@ -233,6 +237,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       loadingAffiliation = false.obs;
       affiliationList = [];
       affiliationCode = [];
+      affiliationNameSelected = null;
+      affiliationCodeSelected = null;
       List<AffiliationDropDownModel> affiliationDropDown = [];
       var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
           Endpoints.affiliationForCountry! + countryId.toString());
@@ -264,7 +270,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
     try {
       institutionCode = [];
       institutionList = [];
-
+      institutionSelected = null;
+      institutionSelectedID = null;
       var res = await apiServices.getInstitute(
           Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
       if (res != null) {
@@ -495,6 +502,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
     try {
       stateList = [];
       stateCode = [];
+      stateSelected = null;
+      stateSelectedID = null;
       var res = await apiServices.getState2(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -530,7 +539,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       loadingCity.value = false;
       cityCode = [];
       cityList = [];
-
+      citySelected = null;
+      citySelectedID = null;
       var res = await apiServices.getCity2(
           Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
       if (res != null) {
@@ -545,8 +555,6 @@ class QualificationDetailsController extends GetxController with StateMixin {
         for (var element in temp) {
           cityCode.add(element.toString());
         }
-        // citySelected = null;
-        // citySelectedID = null;
         loadingCity = true.obs;
         update();
       }
@@ -565,6 +573,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       loadingAffiliation = false.obs;
       affiliationList = [];
       affiliationCode = [];
+      affiliationCodeSelected = null;
+      affiliationNameSelected = null;
       List<AffiliationDropDownModel> affiliationDropDown = [];
       var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
           Endpoints.affiliationForCountry! + countryId.toString());
@@ -575,8 +585,6 @@ class QualificationDetailsController extends GetxController with StateMixin {
         for (var element in affiliationDropDown) {
           affiliationList.add(element.affiliationName);
           affiliationCode.add(element.id);
-          // affiliationCodeSelected = null;
-          // affiliationNameSelected = null;
 
           loadingAffiliation = true.obs;
           update();
@@ -598,6 +606,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       institutionList = [];
       institutionCode = [];
       loadingInstitution.value = false;
+      institutionSelected = null;
+      institutionSelectedID = null;
       var res = await apiServices.getInstitute(Endpoints.baseUrl!,
           "${Endpoints.instituteForCity!}${cityId}country_id=${countryId}state_id=$stateId");
       if (res != null) {

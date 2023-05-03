@@ -369,8 +369,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                         ),
                                         onPressed: () {
                                           if (otpcontroller.text.length == 6) {
-                                            Get.find<LoginController>().login(
-                                                phoneNumber.text,
+                                            controller.login(phoneNumber.text,
                                                 otpcontroller.text);
                                           } else {
                                             getToast(

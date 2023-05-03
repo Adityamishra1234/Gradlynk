@@ -144,6 +144,7 @@ class CourseSearchController extends GetxController {
     selectCityName = null;
     loadingCity.value = false;
     loadingState.value = false;
+    selectStateName = null;
     selectStateCode = null;
     try {
       var res = await apiservices.dropDown1(
@@ -171,6 +172,7 @@ class CourseSearchController extends GetxController {
     cityList = [];
     cityCode = [];
     loadingCity.value = false;
+    selectCityName = null;
     selectCityCode = null;
     try {
       List tempList;
@@ -199,6 +201,7 @@ class CourseSearchController extends GetxController {
     courseNarrowList = [];
     courseNarrowCode = [];
     loadingCourseNarrowField.value = false;
+    selectCourseNarrowFieldName = null;
     selectCourseNarrowFieldCode = null;
     try {
       List tempList;
@@ -314,7 +317,10 @@ class CourseSearchController extends GetxController {
     apiservices.setShortListCourse(id, enqId);
   }
 
-  courseFinalShortlist(String? id, String enqId) {
-    apiservices.setFinalShortListCourse(id, enqId);
+  courseFinalShortlist(String? id, String enqId, bool action) {
+    apiservices.setFinalShortListCourse(
+      id,
+      enqId,
+    );
   }
 }

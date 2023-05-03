@@ -758,7 +758,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                         right: 10,
                         top: 5,
                       ),
-                      child: Row(
+                      child: Wrap(
                         children: [
                           if (getNUllChecker(courseSearchModel.arwuRank) ==
                               false)
@@ -767,7 +767,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                          const Spacer(),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           if (getNUllChecker(courseSearchModel.timesRank) ==
                               false)
                             CustomAutoSizeTextMontserrat(
@@ -776,7 +778,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                          const Spacer(),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           if (getNUllChecker(courseSearchModel.usNewsRank) ==
                               false)
                             CustomAutoSizeTextMontserrat(
@@ -785,7 +789,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               textColor: Colors.grey,
                               fontSize: 14,
                             ),
-                          const Spacer(),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           if (getNUllChecker(courseSearchModel.qsWorldRank) ==
                               false)
                             CustomAutoSizeTextMontserrat(

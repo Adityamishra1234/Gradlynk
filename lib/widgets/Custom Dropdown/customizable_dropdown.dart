@@ -127,11 +127,30 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
       duration: const Duration(milliseconds: 300),
       upperBound: 0.5,
     );
+    filterSearchResults("");
     super.initState();
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    print("didChangeDependencies");
+    filterSearchResults("");
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomizableDropdown oldWidget) {
+    // TODO: implement didUpdateWidget
+
+    filterSearchResults(editingController.text);
+    print("didUpdateWidget");
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // print(widget.selectedItem);
     selectedItem = widget.selectedItem;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -214,22 +233,26 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
       height: 50,
       expand: isExpanded,
       child: SizedBox(
-        height: 225,
+        height: 230,
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                onChanged: (value) {
-                  filterSearchResults(value);
-                },
-                controller: editingController,
-                decoration: const InputDecoration(
-                    labelText: "Search",
-                    hintText: "Search",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+              child: SizedBox(
+                height: 50,
+                child: TextField(
+                  onChanged: (value) {
+                    filterSearchResults(value.toString());
+                  },
+                  controller: editingController,
+                  decoration: const InputDecoration(
+                      labelText: "Search",
+                      hintText: "Search",
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0)))),
+                ),
               ),
             ),
             SizedBox(
@@ -242,16 +265,16 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   padding: const EdgeInsets.all(2),
-                  itemCount: widget.itemList.length,
+                  itemCount: items.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                         onTap: () {
-                          widget.onSelectedItem(widget.itemList[index]);
+                          widget.onSelectedItem(items[index]);
                           isExpanded
                               ? _controller.reverse(from: 0.5)
                               : _controller.forward(from: 0.25);
                           isExpanded = !isExpanded;
-                          selectedItem = widget.itemList[index];
+                          selectedItem = items[index];
                           setState(() {
                             /// it detects the user click and display the new selected value
                             // of onChanged callback here.
@@ -265,7 +288,7 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: widget.listTitle ??
-                                  Text(widget.itemList.elementAt(index),
+                                  Text(items.elementAt(index),
                                       textAlign: TextAlign.start,
                                       style: widget.titleStyle),
                             )));

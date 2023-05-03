@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 
 import 'package:studentpanel/ui/screen/Profile_Module/controller/courseinformationprofile.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformationWidget.dart';
@@ -68,8 +69,12 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
 
   callbackIndexDelete(data) {
     controller.viewCourseInformationList.removeAt(int.parse(data.toString()));
-    controller.updateCourseInformation(78623,
-        controller.viewCourseInformationList[0].courseBroadId!, "delete");
+    if (data.toString() == "0") {
+      controller.allDelete(Get.find<BaseController>().model1.id, "delete");
+    } else {
+      controller.updateCourseInformation(Get.find<BaseController>().model1.id!,
+          controller.viewCourseInformationList[0].courseBroadId!, "delete");
+    }
     setState(() {});
   }
 

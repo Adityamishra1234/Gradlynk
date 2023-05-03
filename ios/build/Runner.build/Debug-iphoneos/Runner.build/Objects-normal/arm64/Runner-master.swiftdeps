@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "c3c0c469573ca055d7b6a44960d29ef42911df806e782c6028a1818b205c681a"
+build_start_time: [1683089199, 31326000]
+build_end_time: [1683089201, 44304000]
+inputs:
+  "/Users/siecadmin/Downloads/StudentPortal project/sp_app/ios/Runner/AppDelegate.swift": !private [1681895616, 44745205]

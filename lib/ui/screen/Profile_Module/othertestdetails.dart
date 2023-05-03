@@ -1505,6 +1505,7 @@ class OthertestDetail extends StatelessWidget {
       controller.bookTestSelected = "No";
       controller.bookTestSelectedID = "1";
     }
+    controller.update();
   }
 
   callbackTentativeDefinite(data) {

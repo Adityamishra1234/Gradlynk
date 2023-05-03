@@ -35,7 +35,6 @@ class TrackYourTicketsController extends GetxController with StateMixin {
   }
 
   saveComment(String id, String content, int dataIndex) async {
-    // save-comment-data?id=10&content=test by aman 7&enq_id=78623
     var responsive = await apiServices.saveComments(
         Endpoints.saveCommentTrackYourTicketpart1! +
             id +

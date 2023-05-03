@@ -312,7 +312,9 @@ class _UploadDocumentState extends State<UploadDocument> {
                         ),
                         const Spacer(),
                         FileDownload(url: model[i].viewlink!),
-                        const Spacer(),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         InkWell(
                           onTap: () {
                             getViewDocument(model[i].viewlink!);

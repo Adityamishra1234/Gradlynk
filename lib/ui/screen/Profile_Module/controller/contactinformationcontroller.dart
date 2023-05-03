@@ -135,10 +135,12 @@ class ContactInformationController extends GetxController with StateMixin {
       cityCode = [];
       cityList = [];
       citySelected = null;
+      cityIdSelected = null;
       loadingState.value = false;
       stateList = [];
       stateCode = [];
       stateSelected = null;
+      stateIdSelected = null;
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -173,6 +175,7 @@ class ContactInformationController extends GetxController with StateMixin {
       cityCode = [];
       cityList = [];
       citySelected = null;
+      cityIdSelected = null;
       List tempList;
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.city! + state);

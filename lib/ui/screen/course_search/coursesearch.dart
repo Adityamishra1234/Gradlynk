@@ -476,10 +476,10 @@ class _CourseSearchState extends State<CourseSearch> {
           controller.selectCountryName = data;
           controller.selectCountryCode = controller.countryCode[i];
           controller.getState(controller.selectCountryCode!);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackState(data) {
@@ -492,10 +492,10 @@ class _CourseSearchState extends State<CourseSearch> {
           controller.selectStateName = data;
           controller.selectStateCode = controller.stateCode[i];
           controller.getCity(controller.selectStateCode!);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackCity(data) {
@@ -507,10 +507,10 @@ class _CourseSearchState extends State<CourseSearch> {
         if (controller.cityList[i] == data) {
           controller.selectCityName = data;
           controller.selectCityCode = controller.cityCode[i];
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackCourseLevel(data) {
@@ -522,10 +522,10 @@ class _CourseSearchState extends State<CourseSearch> {
         if (controller.courseLevelList[i] == data) {
           controller.selectCourseLevelName = data;
           controller.selectCourseLevelCode = controller.courseLevelCode[i];
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackCourseBroadField(data) {
@@ -539,24 +539,25 @@ class _CourseSearchState extends State<CourseSearch> {
           controller.selectCourseBoardFieldCode = controller.courseBoardCode[i];
           controller
               .getCoursenarrowField(controller.selectCourseBoardFieldCode!);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackCoursenarrowField(data) {
     for (var i = 0; i < controller.courseNarrowList.length; i++) {
       if (i == 0) {
-        controller.selectCourseBoardFieldName = null;
-        controller.selectCourseBoardFieldCode = null;
+        controller.selectCourseNarrowFieldCode = null;
+        controller.selectCourseNarrowFieldName = null;
       } else {
-        if (controller.courseBoardList[i] == data) {
-          controller.selectCourseBoardFieldName = data;
-          controller.selectCourseBoardFieldCode = controller.courseBoardCode[i];
-          controller.update();
+        if (controller.courseNarrowList[i] == data) {
+          controller.selectCourseNarrowFieldName = data;
+          controller.selectCourseNarrowFieldCode =
+              controller.courseBoardCode[i];
         }
       }
     }
+    controller.update();
   }
 }

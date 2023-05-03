@@ -42,6 +42,7 @@ class WorkHistoryCopy extends StatelessWidget {
         controller.industryNameCode = int.parse(controller.industriesCode[i]);
       }
     }
+    controller.update();
   }
 
   callbackEmployementType(varTopic) {
@@ -51,6 +52,7 @@ class WorkHistoryCopy extends StatelessWidget {
         controller.employementTypeCode = i + 1;
       }
     }
+    controller.update();
   }
 
   callbackViewDetails(varTopic) {

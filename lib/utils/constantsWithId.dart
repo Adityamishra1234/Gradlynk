@@ -1,33 +1,33 @@
 class ConstantsWithId {
-  static String getTypeofVisa(String typeofVisa) {
-    if (typeofVisa == "1") {
+  static String getTypeofVisa(dynamic typeofVisa) {
+    if (typeofVisa.toString() == "1") {
       return "Student Visa";
-    } else if (typeofVisa == "2") {
+    } else if (typeofVisa.toString() == "2") {
       return "Visitor Visa";
-    } else if (typeofVisa == "3") {
+    } else if (typeofVisa.toString() == "3") {
       return "Tourist Visa";
-    } else if (typeofVisa == "4") {
+    } else if (typeofVisa.toString() == "4") {
       return "Spouse Migration Visa";
-    } else if (typeofVisa == "5") {
+    } else if (typeofVisa.toString() == "5") {
       return "Student Dependent Visa";
     } else {
       return "";
     }
   }
 
-  static getApplicationType(String applicaaiontype) {
-    if (applicaaiontype == "1") {
+  static getApplicationType(dynamic applicaaiontype) {
+    if (applicaaiontype.toString() == "1") {
       return "Self";
-    } else if (applicaaiontype == "2") {
+    } else if (applicaaiontype.toString() == "2") {
       return "Spouse";
-    } else if (applicaaiontype == "3") {
+    } else if (applicaaiontype.toString() == "3") {
       return "Child";
     } else {
       return "";
     }
   }
 
-  static getOfferStatus(String data) {
+  static getOfferStatus(dynamic data) {
 //       1= Awaiting Offer
 // 2= Offer TAT Lapse
 
@@ -37,37 +37,37 @@ class ConstantsWithId {
 // 5= Rejected From University
 // 6 = Program Waitlisted
 
-    if (data == "1") {
+    if (data.toString() == "1") {
       return "Awaiting Offer";
-    } else if (data == "2") {
+    } else if (data.toString() == "2") {
       return "Offer TAT Lapse";
-    } else if (data == "3") {
+    } else if (data.toString() == "3") {
       return "Conditional Offer Received";
-    } else if (data == "4") {
+    } else if (data.toString() == "4") {
       return "Full Offer Received";
-    } else if (data == "5") {
+    } else if (data.toString() == "5") {
       return "Rejected From University";
-    } else if (data == "6") {
+    } else if (data.toString() == "6") {
       return "Program Waitlisted";
     } else {
       return "";
     }
   }
 
-  static getPaymentMode(String data) {
-    if (data == "1") {
+  static getPaymentMode(dynamic data) {
+    if (data.toString() == "1") {
       return "Cheque";
-    } else if (data == "2") {
+    } else if (data.toString() == "2") {
       return "Cash";
-    } else if (data == "3") {
+    } else if (data.toString() == "3") {
       return "IMPS";
-    } else if (data == "4") {
+    } else if (data.toString() == "4") {
       return "NEFT/RTGS";
-    } else if (data == "5") {
+    } else if (data.toString() == "5") {
       return "TT(Telegraphic Transfer)";
-    } else if (data == "6") {
+    } else if (data.toString() == "6") {
       return "Debit card";
-    } else if (data == "7") {
+    } else if (data.toString() == "7") {
       return "Credit card";
     } else {
       return "";
@@ -82,10 +82,10 @@ class ConstantsWithId {
 
 //     ],
 
-  static getPaymentOption(String data) {
-    if (data == "1") {
+  static getPaymentOption(dynamic data) {
+    if (data.toString() == "1") {
       return "SIEC";
-    } else if (data == "2") {
+    } else if (data.toString() == "2") {
       return "Client";
     } else {
       return "";

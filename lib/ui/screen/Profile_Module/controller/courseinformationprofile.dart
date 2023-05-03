@@ -119,7 +119,8 @@ class CourseInformationProfileController extends GetxController {
     }
   }
 
-  updateCourseInformation(int enqId, int courseLevelId, String action) async {
+  updateCourseInformation(
+      int? enqId, int? courseLevelId, String? action) async {
     try {
       String? endpoint;
       endpoint = Endpoints.addCourseInformationPart1! +
@@ -135,7 +136,37 @@ class CourseInformationProfileController extends GetxController {
                 viewCourseInformationList[i].courseNarrowId!);
       }
       var res = await apiServices.addProfileModule(
-          Endpoints.baseUrl!, endpoint!, "Course Information", action);
+          Endpoints.baseUrl!, endpoint!, "Course Information", action!);
+      loadingViewCourseInformation.value = true;
+      update();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+//Alll delete course information
+  allDelete(int? enqId, String? action) async {
+    try {
+      String? endpoint;
+      endpoint = Endpoints.addCourseInformationPart1!;
+      //     enqId.toString() +
+      //     Endpoints.addCourseInformationPart2! +
+      //     courseLevelId.toString();
+      // for (var i = 0; i < viewCourseInformationList.length; i++) {
+      //   print(i);
+      //   endpoint = endpoint! +
+      //       getaddCourseInformationPart3(
+      //           i,
+      //           viewCourseInformationList[i].courseBroadId!,
+      //           viewCourseInformationList[i].courseNarrowId!);
+      // }
+      var res = await apiServices.addProfileModule(
+          Endpoints.baseUrl!, endpoint!, "Course Information", action!);
       loadingViewCourseInformation.value = true;
       update();
     } catch (e) {

@@ -487,12 +487,12 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     if (controller.maritalStatusIdSelected == 1 ||
                         controller.maritalStatusIdSelected == 3)
                       CustomDropDownSingle(
-                        model: const ["0", "1", "2", "3", "4"],
+                        model: const ["1", "2", "3", "4"],
                         callbackFunction: callbackChildrenCount,
                         initialSelectedValue:
                             controller.childrenCountSelected != null
                                 ? controller.childrenCountSelected.toString()
-                                : "0",
+                                : "1",
                         choosefieldtype: saveAndEdit,
                       ),
                     Padding(
@@ -1400,10 +1400,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           controller.citySelected = controller.cityList[i];
           controller.cityIdSelected = int.parse(controller.cityCode[i]);
           // controller.getCity("${controller.cityCode[i]}");
-          controller.update();
         }
       }
     }
+    controller.update();
     // setState(() {});
   }
 
@@ -1420,6 +1420,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         }
       }
     }
+    controller.update();
   }
 
   callbackCountry(varTopic) {
@@ -1432,10 +1433,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           controller.countrySelected = varTopic;
           controller.countryIdSelected = int.parse(controller.countryCode[i]);
           controller.getState(controller.countryCode[i]);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackGender(varTopic) {
@@ -1446,9 +1447,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       } else if (gender[i].toString() == varTopic.toString()) {
         controller.genderSelected = gender[i];
         controller.genderIdSelected = i + 1;
-        controller.update();
       }
     }
+    controller.update();
   }
 
   callbackMaritalStatus(varTopic) {
@@ -1460,16 +1461,20 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       if (controller.martialStatusList[i].toString() == varTopic.toString()) {
         controller.maritalStatusSelected = controller.martialStatusList[i];
         controller.maritalStatusIdSelected = i;
-        controller.update();
       }
     }
+    controller.update();
   }
 
   callbackChildrenCount(varTopic) {
     if (getNUllChecker(varTopic) == false) {
-      controller.childrenCountSelected = int.parse(varTopic);
-      setState(() {});
+      if (varTopic == "No") {
+        controller.childrenCountSelected = int.parse("0");
+      } else {
+        controller.childrenCountSelected = int.parse(varTopic);
+      }
     }
+    controller.update();
   }
 
   callbackDOB(data) {

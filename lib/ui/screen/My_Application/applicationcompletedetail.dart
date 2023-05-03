@@ -540,8 +540,9 @@ class _ApplicationCompleteDetailsState
                                       secondField: "Amount Paid",
                                       firstFiledName:
                                           ConstantsWithId.getPaymentOption(
-                                              _.model.paymentOption),
-                                      secondFieldName: _.model.amountPaid,
+                                              _.model.paymentOption.toString()),
+                                      secondFieldName:
+                                          _.model.amountPaid.toString(),
                                     ),
                                     getTable(
                                       firstField: "Date of Payment",
@@ -555,7 +556,7 @@ class _ApplicationCompleteDetailsState
                                       firstFiledName: _.model.siecEmployee,
                                       secondFieldName:
                                           ConstantsWithId.getPaymentMode(
-                                              _.model.modeOfPayment),
+                                              _.model.modeOfPayment.toString()),
                                     ),
                                     getTable(
                                       firstField: "Balance Fee",

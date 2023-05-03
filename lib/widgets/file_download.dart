@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,38 @@ class _FileDownloadState extends State<FileDownload> {
   bool loading = false;
   double progress = 0;
 
+  ReceivePort _port = ReceivePort();
+
+  @override
+  void initState() {
+    super.initState();
+
+    IsolateNameServer.registerPortWithName(
+        _port.sendPort, 'downloader_send_port');
+    _port.listen((dynamic data) {
+      String id = data[0];
+      DownloadTaskStatus status = DownloadTaskStatus(data[1]);
+      int progress = data[2];
+      setState(() {});
+    });
+
+    FlutterDownloader.registerCallback(downloadCallback);
+  }
+
+  @override
+  void dispose() {
+    IsolateNameServer.removePortNameMapping('downloader_send_port');
+    super.dispose();
+  }
+
+  @pragma('vm:entry-point')
+  static void downloadCallback(
+      String id, DownloadTaskStatus status, int progress) {
+    final SendPort? send =
+        IsolateNameServer.lookupPortByName('downloader_send_port');
+    send!.send([id, status, progress]);
+  }
+
   @override
   Widget build(BuildContext context) {
     print(widget.url);
@@ -54,7 +88,7 @@ class _FileDownloadState extends State<FileDownload> {
           // Do something here
           // getToast("Please wait for download");
           if (Platform.isAndroid) {
-            await download(widget.url!);
+            await download(widget.url);
           } else if (Platform.isIOS) {
             await downloadFile(widget.url!);
           }
@@ -158,39 +192,44 @@ class _FileDownloadState extends State<FileDownload> {
   }
 
   Future download(String url) async {
-    var status = await Permission.storage.request();
-    if (await Permission.storage.request().isGranted) {
-      final Directory tempDir = await getTemporaryDirectory();
+    try {
+      var status = await Permission.storage.request();
+      await getExternalStorageDirectories();
+      if (await Permission.storage.request().isGranted) {
+        final Directory tempDir = await getTemporaryDirectory();
 
-      final Directory appDocumentsDir =
-          await getApplicationDocumentsDirectory();
+        final Directory appDocumentsDir =
+            await getApplicationDocumentsDirectory();
 
-      bool dirDownloadExists = true;
-      var directory;
-      if (Platform.isIOS) {
-        directory = (await getApplicationDocumentsDirectory()).path;
-      } else {
-        directory = "/storage/emulated/0/Download/";
-
-        dirDownloadExists = await Directory(directory).exists();
-        if (dirDownloadExists) {
-          directory = "/storage/emulated/0/Download/";
+        bool dirDownloadExists = true;
+        var directory;
+        if (Platform.isIOS) {
+          directory = (await getApplicationDocumentsDirectory()).path;
         } else {
-          directory = "/storage/emulated/0/Downloads/";
+          directory = "/storage/emulated/0/Download/";
+
+          dirDownloadExists = await Directory(directory).exists();
+          if (dirDownloadExists) {
+            directory = "/storage/emulated/0/Download/";
+          } else {
+            directory = "/storage/emulated/0/Downloads/";
+          }
         }
+        var res = await FlutterDownloader.enqueue(
+          url: url,
+
+          headers: {}, // optional: header send with url (auth token etc)
+          savedDir: directory,
+
+          saveInPublicStorage: true,
+          showNotification:
+              true, // show download progress in status bar (for Android)
+          openFileFromNotification:
+              false, // click on notification to open downloaded file (for Android)
+        );
       }
-      var res = await FlutterDownloader.enqueue(
-        url: url,
-
-        headers: {}, // optional: header send with url (auth token etc)
-        savedDir: directory,
-
-        saveInPublicStorage: true,
-        showNotification:
-            true, // show download progress in status bar (for Android)
-        openFileFromNotification:
-            false, // click on notification to open downloaded file (for Android)
-      );
+    } catch (e) {
+      print("object");
     }
   }
 }
