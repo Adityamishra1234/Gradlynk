@@ -65,6 +65,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
 
   @override
   void didUpdateWidget(covariant CourseSearchList oldWidget) {
+    print("didUpdateWidget");
     controller1.courseSearch(
         widget.countryId!,
         widget.courseLevel!,
@@ -73,9 +74,16 @@ class _CourseSearchListState extends State<CourseSearchList> {
         widget.cityCode ?? "",
         widget.boardFieldCode ?? "",
         widget.narrowField ?? "");
-    print("didUpdateWidget");
+
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller1.dispose();
+    super.dispose();
   }
 
   @override
@@ -234,7 +242,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                         widget.cityCode ?? "",
                                         widget.boardFieldCode ?? "",
                                         widget.narrowField ?? "");
-                                    // Get.delete<CourseShortListController>();
+
                                     Get.toNamed(ReviewShortList.routeNamed,
                                         arguments: [
                                           {"countryId": widget.countryId!},
@@ -255,7 +263,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                           {
                                             "narrowField":
                                                 widget.narrowField ?? ""
-                                          }
+                                          },
+                                          {"previous_screenCourseSearch": true}
                                         ]);
                                   },
                                   child: Container(

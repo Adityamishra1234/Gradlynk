@@ -194,11 +194,11 @@ class SnackBarConstants {
   //Course Search.dart Toast
   static String? courseSearchPart1 = "Kindly select Country of Interest";
   static String? courseSearchPart2 = "Kindly select Course Level";
-  static String? coursesearchPart3 = "Opps! No course found";
+  static String? coursesearchPart3 = "Oops! No course found";
 
   //CourseSearchList.dart Toast
   static String? courseSearchListPart3 = "Kindly select Course";
-  static String? courseSearchListPart4 = "Opps! Course not found";
+  static String? courseSearchListPart4 = "Oops! Course not found";
   static String? reviewcourselistPart1 =
       "No course available in Review course section";
   static String? finalcourselistPart1 =
@@ -219,7 +219,7 @@ class SnackBarConstants {
   static String? passportDetails = "Passport details updated successfully";
   static String? otherTestDetail =
       "Qualifying test details updated successfully";
-  static String? errorMsg = "Opps! Something went to wrong.";
+  static String? errorMsg = "Oops! Something went to wrong.";
   static String? saveComments = "Comment added successfully";
   static String? phoneNumber =
       "Kindly check OTP sent on your registered phone number";
@@ -242,6 +242,7 @@ class SnackBarConstants {
   static String? fileSelectedError2 = "You can upload a maximum of 2 files";
   static String? feedBackError = "Kindly mention your feedback";
   static String? raiseIssueError = "Kindly specify your issue";
+  //TODO
   static String? raiseIssue =
       "Thankyou, Your ticket has been raised successfully";
   static String? phonenumber =
