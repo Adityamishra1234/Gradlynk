@@ -53,6 +53,20 @@ class _ReviewShortListState extends State<ReviewShortList> {
     }
   }
 
+  // @override
+  // void didChangeDependencies() {
+  //   // TODO: implement didChangeDependencies
+  //   print("object");
+  //   super.didChangeDependencies();
+  // }
+
+  // @override
+  // void didUpdateWidget(covariant ReviewShortList oldWidget) {
+  //   // TODO: implement didUpdateWidget
+  //   print("didUpdateWidget");
+  //   super.didUpdateWidget(oldWidget);
+  // }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -69,9 +83,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
         controller1.courseModelFilter = widget.courseModelFilter!;
       }
     }
-
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
-    print(Get.arguments);
     return Scaffold(
         appBar: CustomAppBar("title"),
         drawer: displayMobileLayout == false
@@ -94,20 +106,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                 Get.arguments[6]["narrowField"].toString(),
               );
               Get.find<CourseShortListController>().update();
-              // Get.find<CourseShortListController>().dispose();
-              // print("aman");
-              // previous_screenCourseSearch
-              // Get.back(
-              //     result: CourseSearchList(
-              //   filterRedirect: false,
-              //   stateCode: Get.arguments[3]["statecode"].toString(),
-              //   cityCode: Get.arguments[4]["cityCode"].toString(),
-              //   boardFieldCode: Get.arguments[5]["boardFieldCode"].toString(),
-              //   narrowField: Get.arguments[6]["narrowField"].toString(),
-              //   countryId: Get.arguments[0]["countryId"].toString(),
-              //   courseLevel: Get.arguments[1]["courseLevel"].toString(),
-              //   enq_id: Get.arguments[2]["enq_id"].toString(),
-              // ));
+            } else {
+              Get.back();
             }
 
             return await true;
@@ -242,7 +242,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                 controller1.loadingCourseShortList.value =
                                     false;
                                 controller1.update();
-                                Get.toNamed(FinalShortList.routeNamed);
+                                Get.toNamed(FinalShortList.routeNamed,
+                                    arguments: true);
                               },
                               child: Container(
                                 height: 30,

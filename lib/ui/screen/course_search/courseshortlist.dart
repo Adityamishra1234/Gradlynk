@@ -59,6 +59,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
   @override
   void didChangeDependencies() {
     print("object");
+    controller1 = Get.put(CourseShortListController());
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
   }
@@ -66,6 +67,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
   @override
   void didUpdateWidget(covariant CourseSearchList oldWidget) {
     print("didUpdateWidget");
+    controller1 = Get.put(CourseShortListController());
     controller1.courseSearch(
         widget.countryId!,
         widget.courseLevel!,
@@ -79,12 +81,12 @@ class _CourseSearchListState extends State<CourseSearchList> {
     super.didUpdateWidget(oldWidget);
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    controller1.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   controller1.dispose();
+  //   super.dispose();
+  // }
 
   @override
   void initState() {

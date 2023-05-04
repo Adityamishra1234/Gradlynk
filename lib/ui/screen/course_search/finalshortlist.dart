@@ -65,10 +65,13 @@ class _FinalShortListState extends State<FinalShortList> {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return WillPopScope(
       onWillPop: () async {
-        await Get.find<ReviewShortListController>().GetCourseShortList(
-            Get.find<BaseController>().model1.id.toString());
-        Get.find<ReviewShortListController>().update();
-
+        try {
+          await Get.find<ReviewShortListController>().GetCourseShortList(
+              Get.find<BaseController>().model1.id.toString());
+          Get.find<ReviewShortListController>().update();
+        } catch (e) {
+          print("object");
+        }
         Get.back();
         return await true;
       },

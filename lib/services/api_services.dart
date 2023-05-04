@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
@@ -419,6 +420,9 @@ class ApiServices extends StudentPanelBase implements api {
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
       );
+      await Get.find<ReviewShortListController>()
+          .GetCourseShortList(Get.find<BaseController>().model1.id.toString());
+      Get.find<ReviewShortListController>().update();
       Get.back();
       getToast(SnackBarConstants.finalcourselistPart1!);
     }
