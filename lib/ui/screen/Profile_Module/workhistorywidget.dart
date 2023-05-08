@@ -164,15 +164,20 @@ class WorkHistoryWidget extends StatelessWidget {
             ),
           ),
           CustomDropDownSingle(
-            model: controller.loadingIndustries.value == true
-                ? controller.industriesList
-                : ["No data"],
-            initialSelectedValue: controller.loadingIndustries.value == true
-                ? update == false
-                    ? controller
-                        .workHistoryViewModelList[index!].jobIndustryName
-                    : controller.industriesList[0]
-                : "No data",
+            model: getDropdownModel(controller.loadingIndustries.value,
+                controller.industryNameSelected, controller.industriesList),
+            // controller.loadingIndustries.value == true
+            // ? controller.industriesList
+            // : ["No data"],
+            initialSelectedValue: getSelectedDropDown(
+                controller.loadingIndustries.value,
+                controller.industryNameSelected,
+                controller.industriesList),
+            // ? update == false
+            //     ? controller
+            //         .workHistoryViewModelList[index!].jobIndustryName
+            //     : controller.industriesList[0]
+            // : "No data",
             choosefieldtype: false,
             callbackFunction: callbackIndustry,
           ),
@@ -223,14 +228,17 @@ class WorkHistoryWidget extends StatelessWidget {
             ),
           ),
           CustomDropDownSingle(
-            model: controller.loadingEmploymentType.value == true
-                ? controller.employmentTypeList
-                : ["No Data"],
-            initialSelectedValue: controller.loadingEmploymentType.value == true
-                ? update == false
-                    ? controller.workHistoryViewModelList[index!].jobType
-                    : controller.employmentTypeList[0]
-                : "No Data",
+            model: getDropdownModel(
+                controller.loadingEmploymentType.value,
+                controller.employementTypeSelected,
+                controller.employmentTypeList),
+            //  controller.loadingEmploymentType.value == true
+            //     ? controller.employmentTypeList
+            //     : ["No Data"],
+            initialSelectedValue: getSelectedDropDown(
+                controller.loadingEmploymentType.value,
+                controller.employementTypeSelected,
+                controller.employmentTypeList),
             choosefieldtype: false,
             callbackFunction: callbackEmployementType,
           ),
@@ -397,5 +405,26 @@ class WorkHistoryWidget extends StatelessWidget {
         ],
       );
     }, onLoading: getLoading(context));
+  }
+
+  //Function
+  List getDropdownModel(bool loading, String? selected, List model) {
+    if (loading == true) {
+      return model;
+    } else {
+      return ["No data"];
+    }
+  }
+
+  String getSelectedDropDown(bool loading, String? selected, List model) {
+    if (loading == true && model.isNotEmpty) {
+      if (selected == null) {
+        return model[0].toString();
+      } else {
+        return selected;
+      }
+    } else {
+      return "No data";
+    }
   }
 }

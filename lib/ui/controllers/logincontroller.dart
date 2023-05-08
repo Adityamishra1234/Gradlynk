@@ -56,6 +56,7 @@ class LoginController extends GetxController with StateMixin {
       prefs.setString("token", model!.token.toString());
       prefs.setString("id", model!.user!.id.toString());
       change(null, status: RxStatus.success());
+
       Get.offAllNamed(DashBoard.routeNamed, arguments: true);
 
       return model;

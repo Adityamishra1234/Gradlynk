@@ -222,13 +222,6 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
     );
   }
 
-  /// Widget that builds the dropdown overlay.
-  ///
-  /// This Widget is responsible to create the dropdown
-  /// overlay menu every time is open.
-  /// This menu has a [onSelectedItem] callback, used to
-  /// pass upwards the on value changed event, from his children
-  /// to the [CustomDropDown].
   ExpandedSection expandDropDownMethod() => ExpandedSection(
       height: 50,
       expand: isExpanded,

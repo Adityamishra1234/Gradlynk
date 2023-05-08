@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/baseservice.dart';
@@ -420,9 +420,12 @@ class ApiServices extends StudentPanelBase implements api {
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
       );
-      await Get.find<ReviewShortListController>()
-          .GetCourseShortList(Get.find<BaseController>().model1.id.toString());
-      Get.find<ReviewShortListController>().update();
+      try {
+        await Get.find<ReviewShortListController>().GetCourseShortList(
+            Get.find<BaseController>().model1.id.toString());
+        Get.find<ReviewShortListController>().update();
+      } catch (e) {}
+
       Get.back();
       getToast(SnackBarConstants.finalcourselistPart1!);
     }

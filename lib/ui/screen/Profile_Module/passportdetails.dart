@@ -137,19 +137,16 @@ class PassportDetails extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: const ["Yes", "No"],
-              initialSelectedValue:
-                  getNUllChecker(controller.passportAvaliable.value) == true
-                      ? "No"
-                      : controller.passportAvaliable.value == false
-                          ? "Yes"
-                          : "No",
-              choosefieldtype: controller.editSave.value == false,
-              callbackFunction: callbackPassportAvaliables,
-            ),
+          CustomDropDownSingle(
+            model: const ["Yes", "No"],
+            initialSelectedValue:
+                getNUllChecker(controller.passportAvaliable.value) == true
+                    ? "No"
+                    : controller.passportAvaliable.value == false
+                        ? "Yes"
+                        : "No",
+            choosefieldtype: controller.editSave.value == false,
+            callbackFunction: callbackPassportAvaliables,
           ),
           if (controller.passportAvaliable.value == false)
             ...getPassportAvaliable(controller, context),
@@ -175,21 +172,18 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingCountry.value == true
-              ? controller.countryList
-              : ["No Data"],
-          initialSelectedValue:
-              getNUllChecker(controller.citizenSelected) == false
-                  ? controller.citizenSelected
-                  : controller.loadingCountry.value == true
-                      ? controller.countryList[0]
-                      : "No Data",
-          choosefieldtype: controller.editSave.value == false,
-          callbackFunction: callbackCitizenOf,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingCountry.value == true
+            ? controller.countryList
+            : ["No Data"],
+        initialSelectedValue:
+            getNUllChecker(controller.citizenSelected) == false
+                ? controller.citizenSelected
+                : controller.loadingCountry.value == true
+                    ? controller.countryList[0]
+                    : "No Data",
+        choosefieldtype: controller.editSave.value == false,
+        callbackFunction: callbackCitizenOf,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -236,21 +230,18 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingCountry.value == true
-              ? controller.countryList
-              : ["No Data"],
-          initialSelectedValue:
-              getNUllChecker(controller.countrySelected) == false
-                  ? controller.countrySelected
-                  : controller.loadingCountry.value == true
-                      ? controller.countryList[0]
-                      : "No Data",
-          choosefieldtype: controller.editSave.value == false,
-          callbackFunction: callbackCountry,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingCountry.value == true
+            ? controller.countryList
+            : ["No Data"],
+        initialSelectedValue:
+            getNUllChecker(controller.countrySelected) == false
+                ? controller.countrySelected
+                : controller.loadingCountry.value == true
+                    ? controller.countryList[0]
+                    : "No Data",
+        choosefieldtype: controller.editSave.value == false,
+        callbackFunction: callbackCountry,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -265,21 +256,17 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingState.value == true
-              ? controller.stateList
-              : ["No Data"],
-          initialSelectedValue:
-              getNUllChecker(controller.stateSelected) == false
-                  ? controller.stateSelected
-                  : controller.loadingState.value == true
-                      ? controller.stateList[0]
-                      : "No Data",
-          choosefieldtype: controller.editSave.value == false,
-          callbackFunction: calllbackState,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingState.value == true
+            ? controller.stateList
+            : ["No Data"],
+        initialSelectedValue: getNUllChecker(controller.stateSelected) == false
+            ? controller.stateSelected
+            : controller.loadingState.value == true
+                ? controller.stateList[0]
+                : "No Data",
+        choosefieldtype: controller.editSave.value == false,
+        callbackFunction: calllbackState,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -294,21 +281,18 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingPlaceOfIssuse.value == true
-              ? controller.placeOfIssuse
-              : ["No Data"],
-          initialSelectedValue:
-              getNUllChecker(controller.placeOfIssuseSelected) == false
-                  ? controller.placeOfIssuseSelected
-                  : controller.loadingPlaceOfIssuse.value == true
-                      ? controller.placeOfIssuse[0]
-                      : "No Data",
-          choosefieldtype: controller.editSave.value == false,
-          callbackFunction: callbackPlaceOfIssuse,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingPlaceOfIssuse.value == true
+            ? controller.placeOfIssuse
+            : ["No Data"],
+        initialSelectedValue:
+            getNUllChecker(controller.placeOfIssuseSelected) == false
+                ? controller.placeOfIssuseSelected
+                : controller.loadingPlaceOfIssuse.value == true
+                    ? controller.placeOfIssuse[0]
+                    : "No Data",
+        choosefieldtype: controller.editSave.value == false,
+        callbackFunction: callbackPlaceOfIssuse,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),

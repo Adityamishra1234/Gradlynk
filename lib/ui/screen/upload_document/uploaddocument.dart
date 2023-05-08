@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -311,7 +310,9 @@ class _UploadDocumentState extends State<UploadDocument> {
                           ),
                         ),
                         const Spacer(),
-                        FileDownload(url: model[i].viewlink!),
+                        SizedBox(
+                            width: 100,
+                            child: FileDownload(url: model[i].viewlink!)),
                         const SizedBox(
                           width: 10,
                         ),

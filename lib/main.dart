@@ -165,6 +165,11 @@ class _MyAppState extends State<MyApp> {
             page: () => ProfilePageCopy1(),
             binding: ProfilePageBinding()),
         GetPage(
+            name: ProfilePageCopy.routeNamed,
+            transition: Transition.cupertino,
+            page: () => ProfilePageCopy(),
+            binding: ProfilePageBinding()),
+        GetPage(
             name: DetialScreen.routeNamed,
             page: () => const DetialScreen(),
             transition: Transition.fade,

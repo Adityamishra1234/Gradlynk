@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,14 @@ class _LoginCopyState extends State<LoginCopy> {
     super.initState();
 
     // _checkVersion();
+  }
+
+  @override
+  void dispose() {
+    // controller.dispose();
+    phoneNumber.text = "";
+    otpcontroller.text = "";
+    super.dispose();
   }
 
   // void _checkVersion() async {

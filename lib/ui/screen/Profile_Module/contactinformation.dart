@@ -157,7 +157,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           StackTrace.current.toString(),
         );
       }
-
       return controller.loadingStudentPanelData.value == 3
           ? Form(
               key: profilePageKey,
@@ -171,9 +170,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     Center(
                         child: InkWell(
                       onTap: () {
-                        Get.snackbar(
-                            "Image Upload Process ", "Image Upload Process",
-                            snackPosition: SnackPosition.BOTTOM);
+                        // Get.snackbar(
+                        //     "Image Upload Process ", "Image Upload Process",
+                        //     snackPosition: SnackPosition.BOTTOM);
                       },
                       child: CircleAvatar(
                         onBackgroundImageError: (exception, stackTrace) {

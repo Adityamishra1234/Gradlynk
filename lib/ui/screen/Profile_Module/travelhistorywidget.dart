@@ -346,7 +346,7 @@ class TravelHistoryWidget extends StatelessWidget {
                         controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
                             controller.travelAbroadSelected!,
-                            "add");
+                            "added");
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "Add",

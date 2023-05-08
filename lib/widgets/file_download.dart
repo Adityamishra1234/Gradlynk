@@ -14,6 +14,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_downloder_notification/custom_download_button.dart';
+import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification_payload_types.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class FileDownload extends StatefulWidget {
@@ -63,39 +65,43 @@ class _FileDownloadState extends State<FileDownload> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.url);
-    return LoadingButton(
-      height: 35,
-      borderRadius: 8,
-      animate: true,
-      color: Colors.indigo,
-      width: 120,
-      loader: Container(
-        padding: const EdgeInsets.all(10),
-        width: 30,
-        height: 30,
-        child: const CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+    if (Platform.isAndroid) {
+      return CustomDownloadButton(
+          path: widget.url, payload: PayloadTypes.download);
+    } else {
+      return LoadingButton(
+        height: 35,
+        borderRadius: 8,
+        animate: true,
+        color: Colors.indigo,
+        width: 120,
+        loader: Container(
+          padding: const EdgeInsets.all(10),
+          width: 30,
+          height: 30,
+          child: const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
         ),
-      ),
-      child: CustomAutoSizeTextMontserrat(
-        text: "Download",
-        textColor: ThemeConstants.whitecolor,
-      ),
-      onTap: (startLoading, stopLoading, buttonState) async {
-        if (buttonState == ButtonState.idle) {
-          startLoading();
-          // Do something here
-          // getToast("Please wait for download");
-          if (Platform.isAndroid) {
-            await download(widget.url);
-          } else if (Platform.isIOS) {
-            await downloadFile(widget.url!);
+        child: CustomAutoSizeTextMontserrat(
+          text: "Download",
+          textColor: ThemeConstants.whitecolor,
+        ),
+        onTap: (startLoading, stopLoading, buttonState) async {
+          if (buttonState == ButtonState.idle) {
+            startLoading();
+            // Do something here
+            // getToast("Please wait for download");
+            if (Platform.isAndroid) {
+              await download(widget.url);
+            } else if (Platform.isIOS) {
+              await downloadFile(widget.url!);
+            }
+            stopLoading();
           }
-          stopLoading();
-        }
-      },
-    );
+        },
+      );
+    }
   }
 
   Future<bool> saveVideo(String url, String fileName) async {

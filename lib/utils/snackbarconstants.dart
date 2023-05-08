@@ -304,4 +304,6 @@ class SnackBarConstants {
   static String? designation = "Kindly specify your designation";
   static String? employementTypeSelect = "Kindly select your employment type";
   static String? income = "Kindly specify your income as per ITR";
+
+  static String flutterStroageToast = "Please give storage access";
 }

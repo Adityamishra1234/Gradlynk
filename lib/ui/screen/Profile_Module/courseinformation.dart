@@ -70,10 +70,10 @@ class _CourseInformationCopyState extends State<CourseInformationCopy> {
   callbackIndexDelete(data) {
     controller.viewCourseInformationList.removeAt(int.parse(data.toString()));
     if (data.toString() == "0") {
-      controller.allDelete(Get.find<BaseController>().model1.id, "delete");
+      controller.allDelete(Get.find<BaseController>().model1.id, "deleted");
     } else {
       controller.updateCourseInformation(Get.find<BaseController>().model1.id!,
-          controller.viewCourseInformationList[0].courseBroadId!, "delete");
+          controller.viewCourseInformationList[0].courseBroadId!, "deleted");
     }
     setState(() {});
   }
