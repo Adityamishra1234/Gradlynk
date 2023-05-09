@@ -229,201 +229,205 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Offer letter Full Offer",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700,
+                                    childrenBody: Column(
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Offer letter Full Offer",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Fee Receipt",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700,
+                                        const SizedBox(
+                                          height: 10,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
                                             ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Fee Receipt",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
                                           ),
-                                        ],
-                                      ),
-                                    ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -458,402 +462,416 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                    childrenBody: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "GIC Account Number",
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 14,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "GIC Account Username",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel.gicAccNo,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .gicAccountUsername,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "GIC Account Password",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Name of the GIC Bank",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .gicAccountPassword,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel.gicBank,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Date of GIC account request",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel.gicDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Home bank -",
+                                            textColor: ThemeConstants.bluecolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Country of the home bank",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Name of the Home bank",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .homeBankCountryName,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .homeBankName,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Payment receipt received date",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .paymentDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Related Documents -",
+                                            textColor: ThemeConstants.bluecolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text:
+                                                "TT/Swift copy of Amount Transferred",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "GIC Account Number",
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 14,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "GIC Account Username",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .visaDetailModel.gicAccNo,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .gicAccountUsername,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "GIC Certificate",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "GIC Account Password",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Name of the GIC Bank",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .gicAccountPassword,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .visaDetailModel.gicBank,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text:
-                                                    "Date of GIC account request",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .visaDetailModel.gicDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Home bank -",
-                                          textColor: ThemeConstants.bluecolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text:
-                                                    "Country of the home bank",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Name of the Home bank",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .homeBankCountryName,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .homeBankName,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text:
-                                                    "Payment receipt received date",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .paymentDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Related Documents -",
-                                          textColor: ThemeConstants.bluecolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text:
-                                              "TT/Swift copy of Amount Transferred",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "GIC Certificate",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -887,225 +905,237 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                    childrenBody: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "State",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Select City",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .medicalProcessState,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .medicalProcessCity,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Name of the doctor",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Address of the doctor",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .doctorName,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .doctorAddress,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Appointment Date",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Appointment Date",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .appointmentDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .appointmentTime,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Medical Report",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "State",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Select City",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .medicalProcessState,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .medicalProcessCity,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Name of the doctor",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Address of the doctor",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .visaDetailModel.doctorName,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .doctorAddress,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Appointment Date",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Appointment Date",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .appointmentDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .appointmentTime,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Medical Report",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1138,183 +1168,192 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                    childrenBody: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "State",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Select City",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .biometricsStateName,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .biometricsCityName,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Appointment Date",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Appointment Time",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .appointmentDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .appointmentTime,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Biometric Letter",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "State",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Select City",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .biometricsStateName,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .biometricsCityName,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Appointment Date",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Appointment Time",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .appointmentDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .appointmentTime,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Biometric Letter",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1347,365 +1386,375 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                    childrenBody: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "File sent through",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Visa Sent Date",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .fileSentThrough,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .visaSubmissionDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Acknowledgment/TRN/Application number",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .applicationNumber,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Acknowledgment Receipt",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "File sent through",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Visa Sent Date",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .fileSentThrough,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .visaSubmissionDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "PPR Letter",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text:
-                                                    "Acknowledgment/TRN/Application number",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ]),
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .applicationNumber,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
+                                              ),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Acknowledgment Receipt",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
+                                        const SizedBox(
+                                          height: 10,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Stamped Passport",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
                                           ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "PPR Letter",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Stamped Passport",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
+                                        const SizedBox(
+                                          height: 10,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
+                                        Row(
+                                          children: [
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1738,187 +1787,196 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                    childrenBody: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Visa Fee Amount",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Payment Date",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .paymentAmount
+                                                      .toString(),
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .paymentDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Payment Mode",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text:
+                                                      "Payment Reference Number",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .paymentMode,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .referenceNumber,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Payment Receipt",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Visa Fee Amount",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Payment Date",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .paymentAmount
-                                                    .toString(),
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .paymentDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
-                                          children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Payment Mode",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text:
-                                                    "Payment Reference Number",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .paymentMode,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .referenceNumber,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Payment Receipt",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -1951,144 +2009,149 @@ class _VisaDetailState extends State<VisaDetail> {
                                         ],
                                       ),
                                     ),
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 12),
-                                        child: Table(
+                                    childrenBody: Column(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 12),
+                                          child: Table(
+                                            children: [
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Visa Outcome",
+                                                  maxLines: 2,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: "Date",
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ]),
+                                              rowSpacer,
+                                              TableRow(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .visaOutcome,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                                CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .visaDetailModel
+                                                      .visaOutcomeDate,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                  maxLines: 2,
+                                                ),
+                                              ]),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional.topStart,
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Visa Grant Letter",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
                                           children: [
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Visa Outcome",
-                                                maxLines: 2,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Upload",
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Date",
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                                fontWeight: FontWeight.w700,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .bluecolor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Download",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor:
+                                                      ThemeConstants.bluecolor,
+                                                ),
                                               ),
-                                            ]),
-                                            rowSpacer,
-                                            TableRow(children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .visaOutcome,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  elevation: 0,
+                                                  backgroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .orangeColor), // foreground
+                                                ),
+                                                onPressed: () {},
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12,
+                                                  textColor: ThemeConstants
+                                                      .orangeColor,
+                                                ),
                                               ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text: controller.visaDetailModel
-                                                    .visaOutcomeDate,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                                fontSize: 14,
-                                                maxLines: 2,
-                                              ),
-                                            ]),
+                                            ),
                                           ],
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Visa Grant Letter",
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .GreenColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Upload",
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.GreenColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .bluecolor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "Download",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                elevation: 0,
-                                                backgroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor), // foreground
-                                              ),
-                                              onPressed: () {},
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12,
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

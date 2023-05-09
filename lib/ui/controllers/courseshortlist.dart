@@ -152,7 +152,9 @@ class CourseShortListController extends GetxController {
           Endpoints.courseSearchPart5! +
           boarderIeld +
           Endpoints.courseSearchPart6! +
-          narrowField;
+          narrowField +
+          "&enq_id=" +
+          enqId;
       var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
       if (res != null) {
         courseModelFilter = res;

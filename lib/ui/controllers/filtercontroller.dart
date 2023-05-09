@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -63,15 +63,19 @@ class FilterController extends GetxController {
       between_7_15 = false;
       less_7 = false;
 
+      // {"30 Lakh or More": false},
+      // {"15-30 Lakh": false},
+      // {"7-15 Lakh": false},
+      // {"Below 7 Lakh": false}
       if (budget.isNotEmpty) {
         for (var i = 0; i < budget.length; i++) {
-          if (budget[i] == "15-30 lac") {
+          if (budget[i] == "15-30 Lakh") {
             between_15_30 = true;
-          } else if (budget[i] == "7-15 Lac") {
+          } else if (budget[i] == "7-15 Lakh") {
             between_7_15 = true;
-          } else if (budget[i] == "Below 7 Lac") {
+          } else if (budget[i] == "Below 7 Lakh") {
             less_7 = true;
-          } else if (budget[i] == "30 Lac or More") {
+          } else if (budget[i] == "30 Lakh or More") {
             more_30 = true;
           }
         }
@@ -106,9 +110,9 @@ class FilterController extends GetxController {
             between_60_70 = true;
           } else if (academicpercentage[i] == "50%-60%") {
             between_50_60 = true;
-          } else if (academicpercentage[i] == "between 50") {
+          } else if (academicpercentage[i] == "Between 50%") {
             between_50 = true;
-          } else if (academicpercentage[i] == "70+") {
+          } else if (academicpercentage[i] == "70+ %") {
             more_70 = true;
           }
         }
@@ -445,15 +449,15 @@ class FilterController extends GetxController {
         }
         if (getNUllChecker(element.annualTutionFeesInr) == false) {
           if (double.parse(element.annualTutionFeesInr!) < 700000) {
-            filterModel.budget[3].update("Below 7 Lac", (value) => true);
+            filterModel.budget[3].update("Below 7 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
               double.parse(element.annualTutionFeesInr!) < 1500000) {
-            filterModel.budget[2].update("7-15 Lac", (value) => true);
+            filterModel.budget[2].update("7-15 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
               double.parse(element.annualTutionFeesInr!) < 3000000) {
-            filterModel.budget[1].update("15-30 lac", (value) => true);
+            filterModel.budget[1].update("15-30 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
-            filterModel.budget[0].update("30 Lac or More", (value) => true);
+            filterModel.budget[0].update("30 Lakh or More", (value) => true);
           }
           // !.add(element.allFeesInr ?? "");
         }
@@ -599,16 +603,16 @@ class FilterController extends GetxController {
 // Budget Selected Filter
       filterModel.filterSelected.budgetSelected = [];
       if (more_30 == true) {
-        filterModel.filterSelected.budgetSelected.add("30 Lac or More");
+        filterModel.filterSelected.budgetSelected.add("30 Lakh or More");
       }
       if (between_15_30 == true) {
-        filterModel.filterSelected.budgetSelected.add("15-30 lac");
+        filterModel.filterSelected.budgetSelected.add("15-30 Lakh");
       }
       if (between_7_15 == true) {
-        filterModel.filterSelected.budgetSelected.add("7-15 Lac");
+        filterModel.filterSelected.budgetSelected.add("7-15 Lakh");
       }
       if (less_7 == true) {
-        filterModel.filterSelected.budgetSelected.add("Below 7 Lac");
+        filterModel.filterSelected.budgetSelected.add("Below 7 Lakh");
       }
 
       //Academic Percentage selected Added

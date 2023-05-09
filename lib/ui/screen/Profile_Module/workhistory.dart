@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/workhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistorywidget.dart';
 
@@ -37,20 +37,23 @@ class WorkHistoryCopy extends StatelessWidget {
 
   callbackIndustry(varTopic) {
     for (var i = 0; i < controller.industriesList.length; i++) {
-      if (controller.industriesList[i] == varTopic) {
+      if (controller.industriesList[i].toString() == varTopic) {
         controller.industryNameSelected = controller.industriesList[i];
         controller.industryNameCode = int.parse(controller.industriesCode[i]);
       }
     }
+    print(controller.industryNameSelected);
+    controller.update();
   }
 
   callbackEmployementType(varTopic) {
     for (var i = 0; i < controller.employmentTypeList.length; i++) {
-      if (controller.employmentTypeList[i] == varTopic) {
+      if (controller.employmentTypeList[i].toString() == varTopic) {
         controller.employementTypeSelected = controller.employmentTypeList[i];
         controller.employementTypeCode = i + 1;
       }
     }
+    controller.update();
   }
 
   callbackViewDetails(varTopic) {
@@ -67,7 +70,7 @@ class WorkHistoryCopy extends StatelessWidget {
     controller.index = data;
     controller.updateForEdit.value = false;
     controller.viewDetails.value = false;
-    controller.update();
+    controller.getUpdateWorkHistory();
   }
 
   callbackAdded(data) {

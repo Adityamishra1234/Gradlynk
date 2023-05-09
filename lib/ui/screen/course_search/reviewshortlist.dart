@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
+import 'package:studentpanel/ui/controllers/courseshortlist.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/course_search/compare.dart';
 import 'package:studentpanel/ui/screen/complete_course_details/coursesearchfulldetail.dart';
+import 'package:studentpanel/ui/screen/course_search/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/fliter.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -18,11 +21,16 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class ReviewShortList extends StatefulWidget {
+  bool? previewScreenCourseSearch = false;
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   FilterModel? filtermodel = FilterModel();
   bool? filterRedirect = false;
   ReviewShortList(
-      {Key? key, this.courseModelFilter, this.filtermodel, this.filterRedirect})
+      {Key? key,
+      this.courseModelFilter,
+      this.filtermodel,
+      this.filterRedirect,
+      this.previewScreenCourseSearch})
       : super(key: key);
   static const routeNamed = '/ReviewShortlist';
 
@@ -45,6 +53,27 @@ class _ReviewShortListState extends State<ReviewShortList> {
     }
   }
 
+  // @override
+  // void didChangeDependencies() {
+  //   // TODO: implement didChangeDependencies
+  //   print("object");
+  //   super.didChangeDependencies();
+  // }
+
+  // @override
+  // void didUpdateWidget(covariant ReviewShortList oldWidget) {
+  //   // TODO: implement didUpdateWidget
+  //   print("didUpdateWidget");
+  //   super.didUpdateWidget(oldWidget);
+  // }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller1.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.filterRedirect == false) {
@@ -54,7 +83,6 @@ class _ReviewShortListState extends State<ReviewShortList> {
         controller1.courseModelFilter = widget.courseModelFilter!;
       }
     }
-
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
         appBar: CustomAppBar("title"),
@@ -63,311 +91,350 @@ class _ReviewShortListState extends State<ReviewShortList> {
                 index: 4,
               )
             : null,
-        body: GetBuilder<ReviewShortListController>(
-          builder: (_) => Row(
-            children: [
-              if (displayMobileLayout == true)
-                CustomDrawer(
-                  index: 4,
-                ),
-              Flexible(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    if (_.loadingCourseShortList.value == true)
-                      Row(
-                        children: [
-                          // const Spacer(),
-                          // InkWell(
-                          //   onTap: () {
-                          //     // Get.toNamed(ReviewShortList.routeNamed);
-                          //   },
-                          //   child: Container(
-                          //     height: 30,
-                          //     width: 60,
-                          //     decoration: BoxDecoration(
-                          //         color: ThemeConstants.whitecolor,
-                          //         border: Border.all(
-                          //             color: ThemeConstants.bluelightgreycolor),
-                          //         borderRadius:
-                          //             BorderRadiusDirectional.circular(5.0)),
-                          //     child: Center(
-                          //       child: Padding(
-                          //         padding: const EdgeInsets.only(left: 5, right: 5),
-                          //         child: CustomAutoSizeTextMontserrat(
-                          //             text: "Sort",
-                          //             fontSize: 12,
-                          //             textColor: ThemeConstants.bluelightgreycolor),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
+        body: WillPopScope(
+          onWillPop: () async {
+            // print(Get.arguments[7]["previous_screenCourseSearch"]);
+            if (Get.arguments[7]["previous_screenCourseSearch"].toString() ==
+                "true") {
+              Get.find<CourseShortListController>().courseSearch(
+                Get.arguments[0]["countryId"].toString(),
+                Get.arguments[1]["courseLevel"].toString(),
+                Get.find<BaseController>().model1.id.toString(),
+                Get.arguments[3]["statecode"].toString(),
+                Get.arguments[4]["cityCode"].toString(),
+                Get.arguments[5]["boardFieldCode"].toString(),
+                Get.arguments[6]["narrowField"].toString(),
+              );
+              Get.find<CourseShortListController>().update();
+            } else {
+              Get.back();
+            }
 
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              if (controller1.courseModelFilter
-                                      .previousCourseSearchList.length <=
-                                  controller1.courseModelFilter.courseSearchList
-                                      .length) {
-                                controller1.courseModelFilter
-                                        .previousCourseSearchList =
-                                    controller1
-                                        .courseModelFilter.courseSearchList;
-                              }
+            return await true;
+          },
+          child: GetBuilder<ReviewShortListController>(
+            builder: (_) => Row(
+              children: [
+                if (displayMobileLayout == true)
+                  CustomDrawer(
+                    index: 4,
+                  ),
+                Flexible(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      if (_.loadingCourseShortList.value == true)
+                        Row(
+                          children: [
+                            // const Spacer(),
+                            // InkWell(
+                            //   onTap: () {
+                            //     // Get.toNamed(ReviewShortList.routeNamed);
+                            //   },
+                            //   child: Container(
+                            //     height: 30,
+                            //     width: 60,
+                            //     decoration: BoxDecoration(
+                            //         color: ThemeConstants.whitecolor,
+                            //         border: Border.all(
+                            //             color: ThemeConstants.bluelightgreycolor),
+                            //         borderRadius:
+                            //             BorderRadiusDirectional.circular(5.0)),
+                            //     child: Center(
+                            //       child: Padding(
+                            //         padding: const EdgeInsets.only(left: 5, right: 5),
+                            //         child: CustomAutoSizeTextMontserrat(
+                            //             text: "Sort",
+                            //             fontSize: 12,
+                            //             textColor: ThemeConstants.bluelightgreycolor),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+
+                            const Spacer(),
+                            InkWell(
+                              onTap: () {
+                                if (controller1.courseModelFilter
+                                        .previousCourseSearchList.length <=
+                                    controller1.courseModelFilter
+                                        .courseSearchList.length) {
+                                  controller1.courseModelFilter
+                                          .previousCourseSearchList =
+                                      controller1
+                                          .courseModelFilter.courseSearchList;
+                                }
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Filter(
+                                              courseModelFilter:
+                                                  controller1.courseModelFilter,
+                                              previousRoute:
+                                                  ReviewShortList.routeNamed,
+                                              filtermodel: widget.filtermodel,
+                                            )));
+                                // Get.to(Filter(
+                                //   courseModelFilter:
+                                //       controller1.courseModelFilter,
+                                //   previousRoute: ReviewShortList.routeNamed,
+                                //   filtermodel: widget.filtermodel,
+                                // ));
+                              },
+                              child: Container(
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.lightorangeColor,
+                                    border: Border.all(
+                                      color: ThemeConstants.orangeColor,
+                                    ),
+                                    borderRadius:
+                                        BorderRadiusDirectional.circular(5.0)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, right: 5),
+                                    child: CustomAutoSizeTextMontserrat(
+                                        text: "Filter",
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        textColor: ThemeConstants.orangeColor),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            InkWell(
+                              onTap: () {
+                                if (controller1.compareApply.value == false) {
+                                  controller1.setCompare(true.obs);
+                                } else {
+                                  controller1.setCompare(false.obs);
+                                }
+                              },
+                              child: Container(
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.lightgreentColor,
+                                    border: Border.all(
+                                      color: ThemeConstants.GreenColor,
+                                    ),
+                                    borderRadius:
+                                        BorderRadiusDirectional.circular(5.0)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, right: 5),
+                                    child: CustomAutoSizeTextMontserrat(
+                                        text: "Compare",
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        textColor: ThemeConstants.GreenColor),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            InkWell(
+                              onTap: () {
+                                controller1.loadingCourseShortList.value =
+                                    false;
+                                controller1.update();
+                                Get.toNamed(FinalShortList.routeNamed,
+                                    arguments: true);
+                              },
+                              child: Container(
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.lightVioletColor,
+                                    border: Border.all(
+                                        color: ThemeConstants.VioletColor),
+                                    borderRadius:
+                                        BorderRadiusDirectional.circular(5.0)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 5, right: 5),
+                                    child: CustomAutoSizeTextMontserrat(
+                                        text: "Final Shortlist",
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        textColor: ThemeConstants.VioletColor),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      if (_.loadingCourseShortList.value == true)
+                        Expanded(
+                          child: Scrollbar(
+                            thumbVisibility: true,
+                            thickness: 10,
+                            controller: yourScrollController,
+                            child: ListView.builder(
+                                controller: yourScrollController,
+                                itemCount: widget.courseModelFilter == null
+                                    ? (controller1.courseSearchModel.length + 1)
+                                    : widget.courseModelFilter!.courseSearchList
+                                        .length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    children: [
+                                      //  CollagelistExpandedWidget(
+                                      //         callbackRemoveCourse:
+                                      //             callbackCompareCourseRemove,
+                                      //         courseSearchModelCompare1:
+                                      //             _.courseSearchModelCompare1,
+                                      //         courseSearchModelCompare2:
+                                      //             _.courseSearchModelCompare2,
+                                      //         previousRoute:
+                                      //             CourseSearchList.routeNamed,
+                                      //         index: index,
+                                      //         courseShortListFirst: true,
+                                      //         courseSearchModelCompare1Id:
+                                      //             _.courseSearchModelCompare1.id,
+                                      //         courseSearchModelCompare2Id:
+                                      //             _.courseSearchModelCompare2.id,
+                                      //         callbackForModelCompare:
+                                      //             callbackModelCompare,
+                                      //         callbackCompare: callbackCompare,
+                                      //         iscompare:
+                                      //             controller1.compareApply.value,
+                                      //         courseSearchModel: controller1
+                                      //             .courseModelFilter
+                                      //             .courseSearchList[index],
+                                      //         callbackFunction:
+                                      //             callbackCompleteDetailCourse,
+                                      //         callbackShortListButton:
+                                      //             CallbackShortListButton,
+                                      //         finalShortListFirst: false,
+                                      //       ),
+                                      if (controller1
+                                              .courseSearchModel.length !=
+                                          index)
+                                        CollagelistExpandedWidget(
+                                          callbackRemoveCourse:
+                                              callbackCompareCourseRemove,
+                                          courseSearchModelCompare1:
+                                              _.courseSearchModelCompare1,
+                                          courseSearchModelCompare2:
+                                              _.courseSearchModelCompare2,
+                                          previousRoute:
+                                              ReviewShortList.routeNamed,
+                                          index: index,
+                                          courseShortListFirst: true,
+                                          courseSearchModelCompare1Id:
+                                              controller1
+                                                  .courseSearchModelCompare1.id,
+                                          courseSearchModelCompare2Id:
+                                              controller1
+                                                  .courseSearchModelCompare2.id,
+                                          callbackForModelCompare:
+                                              callbackModelCompare,
+                                          callbackCompare: callbackCompare,
+                                          //done
+                                          iscompare:
+                                              controller1.compareApply.value,
+                                          courseSearchModel: controller1
+                                              .courseSearchModel[index],
+                                          callbackFunction:
+                                              callbackCompleteDetailCourse,
+                                          finalShortListFirst: true,
+                                          callbackShortListButton:
+                                              CallbackShortListButton,
+                                          callbackFinalShortListButton:
+                                              CallbackFinalShortList,
+                                        ),
+                                    ],
+                                  );
+                                }),
+                          ),
+                        ),
+                      if (controller1.compareApply.value == true)
+                        InkWell(
+                          onTap: () {
+                            if (controller1.courseSearchModelCompare1.id !=
+                                    null &&
+                                controller1.courseSearchModelCompare2.id !=
+                                    null) {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Filter(
-                                            courseModelFilter:
-                                                controller1.courseModelFilter,
-                                            previousRoute:
-                                                ReviewShortList.routeNamed,
-                                            filtermodel: widget.filtermodel,
-                                          )));
-                              // Get.to(Filter(
-                              //   courseModelFilter:
-                              //       controller1.courseModelFilter,
-                              //   previousRoute: ReviewShortList.routeNamed,
-                              //   filtermodel: widget.filtermodel,
-                              // ));
-                            },
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightorangeColor,
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 5, right: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Filter",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      textColor: ThemeConstants.orangeColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              if (controller1.compareApply.value == false) {
-                                controller1.setCompare(true.obs);
-                              } else {
-                                controller1.setCompare(false.obs);
-                              }
-                            },
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightgreentColor,
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 5, right: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Compare",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      textColor: ThemeConstants.GreenColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              Get.toNamed(FinalShortList.routeNamed);
-                            },
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightVioletColor,
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 5, right: 5),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Final Shortlist",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      textColor: ThemeConstants.VioletColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    if (_.loadingCourseShortList.value == true)
-                      Expanded(
-                        child: Scrollbar(
-                          thumbVisibility: true,
-                          thickness: 10,
-                          controller: yourScrollController,
-                          child: ListView.builder(
-                              controller: yourScrollController,
-                              itemCount: widget.courseModelFilter == null
-                                  ? (controller1.courseSearchModel.length + 1)
-                                  : widget.courseModelFilter!.courseSearchList
-                                      .length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Column(
-                                  children: [
-                                    //  CollagelistExpandedWidget(
-                                    //         callbackRemoveCourse:
-                                    //             callbackCompareCourseRemove,
-                                    //         courseSearchModelCompare1:
-                                    //             _.courseSearchModelCompare1,
-                                    //         courseSearchModelCompare2:
-                                    //             _.courseSearchModelCompare2,
-                                    //         previousRoute:
-                                    //             CourseSearchList.routeNamed,
-                                    //         index: index,
-                                    //         courseShortListFirst: true,
-                                    //         courseSearchModelCompare1Id:
-                                    //             _.courseSearchModelCompare1.id,
-                                    //         courseSearchModelCompare2Id:
-                                    //             _.courseSearchModelCompare2.id,
-                                    //         callbackForModelCompare:
-                                    //             callbackModelCompare,
-                                    //         callbackCompare: callbackCompare,
-                                    //         iscompare:
-                                    //             controller1.compareApply.value,
-                                    //         courseSearchModel: controller1
-                                    //             .courseModelFilter
-                                    //             .courseSearchList[index],
-                                    //         callbackFunction:
-                                    //             callbackCompleteDetailCourse,
-                                    //         callbackShortListButton:
-                                    //             CallbackShortListButton,
-                                    //         finalShortListFirst: false,
-                                    //       ),
-                                    if (controller1.courseSearchModel.length !=
-                                        index)
-                                      CollagelistExpandedWidget(
-                                        callbackRemoveCourse:
-                                            callbackCompareCourseRemove,
-                                        courseSearchModelCompare1:
-                                            _.courseSearchModelCompare1,
-                                        courseSearchModelCompare2:
-                                            _.courseSearchModelCompare2,
-                                        previousRoute:
-                                            ReviewShortList.routeNamed,
-                                        index: index,
-                                        courseShortListFirst: true,
-                                        courseSearchModelCompare1Id: controller1
-                                            .courseSearchModelCompare1.id,
-                                        courseSearchModelCompare2Id: controller1
-                                            .courseSearchModelCompare2.id,
-                                        callbackForModelCompare:
-                                            callbackModelCompare,
-                                        callbackCompare: callbackCompare,
-                                        //done
-                                        iscompare:
-                                            controller1.compareApply.value,
-                                        courseSearchModel: controller1
-                                            .courseSearchModel[index],
-                                        callbackFunction:
-                                            callbackCompleteDetailCourse,
-                                        finalShortListFirst: true,
-                                        callbackShortListButton:
-                                            CallbackShortListButton,
-                                        callbackFinalShortListButton:
-                                            CallbackFinalShortList,
-                                      ),
-                                  ],
-                                );
-                              }),
-                        ),
-                      ),
-                    if (controller1.compareApply.value == true)
-                      InkWell(
-                        onTap: () {
-                          if (controller1.courseSearchModelCompare1.id !=
-                                  null &&
-                              controller1.courseSearchModelCompare2.id !=
-                                  null) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Comparing(
-                                    courseSearchModel1:
-                                        controller1.courseSearchModelCompare1,
-                                    courseSearchModel2:
-                                        controller1.courseSearchModelCompare2,
-                                  ),
-                                ));
+                                    builder: (context) => Comparing(
+                                      courseSearchModel1:
+                                          controller1.courseSearchModelCompare1,
+                                      courseSearchModel2:
+                                          controller1.courseSearchModelCompare2,
+                                    ),
+                                  ));
+                              // Get.to(
+                              //   Comparing(
+                              //     courseSearchModel1:
+                              //         controller1.courseSearchModelCompare1,
+                              //     courseSearchModel2:
+                              //         controller1.courseSearchModelCompare2,
+                              //   ),
+                              // );
+                            } else {
+                              getToast(
+                                  SnackBarConstants.courseSearchListPart3!);
+                            }
+
                             // Get.to(
                             //   Comparing(
                             //     courseSearchModel1:
-                            //         controller1.courseSearchModelCompare1,
+                            //         Get.find<ReviewShortListController>()
+                            //             .courseSearchModelCompare1,
                             //     courseSearchModel2:
-                            //         controller1.courseSearchModelCompare2,
+                            //         Get.find<ReviewShortListController>()
+                            //             .courseSearchModelCompare2,
                             //   ),
                             // );
-                          } else {
-                            getToast(SnackBarConstants.courseSearchListPart3!);
-                          }
-
-                          // Get.to(
-                          //   Comparing(
-                          //     courseSearchModel1:
-                          //         Get.find<ReviewShortListController>()
-                          //             .courseSearchModelCompare1,
-                          //     courseSearchModel2:
-                          //         Get.find<ReviewShortListController>()
-                          //             .courseSearchModelCompare2,
-                          //   ),
-                          // );
-                        },
-                        child: Container(
-                          height: 60,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                              color: ThemeConstants.bluecolor,
-                              borderRadius: const BorderRadiusDirectional.only(
-                                topStart: Radius.circular(20.0),
-                                topEnd: Radius.circular(20.0),
-                              )),
-                          child: Center(
-                            child: Row(
-                              children: [
-                                const Spacer(),
-                                svgImage("compare", ThemeConstants.whitecolor,
-                                    30, 30),
-                                const SizedBox(
-                                  width: 5,
-                                ),
-                                CustomAutoSizeTextMontserrat(
-                                  text: "Compare",
-                                  fontSize: 20,
-                                  textColor: ThemeConstants.whitecolor,
-                                ),
-                                const Spacer(),
-                              ],
+                          },
+                          child: Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                borderRadius:
+                                    const BorderRadiusDirectional.only(
+                                  topStart: Radius.circular(20.0),
+                                  topEnd: Radius.circular(20.0),
+                                )),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  const Spacer(),
+                                  svgImage("compare", ThemeConstants.whitecolor,
+                                      30, 30),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  CustomAutoSizeTextMontserrat(
+                                    text: "Compare",
+                                    fontSize: 20,
+                                    textColor: ThemeConstants.whitecolor,
+                                  ),
+                                  const Spacer(),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    if (_.loadingCourseShortList.value == false)
-                      getLoading(context)
-                  ],
+                      if (_.loadingCourseShortList.value == false)
+                        getLoading(context)
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
@@ -409,7 +476,6 @@ class _ReviewShortListState extends State<ReviewShortList> {
         endpoint[0], endpoint[1], endpoint[2]);
 
     if (res != null) {
-      //TODO
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));
@@ -457,6 +523,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
       controller1.courseModelFilter.courseSearchList[courseIndex].finalList ==
           "";
     }
+
     controller1.courseFinalShortlist(
         id, Get.find<BaseController>().model1.id.toString());
   }

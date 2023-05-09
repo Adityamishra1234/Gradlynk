@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -139,10 +140,11 @@ class LoginScreen extends GetView<LoginController> {
                                 onPressed: () async {
                                   if (getNUllChecker(phoneNumber.text) ==
                                       true) {
-                                    getToast("Please enter your phone number");
+                                    getToast(
+                                        SnackBarConstants.phoneNumberError1!);
                                   } else if (getNUllChecker(password.text) ==
                                       true) {
-                                    getToast("Please enter your password");
+                                    getToast(SnackBarConstants.passwordError!);
                                   } else {
                                     controller.login(
                                         phoneNumber.text, password.text);

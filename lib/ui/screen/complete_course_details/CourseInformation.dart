@@ -14,8 +14,7 @@ class CourseInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: SingleChildScrollView(
         child: Column(
@@ -126,45 +125,48 @@ class CourseInformation extends StatelessWidget {
                         height: 10,
                       ),
                     ]),
-                  if (getNUllChecker(completeCourseDetail[0].courseLevel) ==
-                      false)
-                    TableRow(
-                        decoration: BoxDecoration(
-                          color: ThemeConstants.lightorangeColor,
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                              color: ThemeConstants.orangeColor, width: 0.5),
-                        ),
-                        children: [
-                          Container(
-                            constraints: const BoxConstraints(minHeight: 50),
-                            child: Align(
-                              alignment: AlignmentDirectional.centerStart,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Bachelors",
-                                  maxLines: 2,
-                                  textColor: ThemeConstants.orangeColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            constraints: const BoxConstraints(minHeight: 50),
-                            child: Align(
-                              alignment: AlignmentDirectional.centerStart,
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "completeCourseDetail[0].b",
-                                fontSize: 14,
-                                textColor: ThemeConstants.blackcolor,
-                                fontWeight: FontWeight.w600,
-                                maxLines: 2,
-                              ),
-                            ),
-                          ),
-                        ]),
+
+                  //TODO
+                  // if (getNUllChecker(completeCourseDetail[0].courseLevel) ==
+                  //     false)
+                  //   TableRow(
+                  //       decoration: BoxDecoration(
+                  //         color: ThemeConstants.lightorangeColor,
+                  //         borderRadius: BorderRadius.circular(10.0),
+                  //         border: Border.all(
+                  //             color: ThemeConstants.orangeColor, width: 0.5),
+                  //       ),
+                  //       children: [
+                  //         Container(
+                  //           constraints: const BoxConstraints(minHeight: 50),
+                  //           child: Align(
+                  //             alignment: AlignmentDirectional.centerStart,
+                  //             child: Padding(
+                  //               padding: const EdgeInsets.only(left: 8),
+                  //               child: CustomAutoSizeTextMontserrat(
+                  //                 text: "Bachelors",
+                  //                 maxLines: 2,
+                  //                 textColor: ThemeConstants.orangeColor,
+                  //                 fontWeight: FontWeight.bold,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //         Container(
+                  //           constraints: const BoxConstraints(minHeight: 50),
+                  //           child: Align(
+                  //             alignment: AlignmentDirectional.centerStart,
+                  //             child: CustomAutoSizeTextMontserrat(
+                  //               text: "completeCourseDetail[0].b",
+                  //               fontSize: 14,
+                  //               textColor: ThemeConstants.blackcolor,
+                  //               fontWeight: FontWeight.w600,
+                  //               maxLines: 2,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ]),
+
                   const TableRow(children: [
                     SizedBox(
                       height: 10,
@@ -530,7 +532,7 @@ class CourseInformation extends StatelessWidget {
                               completeCourseDetail[0].yearOfEducation) ==
                           false)
                         CustomAutoSizeTextMontserrat(
-                          text: "15 Years Of Education",
+                          text: "15 Years of Education",
                           maxLines: 3,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -735,6 +737,6 @@ class CourseInformation extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }

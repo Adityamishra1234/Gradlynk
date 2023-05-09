@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class Endpoints {
-  static String? baseUrl = "http://14.97.86.202:205/api/";
+  static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
@@ -88,7 +88,7 @@ class Endpoints {
   static String? applicationDocumentUpload =
       "upload-application-document?enq_id=";
   static String? login = "login?mobile=";
-  static String? login2 = "&password=";
+  static String? login2 = "&otp=";
   static String? documentList = "my-document-list";
   static String? orranizationWorkList = "organization-work-list?enq_id=";
   static String? documentNameForDocumentTypePart1 =
@@ -117,10 +117,15 @@ class Endpoints {
   static String? errorHandlepart4 = "&extra=";
 
   static String? trackyourticket = "get-ticket-data?enq_id=";
-
   static String? saveCommentTrackYourTicketpart1 = "save-comment-data?id=";
   static String? saveCommentTrackYourTicketPart2 = "&content=";
   static String? saveCommentTrackYourTicketPar3 = "&enq_id=";
+  static String? qualificationUpdateDropdownPart1 =
+      "get-qualification-at-edit?country_id=";
+  static String? qualificationUpdateDropdownPart2 = "&state_id=";
+  static String? qualificationUpdateDropdownPart3 = "&city_id=";
+  static String? phoneNuberverfiy = "verify-number?mobile=";
+  static String? agree = "agree-student-consent?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

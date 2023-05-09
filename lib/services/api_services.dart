@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
@@ -47,9 +49,10 @@ import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:http/http.dart' as http;
 
-class ApiServices extends StudentPanelBase {
+class ApiServices extends StudentPanelBase implements api {
   StudentPanelBase? crmBase = StudentPanelBase();
 
+  @override
   dashboard(String baseUrl, String endpoint) async {
     try {
       StudentPanel studentPanel;
@@ -82,6 +85,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCountry(String baseUrl, String endpoint) async {
     var response;
     try {
@@ -98,6 +102,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseLevel(String baseUrl, String endpoint) async {
     var response;
 
@@ -116,6 +121,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getState(String baseUrl, String endpoint, String countrydata) async {
     var temp = countrydata.split('[');
     var temp2 = temp[1].split(']')[0];
@@ -135,6 +141,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getState2(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
@@ -150,6 +157,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCity(String baseUrl, String endpoint, String statedata) async {
     var temp = statedata.split('[');
     var temp2 = temp[1].split(']')[0];
@@ -169,6 +177,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCity2(
     String baseUrl,
     String endpoint,
@@ -187,6 +196,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCoursenarrowField(
       String baseUrl, String endpoint, String broadFieldId) async {
     var temp = broadFieldId.split('[');
@@ -207,6 +217,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseBoardField(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
@@ -222,6 +233,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseSearch(String baseUrl, String endpoint) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     List<CourseSearchModel> courseSearchModel = [];
@@ -245,10 +257,11 @@ class ApiServices extends StudentPanelBase {
         StackTrace.current.toString(),
       );
       Get.back();
-      getToast(SnackBarConstants.courseSearchListPart3!);
+      getToast(SnackBarConstants.courseSearchListPart4!);
     }
   }
 
+  @override
   completeCourseDetail(String baseUrl, String endpoint) async {
     try {
       var response = await httpPostNullBody(baseUrl + endpoint);
@@ -281,19 +294,19 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   setShortListCourse(String? id, String? enqId) async {
     try {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        Get.snackbar(
-          "Course ShortList",
-          duration: const Duration(seconds: 2),
-          response,
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.white.withOpacity(0.0),
-          margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
-        );
+        if (response.toString() == "Course Added To Shortlist") {
+          getToast(SnackBarConstants.courseShortList!);
+        } else if (response.toString() == "Course Removed From Shortlist") {
+          getToast(SnackBarConstants.courseRemove!);
+        }
+      } else {
+        getToast(response);
       }
     } catch (e) {
       await errorHandle(
@@ -305,13 +318,20 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   setFinalShortListCourse(String? id, String? enqId) async {
     try {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        Get.snackbar("Course ShortList", response,
-            snackPosition: SnackPosition.BOTTOM);
+        if (response.toString() == "Course Added To Final Shortlist") {
+          getToast(SnackBarConstants.courseFinalShortList!);
+        } else if (response.toString() ==
+            "Course Removed From Final Shortlist") {
+          getToast(SnackBarConstants.courseRemove!);
+        } else {
+          getToast(response);
+        }
       }
     } catch (e) {
       await errorHandle(
@@ -323,6 +343,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   courseShortlistDetail(String? enqId) async {
     CourseModelFilter courseModelFilter = CourseModelFilter();
     try {
@@ -353,6 +374,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getApplicationSummaryList(String enqId) async {
     try {
       List<ApplicationSummaryModel> applicationSummaryModel = [];
@@ -375,6 +397,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getFinalShortlist(String? endpoints, String enqId) async {
     try {
       CourseModelFilter courseModelFilter = CourseModelFilter();
@@ -397,11 +420,18 @@ class ApiServices extends StudentPanelBase {
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
       );
+      try {
+        await Get.find<ReviewShortListController>().GetCourseShortList(
+            Get.find<BaseController>().model1.id.toString());
+        Get.find<ReviewShortListController>().update();
+      } catch (e) {}
+
       Get.back();
       getToast(SnackBarConstants.finalcourselistPart1!);
     }
   }
 
+  @override
   getApplicationDetails(String? endpoints, String? apliId) async {
     try {
       ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
@@ -476,15 +506,15 @@ class ApiServices extends StudentPanelBase {
         //annual tutionFee and Budget
         if (getNUllChecker(element.annualTutionFeesInr) == false) {
           if (double.parse(element.annualTutionFeesInr!) < 700000) {
-            filterModel.budget[3].update("Below 7 Lac", (value) => true);
+            filterModel.budget[3].update("Below 7 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 700000 &&
               double.parse(element.annualTutionFeesInr!) < 1500000) {
-            filterModel.budget[2].update("7-15 Lac", (value) => true);
+            filterModel.budget[2].update("7-15 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 1500000 &&
               double.parse(element.annualTutionFeesInr!) < 3000000) {
-            filterModel.budget[1].update("15-30 lac", (value) => true);
+            filterModel.budget[1].update("15-30 Lakh", (value) => true);
           } else if (double.parse(element.annualTutionFeesInr!) > 3000000) {
-            filterModel.budget[0].update("30 Lac or More", (value) => true);
+            filterModel.budget[0].update("30 Lakh or More", (value) => true);
           }
           // !.add(element.allFeesInr ?? "");
         }
@@ -601,6 +631,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getVisaDetail(String? endpoint) async {
     try {
       VisaDetailModel visaDetailModel = VisaDetailModel();
@@ -622,6 +653,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   personalInformationDataUpdate(
       PersonalInformationModel personalInformationModel,
       String? endpoint) async {
@@ -632,8 +664,8 @@ class ApiServices extends StudentPanelBase {
         Get.find<BaseController>().getPersonalModal(personalInformationModel);
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar("Personal Detail", dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast(
+            SnackBarConstants.contactInformation! + dataUpdateStatus.status!);
 
         return jsondata;
       }
@@ -647,6 +679,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseNarrowProfile(String baseUrl, String endpoint) async {
     var response;
 
@@ -665,6 +698,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseBroadFiledByNarrowField(String baseUrl, String endpoint) async {
     var response;
 
@@ -683,6 +717,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getCourseInformation(String baseUrl, String endpoint) async {
     var response;
 
@@ -729,6 +764,7 @@ class ApiServices extends StudentPanelBase {
   //   }
   // }
 
+  @override
   getHighestQualification(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -746,6 +782,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getStream(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -763,6 +800,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getEducationStatus(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -780,6 +818,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getAffiliation(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -799,6 +838,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getInstitute(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -817,6 +857,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getQualificationDetails(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -836,6 +877,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   dropDown1(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -852,6 +894,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getWorkHistoryView(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -871,6 +914,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   addProfileModule(String baseUrl, String endpoints, String snakbarTitle,
       String action) async {
     try {
@@ -879,9 +923,9 @@ class ApiServices extends StudentPanelBase {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
 
-        getToast("Work History $action ${dataUpdateStatus.status}");
+        getToast("$snakbarTitle $action ${dataUpdateStatus.status}");
 
-        return dataUpdateStatus;
+        return true;
       }
     } catch (e) {
       await errorHandle(
@@ -893,6 +937,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewEnglishTestDetails(
     String baseUrl,
     String endpoints,
@@ -916,6 +961,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewOtherTestDetails(
     String baseUrl,
     String endpoints,
@@ -939,6 +985,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateEnglishTestDetails(
       EnglishTestDetailsViewModel englishTestDetailsViewModel,
       String? endpoint) async {
@@ -949,7 +996,7 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("English test details updated successfully");
+        getToast(SnackBarConstants.englishTestDetails!);
         // Get.snackbar("English Test Details", dataUpdateStatus.status.toString(),
         //     snackPosition: SnackPosition.BOTTOM);
       }
@@ -963,6 +1010,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updatePassport(PassportModel passportModel, String? endpoint) async {
     try {
       String jsonData = jsonEncode(passportModel);
@@ -971,9 +1019,7 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Passport details updated successfully");
-        // Get.snackbar("Passport Details:", dataUpdateStatus.status.toString(),
-        //     snackPosition: SnackPosition.BOTTOM);
+        getToast(SnackBarConstants.passportDetails!);
       }
     } catch (e) {
       await errorHandle(
@@ -985,6 +1031,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewPassportDetail(
     String baseUrl,
     String endpoints,
@@ -1006,6 +1053,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getTravelHistory(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -1013,6 +1061,7 @@ class ApiServices extends StudentPanelBase {
       List<TravelHistoryModel> travelHistoryList =
           List<TravelHistoryModel>.from(
               json.decode(response).map((x) => TravelHistoryModel.fromJson(x)));
+
       return travelHistoryList;
     } catch (e) {
       await errorHandle(
@@ -1024,6 +1073,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateTravelHistory(String? endpoint, String action) async {
     try {
       var response = await httpPostNullBody(
@@ -1032,7 +1082,7 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Travel History $action ${dataUpdateStatus.status}");
+        getToast("Travel history $action ${dataUpdateStatus.status}");
         return true;
       }
     } catch (e) {
@@ -1045,6 +1095,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   viewRelativeInformation(String baseUrl, String endpoints) async {
     var response;
     try {
@@ -1062,6 +1113,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateRelativeInformation(String? endpoint, String action) async {
     try {
       var response = await httpPostNullBody(
@@ -1070,8 +1122,8 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-
-        getToast("Relative Infromation $action ${dataUpdateStatus.status}");
+        getToast("Relative infromation $action ${dataUpdateStatus.status}");
+        return true;
       }
     } catch (e) {
       await errorHandle(
@@ -1083,6 +1135,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getvisaSummary(String? endpoint) async {
     try {
       var response = await httpPostNullBody(
@@ -1105,6 +1158,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateQualification(String? endpoint, [String action = ""]) async {
     try {
       var response = await httpPostNullBody(
@@ -1113,9 +1167,8 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        Get.snackbar("Qualification Details:",
-            action + " " + dataUpdateStatus.status.toString(),
-            snackPosition: SnackPosition.BOTTOM);
+        getToast("Qualification details $action ${dataUpdateStatus.status}");
+        return true;
       }
     } catch (e) {
       await errorHandle(
@@ -1127,6 +1180,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   updateOtherTestDetails(
       OtherTestDetailsModel otherTestDetailModel, String? endpoint) async {
     try {
@@ -1136,9 +1190,7 @@ class ApiServices extends StudentPanelBase {
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
-        getToast("Other test details updated successfully");
-        // Get.snackbar("Other Test Details:", dataUpdateStatus.status.toString(),
-        //     snackPosition: SnackPosition.BOTTOM);
+        getToast(SnackBarConstants.otherTestDetail!);
       }
     } catch (e) {
       await errorHandle(
@@ -1150,6 +1202,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getUpComingEvent(String endpoint) async {
     try {
       List<UpcomingEventModel> model = [];
@@ -1170,6 +1223,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getNotification(String endpoint) async {
     try {
       List<NotificationModel> model = [];
@@ -1189,6 +1243,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   Future<String?> sendFile(
     file,
     uploadFilename,
@@ -1208,16 +1263,17 @@ class ApiServices extends StudentPanelBase {
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
         FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
-        getsnakbar("Document Upload", status.status.toString());
+        getToast(SnackBarConstants.documentUpload!);
         return status.viewLink;
       } else {
         return null;
       }
     } catch (e) {
-      getToast("Something went to wrong !!");
+      getToast(SnackBarConstants.errorMsg!);
     }
   }
 
+  @override
   Future<CommonUploadStatus?> uploadDocumentCommon(
       file, uploadFilename, String enq_id, String id,
       {String orgname = ""}) async {
@@ -1233,14 +1289,15 @@ class ApiServices extends StudentPanelBase {
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
         CommonUploadStatus status = CommonUploadStatus.fromJson(jsondata);
-        getsnakbar("Document Upload", status.status.toString());
+        getToast(SnackBarConstants.documentUpload!);
         return status;
       }
     } catch (e) {
-      getToast("Something went to wrong !!");
+      getToast(SnackBarConstants.errorMsg!);
     }
   }
 
+  @override
   getLogin(String? endpoint) async {
     print(endpoint);
     try {
@@ -1261,6 +1318,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getDropdownUploadDocument(String endpoint) async {
     try {
       List<DropDownDocumentType> model = [];
@@ -1280,6 +1338,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getDocumentName(String endpoint) async {
     try {
       List<DropDownDocumentName> model = [];
@@ -1299,6 +1358,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getServicesAssigned(String endpoint) async {
     try {
       List<ServiceAssigneersModel> model = [];
@@ -1318,6 +1378,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getOrganizationDropDown(String endpoint) async {
     try {
       List<DropDownorganisationName> model = [];
@@ -1337,6 +1398,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getcommondocument(String endpoint) async {
     try {
       List<CommonUploadDocument> model = [];
@@ -1356,13 +1418,14 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
-  getSheduleExpertCall(String endpoint) async {
+  @override
+  getSheduleExpertCall(String endpoint, String snackbar) async {
     try {
       StatusModel model = StatusModel();
       var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
       if (res != null) {
         model = StatusModel.fromJson(json.decode(res));
-        getsnakbar("Schedule an Expert call", model.status!);
+        getToast(snackbar);
         Get.toNamed(DashBoard.routeNamed);
       }
     } catch (e) {
@@ -1375,6 +1438,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   logout(String baseUrl, String endpoint, String token) async {
     var jsonData = {"token": token};
 
@@ -1393,6 +1457,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   countryGuide(String endpoint) async {
     try {
       List<CountryGuideModel> model = [];
@@ -1412,6 +1477,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   getTrackYourTickets(String endpoint) async {
     try {
       TicketDataModel model = TicketDataModel();
@@ -1433,6 +1499,7 @@ class ApiServices extends StudentPanelBase {
     }
   }
 
+  @override
   saveComments(String endpoint) async {
     try {
       List<Comments> model = [];
@@ -1440,7 +1507,7 @@ class ApiServices extends StudentPanelBase {
       var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
       if (res != null) {
         var jsondata = json.decode(res);
-        getToast("Comment added" + jsondata["status"]);
+        getToast(SnackBarConstants.saveComments! + jsondata["status"]);
         // List<CountryGuideModel>.from(
         //     json.decode(res).map((x) => CountryGuideModel.fromJson(x)));
         model = List<Comments>.from(
@@ -1449,6 +1516,70 @@ class ApiServices extends StudentPanelBase {
       }
     } catch (e) {
       print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  @override
+  qualificationUpdateDropdown(String endpoint) async {
+    try {
+      List<Comments> model = [];
+
+      var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
+    } catch (e) {
+      print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  phonenumberVerfiy(String phoneNumber) async {
+    try {
+      var res = await httpPostNullBody(
+          Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber,
+          login: true);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        getToast(SnackBarConstants.phoneNumber!);
+        return true;
+      }
+    } catch (e) {
+      getToast(SnackBarConstants.phoneNumberError!);
+      print(e.toString());
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+      return false;
+    }
+  }
+
+  agree(BuildContext context) async {
+    try {
+      var res = await httpPostNullBody(
+        Endpoints.baseUrl! +
+            Endpoints.agree! +
+            Get.find<BaseController>().model1.id.toString(),
+      );
+      if (res != null) {
+        Navigator.pop(context);
+      }
+    } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),

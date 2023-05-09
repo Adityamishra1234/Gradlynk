@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
 
 class ContactInformation implements Bindings {
   @override

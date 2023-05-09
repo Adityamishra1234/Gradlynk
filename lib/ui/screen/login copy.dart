@@ -1,11 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -22,12 +24,21 @@ class _LoginCopyState extends State<LoginCopy> {
   var controller = Get.put(LoginController());
 
   static TextEditingController phoneNumber = TextEditingController();
+  static TextEditingController otpcontroller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
     // _checkVersion();
+  }
+
+  @override
+  void dispose() {
+    // controller.dispose();
+    phoneNumber.text = "";
+    otpcontroller.text = "";
+    super.dispose();
   }
 
   // void _checkVersion() async {
@@ -74,7 +85,7 @@ class _LoginCopyState extends State<LoginCopy> {
       case 0:
         return Positioned(
             left: 10,
-            top: MediaQuery.of(context).size.height * 0.65,
+            top: MediaQuery.of(context).size.height * 0.60,
             child: Column(
               children: [
                 SizedBox(
@@ -110,7 +121,7 @@ class _LoginCopyState extends State<LoginCopy> {
       case 1:
         return Positioned(
             left: 10,
-            top: MediaQuery.of(context).size.height * 0.65,
+            top: MediaQuery.of(context).size.height * 0.60,
             child: Column(
               children: [
                 SizedBox(
@@ -146,7 +157,7 @@ class _LoginCopyState extends State<LoginCopy> {
       case 2:
         return Positioned(
             left: 10,
-            top: MediaQuery.of(context).size.height * 0.65,
+            top: MediaQuery.of(context).size.height * 0.60,
             child: Column(
               children: [
                 SizedBox(
@@ -187,124 +198,246 @@ class _LoginCopyState extends State<LoginCopy> {
   Widget build(BuildContext context) {
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return Scaffold(
-      body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(color: ThemeConstants.bluecolor),
-          child: Stack(
-            children: [
-              CarouselSlider(
-                options: CarouselOptions(
-                  onPageChanged: (index, reason) {
-                    controller.setUpdateCurrentIndex(index);
-                  },
-                  aspectRatio: 2.0,
-                  disableCenter: true,
-                  viewportFraction: 1,
-                  enlargeCenterPage: false,
-                  autoPlayCurve: Curves.ease,
-                  autoPlay: true,
-                  height: MediaQuery.of(context).size.height - 100,
-                  autoPlayInterval: const Duration(seconds: 3),
-                ),
-                items: imglist1,
-              ),
-
-              //Icon And Text
-              GetBuilder<LoginController>(
-                builder: (_) => setTextposistion(_.currentindex.value),
-              ),
-              Positioned(
-                  top: 40,
-                  left: (MediaQuery.of(context).size.width / 3.5),
-                  child: SizedBox(
-                      width: 200,
-                      height: 50,
-                      child: Image.asset(
-                        "assets/images/logo.png",
-                      ))),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                child: Align(
-                  alignment: AlignmentDirectional.bottomCenter,
-                  heightFactor: 1.1,
-                  child: SizedBox(
-                    height: 240,
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      children: [
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 20, left: 10, right: 10),
-                          child: TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            controller: phoneNumber,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                filled: true,
-                                hintStyle: TextStyle(color: Colors.grey[800]),
-                                hintText: "Enter your phone number",
-                                fillColor: Colors.white),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 20, left: 10, right: 10),
-                          child: SizedBox(
-                            height: 55,
-                            width: MediaQuery.of(context).size.width,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  side: BorderSide(
-                                    width: 1.0,
-                                    color: ThemeConstants.whitecolor,
-                                  ),
-                                  backgroundColor: ThemeConstants.bluecolor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(12), // <-- Radius
-                                  ),
-                                ),
-                                onPressed: () {
-                                  if (getNUllChecker(phoneNumber.text) ==
-                                      true) {
-                                    getToast("Please enter your phone number");
-                                  }
-                                  // else if (getNUllChecker(password.text) ==
-                                  //     true) {
-                                  //   getToast("Please enter your password");
-                                  // }
-                                  else {
-                                    controller.Templogin(phoneNumber.text);
-                                  }
-
-                                  // Get.toNamed(OTPScreen.routeNamed);
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Get OTP",
-                                  textColor: Colors.white,
-                                )),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        )
-                      ],
+        body: controller.obx(
+            (state) => Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(color: ThemeConstants.bluecolor),
+                child: Stack(
+                  children: [
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        onPageChanged: (index, reason) {
+                          controller.setUpdateCurrentIndex(index);
+                        },
+                        aspectRatio: 2.0,
+                        disableCenter: true,
+                        viewportFraction: 1,
+                        enlargeCenterPage: false,
+                        autoPlayCurve: Curves.ease,
+                        autoPlay: true,
+                        height: MediaQuery.of(context).size.height - 100,
+                        autoPlayInterval: const Duration(seconds: 3),
+                      ),
+                      items: imglist1,
                     ),
-                  ),
-                ),
-              )
-            ],
-          )),
-    );
+
+                    //Icon And Text
+                    controller.otpEnable.value == false
+                        ? setTextposistion(controller.currentindex.value)
+                        : Container(),
+                    Positioned(
+                        top: 40,
+                        left: (MediaQuery.of(context).size.width / 3.5),
+                        child: SizedBox(
+                            width: 200,
+                            height: 50,
+                            child: Image.asset(
+                              "assets/images/logo.png",
+                            ))),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      child: Align(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        heightFactor: 1.1,
+                        child: SizedBox(
+                          height: 260,
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            children: [
+                              const Spacer(),
+                              if (controller.otpEnable.value == false)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 10, right: 10),
+                                  child: TextFormField(
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      controller: phoneNumber,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly
+                                      ],
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                        filled: true,
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[800]),
+                                        hintText: "Enter your phone number",
+                                        fillColor: Colors.white,
+                                      ),
+                                      validator: (value) {
+                                        return getPhoneNumbervalidation(value);
+                                      }),
+                                ),
+                              if (controller.otpEnable.value == false)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 10, right: 10),
+                                  child: SizedBox(
+                                    height: 55,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          side: BorderSide(
+                                            width: 1.0,
+                                            color: ThemeConstants.whitecolor,
+                                          ),
+                                          backgroundColor:
+                                              ThemeConstants.bluecolor,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                12), // <-- Radius
+                                          ),
+                                        ),
+                                        onPressed: () async {
+                                          if (getNUllChecker(
+                                                  phoneNumber.text) ==
+                                              true) {
+                                            getToast(SnackBarConstants
+                                                .phoneNumberError1!);
+                                          }
+                                          // else if (getNUllChecker(password.text) ==
+                                          //     true) {
+                                          //   getToast("Please enter your password");
+                                          // }
+                                          else {
+                                            if (phoneNumber.text.length == 10) {
+                                              controller.phonenumberVerfiy(
+                                                  phoneNumber.text);
+
+                                              // controller.phonenumberVerfiy(
+                                              //     phoneNumber.text);
+                                            } else {
+                                              getToast(SnackBarConstants
+                                                  .phoneNumberError2!);
+                                            }
+                                          }
+
+                                          // Get.toNamed(OTPScreen.routeNamed);
+                                        },
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Get OTP",
+                                          textColor: Colors.white,
+                                        )),
+                                  ),
+                                ),
+                              if (controller.otpEnable.value == true)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 10, right: 10),
+                                  child: TextFormField(
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      controller: otpcontroller,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly
+                                      ],
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          filled: true,
+                                          hintStyle: TextStyle(
+                                              color: Colors.grey[800]),
+                                          hintText: "Enter your OTP",
+                                          fillColor: Colors.white),
+                                      validator: (value) {
+                                        if (value != null) {
+                                          if (value.length != 6) {
+                                            return SnackBarConstants.OTPError;
+                                          }
+                                        }
+                                      }),
+                                ),
+                              if (controller.otpEnable.value == true)
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 10, right: 10),
+                                  child: SizedBox(
+                                    height: 55,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          side: BorderSide(
+                                            width: 1.0,
+                                            color: ThemeConstants.whitecolor,
+                                          ),
+                                          backgroundColor:
+                                              ThemeConstants.bluecolor,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                12), // <-- Radius
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          if (otpcontroller.text.length == 6) {
+                                            controller.login(phoneNumber.text,
+                                                otpcontroller.text);
+                                          } else {
+                                            getToast(
+                                                SnackBarConstants.OTPError!);
+                                          }
+                                        },
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Login",
+                                          textColor: Colors.white,
+                                        )),
+                                  ),
+                                ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              if (controller.otpEnable.value == true)
+                                Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        controller.otpEnable.value = false;
+                                        controller.update();
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Change phone number ?",
+                                          textColor: ThemeConstants.whitecolor,
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.phonenumberVerfiy(
+                                            phoneNumber.text);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Resend OTP",
+                                          textColor: ThemeConstants.whitecolor,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              const SizedBox(
+                                height: 30,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )),
+            onLoading: getLoading(context)));
   }
 }

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/workhistory.dart';
+
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class WorkHistoryWidget extends StatelessWidget {
   Function callbackUpdate;
@@ -29,33 +32,32 @@ class WorkHistoryWidget extends StatelessWidget {
       required this.callbackWorkingTill,
       required this.callbackEmployementType})
       : super(key: key);
-  static final lastOrganisation = TextEditingController();
-  static final designation = TextEditingController();
-  static final income = TextEditingController();
+
+  var controller = Get.put(WorkHistoryController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<WorkHistoryController>(builder: (_) {
-      if (update == false && _.loadingEdit.value == false) {
-        _.loadingEdit.value = true;
-        // update = true;
-        lastOrganisation.text =
-            _.workHistoryViewModelList[index!].organisationName ?? "";
-        _.industryNameSelected =
-            _.workHistoryViewModelList[index!].jobIndustryName;
-        _.industryNameCode = _.workHistoryViewModelList[index!].jobIndustryId;
-        _.employementTypeSelected = _.workHistoryViewModelList[index!].jobType;
-        _.workingFromSelected =
-            _.workHistoryViewModelList[index!].workingFrom ?? "";
-        _.workingTillSelected =
-            _.workHistoryViewModelList[index!].workingTill ?? "";
-        designation.text = _.workHistoryViewModelList[index!].jobRole ?? "";
-        income.text = getNUllChecker(
-                    _.workHistoryViewModelList[index!].income.toString()) ==
-                false
-            ? _.workHistoryViewModelList[index!].income!.toString()
-            : "";
-      }
+    return controller.obx((state) {
+      // if (update == false && controller.loadingEdit.value == false) {
+      //   controller.loadingEdit.value = true;
+      //   // update = true;
+      //   lastOrganisation.text =
+      //       controller.workHistoryViewModelList[index!].organisationName ?? "";
+      //   controller.industryNameSelected =
+      //       controller.workHistoryViewModelList[index!].jobIndustryName;
+      //   controller.industryNameCode = controller.workHistoryViewModelList[index!].jobIndustryId;
+      //   controller.employementTypeSelected = controller.workHistoryViewModelList[index!].jobType;
+      //   controller.workingFromSelected =
+      //       controller.workHistoryViewModelList[index!].workingFrom ?? "";
+      //   controller.workingTillSelected =
+      //       controller.workHistoryViewModelList[index!].workingTill ?? "";
+      //   designation.text = controller.workHistoryViewModelList[index!].jobRole ?? "";
+      //   income.text = getNUllChecker(
+      //               controller.workHistoryViewModelList[index!].income.toString()) ==
+      //           false
+      //       ? controller.workHistoryViewModelList[index!].income!.toString()
+      //       : "";
+      // }
       return ListView(
         controller: ScrollController(),
         children: [
@@ -65,7 +67,7 @@ class WorkHistoryWidget extends StatelessWidget {
               alignment: AlignmentDirectional.bottomEnd,
               child: TextButton(
                   onPressed: () {
-                    _.setViewDetails(true);
+                    controller.setViewDetails(true);
                   },
                   child: CustomAutoSizeTextMontserrat(
                     text: "View Details",
@@ -87,22 +89,24 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: lastOrganisation,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Enter name of last organisation",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+          Obx(
+            () => Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                controller: WorkHistoryController.lastOrganisation.value,
+                scrollPadding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                decoration: InputDecoration(
+                  hintText: "Enter name of last organisation",
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                 ),
+                style: ThemeConstants.montserrattextstyle,
               ),
-              style: ThemeConstants.montserrattextstyle,
             ),
           ),
           Padding(
@@ -122,7 +126,7 @@ class WorkHistoryWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: DatePickerExample(
               enableField: false,
-              date: _.workingFromSelected,
+              date: controller.workingFromSelected,
               callbackDate: callbackWorkingForm,
             ),
           ),
@@ -142,7 +146,7 @@ class WorkHistoryWidget extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: DatePickerExample(
               enableField: false,
-              date: _.workingTillSelected,
+              date: controller.workingTillSelected,
               callbackDate: callbackWorkingTill,
             ),
           ),
@@ -159,20 +163,23 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: _.loadingIndustries.value == true
-                  ? _.industriesList
-                  : ["No data"],
-              initialSelectedValue: _.loadingIndustries.value == true
-                  ? update == false
-                      ? _.workHistoryViewModelList[index!].jobIndustryName
-                      : _.industriesList[0]
-                  : "No data",
-              choosefieldtype: false,
-              callbackFunction: callbackIndustry,
-            ),
+          CustomDropDownSingle(
+            model: getDropdownModel(controller.loadingIndustries.value,
+                controller.industryNameSelected, controller.industriesList),
+            // controller.loadingIndustries.value == true
+            // ? controller.industriesList
+            // : ["No data"],
+            initialSelectedValue: getSelectedDropDown(
+                controller.loadingIndustries.value,
+                controller.industryNameSelected,
+                controller.industriesList),
+            // ? update == false
+            //     ? controller
+            //         .workHistoryViewModelList[index!].jobIndustryName
+            //     : controller.industriesList[0]
+            // : "No data",
+            choosefieldtype: false,
+            callbackFunction: callbackIndustry,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -187,22 +194,24 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: designation,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Enter your Designation",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+          Obx(
+            () => Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                controller: WorkHistoryController.designation.value,
+                scrollPadding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                decoration: InputDecoration(
+                  hintText: "Enter your Designation",
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                 ),
+                style: ThemeConstants.montserrattextstyle,
               ),
-              style: ThemeConstants.montserrattextstyle,
             ),
           ),
           Padding(
@@ -218,27 +227,27 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: _.loadingEmploymentType.value == true
-                  ? _.employmentTypeList
-                  : ["No Data"],
-              initialSelectedValue: _.loadingEmploymentType.value == true
-                  ? update == false
-                      ? _.workHistoryViewModelList[index!].jobType
-                      : _.employmentTypeList[0]
-                  : "No Data",
-              choosefieldtype: false,
-              callbackFunction: callbackEmployementType,
-            ),
+          CustomDropDownSingle(
+            model: getDropdownModel(
+                controller.loadingEmploymentType.value,
+                controller.employementTypeSelected,
+                controller.employmentTypeList),
+            //  controller.loadingEmploymentType.value == true
+            //     ? controller.employmentTypeList
+            //     : ["No Data"],
+            initialSelectedValue: getSelectedDropDown(
+                controller.loadingEmploymentType.value,
+                controller.employementTypeSelected,
+                controller.employmentTypeList),
+            choosefieldtype: false,
+            callbackFunction: callbackEmployementType,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
-                text: "Income As per ITR",
+                text: "Income as per ITR",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
@@ -246,23 +255,25 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: income,
-              keyboardType: TextInputType.number,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Enter Income",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
+          Obx(
+            () => Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: TextField(
+                controller: WorkHistoryController.income.value,
+                keyboardType: TextInputType.number,
+                scrollPadding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                decoration: InputDecoration(
+                  hintText: "Enter Income",
+                  filled: true,
+                  fillColor: ThemeConstants.lightblueColor,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                 ),
+                style: ThemeConstants.montserrattextstyle,
               ),
-              style: ThemeConstants.montserrattextstyle,
             ),
           ),
           if (update == true)
@@ -284,31 +295,41 @@ class WorkHistoryWidget extends StatelessWidget {
                           ),
                           onPressed: () async {
                             //name of organisation, working from, industry, designation,employmenttype,income as per itr
-                            if (lastOrganisation.text.isEmpty) {
-                              getToast("Please enter last organisation");
-                            } else if (_.workingFromSelected == null) {
-                              getToast("please select working from");
-                            } else if (_.industryNameSelected == null) {
-                              getToast("please select industry name");
-                            } else if (designation.text.isEmpty) {
-                              getToast("please enter designation");
-                            } else if (_.employementTypeSelected == null) {
-                              getToast("please select employement type");
-                            } else if (income.text.isEmpty) {
-                              getToast("please select Income as per ITR");
+                            if (WorkHistoryController
+                                .lastOrganisation.value.text.isEmpty) {
+                              getToast(SnackBarConstants.lastOrg!);
+                            } else if (controller.workingFromSelected == null) {
+                              getToast(SnackBarConstants.workingFromSelect!);
+                            } else if (controller.industryNameSelected ==
+                                null) {
+                              getToast(SnackBarConstants.industryNameSelect!);
+                            } else if (WorkHistoryController
+                                .designation.value.text.isEmpty) {
+                              getToast(SnackBarConstants.designation!);
+                            } else if (controller.employementTypeSelected ==
+                                null) {
+                              getToast(
+                                  SnackBarConstants.employementTypeSelect!);
+                            } else if (WorkHistoryController
+                                .income.value.text.isEmpty) {
+                              getToast(SnackBarConstants.income!);
                             } else {
-                              _.workHistoryViewModelList
+                              controller.workHistoryViewModelList
                                   .add(WorkHistoryViewModel(
-                                applicantType: _.employementTypeCode,
+                                applicantType: controller.employementTypeCode,
                                 enqId: Get.find<BaseController>().model1.id!,
-                                organisationName: lastOrganisation.text,
-                                jobType: _.employementTypeSelected,
-                                jobRole: designation.text,
-                                jobIndustryId: _.industryNameCode,
-                                workingFrom: _.workingFromSelected,
-                                workingTill: _.workingTillSelected,
-                                income: int.parse(income.text),
-                                jobIndustryName: _.industryNameSelected,
+                                organisationName: WorkHistoryController
+                                    .lastOrganisation.value.text,
+                                jobType: controller.employementTypeSelected,
+                                jobRole: WorkHistoryController
+                                    .designation.value.text,
+                                jobIndustryId: controller.industryNameCode,
+                                workingFrom: controller.workingFromSelected,
+                                workingTill: controller.workingTillSelected,
+                                income: int.parse(
+                                    WorkHistoryController.income.value.text),
+                                jobIndustryName:
+                                    controller.industryNameSelected,
                               ));
                               callbackAdded(true);
                             }
@@ -340,31 +361,33 @@ class WorkHistoryWidget extends StatelessWidget {
                                 ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            _.workHistoryViewModelList[index!] =
-                                WorkHistoryViewModel(
-                              applicantType: _.employementTypeCode,
+                            WorkHistoryViewModel model = WorkHistoryViewModel();
+
+                            model = WorkHistoryViewModel(
+                              applicantType: controller.employementTypeCode,
                               enqId: Get.find<BaseController>().model1.id!,
-                              organisationName: lastOrganisation.text,
-                              jobType: _.employementTypeSelected,
+                              organisationName: WorkHistoryController
+                                  .lastOrganisation.value.text,
+                              jobType: controller.employementTypeSelected,
                               jobRole:
-                                  getNUllChecker(designation.text.toString())
-                                      ? designation.text
-                                      : _.workHistoryViewModelList[index!]
-                                          .jobRole,
-                              jobIndustryId:
-                                  getNUllChecker(_.industryNameCode.toString())
-                                      ? _.industryNameCode
-                                      : _.workHistoryViewModelList[index!]
-                                          .jobIndustryId,
-                              workingFrom: _.workingFromSelected,
-                              workingTill: _.workingTillSelected,
-                              income: int.parse(income.text),
-                              jobIndustryName: getNUllChecker(
-                                      _.industryNameSelected.toString())
-                                  ? _.industryNameSelected
-                                  : _.workHistoryViewModelList[index!]
+                                  WorkHistoryController.designation.value.text,
+                              jobIndustryId: getNUllChecker(
+                                      controller.industryNameCode.toString())
+                                  ? controller.industryNameCode
+                                  : controller.workHistoryViewModelList[index!]
+                                      .jobIndustryId,
+                              workingFrom: controller.workingFromSelected,
+                              workingTill: controller.workingTillSelected,
+                              income: int.parse(
+                                  WorkHistoryController.income.value.text),
+                              jobIndustryName: getNUllChecker(controller
+                                      .industryNameSelected
+                                      .toString())
+                                  ? controller.industryNameSelected
+                                  : controller.workHistoryViewModelList[index!]
                                       .jobIndustryName,
                             );
+                            controller.workHistoryViewModelList[index!] = model;
                             callbackUpdate(true);
                           },
                           child: CustomAutoSizeTextMontserrat(
@@ -381,6 +404,27 @@ class WorkHistoryWidget extends StatelessWidget {
           )
         ],
       );
-    });
+    }, onLoading: getLoading(context));
+  }
+
+  //Function
+  List getDropdownModel(bool loading, String? selected, List model) {
+    if (loading == true) {
+      return model;
+    } else {
+      return ["No data"];
+    }
+  }
+
+  String getSelectedDropDown(bool loading, String? selected, List model) {
+    if (loading == true && model.isNotEmpty) {
+      if (selected == null) {
+        return model[0].toString();
+      } else {
+        return selected;
+      }
+    } else {
+      return "No data";
+    }
   }
 }

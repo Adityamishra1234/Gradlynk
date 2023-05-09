@@ -7,7 +7,7 @@ import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ContactInformationController extends GetxController {
+class ContactInformationController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
 
 // Selected fields
@@ -54,10 +54,8 @@ class ContactInformationController extends GetxController {
     getMartialStatus();
     profiledetail();
     super.onInit();
+    change(null, status: RxStatus.success());
   }
-
-  @override
-  void disposed() {}
 
   profiledetail() async {
     try {
@@ -133,10 +131,16 @@ class ContactInformationController extends GetxController {
 
   getState(String countryId) async {
     try {
+      loadingCity.value = false;
+      cityCode = [];
+      cityList = [];
+      citySelected = null;
+      cityIdSelected = null;
       loadingState.value = false;
       stateList = [];
       stateCode = [];
       stateSelected = null;
+      stateIdSelected = null;
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -171,6 +175,7 @@ class ContactInformationController extends GetxController {
       cityCode = [];
       cityList = [];
       citySelected = null;
+      cityIdSelected = null;
       List tempList;
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.city! + state);
@@ -199,8 +204,10 @@ class ContactInformationController extends GetxController {
     }
   }
 
-  updateData(PersonalInformationModel personalInformationModel) {
-    apiServices.personalInformationDataUpdate(
+  updateData(PersonalInformationModel personalInformationModel) async {
+    change(null, status: RxStatus.loading());
+    await apiServices.personalInformationDataUpdate(
         personalInformationModel, Endpoints.personalDetailUpdate);
+    change(null, status: RxStatus.success());
   }
 }

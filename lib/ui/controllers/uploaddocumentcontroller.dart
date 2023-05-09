@@ -12,6 +12,7 @@ import 'package:studentpanel/ui/models/dropdowndocumenttype.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class UploadDocumentController extends GetxController {
   ApiServices apiServices = ApiServices();
@@ -219,7 +220,7 @@ class UploadDocumentController extends GetxController {
           int sizeInBytes = f.lengthSync();
           double sizeInMb = sizeInBytes / (1024 * 1024);
           if (sizeInMb > 5) {
-            getsnakbar("Document Upload", "Please file upload maximum 5 MB");
+            getToast(SnackBarConstants.maxDocumentUploadSize!);
           } else {
             var res = await apiServices.uploadDocumentCommon(
                 csvFile2.path,

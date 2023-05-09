@@ -2,14 +2,17 @@ class TicketDataModel {
   String? status;
   List<Data>? data;
 
-  TicketDataModel({this.status, this.data});
+  TicketDataModel({
+    this.status,
+    this.data,
+  });
 
   TicketDataModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
@@ -25,6 +28,8 @@ class TicketDataModel {
 }
 
 class Data {
+  String? firstComment;
+
   int? id;
   int? enqId;
   String? documentName1;
@@ -41,6 +46,7 @@ class Data {
 
   Data(
       {this.id,
+      this.firstComment,
       this.enqId,
       this.documentName1,
       this.documentName2,
@@ -70,7 +76,7 @@ class Data {
     if (json['comments'] != null) {
       comments = <Comments>[];
       json['comments'].forEach((v) {
-        comments!.add(new Comments.fromJson(v));
+        comments!.add(Comments.fromJson(v));
       });
     }
   }

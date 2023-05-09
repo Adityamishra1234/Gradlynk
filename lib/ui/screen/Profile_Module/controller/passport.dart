@@ -5,7 +5,7 @@ import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class PassportController extends GetxController {
+class PassportController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   PassportModel passportModel = PassportModel();
 
@@ -48,12 +48,15 @@ class PassportController extends GetxController {
     getPassPortDetail(Get.find<BaseController>().model1.id.toString());
     getCountry();
     getPlaceOfIssue();
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
   updatePassportDetail(String? enqId, PassportModel passportModel) async {
+    change(null, status: RxStatus.loading());
     var res = await apiServices.updatePassport(
         passportModel, Endpoints.updatepassPostDetails! + enqId!);
+    change(null, status: RxStatus.success());
   }
 
   getPassPortDetail(String? enqId) async {
@@ -113,6 +116,8 @@ class PassportController extends GetxController {
       stateCodeSelected = null;
       stateSelected = null;
       loadingState.value = false;
+      loadingPlaceOfIssuse.value = false;
+
       var res = await apiServices.getState2(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -148,6 +153,7 @@ class PassportController extends GetxController {
 
   getPlaceOfIssue() async {
     try {
+      placeOfIssuse = [];
       var res = await apiServices.dropDown1(
           Endpoints.baseUrl!, Endpoints.passportPlaceOfIssuse!);
       if (res != null) {

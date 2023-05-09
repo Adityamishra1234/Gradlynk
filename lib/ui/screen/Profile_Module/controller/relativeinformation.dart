@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -5,7 +6,7 @@ import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class RelativeInformationController extends GetxController {
+class RelativeInformationController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<RealtionModel> modelList = [];
   int? index;
@@ -33,12 +34,35 @@ class RelativeInformationController extends GetxController {
   String? citizenShipStatusCodeSelected;
   String? relationSelected;
 
+  final Rx<TextEditingController> realtiveEmail = TextEditingController().obs;
+  final Rx<TextEditingController> contactOfRelative =
+      TextEditingController().obs;
+  final Rx<TextEditingController> addresOfrelative =
+      TextEditingController().obs;
+
+  GlobalKey<FormState> relativePageKey = GlobalKey<FormState>();
+
+  resetfields() {
+    anyRelativeCountryInterestedSelected = null;
+    countryNameSelected = null;
+    countryNameCodeSelected = null;
+    citizenShipStatusSelected = null;
+    citizenShipStatusCodeSelected = null;
+    relationSelected = null;
+    index = null;
+    updateForEdit = true.obs;
+    realtiveEmail.value = TextEditingController();
+    contactOfRelative.value = TextEditingController();
+    addresOfrelative.value = TextEditingController();
+  }
+
   @override
   void onInit() {
     getCountry();
     getCitizenShipStatus();
     getRealtionWithStatus();
     viewRelativeHistory(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -141,6 +165,7 @@ class RelativeInformationController extends GetxController {
 
   updateRelativeInformation(
       String enqId, String anyCountryInterested, String action) async {
+    change(null, status: RxStatus.loading());
     try {
       String endpoint = Endpoints.addRelativeInformationPart1! +
           enqId +
@@ -160,6 +185,11 @@ class RelativeInformationController extends GetxController {
                 modelList[i].relationWithRelative);
       }
       var res = await apiServices.updateRelativeInformation(endpoint, action);
+      if (res == true) {
+        resetfields();
+      }
+
+      change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -168,5 +198,22 @@ class RelativeInformationController extends GetxController {
         StackTrace.current.toString(),
       );
     }
+  }
+
+  updateButton() {
+    realtiveEmail.value.text = modelList[index!].relativeEmailId ?? "";
+    contactOfRelative.value.text =
+        getNUllChecker(modelList[index!].contactOfRelative.toString()) == false
+            ? modelList[index!].contactOfRelative.toString()
+            : "";
+    addresOfrelative.value.text = modelList[index!].addressOfRelative ?? "";
+    countryNameSelected = modelList[index!].countryName ?? countryList[0];
+
+    citizenShipStatusSelected =
+        modelList[index!].citizenshipStatus ?? citizenShipStatus[0];
+    relationSelected = modelList[index!].relationWithRelative;
+    anyRelativeCountryInterestedSelected =
+        modelList[index!].anyRelativeCountryInterested;
+    countryNameCodeSelected = modelList[index!].relativeCountry.toString();
   }
 }

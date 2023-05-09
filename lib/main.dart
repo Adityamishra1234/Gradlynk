@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'dart:io';
+// import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
@@ -16,10 +17,13 @@ import 'package:studentpanel/binding/reviewshortlist.dart';
 import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
+import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
@@ -53,15 +57,16 @@ import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
-
 import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
 import 'ui/screen/countryGuide/countryguide.dart';
 import 'ui/screen/dashboard/scheduleExpertCall.dart';
 import 'ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'ui/screen/test/test.dart';
+import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -95,34 +100,25 @@ class _MyAppState extends State<MyApp> {
   UserModel? userModel;
   late final GifController controller;
 
-  // @override
-  // void initState() {
-  //   // getUserInfo();
-  //   controller = GifController(
-  //     loop: false,
-  //     onFinish: () {
-  //       Get.toNamed(LoginCopy.routeNamed);
-  //     },
-  //   );
-  //   super.initState();
-  // }
+  bool dashboardscreen = false;
 
-  // getUserInfo() async {
-  //   var temp = await Get.put(LoginController()).checkUserData();
-  //   if (temp == false) {
-  //     Get.toNamed(Login.routeNamed);
-  //   } else {
-  //     Get.toNamed(DashBoard.routeNamed);
-  //     getUserData();
-  //   }
-  // }
+  @override
+  void initState() {
+    hideScreen();
+    super.initState();
+  }
 
-  // getUserData() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   var jsondata =
-  //       json.decode(sharedPreferences.getString("UserModel").toString());
-  //   userModel = UserModel.fromJson(jsondata);
-  // }
+  Future<void> hideScreen() async {
+    if (Platform.isIOS) {
+      Future.delayed(const Duration(milliseconds: 2000), () {
+        FlutterSplashScreen.hide();
+      });
+    } else {
+      Future.delayed(const Duration(milliseconds: 5100), () {
+        FlutterSplashScreen.hide();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,12 +126,12 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: AnimationTest.routeNamed,
+      initialRoute: LoginCopy.routeNamed,
       // Create Route
       getPages: [
         GetPage(
           name: "/",
-          page: () => const LoginCopy(),
+          page: () => LoginCopy(),
         ),
         GetPage(
           name: LoginCopy.routeNamed,
@@ -163,6 +159,11 @@ class _MyAppState extends State<MyApp> {
           binding: DashBoardBinding(),
           page: () => const DashBoard(),
         ),
+        GetPage(
+            name: ProfilePageCopy1.routeNamed,
+            transition: Transition.cupertino,
+            page: () => ProfilePageCopy1(),
+            binding: ProfilePageBinding()),
         GetPage(
             name: ProfilePageCopy.routeNamed,
             transition: Transition.cupertino,

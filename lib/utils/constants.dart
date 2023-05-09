@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:io';
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
@@ -63,17 +65,19 @@ String getRemoveSquarebracket(String data) {
 }
 
 getToast(String data) {
-  return Fluttertoast.showToast(
-      // webBgColor: "linear-gradient(to right, #F1F4FB, #F1F4FB)",
-      // webPosition: "Top",
-      webPosition: "center",
-      msg: data,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: ThemeConstants.lightblueColor,
-      textColor: ThemeConstants.blackcolor,
-      fontSize: 16.0);
+  print("object");
+  return Container();
+  // return Fluttertoast.showToast(
+  //     // webBgColor: "linear-gradient(to right, #F1F4FB, #F1F4FB)",
+  //     // webPosition: "Top",
+  //     webPosition: "center",
+  //     msg: data,
+  //     toastLength: Toast.LENGTH_SHORT,
+  //     gravity: ToastGravity.BOTTOM,
+  //     timeInSecForIosWeb: 1,
+  //     backgroundColor: ThemeConstants.lightblueColor,
+  //     textColor: ThemeConstants.blackcolor,
+  //     fontSize: 16.0);
 }
 
 getDailog(BuildContext context, String data) {
@@ -142,7 +146,6 @@ getDashboardScreen(
                     ),
                   ),
                   SizedBox(
-                    height: 40,
                     width: 300,
                     child: Align(
                       alignment: AlignmentDirectional.topStart,
@@ -187,12 +190,12 @@ getEmailvaliation(String? value) {
       r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
   final regex = RegExp(pattern);
 
-  if (value != null) {
+  if (value == null || value == "") {
+    return "Please enter email address";
+  } else {
     return value.isNotEmpty && !regex.hasMatch(value)
         ? 'Enter a valid email address'
         : null;
-  } else if (value == null) {
-    return "Please enter email address";
   }
 }
 
@@ -272,62 +275,96 @@ String reverseStringUsingSplit(String input) {
 
 getSourceSelected(Function callbackSelectedSource, String id, int index,
     String applicationId) {
-  Get.bottomSheet(Container(
-    color: ThemeConstants.whitecolor,
-    height: 300,
-    child: Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 20),
-          child: CustomAutoSizeTextMontserrat(
-            text: "Select Source",
-            fontSize: 18,
-            textColor: ThemeConstants.bluecolor,
+  Get.bottomSheet(
+      Stack(
+        children: [
+          Container(
+            color: ThemeConstants.whitecolor,
+            height: 200,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Select Source",
+                    fontSize: 18,
+                    textColor: ThemeConstants.bluecolor,
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                        callbackSelectedSource(
+                            "Camera,${id.toString()},${index.toString()}");
+                      },
+                      child: Column(
+                        children: [
+                          svgImage("cameracapture", ThemeConstants.bluecolor,
+                              50, 50),
+                          CustomAutoSizeTextMontserrat(
+                            text: "Camera",
+                          )
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                        callbackSelectedSource(
+                            "Gallery,${id.toString()},${index.toString()}");
+                      },
+                      child: Column(
+                        children: [
+                          svgImage("gallery", ThemeConstants.bluecolor, 50, 50),
+                          CustomAutoSizeTextMontserrat(
+                            text: "Gallery",
+                          )
+                        ],
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        Row(
-          children: [
-            const Spacer(),
-            InkWell(
-              onTap: () {
-                Get.back();
-                callbackSelectedSource(
-                    "Camera,${id.toString()},${index.toString()}");
-              },
-              child: Column(
-                children: [
-                  svgImage("cameracapture", ThemeConstants.bluecolor, 100, 100),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Camera",
-                  )
-                ],
-              ),
-            ),
-            const Spacer(),
-            InkWell(
-              onTap: () {
-                Get.back();
-                callbackSelectedSource(
-                    "Gallery,${id.toString()},${index.toString()}");
-              },
-              child: Column(
-                children: [
-                  svgImage("gallery", ThemeConstants.bluecolor, 100, 100),
-                  CustomAutoSizeTextMontserrat(
-                    text: "Gallery",
-                  )
-                ],
-              ),
-            ),
-            const Spacer(),
-          ],
-        ),
-      ],
-    ),
-  ));
+          Positioned(
+              right: 10,
+              top: 10,
+              child: InkWell(
+                onTap: () {
+                  Get.find<ApplicationCompleteDetailsController>()
+                      .model
+                      .documents![index]
+                      .viewLink = "";
+                  Get.find<ApplicationCompleteDetailsController>().update();
+                  Get.back();
+                },
+                child: Container(
+                  height: 30,
+                  width: 30,
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.close,
+                      color: ThemeConstants.blackcolor,
+                    ),
+                  ),
+                ),
+              ))
+        ],
+      ),
+      isDismissible: false);
 }
 
 getLoading(BuildContext context) {
@@ -445,10 +482,12 @@ getTable(
   }
 }
 
+ApiServices apiservice = ApiServices();
 getDailogForAgree(
   BuildContext context,
 ) {
   return showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (ctx) => AlertDialog(
             shape: const RoundedRectangleBorder(
@@ -471,13 +510,15 @@ getDailogForAgree(
                   SizedBox(
                       width: 300.0,
                       height: 40.0,
-                      child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                        text: "I, agree to the following :",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        textColor: ThemeConstants.blackcolor,
-                      ))),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "I, agree to the following :",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          textColor: ThemeConstants.blackcolor,
+                        ),
+                      )),
                   SizedBox(
                       width: 300.0,
                       height: 150.0,
@@ -486,24 +527,29 @@ getDailogForAgree(
                         text:
                             """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
 2. All the information submitted is correct and collaborates with my legal documents.
-3. In case of any discrepancy in information, SIC will not be liable for any halt throughout the process.
+3. In case of any discrepancy in information, SIEC will not be liable for any halt throughout the process.
 4.I, agree to all SIEC's Terms & Conditions.""",
                         fontSize: 18,
                         textColor: ThemeConstants.blackcolor,
                       ))),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 35,
-                      width: 300,
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.bluecolor,
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Center(
-                          child: CustomAutoSizeTextMontserrat(
-                        text: "I Agree",
-                        textColor: ThemeConstants.whitecolor,
-                      )),
+                    child: InkWell(
+                      onTap: () async {
+                        await apiservice.agree(context);
+                      },
+                      child: Container(
+                        height: 35,
+                        width: 300,
+                        decoration: BoxDecoration(
+                            color: ThemeConstants.bluecolor,
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Center(
+                            child: CustomAutoSizeTextMontserrat(
+                          text: "I Agree",
+                          textColor: ThemeConstants.whitecolor,
+                        )),
+                      ),
                     ),
                   )
                 ],
@@ -512,6 +558,211 @@ getDailogForAgree(
           ));
 }
 
+const html =
+    r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://student.siecindia.com/css/app.css">
+    <link rel="stylesheet" href="https://student.siecindia.com/css/custom.css">
+    <link rel="stylesheet" href="https://student.siecindia.com/css/media.css">
+    <title>Document</title>
+    <style>
+        .main-panel{width:100%;margin-top:4px;}
+        .student-back{min-height:auto;}
+    </style>
+</head>
+<body>
+
+
+<div class="main-panel">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="student-back">
+                    
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                    <div class="white-box pb-3 student-detail top-information">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h2 class="h2-f mb-2 text-blue">Welcome to SIEC Gradlynk Student Panel</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <h4 class="text-dark mb-4 font-weight-normal">In order to start with your application,Please follow the below steps -</h4>
+
+
+                                            <div id="content" class="mobile-show mobile-instruction" style="display:inherit;">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                    <a href="#"> <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/upload-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">1. To Get Started,Upload Identity Proof</h3>
+                                                            </div>
+                                                        </div></a>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/user-profile-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">2. Complete your Profile Information</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/book-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">3. Start your Course Search</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6"> 
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/file-svgrepo.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">4. Create your Course Shortlist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/shortlist.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">5. Finalize your Application Shortlist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/document.svg" class="img-fluid mt-0" width="40">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">6. Get customized Document Checklist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">   
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/track.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">7. Track your Application Progress</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/receive-app.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">8. Receive Decision on your Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/fee-payment.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">9. Fee Payment <br><span class="text-success">(SIEC facilitates Education Loan as well)</span></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/visa-application.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">10. Document preparation for Visa Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/visa-sub.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">11. Visa Submission</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/decision-visa.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">12. Decision on Visa Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/worldwide-aeroplane.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">13. Pre Departure - <br> <span>Book your Accomodation &amp; Tickets</span></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                        
+                                                    </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>""";
 
 // getScheduleExpertCall() {
 //   return Get.bottomSheet(Container(

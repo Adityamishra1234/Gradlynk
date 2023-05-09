@@ -129,21 +129,23 @@ class DrawerFilter extends StatelessWidget {
                   ],
                 ),
               ),
-              children: [
-                // Check Box
-                CustomMultiSelectDialog(
-                  data: const ["1", "2", "3"],
-                  title: "Ranking",
-                ),
-                CustomMultiSelectDialog(
-                  data: const ["1", "2", "3"],
-                  title: "Starting Ranking",
-                ),
-                CustomMultiSelectDialog(
-                  data: const ["1", "2", "3"],
-                  title: "End Ranking",
-                ),
-              ],
+              childrenBody: Column(
+                children: [
+                  // Check Box
+                  CustomMultiSelectDialog(
+                    data: const ["1", "2", "3"],
+                    title: "Ranking",
+                  ),
+                  CustomMultiSelectDialog(
+                    data: const ["1", "2", "3"],
+                    title: "Starting Ranking",
+                  ),
+                  CustomMultiSelectDialog(
+                    data: const ["1", "2", "3"],
+                    title: "End Ranking",
+                  ),
+                ],
+              ),
             ),
           ),
         ]));

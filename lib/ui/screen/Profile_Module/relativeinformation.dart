@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/relativeinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/relativeinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/relativeinformationWidget.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/relativeinformationview.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -73,14 +73,17 @@ class RelativeInformation extends StatelessWidget {
         controller.countryNameCodeSelected = controller.countryCode[i];
       }
     }
+    controller.update();
   }
 
   callbackCitizenShip(varTopic) {
     controller.citizenShipStatusSelected = varTopic;
+    controller.update();
   }
 
   callbackRelation(varTopic) {
     controller.relationSelected = varTopic;
+    controller.update();
   }
 
   callbackAddRelativeInfro(varTopic) {
@@ -98,6 +101,7 @@ class RelativeInformation extends StatelessWidget {
     controller.index = data;
     controller.updateForEdit.value = false;
     controller.viewDetails.value = false;
+    controller.updateButton();
     controller.update();
   }
 }

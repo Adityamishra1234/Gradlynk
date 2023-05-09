@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/travelhistory.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class TravelHistoryWidget extends StatelessWidget {
   int? index;
@@ -36,40 +36,12 @@ class TravelHistoryWidget extends StatelessWidget {
     required this.callbackDateOfReject,
   }) : super(key: key);
 
-  static final dateOfApplication = TextEditingController();
-  static final dateOfReject = TextEditingController();
-  static final reasonOfRejection = TextEditingController();
-  static final applicationNumber = TextEditingController();
-  static final visaNumber = TextEditingController();
+  var controller = Get.put(TravelHistoryController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TravelHistoryController>(builder: (_) {
+    return controller.obx((state) {
       // For Edit
-      try {
-        if (updateForEdit == false || _.loadingEdit.value == true) {
-          _.travelAbroadSelected = "Yes";
-          _.travelStatusSelected = _.modelList[index!].travelStatus;
-          _.countrySelected = _.modelList[index!].countryName;
-          _.countryCodeSelected = _.modelList[index!].chooseCountry.toString();
-          if (_.typeOfVisaList.isNotEmpty) {
-            for (var i = 0; i < _.typeOfVisaList.length; i++) {
-              if (_.typeofVisaCode[i].toString() ==
-                  _.modelList[index!].typeOfVisa.toString()) {
-                _.typeOfVisaSelected = _.typeOfVisaList[i];
-                _.typeOfVisaCodeSelected =
-                    _.modelList[index!].typeOfVisa.toString();
-              }
-            }
-          }
-          _.visaStatusSelected = _.modelList[index!].visaStatus;
-          applicationNumber.text = _.modelList[index!].applicationNumber ?? "";
-          dateOfApplication.text = _.modelList[index!].dateOfApplication ?? "";
-          reasonOfRejection.text = _.modelList[index!].reasonOfRejection ?? "";
-        }
-      } catch (e) {
-        print(e.toString());
-      }
 
       return ListView(
         children: [
@@ -88,8 +60,8 @@ class TravelHistoryWidget extends StatelessWidget {
                   height: 30,
                   child: TextButton(
                       onPressed: () {
-                        _.viewDetails.value = true;
-                        _.update();
+                        controller.viewDetails.value = true;
+                        controller.update();
                       },
                       child: CustomAutoSizeTextMontserrat(
                         text: "View Details",
@@ -99,30 +71,27 @@ class TravelHistoryWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: 50,
-            child: CustomDropDownSingle(
-              model: const ["Yes", "No"],
-              initialSelectedValue:
-                  getNUllChecker(_.travelAbroadSelected) == true
-                      ? "No"
-                      : _.travelAbroadSelected == "Yes"
-                          ? "Yes"
-                          : "No",
-              choosefieldtype: false,
-              callbackFunction: callbackTravelAbroad,
-            ),
+          CustomDropDownSingle(
+            model: const ["Yes", "No"],
+            initialSelectedValue:
+                getNUllChecker(controller.travelAbroadSelected) == true
+                    ? "No"
+                    : controller.travelAbroadSelected == "Yes"
+                        ? "Yes"
+                        : "No",
+            choosefieldtype: false,
+            callbackFunction: callbackTravelAbroad,
           ),
-          if (_.travelAbroadSelected == "Yes")
-            ...getTravelledAbroad(_, context),
+          if (controller.travelAbroadSelected == "Yes")
+            ...getTravelledAbroad(controller, context),
         ],
       );
-    });
+    }, onLoading: getLoading(context));
   }
 
   //Funcation
   List<Widget> getTravelledAbroad(
-      TravelHistoryController _, BuildContext context) {
+      TravelHistoryController controller, BuildContext context) {
     return [
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -136,62 +105,61 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(_.loadingtravelStatus.value,
-              _.travelStatusSelected, _.travelStatus),
-          initialSelectedValue: getSelectedDropDown(_.loadingtravelStatus.value,
-              _.travelStatusSelected, _.travelStatus),
-          choosefieldtype: false,
-          callbackFunction: callbackTravelStatus,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(controller.loadingtravelStatus.value,
+            controller.travelStatusSelected, controller.travelStatus),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingtravelStatus.value,
+            controller.travelStatusSelected,
+            controller.travelStatus),
+        choosefieldtype: false,
+        callbackFunction: callbackTravelStatus,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Selected Country",
+            text: "Country you travelled to? ",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(
-              _.loadingCountry.value == true, _.countrySelected, _.countryList),
-          initialSelectedValue: getSelectedDropDown(
-              _.loadingCountry.value == true, _.countrySelected, _.countryList),
-          choosefieldtype: false,
-          callbackFunction: callbackCountry,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(controller.loadingCountry.value == true,
+            controller.countrySelected, controller.countryList),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingCountry.value == true,
+            controller.countrySelected,
+            controller.countryList),
+        choosefieldtype: false,
+        callbackFunction: callbackCountry,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Type Of Visa",
+            text: "Type of Visa",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(_.loadingTypeVisa.value, _.typeOfVisaSelected,
-              _.typeOfVisaList.toSet().toList()),
-          initialSelectedValue: getSelectedDropDown(_.loadingTypeVisa.value,
-              _.typeOfVisaSelected, _.typeOfVisaList.toSet().toList()),
-          choosefieldtype: false,
-          callbackFunction: callbackTypeOfVisa,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(
+            controller.loadingTypeVisa.value,
+            controller.typeOfVisaSelected,
+            controller.typeOfVisaList.toSet().toList()),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingTypeVisa.value,
+            controller.typeOfVisaSelected,
+            controller.typeOfVisaList.toSet().toList()),
+        choosefieldtype: false,
+        callbackFunction: callbackTypeOfVisa,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -205,18 +173,17 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: getDropdownModel(_.loadingVisaStatus.value,
-              _.visaStatusSelected, _.visaStatusList),
-          initialSelectedValue: getSelectedDropDown(_.loadingVisaStatus.value,
-              _.visaStatusSelected, _.visaStatusList),
-          choosefieldtype: false,
-          callbackFunction: callbackVisaStatus,
-        ),
+      CustomDropDownSingle(
+        model: getDropdownModel(controller.loadingVisaStatus.value,
+            controller.visaStatusSelected, controller.visaStatusList),
+        initialSelectedValue: getSelectedDropDown(
+            controller.loadingVisaStatus.value,
+            controller.visaStatusSelected,
+            controller.visaStatusList),
+        choosefieldtype: false,
+        callbackFunction: callbackVisaStatus,
       ),
-      if (_.applicationNumberField.value == true)
+      if (controller.applicationNumberField.value == true)
         Padding(
           padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
           child: Align(
@@ -229,24 +196,26 @@ class TravelHistoryWidget extends StatelessWidget {
             ),
           ),
         ),
-      if (_.applicationNumberField.value == true)
-        Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: applicationNumber,
-            keyboardType: TextInputType.number,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Application number",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
+      if (controller.applicationNumberField.value == true)
+        Obx(
+          () => Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: TextField(
+              controller: TravelHistoryController.applicationNumber.value,
+              keyboardType: TextInputType.number,
+              scrollPadding: EdgeInsets.symmetric(
+                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              decoration: InputDecoration(
+                hintText: "Enter Application number",
+                filled: true,
+                fillColor: ThemeConstants.lightblueColor,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
+              style: ThemeConstants.montserrattextstyle,
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       Padding(
@@ -265,7 +234,7 @@ class TravelHistoryWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: DatePickerExample(
             enableField: false,
-            date: _.dateOfApplicatiton,
+            date: controller.dateOfApplicatiton,
             callbackDate: callbackDateOfApplciation),
       ),
       Padding(
@@ -273,7 +242,7 @@ class TravelHistoryWidget extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date of reject",
+            text: "Date of rejection",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -284,7 +253,7 @@ class TravelHistoryWidget extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: DatePickerExample(
             enableField: false,
-            date: _.dateOfReject,
+            date: controller.dateOfReject,
             callbackDate: callbackDateOfReject),
       ),
       Padding(
@@ -299,22 +268,24 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: reasonOfRejection,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter reason of rejection",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
+      Obx(
+        () => Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: TextField(
+            controller: TravelHistoryController.reasonOfRejection.value,
+            scrollPadding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            decoration: InputDecoration(
+              hintText: "Enter reason of rejection",
+              filled: true,
+              fillColor: ThemeConstants.lightblueColor,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(15.0),
+              ),
             ),
+            style: ThemeConstants.montserrattextstyle,
           ),
-          style: ThemeConstants.montserrattextstyle,
         ),
       ),
       Padding(
@@ -329,14 +300,11 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Yes", "No"],
-          initialSelectedValue: _.proofAvailableSelected,
-          choosefieldtype: false,
-          callbackFunction: callbackProofAvailable,
-        ),
+      CustomDropDownSingle(
+        model: const ["Yes", "No"],
+        initialSelectedValue: controller.proofAvailableSelected,
+        choosefieldtype: false,
+        callbackFunction: callbackProofAvailable,
       ),
       if (updateForEdit == true)
         Padding(
@@ -355,29 +323,33 @@ class TravelHistoryWidget extends StatelessWidget {
                         backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
-                        _.modelList.add(TravelHistoryModel(
-                            travelStatus: _.travelStatusSelected,
-                            chooseCountry:
-                                int.parse(_.countryCodeSelected ?? "0"),
-                            typeOfVisa:
-                                int.parse(_.typeOfVisaCodeSelected ?? "0"),
-                            visaStatus: _.visaStatusSelected,
-                            dateOfApplication: dateOfApplication.text,
-                            dateOfRejection: dateOfReject.text,
-                            reasonOfRejection: reasonOfRejection.text,
-                            proofAvailable:
-                                int.parse(_.proofAvailableSelectedID ?? "0"),
-                            countryName: _.countrySelected,
-                            applicationNumber: applicationNumber.text,
-                            visaNumber: visaNumber.text));
-                        _.update();
-                        _.updateTravelHistory(
+                        controller.modelList.add(TravelHistoryModel(
+                            travelStatus: controller.travelStatusSelected,
+                            chooseCountry: int.parse(
+                                controller.countryCodeSelected ?? "0"),
+                            typeOfVisa: controller.typeOfVisaCodeSelected,
+                            visaStatus: controller.visaStatusSelected,
+                            dateOfApplication: TravelHistoryController
+                                .dateOfApplication.value.text,
+                            dateOfRejection: TravelHistoryController
+                                .dateOfReject1.value.text,
+                            reasonOfRejection: TravelHistoryController
+                                .reasonOfRejection.value.text,
+                            proofAvailable: int.parse(
+                                controller.proofAvailableSelectedID ?? "0"),
+                            countryName: controller.countrySelected,
+                            applicationNumber: TravelHistoryController
+                                .applicationNumber.value.text,
+                            visaNumber:
+                                TravelHistoryController.visaNumber.value.text));
+                        controller.update();
+                        controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
-                            _.travelAbroadSelected!,
+                            controller.travelAbroadSelected!,
                             "added");
                       },
                       child: CustomAutoSizeTextMontserrat(
-                        text: "Added",
+                        text: "Add",
                         textColor: ThemeConstants.whitecolor,
                       )),
                 ),
@@ -402,25 +374,32 @@ class TravelHistoryWidget extends StatelessWidget {
                         backgroundColor: ThemeConstants.bluecolor, // foreground
                       ),
                       onPressed: () async {
-                        _.modelList.add(TravelHistoryModel(
-                            travelStatus: _.travelStatusSelected,
-                            chooseCountry:
-                                int.parse(_.countryCodeSelected ?? "0"),
-                            typeOfVisa:
-                                int.parse(_.typeOfVisaCodeSelected ?? "0"),
-                            visaStatus: _.visaStatusSelected,
-                            dateOfApplication: dateOfApplication.text,
-                            dateOfRejection: dateOfReject.text,
-                            reasonOfRejection: reasonOfRejection.text,
-                            proofAvailable:
-                                int.parse(_.proofAvailableSelectedID ?? "0"),
-                            countryName: _.countrySelected,
-                            applicationNumber: applicationNumber.text,
-                            visaNumber: visaNumber.text));
-                        _.update();
-                        _.updateTravelHistory(
+                        TravelHistoryModel model = TravelHistoryModel();
+
+                        model = TravelHistoryModel(
+                            travelStatus: controller.travelStatusSelected,
+                            chooseCountry: int.parse(
+                                controller.countryCodeSelected ?? "0"),
+                            typeOfVisa: controller.typeOfVisaCodeSelected,
+                            visaStatus: controller.visaStatusSelected,
+                            dateOfApplication: TravelHistoryController
+                                .dateOfApplication.value.text,
+                            dateOfRejection: TravelHistoryController
+                                .dateOfReject1.value.text,
+                            reasonOfRejection: TravelHistoryController
+                                .reasonOfRejection.value.text,
+                            proofAvailable: int.parse(
+                                controller.proofAvailableSelectedID ?? "0"),
+                            countryName: controller.countrySelected,
+                            applicationNumber: TravelHistoryController
+                                .applicationNumber.value.text,
+                            visaNumber:
+                                TravelHistoryController.visaNumber.value.text);
+                        controller.modelList[index!] = model;
+                        controller.update();
+                        controller.updateTravelHistory(
                             Get.find<BaseController>().model1.id.toString(),
-                            _.travelAbroadSelected!,
+                            controller.travelAbroadSelected!,
                             "updated");
                       },
                       child: CustomAutoSizeTextMontserrat(

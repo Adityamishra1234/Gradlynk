@@ -71,271 +71,273 @@ class _DocumentCheckListState extends State<DocumentCheckList> {
                 ],
               ),
             ),
-            children: [
-              // Check Box
-              Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5, bottom: 20),
-                child: Table(
-                  border: TableBorder.all(),
-                  children: [
-                    TableRow(
-                        decoration:
-                            const BoxDecoration(color: Color(0xFFECF0FB)),
-                        children: [
-                          TableCell(
-                              child: Center(
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Document Name",
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )),
-                          TableCell(
-                            child: Center(
+            childrenBody: Column(
+              children: [
+                // Check Box
+                Padding(
+                  padding: const EdgeInsets.only(left: 5, right: 5, bottom: 20),
+                  child: Table(
+                    border: TableBorder.all(),
+                    children: [
+                      TableRow(
+                          decoration:
+                              const BoxDecoration(color: Color(0xFFECF0FB)),
+                          children: [
+                            TableCell(
+                                child: Center(
                               child: CustomAutoSizeTextMontserrat(
-                                text: "Required By",
+                                text: "Document Name",
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ),
-                          TableCell(
+                            )),
+                            TableCell(
                               child: Center(
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Required By",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                                child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Action",
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                            TableCell(
+                                child: Center(
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Verification Status",
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )),
+                          ]),
+                      TableRow(children: [
+                        TableCell(
+                            child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "PassPort *",
+                            fontSize: 14,
+                            textColor: ThemeConstants.TextColor,
+                          ),
+                        )),
+                        TableCell(
+                          child: Center(
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Action",
+                              text: "Required By SIEC",
                               fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                              textColor: ThemeConstants.TextColor,
                             ),
-                          )),
-                          TableCell(
-                              child: Center(
+                          ),
+                        ),
+                        TableCell(
+                            child: Center(
+                                child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.download,
+                                      color: ThemeConstants.bluecolor,
+                                    )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.remove_red_eye,
+                                      color: ThemeConstants.blackcolor,
+                                    )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: ThemeConstants.orangeColor,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ))),
+                        TableCell(
+                            child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Verification Status",
+                            fontSize: 14,
+                            textColor: ThemeConstants.TextColor,
+                          ),
+                        )),
+                      ]),
+                      TableRow(children: [
+                        TableCell(
+                            child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "PassPort *",
+                            fontSize: 14,
+                            textColor: ThemeConstants.TextColor,
+                          ),
+                        )),
+                        TableCell(
+                          child: Center(
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Verification Status",
+                              text: "Required By SIEC",
                               fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                              textColor: ThemeConstants.TextColor,
                             ),
-                          )),
-                        ]),
-                    TableRow(children: [
-                      TableCell(
-                          child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "PassPort *",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
+                          ),
                         ),
-                      )),
-                      TableCell(
-                        child: Center(
+                        TableCell(
+                            child: Center(
+                                child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.download,
+                                      color: ThemeConstants.bluecolor,
+                                    )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.remove_red_eye,
+                                      color: ThemeConstants.blackcolor,
+                                    )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: ThemeConstants.orangeColor,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ))),
+                        TableCell(
+                            child: Center(
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Required By SIEC",
+                            text: "Verification Status",
                             fontSize: 14,
                             textColor: ThemeConstants.TextColor,
                           ),
-                        ),
-                      ),
-                      TableCell(
-                          child: Center(
-                              child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.download,
-                                    color: ThemeConstants.bluecolor,
-                                  )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.remove_red_eye,
-                                    color: ThemeConstants.blackcolor,
-                                  )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: ThemeConstants.orangeColor,
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ))),
-                      TableCell(
-                          child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Verification Status",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      )),
-                    ]),
-                    TableRow(children: [
-                      TableCell(
-                          child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "PassPort *",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      )),
-                      TableCell(
-                        child: Center(
+                        )),
+                      ]),
+                      TableRow(children: [
+                        TableCell(
+                            child: Center(
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Required By SIEC",
+                            text: "PassPort *",
                             fontSize: 14,
                             textColor: ThemeConstants.TextColor,
                           ),
-                        ),
-                      ),
-                      TableCell(
+                        )),
+                        TableCell(
                           child: Center(
-                              child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.download,
-                                    color: ThemeConstants.bluecolor,
-                                  )),
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Required By SIEC",
+                              fontSize: 14,
+                              textColor: ThemeConstants.TextColor,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.remove_red_eye,
-                                    color: ThemeConstants.blackcolor,
-                                  )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: ThemeConstants.orangeColor,
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ))),
-                      TableCell(
-                          child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Verification Status",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
                         ),
-                      )),
-                    ]),
-                    TableRow(children: [
-                      TableCell(
-                          child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "PassPort *",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      )),
-                      TableCell(
-                        child: Center(
+                        TableCell(
+                            child: Center(
+                                child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.download,
+                                      color: ThemeConstants.bluecolor,
+                                    )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.remove_red_eye,
+                                      color: ThemeConstants.blackcolor,
+                                    )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5, left: 5),
+                              child: InkWell(
+                                onTap: () {},
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle),
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: ThemeConstants.orangeColor,
+                                    )),
+                              ),
+                            ),
+                          ],
+                        ))),
+                        TableCell(
+                            child: Center(
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Required By SIEC",
+                            text: "Verification Status",
                             fontSize: 14,
                             textColor: ThemeConstants.TextColor,
                           ),
-                        ),
-                      ),
-                      TableCell(
-                          child: Center(
-                              child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.download,
-                                    color: ThemeConstants.bluecolor,
-                                  )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.remove_red_eye,
-                                    color: ThemeConstants.blackcolor,
-                                  )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5, left: 5),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: ThemeConstants.orangeColor,
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ))),
-                      TableCell(
-                          child: Center(
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Verification Status",
-                          fontSize: 14,
-                          textColor: ThemeConstants.TextColor,
-                        ),
-                      )),
-                    ]),
-                  ],
-                ),
-              )
-            ],
+                        )),
+                      ]),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ],

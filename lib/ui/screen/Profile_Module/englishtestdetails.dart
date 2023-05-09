@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/englishtest.dart';
+
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
-
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -26,11 +27,11 @@ class EnglishTestDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<EnglishTestController>(builder: (_) {
-      if (_.loadingFirstTime.value == false) {
-        if (_.loadingExamName2.value == true &&
-            _.loadingExamStaus.value == true &&
-            _.loadingViewEnglishTestDetails.value == true) {
+    return controller.obx((state) {
+      if (controller.loadingFirstTime.value == false) {
+        if (controller.loadingExamName2.value == true &&
+            controller.loadingExamStaus.value == true &&
+            controller.loadingViewEnglishTestDetails.value == true) {
           viewCondition();
         }
       }
@@ -52,52 +53,55 @@ class EnglishTestDetails extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const Spacer(),
-                    if (_.editSave.value == true)
+                    if (controller.editSave.value == true)
                       TextButton(
                           onPressed: () {
-                            _.editSave.value = false;
-                            _.update();
+                            controller.editSave.value = false;
+                            controller.update();
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "edit",
                             textColor: ThemeConstants.bluecolor,
                           )),
-                    if (_.editSave.value == false)
+                    if (controller.editSave.value == false)
                       TextButton(
                           onPressed: () {
-                            if (_.examStatusSelected == "Not Yet Registered") {
-                              if (_.bookTestSelcted == null) {
-                                getToast("Please select book test");
+                            if (controller.examStatusSelected ==
+                                "Not Yet Registered") {
+                              if (controller.bookTestSelcted == null) {
+                                getToast(
+                                    SnackBarConstants.bookTestSelectedError!);
                               }
                             }
-                            if (_.examStatusSelected == null) {
-                              getToast("Please select Exam Status");
+                            if (controller.examStatusSelected == null) {
+                              getToast(SnackBarConstants.examStatusError!);
                             } else {
-                              if (_.examNameSelected == null) {
-                                getToast("Please select Exam Name");
+                              if (controller.examNameSelected == null) {
+                                getToast(SnackBarConstants.examnameError!);
                               } else {
                                 EnglishTestDetailsViewModel
                                     englishTestDetailsViewModel =
                                     EnglishTestDetailsViewModel();
                                 englishTestDetailsViewModel =
-                                    _.englishTestDetailsViewModel;
+                                    controller.englishTestDetailsViewModel;
                                 englishTestDetailsViewModel.dateOfExam =
-                                    _.dateOfExamSelected;
+                                    controller.dateOfExamSelected;
                                 englishTestDetailsViewModel.tentativeExamDate =
-                                    _.tentativeExamDateSelcted;
+                                    controller.tentativeExamDateSelcted;
                                 englishTestDetailsViewModel.expirationDate =
-                                    _.testscoreExpirationDateSelcted;
+                                    controller.testscoreExpirationDateSelcted;
                                 englishTestDetailsViewModel.resultDate =
-                                    _.dateOfTestReportSelcted;
+                                    controller.dateOfTestReportSelcted;
                                 englishTestDetailsViewModel.enqId =
                                     Get.find<BaseController>()
                                         .model1
                                         .id
                                         .toString();
                                 englishTestDetailsViewModel.examStatusID =
-                                    _.examStatusCodeSelected.toString();
+                                    controller.examStatusCodeSelected
+                                        .toString();
                                 englishTestDetailsViewModel.examName =
-                                    _.examNameSelected;
+                                    controller.examNameSelected;
                                 englishTestDetailsViewModel.reading =
                                     reading.text;
                                 englishTestDetailsViewModel.writing =
@@ -124,8 +128,8 @@ class EnglishTestDetails extends StatelessWidget {
                                 }
                                 updateEnglishTestDetails(
                                     englishTestDetailsViewModel);
-                                _.editSave.value = true;
-                                _.update();
+                                controller.editSave.value = true;
+                                controller.update();
                               }
                             }
                           },
@@ -137,35 +141,35 @@ class EnglishTestDetails extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              child: CustomDropDownSingle(
-                model: _.loadingExamStaus.value == true
-                    ? _.examStatusList
-                    : ["No Data"],
-                initialSelectedValue: _.loadingExamStaus.value == true
-                    ? getNUllChecker(_.examStatusSelected) == true
-                        ? _.examStatusList[0]
-                        : _.examStatusSelected.toString()
-                    : "No Data",
-                choosefieldtype: _.editSave.value == true ? true : false,
-                callbackFunction: callbackExamStatus,
-              ),
+            CustomDropDownSingle(
+              model: controller.loadingExamStaus.value == true
+                  ? controller.examStatusList
+                  : ["No Data"],
+              initialSelectedValue: controller.loadingExamStaus.value == true
+                  ? getNUllChecker(controller.examStatusSelected) == true
+                      ? controller.examStatusList[0]
+                      : controller.examStatusSelected.toString()
+                  : "No Data",
+              choosefieldtype: controller.editSave.value == true ? true : false,
+              callbackFunction: callbackExamStatus,
             ),
-            if (getNUllChecker(_.examStatusSelected) == false)
-              if (_.examStatusCodeSelected == 1) ...registered(context),
-            if (_.examStatusCodeSelected == 2)
-              ...notYetRegistered(context, _.editSave.value),
-            if (_.examStatusCodeSelected == 3) ...testAllReadyTaken(context),
-            if (_.examStatusCodeSelected == 3 && _.tentative.value == true)
+            if (getNUllChecker(controller.examStatusSelected) == false)
+              if (controller.examStatusCodeSelected == 1)
+                ...registered(context),
+            if (controller.examStatusCodeSelected == 2)
+              ...notYetRegistered(context, controller.editSave.value),
+            if (controller.examStatusCodeSelected == 3)
+              ...testAllReadyTaken(context),
+            if (controller.examStatusCodeSelected == 3 &&
+                controller.tentative.value == true)
               ...tentative(context),
-            if (_.examStatusCodeSelected == 3 &&
-                _.tentative.value == false &&
-                _.duolingo.value == false)
+            if (controller.examStatusCodeSelected == 3 &&
+                controller.tentative.value == false &&
+                controller.duolingo.value == false)
               ...definite(context),
-            if (_.examStatusCodeSelected == 3 &&
-                _.tentative.value == false &&
-                _.duolingo.value == true)
+            if (controller.examStatusCodeSelected == 3 &&
+                controller.tentative.value == false &&
+                controller.duolingo.value == true)
               ...duolingo(context),
             Align(
               alignment: AlignmentDirectional.topEnd,
@@ -173,7 +177,7 @@ class EnglishTestDetails extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 20, right: 20),
                 child: SizedBox(
                   width: 90,
-                  child: _.editSave.value == false
+                  child: controller.editSave.value == false
                       ? ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             foregroundColor: ThemeConstants.bluecolor,
@@ -182,35 +186,37 @@ class EnglishTestDetails extends StatelessWidget {
                                 ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            if (_.examStatusSelected == null) {
-                              getToast("Please select Exam Status");
-                            } else if (_.examStatusSelected ==
+                            if (controller.examStatusSelected == null) {
+                              getToast(SnackBarConstants.examStatusError!);
+                            } else if (controller.examStatusSelected ==
                                 "Not Yet Registered") {
-                              if (_.bookTestSelcted == null) {
-                                getToast("Please select book test");
+                              if (controller.bookTestSelcted == null) {
+                                getToast(
+                                    SnackBarConstants.bookTestSelectedError!);
                               } else {
                                 EnglishTestDetailsViewModel
                                     englishTestDetailsViewModel =
                                     EnglishTestDetailsViewModel();
                                 englishTestDetailsViewModel =
-                                    _.englishTestDetailsViewModel;
+                                    controller.englishTestDetailsViewModel;
                                 englishTestDetailsViewModel.dateOfExam =
-                                    _.dateOfExamSelected;
+                                    controller.dateOfExamSelected;
                                 englishTestDetailsViewModel.tentativeExamDate =
-                                    _.tentativeExamDateSelcted;
+                                    controller.tentativeExamDateSelcted;
                                 englishTestDetailsViewModel.expirationDate =
-                                    _.testscoreExpirationDateSelcted;
+                                    controller.testscoreExpirationDateSelcted;
                                 englishTestDetailsViewModel.resultDate =
-                                    _.dateOfTestReportSelcted;
+                                    controller.dateOfTestReportSelcted;
                                 englishTestDetailsViewModel.enqId =
                                     Get.find<BaseController>()
                                         .model1
                                         .id
                                         .toString();
                                 englishTestDetailsViewModel.examStatusID =
-                                    _.examStatusCodeSelected.toString();
+                                    controller.examStatusCodeSelected
+                                        .toString();
                                 englishTestDetailsViewModel.examName =
-                                    _.examNameSelected;
+                                    controller.examNameSelected;
                                 englishTestDetailsViewModel.reading =
                                     reading.text;
                                 englishTestDetailsViewModel.writing =
@@ -238,35 +244,36 @@ class EnglishTestDetails extends StatelessWidget {
                                 }
                                 updateEnglishTestDetails(
                                     englishTestDetailsViewModel);
-                                _.editSave.value = true;
-                                _.update();
+                                controller.editSave.value = true;
+                                controller.update();
                               }
                             } else {
-                              if (_.examNameSelected == null) {
-                                getToast("Please select Exam Name");
+                              if (controller.examNameSelected == null) {
+                                getToast(SnackBarConstants.examnameError!);
                               } else {
                                 EnglishTestDetailsViewModel
                                     englishTestDetailsViewModel =
                                     EnglishTestDetailsViewModel();
                                 englishTestDetailsViewModel =
-                                    _.englishTestDetailsViewModel;
+                                    controller.englishTestDetailsViewModel;
                                 englishTestDetailsViewModel.dateOfExam =
-                                    _.dateOfExamSelected;
+                                    controller.dateOfExamSelected;
                                 englishTestDetailsViewModel.tentativeExamDate =
-                                    _.tentativeExamDateSelcted;
+                                    controller.tentativeExamDateSelcted;
                                 englishTestDetailsViewModel.expirationDate =
-                                    _.testscoreExpirationDateSelcted;
+                                    controller.testscoreExpirationDateSelcted;
                                 englishTestDetailsViewModel.resultDate =
-                                    _.dateOfTestReportSelcted;
+                                    controller.dateOfTestReportSelcted;
                                 englishTestDetailsViewModel.enqId =
                                     Get.find<BaseController>()
                                         .model1
                                         .id
                                         .toString();
                                 englishTestDetailsViewModel.examStatusID =
-                                    _.examStatusCodeSelected.toString();
+                                    controller.examStatusCodeSelected
+                                        .toString();
                                 englishTestDetailsViewModel.examName =
-                                    _.examNameSelected;
+                                    controller.examNameSelected;
                                 englishTestDetailsViewModel.reading =
                                     reading.text;
                                 englishTestDetailsViewModel.writing =
@@ -293,8 +300,8 @@ class EnglishTestDetails extends StatelessWidget {
                                 }
                                 updateEnglishTestDetails(
                                     englishTestDetailsViewModel);
-                                _.editSave.value = true;
-                                _.update();
+                                controller.editSave.value = true;
+                                controller.update();
                               }
                             }
                           },
@@ -310,8 +317,8 @@ class EnglishTestDetails extends StatelessWidget {
                                 ThemeConstants.bluecolor, // foreground
                           ),
                           onPressed: () async {
-                            _.editSave.value = false;
-                            _.update();
+                            controller.editSave.value = false;
+                            controller.update();
                           },
                           child: CustomAutoSizeTextMontserrat(
                             text: "Edit",
@@ -326,7 +333,7 @@ class EnglishTestDetails extends StatelessWidget {
           ],
         ),
       );
-    });
+    }, onLoading: getLoading(context));
   }
 
 // CallBack Funcation
@@ -419,20 +426,18 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      GetBuilder<EnglishTestController>(builder: (_) {
-        return SizedBox(
-          height: 50,
-          child: CustomDropDownSingle(
-            model:
-                _.loadingExamName2.value == true ? _.examNameList : ["No Data"],
-            initialSelectedValue: _.loadingExamName2.value == true
-                ? getNUllChecker(_.examNameSelected) == true
-                    ? _.examNameList[0]
-                    : _.examNameSelected.toString()
-                : "No Data",
-            choosefieldtype: _.editSave.value == true ? true : false,
-            callbackFunction: callbackExamName,
-          ),
+      GetBuilder<EnglishTestController>(builder: (controller) {
+        return CustomDropDownSingle(
+          model: controller.loadingExamName2.value == true
+              ? controller.examNameList
+              : ["No Data"],
+          initialSelectedValue: controller.loadingExamName2.value == true
+              ? getNUllChecker(controller.examNameSelected) == true
+                  ? controller.examNameList[0]
+                  : controller.examNameSelected.toString()
+              : "No Data",
+          choosefieldtype: controller.editSave.value == true ? true : false,
+          callbackFunction: callbackExamName,
         );
       }),
       Padding(
@@ -440,7 +445,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Exam",
+            text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -477,14 +482,11 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Yes", "No"],
-          initialSelectedValue: controller.bookTestSelcted ?? "No",
-          choosefieldtype: editsave,
-          callbackFunction: callback,
-        ),
+      CustomDropDownSingle(
+        model: const ["Yes", "No"],
+        initialSelectedValue: controller.bookTestSelcted ?? "No",
+        choosefieldtype: editsave,
+        callbackFunction: callback,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -499,18 +501,15 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName2.value == true
-              ? controller.examNameList
-              : ["No data"],
-          initialSelectedValue: controller.loadingExamName2.value == true
-              ? controller.examNameSelected
-              : "No data",
-          choosefieldtype: editsave,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName2.value == true
+            ? controller.examNameList
+            : ["No data"],
+        initialSelectedValue: controller.loadingExamName2.value == true
+            ? controller.examNameSelected
+            : "No data",
+        choosefieldtype: editsave,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -552,27 +551,24 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: controller.loadingExamName2.value == true
-              ? controller.examNameList
-              : ["No Data"],
-          initialSelectedValue: controller.loadingExamName2.value == true
-              ? getNUllChecker(controller.examNameSelected) == true
-                  ? controller.examNameList[0]
-                  : controller.examNameSelected.toString()
-              : "No Data",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackExamName,
-        ),
+      CustomDropDownSingle(
+        model: controller.loadingExamName2.value == true
+            ? controller.examNameList
+            : ["No Data"],
+        initialSelectedValue: controller.loadingExamName2.value == true
+            ? getNUllChecker(controller.examNameSelected) == true
+                ? controller.examNameList[0]
+                : controller.examNameSelected.toString()
+            : "No Data",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackExamName,
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Exam",
+            text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -596,7 +592,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Date Of Test Report",
+            text: "Date of Test Report",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -634,15 +630,24 @@ class EnglishTestDetails extends StatelessWidget {
       const SizedBox(
         height: 10,
       ),
-      SizedBox(
-        height: 50,
-        child: CustomDropDownSingle(
-          model: const ["Tentative", "Definite"],
-          initialSelectedValue:
-              controller.tentative.value == true ? "Tentative" : "Definite",
-          choosefieldtype: controller.editSave.value == true ? true : false,
-          callbackFunction: callbackTentativeDefinite,
+      Padding(
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+        child: Align(
+          alignment: AlignmentDirectional.topStart,
+          child: CustomAutoSizeTextMontserrat(
+            text: "Exam Score Status",
+            textColor: ThemeConstants.TextColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+      ),
+      CustomDropDownSingle(
+        model: const ["Tentative", "Definite"],
+        initialSelectedValue:
+            controller.tentative.value == true ? "Tentative" : "Definite",
+        choosefieldtype: controller.editSave.value == true ? true : false,
+        callbackFunction: callbackTentativeDefinite,
       ),
     ];
   }
@@ -755,8 +760,8 @@ class EnglishTestDetails extends StatelessWidget {
             }
             return null;
           },
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: getNUllChecker(
                         controller.englishTestDetailsViewModel.listening) ==
@@ -795,8 +800,8 @@ class EnglishTestDetails extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: writing,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
@@ -878,8 +883,8 @@ class EnglishTestDetails extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: reading,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
@@ -961,8 +966,8 @@ class EnglishTestDetails extends StatelessWidget {
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: speaking,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
@@ -1048,8 +1053,8 @@ class EnglishTestDetails extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: listening,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Literacy",
             filled: true,
@@ -1093,8 +1098,8 @@ class EnglishTestDetails extends StatelessWidget {
 
           controller: writing,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Comprehension",
             filled: true,
@@ -1149,8 +1154,8 @@ class EnglishTestDetails extends StatelessWidget {
 
           controller: reading,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Conversation",
             filled: true,
@@ -1205,8 +1210,8 @@ class EnglishTestDetails extends StatelessWidget {
 
           controller: speaking,
           keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          scrollPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
             hintText: "Production",
             filled: true,

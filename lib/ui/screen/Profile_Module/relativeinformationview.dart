@@ -176,7 +176,7 @@ class RelativeInformationView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Contact Of Relative",
+                                      text: "Contact of Relative",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -204,7 +204,7 @@ class RelativeInformationView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Address Of Relative",
+                                      text: "Address of Relative",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -236,8 +236,11 @@ class RelativeInformationView extends StatelessWidget {
                                     const EdgeInsets.only(top: 20, right: 20),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants
-                                          .whitecolor,
+                                      foregroundColor:
+                                          ThemeConstants.whitecolor,
+                                      elevation: 0.0,
+                                      backgroundColor:
+                                          ThemeConstants.whitecolor,
                                       side: BorderSide(
                                           color: ThemeConstants.TextColor),
                                       // foreground
@@ -258,8 +261,10 @@ class RelativeInformationView extends StatelessWidget {
                                   width: 90,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: ThemeConstants
-                                            .bluecolor, elevation: 0.0, backgroundColor: ThemeConstants
+                                        foregroundColor:
+                                            ThemeConstants.bluecolor,
+                                        elevation: 0.0,
+                                        backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/bookanappointment.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
@@ -9,6 +10,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:studentpanel/widgets/time_picker.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class BookAnAppointment extends StatelessWidget {
   BookAnAppointment({super.key});
@@ -18,9 +20,7 @@ class BookAnAppointment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: CustomAppBar("title"),
-        drawer: CustomDrawer(
-          index: 0,
-        ),
+        drawer: CustomDrawer(),
         body: GetBuilder<BookAnAppointmentController>(
           builder: (_) => Column(
             children: [
@@ -54,17 +54,13 @@ class BookAnAppointment extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                // width: 300,
-                height: 50,
-                child: CustomDropDownSingle(
-                  model: getDropdownModel(
-                      _.loadingServiceAssigned.value, _.nameSelected, _.name),
-                  initialSelectedValue: getSelectedDropDown(
-                      _.loadingServiceAssigned.value, _.nameSelected, _.name),
-                  choosefieldtype: false,
-                  callbackFunction: callbackServiceAssigned,
-                ),
+              CustomDropDownSingle(
+                model: getDropdownModel(
+                    _.loadingServiceAssigned.value, _.nameSelected, _.name),
+                initialSelectedValue: getSelectedDropDown(
+                    _.loadingServiceAssigned.value, _.nameSelected, _.name),
+                choosefieldtype: false,
+                callbackFunction: callbackServiceAssigned,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -120,11 +116,11 @@ class BookAnAppointment extends StatelessWidget {
                           ),
                           onPressed: () {
                             if (getNUllChecker(_.nameSelected)) {
-                              getToast("please select your counsellor");
+                              getToast(SnackBarConstants.counsellorError!);
                             } else if (getNUllChecker(_.dateSelected)) {
-                              getToast("please select your preferred date");
+                              getToast(SnackBarConstants.preferresDateError!);
                             } else if (getNUllChecker(_.timeSelected)) {
-                              getToast("please select your preferred time");
+                              getToast(SnackBarConstants.preferresTimeError!);
                             } else {
                               _.addBookAppointment();
                             }

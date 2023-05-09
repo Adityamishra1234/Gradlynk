@@ -3,6 +3,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/serviceAssignesmodel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class ScheduleExpertCallController extends GetxController {
   ApiServices apiServices = ApiServices();
@@ -63,7 +64,8 @@ class ScheduleExpertCallController extends GetxController {
               Endpoints.scheduleAnExpertCallPart3! +
               timeSelected! +
               Endpoints.scheduleAnExpertCallPart4! +
-              nameSelectedID.toString());
+              nameSelectedID.toString(),
+          SnackBarConstants.sheduleEXpert!);
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

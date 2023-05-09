@@ -39,10 +39,13 @@ class StudentPanel {
       // this.testDetails,
       // this.passportDetails,
       this.otherCountryOfInterest,
+      this.student_consent,
+
       // this.courseChoice,
       this.loginproof,
       this.is_block});
   int? is_block;
+  int? student_consent;
   bool? loginproof;
   int? countryID;
   int? stateID;
@@ -80,6 +83,7 @@ class StudentPanel {
   // List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
+        student_consent: json['student_consent'],
         loginproof: json['login_proof'],
         is_block: json['is_blocked'],
         cityID: json['city_id'],

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hashids2/hashids2.dart';
@@ -13,6 +14,7 @@ import 'package:studentpanel/ui/screen/updatedialog.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class BaseController extends GetxController {
   ApiServices apiServices = ApiServices();
@@ -26,6 +28,7 @@ class BaseController extends GetxController {
   RxBool loadingnotificationModel = false.obs;
   List<String> countrylist = [];
   List<int> countryid = [];
+  bool dashboard = false;
 
   @override
   void onInit() {
@@ -36,12 +39,11 @@ class BaseController extends GetxController {
   @override
   onReady() {
     upcomingEvents();
-    NewVersionCheck.newVersionCheck(
-        // package name for android and Ios
-        //TODO
-        Get.context,
-        "com.downtownengineeers.gradlynk",
-        "com.downtownengineeers.gradlynk");
+  }
+
+  getUpdateNotitifcation() {
+    NewVersionCheck.newVersionCheck(Get.context,
+        "com.downtownengineers.gradlynk", "com.downtownengineers.gradlynk");
   }
 
   profiledetail() async {
@@ -53,8 +55,10 @@ class BaseController extends GetxController {
       model1 = res;
 
       if (model1.is_block == 1) {
+        getToast(SnackBarConstants.userBlock!);
         logout();
       } else {
+        // if(model1.p)
         if (model1.otherCountryOfInterest != null) {
           model1.otherCountryOfInterest!.forEach((element) {
             countrylist.add("Select your country");
@@ -70,7 +74,6 @@ class BaseController extends GetxController {
           countryid.add(model1.countryID!);
         }
       }
-
       loadingStudentPanelData1 = true.obs;
       update();
     }
@@ -105,14 +108,16 @@ class BaseController extends GetxController {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String token = sharedPreferences.getString("token").toString();
     String id = sharedPreferences.getString("id").toString();
-    var res = await apiServices.logout(
-        Endpoints.baseUrl!, Endpoints.logout! + id, token);
-    if (res == true) {
-      sharedPreferences.clear();
-      Get.toNamed(LoginCopy.routeNamed);
-    } else {
-      sharedPreferences.clear();
-      Get.toNamed(LoginCopy.routeNamed);
-    }
+    // var res = await apiServices.logout(
+    //     Endpoints.baseUrl!, Endpoints.logout! + id, token);
+    // if (res == true) {
+    Get.deleteAll();
+    sharedPreferences.clear();
+    Get.offAll(LoginCopy());
+    // Get.toNamed(LoginCopy.routeNamed);
+    // } else {
+    //   sharedPreferences.clear();
+    //   Get.toNamed(LoginScreen.routeNamed);
+    // }
   }
 }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
 
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
@@ -45,92 +48,106 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   bool socialMedia = false;
   List gender = ["Select gender", "Male", "Female", "Other"];
 
+  GlobalKey<FormState> profilePageKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    profilePageKey;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ContactInformationController>(builder: (_) {
+    return controller.obx((state) {
       try {
-        if (_.loadingStudentPanelData.value == 1) {
-          for (var i = 0; i < _.model.addtionalDetails!.length; i++) {
-            if (_.model.addtionalDetails![i].serviceName == "Student Visa") {
+        if (controller.loadingStudentPanelData.value == 1) {
+          for (var i = 0; i < controller.model.addtionalDetails!.length; i++) {
+            if (controller.model.addtionalDetails![i].serviceName ==
+                "Student Visa") {
               assignedBranch.text =
-                  _.model.addtionalDetails![i].branchName ?? "";
-              service.text = _.model.addtionalDetails![i].serviceName ?? "";
+                  controller.model.addtionalDetails![i].branchName ?? "";
+              service.text =
+                  controller.model.addtionalDetails![i].serviceName ?? "";
               firstCountryInterest.text =
-                  _.model.addtionalDetails![i].countryName ?? "";
+                  controller.model.addtionalDetails![i].countryName ?? "";
               assignedAdvisors.text =
-                  _.model.addtionalDetails![i].assigned_advisor ?? "";
-              if (getNUllChecker(_.model.addtionalDetails![i].assigne) ==
+                  controller.model.addtionalDetails![i].assigned_advisor ?? "";
+              if (getNUllChecker(
+                      controller.model.addtionalDetails![i].assigne) ==
                   false) {
                 assignedAdvisors.text = assignedAdvisors.text +
-                    _.model.addtionalDetails![i].assigne!;
+                    controller.model.addtionalDetails![i].assigne!;
               }
             }
           }
 
-          _.dob = _.model.dateOfBirth;
-          firstName.text = _.model.enquiryName ?? "";
-          lastName.text = _.model.lastname ?? "";
-          mobileNumber.text = getNUllChecker(_.model.mobile) == false
-              ? _.model.mobile.toString()
+          controller.dob = controller.model.dateOfBirth;
+          firstName.text = controller.model.enquiryName ?? "";
+          lastName.text = controller.model.lastname ?? "";
+          mobileNumber.text = getNUllChecker(controller.model.mobile) == false
+              ? controller.model.mobile.toString()
               : "";
 
-          email.text = _.model.email ?? "";
+          email.text = controller.model.email ?? "";
           whatsappNumber.text =
-              getNUllChecker(_.model.whatsappNumber.toString()) == false
-                  ? _.model.whatsappNumber.toString()
+              getNUllChecker(controller.model.whatsappNumber.toString()) ==
+                      false
+                  ? controller.model.whatsappNumber.toString()
                   : "";
           alt_Number.text =
-              getNUllChecker(_.model.alternateNumber.toString()) == false
-                  ? _.model.alternateNumber.toString()
+              getNUllChecker(controller.model.alternateNumber.toString()) ==
+                      false
+                  ? controller.model.alternateNumber.toString()
                   : "";
-          _.childrenCountSelected = _.model.child_count;
-          secondaryEmail.text = _.model.secondaryEmail ?? "";
-          street.text = _.model.street ?? "";
-          zipCode.text = getNUllChecker(_.model.pincode) == false
-              ? _.model.pincode.toString()
+          controller.childrenCountSelected = controller.model.child_count;
+          secondaryEmail.text = controller.model.secondaryEmail ?? "";
+          street.text = controller.model.street ?? "";
+          zipCode.text = getNUllChecker(controller.model.pincode) == false
+              ? controller.model.pincode.toString()
               : "";
-          _.genderSelected = _.model.gender ?? gender[0];
+          controller.genderSelected = controller.model.gender ?? gender[0];
           for (var i = 0; i < gender.length; i++) {
-            if (gender[i].toString() == _.model.gender.toString()) {
+            if (gender[i].toString() == controller.model.gender.toString()) {
               controller.genderSelected = gender[i];
               controller.genderIdSelected = i;
               controller.update();
             }
           }
-          _.maritalStatusSelected = _.model.maritalStatus;
+          controller.maritalStatusSelected = controller.model.maritalStatus;
           for (var i = 1; i < controller.martialStatusList.length; i++) {
             if (controller.martialStatusList[i].toString() ==
-                _.model.maritalStatus.toString()) {
+                controller.model.maritalStatus.toString()) {
               controller.maritalStatusSelected =
                   controller.martialStatusList[i];
               controller.maritalStatusIdSelected = i;
               controller.update();
             }
           }
-          _.countrySelected = _.model.countryName;
-          _.stateSelected = _.model.stateName;
-          _.citySelected = _.model.cityName;
+          controller.countrySelected = controller.model.countryName;
+          controller.stateSelected = controller.model.stateName;
+          controller.citySelected = controller.model.cityName;
           String? temp = "";
-          if (_.model.otherCountryOfInterest != null) {
-            for (var i = 0; i < _.model.otherCountryOfInterest!.length; i++) {
+          if (controller.model.otherCountryOfInterest != null) {
+            for (var i = 0;
+                i < controller.model.otherCountryOfInterest!.length;
+                i++) {
               if (i == 0) {
-                temp = _.model.otherCountryOfInterest![i].countryName!;
+                temp = controller.model.otherCountryOfInterest![i].countryName!;
               } else {
                 temp =
-                    "${temp!},${_.model.otherCountryOfInterest![i].countryName!}";
+                    "${temp!},${controller.model.otherCountryOfInterest![i].countryName!}";
               }
             }
           }
-          _.getState(_.model.countryID.toString());
-          _.getCity(_.model.stateID.toString());
-          _.stateIdSelected = _.model.stateID;
-          _.cityIdSelected = _.model.cityID;
-          _.countryIdSelected = _.model.countryID;
-          _.stateSelected = _.model.stateName;
-          _.citySelected = _.model.cityName;
+          controller.getState(controller.model.countryID.toString());
+          controller.getCity(controller.model.stateID.toString());
+          controller.stateIdSelected = controller.model.stateID;
+          controller.cityIdSelected = controller.model.cityID;
+          controller.countryIdSelected = controller.model.countryID;
+          controller.stateSelected = controller.model.stateName;
+          controller.citySelected = controller.model.cityName;
           otherCountryinterested.text = temp!;
-          _.loadingStudentPanelData.value = 3;
-          _.update();
+          controller.loadingStudentPanelData.value = 3;
+          controller.update();
         }
       } catch (e) {
         ApiServices().errorHandle(
@@ -140,853 +157,174 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           StackTrace.current.toString(),
         );
       }
-
-      return _.loadingStudentPanelData.value == 3
-          ? SingleChildScrollView(
-              reverse: false,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                      child: InkWell(
-                    onTap: () {
-                      Get.snackbar(
-                          "Image Upload Process ", "Image Upload Process",
-                          snackPosition: SnackPosition.BOTTOM);
-                    },
-                    child: CircleAvatar(
-                      onBackgroundImageError: (exception, stackTrace) {
-                        print(exception);
-                        print(stackTrace.toString());
-                      },
-                      // onForegroundImageError: (exception, stackTrace) {
-                      //   print(exception);
-                      //   print(stackTrace.toString());
-                      // },
-                      radius: 80.0,
-                      backgroundImage: const NetworkImage(
-                          "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
-                      backgroundColor: Colors.transparent,
+      return controller.loadingStudentPanelData.value == 3
+          ? Form(
+              key: profilePageKey,
+              child: SingleChildScrollView(
+                reverse: false,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 10,
                     ),
-                  )),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: Row(
-                        children: [
-                          CustomAutoSizeTextMontserrat(
-                            text: "First Name",
-                            //textColor: ThemeConstants.TextColor,
-                            mandatory: true,
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
-                          ),
-                          const Spacer(),
-                          if (saveAndEdit == false)
-                            TextButton(
-                                onPressed: () {
-                                  try {
-                                    if (getNUllChecker(firstName.text) ==
-                                        true) {
-                                      getToast("Please Enter your first name");
-                                    } else if (getNUllChecker(lastName.text) ==
-                                        true) {
-                                      getToast("Please Enter your last name");
-                                    } else if (getNUllChecker(_.dob)) {
-                                      getToast(
-                                          "Please Enter your date of birth");
-                                    } else if (getNUllChecker(
-                                            _.genderIdSelected) ==
-                                        true) {
-                                      getToast("Please select your gender");
-                                    } else if (getNUllChecker(
-                                            _.maritalStatusSelected) ==
-                                        true) {
-                                      getToast(
-                                          "Please select your marital status");
-                                    } else if (getNUllChecker(
-                                            mobileNumber.text) ==
-                                        true) {
-                                      getToast(
-                                          "Please Enter your mobile number");
-                                    } else if (getNUllChecker(
-                                            alt_Number.text) ==
-                                        true) {
-                                      getToast(
-                                          "Please Enter your Alternate number");
-                                    } else if (getNUllChecker(email.text)) {
-                                      getToast("Please Enter your email");
-                                    } else if (getNUllChecker(
-                                        _.countrySelected)) {
-                                      getToast("Please select  your country");
-                                    } else if (getNUllChecker(
-                                        _.stateSelected)) {
-                                      getToast("Please select your state");
-                                    } else if (getNUllChecker(_.citySelected)) {
-                                      getToast("Please select your city");
-                                    } else if (getNUllChecker(zipCode.text)) {
-                                      getToast("Please enter your zip code");
-                                    } else {
-                                      updatePesonalDetail(
-                                          Get.find<BaseController>().model1.id!,
-                                          firstName.text,
-                                          lastName.text,
-                                          _.dob,
-                                          _.genderIdSelected!,
-                                          _.maritalStatusIdSelected!,
-                                          _.childrenCountSelected!,
-                                          mobileNumber.text,
-                                          email.text,
-                                          int.parse(whatsappNumber.text),
-                                          int.parse(alt_Number.text),
-                                          _.countryIdSelected!,
-                                          _.stateIdSelected!,
-                                          _.cityIdSelected!,
-                                          street.text,
-                                          int.parse(zipCode.text),
-                                          facebookId.text,
-                                          snapchatId.text,
-                                          instagramId.text,
-                                          secondaryEmail.text);
-                                      saveAndEdit = true;
-                                      setState(() {});
+                    Center(
+                        child: InkWell(
+                      onTap: () {
+                        // Get.snackbar(
+                        //     "Image Upload Process ", "Image Upload Process",
+                        //     snackPosition: SnackPosition.BOTTOM);
+                      },
+                      child: CircleAvatar(
+                        onBackgroundImageError: (exception, stackTrace) {
+                          print(exception);
+                          print(stackTrace.toString());
+                        },
+                        // onForegroundImageError: (exception, stackTrace) {
+                        //   print(exception);
+                        //   print(stackTrace.toString());
+                        // },
+                        radius: 80.0,
+                        backgroundImage: const NetworkImage(
+                            "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    )),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: Row(
+                          children: [
+                            CustomAutoSizeTextMontserrat(
+                              text: "First Name",
+                              //textColor: ThemeConstants.TextColor,
+                              mandatory: true,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                            const Spacer(),
+                            if (saveAndEdit == false)
+                              TextButton(
+                                  onPressed: () {
+                                    try {
+                                      if (getNUllChecker(firstName.text) ==
+                                          true) {
+                                        getToast(
+                                            SnackBarConstants.firstNameError!);
+                                      } else if (profilePageKey.currentState!
+                                          .validate()) {
+                                        getToast(SnackBarConstants
+                                            .contactInformationErrorForAllFields!);
+                                      } else if (getNUllChecker(
+                                              lastName.text) ==
+                                          true) {
+                                        getToast(
+                                            SnackBarConstants.lastNameError!);
+                                      } else if (getNUllChecker(
+                                          controller.dob)) {
+                                        getToast(SnackBarConstants.dobError!);
+                                      } else if (getNUllChecker(
+                                              controller.genderIdSelected) ==
+                                          true) {
+                                        getToast(
+                                            SnackBarConstants.genderError!);
+                                      } else if (getNUllChecker(controller
+                                              .maritalStatusSelected) ==
+                                          true) {
+                                        getToast(SnackBarConstants
+                                            .maritalStatusError!);
+                                      } else if (getNUllChecker(
+                                              mobileNumber.text) ==
+                                          true) {
+                                        getToast(SnackBarConstants
+                                            .mobileNumberError!);
+                                      } else if (getNUllChecker(
+                                              alt_Number.text) ==
+                                          true) {
+                                        getToast(SnackBarConstants
+                                            .alternateNumberError!);
+                                      } else if (getNUllChecker(email.text)) {
+                                        getToast(SnackBarConstants.emailError!);
+                                      } else if (getNUllChecker(
+                                          controller.countrySelected)) {
+                                        getToast(
+                                            SnackBarConstants.countryError!);
+                                      } else if (getNUllChecker(
+                                          controller.stateSelected)) {
+                                        getToast(SnackBarConstants.stateError!);
+                                      } else if (getNUllChecker(
+                                          controller.citySelected)) {
+                                        getToast(SnackBarConstants.cityError!);
+                                      } else if (getNUllChecker(zipCode.text)) {
+                                        getToast(
+                                            SnackBarConstants.zipCodeError!);
+                                      } else {
+                                        updatePesonalDetail(
+                                            Get.find<BaseController>()
+                                                .model1
+                                                .id!,
+                                            firstName.text,
+                                            lastName.text,
+                                            controller.dob,
+                                            controller.genderIdSelected!,
+                                            controller.maritalStatusIdSelected!,
+                                            controller.childrenCountSelected!,
+                                            mobileNumber.text,
+                                            email.text,
+                                            int.parse(whatsappNumber.text),
+                                            int.parse(alt_Number.text),
+                                            controller.countryIdSelected!,
+                                            controller.stateIdSelected!,
+                                            controller.cityIdSelected!,
+                                            street.text,
+                                            int.parse(zipCode.text),
+                                            facebookId.text,
+                                            snapchatId.text,
+                                            instagramId.text,
+                                            secondaryEmail.text);
+                                        saveAndEdit = true;
+                                        setState(() {});
+                                      }
+                                    } catch (e) {
+                                      print(StackTrace.current);
+                                      getToast(SnackBarConstants.errorMsg!);
                                     }
-                                  } catch (e) {
-                                    print(StackTrace.current);
-                                    getToast(e.toString());
-                                  }
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "save",
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  textColor: ThemeConstants.bluecolor,
-                                )),
-                          if (saveAndEdit)
-                            TextButton(
-                                onPressed: () {
-                                  saveAndEdit = false;
-                                  setState(() {});
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "edit",
-                                  // fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  textColor: ThemeConstants.bluecolor,
-                                ))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: firstName,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your First Name",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.firstNameKey.currentState!
-                      //       .validate()) {
-                      //     controller.firstNameKey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        if (value == "") {
-                          return "Please enter First Name";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Last Name",
-                        mandatory: true,
-                        // textColor: ThemeConstants.blackcolor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: lastName,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your Last Name",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.lastNameKey.currentState!.validate()) {
-                      //     controller.lastNameKey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        if (value == "") {
-                          return "Please enter Last Name";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Date of Birth",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: DatePickerExample(
-                      enableField: saveAndEdit,
-                      date: getNUllChecker(_.dob) == false ? _.dob : "",
-                      callbackDate: callbackDOB,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Gender",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  CustomDropDownSingle(
-                    model: getDropdownModel(true, _.genderSelected, gender),
-                    callbackFunction: callbackGender,
-                    initialSelectedValue:
-                        getSelectedDropDown(true, _.genderSelected, gender),
-                    choosefieldtype: saveAndEdit,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Marital status",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  CustomDropDownSingle(
-                    model: getDropdownModel(_.loadingmartialStatus.value,
-                        _.maritalStatusSelected, _.martialStatusList),
-                    callbackFunction: callbackMaritalStatus,
-                    initialSelectedValue: getSelectedDropDown(
-                        _.loadingmartialStatus.value,
-                        _.maritalStatusSelected,
-                        _.martialStatusList),
-                    choosefieldtype: saveAndEdit,
-                  ),
-                  if (_.maritalStatusIdSelected == 1 ||
-                      _.maritalStatusIdSelected == 3)
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Children Count",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "save",
+                                    // fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                    textColor: ThemeConstants.bluecolor,
+                                  )),
+                            if (saveAndEdit)
+                              TextButton(
+                                  onPressed: () {
+                                    saveAndEdit = false;
+                                    setState(() {});
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Edit",
+                                    // fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                    textColor: ThemeConstants.bluecolor,
+                                  ))
+                          ],
                         ),
                       ),
                     ),
-                  if (_.maritalStatusIdSelected == 1 ||
-                      _.maritalStatusIdSelected == 3)
-                    CustomDropDownSingle(
-                      model: const ["0", "1", "2", "3", "4"],
-                      callbackFunction: callbackChildrenCount,
-                      initialSelectedValue: _.childrenCountSelected != null
-                          ? _.childrenCountSelected.toString()
-                          : "0",
-                      choosefieldtype: saveAndEdit,
-                    ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Mobile Number",
-                        mandatory: true,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                        //textColor: ThemeConstants.TextColor,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: mobileNumber,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Mobile Number",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   // RenderObject? object =
-                      //   //     globalKey.currentContext!.findRenderObject();
-                      //   // object!.showOnScreen();
-                      //   if (controller.mobileNameKey.currentState!
-                      //       .validate()) {
-                      //     controller.mobileNameKey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        return getPhoneNumbervalidation(value);
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Alternate Number",
-                        mandatory: true,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                        //textColor: ThemeConstants.TextColor,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: alt_Number,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Alternate Number",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.alternateNumberKey.currentState!
-                      //       .validate()) {
-                      //     controller.alternateNumberKey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        return getPhoneNumbervalidation(value);
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Email",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      controller: email,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your email",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.emailKey.currentState!.validate()) {
-                      //     controller.emailKey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        return getEmailvaliation(value);
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Whatsapp Number",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: whatsappNumber,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your Whatsapp Number",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.whatsappNumberkey.currentState!
-                      //       .validate()) {
-                      //     controller.whatsappNumberkey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        return getPhoneNumbervalidation(value);
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Secondary Email",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: secondaryEmail,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your Secondary Email",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.secondaryemailKey.currentState!
-                      //       .validate()) {
-                      //     controller.secondaryemailKey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        return getEmailvaliation(value);
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Country of residence",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  CustomDropDownSingle(
-                    model: getDropdownModel(_.loadingCountry.value,
-                        _.countrySelected, _.countryList),
-                    callbackFunction: callbackCountry,
-                    initialSelectedValue: getSelectedDropDown(
-                        _.loadingCountry.value,
-                        _.countrySelected,
-                        _.countryList),
-                    choosefieldtype: saveAndEdit,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Select State",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  CustomDropDownSingle(
-                    model: getDropdownModel(
-                        _.loadingState.value, _.stateSelected, _.stateList),
-                    callbackFunction: calllbackState,
-                    initialSelectedValue: getSelectedDropDown(
-                        _.loadingState.value, _.stateSelected, _.stateList),
-                    choosefieldtype: saveAndEdit,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Select City",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  CustomDropDownSingle(
-                    model: getDropdownModel(
-                        _.loadingCity.value, _.citySelected, _.cityList),
-                    callbackFunction: callbackCity,
-                    initialSelectedValue: getSelectedDropDown(
-                        _.loadingCity.value, _.citySelected, _.cityList),
-                    choosefieldtype: saveAndEdit,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "street",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: street,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your Street",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.streetkey.currentState!.validate()) {
-                      //     controller.streetkey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        if (value == "") {
-                          return "Please enter street";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Zip Code",
-                        mandatory: true,
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                      controller: zipCode,
-                      keyboardType: TextInputType.number,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: saveAndEdit,
-                      decoration: InputDecoration(
-                        hintText: "Enter your Zip Code",
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      style: ThemeConstants.montserrattextstyle2,
-                      // onChanged: (value) {
-                      //   if (controller.zipcodekey.currentState!.validate()) {
-                      //     controller.zipcodekey.currentState!.save();
-                      //   }
-                      // },
-                      validator: (value) {
-                        if (value == "") {
-                          return "Please enter Zip code";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  CheckboxListTile(
-                    title: CustomAutoSizeTextMontserrat(
-                        text: "Are you available on Social Media"),
-                    value: socialMedia,
-                    onChanged: (newValue) {
-                      setState(() {
-                        socialMedia = newValue!;
-                      });
-                    },
-                    controlAffinity: ListTileControlAffinity
-                        .leading, //  <-- leading Checkbox
-                  ),
-                  if (socialMedia == true)
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Instagram Id",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  if (socialMedia == true)
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: instagramId,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        controller: firstName,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
-                          hintText: "Enter your Instagram Id",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                        ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        // onChanged: (value) {
-                        //   if (controller.instragramkey.currentState!
-                        //       .validate()) {
-                        //     controller.instragramkey.currentState!.save();
-                        //   }
-                        // },
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please enter Instagram";
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                  if (socialMedia == true)
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Facebook Id",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  if (socialMedia == true)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                        controller: facebookId,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Facebook Id",
-                          filled: true,
-                          fillColor: ThemeConstants.lightblueColor,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                        ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        // onChanged: (value) {
-                        //   if (controller.facebookkey.currentState!
-                        //       .validate()) {
-                        //     controller.facebookkey.currentState!.save();
-                        //   }
-                        // },
-                        validator: (value) {
-                          if (value == "") {
-                            return "Please enter Facebook";
-                          } else {
-                            return null;
-                          }
-                        },
-                      ),
-                    ),
-                  if (socialMedia == true)
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Snapchat Id",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  if (socialMedia == true)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: TextFormField(
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-
-                        controller: snapchatId,
-                        scrollPadding: EdgeInsets.symmetric(
-                            vertical:
-                                MediaQuery.of(context).viewInsets.bottom + 30),
-                        readOnly: saveAndEdit,
-                        decoration: InputDecoration(
-                          hintText: "Enter your Snapchat Id",
+                          hintText: "Enter your First Name",
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -1003,325 +341,1050 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         // },
                         validator: (value) {
                           if (value == "") {
-                            return "Please enter snapchat";
+                            return "Please enter First Name";
                           } else {
                             return null;
                           }
                         },
                       ),
                     ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Assigned Advisors",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      onTap: () {
-                        getToast("Auto Selected");
-                      },
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: assignedAdvisors.text,
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Last Name",
+                          mandatory: true,
+                          // textColor: ThemeConstants.blackcolor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
                         ),
                       ),
-                      style: ThemeConstants.montserrattextstyle2,
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Assigned Branch",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: lastName,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Last Name",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.lastNameKey.currentState!.validate()) {
+                        //     controller.lastNameKey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please enter Last Name";
+                          } else {
+                            return null;
+                          }
+                        },
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      onTap: () {
-                        getToast("Auto Selected");
-                      },
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: assignedBranch.text,
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Date of Birth",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
                         ),
                       ),
-                      style: ThemeConstants.montserrattextstyle2,
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Service",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: DatePickerExample(
+                        enableField: saveAndEdit,
+                        date: getNUllChecker(controller.dob) == false
+                            ? controller.dob
+                            : "",
+                        callbackDate: callbackDOB,
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      onTap: () {
-                        getToast("Auto Selected");
-                      },
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: service.text,
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Gender",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
                         ),
                       ),
-                      style: ThemeConstants.montserrattextstyle2,
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "First Country of Interest",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
+                    CustomDropDownSingle(
+                      model: getDropdownModel(
+                          true, controller.genderSelected, gender),
+                      callbackFunction: callbackGender,
+                      initialSelectedValue: getSelectedDropDown(
+                          true, controller.genderSelected, gender),
+                      choosefieldtype: saveAndEdit,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      onTap: () {
-                        getToast("Auto Selected");
-                      },
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: firstCountryInterest.text,
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Marital status",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
                         ),
                       ),
-                      style: ThemeConstants.montserrattextstyle2,
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 10, left: 20, right: 10),
-                    child: Align(
-                      alignment: AlignmentDirectional.topStart,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Other country interested",
-                        //textColor: ThemeConstants.TextColor,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.bold,
-                      ),
+                    CustomDropDownSingle(
+                      model: getDropdownModel(
+                          controller.loadingmartialStatus.value,
+                          controller.maritalStatusSelected,
+                          controller.martialStatusList),
+                      callbackFunction: callbackMaritalStatus,
+                      initialSelectedValue: getSelectedDropDown(
+                          controller.loadingmartialStatus.value,
+                          controller.maritalStatusSelected,
+                          controller.martialStatusList),
+                      choosefieldtype: saveAndEdit,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: TextField(
-                      onTap: () {
-                        getToast("Auto Selected");
-                      },
-                      // controller: otherCountryinterested,
-                      scrollPadding: EdgeInsets.symmetric(
-                          vertical:
-                              MediaQuery.of(context).viewInsets.bottom + 30),
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: otherCountryinterested.text,
-                        filled: true,
-                        fillColor: ThemeConstants.lightblueColor,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(15.0),
+                    if (controller.maritalStatusIdSelected == 1 ||
+                        controller.maritalStatusIdSelected == 3)
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 10),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Children Count",
+                            //textColor: ThemeConstants.TextColor,
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      style: ThemeConstants.montserrattextstyle2,
+                    if (controller.maritalStatusIdSelected == 1 ||
+                        controller.maritalStatusIdSelected == 3)
+                      CustomDropDownSingle(
+                        model: const ["1", "2", "3", "4"],
+                        callbackFunction: callbackChildrenCount,
+                        initialSelectedValue:
+                            controller.childrenCountSelected != null
+                                ? controller.childrenCountSelected.toString()
+                                : "1",
+                        choosefieldtype: saveAndEdit,
+                      ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Mobile Number",
+                          mandatory: true,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                          //textColor: ThemeConstants.TextColor,
+                        ),
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Row(
-                      children: [
-                        const Spacer(),
-                        if (saveAndEdit)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: SizedBox(
-                              width: 100,
-                              height: 35,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: ThemeConstants.whitecolor,
-                                  side: BorderSide(
-                                      color: ThemeConstants.bluecolor),
-                                  backgroundColor:
-                                      ThemeConstants.whitecolor, // foreground
-                                ),
-                                onPressed: () {
-                                  saveAndEdit = false;
-                                  setState(() {});
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Edit",
-                                  textColor: ThemeConstants.bluecolor,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: mobileNumber,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintText: "Mobile Number",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   // RenderObject? object =
+                        //   //     globalKey.currentContext!.findRenderObject();
+                        //   // object!.showOnScreen();
+                        //   if (controller.mobileNameKey.currentState!
+                        //       .validate()) {
+                        //     controller.mobileNameKey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          return getPhoneNumbervalidation(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Alternate Number",
+                          mandatory: true,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                          //textColor: ThemeConstants.TextColor,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: alt_Number,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Alternate Number",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.alternateNumberKey.currentState!
+                        //       .validate()) {
+                        //     controller.alternateNumberKey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          return getPhoneNumbervalidation(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Email",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        controller: email,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your email",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.emailKey.currentState!.validate()) {
+                        //     controller.emailKey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          return getEmailvaliation(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Whatsapp Number",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: whatsappNumber,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Whatsapp Number",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.whatsappNumberkey.currentState!
+                        //       .validate()) {
+                        //     controller.whatsappNumberkey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          return getPhoneNumbervalidation(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Secondary Email",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: secondaryEmail,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Secondary Email",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.secondaryemailKey.currentState!
+                        //       .validate()) {
+                        //     controller.secondaryemailKey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          return getEmailvaliation(value);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Country of residence",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    CustomDropDownSingle(
+                      model: getDropdownModel(controller.loadingCountry.value,
+                          controller.countrySelected, controller.countryList),
+                      callbackFunction: callbackCountry,
+                      initialSelectedValue: getSelectedDropDown(
+                          controller.loadingCountry.value,
+                          controller.countrySelected,
+                          controller.countryList),
+                      choosefieldtype: saveAndEdit,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "State",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    CustomDropDownSingle(
+                      model: getDropdownModel(controller.loadingState.value,
+                          controller.stateSelected, controller.stateList),
+                      callbackFunction: calllbackState,
+                      initialSelectedValue: getSelectedDropDown(
+                          controller.loadingState.value,
+                          controller.stateSelected,
+                          controller.stateList),
+                      choosefieldtype: saveAndEdit,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "City",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    CustomDropDownSingle(
+                      model: getDropdownModel(controller.loadingCity.value,
+                          controller.citySelected, controller.cityList),
+                      callbackFunction: callbackCity,
+                      initialSelectedValue: getSelectedDropDown(
+                          controller.loadingCity.value,
+                          controller.citySelected,
+                          controller.cityList),
+                      choosefieldtype: saveAndEdit,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Street",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: street,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Street",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.streetkey.currentState!.validate()) {
+                        //     controller.streetkey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please enter street";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Zip Code",
+                          mandatory: true,
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextFormField(
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                        controller: zipCode,
+                        keyboardType: TextInputType.number,
+                        scrollPadding: EdgeInsets.only(
+                            bottom:
+                                MediaQuery.of(context).viewInsets.bottom + 40),
+                        readOnly: saveAndEdit,
+                        decoration: InputDecoration(
+                          hintText: "Enter your Zip Code",
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                        // onChanged: (value) {
+                        //   if (controller.zipcodekey.currentState!.validate()) {
+                        //     controller.zipcodekey.currentState!.save();
+                        //   }
+                        // },
+                        validator: (value) {
+                          if (value == "") {
+                            return "Please enter Zip code";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                    CheckboxListTile(
+                      title: CustomAutoSizeTextMontserrat(
+                          text: "Are you available on Social Media"),
+                      value: socialMedia,
+                      onChanged: (newValue) {
+                        setState(() {
+                          socialMedia = newValue!;
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity
+                          .leading, //  <-- leading Checkbox
+                    ),
+                    if (socialMedia == true)
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 10),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Instagram Id",
+                            //textColor: ThemeConstants.TextColor,
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    if (socialMedia == true)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                          controller: instagramId,
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom +
+                                  40),
+                          readOnly: saveAndEdit,
+                          decoration: InputDecoration(
+                            hintText: "Enter your Instagram Id",
+                            filled: true,
+                            fillColor: ThemeConstants.lightblueColor,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                          style: ThemeConstants.montserrattextstyle2,
+                          // onChanged: (value) {
+                          //   if (controller.instragramkey.currentState!
+                          //       .validate()) {
+                          //     controller.instragramkey.currentState!.save();
+                          //   }
+                          // },
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please enter Instagram";
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                    if (socialMedia == true)
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 10),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Facebook Id",
+                            //textColor: ThemeConstants.TextColor,
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    if (socialMedia == true)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                          controller: facebookId,
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom +
+                                  40),
+                          readOnly: saveAndEdit,
+                          decoration: InputDecoration(
+                            hintText: "Enter your Facebook Id",
+                            filled: true,
+                            fillColor: ThemeConstants.lightblueColor,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                          style: ThemeConstants.montserrattextstyle2,
+                          // onChanged: (value) {
+                          //   if (controller.facebookkey.currentState!
+                          //       .validate()) {
+                          //     controller.facebookkey.currentState!.save();
+                          //   }
+                          // },
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please enter Facebook";
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                    if (socialMedia == true)
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 10),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Snapchat Id",
+                            //textColor: ThemeConstants.TextColor,
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    if (socialMedia == true)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: TextFormField(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+
+                          controller: snapchatId,
+                          scrollPadding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom +
+                                  40),
+                          readOnly: saveAndEdit,
+                          decoration: InputDecoration(
+                            hintText: "Enter your Snapchat Id",
+                            filled: true,
+                            fillColor: ThemeConstants.lightblueColor,
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                          style: ThemeConstants.montserrattextstyle2,
+                          // onChanged: (value) {
+                          //   if (controller.firstNameKey.currentState!
+                          //       .validate()) {
+                          //     controller.firstNameKey.currentState!.save();
+                          //   }
+                          // },
+                          validator: (value) {
+                            if (value == "") {
+                              return "Please enter snapchat";
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Assigned Advisors",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextField(
+                        onTap: () {
+                          getToast("Auto Selected");
+                        },
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintText: assignedAdvisors.text,
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Assigned Branch",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextField(
+                        onTap: () {
+                          getToast("Auto Selected");
+                        },
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintText: assignedBranch.text,
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Service",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextField(
+                        onTap: () {
+                          getToast("Auto Selected");
+                        },
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintText: service.text,
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "First Country of Interest",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextField(
+                        onTap: () {
+                          getToast("Auto Selected");
+                        },
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintText: firstCountryInterest.text,
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Other country interested",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: TextField(
+                        onTap: () {
+                          getToast("Auto Selected");
+                        },
+                        // controller: otherCountryinterested,
+                        scrollPadding: EdgeInsets.symmetric(
+                            vertical:
+                                MediaQuery.of(context).viewInsets.bottom + 30),
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintText: otherCountryinterested.text,
+                          filled: true,
+                          fillColor: ThemeConstants.lightblueColor,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        style: ThemeConstants.montserrattextstyle2,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Row(
+                        children: [
+                          const Spacer(),
+                          if (saveAndEdit)
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: SizedBox(
+                                width: 100,
+                                height: 35,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: ThemeConstants.whitecolor,
+                                    side: BorderSide(
+                                        color: ThemeConstants.bluecolor),
+                                    backgroundColor:
+                                        ThemeConstants.whitecolor, // foreground
+                                  ),
+                                  onPressed: () {
+                                    saveAndEdit = false;
+                                    setState(() {});
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Edit",
+                                    textColor: ThemeConstants.bluecolor,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        if (saveAndEdit == false)
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15),
-                            child: SizedBox(
-                              width: 100,
-                              height: 35,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: ThemeConstants.whitecolor,
-                                  side: BorderSide(
-                                      color: ThemeConstants.bluecolor),
-                                  backgroundColor:
-                                      ThemeConstants.whitecolor, // foreground
-                                ),
-                                onPressed: () {
-                                  try {
-                                    if (getNUllChecker(firstName.text) ==
-                                        true) {
-                                      getToast("Please Enter your first name");
-                                    } else if (getNUllChecker(lastName.text) ==
-                                        true) {
-                                      getToast("Please Enter your last name");
-                                    } else if (getNUllChecker(_.dob)) {
-                                      getToast(
-                                          "Please Enter your date of birth");
-                                    } else if (getNUllChecker(
-                                            _.genderIdSelected) ==
-                                        true) {
-                                      getToast("Please select your gender");
-                                    } else if (getNUllChecker(
-                                            _.maritalStatusSelected) ==
-                                        true) {
-                                      getToast(
-                                          "Please select your marital status");
-                                    } else if (getNUllChecker(
-                                            mobileNumber.text) ==
-                                        true) {
-                                      getToast(
-                                          "Please Enter your mobile number");
-                                    } else if (getNUllChecker(
-                                            alt_Number.text) ==
-                                        true) {
-                                      getToast(
-                                          "Please Enter your Alternate number");
-                                    } else if (getNUllChecker(email.text)) {
-                                      getToast("Please Enter your email");
-                                    } else if (getNUllChecker(
-                                        _.countrySelected)) {
-                                      getToast("Please select  your country");
-                                    } else if (getNUllChecker(
-                                        _.stateSelected)) {
-                                      getToast("Please select your state");
-                                    } else if (getNUllChecker(_.citySelected)) {
-                                      getToast("Please select your city");
-                                    } else if (getNUllChecker(zipCode.text)) {
-                                      getToast("Please enter your zip code");
-                                    } else {
-                                      updatePesonalDetail(
-                                          Get.find<BaseController>().model1.id!,
-                                          firstName.text,
-                                          lastName.text,
-                                          _.dob,
-                                          _.genderIdSelected!,
-                                          _.maritalStatusIdSelected!,
-                                          _.childrenCountSelected!,
-                                          mobileNumber.text,
-                                          email.text,
-                                          int.parse(whatsappNumber.text),
-                                          int.parse(alt_Number.text),
-                                          _.countryIdSelected!,
-                                          _.stateIdSelected!,
-                                          _.cityIdSelected!,
-                                          street.text,
-                                          int.parse(zipCode.text),
-                                          facebookId.text,
-                                          snapchatId.text,
-                                          instagramId.text,
-                                          secondaryEmail.text);
-                                      saveAndEdit = true;
-                                      setState(() {});
+                          if (saveAndEdit == false)
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: SizedBox(
+                                width: 100,
+                                height: 35,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: ThemeConstants.whitecolor,
+                                    side: BorderSide(
+                                        color: ThemeConstants.bluecolor),
+                                    backgroundColor:
+                                        ThemeConstants.whitecolor, // foreground
+                                  ),
+                                  onPressed: () {
+                                    try {
+                                      if (getNUllChecker(firstName.text) ==
+                                          true) {
+                                        getToast(
+                                            SnackBarConstants.firstNameError!);
+                                      } else if (profilePageKey.currentState!
+                                          .validate()) {
+                                        getToast(SnackBarConstants
+                                            .contactInformationErrorForAllFields!);
+                                      } else if (getNUllChecker(
+                                              lastName.text) ==
+                                          true) {
+                                        getToast(
+                                            SnackBarConstants.lastNameError!);
+                                      } else if (getNUllChecker(
+                                          controller.dob)) {
+                                        getToast(SnackBarConstants.dobError!);
+                                      } else if (getNUllChecker(
+                                              controller.genderIdSelected) ==
+                                          true) {
+                                        getToast(
+                                            SnackBarConstants.genderError!);
+                                      } else if (getNUllChecker(controller
+                                              .maritalStatusSelected) ==
+                                          true) {
+                                        getToast(SnackBarConstants
+                                            .maritalStatusError!);
+                                      } else if (getNUllChecker(
+                                              mobileNumber.text) ==
+                                          true) {
+                                        getToast(SnackBarConstants
+                                            .mobileNumberError!);
+                                      } else if (getNUllChecker(
+                                              alt_Number.text) ==
+                                          true) {
+                                        getToast(SnackBarConstants
+                                            .alternateNumberError!);
+                                      } else if (getNUllChecker(email.text)) {
+                                        getToast(SnackBarConstants.emailError!);
+                                      } else if (getNUllChecker(
+                                          controller.countrySelected)) {
+                                        getToast(
+                                            SnackBarConstants.countryError!);
+                                      } else if (getNUllChecker(
+                                          controller.stateSelected)) {
+                                        getToast(SnackBarConstants.stateError!);
+                                      } else if (getNUllChecker(
+                                          controller.citySelected)) {
+                                        getToast(SnackBarConstants.cityError!);
+                                      } else if (getNUllChecker(zipCode.text)) {
+                                        getToast(
+                                            SnackBarConstants.zipCodeError!);
+                                      } else {
+                                        updatePesonalDetail(
+                                            Get.find<BaseController>()
+                                                .model1
+                                                .id!,
+                                            firstName.text,
+                                            lastName.text,
+                                            controller.dob,
+                                            controller.genderIdSelected!,
+                                            controller.maritalStatusIdSelected!,
+                                            controller.childrenCountSelected!,
+                                            mobileNumber.text,
+                                            email.text,
+                                            int.parse(whatsappNumber.text),
+                                            int.parse(alt_Number.text),
+                                            controller.countryIdSelected!,
+                                            controller.stateIdSelected!,
+                                            controller.cityIdSelected!,
+                                            street.text,
+                                            int.parse(zipCode.text),
+                                            facebookId.text,
+                                            snapchatId.text,
+                                            instagramId.text,
+                                            secondaryEmail.text);
+                                        saveAndEdit = true;
+                                        setState(() {});
+                                      }
+                                    } catch (e) {
+                                      print(StackTrace.current);
+                                      getToast(e.toString());
                                     }
-                                  } catch (e) {
-                                    print(StackTrace.current);
-                                    getToast(e.toString());
-                                  }
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Save",
-                                  textColor: ThemeConstants.bluecolor,
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Save",
+                                    textColor: ThemeConstants.bluecolor,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom)),
-                ],
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).viewInsets.bottom)),
+                  ],
+                ),
               ),
             )
           : Center(
               child: getLoading(context),
             );
-    });
+    }, onLoading: getLoading(context));
   }
 
   // Funcation
@@ -1336,10 +1399,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           controller.citySelected = controller.cityList[i];
           controller.cityIdSelected = int.parse(controller.cityCode[i]);
           // controller.getCity("${controller.cityCode[i]}");
-          controller.update();
         }
       }
     }
+    controller.update();
     // setState(() {});
   }
 
@@ -1356,6 +1419,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         }
       }
     }
+    controller.update();
   }
 
   callbackCountry(varTopic) {
@@ -1368,10 +1432,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
           controller.countrySelected = varTopic;
           controller.countryIdSelected = int.parse(controller.countryCode[i]);
           controller.getState(controller.countryCode[i]);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackGender(varTopic) {
@@ -1382,9 +1446,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       } else if (gender[i].toString() == varTopic.toString()) {
         controller.genderSelected = gender[i];
         controller.genderIdSelected = i + 1;
-        controller.update();
       }
     }
+    controller.update();
   }
 
   callbackMaritalStatus(varTopic) {
@@ -1396,16 +1460,20 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       if (controller.martialStatusList[i].toString() == varTopic.toString()) {
         controller.maritalStatusSelected = controller.martialStatusList[i];
         controller.maritalStatusIdSelected = i;
-        controller.update();
       }
     }
+    controller.update();
   }
 
   callbackChildrenCount(varTopic) {
     if (getNUllChecker(varTopic) == false) {
-      controller.childrenCountSelected = int.parse(varTopic);
-      setState(() {});
+      if (varTopic == "No") {
+        controller.childrenCountSelected = int.parse("0");
+      } else {
+        controller.childrenCountSelected = int.parse(varTopic);
+      }
     }
+    controller.update();
   }
 
   callbackDOB(data) {

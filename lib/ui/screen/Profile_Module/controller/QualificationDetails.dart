@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -5,9 +6,10 @@ import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/institutiondropdown.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
 import 'package:studentpanel/ui/models/stream.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class QualificationDetailsController extends GetxController {
+class QualificationDetailsController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<QualificationDetailsViewModel> modelList = [];
 
@@ -68,6 +70,19 @@ class QualificationDetailsController extends GetxController {
       citySelectedID,
       institutionSelectedID;
 
+  static final Rx<TextEditingController> qualificationName =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> multiplier =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> cgpa = TextEditingController().obs;
+
+  static final Rx<TextEditingController> percentage =
+      TextEditingController().obs;
+
+  static final Rx<TextEditingController> reApper = TextEditingController().obs;
+
   @override
   void onInit() {
     getHighestQualification();
@@ -76,7 +91,37 @@ class QualificationDetailsController extends GetxController {
     getYearOfpassing();
     getEducationStatus();
     viewQualification(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
+  }
+
+  resetFields() {
+    //Text fields resets
+    reApper.value.text = "";
+    cgpa.value.text = "";
+    percentage.value.text = "";
+    reApper.value.text = "";
+    multiplier.value.text = "";
+    qualificationName.value.text = "";
+
+    //Dropdown
+    highestQualificationSelected = null;
+    affiliationCodeSelected = null;
+    streamSelected = null;
+    educationStatusSelected = null;
+    yearOfPassingSelected = null;
+    countrySelected = null;
+    stateSelected = null;
+    citySelected = null;
+    highestQualificationSelectedID = null;
+    streamSelectedID = null;
+    countrySelectedID = null;
+    stateSelectedID = null;
+    citySelectedID = null;
+    institutionSelectedID = null;
+    institutionSelected = null;
+
+    updteForEdit.value = true;
   }
 
 //use for Edit case
@@ -114,8 +159,12 @@ class QualificationDetailsController extends GetxController {
   getStateEdit(String countryId, String? state, String? stateID) async {
     try {
       loadingState = false.obs;
+      loadingCity = false.obs;
+      loadingInstitution = false.obs;
       stateList = [];
       stateCode = [];
+      stateSelected = null;
+      stateSelectedID = null;
       var res = await apiServices.getState2(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -148,8 +197,11 @@ class QualificationDetailsController extends GetxController {
   getCityEdit(String stateId, String? city, String? cityID) async {
     try {
       loadingCity.value = false;
+      loadingInstitution = false.obs;
       cityCode = [];
       cityList = [];
+      citySelected = null;
+      citySelectedID = null;
       var res = await apiServices.getCity2(
           Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
       if (res != null) {
@@ -185,6 +237,8 @@ class QualificationDetailsController extends GetxController {
       loadingAffiliation = false.obs;
       affiliationList = [];
       affiliationCode = [];
+      affiliationNameSelected = null;
+      affiliationCodeSelected = null;
       List<AffiliationDropDownModel> affiliationDropDown = [];
       var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
           Endpoints.affiliationForCountry! + countryId.toString());
@@ -216,7 +270,8 @@ class QualificationDetailsController extends GetxController {
     try {
       institutionCode = [];
       institutionList = [];
-      loadingAffiliation.value = false;
+      institutionSelected = null;
+      institutionSelectedID = null;
       var res = await apiServices.getInstitute(
           Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
       if (res != null) {
@@ -338,6 +393,7 @@ class QualificationDetailsController extends GetxController {
   }
 
   updateQualification(String enqId, [String action = ""]) async {
+    change(null, status: RxStatus.loading());
     try {
       String endpoint = Endpoints.addQualification! + enqId;
       for (var i = 0; i < modelList.length; i++) {
@@ -359,7 +415,12 @@ class QualificationDetailsController extends GetxController {
                 modelList[i].educationStatus ?? "",
                 modelList[i].yearOfPassing ?? "");
       }
-      await apiServices.updateQualification(endpoint);
+      var res = await apiServices.updateQualification(endpoint, action);
+      if (res == true) {
+        resetFields();
+      }
+
+      change(null, status: RxStatus.success());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -441,6 +502,8 @@ class QualificationDetailsController extends GetxController {
     try {
       stateList = [];
       stateCode = [];
+      stateSelected = null;
+      stateSelectedID = null;
       var res = await apiServices.getState2(
           Endpoints.baseUrl!, Endpoints.state! + countryId);
       if (res != null) {
@@ -476,6 +539,8 @@ class QualificationDetailsController extends GetxController {
       loadingCity.value = false;
       cityCode = [];
       cityList = [];
+      citySelected = null;
+      citySelectedID = null;
       var res = await apiServices.getCity2(
           Endpoints.baseUrl!, Endpoints.city! + stateId.toString());
       if (res != null) {
@@ -490,8 +555,6 @@ class QualificationDetailsController extends GetxController {
         for (var element in temp) {
           cityCode.add(element.toString());
         }
-        // citySelected = null;
-        // citySelectedID = null;
         loadingCity = true.obs;
         update();
       }
@@ -510,6 +573,8 @@ class QualificationDetailsController extends GetxController {
       loadingAffiliation = false.obs;
       affiliationList = [];
       affiliationCode = [];
+      affiliationCodeSelected = null;
+      affiliationNameSelected = null;
       List<AffiliationDropDownModel> affiliationDropDown = [];
       var res = await apiServices.getAffiliation(Endpoints.baseUrl!,
           Endpoints.affiliationForCountry! + countryId.toString());
@@ -520,8 +585,6 @@ class QualificationDetailsController extends GetxController {
         for (var element in affiliationDropDown) {
           affiliationList.add(element.affiliationName);
           affiliationCode.add(element.id);
-          // affiliationCodeSelected = null;
-          // affiliationNameSelected = null;
 
           loadingAffiliation = true.obs;
           update();
@@ -537,14 +600,16 @@ class QualificationDetailsController extends GetxController {
     }
   }
 
-  geInstitution(String cityId) async {
+  getInstitution([String? countryId, String? stateId, String? cityId]) async {
     try {
       List<InstitutionDropDown> institutionDropDown = [];
-      affiliationCode = [];
-      affiliationList = [];
+      institutionList = [];
+      institutionCode = [];
       loadingInstitution.value = false;
-      var res = await apiServices.getInstitute(
-          Endpoints.baseUrl!, Endpoints.instituteForCity! + cityId.toString());
+      institutionSelected = null;
+      institutionSelectedID = null;
+      var res = await apiServices.getInstitute(Endpoints.baseUrl!,
+          "${Endpoints.instituteForCity!}${cityId}country_id=${countryId}state_id=$stateId");
       if (res != null) {
         institutionDropDown = res;
         institutionList.add("Select Institution");
@@ -563,6 +628,48 @@ class QualificationDetailsController extends GetxController {
         "1111",
         StackTrace.current.toString(),
       );
+    }
+  }
+
+  getUpdateQualificationDetails(int index) async {
+    try {
+      change(null, status: RxStatus.loading());
+      if (index != null) {
+        // if (updateForEdit == false) {
+        qualificationName.value.text = modelList[index].courseName ?? "";
+        multiplier.value.text = modelList[index].multiplier ?? "";
+        percentage.value.text = modelList[index].percentage ?? "";
+        reApper.value.text = modelList[index].reapperCount ?? "";
+        // }
+        // if (updateForEdit == false && loadingEditQualification.value == true) {
+        loadingEditQualification.value = false;
+        highestQualificationSelected = modelList[index].courseLevel;
+
+        streamSelected = modelList[index].streamName ?? "";
+        streamSelectedID =
+            getNUllChecker(modelList[index].streamId.toString()) == false
+                ? modelList[index].streamId.toString()
+                : "";
+        educationStatusSelected = modelList[index].educationStatus ?? "";
+        yearOfPassingSelected = modelList[index].yearOfPassing ?? "";
+        countrySelected = modelList[index].countryName;
+        Get.find<QualificationDetailsController>().loadingEdit.value = 1;
+        // cgpa.text = double.parse(modelList[index].percentage.toString()) /;
+        await getEdit(
+            modelList[index].countryId!,
+            modelList[index].stateName,
+            modelList[index].stateId,
+            modelList[index].cityName,
+            modelList[index].cityId,
+            modelList[index].affiliationName,
+            modelList[index].affiliationId,
+            modelList[index].universityName,
+            modelList[index].passingInstId);
+        change(null, status: RxStatus.success());
+        // }
+      }
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

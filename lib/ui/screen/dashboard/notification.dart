@@ -25,9 +25,7 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar("title"),
-      drawer: CustomDrawer(
-        index: 0,
-      ),
+      drawer: CustomDrawer(),
       body: GetBuilder<BaseController>(builder: (_) {
         List<Widget> addWidget = [];
         try {

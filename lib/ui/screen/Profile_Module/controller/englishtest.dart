@@ -6,7 +6,7 @@ import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class EnglishTestController extends GetxController {
+class EnglishTestController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   EnglishTestDetailsViewModel englishTestDetailsViewModel =
       EnglishTestDetailsViewModel();
@@ -42,6 +42,7 @@ class EnglishTestController extends GetxController {
     getExamName();
     getExamStatus();
     getEnglishTestDetails(Get.find<BaseController>().model1.id.toString());
+    change(null, status: RxStatus.success());
     super.onInit();
   }
 
@@ -106,8 +107,10 @@ class EnglishTestController extends GetxController {
 
   updateEnglishTestDetaisl(String enqId,
       EnglishTestDetailsViewModel englishTestDetailsViewModel) async {
+    change(null, status: RxStatus.loading());
     await apiServices.updateEnglishTestDetails(this.englishTestDetailsViewModel,
         Endpoints.updateEnglishTesttDetails! + enqId);
+    change(null, status: RxStatus.success());
     update();
   }
 }

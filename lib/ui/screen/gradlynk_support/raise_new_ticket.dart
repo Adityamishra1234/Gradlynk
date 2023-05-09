@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/raise_new_ticket_controller.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -103,7 +104,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Suggest an Improvisation",
+                            text: "Provide A Feedback",
                             textColor:
                                 controller.suggestAnImprovisation.value == true
                                     ? ThemeConstants.whitecolor
@@ -238,7 +239,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                               //TODO
                               //change 2 => 5
                               if (files.length > 2) {
-                                getToast("maximun number of images have 2");
+                                getToast(SnackBarConstants.fileSelectedError2!);
                                 //TODO
                                 //change 2 => 5
                                 for (var i = 0; i < 2; i++) {
@@ -298,7 +299,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                       padding: const EdgeInsets.all(8.0),
                       child: CustomAutoSizeTextMontserrat(
                         text:
-                            "We appreciate your efforts.\nKindly suggest an improvisation:",
+                            "We appreciate your efforts.\nKindly provide your valuable feedback.",
                         mandatory: true,
                       ),
                     ),
@@ -387,14 +388,15 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                                 if (controller.raiseAnIssue.value == true) {
                                   if (issueController.text.isEmpty) {
                                     temp = false;
-                                    getToast("Please enter issuse");
+                                    getToast(
+                                        SnackBarConstants.raiseIssueError!);
                                   }
                                 }
                                 if (controller.suggestAnImprovisation.value ==
                                     true) {
                                   if (suggesationController.text.isEmpty) {
                                     temp = false;
-                                    getToast("Please enter  Suggestation");
+                                    getToast(SnackBarConstants.feedBackError!);
                                   }
                                 }
                                 if (temp == true) {
@@ -409,7 +411,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                                     files.isNotEmpty ? files[1] : "",
                                   );
                                   if (res != null) {
-                                    getToast("Ticket raise successful");
+                                    getToast(SnackBarConstants.raiseIssue!);
                                     setState(() {
                                       files = [];
                                       issueController.text = "";

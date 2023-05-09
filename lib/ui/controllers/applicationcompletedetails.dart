@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationcompletedetail.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class ApplicationCompleteDetailsController extends GetxController {
   RxBool loadingApplicationCompleteDetails = false.obs;
@@ -65,7 +66,7 @@ class ApplicationCompleteDetailsController extends GetxController {
           int sizeInBytes = f.lengthSync();
           double sizeInMb = sizeInBytes / (1024 * 1024);
           if (sizeInMb > 5) {
-            getsnakbar("Document Upload", "Please file upload maximum 5 MB");
+            getToast(SnackBarConstants.maxDocumentUploadSize!);
           } else {
             String? res = await apiServices.sendFile(
                 csvFile2.path,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/QualificationDetails.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/qualificationdetailsview.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/qualificationwidget.dart';
@@ -54,6 +54,7 @@ class QualificationDetailsCopy extends StatelessWidget {
         }
       }
     }
+    controller.update();
   }
 
   callbackStream(varTopic) {
@@ -65,10 +66,10 @@ class QualificationDetailsCopy extends StatelessWidget {
         if (controller.streamList[i] == varTopic) {
           controller.streamSelected = controller.streamList[i];
           controller.streamSelectedID = controller.streamCode[i].toString();
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackEducationStatus(varTopic) {
@@ -79,10 +80,10 @@ class QualificationDetailsCopy extends StatelessWidget {
         if (controller.educationStatusList[i] == varTopic) {
           controller.educationStatusSelected =
               controller.educationStatusList[i];
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackYearOfPassing(varTopic) {
@@ -104,11 +105,13 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.countrySelected = controller.countryList[i];
           controller.countrySelectedID = controller.countryCode[i];
           controller.getState(controller.countrySelectedID.toString());
+          controller.getInstitution(controller.countrySelectedID,
+              controller.stateSelectedID, controller.citySelectedID);
           controller.getAffiliation(controller.countrySelectedID!);
-          controller.update();
         }
       }
     }
+    controller.update();
   }
 
   callbackState(varTopic) {
@@ -121,13 +124,15 @@ class QualificationDetailsCopy extends StatelessWidget {
           controller.stateSelected = controller.stateList[i];
           controller.stateSelectedID = controller.stateCode[i];
           controller.getCity(controller.stateSelectedID!);
-          controller.update();
+          controller.getInstitution(controller.countrySelectedID,
+              controller.stateSelectedID, controller.citySelectedID);
         }
       }
     }
+    controller.update();
   }
 
-  // Function callbackAffiliation;
+  // Function callback
   callbackAffiliation(data) {
     for (var i = 0; i < controller.affiliationList.length; i++) {
       if (i == 0) {
@@ -136,11 +141,12 @@ class QualificationDetailsCopy extends StatelessWidget {
       } else {
         if (controller.affiliationList[i].toString() == data.toString()) {
           controller.affiliationNameSelected = controller.affiliationList[i];
-          controller.affiliationCodeSelected = controller.affiliationCode[i];
-          controller.update();
+          controller.affiliationCodeSelected =
+              controller.affiliationCode[i].toString();
         }
       }
     }
+    controller.update();
   }
 
   callbackCity(varTopic) {
@@ -152,11 +158,12 @@ class QualificationDetailsCopy extends StatelessWidget {
         if (controller.cityList[i].toString() == varTopic.toString()) {
           controller.citySelected = controller.cityList[i];
           controller.citySelectedID = controller.cityCode[i];
-          controller.geInstitution(controller.citySelectedID!);
-          controller.update();
+          controller.getInstitution(controller.countrySelectedID,
+              controller.stateSelectedID, controller.citySelectedID);
         }
       }
     }
+    controller.update();
   }
 
   callbackInstitution(varTopic) {
@@ -179,6 +186,6 @@ class QualificationDetailsCopy extends StatelessWidget {
     controller.updteForEdit.value = false;
     controller.addedQualification.value = false;
     controller.loadingEditQualification.value = true;
-    controller.update();
+    controller.getUpdateQualificationDetails(controller.modelindex!);
   }
 }

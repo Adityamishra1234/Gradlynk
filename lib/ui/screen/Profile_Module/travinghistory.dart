@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/travelhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/travinghistoryview.dart';
 import 'travelhistorywidget.dart';
 
@@ -40,7 +40,7 @@ class TravingHistory extends StatelessWidget {
     controller.updateTravelHistory(
         Get.find<BaseController>().model1.id.toString(),
         controller.travelAbroadSelectedID.toString(),
-        "delete");
+        "deleted");
     controller.update();
   }
 
@@ -48,7 +48,7 @@ class TravingHistory extends StatelessWidget {
     controller.index = data;
     controller.updateForEdit.value = false;
     controller.viewDetails.value = false;
-    controller.update();
+    controller.getUpdateCondition(int.parse(data.toString()));
   }
 
   callbackAddedTravelHistory(varTopic) {

@@ -55,6 +55,39 @@ class _CourseSearchListState extends State<CourseSearchList> {
   // String city = "",
   // String boarder_ield = "",
   // String narrow_field = "",
+
+  @override
+  void didChangeDependencies() {
+    print("object");
+    controller1 = Get.put(CourseShortListController());
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant CourseSearchList oldWidget) {
+    print("didUpdateWidget");
+    controller1 = Get.put(CourseShortListController());
+    controller1.courseSearch(
+        widget.countryId!,
+        widget.courseLevel!,
+        widget.enq_id!,
+        widget.stateCode ?? "",
+        widget.cityCode ?? "",
+        widget.boardFieldCode ?? "",
+        widget.narrowField ?? "");
+
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }
+
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   controller1.dispose();
+  //   super.dispose();
+  // }
+
   @override
   void initState() {
     if (widget.filterRedirect == false) {
@@ -72,6 +105,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
 
   @override
   Widget build(BuildContext context) {
+    print(Get.arguments);
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     double width;
     if (displayMobileLayout == false) {
@@ -149,20 +183,19 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                         color: ThemeConstants.lightorangeColor,
+                                        border: Border.all(
+                                          color: ThemeConstants.orangeColor,
+                                        ),
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 5.0)),
                                     child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 5),
-                                        child: CustomAutoSizeTextMontserrat(
-                                            text: "Filter",
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700,
-                                            textColor:
-                                                ThemeConstants.orangeColor),
-                                      ),
+                                      child: CustomAutoSizeTextMontserrat(
+                                          text: "Filter",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                          textColor:
+                                              ThemeConstants.orangeColor),
                                     ),
                                   ),
                                 ),
@@ -180,13 +213,16 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                     height: 30,
                                     decoration: BoxDecoration(
                                         color: ThemeConstants.lightgreentColor,
+                                        border: Border.all(
+                                          color: ThemeConstants.GreenColor,
+                                        ),
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 5.0)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 5),
+                                            left: 10, right: 10),
                                         child: CustomAutoSizeTextMontserrat(
                                             text: "Compare",
                                             fontSize: 14,
@@ -200,19 +236,55 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                 const Spacer(),
                                 InkWell(
                                   onTap: () {
-                                    Get.toNamed(ReviewShortList.routeNamed);
+                                    controller1.courseSearch(
+                                        widget.countryId!,
+                                        widget.courseLevel!,
+                                        widget.enq_id!,
+                                        widget.stateCode ?? "",
+                                        widget.cityCode ?? "",
+                                        widget.boardFieldCode ?? "",
+                                        widget.narrowField ?? "");
+
+                                    Get.toNamed(ReviewShortList.routeNamed,
+                                        arguments: [
+                                          {"countryId": widget.countryId!},
+                                          {"courseLevel": widget.courseLevel!},
+                                          {
+                                            "enq_id": widget.enq_id!,
+                                          },
+                                          {
+                                            "statecode": widget.stateCode ?? "",
+                                          },
+                                          {
+                                            "cityCode": widget.cityCode ?? "",
+                                          },
+                                          {
+                                            "boardFieldCode":
+                                                widget.boardFieldCode ?? "",
+                                          },
+                                          {
+                                            "narrowField":
+                                                widget.narrowField ?? ""
+                                          },
+                                          {"previous_screenCourseSearch": true}
+                                        ]);
                                   },
                                   child: Container(
                                     height: 30,
                                     decoration: BoxDecoration(
                                         color: ThemeConstants.lightVioletColor,
+                                        border: Border.all(
+                                          color: ThemeConstants.VioletColor,
+                                        ),
                                         borderRadius:
                                             BorderRadiusDirectional.circular(
                                                 5.0)),
                                     child: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 5),
+                                          left: 10,
+                                          right: 10,
+                                        ),
                                         child: CustomAutoSizeTextMontserrat(
                                             text: "Review Course",
                                             fontSize: 14,
@@ -371,13 +443,6 @@ class _CourseSearchListState extends State<CourseSearchList> {
     var res = await controller1.completeCourseDetailMethod(
         endpoint[0], endpoint[1], endpoint[2]);
     if (res != null) {
-      //TODO
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => CourseSearchFullDetail(
-      //               completeCourseDetail: res,
-      //             )));
       Get.to(CourseSearchFullDetail(
         completeCourseDetail: res,
       ));

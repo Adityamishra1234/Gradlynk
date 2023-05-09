@@ -6,6 +6,7 @@ import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/theme.dart';
 
 class AnimationTest extends StatefulWidget {
   const AnimationTest({Key? key}) : super(key: key);
@@ -21,20 +22,18 @@ class _AnimationTestState extends State<AnimationTest>
 
   @override
   void initState() {
-    controller = GifController(
-      loop: false,
-      onFinish: () {
-        if (getNUllChecker(controller1.phone) == false) {
-          Get.offNamed(DashBoard.routeNamed);
-        } else {
-          Get.offNamed(LoginScreen.routeNamed, arguments: controller1.phone);
-        }
-      },
-    );
+    // controller = GifController(
+    //   loop: false,
+    //   onFinish: () {
+    //     if (getNUllChecker(controller1.phone) == false) {
+    //       Get.offNamed(DashBoard.routeNamed);
+    //     } else {
+    //       Get.offNamed(LoginScreen.routeNamed, arguments: controller1.phone);
+    //     }
+    //   },
+    // );
     super.initState();
   }
-
-  var controller1 = Get.put(AnimationtestController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class _AnimationTestState extends State<AnimationTest>
           Container(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              color: Colors.white,
+              color: ThemeConstants.whitecolor,
               child: GifView.asset(
                 frameRate: 45,
                 controller: controller,

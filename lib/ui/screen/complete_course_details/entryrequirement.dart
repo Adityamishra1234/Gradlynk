@@ -49,8 +49,7 @@ class EntryRequirement extends StatelessWidget {
     } catch (e) {
       debugPrint(e.toString());
     }
-    return Expanded(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           Padding(
@@ -719,6 +718,6 @@ class EntryRequirement extends StatelessWidget {
           // ),
         ],
       ),
-    ));
+    );
   }
 }

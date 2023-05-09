@@ -152,7 +152,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Country Of Education",
+                                      text: "Country of Education",
                                       maxLines: 2,
                                       fontSize: 12,
                                       textColor: ThemeConstants.blackcolor,
@@ -400,8 +400,11 @@ class QualificationDetailView extends StatelessWidget {
                                     const EdgeInsets.only(top: 20, right: 20),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants
-                                          .whitecolor,
+                                      foregroundColor:
+                                          ThemeConstants.whitecolor,
+                                      elevation: 0.0,
+                                      backgroundColor:
+                                          ThemeConstants.whitecolor,
                                       side: BorderSide(
                                           color: ThemeConstants.TextColor),
                                       // foreground
@@ -421,8 +424,10 @@ class QualificationDetailView extends StatelessWidget {
                                   width: 90,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: ThemeConstants
-                                            .bluecolor, elevation: 0.0, backgroundColor: ThemeConstants
+                                        foregroundColor:
+                                            ThemeConstants.bluecolor,
+                                        elevation: 0.0,
+                                        backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {

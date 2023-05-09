@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/countryguidecontroller.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
@@ -58,7 +59,7 @@ class CountryGuide extends StatelessWidget {
                       ),
                       SizedBox(
                         // width: 300,
-                        height: 45,
+                        // height: 45,
                         child: CustomDropDownSingle(
                           model: getDropdownModel(
                             true,

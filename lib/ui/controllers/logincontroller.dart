@@ -1,12 +1,19 @@
+//test
+
 import 'dart:convert';
 
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
 import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/login%20copy.dart';
+import 'package:studentpanel/ui/screen/otpscreen.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class LoginController extends GetxController with StateMixin {
@@ -14,9 +21,14 @@ class LoginController extends GetxController with StateMixin {
   RxInt currentindex = 0.obs;
   ApiServices services = ApiServices();
   LoginModel? model;
+  var controller1 = Get.put(AnimationtestController());
+
+  RxBool optverify = false.obs;
+  RxBool otpEnable = false.obs;
 
   @override
   void onInit() {
+    getUserData();
     change(null, status: RxStatus.success());
   }
 
@@ -25,20 +37,28 @@ class LoginController extends GetxController with StateMixin {
     update();
   }
 
-  login(String phone, String password) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  login(String phone, String otp) async {
     change(null, status: RxStatus.loading());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     var responsive = await services.getLogin(
-      Endpoints.login! + phone + Endpoints.login2! + password,
+      Endpoints.login! + phone + Endpoints.login2! + otp,
     );
 
     if (responsive != null) {
       model = responsive;
+      if (prefs.getBool("showcaseEnable") == false ||
+          prefs.getBool("showcaseEnable") == null) {
+        prefs.setBool("showcaseEnable", false);
+      }
+
       prefs.setString("phonenumber", model!.user!.mobile.toString());
       prefs.setString("token", model!.token.toString());
       prefs.setString("id", model!.user!.id.toString());
       change(null, status: RxStatus.success());
-      Get.offAllNamed(DashBoard.routeNamed);
+
+      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
+
       return model;
     } else {
       change(null, status: RxStatus.success());
@@ -92,4 +112,30 @@ class LoginController extends GetxController with StateMixin {
   //     return false;
   //   }
   // }
+
+  getUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    print(phonenumber);
+    if (getNUllChecker(phonenumber) == false) {
+      print(sharedPreferences.getBool("showcaseEnable"));
+      Get.toNamed(DashBoard.routeNamed,
+          arguments: sharedPreferences.getBool("showcaseEnable"));
+    } else {
+      Get.toNamed(LoginCopy.routeNamed);
+    }
+  }
+
+  phonenumberVerfiy(String phonenumber) async {
+    change(null, status: RxStatus.loading());
+    var res = await services.phonenumberVerfiy(phonenumber);
+    if (res == true) {
+      otpEnable.value = true;
+      change(null, status: RxStatus.success());
+      update();
+    } else {
+      change(null, status: RxStatus.success());
+      update();
+    }
+  }
 }

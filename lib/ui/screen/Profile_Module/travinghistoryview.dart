@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/constantsWithId.dart';
 
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -125,7 +126,7 @@ class TravingHistoryView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Type Of Visa",
+                                      text: "Type of Visa",
                                       maxLines: 2,
                                       fontSize: 12,
                                       textColor: ThemeConstants.blackcolor,
@@ -136,12 +137,13 @@ class TravingHistoryView extends StatelessWidget {
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                    text: getNUllChecker(model[index]
-                                                .typeOfVisa
-                                                .toString()) ==
-                                            false
-                                        ? model[index].typeOfVisa.toString()
-                                        : "",
+                                    text: ConstantsWithId.getTypeofVisa(
+                                        getNUllChecker(model[index]
+                                                    .typeOfVisa
+                                                    .toString()) ==
+                                                false
+                                            ? model[index].typeOfVisa.toString()
+                                            : ""),
                                     maxLines: 2,
                                     fontSize: 12,
                                     textColor: ThemeConstants.TextColor,
@@ -317,7 +319,7 @@ class TravingHistoryView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Reason Of rejection",
+                                      text: "Reason of rejection",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
                                       fontSize: 12,
@@ -343,37 +345,37 @@ class TravingHistoryView extends StatelessWidget {
                                   ),
                                 ),
                               ]),
-                              rowSpacer,
-                              TableRow(children: [
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Proof Available",
-                                      maxLines: 2,
-                                      textColor: ThemeConstants.blackcolor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: getNUllChecker(model[index]
-                                                .proofAvailable
-                                                .toString()) ==
-                                            false
-                                        ? model[index].proofAvailable.toString()
-                                        : "",
-                                    maxLines: 2,
-                                    fontSize: 12,
-                                    textColor: ThemeConstants.TextColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ]),
+                              // rowSpacer,
+                              // TableRow(children: [
+                              //   Align(
+                              //     alignment: AlignmentDirectional.centerStart,
+                              //     child: Padding(
+                              //       padding: const EdgeInsets.only(left: 8),
+                              //       child: CustomAutoSizeTextMontserrat(
+                              //         text: "Proof Available",
+                              //         maxLines: 2,
+                              //         textColor: ThemeConstants.blackcolor,
+                              //         fontSize: 12,
+                              //         fontWeight: FontWeight.bold,
+                              //       ),
+                              //     ),
+                              //   ),
+                              //   Align(
+                              //     alignment: AlignmentDirectional.centerStart,
+                              //     child: CustomAutoSizeTextMontserrat(
+                              //       text: getNUllChecker(model[index]
+                              //                   .proofAvailable
+                              //                   .toString()) ==
+                              //               false
+                              //           ? model[index].proofAvailable.toString()
+                              //           : "",
+                              //       maxLines: 2,
+                              //       fontSize: 12,
+                              //       textColor: ThemeConstants.TextColor,
+                              //       fontWeight: FontWeight.bold,
+                              //     ),
+                              //   ),
+                              // ]),
                             ],
                           ),
                         ),
@@ -387,8 +389,11 @@ class TravingHistoryView extends StatelessWidget {
                                     const EdgeInsets.only(top: 20, right: 20),
                                 child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
-                                      foregroundColor: ThemeConstants.whitecolor, elevation: 0.0, backgroundColor: ThemeConstants
-                                          .whitecolor,
+                                      foregroundColor:
+                                          ThemeConstants.whitecolor,
+                                      elevation: 0.0,
+                                      backgroundColor:
+                                          ThemeConstants.whitecolor,
                                       side: BorderSide(
                                           color: ThemeConstants.TextColor),
                                       // foreground
@@ -408,8 +413,10 @@ class TravingHistoryView extends StatelessWidget {
                                   width: 90,
                                   child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
-                                        foregroundColor: ThemeConstants
-                                            .bluecolor, elevation: 0.0, backgroundColor: ThemeConstants
+                                        foregroundColor:
+                                            ThemeConstants.bluecolor,
+                                        elevation: 0.0,
+                                        backgroundColor: ThemeConstants
                                             .bluecolor, // foreground
                                       ),
                                       onPressed: () async {

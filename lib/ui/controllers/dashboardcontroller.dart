@@ -4,6 +4,8 @@ import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
+import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,8 +27,9 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     upcomingEvents();
+
+    super.onInit();
   }
 
   newAndUpdates() async {

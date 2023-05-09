@@ -86,220 +86,50 @@ class ApplicationSummary extends StatelessWidget {
                             itemCount:
                                 controller.applicationSummaryModel.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return Card(
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                      color: ThemeConstants.blackcolor,
-                                      width: 0.5),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, bottom: 10, right: 10, left: 10),
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        InkWell(
-                                          onTap: () async {
-                                            Get.toNamed(
-                                                ApplicationCompleteDetails
-                                                    .routeNamed,
-                                                arguments: controller
-                                                    .applicationSummaryModel[
-                                                        index]
-                                                    .id
-                                                    .toString());
-                                          },
-                                          child: CustomAutoSizeTextMontserrat(
+                              return InkWell(
+                                onTap: () {
+                                  Get.toNamed(
+                                      ApplicationCompleteDetails.routeNamed,
+                                      arguments: controller
+                                          .applicationSummaryModel[index].id
+                                          .toString());
+                                },
+                                child: Card(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        color: ThemeConstants.blackcolor,
+                                        width: 0.5),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 10,
+                                        bottom: 10,
+                                        right: 10,
+                                        left: 10),
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
                                             text: controller
                                                 .applicationSummaryModel[index]
                                                 .universityName,
                                             textColor: ThemeConstants.bluecolor,
                                             fontWeight: FontWeight.bold,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "Country: ",
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            SizedBox(
-                                              width: width - 100,
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .applicationSummaryModel[
-                                                        index]
-                                                    .countryName,
-                                                fontSize: 14,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "Course Level: ",
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            SizedBox(
-                                              width: width - 140,
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .applicationSummaryModel[
-                                                        index]
-                                                    .courseLevel,
-                                                fontSize: 14,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "Course Name: ",
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            SizedBox(
-                                              width: width - 155,
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .applicationSummaryModel[
-                                                        index]
-                                                    .courseName,
-                                                fontSize: 14,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "campus Name: ",
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 14,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            SizedBox(
-                                              width: width - 150,
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: controller
-                                                    .applicationSummaryModel[
-                                                        index]
-                                                    .campusName,
-                                                fontSize: 14,
-                                                textColor:
-                                                    ThemeConstants.TextColor,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          width: width,
-                                          decoration: BoxDecoration(
-                                              color: ThemeConstants
-                                                  .lightgreentColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(7.0)),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10,
-                                                    left: 10,
-                                                    bottom: 10),
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "Stage: ",
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: width - 95,
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .applicationSummaryModel[
-                                                          index]
-                                                      .stageName,
-                                                  textColor:
-                                                      ThemeConstants.TextColor,
-                                                  fontSize: 14,
-                                                ),
-                                              ),
-                                            ],
+                                          const SizedBox(
+                                            height: 10,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                            color:
-                                                ThemeConstants.lightorangeColor,
-                                          ),
-                                          child: Row(
+                                          Row(
                                             children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10,
-                                                    bottom: 10,
-                                                    left: 10),
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "Status: ",
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
-                                                ),
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "Country: ",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14,
                                               ),
                                               const SizedBox(
                                                 width: 5,
@@ -311,7 +141,7 @@ class ApplicationSummary extends StatelessWidget {
                                                   text: controller
                                                       .applicationSummaryModel[
                                                           index]
-                                                      .statusName,
+                                                      .countryName,
                                                   fontSize: 14,
                                                   textColor:
                                                       ThemeConstants.TextColor,
@@ -319,8 +149,181 @@ class ApplicationSummary extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ]),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "Course Level: ",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14,
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              SizedBox(
+                                                width: width - 140,
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .applicationSummaryModel[
+                                                          index]
+                                                      .courseLevel,
+                                                  fontSize: 14,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "Course Name: ",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14,
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              SizedBox(
+                                                width: width - 155,
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .applicationSummaryModel[
+                                                          index]
+                                                      .courseName,
+                                                  fontSize: 14,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              CustomAutoSizeTextMontserrat(
+                                                text: "campus Name: ",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 14,
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              SizedBox(
+                                                width: width - 150,
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .applicationSummaryModel[
+                                                          index]
+                                                      .campusName,
+                                                  fontSize: 14,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Container(
+                                            width: width,
+                                            decoration: BoxDecoration(
+                                                color: ThemeConstants
+                                                    .lightgreentColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(7.0)),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10,
+                                                          left: 10,
+                                                          bottom: 10),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Stage: ",
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                SizedBox(
+                                                  width: width - 95,
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: controller
+                                                        .applicationSummaryModel[
+                                                            index]
+                                                        .stageName,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            decoration: BoxDecoration(
+                                              color: ThemeConstants
+                                                  .lightorangeColor,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10,
+                                                          bottom: 10,
+                                                          left: 10),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Status: ",
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                SizedBox(
+                                                  width: width - 100,
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: controller
+                                                        .applicationSummaryModel[
+                                                            index]
+                                                        .statusName,
+                                                    fontSize: 14,
+                                                    textColor: ThemeConstants
+                                                        .TextColor,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
                                 ),
                               );
                             }),
