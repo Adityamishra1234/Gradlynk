@@ -494,161 +494,174 @@ class CustomDrawer extends StatelessWidget {
                               ],
                             ),
                           ),
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: ConfigurableExpansionTile(
-                                borderColorEnd: Colors.transparent,
-                                bottomBorderOn: false,
-                                header: SizedBox(
-                                  width: 210,
-                                  height: 40,
-                                  child: Row(
+                          childrenBody: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: ConfigurableExpansionTile(
+                                  borderColorEnd: Colors.transparent,
+                                  bottomBorderOn: false,
+                                  header: SizedBox(
+                                    width: 210,
+                                    height: 40,
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 0),
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Track your ticket",
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        // const Icon(Icons.keyboard_arrow_down),
+                                      ],
+                                    ),
+                                  ),
+                                  childrenBody: Column(
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(left: 0),
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Track your ticket",
-                                        ),
+                                        child: Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: InkWell(
+                                              highlightColor:
+                                                  ThemeConstants.whitecolor,
+                                              onTap: () {
+                                                Get.deleteAll();
+                                                Get.toNamed(TrackyourTickets
+                                                    .routeNamed);
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 0),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  decoration: BoxDecoration(
+                                                      color: index == 10
+                                                          ? ThemeConstants
+                                                              .lightblueColor
+                                                          : ThemeConstants
+                                                              .whitecolor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 0, top: 5),
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      text: "Track Issue ",
+                                                      textColor: index == 10
+                                                          ? ThemeConstants
+                                                              .bluecolor
+                                                          : ThemeConstants
+                                                              .blackcolor,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
                                       ),
-                                      const Spacer(),
-                                      // const Icon(Icons.keyboard_arrow_down),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 0),
+                                        child: Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: InkWell(
+                                              highlightColor:
+                                                  ThemeConstants.whitecolor,
+                                              onTap: () {
+                                                Get.deleteAll();
+                                                Get.toNamed(
+                                                    Suggestedimprovisation
+                                                        .routeNamed);
+                                              },
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 0),
+                                                child: Container(
+                                                  height: 30,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  decoration: BoxDecoration(
+                                                      color: index == 11
+                                                          ? ThemeConstants
+                                                              .lightblueColor
+                                                          : ThemeConstants
+                                                              .whitecolor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 0, top: 5),
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      text:
+                                                          "Track your Feedback",
+                                                      textColor: index == 11
+                                                          ? ThemeConstants
+                                                              .bluecolor
+                                                          : ThemeConstants
+                                                              .blackcolor,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0),
-                                    child: Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: InkWell(
-                                          highlightColor:
-                                              ThemeConstants.whitecolor,
-                                          onTap: () {
-                                            Get.deleteAll();
-                                            Get.toNamed(
-                                                TrackyourTickets.routeNamed);
-                                          },
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(right: 0),
-                                            child: Container(
-                                              height: 30,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              decoration: BoxDecoration(
-                                                  color: index == 10
-                                                      ? ThemeConstants
-                                                          .lightblueColor
-                                                      : ThemeConstants
-                                                          .whitecolor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0)),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 0, top: 5),
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "Track Issue ",
-                                                  textColor: index == 10
-                                                      ? ThemeConstants.bluecolor
-                                                      : ThemeConstants
-                                                          .blackcolor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 0),
-                                    child: Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: InkWell(
-                                          highlightColor:
-                                              ThemeConstants.whitecolor,
-                                          onTap: () {
-                                            Get.deleteAll();
-                                            Get.toNamed(Suggestedimprovisation
-                                                .routeNamed);
-                                          },
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(right: 0),
-                                            child: Container(
-                                              height: 30,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              decoration: BoxDecoration(
-                                                  color: index == 11
-                                                      ? ThemeConstants
-                                                          .lightblueColor
-                                                      : ThemeConstants
-                                                          .whitecolor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0)),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 0, top: 5),
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "Track your Feedback",
-                                                  textColor: index == 11
-                                                      ? ThemeConstants.bluecolor
-                                                      : ThemeConstants
-                                                          .blackcolor,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        )),
-                                  ),
-                                ],
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Align(
-                                  alignment: AlignmentDirectional.topStart,
-                                  child: InkWell(
-                                    highlightColor: ThemeConstants.whitecolor,
-                                    onTap: () {
-                                      Get.deleteAll();
-                                      Get.toNamed(RaiseYourTicket.routeNamed);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(right: 00),
-                                      child: Container(
-                                        height: 30,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        decoration: BoxDecoration(
-                                            color: index == 12
-                                                ? ThemeConstants.lightblueColor
-                                                : ThemeConstants.whitecolor,
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 00, top: 5),
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Raise new ticket",
-                                            textColor: index == 12
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.blackcolor,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Align(
+                                    alignment: AlignmentDirectional.topStart,
+                                    child: InkWell(
+                                      highlightColor: ThemeConstants.whitecolor,
+                                      onTap: () {
+                                        Get.deleteAll();
+                                        Get.toNamed(RaiseYourTicket.routeNamed);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 00),
+                                        child: Container(
+                                          height: 30,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                              color: index == 12
+                                                  ? ThemeConstants
+                                                      .lightblueColor
+                                                  : ThemeConstants.whitecolor,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 00, top: 5),
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Raise new ticket",
+                                              textColor: index == 12
+                                                  ? ThemeConstants.bluecolor
+                                                  : ThemeConstants.blackcolor,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  )),
-                            ),
-                          ],
+                                    )),
+                              ),
+                            ],
+                          ),
                         )),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20, top: 20),

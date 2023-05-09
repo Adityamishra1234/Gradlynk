@@ -1,5 +1,6 @@
+import 'dart:io';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart' as dio;
-
 import 'package:flutter/material.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:path/path.dart' as path;
@@ -37,31 +38,42 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
 
     var status = await Permission.manageExternalStorage.status;
     var notificationStatus = await Permission.notification.status;
-    await Permission.accessMediaLocation.request();
-    if (status2.isDenied) {
-      await Permission.storage.request();
-      // await Permission.manageExternalStorage.request();
+
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    var sdkVersion = await androidInfo.version.sdkInt;
+
+    print(sdkVersion);
+
+    if (sdkVersion > 33) {
+      var x = await Permission.manageExternalStorage.request();
+      var y = await Permission.notification.request();
+
+      if (x.isGranted && y.isGranted) {
+        await downloadMainFunction();
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+      }
     }
 
-    if (status.isDenied) {
-      await Permission.manageExternalStorage.request();
+    if (sdkVersion == 30) {
+      var x = await Permission.manageExternalStorage.request();
+
+      var y = await Permission.storage.request();
+      if (x.isGranted) {
+        await downloadMainFunction();
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+      }
     }
 
-    if (notificationStatus.isDenied) {
-      await Permission.notification.request();
-    }
-
-    if (ImageStatus.isDenied) {
-      await Permission.photos.request();
-    }
-
-    var statu = await Permission.manageExternalStorage.status;
-    var statu2 = await Permission.storage.status;
-
-    if (status.isGranted || statu.isGranted || statu2.isGranted) {
-      await downloadMainFunction();
-    } else {
-      getToast(SnackBarConstants.flutterStroageToast);
+    if (sdkVersion < 30) {
+      var x = await Permission.storage.request();
+      if (x.isGranted) {
+        await downloadMainFunction();
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+      }
     }
 
     // if (status.isGranted && status2.isGranted) {
@@ -137,7 +149,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
           if (buttonState == ButtonState.idle) {
             startLoading();
             await downloadFile();
-            // await Future.delayed(const Duration(seconds: 5));
+            // await Future.delayed(const Duration(seconds: 5))
             stopLoading();
           }
         },

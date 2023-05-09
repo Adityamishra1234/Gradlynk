@@ -55,20 +55,22 @@ class _CustomExpansionPlanListState extends State<CustomExpansionPlanList> {
             ),
           ),
         ),
-        children: [
-          // Check Box
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: HtmlWidget(
-              text!,
-              textStyle: GoogleFonts.montserrat(
-                fontWeight: FontWeight.w500,
-                color: ThemeConstants.TextColor,
-                fontSize: 14.0,
+        childrenBody: Column(
+          children: [
+            // Check Box
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: HtmlWidget(
+                text!,
+                textStyle: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
+                  color: ThemeConstants.TextColor,
+                  fontSize: 14.0,
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

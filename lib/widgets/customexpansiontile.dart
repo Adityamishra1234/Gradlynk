@@ -45,12 +45,14 @@ class _CustomExpansiontileState extends State<CustomExpansiontile> {
           ],
         ),
       ),
-      children: [
-        // Check Box
-        CustomgroupCheckBox(
-          data: data,
-        ),
-      ],
+      childrenBody: Column(
+        children: [
+          // Check Box
+          CustomgroupCheckBox(
+            data: data,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/versioncontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/englishtestdetails.dart';
@@ -14,7 +16,7 @@ import 'qualificationdetails.dart';
 
 class ProfilePageCopy1 extends StatelessWidget {
   static const routeNamed = '/ProfilePageCopy1';
-  const ProfilePageCopy1({super.key});
+  ProfilePageCopy1({super.key});
 
   @override
   Widget build(BuildContext context) {
