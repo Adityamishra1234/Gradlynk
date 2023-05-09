@@ -1,0 +1,9 @@
+storePassword=gradlynk
+keyPassword=gradlynk
+keyAlias=gradlynk
+<<<<<<< HEAD
+storeFile=gradlynk
+=======
+storeFile=gradlynk
+
+>>>>>>> new_student_panel_aman
