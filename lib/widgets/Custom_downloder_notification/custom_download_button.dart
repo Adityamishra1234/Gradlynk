@@ -45,7 +45,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
 
     print(sdkVersion);
 
-    if (sdkVersion > 33) {
+    if (sdkVersion > 30) {
       var x = await Permission.manageExternalStorage.request();
       var y = await Permission.notification.request();
 

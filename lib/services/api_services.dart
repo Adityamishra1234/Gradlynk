@@ -300,12 +300,6 @@ class ApiServices extends StudentPanelBase implements api {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        if (response.toString() == "Course Added To Shortlist") {
-          getToast(SnackBarConstants.courseShortList!);
-        } else if (response.toString() == "Course Removed From Shortlist") {
-          getToast(SnackBarConstants.courseRemove!);
-        }
-      } else {
         getToast(response);
       }
     } catch (e) {
@@ -324,14 +318,7 @@ class ApiServices extends StudentPanelBase implements api {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.finalCourseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
-        if (response.toString() == "Course Added To Final Shortlist") {
-          getToast(SnackBarConstants.courseFinalShortList!);
-        } else if (response.toString() ==
-            "Course Removed From Final Shortlist") {
-          getToast(SnackBarConstants.courseRemove!);
-        } else {
-          getToast(response);
-        }
+        getToast(response);
       }
     } catch (e) {
       await errorHandle(
