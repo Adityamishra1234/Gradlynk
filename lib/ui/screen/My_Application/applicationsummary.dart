@@ -14,13 +14,20 @@ class ApplicationSummary extends StatelessWidget {
   static const routeNamed = '/ApplicationSummary';
   var controller = Get.put(ApplicationSummaryController());
 
+  // List<Map<String, dynamic>> items = [];
+
   @override
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     double width = MediaQuery.of(context).size.width;
+
     if (displayMobileLayout == true) {
       width = MediaQuery.of(context).size.width - 240.00;
     }
+
+    print(controller.searchedList.length);
+    print(controller.searchedList.length);
+
     return Scaffold(
         appBar: CustomAppBar("title"),
         drawer: displayMobileLayout == false
@@ -32,11 +39,11 @@ class ApplicationSummary extends StatelessWidget {
           // For Update model with Staus Name
           if (_.loadingStatus.value == true &&
               _.loadingApplicationSummary.value == true) {
-            for (var i = 0; i < _.applicationSummaryModel.length; i++) {
+            for (var i = 0; i < _.searchedList.length; i++) {
               for (var j = 0; j < _.statusListId.length; j++) {
-                if (_.applicationSummaryModel[i].statusId.toString() ==
+                if (_.searchedList[i].statusId.toString() ==
                     _.statusListId[j].toString()) {
-                  _.applicationSummaryModel[i].statusName = _.statusListName[j];
+                  _.searchedList[i].statusName = _.statusListName[j];
                 }
               }
             }
@@ -45,11 +52,11 @@ class ApplicationSummary extends StatelessWidget {
           // For  Update model with Stage Names
           if (_.loadingStage.value == true &&
               _.loadingApplicationSummary.value == true) {
-            for (var i = 0; i < _.applicationSummaryModel.length; i++) {
+            for (var i = 0; i < _.searchedList.length; i++) {
               for (var j = 0; j < _.stageListID.length; j++) {
-                if (_.applicationSummaryModel[i].stageId.toString() ==
+                if (_.searchedList[i].stageId.toString() ==
                     _.stageListID[j].toString()) {
-                  _.applicationSummaryModel[i].stageName = _.stageNameList[j];
+                  _.searchedList[i].stageName = _.stageNameList[j];
                 }
               }
             }
@@ -79,19 +86,44 @@ class ApplicationSummary extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 10),
+                      child: SizedBox(
+                        height: 50,
+                        child: TextField(
+                          onChanged: (value) {
+                            controller.filterSearchResults(value.toString());
+                            controller.update();
+                          },
+                          // controller: editingController,
+                          decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.all(5),
+                              hintText: "Search by country or university",
+                              prefixIcon: Icon(Icons.search),
+                              focusedBorder: const OutlineInputBorder(
+                                // width: 0.0 produces a thin "hairline" border
+                                borderSide:
+                                    BorderSide(color: Colors.blue, width: 0.5),
+                              ),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50)))),
+                        ),
+                      ),
+                    ),
                     if (_.loadingApplicationSummary.value == true)
                       Expanded(
                         child: ListView.builder(
                             controller: ScrollController(),
-                            itemCount:
-                                controller.applicationSummaryModel.length,
+                            itemCount: controller.searchedList.length,
                             itemBuilder: (BuildContext context, int index) {
                               return InkWell(
                                 onTap: () {
                                   Get.toNamed(
                                       ApplicationCompleteDetails.routeNamed,
                                       arguments: controller
-                                          .applicationSummaryModel[index].id
+                                          .searchedList[index].id
                                           .toString());
                                 },
                                 child: Card(
@@ -115,8 +147,7 @@ class ApplicationSummary extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           CustomAutoSizeTextMontserrat(
-                                            text: controller
-                                                .applicationSummaryModel[index]
+                                            text: controller.searchedList[index]
                                                 .universityName,
                                             textColor: ThemeConstants.bluecolor,
                                             fontWeight: FontWeight.bold,
@@ -139,8 +170,7 @@ class ApplicationSummary extends StatelessWidget {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: controller
-                                                      .applicationSummaryModel[
-                                                          index]
+                                                      .searchedList[index]
                                                       .countryName,
                                                   fontSize: 14,
                                                   textColor:
@@ -167,8 +197,7 @@ class ApplicationSummary extends StatelessWidget {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: controller
-                                                      .applicationSummaryModel[
-                                                          index]
+                                                      .searchedList[index]
                                                       .courseLevel,
                                                   fontSize: 14,
                                                   textColor:
@@ -195,8 +224,7 @@ class ApplicationSummary extends StatelessWidget {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: controller
-                                                      .applicationSummaryModel[
-                                                          index]
+                                                      .searchedList[index]
                                                       .courseName,
                                                   fontSize: 14,
                                                   textColor:
@@ -223,8 +251,7 @@ class ApplicationSummary extends StatelessWidget {
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
                                                   text: controller
-                                                      .applicationSummaryModel[
-                                                          index]
+                                                      .searchedList[index]
                                                       .campusName,
                                                   fontSize: 14,
                                                   textColor:
@@ -266,8 +293,7 @@ class ApplicationSummary extends StatelessWidget {
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
                                                     text: controller
-                                                        .applicationSummaryModel[
-                                                            index]
+                                                        .searchedList[index]
                                                         .stageName,
                                                     textColor: ThemeConstants
                                                         .TextColor,
@@ -311,8 +337,7 @@ class ApplicationSummary extends StatelessWidget {
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
                                                     text: controller
-                                                        .applicationSummaryModel[
-                                                            index]
+                                                        .searchedList[index]
                                                         .statusName,
                                                     fontSize: 14,
                                                     textColor: ThemeConstants

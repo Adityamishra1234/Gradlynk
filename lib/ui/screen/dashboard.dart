@@ -112,6 +112,7 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
+
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
 
     return ShowCaseWidget(onComplete: (p0, p1) {
