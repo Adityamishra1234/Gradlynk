@@ -21,14 +21,22 @@ class ApplicationSummaryController extends GetxController {
   // Model
   ApiServices apiServices = ApiServices();
   List<ApplicationSummaryModel> applicationSummaryModel = [];
+
+  List<ApplicationSummaryModel> searchedList = [];
+
   ApplicationDetailModel applicationDetailModel = ApplicationDetailModel();
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
-    getapplicationStatus();
-    getapplicationStage();
-    getApplicationDetail(Get.find<BaseController>().model1.id.toString());
+    await getapplicationStatus();
+    await getapplicationStage();
+    await getApplicationDetail(Get.find<BaseController>().model1.id.toString());
+
+    print(applicationSummaryModel.length);
+    searchedList = applicationSummaryModel;
+    update();
+    // print(searchedList.length);
   }
 
   getApplicationDetail(String enqId) async {
@@ -36,6 +44,7 @@ class ApplicationSummaryController extends GetxController {
       var response = await apiServices.getApplicationSummaryList(enqId);
       if (response != null) {
         applicationSummaryModel = response;
+
         loadingApplicationSummary = true.obs;
         update();
       }
@@ -110,6 +119,37 @@ class ApplicationSummaryController extends GetxController {
         "1111",
         StackTrace.current.toString(),
       );
+    }
+  }
+
+  void filterSearchResults(String query) {
+    // var items = Map.fromEntries(controller.applicationSummaryModel
+    //     .map((e) => MapEntry(e.campusName, e.countryName)));
+
+    print(query.length);
+
+    // var lol = applicationSummaryModel.forEach((e) => items.add(e.countryName));
+    // print(items);
+
+    // itemsToShow = items
+    //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+    //     .toList();
+
+    if (query.length == 0) {
+      searchedList = applicationSummaryModel;
+      update();
+    } else {
+      searchedList = applicationSummaryModel
+          .where((element) =>
+              element.countryName!
+                  .toLowerCase()
+                  .contains(query.toLowerCase()) ||
+              element.universityName!
+                  .toLowerCase()
+                  .contains(query.toLowerCase()))
+          .toList();
+
+      update();
     }
   }
 }
