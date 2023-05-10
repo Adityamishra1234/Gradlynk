@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:cached_network_svg_image/cached_network_svg_image.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
@@ -66,18 +66,18 @@ String getRemoveSquarebracket(String data) {
 
 getToast(String data) {
   print("object");
-  return Container();
-  // return Fluttertoast.showToast(
-  //     // webBgColor: "linear-gradient(to right, #F1F4FB, #F1F4FB)",
-  //     // webPosition: "Top",
-  //     webPosition: "center",
-  //     msg: data,
-  //     toastLength: Toast.LENGTH_SHORT,
-  //     gravity: ToastGravity.BOTTOM,
-  //     timeInSecForIosWeb: 1,
-  //     backgroundColor: ThemeConstants.lightblueColor,
-  //     textColor: ThemeConstants.blackcolor,
-  //     fontSize: 16.0);
+
+  return Fluttertoast.showToast(
+      // webBgColor: "linear-gradient(to right, #F1F4FB, #F1F4FB)",
+      // webPosition: "Top",
+      webPosition: "center",
+      msg: data,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: ThemeConstants.lightblueColor,
+      textColor: ThemeConstants.blackcolor,
+      fontSize: 16.0);
 }
 
 getDailog(BuildContext context, String data) {

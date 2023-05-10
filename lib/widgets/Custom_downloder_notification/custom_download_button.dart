@@ -89,7 +89,8 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
     var status = await Permission.storage.request();
     var d = await Permission.photos.request();
     var y = await Permission.notification.request();
-    print(status);
+
+    // print(status);
     // if (await Permission.storage.request().isGranted) {
     final io.Directory tempDir = await getTemporaryDirectory();
 
@@ -112,27 +113,68 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
     }
 
     String basenames = path.basename(url);
-    final finalPath = await path.join(directory, basenames);
+    final finalPath = path.join(directory, basenames);
     io.File saveFile = io.File('$finalPath');
 
-    await FileDownloader.downloadFile(
-        url: url,
-        name: basenames,
-        onDownloadCompleted: (String paths) {
-          print('$paths 5555');
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    var sdkVersion = await androidInfo.version.sdkInt;
 
-          var newpath = paths.substring(7, paths.length);
+    print(sdkVersion);
 
-          print(newpath);
+// 33=> d
+// 30 less=>status
+    if (sdkVersion > 30) {
+      if (d.isGranted) {
+        if (y.isGranted) {
+          await FileDownloader.downloadFile(
+              url: url,
+              name: basenames,
+              onDownloadCompleted: (String paths) {
+                var newpath = paths;
+                NotificationService.showNotification(
+                    title: 'Downlaod Completed',
+                    body: 'Click to Open',
+                    payload: {'path': '$newpath', 'type': '${widget.payload}'});
+              },
+              onDownloadError: (String error) {
+                print('DOWNLOAD ERROR: $error');
+              });
+        } else {
+          await Permission.notification.request();
+        }
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => openAppSettings());
+      }
+    } else {
+      if (status.isGranted) {
+        if (y.isGranted) {
+          await FileDownloader.downloadFile(
+              url: url,
+              name: basenames,
+              onDownloadCompleted: (String paths) {
+                var newpath = paths;
+                NotificationService.showNotification(
+                    title: 'Downlaod Completed',
+                    body: 'Click to Open',
+                    payload: {'path': '$newpath', 'type': '${widget.payload}'});
+              },
+              onDownloadError: (String error) {
+                print('DOWNLOAD ERROR: $error');
+              });
+        } else {
+          await Permission.notification.request();
+        }
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => openAppSettings());
+      }
+    }
 
-          NotificationService.showNotification(
-              title: 'Downlaod Completed',
-              body: 'Click to Open',
-              payload: {'path': '$newpath', 'type': '${widget.payload}'});
-        },
-        onDownloadError: (String error) {
-          print('DOWNLOAD ERROR: $error');
-        });
+    // }
 
     // await dio.Dio().download(url, saveFile.path);
 
@@ -176,7 +218,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
       var theMainPath = "${pathTemp}/gradlynk";
       io.Directory finalDirectory = io.Directory(theMainPath);
       String basenames = path.basename(myUrl);
-      final finalPath = await path.join(theMainPath, basenames);
+      final finalPath = path.join(theMainPath, basenames);
       io.File saveFile = io.File('$finalPath');
       if (!await finalDirectory.exists()) {
         await finalDirectory.create(recursive: true);
