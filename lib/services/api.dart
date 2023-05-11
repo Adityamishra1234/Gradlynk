@@ -89,4 +89,6 @@ abstract class api {
   getTrackYourTickets(String endpoint);
   saveComments(String endpoint);
   qualificationUpdateDropdown(String endpoint);
+
+  counselorList(String endpoint);
 }

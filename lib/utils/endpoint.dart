@@ -126,6 +126,8 @@ class Endpoints {
   static String? qualificationUpdateDropdownPart3 = "&city_id=";
   static String? phoneNuberverfiy = "verify-number?mobile=";
   static String? agree = "agree-student-consent?enq_id=";
+
+  static String? counselorList = "service-assignees?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

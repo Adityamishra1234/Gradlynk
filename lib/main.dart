@@ -29,6 +29,10 @@ import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
+import 'package:studentpanel/ui/screen/new_profile/new_profile_view.dart';
+import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
+
+import 'package:studentpanel/ui/screen/settings_ui.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
@@ -132,6 +136,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: "/",
           page: () => LoginCopy(),
+          transition: Transition.fade,
         ),
         GetPage(
           name: LoginCopy.routeNamed,
@@ -155,18 +160,19 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: DashBoard.routeNamed,
-          transition: Transition.cupertino,
+          transition: Transition.fade,
           binding: DashBoardBinding(),
           page: () => const DashBoard(),
         ),
         GetPage(
             name: ProfilePageCopy1.routeNamed,
-            transition: Transition.cupertino,
+            transition: Transition.fade,
+            // page: () => ProfilePageCopy1(),
             page: () => ProfilePageCopy1(),
             binding: ProfilePageBinding()),
         GetPage(
             name: ProfilePageCopy.routeNamed,
-            transition: Transition.cupertino,
+            transition: Transition.fade,
             page: () => ProfilePageCopy(),
             binding: ProfilePageBinding()),
         GetPage(
@@ -226,33 +232,33 @@ class _MyAppState extends State<MyApp> {
             binding: TrackApplicationBinding()),
         GetPage(
           name: LunchingPage.routeNamed,
-          transition: Transition.cupertino,
+          transition: Transition.fade,
           page: () => const LunchingPage(),
         ),
         GetPage(
           name: AnimationTest.routeNamed,
-          transition: Transition.cupertino,
+          transition: Transition.fade,
           page: () => const AnimationTest(),
         ),
 
         GetPage(
           name: ScrollTabBar.routeNamed,
-          transition: Transition.cupertino,
+          transition: Transition.fade,
           page: () => ScrollTabBar(),
         ),
         GetPage(
             name: ApplicationSummary.routeNamed,
-            transition: Transition.cupertino,
+            transition: Transition.fade,
             page: () => ApplicationSummary(),
             binding: ApplicationSummaryBinding()),
         GetPage(
             name: ApplicationDetail.routeNamed,
-            transition: Transition.cupertino,
+            transition: Transition.fade,
             page: () => const ApplicationDetail(),
             binding: ApplicationDetailBinding()),
         GetPage(
             name: FinalShortList.routeNamed,
-            transition: Transition.cupertino,
+            transition: Transition.fade,
             page: () => FinalShortList(),
             binding: FinalShortListBinding()),
         GetPage(
@@ -336,6 +342,17 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: RaiseYourTicket.routeNamed,
           page: () => RaiseYourTicket(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: Settings.routeNamed,
+          page: () => Settings(),
+          transition: Transition.fade,
+        ),
+
+        GetPage(
+          name: ReceiveACallBackView.routeNamed,
+          page: () => ReceiveACallBackView(),
           transition: Transition.fade,
         ),
       ],

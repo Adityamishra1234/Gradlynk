@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/screen/My_Application/applicationcompletedetail.
 import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
+import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
@@ -24,6 +25,7 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomButtomNavbar(currentIndex: 2),
       appBar: CustomAppBar("title"),
       drawer: CustomDrawer(),
       body: GetBuilder<BaseController>(builder: (_) {
