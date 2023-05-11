@@ -481,6 +481,7 @@ getTable(
 }
 
 ApiServices apiservice = ApiServices();
+
 getDailogForAgree(
   BuildContext context,
 ) {
@@ -550,6 +551,164 @@ getDailogForAgree(
                       ),
                     ),
                   )
+                ],
+              ),
+            ),
+          ));
+}
+
+contactUsDialog(
+  BuildContext context,
+) {
+  return showDialog(
+      // barrierDismissible: false,
+      context: context,
+      builder: (ctx) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                      width: 300.0,
+                      height: 35.0,
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                        text: "Contact Us",
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
+                        textColor: ThemeConstants.bluecolor,
+                      ))),
+                  Container(
+                    width: 300,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.lightgreycolor,
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.phone,
+                              color: ThemeConstants.whitecolor,
+                            )),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        CustomAutoSizeTextMontserrat(
+                            text: "Call Us (+91 9779046382)"),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 300,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.lightgreycolor,
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.phone,
+                              color: ThemeConstants.whitecolor,
+                            )),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        CustomAutoSizeTextMontserrat(
+                            text: "Receive a call back"),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 300,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.lightgreycolor,
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.phone,
+                              color: ThemeConstants.whitecolor,
+                            )),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        CustomAutoSizeTextMontserrat(
+                            text: "Schedule an expert call"),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    width: 300,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.lightgreycolor,
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.phone,
+                              color: ThemeConstants.whitecolor,
+                            )),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        CustomAutoSizeTextMontserrat(text: "Join via SVO"),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
