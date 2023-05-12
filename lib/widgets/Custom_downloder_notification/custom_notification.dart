@@ -1,7 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:open_file_plus/open_file_plus.dart';
 import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification_payload_types.dart';
-import 'package:open_file/open_file.dart';
 
 class CustomOpenLocalPath {
   Future<void> openFile(String path) async {
