@@ -26,6 +26,7 @@ import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/dashboard2.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
@@ -162,6 +163,7 @@ class _MyAppState extends State<MyApp> {
           name: DashBoard.routeNamed,
           transition: Transition.fade,
           binding: DashBoardBinding(),
+          // page: () => const DashBoard(),
           page: () => const DashBoard(),
         ),
         GetPage(
