@@ -24,6 +24,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/dashboard2.dart';
@@ -357,6 +358,12 @@ class _MyAppState extends State<MyApp> {
           page: () => ReceiveACallBackView(),
           transition: Transition.fade,
         ),
+        GetPage(
+            name: ProfileView.routeNamed,
+            transition: Transition.fade,
+            // page: () => ProfilePageCopy1(),
+            page: () => ProfileView(),
+            binding: ProfilePageBinding()),
       ],
     );
   }

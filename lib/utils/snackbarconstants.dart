@@ -307,5 +307,6 @@ class SnackBarConstants {
 
   static String flutterStroageToast = "Please give storage access";
 
-  static String receiveACallback = "Thanks our counselor will contact you soon";
+  static String receiveACallback =
+      "Thanks our counsellor will contact you soon";
 }

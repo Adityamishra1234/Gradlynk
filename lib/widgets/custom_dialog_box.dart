@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
+import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
@@ -114,23 +116,71 @@ contactUsDialog(
                   SizedBox(
                     height: 15,
                   ),
-                  InkWell(
-                    onTap: () {
-                      _launchURL();
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      width: 300,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.ultraLightgreyColor,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(25.0))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
+                  // InkWell(
+                  //   onTap: () {
+                  //     _launchURL();
+                  //   },
+                  //   child: Container(
+                  //     padding: EdgeInsets.symmetric(horizontal: 10),
+                  //     width: 300,
+                  //     height: 45,
+                  //     decoration: BoxDecoration(
+                  //         color: ThemeConstants.ultraLightgreyColor,
+                  //         borderRadius:
+                  //             BorderRadius.all(Radius.circular(25.0))),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       children: [
+                  //         Container(
+                  //             height: 35,
+                  //             width: 35,
+                  //             decoration: BoxDecoration(
+                  //                 color: ThemeConstants.bluecolor,
+                  //                 shape: BoxShape.circle),
+                  //             child: Icon(
+                  //               Icons.phone,
+                  //               color: ThemeConstants.whitecolor,
+                  //             )),
+                  //         const SizedBox(
+                  //           width: 20,
+                  //         ),
+                  //         CustomRichTextWidget(
+                  //           text: '(+91 9779046382)',
+                  //           text1: "Call Us ",
+                  //           fontWeight: FontWeight.w600,
+                  //           textColor: ThemeConstants.bluecolor,
+                  //         ),
+                  //         // CustomAutoSizeTextMontserrat(
+                  //         //     text: "Call Us (+91 9779046382)"),
+                  //         Spacer()
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 150));
+                        _launchURL();
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 45,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -139,144 +189,336 @@ contactUsDialog(
                               child: Icon(
                                 Icons.phone,
                                 color: ThemeConstants.whitecolor,
-                              )),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          CustomRichTextWidget(
-                            text: '(+91 9779046382)',
-                            text1: "Call Us ",
-                            fontWeight: FontWeight.w600,
-                            textColor: ThemeConstants.bluecolor,
-                          ),
-                          // CustomAutoSizeTextMontserrat(
-                          //     text: "Call Us (+91 9779046382)"),
-                          Spacer()
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed(ReceiveACallBackView.routeNamed);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      width: 300,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.ultraLightgreyColor,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(25.0))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(7),
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                                color: ThemeConstants.bluecolor,
-                                shape: BoxShape.circle),
-                            child: SvgPicture.asset(
-                              'assets/icons/call back icon.svg',
-                              color: ThemeConstants.whitecolor,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          CustomAutoSizeTextMontserrat(
-                              text: "Receive a call back"),
-                          const Spacer(),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: 300,
-                    height: 45,
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    decoration: BoxDecoration(
-                        color: ThemeConstants.ultraLightgreyColor,
-                        borderRadius: BorderRadius.all(Radius.circular(25.0))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(7),
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                              color: ThemeConstants.bluecolor,
-                              shape: BoxShape.circle),
-                          child: SvgPicture.asset(
-                            'assets/icons/Calender icon.svg',
-                            color: ThemeConstants.whitecolor,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        CustomAutoSizeTextMontserrat(
-                            text: "Schedule an expert call"),
-                        const Spacer(),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      _launchURL2();
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      width: 300,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.ultraLightgreyColor,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(25.0))),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(7),
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                                color: ThemeConstants.bluecolor,
-                                shape: BoxShape.circle),
-                            child: SvgPicture.asset(
-                              'assets/icons/SVO icon.svg',
-                              color: ThemeConstants.whitecolor,
+                            const SizedBox(
+                              width: 20,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          CustomRichTextWidget(
-                            text: 'SVO',
-                            text1: "Join via ",
-                            fontWeight: FontWeight.w600,
-                            textColor: ThemeConstants.bluecolor,
-                          ),
-                          const Spacer(),
-                        ],
+                            CustomRichTextWidget(
+                              text: '(+91 9779046382)',
+                              text1: "Call Us ",
+                              fontWeight: FontWeight.w600,
+                              textColor: ThemeConstants.bluecolor,
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Get.toNamed(ReceiveACallBackView.routeNamed);
+                  //   },
+                  //   child: Container(
+                  //     padding: EdgeInsets.symmetric(horizontal: 10),
+                  //     width: 300,
+                  //     height: 45,
+                  //     decoration: BoxDecoration(
+                  //         color: ThemeConstants.ultraLightgreyColor,
+                  //         borderRadius:
+                  //             BorderRadius.all(Radius.circular(25.0))),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       children: [
+                  //         Container(
+                  //           padding: EdgeInsets.all(7),
+                  //           height: 35,
+                  //           width: 35,
+                  //           decoration: BoxDecoration(
+                  //               color: ThemeConstants.bluecolor,
+                  //               shape: BoxShape.circle),
+                  //           child: SvgPicture.asset(
+                  //             'assets/icons/call back icon.svg',
+                  //             color: ThemeConstants.whitecolor,
+                  //           ),
+                  //         ),
+                  //         const SizedBox(
+                  //           width: 20,
+                  //         ),
+                  //         CustomAutoSizeTextMontserrat(
+                  //             text: "Receive a call back"),
+                  //         const Spacer(),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 150));
+                        Get.toNamed(ReceiveACallBackView.routeNamed);
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 45,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                  color: ThemeConstants.bluecolor,
+                                  shape: BoxShape.circle),
+                              child: SvgPicture.asset(
+                                'assets/icons/call back icon.svg',
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            CustomAutoSizeTextMontserrat(
+                                text: "Receive a call back"),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Get.toNamed(ScheduleExpertCall.routeNamed);
+                  //   },
+                  //   child: Container(
+                  //     width: 300,
+                  //     height: 45,
+                  //     padding: EdgeInsets.symmetric(horizontal: 10),
+                  //     decoration: BoxDecoration(
+                  //         color: ThemeConstants.ultraLightgreyColor,
+                  //         borderRadius:
+                  //             BorderRadius.all(Radius.circular(25.0))),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       children: [
+                  //         Container(
+                  //           padding: EdgeInsets.all(7),
+                  //           height: 35,
+                  //           width: 35,
+                  //           decoration: BoxDecoration(
+                  //               color: ThemeConstants.bluecolor,
+                  //               shape: BoxShape.circle),
+                  //           child: SvgPicture.asset(
+                  //             'assets/icons/Calender icon.svg',
+                  //             color: ThemeConstants.whitecolor,
+                  //           ),
+                  //         ),
+                  //         const SizedBox(
+                  //           width: 20,
+                  //         ),
+                  //         CustomAutoSizeTextMontserrat(
+                  //             text: "Schedule an expert call"),
+                  //         const Spacer(),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 150));
+
+                        Get.toNamed(ScheduleExpertCall.routeNamed);
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 45,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                  color: ThemeConstants.bluecolor,
+                                  shape: BoxShape.circle),
+                              child: SvgPicture.asset(
+                                'assets/icons/Calender icon.svg',
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            CustomAutoSizeTextMontserrat(
+                                text: "Schedule an expert call"),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     _launchURL2();
+                  //   },
+                  //   child: Container(
+                  //     padding: EdgeInsets.symmetric(horizontal: 10),
+                  //     width: 300,
+                  //     height: 45,
+                  //     decoration: BoxDecoration(
+                  //         color: ThemeConstants.ultraLightgreyColor,
+                  //         borderRadius:
+                  //             BorderRadius.all(Radius.circular(25.0))),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       crossAxisAlignment: CrossAxisAlignment.center,
+                  //       children: [
+                  //         Container(
+                  //           padding: EdgeInsets.all(7),
+                  //           height: 35,
+                  //           width: 35,
+                  //           decoration: BoxDecoration(
+                  //               color: ThemeConstants.bluecolor,
+                  //               shape: BoxShape.circle),
+                  //           child: SvgPicture.asset(
+                  //             'assets/icons/SVO icon.svg',
+                  //             color: ThemeConstants.whitecolor,
+                  //           ),
+                  //         ),
+                  //         const SizedBox(
+                  //           width: 20,
+                  //         ),
+                  //         CustomRichTextWidget(
+                  //           text: 'SVO',
+                  //           text1: "Join via ",
+                  //           fontWeight: FontWeight.w600,
+                  //           textColor: ThemeConstants.bluecolor,
+                  //         ),
+                  //         const Spacer(),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 150));
+
+                        _launchURL2();
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 45,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                  color: ThemeConstants.bluecolor,
+                                  shape: BoxShape.circle),
+                              child: SvgPicture.asset(
+                                'assets/icons/SVO icon.svg',
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            CustomRichTextWidget(
+                              text: 'SVO',
+                              text1: "Join via ",
+                              fontWeight: FontWeight.w600,
+                              textColor: ThemeConstants.bluecolor,
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 150));
+
+                        Get.toNamed(BookAnAppointment.routeNamed);
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 45,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                  color: ThemeConstants.bluecolor,
+                                  shape: BoxShape.circle),
+                              child: SvgPicture.asset(
+                                'assets/icons/Calender icon.svg',
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            CustomAutoSizeTextMontserrat(
+                                text: "Book an appointment"),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -284,7 +526,7 @@ contactUsDialog(
 }
 
 _launchURL() async {
-  final call = Uri.parse('tel:+91 8394049598');
+  final call = Uri.parse('tel:+91 9779046382');
   if (await canLaunchUrl(call)) {
     launchUrl(call);
   } else {

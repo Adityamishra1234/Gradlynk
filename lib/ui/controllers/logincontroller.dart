@@ -62,11 +62,12 @@ class LoginController extends GetxController with StateMixin {
       return model;
     } else {
       change(null, status: RxStatus.success());
-      Get.snackbar(
-        "Error",
-        "Please Retry phone number and Password",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      // Get.snackbar(
+      //   "Error",
+      //   "Please Retry phone number and Password",
+      //   snackPosition: SnackPosition.BOTTOM,
+      // );
+      getToast('Please enter a correct OTP');
     }
   }
 
@@ -119,10 +120,10 @@ class LoginController extends GetxController with StateMixin {
     print(phonenumber);
     if (getNUllChecker(phonenumber) == false) {
       print(sharedPreferences.getBool("showcaseEnable"));
-      Get.toNamed(DashBoard.routeNamed,
+      Get.offAllNamed(DashBoard.routeNamed,
           arguments: sharedPreferences.getBool("showcaseEnable"));
     } else {
-      Get.toNamed(LoginCopy.routeNamed);
+      Get.offAllNamed(LoginCopy.routeNamed);
     }
   }
 

@@ -86,6 +86,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
+    // Get.offAllNamed(DashBoard.routeNamed);
     try {
       if (Get.arguments) {
         ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
@@ -235,7 +236,7 @@ class _DashBoardState extends State<DashBoard> {
                             index: 0,
                           ),
                         Container(
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 255, 255, 255),
                           child: SizedBox(
                             height: MediaQuery.of(context).size.height,
                             width: displayMobileLayout == true
@@ -793,8 +794,8 @@ class _DashBoardState extends State<DashBoard> {
                                       onTap: () {
                                         Get.toNamed(UploadDocument.routeNamed);
                                       },
-                                      child: Ink(
-                                        color: Colors.amber,
+                                      child: InkWell(
+                                        // color: Colors.amber,
                                         child: Column(
                                           children: [
                                             Showcase(

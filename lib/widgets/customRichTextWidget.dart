@@ -8,6 +8,7 @@ class CustomRichTextWidget extends StatelessWidget {
   bool? mandatory;
   String? text;
   String? text1;
+  String? text3;
   int? maxLines, fontSize;
   FontWeight? fontWeight;
   Color? textColor;
@@ -18,6 +19,7 @@ class CustomRichTextWidget extends StatelessWidget {
       this.underlinceColor,
       this.text1,
       required this.text,
+      this.text3,
       this.maxLines,
       this.mandatory,
       this.fontSize,
@@ -53,6 +55,30 @@ class CustomRichTextWidget extends StatelessWidget {
           style: GoogleFonts.montserrat(
               fontWeight: fontWeight ?? FontWeight.w600,
               color: ThemeConstants.bluecolor,
+              // shadows: [
+              //   Shadow(
+              //       offset: Offset(0, -3),
+              //       color: textColor ?? ThemeConstants.blackcolor)
+              // ],
+              fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
+              // decoration: TextDecoration.underline,
+              decorationStyle: TextDecorationStyle.solid,
+              decorationColor: Colors.transparent,
+              decorationThickness: 4
+              // decoration: TextDecoration.underline,
+
+              //   decoration: underline != null
+              //       ? underline == true
+              //           ? TextDecoration.underline
+              //           : TextDecoration.none
+              //       : TextDecoration.none,
+              ),
+        ),
+        TextSpan(
+          text: text3,
+          style: GoogleFonts.montserrat(
+              fontWeight: fontWeight ?? FontWeight.w600,
+              color: ThemeConstants.blackcolor,
               // shadows: [
               //   Shadow(
               //       offset: Offset(0, -3),

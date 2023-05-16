@@ -91,4 +91,6 @@ abstract class api {
   qualificationUpdateDropdown(String endpoint);
 
   counselorList(String endpoint);
+
+  profileDataValidation(int enqID);
 }

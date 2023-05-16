@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
@@ -25,7 +26,8 @@ class CustomButtomNavbar extends StatelessWidget {
         if (i == 0) {
           Get.toNamed(DashBoard.routeNamed);
         } else if (i == 1) {
-          Get.toNamed(ProfilePageCopy1.routeNamed);
+          // Get.toNamed(ProfilePageCopy1.routeNamed);
+          Get.toNamed(ProfileView.routeNamed);
         } else if (i == 2) {
           Get.to(NotificationScreen());
         } else if (i == 3) {

@@ -128,6 +128,8 @@ class Endpoints {
   static String? agree = "agree-student-consent?enq_id=";
 
   static String? counselorList = "service-assignees?enq_id=";
+
+  static String? profileDataValidation = "profile-data-validation?enq_id=";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

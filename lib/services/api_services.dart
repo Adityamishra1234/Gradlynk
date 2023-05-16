@@ -1604,6 +1604,21 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  @override
+  profileDataValidation(int enqID) async {
+    try {
+      String url =
+          '${Endpoints.baseUrl}${Endpoints.profileDataValidation}${enqID}';
+
+      var res = await httpPostNullBody(url);
+      var jsondata = json.decode(res);
+      print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
   // logout(String endpoint, String token) async {
   //   try {
   //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);
