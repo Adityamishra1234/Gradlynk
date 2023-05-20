@@ -1,5 +1,6 @@
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/carouselListModel.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
@@ -21,6 +22,7 @@ class DashboardController extends GetxController {
   RxBool loadingUpcomingHolidays = false.obs;
   RxBool loadingStudentPanelData = false.obs;
   RxBool loadingCreateModel = false.obs;
+  RxList<CarouselListModel> carouselList = <CarouselListModel>[].obs;
 
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
@@ -28,8 +30,18 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     upcomingEvents();
+    caraouselData();
 
     super.onInit();
+  }
+
+  caraouselData() async {
+    var res = await apiservices.caraouselList();
+
+    carouselList.value = List<CarouselListModel>.from(
+        res.map((e) => CarouselListModel.fromJson(e)));
+
+    print(res);
   }
 
   newAndUpdates() async {

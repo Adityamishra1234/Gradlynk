@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -49,13 +50,25 @@ class ContactInformationInPopUpController extends GetxController
 
   StudentPanel model = StudentPanel();
 
+  var data = ProfileDataValidatorModel().obs;
+
+  RxBool loading = false.obs;
   @override
   void onInit() {
     getCountry();
     getMartialStatus();
     profiledetail();
+    profileDataValidator();
     super.onInit();
     change(null, status: RxStatus.success());
+  }
+
+  profileDataValidator() async {
+    loading.value = true;
+    var x = await apiservice.profileDataValidation(78623);
+    var z = await ProfileDataValidatorModel.fromJson(x);
+    data.value = z;
+    loading.value = false;
   }
 
   profiledetail() async {

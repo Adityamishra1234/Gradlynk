@@ -93,4 +93,6 @@ abstract class api {
   counselorList(String endpoint);
 
   profileDataValidation(int enqID);
+
+  caraouselList();
 }

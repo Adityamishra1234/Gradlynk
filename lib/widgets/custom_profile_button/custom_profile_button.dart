@@ -18,7 +18,59 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return
+        //  Container(
+        //   padding: EdgeInsets.all(15),
+        //   constraints: BoxConstraints(minWidth: 140, maxWidth: 150, minHeight: 65),
+        //   alignment: Alignment.center,
+        //   decoration: BoxDecoration(
+        //       border: Border.all(
+        //           width: widget.isCompleted == 1 ? 1 : 1,
+        //           color: widget.isCompleted == 1
+        //               ? ThemeConstants.orangeColor
+        //               : widget.isCompleted == 2
+        //                   ? ThemeConstants.blackcolor
+        //                   : Colors.transparent),
+        //       color: widget.isCompleted == 0
+        //           ? ThemeConstants.bluecolor
+        //           : widget.isCompleted == 1
+        //               ? ThemeConstants.lightOrangeColor
+        //               : ThemeConstants.skinColour,
+        //       borderRadius: BorderRadius.circular(15)),
+        //   child: Row(
+        //       mainAxisAlignment: widget.isCompleted == 2
+        //           ? MainAxisAlignment.center
+        //           : MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         Flexible(
+        //           child: Text(
+        //             "${widget.title}",
+        //             style: TextStyle(
+        //                 color: widget.isCompleted == 0
+        //                     ? ThemeConstants.whitecolor
+        //                     : ThemeConstants.blackcolor),
+        //           ),
+        //         ),
+        //         widget.isCompleted == 0
+        //             ? Icon(
+        //                 Icons.check_circle_outline,
+        //                 color: ThemeConstants.whitecolor,
+        //               )
+        //             : widget.isCompleted == 1
+        //                 ? Icon(
+        //                     Icons.error_outline_rounded,
+        //                     color: ThemeConstants.orangeColor,
+        //                   )
+        //                 : SizedBox.shrink(),
+
+        //         // Icon(widget.isCompleted == 0
+        //         //     ? Icons.check
+        //         //     : widget.isCompleted == 1
+        //         //         ? Icons.error_outline_rounded
+        //         //         : null)
+        //       ]),
+        // );
+        Container(
       padding: EdgeInsets.all(15),
       constraints: BoxConstraints(minWidth: 140, maxWidth: 150, minHeight: 65),
       alignment: Alignment.center,
@@ -26,18 +78,14 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
           border: Border.all(
               width: widget.isCompleted == 1 ? 1 : 1,
               color: widget.isCompleted == 1
-                  ? ThemeConstants.orangeColor
-                  : widget.isCompleted == 2
-                      ? ThemeConstants.blackcolor
-                      : Colors.transparent),
-          color: widget.isCompleted == 0
+                  ? ThemeConstants.blackcolor
+                  : Color.fromARGB(131, 77, 77, 77)),
+          color: widget.isCompleted == 1
               ? ThemeConstants.bluecolor
-              : widget.isCompleted == 1
-                  ? ThemeConstants.lightOrangeColor
-                  : ThemeConstants.skinColour,
+              : ThemeConstants.whitecolor,
           borderRadius: BorderRadius.circular(15)),
       child: Row(
-          mainAxisAlignment: widget.isCompleted == 2
+          mainAxisAlignment: widget.isCompleted == 0
               ? MainAxisAlignment.center
               : MainAxisAlignment.spaceBetween,
           children: [
@@ -45,22 +93,17 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
               child: Text(
                 "${widget.title}",
                 style: TextStyle(
-                    color: widget.isCompleted == 0
+                    color: widget.isCompleted == 1
                         ? ThemeConstants.whitecolor
                         : ThemeConstants.blackcolor),
               ),
             ),
-            widget.isCompleted == 0
+            widget.isCompleted == 1
                 ? Icon(
                     Icons.check_circle_outline,
                     color: ThemeConstants.whitecolor,
                   )
-                : widget.isCompleted == 1
-                    ? Icon(
-                        Icons.error_outline_rounded,
-                        color: ThemeConstants.orangeColor,
-                      )
-                    : SizedBox.shrink(),
+                : SizedBox.shrink(),
 
             // Icon(widget.isCompleted == 0
             //     ? Icons.check

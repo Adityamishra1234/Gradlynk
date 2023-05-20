@@ -1639,4 +1639,20 @@ class ApiServices extends StudentPanelBase implements api {
   //         fontSize: 16.0);
   //   }
   // }
+
+  @override
+  caraouselList() async {
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.carouselList}';
+
+      var res = await getRequest(url);
+      var jsondata = json.decode(res);
+      print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement caraouselList
+    // throw UnimplementedError();
+  }
 }

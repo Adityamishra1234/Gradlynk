@@ -130,6 +130,8 @@ class Endpoints {
   static String? counselorList = "service-assignees?enq_id=";
 
   static String? profileDataValidation = "profile-data-validation?enq_id=";
+
+  static String? carouselList = "carousel-banner";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

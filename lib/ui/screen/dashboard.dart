@@ -13,6 +13,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/versioncontroller.dart';
+import 'package:studentpanel/ui/models/carouselListModel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
@@ -460,42 +461,7 @@ class _DashBoardState extends State<DashBoard> {
                                       enlargeStrategy:
                                           CenterPageEnlargeStrategy.height,
                                     ),
-                                    items: [
-                                      Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20, vertical: 5),
-                                        decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(100)),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl:
-                                                  'https://i.ibb.co/d7DZHHy/Microsoft-Teams-image-8.jpg'),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: double.infinity,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 20, vertical: 5),
-                                        decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(100)),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl:
-                                                  'https://www.siecindia.com/images/join-svo-image.png'),
-                                        ),
-                                      ),
-                                    ],
+                                    items: [...caraouselList()],
                                   ),
                                 ),
 
@@ -1392,7 +1358,52 @@ class _DashBoardState extends State<DashBoard> {
     }));
   }
 
+  caraouselList() {
+    List<Widget> model = [];
+    for (var i = 0; i < dashboardController.carouselList.length; i++) {
+      var data = GestureDetector(
+        onTap: () {
+          _launchBannerL('${dashboardController.carouselList[i].imageLink}');
+        },
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(100)),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: '${dashboardController.carouselList[i].mobileImage}'),
+          ),
+        ),
+      );
+      model.add(data);
+    }
+
+    return model;
+  }
+
   callbackDropDownButton(varTopic) {}
+
+  _launchBannerL(String link) async {
+    // final call = Uri.parse('tel:+91 8394049598');
+    // if (await canLaunchUrl(call)) {
+    //   launchUrl(call);
+    // } else {
+    //   throw 'Could not launch $call';
+    // }
+
+    var url = '${link}';
+    // ignore: deprecated_member_use
+    if (await canLaunch(url)) {
+      // ignore: deprecated_member_use
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   _launchURL() async {
     // final call = Uri.parse('tel:+91 8394049598');

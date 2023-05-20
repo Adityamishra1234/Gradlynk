@@ -122,6 +122,39 @@ class StudentPanelBase {
     }
   }
 
+  getRequest(String url, {bool login = false}) async {
+    // String? token = await getToken();
+    url = url.replaceAll('"null"', "");
+    if (login == false) {
+      await checkUserConnection();
+    }
+
+    var response = await http.get(
+      Uri.parse(url),
+    );
+    switch (response.statusCode) {
+      case 200:
+        return response.body.isNotEmpty &&
+                response.body != "" &&
+                response.body != "[]" &&
+                response.body != []
+            ? response.body
+            : throw EmptyDataException("440 :${response.body}");
+      case 440:
+        throw EmptyDataException("440 :${response.body}");
+      case 400:
+        throw BadRequestException("${response.statusCode} :${response.body}");
+      case 401:
+      case 403:
+        throw UnauthorisedException("${response.statusCode} :${response.body}");
+      case 502:
+        throw InternetError("${response.statusCode} :${response.body}");
+      case 500:
+      default:
+        throw FetchDataException("${response.statusCode} :${response.body}");
+    }
+  }
+
   httplogout(String url, String token) async {
     // String? token = await getToken();
     // await checkUserConnection();
