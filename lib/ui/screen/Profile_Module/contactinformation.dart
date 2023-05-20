@@ -1283,11 +1283,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                         getToast(
                                             SnackBarConstants.firstNameError!);
                                       } else if (profilePageKey.currentState!
-                                          .validate()) {
+                                              .validate() ==
+                                          false) {
                                         getToast(SnackBarConstants
                                             .contactInformationErrorForAllFields!);
-                                      } else if (getNUllChecker(
-                                              lastName.text) ==
+                                      } else if (getNUllChecker(lastName.text) ==
                                           true) {
                                         getToast(
                                             SnackBarConstants.lastNameError!);
