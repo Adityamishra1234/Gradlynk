@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
@@ -11,6 +12,8 @@ import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'package:studentpanel/ui/screen/settings_ui.dart';
+import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class CustomButtomNavbar extends StatelessWidget {
@@ -31,7 +34,7 @@ class CustomButtomNavbar extends StatelessWidget {
         } else if (i == 2) {
           Get.to(NotificationScreen());
         } else if (i == 3) {
-          Get.toNamed(Settings.routeNamed);
+          Get.toNamed(ApplicationSummary.routeNamed);
         }
         // else if (i == 4) {
         //   Get.toNamed(ProfilePageCopy.routeNamed);
@@ -54,7 +57,7 @@ class CustomButtomNavbar extends StatelessWidget {
 
         /// Likes
         SalomonBottomBarItem(
-          icon: const Icon(Icons.notifications_active_outlined),
+          icon: const Icon(Icons.notifications),
           title: const Text("Notifications"),
           selectedColor: ThemeConstants.bluecolor,
         ),
@@ -67,7 +70,15 @@ class CustomButtomNavbar extends StatelessWidget {
 
         /// Search
         SalomonBottomBarItem(
-          icon: const Icon(Icons.menu),
+          icon: Container(
+            child: svgImage(
+                "track",
+                currentIndex == 3
+                    ? ThemeConstants.bluecolor
+                    : ThemeConstants.blackcolor,
+                25,
+                25),
+          ),
           title: const Text("Settings"),
           selectedColor: ThemeConstants.bluecolor,
         ),

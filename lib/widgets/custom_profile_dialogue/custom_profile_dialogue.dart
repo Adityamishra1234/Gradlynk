@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/contact_information_in_popup.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/contact_information_in_popup_controller.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -12,7 +14,18 @@ import 'package:studentpanel/widgets/custombutton.dart';
 class CustomProfileDialogue extends StatelessWidget {
   Widget child;
   String title;
-  CustomProfileDialogue({super.key, required this.child, required this.title});
+  bool? enableSaveNext = false;
+  bool? enableEdit = false;
+  Function()? onTap;
+  Function()? onEdit;
+  CustomProfileDialogue(
+      {super.key,
+      required this.child,
+      this.enableEdit,
+      required this.title,
+      required this.onEdit,
+      this.enableSaveNext,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +35,8 @@ class CustomProfileDialogue extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
       content: Container(
-          height: MediaQuery.of(context).size.height * 0.65,
-          width: MediaQuery.of(context).size.width * 0.7,
+          height: MediaQuery.of(context).size.height * 0.8,
+          width: MediaQuery.of(context).size.width * 0.8,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -36,10 +49,14 @@ class CustomProfileDialogue extends StatelessWidget {
                     CustomAutoSizeTextMontserrat(
                       text: title,
                     ),
-                    CustomAutoSizeTextMontserrat(
-                      textColor: ThemeConstants.bluecolor,
-                      text: 'Edit',
-                    )
+                    if (enableEdit == true)
+                      InkWell(
+                        onTap: onEdit,
+                        child: CustomAutoSizeTextMontserrat(
+                          textColor: ThemeConstants.bluecolor,
+                          text: 'Edit',
+                        ),
+                      )
                   ],
                 ),
               ),
@@ -58,22 +75,28 @@ class CustomProfileDialogue extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      CustomAutoSizeTextMontserrat(
-                        textColor: ThemeConstants.bluecolor,
-                        text: 'Cancel',
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          textColor: ThemeConstants.bluecolor,
+                          text: 'Cancel',
+                        ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: onTap,
                         child: Container(
                           // color: ThemeConstants.bluecolor,
                           decoration: BoxDecoration(
                               color: ThemeConstants.bluecolor,
                               borderRadius: BorderRadius.circular(10)),
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                          child: Text(
-                            'Save & Next',
-                            style: TextStyle(color: ThemeConstants.whitecolor),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 8),
+                          child: CustomAutoSizeTextMontserrat(
+                            text:
+                                enableSaveNext == true ? 'Save & Next' : "Next",
+                            textColor: ThemeConstants.whitecolor,
                           ),
                         ),
                       )

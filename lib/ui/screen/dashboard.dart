@@ -18,6 +18,7 @@ import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
@@ -88,31 +89,31 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     // Get.offAllNamed(DashBoard.routeNamed);
-    try {
-      if (Get.arguments) {
-        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-          (_) => Future.delayed(const Duration(milliseconds: 200), () {
-            ShowCaseWidget.of(myContext!).startShowCase([
-              _one,
-              _two,
-              _three,
-              _four,
-              _five,
-              _six,
-              _seven,
-              _11,
-              _eight,
-              _12,
-              _nine,
-              _ten
-            ]);
-          }),
-        );
-        showcase = true;
-      } else {
-        appbar = true;
-      }
-    } catch (e) {}
+    // try {
+    //   if (Get.arguments) {
+    //     ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+    //       (_) => Future.delayed(const Duration(milliseconds: 200), () {
+    //         ShowCaseWidget.of(myContext!).startShowCase([
+    //           _one,
+    //           _two,
+    //           _three,
+    //           _four,
+    //           _five,
+    //           _six,
+    //           _seven,
+    //           _11,
+    //           _eight,
+    //           _12,
+    //           _nine,
+    //           _ten
+    //         ]);
+    //       }),
+    //     );
+    //     showcase = true;
+    //   } else {
+    //     appbar = true;
+    //   }
+    // } catch (e) {}
     // Get.find<BaseController>().profiledetail();
 
     super.initState();
@@ -699,8 +700,7 @@ class _DashBoardState extends State<DashBoard> {
                                       onTap: () async {
                                         // getDailogForAgree(context);
                                         // Get.to(ProfilePageCopy1());
-                                        Get.toNamed(
-                                            ProfilePageCopy1.routeNamed);
+                                        Get.toNamed(ProfileView.routeNamed);
                                       },
                                       child: Column(
                                         children: [
@@ -1099,47 +1099,47 @@ class _DashBoardState extends State<DashBoard> {
                     ),
           // floatingActionButtonLocation:
           //     FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Showcase(
-            descTextStyle:
-                TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
-            tooltipBackgroundColor: ThemeConstants.bluecolor,
-            overlayColor: Colors.black54,
-            overlayOpacity: 0.40,
-            // targetBorderRadius: BorderRadius.circular(25.0),
-            // tooltipPadding: const EdgeInsets.only(0.0)
-            targetShapeBorder: const CircleBorder(),
-            key: _eight,
-            description:
-                "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
+          // floatingActionButton: Showcase(
+          //   descTextStyle:
+          //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+          //   tooltipBackgroundColor: ThemeConstants.bluecolor,
+          //   overlayColor: Colors.black54,
+          //   overlayOpacity: 0.40,
+          //   // targetBorderRadius: BorderRadius.circular(25.0),
+          //   // tooltipPadding: const EdgeInsets.only(0.0)
+          //   targetShapeBorder: const CircleBorder(),
+          //   key: _eight,
+          //   description:
+          //       "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
 
-            child: Container(
-              height: 75.0,
-              width: 75.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(80),
-                color: ThemeConstants.bluecolor,
-              ),
-              padding: EdgeInsets.all(15),
-              child: FittedBox(
-                child: FloatingActionButton(
-                  backgroundColor: ThemeConstants.bluecolor,
-                  child: SvgPicture.asset(
-                    'assets/icons/chatbot icon.svg',
-                    color: ThemeConstants.whitecolor,
-                  ),
+          //   child: Container(
+          //     height: 75.0,
+          //     width: 75.0,
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(80),
+          //       color: ThemeConstants.bluecolor,
+          //     ),
+          //     padding: EdgeInsets.all(15),
+          //     child: FittedBox(
+          //       child: FloatingActionButton(
+          //         backgroundColor: ThemeConstants.bluecolor,
+          //         child: SvgPicture.asset(
+          //           'assets/icons/chatbot icon.svg',
+          //           color: ThemeConstants.whitecolor,
+          //         ),
 
-                  //                                  svgImage(
-                  // "video-call", ThemeConstants.whitecolor, 40, 30),
-                  onPressed: () async {
-                    // SVO Join Code
-                    await _launchURL();
-                    // isExtended: true,
-                    // Overlay.of(context).insert(entry);
-                  },
-                ),
-              ),
-            ),
-          ),
+          //         //                                  svgImage(
+          //         // "video-call", ThemeConstants.whitecolor, 40, 30),
+          //         onPressed: () async {
+          //           // SVO Join Code
+          //           await _launchURL();
+          //           // isExtended: true,
+          //           // Overlay.of(context).insert(entry);
+          //         },
+          //       ),
+          //     ),
+          //   ),
+          // ),
 
           // BottomNavigation()
 
@@ -1360,10 +1360,10 @@ class _DashBoardState extends State<DashBoard> {
 
   caraouselList() {
     List<Widget> model = [];
-    for (var i = 0; i < dashboardController.carouselList.length; i++) {
+    for (var i = 0; i < controller.carouselList.length; i++) {
       var data = GestureDetector(
         onTap: () {
-          _launchBannerL('${dashboardController.carouselList[i].imageLink}');
+          _launchBannerL('${controller.carouselList[i].imageLink}');
         },
         child: Container(
           width: double.infinity,
@@ -1375,7 +1375,7 @@ class _DashBoardState extends State<DashBoard> {
             borderRadius: BorderRadius.circular(15),
             child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl: '${dashboardController.carouselList[i].mobileImage}'),
+                imageUrl: '${controller.carouselList[i].mobileImage}'),
           ),
         ),
       );

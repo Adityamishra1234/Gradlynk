@@ -22,7 +22,6 @@ class DashboardController extends GetxController {
   RxBool loadingUpcomingHolidays = false.obs;
   RxBool loadingStudentPanelData = false.obs;
   RxBool loadingCreateModel = false.obs;
-  RxList<CarouselListModel> carouselList = <CarouselListModel>[].obs;
 
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
@@ -30,18 +29,8 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     upcomingEvents();
-    caraouselData();
 
     super.onInit();
-  }
-
-  caraouselData() async {
-    var res = await apiservices.caraouselList();
-
-    carouselList.value = List<CarouselListModel>.from(
-        res.map((e) => CarouselListModel.fromJson(e)));
-
-    print(res);
   }
 
   newAndUpdates() async {

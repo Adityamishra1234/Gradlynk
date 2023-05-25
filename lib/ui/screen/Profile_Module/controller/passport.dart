@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class PassportController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
@@ -43,6 +45,10 @@ class PassportController extends GetxController with StateMixin {
   String? dateOfIssue;
   String? expireDate;
 
+  bool? updateData = false;
+
+  static final passportNumber = TextEditingController();
+
   @override
   void onInit() {
     getPassPortDetail(Get.find<BaseController>().model1.id.toString());
@@ -56,7 +62,10 @@ class PassportController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     var res = await apiServices.updatePassport(
         passportModel, Endpoints.updatepassPostDetails! + enqId!);
+    updateData = true;
+
     change(null, status: RxStatus.success());
+    return true;
   }
 
   getPassPortDetail(String? enqId) async {
@@ -169,6 +178,57 @@ class PassportController extends GetxController with StateMixin {
         "1111",
         StackTrace.current.toString(),
       );
+    }
+  }
+
+  saveButton() async {
+    if (passportAvaliable.value == true) {
+      editSave.value = false;
+      update();
+      updatePassport();
+    } else {
+      if (citizenSelected == null) {
+        getToast(SnackBarConstants.citizenSelectError!);
+      } else if (passportNumber.text.isEmpty) {
+        getToast(SnackBarConstants.passportNumberError!);
+      } else if (countrySelected == null) {
+        getToast(SnackBarConstants.countrySelectError!);
+      } else if (stateSelected == null) {
+        getToast(SnackBarConstants.stateError!);
+      } else if (placeOfIssuseSelected == null) {
+        getToast(SnackBarConstants.placeSelectError!);
+      } else if (dateOfIssue == null) {
+        getToast(SnackBarConstants.dateOfISsueSelectError!);
+      } else if (expireDate == null) {
+        getToast(SnackBarConstants.expireDateError!);
+      } else {
+        editSave.value = false;
+        update();
+        var res = await updatePassport();
+        if (res != true) {
+          return true;
+        }
+      }
+    }
+  }
+
+  updatePassport() async {
+    passportModel.dateOfIssue = dateOfIssue;
+    passportModel.expiryDate = expireDate;
+    //  controller.passportModel.passportTentativeDate
+    passportModel.passportNumber = passportNumber.text;
+    passportModel.citizenOf = citizenCodeSelected;
+    passportModel.countryOfIssue = countryCodeSelected;
+    passportModel.stateOfIssue = stateCodeSelected;
+    passportModel.placeOfIssue = placeOfIssuseSelected;
+    passportModel.passportAvailable =
+        passportAvaliable.value == true ? "2" : "1";
+    passportModel.enqId = Get.find<BaseController>().model1.id.toString();
+
+    var res = await updatePassportDetail(
+        Get.find<BaseController>().model1.id.toString(), passportModel);
+    if (res != true) {
+      return true;
     }
   }
 }

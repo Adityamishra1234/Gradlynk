@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+
 import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class EnglishTestController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
@@ -36,6 +38,18 @@ class EnglishTestController extends GetxController with StateMixin {
   List examStatusList = [];
   List examStatusCode = [];
   List examNameList = [];
+
+  //TextField
+  static final listening = TextEditingController();
+  static final writing = TextEditingController();
+  static final reading = TextEditingController();
+  static final speaking = TextEditingController();
+  static final overallScoreController = TextEditingController();
+  static final dateOfExam = TextEditingController();
+  static final dateOfTestReport = TextEditingController();
+  static final testScoreExpirationDate = TextEditingController();
+  static final tentativeExamDate = TextEditingController();
+  bool? save = false;
 
   @override
   void onInit() {
@@ -108,9 +122,101 @@ class EnglishTestController extends GetxController with StateMixin {
   updateEnglishTestDetaisl(String enqId,
       EnglishTestDetailsViewModel englishTestDetailsViewModel) async {
     change(null, status: RxStatus.loading());
-    await apiServices.updateEnglishTestDetails(this.englishTestDetailsViewModel,
+    await apiServices.updateEnglishTestDetails(englishTestDetailsViewModel,
         Endpoints.updateEnglishTesttDetails! + enqId);
     change(null, status: RxStatus.success());
     update();
   }
+
+  saveButton() async {
+    if (examStatusSelected == null) {
+      getToast(SnackBarConstants.examStatusError!);
+      return false;
+    } else if (examStatusSelected == "Not Yet Registered") {
+      if (bookTestSelcted == null) {
+        getToast(SnackBarConstants.bookTestSelectedError!);
+        return false;
+      } else {
+        EnglishTestDetailsViewModel englishTestDetailsViewModel =
+            EnglishTestDetailsViewModel();
+        englishTestDetailsViewModel = englishTestDetailsViewModel;
+        englishTestDetailsViewModel.dateOfExam = dateOfExamSelected;
+        englishTestDetailsViewModel.tentativeExamDate =
+            tentativeExamDateSelcted;
+        englishTestDetailsViewModel.expirationDate =
+            testscoreExpirationDateSelcted;
+        englishTestDetailsViewModel.resultDate = dateOfTestReportSelcted;
+        englishTestDetailsViewModel.enqId =
+            Get.find<BaseController>().model1.id.toString();
+        englishTestDetailsViewModel.examStatusID =
+            examStatusCodeSelected.toString();
+        englishTestDetailsViewModel.examName = examNameSelected;
+        englishTestDetailsViewModel.reading = reading.text;
+        englishTestDetailsViewModel.writing = writing.text;
+        englishTestDetailsViewModel.listening = listening.text;
+        englishTestDetailsViewModel.speaking = speaking.text;
+        englishTestDetailsViewModel.literacy = listening.text;
+        englishTestDetailsViewModel.comprehension = writing.text;
+        englishTestDetailsViewModel.conversation = reading.text;
+        englishTestDetailsViewModel.production = writing.text;
+
+        if (getNUllChecker(tentativeExamDate.text)) {
+          englishTestDetailsViewModel.overAll = overallScoreController.text;
+        } else {
+          englishTestDetailsViewModel.overAll =
+              englishTestDetailsViewModel.overAll;
+        }
+
+        await updateEnglishTestDetaisl(
+            Get.find<BaseController>().model1.id.toString(),
+            englishTestDetailsViewModel);
+        editSave.value = true;
+        update();
+      }
+    } else {
+      if (examNameSelected == null) {
+        getToast(SnackBarConstants.examnameError!);
+        return false;
+      } else {
+        EnglishTestDetailsViewModel englishTestDetailsViewModel =
+            EnglishTestDetailsViewModel();
+        englishTestDetailsViewModel = englishTestDetailsViewModel;
+        englishTestDetailsViewModel.dateOfExam = dateOfExamSelected;
+        englishTestDetailsViewModel.tentativeExamDate =
+            tentativeExamDateSelcted;
+        englishTestDetailsViewModel.expirationDate =
+            testscoreExpirationDateSelcted;
+        englishTestDetailsViewModel.resultDate = dateOfTestReportSelcted;
+        englishTestDetailsViewModel.enqId =
+            Get.find<BaseController>().model1.id.toString();
+        englishTestDetailsViewModel.examStatusID =
+            examStatusCodeSelected.toString();
+        englishTestDetailsViewModel.examName = examNameSelected;
+        englishTestDetailsViewModel.reading = reading.text;
+        englishTestDetailsViewModel.writing = writing.text;
+        englishTestDetailsViewModel.listening = listening.text;
+        englishTestDetailsViewModel.speaking = speaking.text;
+        englishTestDetailsViewModel.literacy = listening.text;
+        englishTestDetailsViewModel.comprehension = writing.text;
+        englishTestDetailsViewModel.conversation = reading.text;
+        englishTestDetailsViewModel.production = writing.text;
+        if (getNUllChecker(tentativeExamDate.text)) {
+          englishTestDetailsViewModel.overAll = overallScoreController.text;
+        } else {
+          englishTestDetailsViewModel.overAll =
+              englishTestDetailsViewModel.overAll;
+        }
+        await updateEnglishTestDetaisl(
+            Get.find<BaseController>().model1.id.toString(),
+            englishTestDetailsViewModel);
+        editSave.value = true;
+        update();
+      }
+    }
+  }
+
+  // updateEnglishTestDetails(EnglishTestDetailsViewModel model) {
+  //   updateEnglishTestDetaisl(
+  //       Get.find<BaseController>().model1.id.toString(), model);
+  // }
 }

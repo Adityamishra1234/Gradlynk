@@ -987,12 +987,11 @@ class ApiServices extends StudentPanelBase implements api {
 
   @override
   updateEnglishTestDetails(
-      EnglishTestDetailsViewModel englishTestDetailsViewModel,
-      String? endpoint) async {
+      EnglishTestDetailsViewModel model, String? endpoint) async {
     try {
-      String jsonData = json.encode(englishTestDetailsViewModel);
-      jsonData = jsonData.replaceAll('"null"', "");
-      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
+      String jsonData = json.encode(model);
+      String jsonData2 = jsonData.replaceAll('"null"', "");
+      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData2);
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
@@ -1547,10 +1546,12 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   phonenumberVerfiy(String phoneNumber) async {
+    print(Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber);
     try {
       var res = await httpPostNullBody(
           Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber,
           login: true);
+      print(res);
       if (res != null) {
         var jsondata = json.decode(res);
         getToast(SnackBarConstants.phoneNumber!);

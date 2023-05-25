@@ -71,15 +71,16 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
         //       ]),
         // );
         Container(
-      padding: EdgeInsets.all(15),
-      constraints: BoxConstraints(minWidth: 140, maxWidth: 150, minHeight: 65),
+      padding: const EdgeInsets.all(15),
+      constraints:
+          const BoxConstraints(minWidth: 140, maxWidth: 150, minHeight: 65),
       alignment: Alignment.center,
       decoration: BoxDecoration(
           border: Border.all(
               width: widget.isCompleted == 1 ? 1 : 1,
               color: widget.isCompleted == 1
                   ? ThemeConstants.blackcolor
-                  : Color.fromARGB(131, 77, 77, 77)),
+                  : const Color.fromARGB(131, 77, 77, 77)),
           color: widget.isCompleted == 1
               ? ThemeConstants.bluecolor
               : ThemeConstants.whitecolor,
@@ -103,7 +104,7 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
                     Icons.check_circle_outline,
                     color: ThemeConstants.whitecolor,
                   )
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
 
             // Icon(widget.isCompleted == 0
             //     ? Icons.check

@@ -21,7 +21,7 @@ class LoginController extends GetxController with StateMixin {
   RxInt currentindex = 0.obs;
   ApiServices services = ApiServices();
   LoginModel? model;
-  var controller1 = Get.put(AnimationtestController());
+  // var controller1 = Get.put(AnimationtestController());
 
   RxBool optverify = false.obs;
   RxBool otpEnable = false.obs;
@@ -122,9 +122,10 @@ class LoginController extends GetxController with StateMixin {
       print(sharedPreferences.getBool("showcaseEnable"));
       Get.offAllNamed(DashBoard.routeNamed,
           arguments: sharedPreferences.getBool("showcaseEnable"));
-    } else {
-      Get.offAllNamed(LoginCopy.routeNamed);
     }
+    // else {
+    //   Get.offAllNamed(LoginCopy.routeNamed);
+    // }
   }
 
   phonenumberVerfiy(String phonenumber) async {
@@ -133,10 +134,8 @@ class LoginController extends GetxController with StateMixin {
     if (res == true) {
       otpEnable.value = true;
       change(null, status: RxStatus.success());
-      update();
     } else {
       change(null, status: RxStatus.success());
-      update();
     }
   }
 }

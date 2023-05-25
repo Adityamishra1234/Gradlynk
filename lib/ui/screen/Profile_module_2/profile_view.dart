@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/versioncontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
@@ -78,7 +79,7 @@ class ProfileView extends StatelessWidget {
                   ? getLoading(context)
                   : Container(
                       height: MediaQuery.of(context).size.height,
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: SingleChildScrollView(
                         child: Column(
                             // mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +94,7 @@ class ProfileView extends StatelessWidget {
                                       color: ThemeConstants.lightgreycolor),
                                 ),
                                 width: double.infinity,
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 height: 130,
                                 child: Row(children: [
                                   CircleAvatar(
@@ -111,7 +112,7 @@ class ProfileView extends StatelessWidget {
                                         "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
                                     backgroundColor: Colors.transparent,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Container(
@@ -127,7 +128,7 @@ class ProfileView extends StatelessWidget {
                                                 "${controller.model.enquiryName}",
                                             fontSize: 18,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 2.5,
                                           ),
                                           Row(
@@ -147,7 +148,7 @@ class ProfileView extends StatelessWidget {
                                                       ThemeConstants.whitecolor,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 4,
                                               ),
                                               CustomAutoSizeTextMontserrat(
@@ -157,7 +158,7 @@ class ProfileView extends StatelessWidget {
                                               )
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 2.5,
                                           ),
                                           Row(
@@ -177,7 +178,7 @@ class ProfileView extends StatelessWidget {
                                                       ThemeConstants.whitecolor,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 4,
                                               ),
                                               CustomAutoSizeTextMontserrat(
@@ -187,7 +188,7 @@ class ProfileView extends StatelessWidget {
                                               )
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 2.5,
                                           ),
                                           Stack(
@@ -204,7 +205,7 @@ class ProfileView extends StatelessWidget {
                                               ),
                                               Container(
                                                 decoration: BoxDecoration(
-                                                    color: Color.fromARGB(
+                                                    color: const Color.fromARGB(
                                                         255, 16, 32, 255),
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -217,7 +218,7 @@ class ProfileView extends StatelessWidget {
                                               )
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 2.5,
                                           ),
                                           CustomAutoSizeTextMontserrat(
@@ -229,11 +230,12 @@ class ProfileView extends StatelessWidget {
                                   )
                                 ]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 child: CustomRichTextWidget(
                                   fontSize: 15,
                                   text1: "Increase your chances of moving ",
@@ -241,40 +243,55 @@ class ProfileView extends StatelessWidget {
                                   text3: 'by completing your profile',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(ContactInformationCopy());
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.amber,
+                                      borderRadius: BorderRadius.circular(20),
+                                      // border: Border.all(
+                                      //     width: 1, color: ThemeConstants.lightgreycolor),
+                                    ),
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.all(10),
+                                    height: 80,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SvgPicture.asset(
+                                              "assets/icons/doc.svg",
+                                              color: ThemeConstants.blackcolor,
+                                              width: 60,
+                                              height: 60),
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Mandatory Details",
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          )
+                                          // CustomAutoSizeTextMontserrat(
+                                          //     text: "Mandatory Details")
+                                        ])),
+                              ),
+                              const SizedBox(
                                 height: 20,
                               ),
                               Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.amber,
-                                    borderRadius: BorderRadius.circular(20),
-                                    // border: Border.all(
-                                    //     width: 1, color: ThemeConstants.lightgreycolor),
-                                  ),
-                                  width: double.infinity,
-                                  padding: EdgeInsets.all(10),
-                                  height: 80,
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.edit_document),
-                                        CustomAutoSizeTextMontserrat(
-                                            text: "Mandatory Details")
-                                      ])),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 20),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
                                   width: double.infinity,
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Advance Application Details",
                                     fontSize: 15,
                                   )),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Container(
@@ -286,12 +303,7 @@ class ProfileView extends StatelessWidget {
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
                                       onTap: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (_) => CustomProfileDialogue(
-                                                title: "Course Info",
-                                                child:
-                                                    ContactInformationInPopUp()));
+                                        ProfileController.getDailog(0, context);
                                       },
                                       child: CustomProfileButton(
                                         isCompleted: int.parse(controller.data
@@ -305,12 +317,7 @@ class ProfileView extends StatelessWidget {
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
                                       onTap: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (_) => CustomProfileDialogue(
-                                                title: "Qualification",
-                                                child:
-                                                    ContactInformationInPopUp()));
+                                        ProfileController.getDailog(1, context);
                                       },
                                       child: CustomProfileButton(
                                         isCompleted: 0,
@@ -320,7 +327,9 @@ class ProfileView extends StatelessWidget {
                                     InkWell(
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.getDailog(2, context);
+                                      },
                                       child: CustomProfileButton(
                                         isCompleted: 1,
                                         title: "Work History",
@@ -329,7 +338,9 @@ class ProfileView extends StatelessWidget {
                                     InkWell(
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.getDailog(3, context);
+                                      },
                                       child: CustomProfileButton(
                                         isCompleted: 1,
                                         title: "Language Test",
@@ -338,7 +349,9 @@ class ProfileView extends StatelessWidget {
                                     InkWell(
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.getDailog(4, context);
+                                      },
                                       child: CustomProfileButton(
                                         isCompleted: 1,
                                         title: "Qualifying Test",
@@ -347,7 +360,9 @@ class ProfileView extends StatelessWidget {
                                     InkWell(
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.getDailog(5, context);
+                                      },
                                       child: CustomProfileButton(
                                         isCompleted: 1,
                                         title: "Passport",
@@ -356,7 +371,9 @@ class ProfileView extends StatelessWidget {
                                     InkWell(
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.getDailog(6, context);
+                                      },
                                       child: CustomProfileButton(
                                         isCompleted: 1,
                                         title: "Travel History",
@@ -365,10 +382,12 @@ class ProfileView extends StatelessWidget {
                                     InkWell(
                                       splashColor:
                                           ThemeConstants.lightgreycolor,
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProfileController.getDailog(7, context);
+                                      },
                                       child: CustomProfileButton(
                                         isCompleted: 1,
-                                        title: "Relative Info.",
+                                        title: "Relative Info",
                                       ),
                                     ),
                                   ],
