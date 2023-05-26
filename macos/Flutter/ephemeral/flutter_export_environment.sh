@@ -1,11 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.3.10/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/siecadmin/Downloads/StudentPortal project/sp_app"
+export "FLUTTER_ROOT=D:\flutter_windows_3.7.12-stable\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Users\Admin\Documents\gradlynk"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
-export "FLUTTER_BUILD_NAME=1.2.4"
-export "FLUTTER_BUILD_NUMBER=16"
+export "FLUTTER_BUILD_NAME=1.2.15"
+export "FLUTTER_BUILD_NUMBER=30"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"
