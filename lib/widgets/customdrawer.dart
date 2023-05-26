@@ -4,7 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/controllers/drawerController.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/contact_information_in_popup_controller.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
@@ -24,7 +27,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class CustomDrawer extends StatelessWidget {
   int? index;
   CustomDrawer({Key? key, this.index}) : super(key: key);
-
+  var controller = Get.put(DrawerGetXController());
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -74,6 +77,53 @@ class CustomDrawer extends StatelessWidget {
                             Get.find<BaseController>().model1.enquiryName),
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Stack(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.lightgreycolor,
+                                borderRadius: BorderRadius.circular(20)),
+                            width: 150,
+                            height: 6,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.GreenColor,
+                                borderRadius: BorderRadius.circular(20)),
+                            width: controller
+                                    .data.value.totalPercentageComplete!
+                                    .toDouble() *
+                                1.5,
+                            height: 6,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.GreenColor,
+                                borderRadius: BorderRadius.circular(20)),
+                            width: controller
+                                    .data.value.totalPercentageComplete!
+                                    .toDouble() *
+                                1.5,
+                            height: 6,
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Center(
+                      child: CustomAutoSizeTextMontserrat(
+                        text:
+                            "${controller.data.value.totalPercentageComplete}% Profile Completed",
+                        fontSize: 5,
                       ),
                     ),
                     // Center(
@@ -150,7 +200,7 @@ class CustomDrawer extends StatelessWidget {
                             highlightColor: ThemeConstants.whitecolor,
                             onTap: () {
                               Get.deleteAll();
-                              Get.toNamed(ProfilePageCopy1.routeNamed);
+                              Get.toNamed(ProfileView.routeNamed);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10),

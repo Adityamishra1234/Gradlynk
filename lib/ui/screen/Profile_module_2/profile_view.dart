@@ -37,7 +37,8 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     var controller = Get.put(ContactInformationInPopUpController());
-    var ProfileController = Get.put(ProfileViewMainController());
+    var ProfileController =
+        Get.put(ProfileViewMainController(), permanent: true);
     return WillPopScope(
       onWillPop: () async {
         Get.offAllNamed(DashBoard.routeNamed);
@@ -458,7 +459,10 @@ class ProfileView extends StatelessWidget {
                             ]),
                       ));
         }),
-        bottomNavigationBar: CustomButtomNavbar(currentIndex: 1),
+        bottomNavigationBar: CustomButtomNavbar(
+          currentIndex: 1,
+          context2: context,
+        ),
       ),
     );
   }

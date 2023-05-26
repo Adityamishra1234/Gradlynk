@@ -56,7 +56,8 @@ class ProfilePageCopy1 extends StatelessWidget {
           TravingHistory(),
           RelativeInformation()
         ]),
-        bottomNavigationBar: CustomButtomNavbar(currentIndex: 1),
+        bottomNavigationBar:
+            CustomButtomNavbar(currentIndex: 1, context2: context),
       ),
     );
   }

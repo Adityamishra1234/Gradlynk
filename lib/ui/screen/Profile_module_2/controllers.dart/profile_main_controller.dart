@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
@@ -39,21 +40,26 @@ class ProfileViewMainController extends GetxController {
   getDailog(int number, BuildContext context) {
     switch (number) {
       case 0:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) => CustomProfileDialogue(
                 enableEdit: false,
                 enableSaveNext: false,
                 onEdit: () {},
                 title: "Course Info",
-                onTap: () {
+                onTap: () async {
                   Get.back();
+                  await Future.delayed(Duration(milliseconds: 200));
                   getDailog(1, context);
                 },
                 child: CourseInformationCopy()));
 
       case 1:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) => CustomProfileDialogue(
                 enableEdit: false,
@@ -66,7 +72,9 @@ class ProfileViewMainController extends GetxController {
                 },
                 child: QualificationDetailsCopy()));
       case 2:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) => CustomProfileDialogue(
                 enableEdit: false,
@@ -79,7 +87,9 @@ class ProfileViewMainController extends GetxController {
                 },
                 child: WorkHistoryCopy()));
       case 3:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) {
               bool? editButton = false;
@@ -108,7 +118,9 @@ class ProfileViewMainController extends GetxController {
               });
             });
       case 4:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) {
               bool? editButton = false;
@@ -138,7 +150,9 @@ class ProfileViewMainController extends GetxController {
             });
 
       case 5:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) {
               bool? editButton = false;
@@ -170,7 +184,9 @@ class ProfileViewMainController extends GetxController {
             });
 
       case 6:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) => CustomProfileDialogue(
                 enableSaveNext: false,
@@ -183,7 +199,9 @@ class ProfileViewMainController extends GetxController {
                 child: TravingHistory()));
 
       case 7:
-        return showDialog(
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) => CustomProfileDialogue(
                 enableSaveNext: false,
@@ -191,7 +209,6 @@ class ProfileViewMainController extends GetxController {
                 title: "Relative Info",
                 onTap: () {
                   Get.back();
-                  getDailog(1, context);
                 },
                 child: RelativeInformation()));
 

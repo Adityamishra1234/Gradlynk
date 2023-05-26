@@ -95,4 +95,6 @@ abstract class api {
   profileDataValidation(int enqID);
 
   caraouselList();
+
+  idsFromZipcode(int zipCode);
 }

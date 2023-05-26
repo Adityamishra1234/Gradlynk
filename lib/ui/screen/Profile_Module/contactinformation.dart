@@ -572,6 +572,78 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           child: Align(
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
+                              text: "Whatsapp Number",
+                              //textColor: ThemeConstants.TextColor,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Row(children: [
+                            Checkbox(
+                                value: controller
+                                    .whatsappNumberIsSameAsMobileNumber,
+                                onChanged: (val) {
+                                  controller
+                                          .whatsappNumberIsSameAsMobileNumber =
+                                      val!;
+
+                                  if (val == true) {
+                                    whatsappNumber.value = mobileNumber.value;
+                                  } else {
+                                    whatsappNumber.clear();
+                                  }
+                                  controller.update();
+                                }),
+                            CustomAutoSizeTextMontserrat(
+                              text: "This number is Whatsapp number",
+                              //textColor: ThemeConstants.TextColor,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ]),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+
+                            controller: whatsappNumber,
+                            keyboardType: TextInputType.number,
+                            scrollPadding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom +
+                                        40),
+                            readOnly: saveAndEdit,
+                            decoration: InputDecoration(
+                              hintText: "Enter your Whatsapp Number",
+                              filled: true,
+                              fillColor: ThemeConstants.lightblueColor,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                            ),
+                            style: ThemeConstants.montserrattextstyle2,
+                            // onChanged: (value) {
+                            //   if (controller.whatsappNumberkey.currentState!
+                            //       .validate()) {
+                            //     controller.whatsappNumberkey.currentState!.save();
+                            //   }
+                            // },
+                            validator: (value) {
+                              return getPhoneNumbervalidation(value);
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, right: 10),
+                          child: Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: CustomAutoSizeTextMontserrat(
                               text: "Alternate Number",
                               mandatory: true,
                               fontSize: 16,
@@ -665,53 +737,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           child: Align(
                             alignment: AlignmentDirectional.topStart,
                             child: CustomAutoSizeTextMontserrat(
-                              text: "Whatsapp Number",
-                              //textColor: ThemeConstants.TextColor,
-                              fontSize: 16,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-
-                            controller: whatsappNumber,
-                            keyboardType: TextInputType.number,
-                            scrollPadding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom +
-                                        40),
-                            readOnly: saveAndEdit,
-                            decoration: InputDecoration(
-                              hintText: "Enter your Whatsapp Number",
-                              filled: true,
-                              fillColor: ThemeConstants.lightblueColor,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                            ),
-                            style: ThemeConstants.montserrattextstyle2,
-                            // onChanged: (value) {
-                            //   if (controller.whatsappNumberkey.currentState!
-                            //       .validate()) {
-                            //     controller.whatsappNumberkey.currentState!.save();
-                            //   }
-                            // },
-                            validator: (value) {
-                              return getPhoneNumbervalidation(value);
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 10),
-                          child: Align(
-                            alignment: AlignmentDirectional.topStart,
-                            child: CustomAutoSizeTextMontserrat(
                               text: "Secondary Email",
                               //textColor: ThemeConstants.TextColor,
                               fontSize: 16,
@@ -752,6 +777,63 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             },
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, right: 10),
+                          child: Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Zip Code",
+                              mandatory: true,
+                              //textColor: ThemeConstants.TextColor,
+                              fontSize: 16,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
+                          child: TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+
+                            controller: zipCode,
+                            keyboardType: TextInputType.number,
+                            scrollPadding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom +
+                                        40),
+                            readOnly: saveAndEdit,
+                            decoration: InputDecoration(
+                              hintText: "Enter your Zip Code",
+                              filled: true,
+                              fillColor: ThemeConstants.lightblueColor,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                            ),
+                            style: ThemeConstants.montserrattextstyle2,
+                            // onChanged: (value) {
+                            //   if (controller.zipcodekey.currentState!.validate()) {
+                            //     controller.zipcodekey.currentState!.save();
+                            //   }
+                            // },
+                            onFieldSubmitted: (Value) {
+                              controller.idsFromZipCode(int.parse(Value));
+                            },
+                            validator: (value) {
+                              if (value == "") {
+                                return "Please enter Zip code";
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                        ),
+                        // InkWell(
+                        //   child: Text('Fetch Details From Zip Code'),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.only(
                               top: 10, left: 20, right: 10),
@@ -869,57 +951,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             validator: (value) {
                               if (value == "") {
                                 return "Please enter street";
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 10),
-                          child: Align(
-                            alignment: AlignmentDirectional.topStart,
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Zip Code",
-                              mandatory: true,
-                              //textColor: ThemeConstants.TextColor,
-                              fontSize: 16,
-                              // fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-
-                            controller: zipCode,
-                            keyboardType: TextInputType.number,
-                            scrollPadding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom +
-                                        40),
-                            readOnly: saveAndEdit,
-                            decoration: InputDecoration(
-                              hintText: "Enter your Zip Code",
-                              filled: true,
-                              fillColor: ThemeConstants.lightblueColor,
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                            ),
-                            style: ThemeConstants.montserrattextstyle2,
-                            // onChanged: (value) {
-                            //   if (controller.zipcodekey.currentState!.validate()) {
-                            //     controller.zipcodekey.currentState!.save();
-                            //   }
-                            // },
-                            validator: (value) {
-                              if (value == "") {
-                                return "Please enter Zip code";
                               } else {
                                 return null;
                               }
@@ -1471,7 +1502,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         if (controller.stateList[i] == varTopic) {
           controller.stateSelected = varTopic;
           controller.stateIdSelected = int.parse(controller.stateCode[i]);
-          controller.getCity(controller.stateCode[i]);
+          controller.getState(controller.stateCode[i]);
         }
       }
     }

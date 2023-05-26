@@ -10,7 +10,8 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomButtomNavbar(currentIndex: 3),
+      bottomNavigationBar:
+          CustomButtomNavbar(currentIndex: 3, context2: context),
       body: Container(
         alignment: Alignment.center,
         child: Text('Settings'),

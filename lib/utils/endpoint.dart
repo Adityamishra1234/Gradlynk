@@ -132,6 +132,8 @@ class Endpoints {
   static String? profileDataValidation = "profile-data-validation?enq_id=";
 
   static String? carouselList = "carousel-banner";
+
+  static String? idsFromZipCode = "ids-from-zip-code";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

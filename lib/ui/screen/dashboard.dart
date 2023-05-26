@@ -89,32 +89,33 @@ class _DashBoardState extends State<DashBoard> {
   @override
   void initState() {
     // Get.offAllNamed(DashBoard.routeNamed);
-    // try {
-    //   if (Get.arguments) {
-    //     ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-    //       (_) => Future.delayed(const Duration(milliseconds: 200), () {
-    //         ShowCaseWidget.of(myContext!).startShowCase([
-    //           _one,
-    //           _two,
-    //           _three,
-    //           _four,
-    //           _five,
-    //           _six,
-    //           _seven,
-    //           _11,
-    //           _eight,
-    //           _12,
-    //           _nine,
-    //           _ten
-    //         ]);
-    //       }),
-    //     );
-    //     showcase = true;
-    //   } else {
-    //     appbar = true;
-    //   }
-    // } catch (e) {}
-    // Get.find<BaseController>().profiledetail();
+    try {
+      if (Get.arguments) {
+        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+          (_) => Future.delayed(const Duration(milliseconds: 200), () {
+            ShowCaseWidget.of(myContext!).startShowCase([
+              _one,
+              _two,
+              _three,
+              _four,
+              _five,
+              _six,
+              _nine,
+              _ten,
+              _seven,
+              _11,
+              _eight,
+              _12,
+            ]);
+          }),
+        );
+
+        showcase = true;
+      } else {
+        appbar = true;
+      }
+    } catch (e) {}
+    Get.find<BaseController>().profiledetail();
 
     super.initState();
   }
@@ -127,9 +128,11 @@ class _DashBoardState extends State<DashBoard> {
 
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
 
+    ScrollController _Scrollcontroller = ScrollController();
+
     return ShowCaseWidget(onComplete: (p0, p1) {
       print(p0);
-      if (p0 == 5) {
+      if (p0 == 8) {
         appbar = true;
         setState(() {});
       }
@@ -153,11 +156,11 @@ class _DashBoardState extends State<DashBoard> {
                     descTextStyle: TextStyle(
                         color: ThemeConstants.whitecolor, fontSize: 18),
                     tooltipBackgroundColor: ThemeConstants.bluecolor,
-                    overlayColor: Colors.black54,
-                    overlayOpacity: 0.40,
+                    overlayColor: Color.fromARGB(255, 0, 0, 0),
+                    overlayOpacity: 0.8,
                     key: _nine,
                     description:
-                        "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
+                        "Your Navigation drawer is your easy to access all features zone.",
                     child: IconButton(
                       icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
                       onPressed: () {
@@ -183,8 +186,8 @@ class _DashBoardState extends State<DashBoard> {
                 descTextStyle:
                     TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
                 tooltipBackgroundColor: ThemeConstants.bluecolor,
-                overlayColor: Colors.black54,
-                overlayOpacity: 0.40,
+                overlayColor: Color.fromARGB(178, 0, 0, 0),
+                overlayOpacity: 0.8,
                 key: _ten,
                 description:
                     "The bell rings with an updated notification at your doors.",
@@ -192,7 +195,8 @@ class _DashBoardState extends State<DashBoard> {
                   icon: svgImage(
                       "notification", ThemeConstants.IconColor, 30, 30),
                   onPressed: () {
-                    Get.to(const NotificationScreen());
+                    //TODO
+                    Get.to(NotificationScreen());
                   },
                 ),
               ),
@@ -245,12 +249,12 @@ class _DashBoardState extends State<DashBoard> {
                                 ? MediaQuery.of(context).size.width - 240
                                 : MediaQuery.of(context).size.width,
                             child: ListView(
-                              controller: ScrollController(),
+                              controller: _Scrollcontroller,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(top: 10),
                                   child: SizedBox(
-                                    height: 105,
+                                    height: 95,
                                     width: displayMobileLayout == true
                                         ? MediaQuery.of(context).size.width -
                                             240
@@ -279,17 +283,20 @@ class _DashBoardState extends State<DashBoard> {
                                               alignment:
                                                   AlignmentDirectional.topStart,
                                               child: SizedBox(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    2,
-                                                height: 50,
+                                                // width: MediaQuery.of(context)
+                                                //         .size
+                                                //         .width /
+                                                //     2,
                                                 child: Showcase.withWidget(
                                                   disableDefaultTargetGestures:
                                                       true,
                                                   onTargetClick: () {
                                                     ShowCaseWidget.of(context)
                                                         .next();
+                                                    _Scrollcontroller.jumpTo(
+                                                        _Scrollcontroller
+                                                            .position
+                                                            .maxScrollExtent);
                                                   },
                                                   disableMovingAnimation: true,
                                                   // descTextStyle: TextStyle(
@@ -298,8 +305,9 @@ class _DashBoardState extends State<DashBoard> {
                                                   //     fontSize: 18),
                                                   // tooltipBackgroundColor:
                                                   //     ThemeConstants.bluecolor,
-                                                  overlayColor: Colors.black54,
-                                                  overlayOpacity: 0.40,
+                                                  overlayColor: Color.fromARGB(
+                                                      183, 0, 0, 0),
+                                                  overlayOpacity: 0.8,
                                                   // tooltipPadding:
                                                   //     const EdgeInsets.only(
                                                   //         left: 5,
@@ -320,11 +328,16 @@ class _DashBoardState extends State<DashBoard> {
                                                     onTap: () {
                                                       ShowCaseWidget.of(context)
                                                           .next();
+                                                      _Scrollcontroller.jumpTo(
+                                                          _Scrollcontroller
+                                                              .position
+                                                              .maxScrollExtent);
                                                     },
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                              top: 10),
+                                                        top: 10,
+                                                      ),
                                                       child: Container(
                                                         height: MediaQuery.of(
                                                                     context)
@@ -433,7 +446,7 @@ class _DashBoardState extends State<DashBoard> {
                                                             .model1
                                                             .enquiryName),
                                                     maxLines: 2,
-                                                    fontSize: 40,
+                                                    fontSize: 35,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
@@ -451,7 +464,7 @@ class _DashBoardState extends State<DashBoard> {
                                 ),
 
                                 Container(
-                                  padding: EdgeInsets.only(bottom: 10, top: 0),
+                                  padding: EdgeInsets.only(bottom: 10, top: 1),
                                   height: 200,
                                   child: CarouselSlider(
                                     options: CarouselOptions(
@@ -475,159 +488,165 @@ class _DashBoardState extends State<DashBoard> {
                                     //   width: 20,
                                     // ),
 
-                                    Showcase(
-                                      descTextStyle: TextStyle(
-                                          color: ThemeConstants.whitecolor,
-                                          fontSize: 18),
-                                      tooltipBackgroundColor:
-                                          ThemeConstants.bluecolor,
-                                      overlayColor: Colors.black54,
-                                      overlayOpacity: 0.40,
-                                      tooltipPadding: const EdgeInsets.only(
-                                          left: 5,
-                                          right: 5,
-                                          top: 10,
-                                          bottom: 10),
-                                      key: _six,
-                                      description:
-                                          "Your Expert is a call away. Schedule the call with your best available slot.",
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          print('dddd');
-                                          contactUsDialog(context);
-                                        },
-                                        child: Container(
-                                          height: 70,
-                                          width: displayMobileLayout
-                                              ? MediaQuery.of(context)
+                                    GestureDetector(
+                                      onTap: () {
+                                        print('dddd');
+                                        contactUsDialog(context);
+                                      },
+                                      child: Container(
+                                        height: 70,
+                                        width: displayMobileLayout
+                                            ? MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.91 -
+                                                270
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.91,
+
+                                        child: Stack(
+                                          clipBehavior: Clip.none,
+                                          alignment: Alignment.bottomCenter,
+                                          children: [
+                                            Container(
+                                              padding:
+                                                  EdgeInsets.only(left: 20),
+                                              alignment: Alignment.centerLeft,
+                                              height: 60,
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      ThemeConstants.bluecolor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          17)),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 0.5,
+                                                            horizontal: 8),
+                                                    decoration: BoxDecoration(
+                                                        color: ThemeConstants
+                                                            .GreenColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15)),
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      text: "Need Help?",
+                                                      fontSize: 5,
+                                                      textColor: Colors.white,
+                                                    ),
+                                                  ),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text: "Contact us Now",
+                                                    fontSize: 20,
+                                                    textColor: Colors.white,
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            Positioned(
+                                              left: displayMobileLayout
+                                                  ? MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.8 -
+                                                      270
+                                                  : MediaQuery.of(context)
                                                           .size
                                                           .width *
-                                                      0.91 -
-                                                  270
-                                              : MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                  0.91,
-
-                                          child: Stack(
-                                            clipBehavior: Clip.none,
-                                            alignment: Alignment.bottomCenter,
-                                            children: [
-                                              Container(
-                                                padding:
-                                                    EdgeInsets.only(left: 20),
-                                                alignment: Alignment.centerLeft,
-                                                height: 60,
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                    color: ThemeConstants
-                                                        .bluecolor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            17)),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 0.5,
-                                                              horizontal: 8),
-                                                      decoration: BoxDecoration(
-                                                          color: ThemeConstants
-                                                              .GreenColor,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
-                                                      child:
-                                                          CustomAutoSizeTextMontserrat(
-                                                        text: "Need Help?",
-                                                        fontSize: 5,
-                                                        textColor: Colors.white,
-                                                      ),
-                                                    ),
-                                                    CustomAutoSizeTextMontserrat(
-                                                      text: "Contact us Now",
-                                                      fontSize: 20,
-                                                      textColor: Colors.white,
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: displayMobileLayout
-                                                    ? MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8 -
-                                                        270
-                                                    : MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.7,
-                                                bottom: 10,
-                                                child: Stack(
-                                                  alignment: Alignment.center,
-                                                  children: [
-                                                    CircleAvatar(
+                                                      0.7,
+                                              bottom: 10,
+                                              child: Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  Showcase(
+                                                    targetShapeBorder:
+                                                        const CircleBorder(),
+                                                    descTextStyle: TextStyle(
+                                                        color: ThemeConstants
+                                                            .whitecolor,
+                                                        fontSize: 18),
+                                                    tooltipBackgroundColor:
+                                                        ThemeConstants
+                                                            .bluecolor,
+                                                    overlayColor:
+                                                        Color.fromARGB(
+                                                            183, 0, 0, 0),
+                                                    overlayOpacity: 0.8,
+                                                    tooltipPadding:
+                                                        const EdgeInsets.only(
+                                                            left: 5,
+                                                            right: 5,
+                                                            top: 10,
+                                                            bottom: 10),
+                                                    key: _six,
+                                                    description:
+                                                        "Need Assistance? Your Expert is a call away!",
+                                                    child: CircleAvatar(
                                                       radius: 32.8,
                                                       backgroundColor:
                                                           ThemeConstants
                                                               .whitecolor,
                                                     ),
-                                                    CircleAvatar(
-                                                      radius: 30,
-                                                      backgroundColor:
-                                                          ThemeConstants
-                                                              .GreenColor,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(10),
-                                                        child: SvgPicture.asset(
-                                                          'assets/icons/dialer_icon.svg',
-                                                          color: ThemeConstants
-                                                              .whitecolor,
-                                                        ),
+                                                  ),
+                                                  CircleAvatar(
+                                                    radius: 30,
+                                                    backgroundColor:
+                                                        ThemeConstants
+                                                            .GreenColor,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      child: SvgPicture.asset(
+                                                        'assets/icons/dialer_icon.svg',
+                                                        color: ThemeConstants
+                                                            .whitecolor,
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-
-                                          // child: ElevatedButton(
-                                          //   style: ElevatedButton.styleFrom(
-                                          //     foregroundColor:
-                                          //         ThemeConstants.whitecolor,
-                                          //     elevation: 0,
-
-                                          //     backgroundColor:
-                                          //         ThemeConstants.whitecolor,
-                                          //     shadowColor:
-                                          //         ThemeConstants.lightblueColor,
-                                          //     side: BorderSide(
-                                          //         color: ThemeConstants
-                                          //             .bluecolor), // foreground
-                                          //   ),
-                                          //   onPressed: () {
-                                          //     Get.toNamed(ScheduleExpertCall
-                                          //         .routeNamed);
-                                          //   },
-                                          //   child: CustomAutoSizeTextMontserrat(
-                                          //     text: "Schedule expert call",
-                                          //     fontSize: 12,
-                                          //     fontWeight: FontWeight.bold,
-                                          //     textColor:
-                                          //         ThemeConstants.bluecolor,
-                                          //   ),
-                                          // ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         ),
+
+                                        // child: ElevatedButton(
+                                        //   style: ElevatedButton.styleFrom(
+                                        //     foregroundColor:
+                                        //         ThemeConstants.whitecolor,
+                                        //     elevation: 0,
+
+                                        //     backgroundColor:
+                                        //         ThemeConstants.whitecolor,
+                                        //     shadowColor:
+                                        //         ThemeConstants.lightblueColor,
+                                        //     side: BorderSide(
+                                        //         color: ThemeConstants
+                                        //             .bluecolor), // foreground
+                                        //   ),
+                                        //   onPressed: () {
+                                        //     Get.toNamed(ScheduleExpertCall
+                                        //         .routeNamed);
+                                        //   },
+                                        //   child: CustomAutoSizeTextMontserrat(
+                                        //     text: "Schedule expert call",
+                                        //     fontSize: 12,
+                                        //     fontWeight: FontWeight.bold,
+                                        //     textColor:
+                                        //         ThemeConstants.bluecolor,
+                                        //   ),
+                                        // ),
                                       ),
                                     ),
 
@@ -637,8 +656,8 @@ class _DashBoardState extends State<DashBoard> {
                                     //       fontSize: 18),
                                     //   tooltipBackgroundColor:
                                     //       ThemeConstants.bluecolor,
-                                    //   overlayColor: Colors.black54,
-                                    //   overlayOpacity: 0.40,
+                                    //   overlayColor: Color.fromARGB(183, 0, 0, 0),
+                                    //   overlayOpacity: 0.8,
                                     //   tooltipPadding: const EdgeInsets.only(
                                     //       left: 5,
                                     //       right: 5,
@@ -711,8 +730,9 @@ class _DashBoardState extends State<DashBoard> {
                                                 fontSize: 18),
                                             tooltipBackgroundColor:
                                                 ThemeConstants.bluecolor,
-                                            overlayColor: Colors.black54,
-                                            overlayOpacity: 0.40,
+                                            overlayColor:
+                                                Color.fromARGB(183, 0, 0, 0),
+                                            overlayOpacity: 0.8,
                                             tooltipPadding:
                                                 const EdgeInsets.only(
                                                     left: 5,
@@ -773,8 +793,9 @@ class _DashBoardState extends State<DashBoard> {
                                                   fontSize: 18),
                                               tooltipBackgroundColor:
                                                   ThemeConstants.bluecolor,
-                                              overlayColor: Colors.black54,
-                                              overlayOpacity: 0.40,
+                                              overlayColor:
+                                                  Color.fromARGB(183, 0, 0, 0),
+                                              overlayOpacity: 0.8,
                                               tooltipPadding:
                                                   const EdgeInsets.only(
                                                       left: 5,
@@ -838,8 +859,9 @@ class _DashBoardState extends State<DashBoard> {
                                                 fontSize: 18),
                                             tooltipBackgroundColor:
                                                 ThemeConstants.bluecolor,
-                                            overlayColor: Colors.black54,
-                                            overlayOpacity: 0.40,
+                                            overlayColor:
+                                                Color.fromARGB(183, 0, 0, 0),
+                                            overlayOpacity: 0.8,
                                             tooltipPadding:
                                                 const EdgeInsets.only(
                                                     left: 5,
@@ -897,8 +919,9 @@ class _DashBoardState extends State<DashBoard> {
                                                 fontSize: 18),
                                             tooltipBackgroundColor:
                                                 ThemeConstants.bluecolor,
-                                            overlayColor: Colors.black54,
-                                            overlayOpacity: 0.40,
+                                            overlayColor:
+                                                Color.fromARGB(183, 0, 0, 0),
+                                            overlayOpacity: 0.8,
                                             tooltipPadding:
                                                 const EdgeInsets.only(
                                                     left: 5,
@@ -1103,8 +1126,8 @@ class _DashBoardState extends State<DashBoard> {
           //   descTextStyle:
           //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
           //   tooltipBackgroundColor: ThemeConstants.bluecolor,
-          //   overlayColor: Colors.black54,
-          //   overlayOpacity: 0.40,
+          //   overlayColor: Color.fromARGB(183, 0, 0, 0),
+          //   overlayOpacity: 0.8,
           //   // targetBorderRadius: BorderRadius.circular(25.0),
           //   // tooltipPadding: const EdgeInsets.only(0.0)
           //   targetShapeBorder: const CircleBorder(),
@@ -1207,8 +1230,8 @@ class _DashBoardState extends State<DashBoard> {
           //                                 fontSize: 18),
           //                             tooltipBackgroundColor:
           //                                 ThemeConstants.bluecolor,
-          //                             overlayColor: Colors.black54,
-          //                             overlayOpacity: 0.40,
+          //                             overlayColor: Color.fromARGB(183, 0, 0, 0),
+          //                             overlayOpacity: 0.8,
           //                             // targetBorderRadius: BorderRadius.circular(25.0),
           //                             // tooltipPadding: const EdgeInsets.only(0.0)
           //                             targetShapeBorder:
@@ -1264,8 +1287,8 @@ class _DashBoardState extends State<DashBoard> {
           //                                 fontSize: 18),
           //                             tooltipBackgroundColor:
           //                                 ThemeConstants.bluecolor,
-          //                             overlayColor: Colors.black54,
-          //                             overlayOpacity: 0.40,
+          //                             overlayColor: Color.fromARGB(183, 0, 0, 0),
+          //                             overlayOpacity: 0.8,
           //                             // targetBorderRadius: BorderRadius.circular(25.0),
           //                             // tooltipPadding: const EdgeInsets.only(0.0)
           //                             targetShapeBorder:
@@ -1322,14 +1345,15 @@ class _DashBoardState extends State<DashBoard> {
           //   ),
           // )
 
-          bottomNavigationBar: CustomButtomNavbar(currentIndex: 0),
+          bottomNavigationBar:
+              CustomButtomNavbar(currentIndex: 0, context2: context),
 
           // floatingActionButton: Showcase(
           //   descTextStyle:
           //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
           //   tooltipBackgroundColor: ThemeConstants.bluecolor,
-          //   overlayColor: Colors.black54,
-          //   overlayOpacity: 0.40,
+          //   overlayColor: Color.fromARGB(183, 0, 0, 0),
+          //   overlayOpacity: 0.8,
           //   targetBorderRadius: BorderRadius.circular(25.0),
           //   tooltipPadding:
           //       const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class CustomProfileButton extends StatefulWidget {
@@ -79,15 +80,15 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
           border: Border.all(
               width: widget.isCompleted == 1 ? 1 : 1,
               color: widget.isCompleted == 1
-                  ? ThemeConstants.blackcolor
-                  : const Color.fromARGB(131, 77, 77, 77)),
+                  ? ThemeConstants.bluecolor
+                  : ThemeConstants.red),
           color: widget.isCompleted == 1
-              ? ThemeConstants.bluecolor
-              : ThemeConstants.whitecolor,
+              ? ThemeConstants.bluechatColor
+              : Colors.red[50],
           borderRadius: BorderRadius.circular(15)),
       child: Row(
           mainAxisAlignment: widget.isCompleted == 0
-              ? MainAxisAlignment.center
+              ? MainAxisAlignment.spaceBetween
               : MainAxisAlignment.spaceBetween,
           children: [
             Flexible(
@@ -95,16 +96,21 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
                 "${widget.title}",
                 style: TextStyle(
                     color: widget.isCompleted == 1
-                        ? ThemeConstants.whitecolor
+                        ? ThemeConstants.bluecolor
                         : ThemeConstants.blackcolor),
               ),
             ),
             widget.isCompleted == 1
-                ? Icon(
-                    Icons.check_circle_outline,
-                    color: ThemeConstants.whitecolor,
+                ? SvgPicture.asset(
+                    "assets/icons/tick.svg",
+                    height: 30,
+                    color: ThemeConstants.bluecolor,
                   )
-                : const SizedBox.shrink(),
+                : Icon(
+                    Icons.error_outline_rounded,
+                    color: ThemeConstants.red,
+                    size: 30,
+                  ),
 
             // Icon(widget.isCompleted == 0
             //     ? Icons.check

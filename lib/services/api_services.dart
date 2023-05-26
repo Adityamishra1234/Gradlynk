@@ -1656,4 +1656,19 @@ class ApiServices extends StudentPanelBase implements api {
     // TODO: implement caraouselList
     // throw UnimplementedError();
   }
+
+  @override
+  idsFromZipcode(int zipCode) async {
+    // TODO: implement idsFromZipcode
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.idsFromZipCode}';
+
+      var res = await httpPost(url, json.encode({"zip_code": zipCode}));
+      var jsondata = json.decode(res);
+      print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }

@@ -15,9 +15,11 @@ import 'package:studentpanel/ui/screen/settings_ui.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/custom_dialog_box.dart';
 
 class CustomButtomNavbar extends StatelessWidget {
-  CustomButtomNavbar({required this.currentIndex});
+  BuildContext context2;
+  CustomButtomNavbar({required this.currentIndex, required this.context2});
 
   final int currentIndex;
 
@@ -34,7 +36,7 @@ class CustomButtomNavbar extends StatelessWidget {
         } else if (i == 2) {
           Get.to(NotificationScreen());
         } else if (i == 3) {
-          Get.toNamed(ApplicationSummary.routeNamed);
+          supportDialog(context2);
         }
         // else if (i == 4) {
         //   Get.toNamed(ProfilePageCopy.routeNamed);
@@ -70,16 +72,18 @@ class CustomButtomNavbar extends StatelessWidget {
 
         /// Search
         SalomonBottomBarItem(
-          icon: Container(
-            child: svgImage(
-                "track",
-                currentIndex == 3
-                    ? ThemeConstants.bluecolor
-                    : ThemeConstants.blackcolor,
-                25,
-                25),
+          icon: Icon(
+            Icons.help_outline_sharp,
           ),
-          title: const Text("Settings"),
+          //   child: svgImage(
+          //       "track",
+          //       currentIndex == 3
+          //           ? ThemeConstants.bluecolor
+          //           : ThemeConstants.blackcolor,
+          //       25,
+          //       25),
+          // ),
+          title: const Text("Gradlynk Support"),
           selectedColor: ThemeConstants.bluecolor,
         ),
 

@@ -361,6 +361,7 @@ class ApplicationSummary extends StatelessWidget {
       }),
       bottomNavigationBar: CustomButtomNavbar(
         currentIndex: 3,
+        context2: context,
       ),
     );
   }

@@ -173,12 +173,38 @@ class PassportDetails extends StatelessWidget {
           style: ThemeConstants.montserrattextstyle,
         ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+      //   child: Align(
+      //     alignment: AlignmentDirectional.topStart,
+      //     child: CustomAutoSizeTextMontserrat(
+      //       text: "Country of Issue",
+      //       mandatory: true,
+      //       textColor: ThemeConstants.TextColor,
+      //       fontSize: 14,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      // CustomDropDownSingle(
+      //   model: controller.loadingCountry.value == true
+      //       ? controller.countryList
+      //       : ["No Data"],
+      //   initialSelectedValue:
+      //       getNUllChecker(controller.countrySelected) == false
+      //           ? controller.countrySelected
+      //           : controller.loadingCountry.value == true
+      //               ? controller.countryList[0]
+      //               : "No Data",
+      //   choosefieldtype: controller.editSave.value == false,
+      //   callbackFunction: callbackCountry,
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Country of Issue",
+            text: "Nationality",
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
@@ -224,32 +250,32 @@ class PassportDetails extends StatelessWidget {
         choosefieldtype: controller.editSave.value == false,
         callbackFunction: calllbackState,
       ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Place of Issue",
-            mandatory: true,
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      CustomDropDownSingle(
-        model: controller.loadingPlaceOfIssuse.value == true
-            ? controller.placeOfIssuse
-            : ["No Data"],
-        initialSelectedValue:
-            getNUllChecker(controller.placeOfIssuseSelected) == false
-                ? controller.placeOfIssuseSelected
-                : controller.loadingPlaceOfIssuse.value == true
-                    ? controller.placeOfIssuse[0]
-                    : "No Data",
-        choosefieldtype: controller.editSave.value == false,
-        callbackFunction: callbackPlaceOfIssuse,
-      ),
+      // Padding(
+      //   padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+      //   child: Align(
+      //     alignment: AlignmentDirectional.topStart,
+      //     child: CustomAutoSizeTextMontserrat(
+      //       text: "Place of Issue",
+      //       mandatory: true,
+      //       textColor: ThemeConstants.TextColor,
+      //       fontSize: 14,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      // CustomDropDownSingle(
+      //   model: controller.loadingPlaceOfIssuse.value == true
+      //       ? controller.placeOfIssuse
+      //       : ["No Data"],
+      //   initialSelectedValue:
+      //       getNUllChecker(controller.placeOfIssuseSelected) == false
+      //           ? controller.placeOfIssuseSelected
+      //           : controller.loadingPlaceOfIssuse.value == true
+      //               ? controller.placeOfIssuse[0]
+      //               : "No Data",
+      //   choosefieldtype: controller.editSave.value == false,
+      //   callbackFunction: callbackPlaceOfIssuse,
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
