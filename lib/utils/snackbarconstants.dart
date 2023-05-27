@@ -306,4 +306,6 @@ class SnackBarConstants {
   static String? income = "Kindly specify your income as per ITR";
 
   static String flutterStroageToast = "Please give storage access";
+  static String receiveACallback =
+      "Thanks our counsellor will contact you soon";
 }

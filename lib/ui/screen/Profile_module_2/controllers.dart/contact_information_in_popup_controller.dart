@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/models/idsfromZipCode.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class ContactInformationController extends GetxController with StateMixin {
+class ContactInformationInPopUpController extends GetxController
+    with StateMixin {
   ApiServices apiServices = ApiServices();
-
-  bool whatsappNumberIsSameAsMobileNumber = false;
 
 // Selected fields
 //Name
@@ -52,50 +50,25 @@ class ContactInformationController extends GetxController with StateMixin {
 
   StudentPanel model = StudentPanel();
 
+  var data = ProfileDataValidatorModel().obs;
+
+  RxBool loading = false.obs;
   @override
   void onInit() {
     getCountry();
     getMartialStatus();
     profiledetail();
+    profileDataValidator();
     super.onInit();
     change(null, status: RxStatus.success());
   }
 
-  IdsFromZipCodeModel idsFromZipCodeModel = IdsFromZipCodeModel();
-  idsFromZipCode(int zipcode) async {
-    var res = await apiservice.idsFromZipcode(zipcode);
-
-    idsFromZipCodeModel = IdsFromZipCodeModel.fromJson(res);
-
-    for (var i = 0; i < countryList.length; i++) {
-      if (i == 0) {
-        countryIdSelected = null;
-        countryIdSelected = null;
-
-        print(idsFromZipCodeModel.countryId);
-        print(countryCode[i]);
-      } else {
-        if (countryCode[i] == idsFromZipCodeModel.countryId) {
-          countrySelected = countryList[i];
-          countryIdSelected = int.parse(idsFromZipCodeModel.countryId!);
-          await getState(countryCode[i]);
-        }
-      }
-    }
-
-    for (var j = 0; j < stateList.length; j++) {
-      if (j == 0) {
-        stateSelected = null;
-        stateIdSelected = null;
-      } else {
-        if (stateCode[j] == idsFromZipCodeModel.stateId) {
-          stateSelected = stateList[j];
-          stateIdSelected = int.parse(idsFromZipCodeModel.stateId!);
-          await getCity(stateCode[j]);
-        }
-      }
-    }
-    update();
+  profileDataValidator() async {
+    loading.value = true;
+    var x = await apiservice.profileDataValidation(78623);
+    var z = await ProfileDataValidatorModel.fromJson(x);
+    data.value = z;
+    loading.value = false;
   }
 
   profiledetail() async {

@@ -21,7 +21,7 @@ class LoginController extends GetxController with StateMixin {
   RxInt currentindex = 0.obs;
   ApiServices services = ApiServices();
   LoginModel? model;
-  var controller1 = Get.put(AnimationtestController());
+  // var controller1 = Get.put(AnimationtestController());
 
   RxBool optverify = false.obs;
   RxBool otpEnable = false.obs;
@@ -62,11 +62,12 @@ class LoginController extends GetxController with StateMixin {
       return model;
     } else {
       change(null, status: RxStatus.success());
-      Get.snackbar(
-        "Error",
-        "Please Retry phone number and Password",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      // Get.snackbar(
+      //   "Error",
+      //   "Please Retry phone number and Password",
+      //   snackPosition: SnackPosition.BOTTOM,
+      // );
+      getToast('Please enter a correct OTP');
     }
   }
 
@@ -119,11 +120,12 @@ class LoginController extends GetxController with StateMixin {
     print(phonenumber);
     if (getNUllChecker(phonenumber) == false) {
       print(sharedPreferences.getBool("showcaseEnable"));
-      Get.toNamed(DashBoard.routeNamed,
+      Get.offAllNamed(DashBoard.routeNamed,
           arguments: sharedPreferences.getBool("showcaseEnable"));
-    } else {
-      Get.toNamed(LoginCopy.routeNamed);
     }
+    // else {
+    //   Get.offAllNamed(LoginCopy.routeNamed);
+    // }
   }
 
   phonenumberVerfiy(String phonenumber) async {
@@ -132,10 +134,8 @@ class LoginController extends GetxController with StateMixin {
     if (res == true) {
       otpEnable.value = true;
       change(null, status: RxStatus.success());
-      update();
     } else {
       change(null, status: RxStatus.success());
-      update();
     }
   }
 }

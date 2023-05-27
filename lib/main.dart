@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-//
 // import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -25,6 +24,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
+import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
@@ -339,6 +339,12 @@ class _MyAppState extends State<MyApp> {
           page: () => RaiseYourTicket(),
           transition: Transition.fade,
         ),
+        GetPage(
+            name: ProfileView.routeNamed,
+            transition: Transition.fade,
+            // page: () => ProfilePageCopy1(),
+            page: () => ProfileView(),
+            binding: ProfilePageBinding()),
       ],
     );
   }

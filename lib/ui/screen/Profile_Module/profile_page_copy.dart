@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/passportdetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/relativeinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/travinghistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistory.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/widgets/Custom_Tabbar/custom_tabbar.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
@@ -21,7 +22,12 @@ class ProfilePageCopy1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () async {
+        Get.offAllNamed(DashBoard.routeNamed);
+        return await true;
+      },
+      child: Scaffold(
         appBar: CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
@@ -48,6 +54,9 @@ class ProfilePageCopy1 extends StatelessWidget {
           PassportDetails(),
           TravingHistory(),
           RelativeInformation()
-        ]));
+        ]),
+        bottomNavigationBar:
+            CustomButtomNavbar(currentIndex: 1, context2: context),
+      ),
   }
 }

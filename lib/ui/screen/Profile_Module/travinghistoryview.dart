@@ -48,7 +48,7 @@ class TravingHistoryView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height - 260,
+          height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {

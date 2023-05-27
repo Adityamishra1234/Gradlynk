@@ -9,7 +9,8 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
   bool? underline;
   bool? mandatory;
   var text;
-  int? maxLines, fontSize;
+  int? maxLines;
+  double? fontSize;
   FontWeight? fontWeight;
   Color? textColor;
 

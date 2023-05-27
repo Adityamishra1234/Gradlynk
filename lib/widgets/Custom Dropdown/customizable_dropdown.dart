@@ -204,7 +204,7 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
                           ? SizedBox(
                               width: 30,
                               child: RotationTransition(
-                                  turns: Tween(begin: 0.0, end: 0.5)
+                                  turns: Tween(begin: 0.25, end: 1.25)
                                       .animate(_controller),
                                   child: widget.icon),
                             )

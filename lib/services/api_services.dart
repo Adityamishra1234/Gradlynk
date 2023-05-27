@@ -300,6 +300,12 @@ class ApiServices extends StudentPanelBase implements api {
       var response = await httpPostNullBody(
           "${Endpoints.baseUrl!}${Endpoints.courseShortList!}course_id=$id&enq_id=$enqId");
       if (response != null) {
+        if (response.toString() == "Course Added To Shortlist") {
+          getToast(SnackBarConstants.courseShortList!);
+        } else if (response.toString() == "Course Removed From Shortlist") {
+          getToast(SnackBarConstants.courseRemove!);
+        }
+      } else {
         getToast(response);
       }
     } catch (e) {
@@ -974,12 +980,11 @@ class ApiServices extends StudentPanelBase implements api {
 
   @override
   updateEnglishTestDetails(
-      EnglishTestDetailsViewModel englishTestDetailsViewModel,
-      String? endpoint) async {
+      EnglishTestDetailsViewModel model, String? endpoint) async {
     try {
-      String jsonData = json.encode(englishTestDetailsViewModel);
-      jsonData = jsonData.replaceAll('"null"', "");
-      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData);
+      String jsonData = json.encode(model);
+      String jsonData2 = jsonData.replaceAll('"null"', "");
+      var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData2);
       if (response != null) {
         var jsondata = json.decode(response);
         DataUpdateStatus dataUpdateStatus = DataUpdateStatus.fromJson(jsondata);
@@ -1534,10 +1539,12 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   phonenumberVerfiy(String phoneNumber) async {
+    print(Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber);
     try {
       var res = await httpPostNullBody(
           Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber,
           login: true);
+      print(res);
       if (res != null) {
         var jsondata = json.decode(res);
         getToast(SnackBarConstants.phoneNumber!);
@@ -1576,6 +1583,21 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  @override
+  profileDataValidation(int enqID) async {
+    try {
+      String url =
+          '${Endpoints.baseUrl}${Endpoints.profileDataValidation}${enqID}';
+
+      var res = await httpPostNullBody(url);
+      var jsondata = json.decode(res);
+      print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
   // logout(String endpoint, String token) async {
   //   try {
   //     var res = await httplogout(Endpoints.baseUrl! + endpoint, token);
@@ -1596,4 +1618,35 @@ class ApiServices extends StudentPanelBase implements api {
   //         fontSize: 16.0);
   //   }
   // }
+
+  @override
+  caraouselList() async {
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.carouselList}';
+
+      var res = await getRequest(url);
+      var jsondata = json.decode(res);
+      print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement caraouselList
+    // throw UnimplementedError();
+  }
+
+  @override
+  idsFromZipcode(int zipCode) async {
+    // TODO: implement idsFromZipcode
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.idsFromZipCode}';
+
+      var res = await httpPost(url, json.encode({"zip_code": zipCode}));
+      var jsondata = json.decode(res);
+      print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }

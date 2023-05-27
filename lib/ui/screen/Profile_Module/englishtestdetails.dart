@@ -13,20 +13,17 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class EnglishTestDetails extends StatelessWidget {
-  EnglishTestDetails({Key? key}) : super(key: key);
+  EnglishTestDetails({Key? key, this.editButton}) : super(key: key);
+
+  bool? editButton = false;
   var controller = Get.put(EnglishTestController());
-  static final listening = TextEditingController();
-  static final writing = TextEditingController();
-  static final reading = TextEditingController();
-  static final speaking = TextEditingController();
-  static final overallScoreController = TextEditingController();
-  static final dateOfExam = TextEditingController();
-  static final dateOfTestReport = TextEditingController();
-  static final testScoreExpirationDate = TextEditingController();
-  static final tentativeExamDate = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    if (editButton == true) {
+      controller.editSave.value = false;
+      controller.update();
+    }
     return controller.obx((state) {
       if (controller.loadingFirstTime.value == false) {
         if (controller.loadingExamName2.value == true &&
@@ -53,90 +50,90 @@ class EnglishTestDetails extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const Spacer(),
-                    if (controller.editSave.value == true)
-                      TextButton(
-                          onPressed: () {
-                            controller.editSave.value = false;
-                            controller.update();
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "edit",
-                            textColor: ThemeConstants.bluecolor,
-                          )),
-                    if (controller.editSave.value == false)
-                      TextButton(
-                          onPressed: () {
-                            if (controller.examStatusSelected ==
-                                "Not Yet Registered") {
-                              if (controller.bookTestSelcted == null) {
-                                getToast(
-                                    SnackBarConstants.bookTestSelectedError!);
-                              }
-                            }
-                            if (controller.examStatusSelected == null) {
-                              getToast(SnackBarConstants.examStatusError!);
-                            } else {
-                              if (controller.examNameSelected == null) {
-                                getToast(SnackBarConstants.examnameError!);
-                              } else {
-                                EnglishTestDetailsViewModel
-                                    englishTestDetailsViewModel =
-                                    EnglishTestDetailsViewModel();
-                                englishTestDetailsViewModel =
-                                    controller.englishTestDetailsViewModel;
-                                englishTestDetailsViewModel.dateOfExam =
-                                    controller.dateOfExamSelected;
-                                englishTestDetailsViewModel.tentativeExamDate =
-                                    controller.tentativeExamDateSelcted;
-                                englishTestDetailsViewModel.expirationDate =
-                                    controller.testscoreExpirationDateSelcted;
-                                englishTestDetailsViewModel.resultDate =
-                                    controller.dateOfTestReportSelcted;
-                                englishTestDetailsViewModel.enqId =
-                                    Get.find<BaseController>()
-                                        .model1
-                                        .id
-                                        .toString();
-                                englishTestDetailsViewModel.examStatusID =
-                                    controller.examStatusCodeSelected
-                                        .toString();
-                                englishTestDetailsViewModel.examName =
-                                    controller.examNameSelected;
-                                englishTestDetailsViewModel.reading =
-                                    reading.text;
-                                englishTestDetailsViewModel.writing =
-                                    writing.text;
-                                englishTestDetailsViewModel.listening =
-                                    listening.text;
-                                englishTestDetailsViewModel.speaking =
-                                    speaking.text;
-                                englishTestDetailsViewModel.literacy =
-                                    listening.text;
-                                englishTestDetailsViewModel.comprehension =
-                                    writing.text;
-                                englishTestDetailsViewModel.conversation =
-                                    reading.text;
-                                englishTestDetailsViewModel.production =
-                                    writing.text;
-                                if (getNUllChecker(tentativeExamDate.text)) {
-                                  englishTestDetailsViewModel.overAll =
-                                      overallScoreController.text;
-                                } else {
-                                  englishTestDetailsViewModel.overAll =
-                                      controller
-                                          .englishTestDetailsViewModel.overAll;
-                                }
-                                updateEnglishTestDetails(
-                                    englishTestDetailsViewModel);
-                                controller.editSave.value = true;
-                                controller.update();
-                              }
-                            }
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "save",
-                            textColor: ThemeConstants.bluecolor,
-                          )),
+                    // if (controller.editSave.value == true)
+                    //   TextButton(
+                    //       onPressed: () {
+                    //         controller.editSave.value = false;
+                    //         controller.update();
+                    //       },
+                    //       child: CustomAutoSizeTextMontserrat(
+                    //         text: "edit",
+                    //         textColor: ThemeConstants.bluecolor,
+                    //       )),
+                    // if (controller.editSave.value == false)
+                    //   TextButton(
+                    //       onPressed: () {
+                    //         if (controller.examStatusSelected ==
+                    //             "Not Yet Registered") {
+                    //           if (controller.bookTestSelcted == null) {
+                    //             getToast(
+                    //                 SnackBarConstants.bookTestSelectedError!);
+                    //           }
+                    //         }
+                    //         if (controller.examStatusSelected == null) {
+                    //           getToast(SnackBarConstants.examStatusError!);
+                    //         } else {
+                    //           if (controller.examNameSelected == null) {
+                    //             getToast(SnackBarConstants.examnameError!);
+                    //           } else {
+                    //             EnglishTestDetailsViewModel
+                    //                 englishTestDetailsViewModel =
+                    //                 EnglishTestDetailsViewModel();
+                    //             englishTestDetailsViewModel =
+                    //                 controller.englishTestDetailsViewModel;
+                    //             englishTestDetailsViewModel.dateOfExam =
+                    //                 controller.dateOfExamSelected;
+                    //             englishTestDetailsViewModel.tentativeExamDate =
+                    //                 controller.tentativeExamDateSelcted;
+                    //             englishTestDetailsViewModel.expirationDate =
+                    //                 controller.testscoreExpirationDateSelcted;
+                    //             englishTestDetailsViewModel.resultDate =
+                    //                 controller.dateOfTestReportSelcted;
+                    //             englishTestDetailsViewModel.enqId =
+                    //                 Get.find<BaseController>()
+                    //                     .model1
+                    //                     .id
+                    //                     .toString();
+                    //             englishTestDetailsViewModel.examStatusID =
+                    //                 controller.examStatusCodeSelected
+                    //                     .toString();
+                    //             englishTestDetailsViewModel.examName =
+                    //                 controller.examNameSelected;
+                    //             englishTestDetailsViewModel.reading =
+                    //                EnglishTestController. reading.text;
+                    //             englishTestDetailsViewModel.writing =
+                    //                EnglishTestController.  writing.text;
+                    //             englishTestDetailsViewModel.listening =
+                    //                 EnglishTestController. listening.text;
+                    //             englishTestDetailsViewModel.speaking =
+                    //                EnglishTestController.  speaking.text;
+                    //             englishTestDetailsViewModel.literacy =
+                    //                 EnglishTestController. listening.text;
+                    //             englishTestDetailsViewModel.comprehension =
+                    //                 EnglishTestController. writing.text;
+                    //             englishTestDetailsViewModel.conversation =
+                    //                 EnglishTestController. reading.text;
+                    //             englishTestDetailsViewModel.production =
+                    //                 EnglishTestController. writing.text;
+                    //             if (getNUllChecker(EnglishTestController. tentativeExamDate.text)) {
+                    //               englishTestDetailsViewModel.overAll =
+                    //                   EnglishTestController. overallScoreController.text;
+                    //             } else {
+                    //               englishTestDetailsViewModel.overAll =
+                    //                   controller
+                    //                       .englishTestDetailsViewModel.overAll;
+                    //             }
+                    //             updateEnglishTestDetails(
+                    //                 englishTestDetailsViewModel);
+                    //             controller.editSave.value = true;
+                    //             controller.update();
+                    //           }
+                    //         }
+                    //       },
+                    //       child: CustomAutoSizeTextMontserrat(
+                    //         text: "save",
+                    //         textColor: ThemeConstants.bluecolor,
+                    //       )),
                   ],
                 ),
               ),
@@ -171,162 +168,163 @@ class EnglishTestDetails extends StatelessWidget {
                 controller.tentative.value == false &&
                 controller.duolingo.value == true)
               ...duolingo(context),
-            Align(
-              alignment: AlignmentDirectional.topEnd,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20, right: 20),
-                child: SizedBox(
-                  width: 90,
-                  child: controller.editSave.value == false
-                      ? ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor,
-                            elevation: 0.0,
-                            backgroundColor:
-                                ThemeConstants.bluecolor, // foreground
-                          ),
-                          onPressed: () async {
-                            if (controller.examStatusSelected == null) {
-                              getToast(SnackBarConstants.examStatusError!);
-                            } else if (controller.examStatusSelected ==
-                                "Not Yet Registered") {
-                              if (controller.bookTestSelcted == null) {
-                                getToast(
-                                    SnackBarConstants.bookTestSelectedError!);
-                              } else {
-                                EnglishTestDetailsViewModel
-                                    englishTestDetailsViewModel =
-                                    EnglishTestDetailsViewModel();
-                                englishTestDetailsViewModel =
-                                    controller.englishTestDetailsViewModel;
-                                englishTestDetailsViewModel.dateOfExam =
-                                    controller.dateOfExamSelected;
-                                englishTestDetailsViewModel.tentativeExamDate =
-                                    controller.tentativeExamDateSelcted;
-                                englishTestDetailsViewModel.expirationDate =
-                                    controller.testscoreExpirationDateSelcted;
-                                englishTestDetailsViewModel.resultDate =
-                                    controller.dateOfTestReportSelcted;
-                                englishTestDetailsViewModel.enqId =
-                                    Get.find<BaseController>()
-                                        .model1
-                                        .id
-                                        .toString();
-                                englishTestDetailsViewModel.examStatusID =
-                                    controller.examStatusCodeSelected
-                                        .toString();
-                                englishTestDetailsViewModel.examName =
-                                    controller.examNameSelected;
-                                englishTestDetailsViewModel.reading =
-                                    reading.text;
-                                englishTestDetailsViewModel.writing =
-                                    writing.text;
-                                englishTestDetailsViewModel.listening =
-                                    listening.text;
-                                englishTestDetailsViewModel.speaking =
-                                    speaking.text;
-                                englishTestDetailsViewModel.literacy =
-                                    listening.text;
-                                englishTestDetailsViewModel.comprehension =
-                                    writing.text;
-                                englishTestDetailsViewModel.conversation =
-                                    reading.text;
-                                englishTestDetailsViewModel.production =
-                                    writing.text;
+            // Align(
+            //   alignment: AlignmentDirectional.topEnd,
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(top: 20, right: 20),
+            //     child: SizedBox(
+            //       width: 90,
+            //       child: controller.editSave.value == false
+            //           ? ElevatedButton(
+            //               style: ElevatedButton.styleFrom(
+            //                 foregroundColor: ThemeConstants.bluecolor,
+            //                 elevation: 0.0,
+            //                 backgroundColor:
+            //                     ThemeConstants.bluecolor, // foreground
+            //               ),
+            //               onPressed: () async {
+            //                 if (controller.examStatusSelected == null) {
+            //                   getToast(SnackBarConstants.examStatusError!);
+            //                 } else if (controller.examStatusSelected ==
+            //                     "Not Yet Registered") {
+            //                   if (controller.bookTestSelcted == null) {
+            //                     getToast(
+            //                         SnackBarConstants.bookTestSelectedError!);
+            //                   } else {
+            //                     EnglishTestDetailsViewModel
+            //                         englishTestDetailsViewModel =
+            //                         EnglishTestDetailsViewModel();
+            //                     englishTestDetailsViewModel =
+            //                         controller.englishTestDetailsViewModel;
+            //                     englishTestDetailsViewModel.dateOfExam =
+            //                         controller.dateOfExamSelected;
+            //                     englishTestDetailsViewModel.tentativeExamDate =
+            //                         controller.tentativeExamDateSelcted;
+            //                     englishTestDetailsViewModel.expirationDate =
+            //                         controller.testscoreExpirationDateSelcted;
+            //                     englishTestDetailsViewModel.resultDate =
+            //                         controller.dateOfTestReportSelcted;
+            //                     englishTestDetailsViewModel.enqId =
+            //                         Get.find<BaseController>()
+            //                             .model1
+            //                             .id
+            //                             .toString();
+            //                     englishTestDetailsViewModel.examStatusID =
+            //                         controller.examStatusCodeSelected
+            //                             .toString();
+            //                     englishTestDetailsViewModel.examName =
+            //                         controller.examNameSelected;
+            //                     englishTestDetailsViewModel.reading =
+            //                         reading.text;
+            //                     englishTestDetailsViewModel.writing =
+            //                         writing.text;
+            //                     englishTestDetailsViewModel.listening =
+            //                         listening.text;
+            //                     englishTestDetailsViewModel.speaking =
+            //                         speaking.text;
+            //                     englishTestDetailsViewModel.literacy =
+            //                         listening.text;
+            //                     englishTestDetailsViewModel.comprehension =
+            //                         writing.text;
+            //                     englishTestDetailsViewModel.conversation =
+            //                         reading.text;
+            //                     englishTestDetailsViewModel.production =
+            //                         writing.text;
 
-                                if (getNUllChecker(tentativeExamDate.text)) {
-                                  englishTestDetailsViewModel.overAll =
-                                      overallScoreController.text;
-                                } else {
-                                  englishTestDetailsViewModel.overAll =
-                                      controller
-                                          .englishTestDetailsViewModel.overAll;
-                                }
-                                updateEnglishTestDetails(
-                                    englishTestDetailsViewModel);
-                                controller.editSave.value = true;
-                                controller.update();
-                              }
-                            } else {
-                              if (controller.examNameSelected == null) {
-                                getToast(SnackBarConstants.examnameError!);
-                              } else {
-                                EnglishTestDetailsViewModel
-                                    englishTestDetailsViewModel =
-                                    EnglishTestDetailsViewModel();
-                                englishTestDetailsViewModel =
-                                    controller.englishTestDetailsViewModel;
-                                englishTestDetailsViewModel.dateOfExam =
-                                    controller.dateOfExamSelected;
-                                englishTestDetailsViewModel.tentativeExamDate =
-                                    controller.tentativeExamDateSelcted;
-                                englishTestDetailsViewModel.expirationDate =
-                                    controller.testscoreExpirationDateSelcted;
-                                englishTestDetailsViewModel.resultDate =
-                                    controller.dateOfTestReportSelcted;
-                                englishTestDetailsViewModel.enqId =
-                                    Get.find<BaseController>()
-                                        .model1
-                                        .id
-                                        .toString();
-                                englishTestDetailsViewModel.examStatusID =
-                                    controller.examStatusCodeSelected
-                                        .toString();
-                                englishTestDetailsViewModel.examName =
-                                    controller.examNameSelected;
-                                englishTestDetailsViewModel.reading =
-                                    reading.text;
-                                englishTestDetailsViewModel.writing =
-                                    writing.text;
-                                englishTestDetailsViewModel.listening =
-                                    listening.text;
-                                englishTestDetailsViewModel.speaking =
-                                    speaking.text;
-                                englishTestDetailsViewModel.literacy =
-                                    listening.text;
-                                englishTestDetailsViewModel.comprehension =
-                                    writing.text;
-                                englishTestDetailsViewModel.conversation =
-                                    reading.text;
-                                englishTestDetailsViewModel.production =
-                                    writing.text;
-                                if (getNUllChecker(tentativeExamDate.text)) {
-                                  englishTestDetailsViewModel.overAll =
-                                      overallScoreController.text;
-                                } else {
-                                  englishTestDetailsViewModel.overAll =
-                                      controller
-                                          .englishTestDetailsViewModel.overAll;
-                                }
-                                updateEnglishTestDetails(
-                                    englishTestDetailsViewModel);
-                                controller.editSave.value = true;
-                                controller.update();
-                              }
-                            }
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Save",
-                            textColor: ThemeConstants.whitecolor,
-                          ))
-                      : ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor,
-                            elevation: 0.0,
-                            backgroundColor:
-                                ThemeConstants.bluecolor, // foreground
-                          ),
-                          onPressed: () async {
-                            controller.editSave.value = false;
-                            controller.update();
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Edit",
-                            textColor: ThemeConstants.whitecolor,
-                          )),
-                ),
-              ),
-            ),
+            //                     if (getNUllChecker(tentativeExamDate.text)) {
+            //                       englishTestDetailsViewModel.overAll =
+            //                           overallScoreController.text;
+            //                     } else {
+            //                       englishTestDetailsViewModel.overAll =
+            //                           controller
+            //                               .englishTestDetailsViewModel.overAll;
+            //                     }
+            //                     updateEnglishTestDetails(
+            //                         englishTestDetailsViewModel);
+            //                     controller.editSave.value = true;
+            //                     controller.update();
+            //                   }
+            //                 } else {
+            //                   if (controller.examNameSelected == null) {
+            //                     getToast(SnackBarConstants.examnameError!);
+            //                   } else {
+            //                     EnglishTestDetailsViewModel
+            //                         englishTestDetailsViewModel =
+            //                         EnglishTestDetailsViewModel();
+            //                     englishTestDetailsViewModel =
+            //                         controller.englishTestDetailsViewModel;
+            //                     englishTestDetailsViewModel.dateOfExam =
+            //                         controller.dateOfExamSelected;
+            //                     englishTestDetailsViewModel.tentativeExamDate =
+            //                         controller.tentativeExamDateSelcted;
+            //                     englishTestDetailsViewModel.expirationDate =
+            //                         controller.testscoreExpirationDateSelcted;
+            //                     englishTestDetailsViewModel.resultDate =
+            //                         controller.dateOfTestReportSelcted;
+            //                     englishTestDetailsViewModel.enqId =
+            //                         Get.find<BaseController>()
+            //                             .model1
+            //                             .id
+            //                             .toString();
+            //                     englishTestDetailsViewModel.examStatusID =
+            //                         controller.examStatusCodeSelected
+            //                             .toString();
+            //                     englishTestDetailsViewModel.examName =
+            //                         controller.examNameSelected;
+            //                     englishTestDetailsViewModel.reading =
+            //                         reading.text;
+            //                     englishTestDetailsViewModel.writing =
+            //                         writing.text;
+            //                     englishTestDetailsViewModel.listening =
+            //                         listening.text;
+            //                     englishTestDetailsViewModel.speaking =
+            //                         speaking.text;
+            //                     englishTestDetailsViewModel.literacy =
+            //                         listening.text;
+            //                     englishTestDetailsViewModel.comprehension =
+            //                         writing.text;
+            //                     englishTestDetailsViewModel.conversation =
+            //                         reading.text;
+            //                     englishTestDetailsViewModel.production =
+            //                         writing.text;
+            //                     if (getNUllChecker(tentativeExamDate.text)) {
+            //                       englishTestDetailsViewModel.overAll =
+            //                           overallScoreController.text;
+            //                     } else {
+            //                       englishTestDetailsViewModel.overAll =
+            //                           controller
+            //                               .englishTestDetailsViewModel.overAll;
+            //                     }
+            //                     updateEnglishTestDetails(
+            //                         englishTestDetailsViewModel);
+            //                     controller.editSave.value = true;
+            //                     controller.update();
+            //                   }
+            //                 }
+            //               },
+            //               child: CustomAutoSizeTextMontserrat(
+            //                 text: "Save",
+            //                 textColor: ThemeConstants.whitecolor,
+            //               ))
+            //           : ElevatedButton(
+            //               style: ElevatedButton.styleFrom(
+            //                 foregroundColor: ThemeConstants.bluecolor,
+            //                 elevation: 0.0,
+            //                 backgroundColor:
+            //                     ThemeConstants.bluecolor, // foreground
+            //               ),
+            //               onPressed: () async {
+            //                 controller.editSave.value = false;
+            //                 controller.update();
+            //               },
+            //               child: CustomAutoSizeTextMontserrat(
+            //                 text: "Edit",
+            //                 textColor: ThemeConstants.whitecolor,
+            //               )),
+            //     ),
+            //   ),
+            // ),
+
             SizedBox(
               height: MediaQuery.of(context).viewInsets.bottom,
             ),
@@ -670,7 +668,7 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
           readOnly: controller.editSave.value == true ? true : false,
-          controller: overallScoreController,
+          controller: EnglishTestController.overallScoreController,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
           decoration: InputDecoration(
@@ -710,7 +708,7 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: listening,
+          controller: EnglishTestController.listening,
           // onChanged: (value) {
           //   if (Get.find<EnglishTestController>()
           //       .listeningKey
@@ -799,7 +797,7 @@ class EnglishTestDetails extends StatelessWidget {
 
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
-          controller: writing,
+          controller: EnglishTestController.writing,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
@@ -882,7 +880,7 @@ class EnglishTestDetails extends StatelessWidget {
 
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
-          controller: reading,
+          controller: EnglishTestController.reading,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
@@ -965,7 +963,7 @@ class EnglishTestDetails extends StatelessWidget {
 
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
-          controller: speaking,
+          controller: EnglishTestController.speaking,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
@@ -1051,7 +1049,7 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          controller: listening,
+          controller: EnglishTestController.listening,
           keyboardType: TextInputType.number,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
@@ -1096,7 +1094,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-          controller: writing,
+          controller: EnglishTestController.writing,
           keyboardType: TextInputType.number,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
@@ -1152,7 +1150,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-          controller: reading,
+          controller: EnglishTestController.reading,
           keyboardType: TextInputType.number,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
@@ -1208,7 +1206,7 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-          controller: speaking,
+          controller: EnglishTestController.speaking,
           keyboardType: TextInputType.number,
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
@@ -1263,14 +1261,14 @@ class EnglishTestDetails extends StatelessWidget {
     try {
       double temp = 0;
       if (controller.examNameSelected == "TOEFL") {
-        if (listening.text.isNotEmpty &&
-            writing.text.isNotEmpty &&
-            reading.text.isNotEmpty &&
-            speaking.text.isNotEmpty) {
-          temp = double.parse(listening.text) +
-              double.parse(writing.text) +
-              double.parse(reading.text) +
-              double.parse(speaking.text);
+        if (EnglishTestController.listening.text.isNotEmpty &&
+            EnglishTestController.writing.text.isNotEmpty &&
+            EnglishTestController.reading.text.isNotEmpty &&
+            EnglishTestController.speaking.text.isNotEmpty) {
+          temp = double.parse(EnglishTestController.listening.text) +
+              double.parse(EnglishTestController.writing.text) +
+              double.parse(EnglishTestController.reading.text) +
+              double.parse(EnglishTestController.speaking.text);
           temp = (temp);
         }
         return [
@@ -1290,7 +1288,7 @@ class EnglishTestDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              controller: overallScoreController,
+              controller: EnglishTestController.overallScoreController,
               readOnly: true,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -1308,16 +1306,17 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ];
       } else {
-        if (listening.text.isNotEmpty &&
-            writing.text.isNotEmpty &&
-            reading.text.isNotEmpty &&
-            speaking.text.isNotEmpty) {
-          temp = double.parse(listening.text) +
-              double.parse(writing.text) +
-              double.parse(reading.text) +
-              double.parse(speaking.text);
+        if (EnglishTestController.listening.text.isNotEmpty &&
+            EnglishTestController.writing.text.isNotEmpty &&
+            EnglishTestController.reading.text.isNotEmpty &&
+            EnglishTestController.speaking.text.isNotEmpty) {
+          temp = double.parse(EnglishTestController.listening.text) +
+              double.parse(EnglishTestController.writing.text) +
+              double.parse(EnglishTestController.reading.text) +
+              double.parse(EnglishTestController.speaking.text);
           temp = (temp / 4);
-          overallScoreController.text = temp.toStringAsFixed(2);
+          EnglishTestController.overallScoreController.text =
+              temp.toStringAsFixed(2);
         }
 
         return [
@@ -1336,7 +1335,7 @@ class EnglishTestDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextField(
-              controller: overallScoreController,
+              controller: EnglishTestController.overallScoreController,
               readOnly: true,
               scrollPadding: EdgeInsets.symmetric(
                   vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -1371,7 +1370,7 @@ class EnglishTestDetails extends StatelessWidget {
           controller.englishTestDetailsViewModel.expirationDate;
       controller.tentativeExamDateSelcted =
           controller.englishTestDetailsViewModel.tentativeExamDate;
-      overallScoreController.text =
+      EnglishTestController.overallScoreController.text =
           getNUllChecker(controller.englishTestDetailsViewModel.overAll) ==
                   false
               ? controller.englishTestDetailsViewModel.overAll.toString()
@@ -1406,12 +1405,5 @@ class EnglishTestDetails extends StatelessWidget {
     } catch (e) {
       print(e.toString());
     }
-  }
-
-  updateEnglishTestDetails(
-      EnglishTestDetailsViewModel englishTestDetailsViewModel) {
-    controller.updateEnglishTestDetaisl(
-        Get.find<BaseController>().model1.id.toString(),
-        englishTestDetailsViewModel);
   }
 }

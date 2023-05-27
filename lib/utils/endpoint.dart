@@ -126,6 +126,14 @@ class Endpoints {
   static String? qualificationUpdateDropdownPart3 = "&city_id=";
   static String? phoneNuberverfiy = "verify-number?mobile=";
   static String? agree = "agree-student-consent?enq_id=";
+
+  static String? counselorList = "service-assignees?enq_id=";
+
+  static String? profileDataValidation = "profile-data-validation?enq_id=";
+
+  static String? carouselList = "carousel-banner";
+
+  static String? idsFromZipCode = "ids-from-zip-code";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

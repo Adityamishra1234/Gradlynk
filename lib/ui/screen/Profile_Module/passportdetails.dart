@@ -11,10 +11,11 @@ import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class PassportDetails extends StatelessWidget {
-  PassportDetails({Key? key}) : super(key: key);
+  PassportDetails({Key? key, this.editButton}) : super(key: key);
   var controller = Get.put(PassportController());
 
-  static final passportNumber = TextEditingController();
+  bool? editButton = false;
+
   // static final dateofIssuse = TextEditingController();
   // static final expireDate = TextEditingController();
 
@@ -28,7 +29,7 @@ class PassportDetails extends StatelessWidget {
             controller.loadingPlaceOfIssuse.value == true) {
           controller.loadingFirstTime.value = true;
           // citizen of, passport number ,country of issue, state of issue, place of issue ,date of issue, expiry date  ("Yes") / No => tentative Date
-          passportNumber.text =
+          PassportController.passportNumber.text =
               getNUllChecker(controller.passportModel.passportNumber) == false
                   ? controller.passportModel.passportNumber!
                   : "";
@@ -58,7 +59,6 @@ class PassportDetails extends StatelessWidget {
               controller.citizenSelected = controller.countryList[i];
             }
           }
-
           for (var i = 0; i < controller.countryList.length; i++) {
             if (controller.countryCode[i] ==
                 controller.passportModel.countryOfIssue) {
@@ -71,6 +71,10 @@ class PassportDetails extends StatelessWidget {
         }
       } catch (e) {
         print(e.toString());
+      }
+      if (editButton == true) {
+        controller.editSave.value = true;
+        controller.update();
       }
 
       return ListView(
@@ -86,54 +90,6 @@ class PassportDetails extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
-                const Spacer(),
-                if (controller.editSave.value == true)
-                  TextButton(
-                      onPressed: () {
-                        if (controller.passportAvaliable.value == true) {
-                          controller.editSave.value = false;
-                          controller.update();
-                          updatePassport();
-                        } else {
-                          if (controller.citizenSelected == null) {
-                            getToast(SnackBarConstants.citizenSelectError!);
-                          } else if (passportNumber.text.isEmpty) {
-                            getToast(SnackBarConstants.passportNumberError!);
-                          } else if (controller.countrySelected == null) {
-                            getToast(SnackBarConstants.countrySelectError!);
-                          } else if (controller.stateSelected == null) {
-                            getToast(SnackBarConstants.stateError!);
-                          } else if (controller.placeOfIssuseSelected == null) {
-                            getToast(SnackBarConstants.placeSelectError!);
-                          } else if (controller.dateOfIssue == null) {
-                            getToast(SnackBarConstants.dateOfISsueSelectError!);
-                          } else if (controller.expireDate == null) {
-                            getToast(SnackBarConstants.expireDateError!);
-                          } else {
-                            controller.editSave.value = false;
-                            controller.update();
-                            updatePassport();
-                          }
-                        }
-                      },
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "save",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        textColor: ThemeConstants.bluecolor,
-                      )),
-                if (controller.editSave.value == false)
-                  TextButton(
-                      onPressed: () {
-                        controller.editSave.value = true;
-                        controller.update();
-                      },
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "edit",
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        textColor: ThemeConstants.bluecolor,
-                      ))
               ],
             ),
           ),
@@ -201,7 +157,7 @@ class PassportDetails extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextField(
-          controller: passportNumber,
+          controller: PassportController.passportNumber,
           readOnly: controller.editSave.value == false,
           scrollPadding: EdgeInsets.symmetric(
               vertical: MediaQuery.of(context).viewInsets.bottom + 30),
@@ -217,12 +173,38 @@ class PassportDetails extends StatelessWidget {
           style: ThemeConstants.montserrattextstyle,
         ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+      //   child: Align(
+      //     alignment: AlignmentDirectional.topStart,
+      //     child: CustomAutoSizeTextMontserrat(
+      //       text: "Country of Issue",
+      //       mandatory: true,
+      //       textColor: ThemeConstants.TextColor,
+      //       fontSize: 14,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      // CustomDropDownSingle(
+      //   model: controller.loadingCountry.value == true
+      //       ? controller.countryList
+      //       : ["No Data"],
+      //   initialSelectedValue:
+      //       getNUllChecker(controller.countrySelected) == false
+      //           ? controller.countrySelected
+      //           : controller.loadingCountry.value == true
+      //               ? controller.countryList[0]
+      //               : "No Data",
+      //   choosefieldtype: controller.editSave.value == false,
+      //   callbackFunction: callbackCountry,
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
-            text: "Country of Issue",
+            text: "Nationality",
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
@@ -268,32 +250,32 @@ class PassportDetails extends StatelessWidget {
         choosefieldtype: controller.editSave.value == false,
         callbackFunction: calllbackState,
       ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Place of Issue",
-            mandatory: true,
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      CustomDropDownSingle(
-        model: controller.loadingPlaceOfIssuse.value == true
-            ? controller.placeOfIssuse
-            : ["No Data"],
-        initialSelectedValue:
-            getNUllChecker(controller.placeOfIssuseSelected) == false
-                ? controller.placeOfIssuseSelected
-                : controller.loadingPlaceOfIssuse.value == true
-                    ? controller.placeOfIssuse[0]
-                    : "No Data",
-        choosefieldtype: controller.editSave.value == false,
-        callbackFunction: callbackPlaceOfIssuse,
-      ),
+      // Padding(
+      //   padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+      //   child: Align(
+      //     alignment: AlignmentDirectional.topStart,
+      //     child: CustomAutoSizeTextMontserrat(
+      //       text: "Place of Issue",
+      //       mandatory: true,
+      //       textColor: ThemeConstants.TextColor,
+      //       fontSize: 14,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      // CustomDropDownSingle(
+      //   model: controller.loadingPlaceOfIssuse.value == true
+      //       ? controller.placeOfIssuse
+      //       : ["No Data"],
+      //   initialSelectedValue:
+      //       getNUllChecker(controller.placeOfIssuseSelected) == false
+      //           ? controller.placeOfIssuseSelected
+      //           : controller.loadingPlaceOfIssuse.value == true
+      //               ? controller.placeOfIssuse[0]
+      //               : "No Data",
+      //   choosefieldtype: controller.editSave.value == false,
+      //   callbackFunction: callbackPlaceOfIssuse,
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -334,83 +316,59 @@ class PassportDetails extends StatelessWidget {
             date: controller.expireDate,
             callbackDate: callbackExpireDate),
       ),
-      Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: Row(
-          children: [
-            const Spacer(),
-            if (controller.editSave.value == false)
-              Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: SizedBox(
-                  width: 100,
-                  height: 35,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: ThemeConstants.whitecolor,
-                      side: BorderSide(color: ThemeConstants.bluecolor),
-                      backgroundColor: ThemeConstants.whitecolor, // foreground
-                    ),
-                    onPressed: () {
-                      controller.editSave.value = true;
-                      controller.update();
-                    },
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Edit",
-                      textColor: ThemeConstants.bluecolor,
-                    ),
-                  ),
-                ),
-              ),
-            if (controller.editSave.value == true)
-              Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: SizedBox(
-                  width: 100,
-                  height: 35,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: ThemeConstants.whitecolor,
-                      side: BorderSide(color: ThemeConstants.bluecolor),
-                      backgroundColor: ThemeConstants.whitecolor, // foreground
-                    ),
-                    onPressed: () {
-                      if (controller.passportAvaliable.value == true) {
-                        controller.editSave.value = false;
-                        controller.update();
-                        updatePassport();
-                      } else {
-                        if (controller.citizenSelected == null) {
-                          getToast(SnackBarConstants.citizenSelectError!);
-                        } else if (passportNumber.text.isEmpty) {
-                          getToast(SnackBarConstants.passportNumberError!);
-                        } else if (controller.countrySelected == null) {
-                          getToast(SnackBarConstants.countrySelectError!);
-                        } else if (controller.stateSelected == null) {
-                          getToast(SnackBarConstants.stateError!);
-                        } else if (controller.placeOfIssuseSelected == null) {
-                          getToast(SnackBarConstants.placeSelectError!);
-                        } else if (controller.dateOfIssue == null) {
-                          getToast(SnackBarConstants.dateOfISsueSelectError!);
-                        } else if (controller.expireDate == null) {
-                          getToast(SnackBarConstants.expireDateError!);
-                        } else {
-                          controller.editSave.value = false;
-                          controller.update();
-                          updatePassport();
-                        }
-                      }
-                    },
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Save",
-                      textColor: ThemeConstants.bluecolor,
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
+      // Padding(
+      //   padding: const EdgeInsets.only(top: 15),
+      //   child: Row(
+      //     children: [
+      //       const Spacer(),
+      //       if (controller.editSave.value == false)
+      //         Padding(
+      //           padding: const EdgeInsets.only(right: 15),
+      //           child: SizedBox(
+      //             width: 100,
+      //             height: 35,
+      //             child: ElevatedButton(
+      //               style: ElevatedButton.styleFrom(
+      //                 foregroundColor: ThemeConstants.whitecolor,
+      //                 side: BorderSide(color: ThemeConstants.bluecolor),
+      //                 backgroundColor: ThemeConstants.whitecolor, // foreground
+      //               ),
+      //               onPressed: () {
+      //                 controller.editSave.value = true;
+      //                 controller.update();
+      //               },
+      //               child: CustomAutoSizeTextMontserrat(
+      //                 text: "Edit",
+      //                 textColor: ThemeConstants.bluecolor,
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //       if (controller.editSave.value == true)
+      //         Padding(
+      //           padding: const EdgeInsets.only(right: 15),
+      //           child: SizedBox(
+      //             width: 100,
+      //             height: 35,
+      //             child: ElevatedButton(
+      //               style: ElevatedButton.styleFrom(
+      //                 foregroundColor: ThemeConstants.whitecolor,
+      //                 side: BorderSide(color: ThemeConstants.bluecolor),
+      //                 backgroundColor: ThemeConstants.whitecolor, // foreground
+      //               ),
+      //               onPressed: () {},
+      //               child: CustomAutoSizeTextMontserrat(
+      //                 text: "Save",
+      //                 textColor: ThemeConstants.bluecolor,
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+
+      //     ],
+      //   ),
+      // ),
+
       const SizedBox(
         height: 30,
       )
@@ -474,24 +432,24 @@ class PassportDetails extends StatelessWidget {
     controller.update();
   }
 
-  updatePassport() {
-    controller.passportModel.dateOfIssue = controller.dateOfIssue;
-    controller.passportModel.expiryDate = controller.expireDate;
-    //  controller.passportModel.passportTentativeDate
-    controller.passportModel.passportNumber = passportNumber.text;
-    controller.passportModel.citizenOf = controller.citizenCodeSelected;
-    controller.passportModel.countryOfIssue = controller.countryCodeSelected;
-    controller.passportModel.stateOfIssue = controller.stateCodeSelected;
-    controller.passportModel.placeOfIssue = controller.placeOfIssuseSelected;
-    controller.passportModel.passportAvailable =
-        controller.passportAvaliable.value == true ? "2" : "1";
-    controller.passportModel.enqId =
-        Get.find<BaseController>().model1.id.toString();
+  // updatePassport() {
+  //   controller.passportModel.dateOfIssue = controller.dateOfIssue;
+  //   controller.passportModel.expiryDate = controller.expireDate;
+  //   //  controller.passportModel.passportTentativeDate
+  //   controller.passportModel.passportNumber = passportNumber.text;
+  //   controller.passportModel.citizenOf = controller.citizenCodeSelected;
+  //   controller.passportModel.countryOfIssue = controller.countryCodeSelected;
+  //   controller.passportModel.stateOfIssue = controller.stateCodeSelected;
+  //   controller.passportModel.placeOfIssue = controller.placeOfIssuseSelected;
+  //   controller.passportModel.passportAvailable =
+  //       controller.passportAvaliable.value == true ? "2" : "1";
+  //   controller.passportModel.enqId =
+  //       Get.find<BaseController>().model1.id.toString();
 
-    controller.updatePassportDetail(
-        Get.find<BaseController>().model1.id.toString(),
-        controller.passportModel);
-  }
+  //   controller.updatePassportDetail(
+  //       Get.find<BaseController>().model1.id.toString(),
+  //       controller.passportModel);
+  // }
 
   callbackDateOfIssue(data) {
     String temp = data.toString().split(' ')[0];

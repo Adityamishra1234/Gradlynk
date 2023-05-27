@@ -314,7 +314,7 @@ class QualificationDetailsController extends GetxController with StateMixin {
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
         List<dynamic> temp = map.keys.toList();
-        highestQualificationList.add("Select Highest Qualification");
+        highestQualificationList.add("Select Qualification");
         highestQualificationCode.add(0);
         for (var element in temp) {
           highestQualificationList.add(element);
@@ -463,6 +463,7 @@ class QualificationDetailsController extends GetxController with StateMixin {
         Map map = Map<String, dynamic>.from(res);
         yearofPassing.add("Select year of Passing");
         yearofPassing = map.values.toList();
+        yearOfPassingSelected = '2023';
         loadingyearOfpassing.value = true;
         update();
       }

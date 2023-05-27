@@ -6,6 +6,7 @@ import 'package:studentpanel/utils/constants.dart';
 
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
+import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
@@ -29,138 +30,298 @@ class ApplicationSummary extends StatelessWidget {
     print(controller.searchedList.length);
 
     return Scaffold(
-        appBar: CustomAppBar("title"),
-        drawer: displayMobileLayout == false
-            ? CustomDrawer(
-                index: 2,
-              )
-            : null,
-        body: GetBuilder<ApplicationSummaryController>(builder: (_) {
-          // For Update model with Staus Name
-          if (_.loadingStatus.value == true &&
-              _.loadingApplicationSummary.value == true) {
-            for (var i = 0; i < _.searchedList.length; i++) {
-              for (var j = 0; j < _.statusListId.length; j++) {
-                if (_.searchedList[i].statusId.toString() ==
-                    _.statusListId[j].toString()) {
-                  _.searchedList[i].statusName = _.statusListName[j];
-                }
+      appBar: CustomAppBar("title"),
+      drawer: displayMobileLayout == false
+          ? CustomDrawer(
+              index: 2,
+            )
+          : null,
+      body: GetBuilder<ApplicationSummaryController>(builder: (_) {
+        // For Update model with Staus Name
+        if (_.loadingStatus.value == true &&
+            _.loadingApplicationSummary.value == true) {
+          for (var i = 0; i < _.searchedList.length; i++) {
+            for (var j = 0; j < _.statusListId.length; j++) {
+              if (_.searchedList[i].statusId.toString() ==
+                  _.statusListId[j].toString()) {
+                _.searchedList[i].statusName = _.statusListName[j];
               }
             }
           }
+        }
 
-          // For  Update model with Stage Names
-          if (_.loadingStage.value == true &&
-              _.loadingApplicationSummary.value == true) {
-            for (var i = 0; i < _.searchedList.length; i++) {
-              for (var j = 0; j < _.stageListID.length; j++) {
-                if (_.searchedList[i].stageId.toString() ==
-                    _.stageListID[j].toString()) {
-                  _.searchedList[i].stageName = _.stageNameList[j];
-                }
+        // For  Update model with Stage Names
+        if (_.loadingStage.value == true &&
+            _.loadingApplicationSummary.value == true) {
+          for (var i = 0; i < _.searchedList.length; i++) {
+            for (var j = 0; j < _.stageListID.length; j++) {
+              if (_.searchedList[i].stageId.toString() ==
+                  _.stageListID[j].toString()) {
+                _.searchedList[i].stageName = _.stageNameList[j];
               }
             }
           }
-          return Row(
-            children: [
-              if (displayMobileLayout == true)
-                CustomDrawer(
-                  index: 2,
-                ),
-              Flexible(
-                child: Column(
-                  children: [
-                    if (_.loadingApplicationSummary.value == true)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, top: 20),
-                        child: Align(
-                          alignment: AlignmentDirectional.topStart,
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "Track Application Summary",
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            textColor: ThemeConstants.bluecolor,
-                          ),
-                        ),
-                      ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+        }
+        return Row(
+          children: [
+            if (displayMobileLayout == true)
+              CustomDrawer(
+                index: 2,
+              ),
+            Flexible(
+              child: Column(
+                children: [
+                  if (_.loadingApplicationSummary.value == true)
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 10),
-                      child: SizedBox(
-                        height: 50,
-                        child: TextField(
-                          onChanged: (value) {
-                            controller.filterSearchResults(value.toString());
-                            controller.update();
-                          },
-                          // controller: editingController,
-                          decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.all(5),
-                              hintText: "Search by country or university",
-                              prefixIcon: Icon(Icons.search),
-                              focusedBorder: const OutlineInputBorder(
-                                // width: 0.0 produces a thin "hairline" border
-                                borderSide:
-                                    BorderSide(color: Colors.blue, width: 0.5),
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)))),
+                      padding: const EdgeInsets.only(left: 10, top: 20),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Track Application Summary",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          textColor: ThemeConstants.bluecolor,
                         ),
                       ),
                     ),
-                    if (_.loadingApplicationSummary.value == true)
-                      Expanded(
-                        child: ListView.builder(
-                            controller: ScrollController(),
-                            itemCount: controller.searchedList.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return InkWell(
-                                onTap: () {
-                                  Get.toNamed(
-                                      ApplicationCompleteDetails.routeNamed,
-                                      arguments: controller
-                                          .searchedList[index].id
-                                          .toString());
-                                },
-                                child: Card(
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                        color: ThemeConstants.blackcolor,
-                                        width: 0.5),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10,
-                                        bottom: 10,
-                                        right: 10,
-                                        left: 10),
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: controller.searchedList[index]
-                                                .universityName,
-                                            textColor: ThemeConstants.bluecolor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Country: ",
-                                                fontWeight: FontWeight.bold,
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    child: SizedBox(
+                      height: 50,
+                      child: TextField(
+                        onChanged: (value) {
+                          controller.filterSearchResults(value.toString());
+                          controller.update();
+                        },
+                        // controller: editingController,
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.all(5),
+                            hintText: "Search by country or university",
+                            prefixIcon: Icon(Icons.search),
+                            focusedBorder: const OutlineInputBorder(
+                              // width: 0.0 produces a thin "hairline" border
+                              borderSide:
+                                  BorderSide(color: Colors.blue, width: 0.5),
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50)))),
+                      ),
+                    ),
+                  ),
+                  if (_.loadingApplicationSummary.value == true)
+                    Expanded(
+                      child: ListView.builder(
+                          controller: ScrollController(),
+                          itemCount: controller.searchedList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              onTap: () {
+                                Get.toNamed(
+                                    ApplicationCompleteDetails.routeNamed,
+                                    arguments: controller.searchedList[index].id
+                                        .toString());
+                              },
+                              child: Card(
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color: ThemeConstants.blackcolor,
+                                      width: 0.5),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 10, bottom: 10, right: 10, left: 10),
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CustomAutoSizeTextMontserrat(
+                                          text: controller.searchedList[index]
+                                              .universityName,
+                                          textColor: ThemeConstants.bluecolor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Country: ",
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            SizedBox(
+                                              width: width - 100,
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: controller
+                                                    .searchedList[index]
+                                                    .countryName,
                                                 fontSize: 14,
+                                                textColor:
+                                                    ThemeConstants.TextColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Course Level: ",
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            SizedBox(
+                                              width: width - 140,
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: controller
+                                                    .searchedList[index]
+                                                    .courseLevel,
+                                                fontSize: 14,
+                                                textColor:
+                                                    ThemeConstants.TextColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Course Name: ",
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            SizedBox(
+                                              width: width - 155,
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: controller
+                                                    .searchedList[index]
+                                                    .courseName,
+                                                fontSize: 14,
+                                                textColor:
+                                                    ThemeConstants.TextColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "campus Name: ",
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            SizedBox(
+                                              width: width - 150,
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: controller
+                                                    .searchedList[index]
+                                                    .campusName,
+                                                fontSize: 14,
+                                                textColor:
+                                                    ThemeConstants.TextColor,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          width: width,
+                                          decoration: BoxDecoration(
+                                              color: ThemeConstants
+                                                  .lightgreentColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(7.0)),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10,
+                                                    left: 10,
+                                                    bottom: 10),
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Stage: ",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              SizedBox(
+                                                width: width - 95,
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: controller
+                                                      .searchedList[index]
+                                                      .stageName,
+                                                  textColor:
+                                                      ThemeConstants.TextColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                ThemeConstants.lightorangeColor,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10,
+                                                    bottom: 10,
+                                                    left: 10),
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "Status: ",
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
                                               ),
                                               const SizedBox(
                                                 width: 5,
@@ -171,7 +332,7 @@ class ApplicationSummary extends StatelessWidget {
                                                     CustomAutoSizeTextMontserrat(
                                                   text: controller
                                                       .searchedList[index]
-                                                      .countryName,
+                                                      .statusName,
                                                   fontSize: 14,
                                                   textColor:
                                                       ThemeConstants.TextColor,
@@ -179,191 +340,29 @@ class ApplicationSummary extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Course Level: ",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: width - 140,
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .searchedList[index]
-                                                      .courseLevel,
-                                                  fontSize: 14,
-                                                  textColor:
-                                                      ThemeConstants.TextColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Course Name: ",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: width - 155,
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .searchedList[index]
-                                                      .courseName,
-                                                  fontSize: 14,
-                                                  textColor:
-                                                      ThemeConstants.TextColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "campus Name: ",
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 14,
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              SizedBox(
-                                                width: width - 150,
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: controller
-                                                      .searchedList[index]
-                                                      .campusName,
-                                                  fontSize: 14,
-                                                  textColor:
-                                                      ThemeConstants.TextColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            width: width,
-                                            decoration: BoxDecoration(
-                                                color: ThemeConstants
-                                                    .lightgreentColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(7.0)),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10,
-                                                          left: 10,
-                                                          bottom: 10),
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: "Stage: ",
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                SizedBox(
-                                                  width: width - 95,
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: controller
-                                                        .searchedList[index]
-                                                        .stageName,
-                                                    textColor: ThemeConstants
-                                                        .TextColor,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            decoration: BoxDecoration(
-                                              color: ThemeConstants
-                                                  .lightorangeColor,
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10,
-                                                          bottom: 10,
-                                                          left: 10),
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: "Status: ",
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                SizedBox(
-                                                  width: width - 100,
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: controller
-                                                        .searchedList[index]
-                                                        .statusName,
-                                                    fontSize: 14,
-                                                    textColor: ThemeConstants
-                                                        .TextColor,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ]),
-                                  ),
+                                        ),
+                                      ]),
                                 ),
-                              );
-                            }),
-                      ),
-                    if (_.loadingApplicationSummary.value == false)
-                      const Spacer(),
-                    if (_.loadingApplicationSummary.value == false)
-                      Center(child: getLoading(context)),
-                    if (_.loadingApplicationSummary.value == false)
-                      const Spacer(),
-                  ],
-                ),
+                              ),
+                            );
+                          }),
+                    ),
+                  if (_.loadingApplicationSummary.value == false)
+                    const Spacer(),
+                  if (_.loadingApplicationSummary.value == false)
+                    Center(child: getLoading(context)),
+                  if (_.loadingApplicationSummary.value == false)
+                    const Spacer(),
+                ],
               ),
-            ],
-          );
-        }));
+            ),
+          ],
+        );
+      }),
+      bottomNavigationBar: CustomButtomNavbar(
+        currentIndex: 3,
+        context2: context,
+      ),
+    );
   }
 }

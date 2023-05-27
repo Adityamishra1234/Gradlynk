@@ -24,6 +24,10 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomButtomNavbar(
+        currentIndex: 2,
+        context2: context,
+      ),
       appBar: CustomAppBar("title"),
       drawer: CustomDrawer(),
       body: GetBuilder<BaseController>(builder: (_) {

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hashids2/hashids2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/models/carouselListModel.dart';
 import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
@@ -29,11 +30,13 @@ class BaseController extends GetxController {
   List<String> countrylist = [];
   List<int> countryid = [];
   bool dashboard = false;
+  RxList<CarouselListModel> carouselList = <CarouselListModel>[].obs;
 
   @override
   void onInit() {
     super.onInit();
     profiledetail();
+    caraouselData();
   }
 
   @override
@@ -44,6 +47,15 @@ class BaseController extends GetxController {
   getUpdateNotitifcation() {
     NewVersionCheck.newVersionCheck(Get.context,
         "com.downtownengineers.gradlynk", "com.downtownengineers.gradlynk");
+  }
+
+  caraouselData() async {
+    var res = await apiServices.caraouselList();
+
+    carouselList.value = List<CarouselListModel>.from(
+        res.map((e) => CarouselListModel.fromJson(e)));
+
+    print(res);
   }
 
   profiledetail() async {
