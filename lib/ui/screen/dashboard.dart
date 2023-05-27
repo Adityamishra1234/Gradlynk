@@ -90,30 +90,30 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // Get.offAllNamed(DashBoard.routeNamed);
     try {
-      if (Get.arguments) {
-        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-          (_) => Future.delayed(const Duration(milliseconds: 200), () {
-            ShowCaseWidget.of(myContext!).startShowCase([
-              _one,
-              _two,
-              _three,
-              _four,
-              _five,
-              _six,
-              _nine,
-              _ten,
-              _seven,
-              _11,
-              _eight,
-              _12,
-            ]);
-          }),
-        );
+      // if (Get.arguments) {
+      ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+        (_) => Future.delayed(const Duration(milliseconds: 200), () {
+          ShowCaseWidget.of(myContext!).startShowCase([
+            _one,
+            _two,
+            _three,
+            _four,
+            _five,
+            _six,
+            _nine,
+            _ten,
+            _seven,
+            _11,
+            _eight,
+            _12,
+          ]);
+        }),
+      );
 
-        showcase = true;
-      } else {
-        appbar = true;
-      }
+      showcase = true;
+      // } else {
+      //   appbar = true;
+      // }
     } catch (e) {}
     Get.find<BaseController>().profiledetail();
 
@@ -130,190 +130,705 @@ class _DashBoardState extends State<DashBoard> {
 
     ScrollController _Scrollcontroller = ScrollController();
 
-    return ShowCaseWidget(onComplete: (p0, p1) {
-      print(p0);
-      if (p0 == 8) {
-        appbar = true;
-        setState(() {});
-      }
-    }, builder: Builder(builder: (context) {
-      myContext = context;
-      return GetBuilder<BaseController>(builder: (_) {
-        return Scaffold(
-          key: _scaffoldKey,
-          appBar: AppBar(
-            elevation: 0,
-            actions: [
-              if (displayMobileLayout == true)
-                IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.black),
-                  onPressed: () => Get.back(),
-                ),
-              if (displayMobileLayout == false)
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Showcase(
+    return ShowCaseWidget(
+        autoPlay: true,
+        autoPlayDelay: Duration(seconds: 5),
+        onComplete: (p0, p1) {
+          print(p0);
+          if (p0 == 8) {
+            appbar = true;
+            setState(() {});
+          }
+          if (p0 == 2) {
+            _Scrollcontroller.jumpTo(
+                _Scrollcontroller.position.maxScrollExtent);
+          }
+        },
+        builder: Builder(builder: (context) {
+          myContext = context;
+          return GetBuilder<BaseController>(builder: (_) {
+            return Scaffold(
+              key: _scaffoldKey,
+              appBar: AppBar(
+                elevation: 0,
+                actions: [
+                  if (displayMobileLayout == true)
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Colors.black),
+                      onPressed: () => Get.back(),
+                    ),
+                  if (displayMobileLayout == false)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Showcase(
+                        descTextStyle: TextStyle(
+                            color: ThemeConstants.whitecolor, fontSize: 18),
+                        tooltipBackgroundColor: ThemeConstants.bluecolor,
+                        overlayColor: Color.fromARGB(255, 0, 0, 0),
+                        overlayOpacity: 0.8,
+                        key: _nine,
+                        description:
+                            "Your Navigation drawer is your easy to access all features zone.",
+                        child: IconButton(
+                          icon: svgImage(
+                              "menu", ThemeConstants.IconColor, 35, 35),
+                          onPressed: () {
+                            _scaffoldKey.currentState!.openDrawer();
+
+                            DrawerFilter();
+                          },
+                        ),
+                      ),
+                    ),
+                  svgImage("work", Colors.transparent, 32, 32),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Image.network(
+                      "https://sieceducation.in/assets/assets/images/logo.png",
+                      width: 150,
+                      height: 50,
+                    ),
+                  ),
+                  const Spacer(),
+                  Showcase(
                     descTextStyle: TextStyle(
                         color: ThemeConstants.whitecolor, fontSize: 18),
                     tooltipBackgroundColor: ThemeConstants.bluecolor,
-                    overlayColor: Color.fromARGB(255, 0, 0, 0),
+                    overlayColor: Color.fromARGB(178, 0, 0, 0),
                     overlayOpacity: 0.8,
-                    key: _nine,
+                    key: _ten,
                     description:
-                        "Your Navigation drawer is your easy to access all features zone.",
+                        "The bell rings with an updated notification at your doors.",
                     child: IconButton(
-                      icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
+                      icon: svgImage(
+                          "notification", ThemeConstants.IconColor, 30, 30),
                       onPressed: () {
-                        _scaffoldKey.currentState!.openDrawer();
-
-                        DrawerFilter();
+                        //TODO
+                        Get.to(NotificationScreen());
                       },
                     ),
                   ),
-                ),
-              svgImage("work", Colors.transparent, 32, 32),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Image.network(
-                  "https://sieceducation.in/assets/assets/images/logo.png",
-                  width: 150,
-                  height: 50,
-                ),
-              ),
-              const Spacer(),
-              Showcase(
-                descTextStyle:
-                    TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
-                tooltipBackgroundColor: ThemeConstants.bluecolor,
-                overlayColor: Color.fromARGB(178, 0, 0, 0),
-                overlayOpacity: 0.8,
-                key: _ten,
-                description:
-                    "The bell rings with an updated notification at your doors.",
-                child: IconButton(
-                  icon: svgImage(
-                      "notification", ThemeConstants.IconColor, 30, 30),
-                  onPressed: () {
-                    //TODO
-                    Get.to(NotificationScreen());
-                  },
-                ),
-              ),
-              // IconButton(
-              //   icon: SvgPicture.asset(
-              //     "assets/icons/profile.svg",
-              //     height: 30,
-              //     color: const Color.fromARGB(255, 99, 99, 99),
-              //   ),
-              //   onPressed: () {
-              //     Get.toNamed(ProfilePage.routeNamed);
-              //   },
-              // ),
+                  // IconButton(
+                  //   icon: SvgPicture.asset(
+                  //     "assets/icons/profile.svg",
+                  //     height: 30,
+                  //     color: const Color.fromARGB(255, 99, 99, 99),
+                  //   ),
+                  //   onPressed: () {
+                  //     Get.toNamed(ProfilePage.routeNamed);
+                  //   },
+                  // ),
 
-              const SizedBox(
-                width: 5,
-              )
-            ],
-            // title: Text(
-            //   title,
-            //   style: const TextStyle(color: Colors.black),
-            // ),
-            backgroundColor: Colors.white,
-          ),
+                  const SizedBox(
+                    width: 5,
+                  )
+                ],
+                // title: Text(
+                //   title,
+                //   style: const TextStyle(color: Colors.black),
+                // ),
+                backgroundColor: Colors.white,
+              ),
 
-          // appbar == true
-          //     ? controller.loadingStudentPanelData1.value == true
-          //         ? CustomAppBar("DashBoard", true)
-          //         : null
-          //     : null,
-          drawer: displayMobileLayout == false
-              ? CustomDrawer(
-                  index: 0,
-                )
-              : null,
-          body:
-              // setState(() {});
-              _.loadingStudentPanelData1.value == true
-                  ? Row(
-                      children: [
-                        if (displayMobileLayout == true)
-                          CustomDrawer(
-                            index: 0,
-                          ),
-                        Container(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.height,
-                            width: displayMobileLayout == true
-                                ? MediaQuery.of(context).size.width - 240
-                                : MediaQuery.of(context).size.width,
-                            child: ListView(
-                              controller: _Scrollcontroller,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    height: 95,
-                                    width: displayMobileLayout == true
-                                        ? MediaQuery.of(context).size.width -
-                                            240
-                                        : MediaQuery.of(context).size.width,
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20),
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional.topStart,
-                                            child: Text(
-                                              "Hi,",
-                                              style: GoogleFonts.roboto(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 30,
-                                                  textStyle: const TextStyle()),
+              // appbar == true
+              //     ? controller.loadingStudentPanelData1.value == true
+              //         ? CustomAppBar("DashBoard", true)
+              //         : null
+              //     : null,
+              drawer: displayMobileLayout == false
+                  ? CustomDrawer(
+                      index: 0,
+                    )
+                  : null,
+              body:
+                  // setState(() {});
+                  _.loadingStudentPanelData1.value == true
+                      ? Row(
+                          children: [
+                            if (displayMobileLayout == true)
+                              CustomDrawer(
+                                index: 0,
+                              ),
+                            Container(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              child: SizedBox(
+                                height: MediaQuery.of(context).size.height,
+                                width: displayMobileLayout == true
+                                    ? MediaQuery.of(context).size.width - 240
+                                    : MediaQuery.of(context).size.width,
+                                child: ListView(
+                                  controller: _Scrollcontroller,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: SizedBox(
+                                        height: 95,
+                                        width: displayMobileLayout == true
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width -
+                                                240
+                                            : MediaQuery.of(context).size.width,
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20),
+                                              child: Align(
+                                                alignment: AlignmentDirectional
+                                                    .topStart,
+                                                child: Text(
+                                                  "Hi,",
+                                                  style: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 30,
+                                                      textStyle:
+                                                          const TextStyle()),
+                                                ),
+                                              ),
                                             ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20),
+                                              child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional
+                                                          .topStart,
+                                                  child: SizedBox(
+                                                    // width: MediaQuery.of(context)
+                                                    //         .size
+                                                    //         .width /
+                                                    //     2,
+                                                    child: Showcase.withWidget(
+                                                      disableDefaultTargetGestures:
+                                                          true,
+                                                      onTargetClick: () {
+                                                        ShowCaseWidget.of(
+                                                                context)
+                                                            .next();
+                                                        _Scrollcontroller.jumpTo(
+                                                            _Scrollcontroller
+                                                                .position
+                                                                .maxScrollExtent);
+                                                      },
+                                                      disableMovingAnimation:
+                                                          true,
+                                                      // descTextStyle: TextStyle(
+                                                      //     color: ThemeConstants
+                                                      //         .whitecolor,
+                                                      //     fontSize: 18),
+                                                      // tooltipBackgroundColor:
+                                                      //     ThemeConstants.bluecolor,
+                                                      overlayColor:
+                                                          Color.fromARGB(
+                                                              183, 0, 0, 0),
+                                                      overlayOpacity: 0.8,
+                                                      // tooltipPadding:
+                                                      //     const EdgeInsets.only(
+                                                      //         left: 5,
+                                                      //         right: 5,
+                                                      //         top: 10,
+                                                      //         bottom: 10),
+                                                      targetShapeBorder:
+                                                          const RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      key: _one,
+                                                      // description:
+                                                      //     'Hi, Welcome to Gradlynk. Your international Education Partner.',
+                                                      container: InkWell(
+                                                        onTap: () {
+                                                          ShowCaseWidget.of(
+                                                                  context)
+                                                              .next();
+                                                          _Scrollcontroller.jumpTo(
+                                                              _Scrollcontroller
+                                                                  .position
+                                                                  .maxScrollExtent);
+                                                        },
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            top: 10,
+                                                          ),
+                                                          child: Container(
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.7,
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            child: Column(
+                                                              children: [
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional
+                                                                          .topStart,
+                                                                  child:
+                                                                      Container(
+                                                                    decoration: BoxDecoration(
+                                                                        color: ThemeConstants
+                                                                            .bluecolor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0)),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .all(
+                                                                          10.0),
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width: MediaQuery.of(context).size.width *
+                                                                            0.8,
+                                                                        child:
+                                                                            CustomAutoSizeTextMontserrat(
+                                                                          text:
+                                                                              "Hi, Welcome to Gradlynk. Your international Education Partner.",
+                                                                          textColor:
+                                                                              ThemeConstants.whitecolor,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                const Spacer(),
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    ShowCaseWidget.of(
+                                                                            context)
+                                                                        .dismiss();
+                                                                  },
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        right:
+                                                                            40,
+                                                                        bottom:
+                                                                            60),
+                                                                    child: Align(
+                                                                        alignment: AlignmentDirectional.topEnd,
+                                                                        child: Row(
+                                                                          children: [
+                                                                            const Spacer(),
+                                                                            CustomAutoSizeTextMontserrat(
+                                                                              text: "Skip",
+                                                                              textColor: ThemeConstants.whitecolor,
+                                                                              fontSize: 18,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
+                                                                            Icon(
+                                                                              Icons.skip_next,
+                                                                              color: ThemeConstants.whitecolor,
+                                                                            )
+                                                                          ],
+                                                                        )),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .height,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child:
+                                                          CustomAutoSizeTextMontserrat(
+                                                        text: firstLetterChaptial(_
+                                                                .personalModal
+                                                                .enquiryName) ??
+                                                            firstLetterChaptial(_
+                                                                .model1
+                                                                .enquiryName),
+                                                        maxLines: 2,
+                                                        fontSize: 35,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  )),
+                                            ),
+                                            const Divider(
+                                              thickness: 1,
+                                              indent: 30,
+                                              endIndent: 30,
+                                              color: Color(0xFFD6D6D6),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+
+                                    Container(
+                                      padding:
+                                          EdgeInsets.only(bottom: 10, top: 1),
+                                      height: 200,
+                                      child: CarouselSlider(
+                                        options: CarouselOptions(
+                                          autoPlay: true,
+                                          aspectRatio: 1,
+                                          viewportFraction: 1,
+                                          enlargeCenterPage: false,
+                                          enlargeStrategy:
+                                              CenterPageEnlargeStrategy.height,
+                                        ),
+                                        items: [...caraouselList()],
+                                      ),
+                                    ),
+
+                                    // Schedule Expert Call Button And Book an Appointment
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        // const SizedBox(
+                                        //   width: 20,
+                                        // ),
+
+                                        GestureDetector(
+                                          onTap: () {
+                                            print('dddd');
+                                            contactUsDialog(context);
+                                          },
+                                          child: Container(
+                                            height: 70,
+                                            width: displayMobileLayout
+                                                ? MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.91 -
+                                                    270
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.91,
+
+                                            child: Stack(
+                                              clipBehavior: Clip.none,
+                                              alignment: Alignment.bottomCenter,
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      EdgeInsets.only(left: 20),
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  height: 60,
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                      color: ThemeConstants
+                                                          .bluecolor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              17)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 0.5,
+                                                                horizontal: 8),
+                                                        decoration: BoxDecoration(
+                                                            color:
+                                                                ThemeConstants
+                                                                    .GreenColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        15)),
+                                                        child:
+                                                            CustomAutoSizeTextMontserrat(
+                                                          text: "Need Help?",
+                                                          fontSize: 5,
+                                                          textColor:
+                                                              Colors.white,
+                                                        ),
+                                                      ),
+                                                      CustomAutoSizeTextMontserrat(
+                                                        text: "Contact us Now",
+                                                        fontSize: 20,
+                                                        textColor: Colors.white,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  left: displayMobileLayout
+                                                      ? MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.8 -
+                                                          270
+                                                      : MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.7,
+                                                  bottom: 10,
+                                                  child: Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      Showcase(
+                                                        targetShapeBorder:
+                                                            const CircleBorder(),
+                                                        descTextStyle: TextStyle(
+                                                            color:
+                                                                ThemeConstants
+                                                                    .whitecolor,
+                                                            fontSize: 18),
+                                                        tooltipBackgroundColor:
+                                                            ThemeConstants
+                                                                .bluecolor,
+                                                        overlayColor:
+                                                            Color.fromARGB(
+                                                                183, 0, 0, 0),
+                                                        overlayOpacity: 0.8,
+                                                        tooltipPadding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 5,
+                                                                right: 5,
+                                                                top: 10,
+                                                                bottom: 10),
+                                                        key: _six,
+                                                        description:
+                                                            "Need Assistance? Your Expert is a call away!",
+                                                        child: CircleAvatar(
+                                                          radius: 32.8,
+                                                          backgroundColor:
+                                                              ThemeConstants
+                                                                  .whitecolor,
+                                                        ),
+                                                      ),
+                                                      CircleAvatar(
+                                                        radius: 30,
+                                                        backgroundColor:
+                                                            ThemeConstants
+                                                                .GreenColor,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(10),
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            'assets/icons/dialer_icon.svg',
+                                                            color:
+                                                                ThemeConstants
+                                                                    .whitecolor,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+
+                                            // child: ElevatedButton(
+                                            //   style: ElevatedButton.styleFrom(
+                                            //     foregroundColor:
+                                            //         ThemeConstants.whitecolor,
+                                            //     elevation: 0,
+
+                                            //     backgroundColor:
+                                            //         ThemeConstants.whitecolor,
+                                            //     shadowColor:
+                                            //         ThemeConstants.lightblueColor,
+                                            //     side: BorderSide(
+                                            //         color: ThemeConstants
+                                            //             .bluecolor), // foreground
+                                            //   ),
+                                            //   onPressed: () {
+                                            //     Get.toNamed(ScheduleExpertCall
+                                            //         .routeNamed);
+                                            //   },
+                                            //   child: CustomAutoSizeTextMontserrat(
+                                            //     text: "Schedule expert call",
+                                            //     fontSize: 12,
+                                            //     fontWeight: FontWeight.bold,
+                                            //     textColor:
+                                            //         ThemeConstants.bluecolor,
+                                            //   ),
+                                            // ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20),
-                                          child: Align(
-                                              alignment:
-                                                  AlignmentDirectional.topStart,
-                                              child: SizedBox(
-                                                // width: MediaQuery.of(context)
-                                                //         .size
-                                                //         .width /
-                                                //     2,
-                                                child: Showcase.withWidget(
-                                                  disableDefaultTargetGestures:
-                                                      true,
-                                                  onTargetClick: () {
-                                                    ShowCaseWidget.of(context)
-                                                        .next();
-                                                    _Scrollcontroller.jumpTo(
-                                                        _Scrollcontroller
-                                                            .position
-                                                            .maxScrollExtent);
-                                                  },
-                                                  disableMovingAnimation: true,
-                                                  // descTextStyle: TextStyle(
-                                                  //     color: ThemeConstants
-                                                  //         .whitecolor,
-                                                  //     fontSize: 18),
-                                                  // tooltipBackgroundColor:
-                                                  //     ThemeConstants.bluecolor,
+
+                                        // Showcase(
+                                        //   descTextStyle: TextStyle(
+                                        //       color: ThemeConstants.whitecolor,
+                                        //       fontSize: 18),
+                                        //   tooltipBackgroundColor:
+                                        //       ThemeConstants.bluecolor,
+                                        //   overlayColor: Color.fromARGB(183, 0, 0, 0),
+                                        //   overlayOpacity: 0.8,
+                                        //   tooltipPadding: const EdgeInsets.only(
+                                        //       left: 5,
+                                        //       right: 5,
+                                        //       top: 10,
+                                        //       bottom: 10),
+                                        //   targetShapeBorder:
+                                        //       const RoundedRectangleBorder(
+                                        //           borderRadius: BorderRadius.all(
+                                        //               Radius.circular(20))),
+                                        //   key: _seven,
+                                        //   description:
+                                        //       "Appointments compliments time management. Book an Appointment with your advisor now and save your time.",
+                                        //   child: SizedBox(
+                                        //     height: 40,
+                                        //     child: ElevatedButton(
+                                        //       style: ElevatedButton.styleFrom(
+                                        //         foregroundColor:
+                                        //             ThemeConstants.whitecolor,
+                                        //         elevation: 0,
+                                        //         backgroundColor:
+                                        //             ThemeConstants.whitecolor,
+                                        //         shadowColor: ThemeConstants
+                                        //             .lightorangeColor,
+                                        //         side: BorderSide(
+                                        //             color: ThemeConstants
+                                        //                 .orangeColor), // foreground
+                                        //       ),
+                                        //       onPressed: () {
+                                        //         Get.toNamed(
+                                        //             BookAnAppointment.routeNamed);
+                                        //       },
+                                        //       child: CustomAutoSizeTextMontserrat(
+                                        //         text: "Book an appointment",
+                                        //         fontSize: 12,
+                                        //         textColor:
+                                        //             ThemeConstants.orangeColor,
+                                        //         fontWeight: FontWeight.bold,
+                                        //       ),
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        // const SizedBox(
+                                        //   width: 20,
+                                        // ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+
+                                    Wrap(
+                                      runSpacing: 15.0,
+                                      spacing: 30,
+                                      alignment: WrapAlignment.center,
+                                      runAlignment: WrapAlignment.center,
+                                      children: [
+                                        // Create profile
+                                        InkWell(
+                                          onTap: () async {
+                                            // getDailogForAgree(context);
+                                            // Get.to(ProfilePageCopy1());
+                                            Get.toNamed(ProfileView.routeNamed);
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Showcase(
+                                                descTextStyle: TextStyle(
+                                                    color: ThemeConstants
+                                                        .whitecolor,
+                                                    fontSize: 18),
+                                                tooltipBackgroundColor:
+                                                    ThemeConstants.bluecolor,
+                                                overlayColor: Color.fromARGB(
+                                                    183, 0, 0, 0),
+                                                overlayOpacity: 0.8,
+                                                tooltipPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 5,
+                                                        right: 5,
+                                                        top: 10,
+                                                        bottom: 10),
+                                                targetBorderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                key: _two,
+                                                description:
+                                                    'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
+                                                child: Container(
+                                                    height: 140,
+                                                    width: 140,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 1.2,
+                                                            color: ThemeConstants
+                                                                .VioletColor),
+                                                        color: const Color(
+                                                            0xFFF1F0FF),
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .all(
+                                                                Radius.circular(
+                                                                    20))),
+                                                    child: svgImage(
+                                                        "create_profile",
+                                                        const Color(0xFF6F61FF),
+                                                        80,
+                                                        80)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10),
+                                                child: Text(
+                                                  "Create your profile",
+                                                  style: _textStyle,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        //Upload Document
+                                        InkWell(
+                                          onTap: () {
+                                            Get.toNamed(
+                                                UploadDocument.routeNamed);
+                                          },
+                                          child: InkWell(
+                                            // color: Colors.amber,
+                                            child: Column(
+                                              children: [
+                                                Showcase(
+                                                  targetBorderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  descTextStyle: TextStyle(
+                                                      color: ThemeConstants
+                                                          .whitecolor,
+                                                      fontSize: 18),
+                                                  tooltipBackgroundColor:
+                                                      ThemeConstants.bluecolor,
                                                   overlayColor: Color.fromARGB(
                                                       183, 0, 0, 0),
                                                   overlayOpacity: 0.8,
-                                                  // tooltipPadding:
-                                                  //     const EdgeInsets.only(
-                                                  //         left: 5,
-                                                  //         right: 5,
-                                                  //         top: 10,
-                                                  //         bottom: 10),
+                                                  tooltipPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 5,
+                                                          right: 5,
+                                                          top: 10,
+                                                          bottom: 10),
                                                   targetShapeBorder:
                                                       const RoundedRectangleBorder(
                                                           borderRadius:
@@ -321,1065 +836,587 @@ class _DashBoardState extends State<DashBoard> {
                                                                   Radius
                                                                       .circular(
                                                                           20))),
-                                                  key: _one,
-                                                  // description:
-                                                  //     'Hi, Welcome to Gradlynk. Your international Education Partner.',
-                                                  container: InkWell(
-                                                    onTap: () {
-                                                      ShowCaseWidget.of(context)
-                                                          .next();
-                                                      _Scrollcontroller.jumpTo(
-                                                          _Scrollcontroller
-                                                              .position
-                                                              .maxScrollExtent);
-                                                    },
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                        top: 10,
-                                                      ),
-                                                      child: Container(
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            0.7,
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        child: Column(
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional
-                                                                      .topStart,
-                                                              child: Container(
-                                                                decoration: BoxDecoration(
-                                                                    color: ThemeConstants
-                                                                        .bluecolor,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0)),
-                                                                child: Padding(
-                                                                  padding:
-                                                                      const EdgeInsets
-                                                                              .all(
-                                                                          10.0),
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width *
-                                                                        0.8,
-                                                                    child:
-                                                                        CustomAutoSizeTextMontserrat(
-                                                                      text:
-                                                                          "Hi, Welcome to Gradlynk. Your international Education Partner.",
-                                                                      textColor:
-                                                                          ThemeConstants
-                                                                              .whitecolor,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            const Spacer(),
-                                                            InkWell(
-                                                              onTap: () {
-                                                                ShowCaseWidget.of(
-                                                                        context)
-                                                                    .dismiss();
-                                                              },
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        right:
-                                                                            40,
-                                                                        bottom:
-                                                                            60),
-                                                                child: Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional
-                                                                            .topEnd,
-                                                                    child: Row(
-                                                                      children: [
-                                                                        const Spacer(),
-                                                                        CustomAutoSizeTextMontserrat(
-                                                                          text:
-                                                                              "Skip",
-                                                                          textColor:
-                                                                              ThemeConstants.whitecolor,
-                                                                          fontSize:
-                                                                              18,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                        Icon(
-                                                                          Icons
-                                                                              .skip_next,
-                                                                          color:
-                                                                              ThemeConstants.whitecolor,
-                                                                        )
-                                                                      ],
-                                                                    )),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  height: MediaQuery.of(context)
-                                                      .size
-                                                      .height,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: firstLetterChaptial(_
-                                                            .personalModal
-                                                            .enquiryName) ??
-                                                        firstLetterChaptial(_
-                                                            .model1
-                                                            .enquiryName),
-                                                    maxLines: 2,
-                                                    fontSize: 35,
-                                                    fontWeight: FontWeight.bold,
+                                                  key: _three,
+                                                  description:
+                                                      "All documents required for your Application to be uploaded here.",
+                                                  child: Container(
+                                                      height: 140,
+                                                      width: 140,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                            width: 1.2,
+                                                            color:
+                                                                ThemeConstants
+                                                                    .yellow,
+                                                          ),
+                                                          color: const Color(
+                                                              0xFFFEF6E6),
+                                                          borderRadius:
+                                                              const BorderRadius
+                                                                      .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      child: svgImage(
+                                                          "upload_document",
+                                                          const Color(
+                                                              0xFFF8A300),
+                                                          80,
+                                                          80)),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10),
+                                                  child: Text(
+                                                    "Upload document",
+                                                    style: _textStyle,
                                                   ),
                                                 ),
-                                              )),
-                                        ),
-                                        const Divider(
-                                          thickness: 1,
-                                          indent: 30,
-                                          endIndent: 30,
-                                          color: Color(0xFFD6D6D6),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-
-                                Container(
-                                  padding: EdgeInsets.only(bottom: 10, top: 1),
-                                  height: 200,
-                                  child: CarouselSlider(
-                                    options: CarouselOptions(
-                                      autoPlay: true,
-                                      aspectRatio: 1,
-                                      viewportFraction: 1,
-                                      enlargeCenterPage: false,
-                                      enlargeStrategy:
-                                          CenterPageEnlargeStrategy.height,
-                                    ),
-                                    items: [...caraouselList()],
-                                  ),
-                                ),
-
-                                // Schedule Expert Call Button And Book an Appointment
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    // const SizedBox(
-                                    //   width: 20,
-                                    // ),
-
-                                    GestureDetector(
-                                      onTap: () {
-                                        print('dddd');
-                                        contactUsDialog(context);
-                                      },
-                                      child: Container(
-                                        height: 70,
-                                        width: displayMobileLayout
-                                            ? MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.91 -
-                                                270
-                                            : MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.91,
-
-                                        child: Stack(
-                                          clipBehavior: Clip.none,
-                                          alignment: Alignment.bottomCenter,
-                                          children: [
-                                            Container(
-                                              padding:
-                                                  EdgeInsets.only(left: 20),
-                                              alignment: Alignment.centerLeft,
-                                              height: 60,
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                  color:
-                                                      ThemeConstants.bluecolor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          17)),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 0.5,
-                                                            horizontal: 8),
-                                                    decoration: BoxDecoration(
-                                                        color: ThemeConstants
-                                                            .GreenColor,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15)),
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text: "Need Help?",
-                                                      fontSize: 5,
-                                                      textColor: Colors.white,
-                                                    ),
-                                                  ),
-                                                  CustomAutoSizeTextMontserrat(
-                                                    text: "Contact us Now",
-                                                    fontSize: 20,
-                                                    textColor: Colors.white,
-                                                  )
-                                                ],
-                                              ),
+                                              ],
                                             ),
-                                            Positioned(
-                                              left: displayMobileLayout
-                                                  ? MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.8 -
-                                                      270
-                                                  : MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.7,
-                                              bottom: 10,
-                                              child: Stack(
-                                                alignment: Alignment.center,
-                                                children: [
-                                                  Showcase(
-                                                    targetShapeBorder:
-                                                        const CircleBorder(),
-                                                    descTextStyle: TextStyle(
-                                                        color: ThemeConstants
-                                                            .whitecolor,
-                                                        fontSize: 18),
-                                                    tooltipBackgroundColor:
-                                                        ThemeConstants
-                                                            .bluecolor,
-                                                    overlayColor:
-                                                        Color.fromARGB(
-                                                            183, 0, 0, 0),
-                                                    overlayOpacity: 0.8,
-                                                    tooltipPadding:
-                                                        const EdgeInsets.only(
-                                                            left: 5,
-                                                            right: 5,
-                                                            top: 10,
-                                                            bottom: 10),
-                                                    key: _six,
-                                                    description:
-                                                        "Need Assistance? Your Expert is a call away!",
-                                                    child: CircleAvatar(
-                                                      radius: 32.8,
-                                                      backgroundColor:
-                                                          ThemeConstants
-                                                              .whitecolor,
-                                                    ),
-                                                  ),
-                                                  CircleAvatar(
-                                                    radius: 30,
-                                                    backgroundColor:
-                                                        ThemeConstants
-                                                            .GreenColor,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              10),
-                                                      child: SvgPicture.asset(
-                                                        'assets/icons/dialer_icon.svg',
-                                                        color: ThemeConstants
-                                                            .whitecolor,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-
-                                        // child: ElevatedButton(
-                                        //   style: ElevatedButton.styleFrom(
-                                        //     foregroundColor:
-                                        //         ThemeConstants.whitecolor,
-                                        //     elevation: 0,
-
-                                        //     backgroundColor:
-                                        //         ThemeConstants.whitecolor,
-                                        //     shadowColor:
-                                        //         ThemeConstants.lightblueColor,
-                                        //     side: BorderSide(
-                                        //         color: ThemeConstants
-                                        //             .bluecolor), // foreground
-                                        //   ),
-                                        //   onPressed: () {
-                                        //     Get.toNamed(ScheduleExpertCall
-                                        //         .routeNamed);
-                                        //   },
-                                        //   child: CustomAutoSizeTextMontserrat(
-                                        //     text: "Schedule expert call",
-                                        //     fontSize: 12,
-                                        //     fontWeight: FontWeight.bold,
-                                        //     textColor:
-                                        //         ThemeConstants.bluecolor,
-                                        //   ),
-                                        // ),
-                                      ),
-                                    ),
-
-                                    // Showcase(
-                                    //   descTextStyle: TextStyle(
-                                    //       color: ThemeConstants.whitecolor,
-                                    //       fontSize: 18),
-                                    //   tooltipBackgroundColor:
-                                    //       ThemeConstants.bluecolor,
-                                    //   overlayColor: Color.fromARGB(183, 0, 0, 0),
-                                    //   overlayOpacity: 0.8,
-                                    //   tooltipPadding: const EdgeInsets.only(
-                                    //       left: 5,
-                                    //       right: 5,
-                                    //       top: 10,
-                                    //       bottom: 10),
-                                    //   targetShapeBorder:
-                                    //       const RoundedRectangleBorder(
-                                    //           borderRadius: BorderRadius.all(
-                                    //               Radius.circular(20))),
-                                    //   key: _seven,
-                                    //   description:
-                                    //       "Appointments compliments time management. Book an Appointment with your advisor now and save your time.",
-                                    //   child: SizedBox(
-                                    //     height: 40,
-                                    //     child: ElevatedButton(
-                                    //       style: ElevatedButton.styleFrom(
-                                    //         foregroundColor:
-                                    //             ThemeConstants.whitecolor,
-                                    //         elevation: 0,
-                                    //         backgroundColor:
-                                    //             ThemeConstants.whitecolor,
-                                    //         shadowColor: ThemeConstants
-                                    //             .lightorangeColor,
-                                    //         side: BorderSide(
-                                    //             color: ThemeConstants
-                                    //                 .orangeColor), // foreground
-                                    //       ),
-                                    //       onPressed: () {
-                                    //         Get.toNamed(
-                                    //             BookAnAppointment.routeNamed);
-                                    //       },
-                                    //       child: CustomAutoSizeTextMontserrat(
-                                    //         text: "Book an appointment",
-                                    //         fontSize: 12,
-                                    //         textColor:
-                                    //             ThemeConstants.orangeColor,
-                                    //         fontWeight: FontWeight.bold,
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    // const SizedBox(
-                                    //   width: 20,
-                                    // ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-
-                                Wrap(
-                                  runSpacing: 15.0,
-                                  spacing: 30,
-                                  alignment: WrapAlignment.center,
-                                  runAlignment: WrapAlignment.center,
-                                  children: [
-                                    // Create profile
-                                    InkWell(
-                                      onTap: () async {
-                                        // getDailogForAgree(context);
-                                        // Get.to(ProfilePageCopy1());
-                                        Get.toNamed(ProfileView.routeNamed);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Showcase(
-                                            descTextStyle: TextStyle(
-                                                color:
-                                                    ThemeConstants.whitecolor,
-                                                fontSize: 18),
-                                            tooltipBackgroundColor:
-                                                ThemeConstants.bluecolor,
-                                            overlayColor:
-                                                Color.fromARGB(183, 0, 0, 0),
-                                            overlayOpacity: 0.8,
-                                            tooltipPadding:
-                                                const EdgeInsets.only(
-                                                    left: 5,
-                                                    right: 5,
-                                                    top: 10,
-                                                    bottom: 10),
-                                            targetBorderRadius:
-                                                BorderRadius.circular(18.0),
-                                            key: _two,
-                                            description:
-                                                'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
-                                            child: Container(
-                                                height: 140,
-                                                width: 140,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: 1.2,
-                                                        color: ThemeConstants
-                                                            .VioletColor),
-                                                    color:
-                                                        const Color(0xFFF1F0FF),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                20))),
-                                                child: svgImage(
-                                                    "create_profile",
-                                                    const Color(0xFF6F61FF),
-                                                    80,
-                                                    80)),
                                           ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "Create your profile",
-                                              style: _textStyle,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    //Upload Document
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(UploadDocument.routeNamed);
-                                      },
-                                      child: InkWell(
-                                        // color: Colors.amber,
-                                        child: Column(
-                                          children: [
-                                            Showcase(
-                                              targetBorderRadius:
-                                                  BorderRadius.circular(18.0),
-                                              descTextStyle: TextStyle(
-                                                  color:
-                                                      ThemeConstants.whitecolor,
-                                                  fontSize: 18),
-                                              tooltipBackgroundColor:
-                                                  ThemeConstants.bluecolor,
-                                              overlayColor:
-                                                  Color.fromARGB(183, 0, 0, 0),
-                                              overlayOpacity: 0.8,
-                                              tooltipPadding:
-                                                  const EdgeInsets.only(
-                                                      left: 5,
-                                                      right: 5,
-                                                      top: 10,
-                                                      bottom: 10),
-                                              targetShapeBorder:
-                                                  const RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  20))),
-                                              key: _three,
-                                              description:
-                                                  "All documents required for your Application to be uploaded here.",
-                                              child: Container(
+                                        ),
+                                        //Course Search
+                                        InkWell(
+                                          onTap: () {
+                                            Get.toNamed(
+                                                CourseSearch.routeNamed);
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Showcase(
+                                                descTextStyle: TextStyle(
+                                                    color: ThemeConstants
+                                                        .whitecolor,
+                                                    fontSize: 18),
+                                                tooltipBackgroundColor:
+                                                    ThemeConstants.bluecolor,
+                                                overlayColor: Color.fromARGB(
+                                                    183, 0, 0, 0),
+                                                overlayOpacity: 0.8,
+                                                tooltipPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 5,
+                                                        right: 5,
+                                                        top: 10,
+                                                        bottom: 10),
+                                                targetBorderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                key: _four,
+                                                description:
+                                                    "Course Search assists you in searching your desired course across the globe.",
+                                                child: Container(
+                                                    height: 140,
+                                                    width: 140,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            width: 1.2,
+                                                            color: const Color(
+                                                                0xFFF16660)),
+                                                        color: const Color(
+                                                            0xFFFEF0F0),
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .all(
+                                                                Radius.circular(
+                                                                    20))),
+                                                    child: svgImage(
+                                                        "course",
+                                                        const Color(0xFFF16660),
+                                                        80,
+                                                        80)),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10),
+                                                child: Text(
+                                                  "Course Search",
+                                                  style: _textStyle,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        // Track Application
+                                        InkWell(
+                                          onTap: () {
+                                            Get.toNamed(
+                                                ApplicationSummary.routeNamed);
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Showcase(
+                                                descTextStyle: TextStyle(
+                                                    color: ThemeConstants
+                                                        .whitecolor,
+                                                    fontSize: 18),
+                                                tooltipBackgroundColor:
+                                                    ThemeConstants.bluecolor,
+                                                overlayColor: Color.fromARGB(
+                                                    183, 0, 0, 0),
+                                                overlayOpacity: 0.8,
+                                                tooltipPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 5,
+                                                        right: 5,
+                                                        top: 10,
+                                                        bottom: 10),
+                                                targetBorderRadius:
+                                                    BorderRadius.circular(18.0),
+                                                key: _five,
+                                                description:
+                                                    "You can keep a track on your Application Stage and Status.",
+                                                child: Container(
                                                   height: 140,
                                                   width: 140,
                                                   decoration: BoxDecoration(
                                                       border: Border.all(
-                                                        width: 1.2,
-                                                        color: ThemeConstants
-                                                            .yellow,
-                                                      ),
+                                                          width: 1.2,
+                                                          color: const Color(
+                                                              0xFF05B4D2)),
                                                       color: const Color(
-                                                          0xFFFEF6E6),
+                                                          0xFFE8FAFD),
                                                       borderRadius:
                                                           const BorderRadius
                                                                   .all(
                                                               Radius.circular(
                                                                   20))),
-                                                  child: svgImage(
-                                                      "upload_document",
-                                                      const Color(0xFFF8A300),
-                                                      80,
-                                                      80)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10),
-                                              child: Text(
-                                                "Upload document",
-                                                style: _textStyle,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            30.0),
+                                                    child: svgImage(
+                                                        "track",
+                                                        const Color(0xFF05B4D2),
+                                                        80,
+                                                        80),
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10),
+                                                child: Text(
+                                                  "Track application",
+                                                  style: _textStyle,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                    //Course Search
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(CourseSearch.routeNamed);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Showcase(
-                                            descTextStyle: TextStyle(
-                                                color:
-                                                    ThemeConstants.whitecolor,
-                                                fontSize: 18),
-                                            tooltipBackgroundColor:
-                                                ThemeConstants.bluecolor,
-                                            overlayColor:
-                                                Color.fromARGB(183, 0, 0, 0),
-                                            overlayOpacity: 0.8,
-                                            tooltipPadding:
-                                                const EdgeInsets.only(
-                                                    left: 5,
-                                                    right: 5,
-                                                    top: 10,
-                                                    bottom: 10),
-                                            targetBorderRadius:
-                                                BorderRadius.circular(18.0),
-                                            key: _four,
-                                            description:
-                                                "Course Search assists you in searching your desired course across the globe.",
-                                            child: Container(
-                                                height: 140,
-                                                width: 140,
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        width: 1.2,
-                                                        color: const Color(
-                                                            0xFFF16660)),
-                                                    color:
-                                                        const Color(0xFFFEF0F0),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                20))),
-                                                child: svgImage(
-                                                    "course",
-                                                    const Color(0xFFF16660),
-                                                    80,
-                                                    80)),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "Course Search",
-                                              style: _textStyle,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    // Track Application
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(
-                                            ApplicationSummary.routeNamed);
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Showcase(
-                                            descTextStyle: TextStyle(
-                                                color:
-                                                    ThemeConstants.whitecolor,
-                                                fontSize: 18),
-                                            tooltipBackgroundColor:
-                                                ThemeConstants.bluecolor,
-                                            overlayColor:
-                                                Color.fromARGB(183, 0, 0, 0),
-                                            overlayOpacity: 0.8,
-                                            tooltipPadding:
-                                                const EdgeInsets.only(
-                                                    left: 5,
-                                                    right: 5,
-                                                    top: 10,
-                                                    bottom: 10),
-                                            targetBorderRadius:
-                                                BorderRadius.circular(18.0),
-                                            key: _five,
-                                            description:
-                                                "You can keep a track on your Application Stage and Status.",
-                                            child: Container(
-                                              height: 140,
-                                              width: 140,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: 1.2,
-                                                      color: const Color(
-                                                          0xFF05B4D2)),
-                                                  color:
-                                                      const Color(0xFFE8FAFD),
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(20))),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(30.0),
-                                                child: svgImage(
-                                                    "track",
-                                                    const Color(0xFF05B4D2),
-                                                    80,
-                                                    80),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "Track application",
-                                              style: _textStyle,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+
+                                    // Upcoming Event
+                                    // if (_.loadingUpcomingEvents.value == true)
+                                    //   Padding(
+                                    //     padding: const EdgeInsets.only(
+                                    //       top: 15,
+                                    //     ),
+                                    //     child: Container(
+                                    //         // width: displayMobileLayout == true
+                                    //         //     ? MediaQuery.of(context).size.width - 240
+                                    //         //     : MediaQuery.of(context).size.width * 0.90,
+                                    //         constraints: const BoxConstraints(
+                                    //             maxWidth: 300),
+                                    //         child: Card(
+                                    //           elevation: 0.7,
+                                    //           shadowColor:
+                                    //               const Color(0xFFE5E1FE),
+                                    //           shape: const RoundedRectangleBorder(
+                                    //             side: BorderSide(
+                                    //                 color: Color(0xFFE5E1FE),
+                                    //                 width: 1.0),
+                                    //             borderRadius: BorderRadius.all(
+                                    //                 Radius.circular(10)),
+                                    //           ),
+                                    //           child: Column(
+                                    //             children: [
+                                    //               Padding(
+                                    //                 padding:
+                                    //                     const EdgeInsets.only(
+                                    //                         top: 10, left: 35),
+                                    //                 child: Text(
+                                    //                   "Upcoming Event",
+                                    //                   style: GoogleFonts.roboto(
+                                    //                     fontWeight:
+                                    //                         FontWeight.bold,
+                                    //                     fontSize: 26,
+                                    //                   ),
+                                    //                 ),
+                                    //               ),
+                                    //               Row(
+                                    //                 children: [
+                                    //                   Padding(
+                                    //                     padding:
+                                    //                         const EdgeInsets.only(
+                                    //                             left: 5),
+                                    //                     child: SizedBox(
+                                    //                         width: 50,
+                                    //                         child: svgImage(
+                                    //                             "calender",
+                                    //                             const Color(
+                                    //                                 0xFF6F61FF),
+                                    //                             70,
+                                    //                             60)),
+                                    //                   ),
+                                    //                   Padding(
+                                    //                     padding:
+                                    //                         const EdgeInsets.only(
+                                    //                             top: 5),
+                                    //                     child: SizedBox(
+                                    //                       width: displayMobileLayout == true
+                                    //                           ? (MediaQuery.of(
+                                    //                                           context)
+                                    //                                       .size
+                                    //                                       .width -
+                                    //                                   240) *
+                                    //                               0.70
+                                    //                           : MediaQuery.of(
+                                    //                                       context)
+                                    //                                   .size
+                                    //                                   .width *
+                                    //                               0.70,
+                                    //                       child: Column(
+                                    //                         children: [
+                                    //                           BulletedList(
+                                    //                             crossAxisAlignment:
+                                    //                                 CrossAxisAlignment
+                                    //                                     .start,
+                                    //                             bullet:
+                                    //                                 const MyBullet(),
+                                    //                             listItems: [
+                                    //                               CustomAutoSizeText(
+                                    //                                   text: _
+                                    //                                       .upcomingModel![
+                                    //                                           0]
+                                    //                                       .campaignName,
+                                    //                                   maxLines:
+                                    //                                       3),
+                                    //                             ],
+                                    //                           ),
+                                    //                           SizedBox(
+                                    //                             width: MediaQuery.of(
+                                    //                                         context)
+                                    //                                     .size
+                                    //                                     .width *
+                                    //                                 0.70,
+                                    //                             child: Padding(
+                                    //                               padding:
+                                    //                                   const EdgeInsets
+                                    //                                           .only(
+                                    //                                       left:
+                                    //                                           38),
+                                    //                               child: Text(_
+                                    //                                   .upcomingModel![
+                                    //                                       0]
+                                    //                                   .campaignDate!),
+                                    //                             ),
+                                    //                           )
+                                    //                         ],
+                                    //                       ),
+                                    //                     ),
+                                    //                   )
+                                    //                 ],
+                                    //               ),
+                                    //               TextButton(
+                                    //                   onPressed: () {
+                                    //                     Navigator.push(
+                                    //                         context,
+                                    //                         MaterialPageRoute(
+                                    //                             builder: (context) =>
+                                    //                                 UpcomingEvent(
+                                    //                                   model: _
+                                    //                                       .upcomingModel,
+                                    //                                 )));
+
+                                    //                     // Get.snackbar(
+                                    //                     //   "DashBoard",
+                                    //                     //   "View All",
+                                    //                     //   snackPosition:
+                                    //                     //       SnackPosition.BOTTOM,
+                                    //                     // );
+                                    //                   },
+                                    //                   child:
+                                    //                       const Text("View all"))
+                                    //             ],
+                                    //           ),
+                                    //         )),
+                                    //   ),
+
+                                    const SizedBox(
+                                      height: 40,
                                     ),
                                   ],
                                 ),
-
-                                // Upcoming Event
-                                // if (_.loadingUpcomingEvents.value == true)
-                                //   Padding(
-                                //     padding: const EdgeInsets.only(
-                                //       top: 15,
-                                //     ),
-                                //     child: Container(
-                                //         // width: displayMobileLayout == true
-                                //         //     ? MediaQuery.of(context).size.width - 240
-                                //         //     : MediaQuery.of(context).size.width * 0.90,
-                                //         constraints: const BoxConstraints(
-                                //             maxWidth: 300),
-                                //         child: Card(
-                                //           elevation: 0.7,
-                                //           shadowColor:
-                                //               const Color(0xFFE5E1FE),
-                                //           shape: const RoundedRectangleBorder(
-                                //             side: BorderSide(
-                                //                 color: Color(0xFFE5E1FE),
-                                //                 width: 1.0),
-                                //             borderRadius: BorderRadius.all(
-                                //                 Radius.circular(10)),
-                                //           ),
-                                //           child: Column(
-                                //             children: [
-                                //               Padding(
-                                //                 padding:
-                                //                     const EdgeInsets.only(
-                                //                         top: 10, left: 35),
-                                //                 child: Text(
-                                //                   "Upcoming Event",
-                                //                   style: GoogleFonts.roboto(
-                                //                     fontWeight:
-                                //                         FontWeight.bold,
-                                //                     fontSize: 26,
-                                //                   ),
-                                //                 ),
-                                //               ),
-                                //               Row(
-                                //                 children: [
-                                //                   Padding(
-                                //                     padding:
-                                //                         const EdgeInsets.only(
-                                //                             left: 5),
-                                //                     child: SizedBox(
-                                //                         width: 50,
-                                //                         child: svgImage(
-                                //                             "calender",
-                                //                             const Color(
-                                //                                 0xFF6F61FF),
-                                //                             70,
-                                //                             60)),
-                                //                   ),
-                                //                   Padding(
-                                //                     padding:
-                                //                         const EdgeInsets.only(
-                                //                             top: 5),
-                                //                     child: SizedBox(
-                                //                       width: displayMobileLayout == true
-                                //                           ? (MediaQuery.of(
-                                //                                           context)
-                                //                                       .size
-                                //                                       .width -
-                                //                                   240) *
-                                //                               0.70
-                                //                           : MediaQuery.of(
-                                //                                       context)
-                                //                                   .size
-                                //                                   .width *
-                                //                               0.70,
-                                //                       child: Column(
-                                //                         children: [
-                                //                           BulletedList(
-                                //                             crossAxisAlignment:
-                                //                                 CrossAxisAlignment
-                                //                                     .start,
-                                //                             bullet:
-                                //                                 const MyBullet(),
-                                //                             listItems: [
-                                //                               CustomAutoSizeText(
-                                //                                   text: _
-                                //                                       .upcomingModel![
-                                //                                           0]
-                                //                                       .campaignName,
-                                //                                   maxLines:
-                                //                                       3),
-                                //                             ],
-                                //                           ),
-                                //                           SizedBox(
-                                //                             width: MediaQuery.of(
-                                //                                         context)
-                                //                                     .size
-                                //                                     .width *
-                                //                                 0.70,
-                                //                             child: Padding(
-                                //                               padding:
-                                //                                   const EdgeInsets
-                                //                                           .only(
-                                //                                       left:
-                                //                                           38),
-                                //                               child: Text(_
-                                //                                   .upcomingModel![
-                                //                                       0]
-                                //                                   .campaignDate!),
-                                //                             ),
-                                //                           )
-                                //                         ],
-                                //                       ),
-                                //                     ),
-                                //                   )
-                                //                 ],
-                                //               ),
-                                //               TextButton(
-                                //                   onPressed: () {
-                                //                     Navigator.push(
-                                //                         context,
-                                //                         MaterialPageRoute(
-                                //                             builder: (context) =>
-                                //                                 UpcomingEvent(
-                                //                                   model: _
-                                //                                       .upcomingModel,
-                                //                                 )));
-
-                                //                     // Get.snackbar(
-                                //                     //   "DashBoard",
-                                //                     //   "View All",
-                                //                     //   snackPosition:
-                                //                     //       SnackPosition.BOTTOM,
-                                //                     // );
-                                //                   },
-                                //                   child:
-                                //                       const Text("View all"))
-                                //             ],
-                                //           ),
-                                //         )),
-                                //   ),
-
-                                const SizedBox(
-                                  height: 40,
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
+                        )
+                      : Center(
+                          child: getLoading(context),
                         ),
-                      ],
-                    )
-                  : Center(
-                      child: getLoading(context),
-                    ),
-          // floatingActionButtonLocation:
-          //     FloatingActionButtonLocation.centerDocked,
-          // floatingActionButton: Showcase(
-          //   descTextStyle:
-          //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
-          //   tooltipBackgroundColor: ThemeConstants.bluecolor,
-          //   overlayColor: Color.fromARGB(183, 0, 0, 0),
-          //   overlayOpacity: 0.8,
-          //   // targetBorderRadius: BorderRadius.circular(25.0),
-          //   // tooltipPadding: const EdgeInsets.only(0.0)
-          //   targetShapeBorder: const CircleBorder(),
-          //   key: _eight,
-          //   description:
-          //       "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
+              // floatingActionButtonLocation:
+              //     FloatingActionButtonLocation.centerDocked,
+              // floatingActionButton: Showcase(
+              //   descTextStyle:
+              //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+              //   tooltipBackgroundColor: ThemeConstants.bluecolor,
+              //   overlayColor: Color.fromARGB(183, 0, 0, 0),
+              //   overlayOpacity: 0.8,
+              //   // targetBorderRadius: BorderRadius.circular(25.0),
+              //   // tooltipPadding: const EdgeInsets.only(0.0)
+              //   targetShapeBorder: const CircleBorder(),
+              //   key: _eight,
+              //   description:
+              //       "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
 
-          //   child: Container(
-          //     height: 75.0,
-          //     width: 75.0,
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(80),
-          //       color: ThemeConstants.bluecolor,
-          //     ),
-          //     padding: EdgeInsets.all(15),
-          //     child: FittedBox(
-          //       child: FloatingActionButton(
-          //         backgroundColor: ThemeConstants.bluecolor,
-          //         child: SvgPicture.asset(
-          //           'assets/icons/chatbot icon.svg',
-          //           color: ThemeConstants.whitecolor,
-          //         ),
+              //   child: Container(
+              //     height: 75.0,
+              //     width: 75.0,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(80),
+              //       color: ThemeConstants.bluecolor,
+              //     ),
+              //     padding: EdgeInsets.all(15),
+              //     child: FittedBox(
+              //       child: FloatingActionButton(
+              //         backgroundColor: ThemeConstants.bluecolor,
+              //         child: SvgPicture.asset(
+              //           'assets/icons/chatbot icon.svg',
+              //           color: ThemeConstants.whitecolor,
+              //         ),
 
-          //         //                                  svgImage(
-          //         // "video-call", ThemeConstants.whitecolor, 40, 30),
-          //         onPressed: () async {
-          //           // SVO Join Code
-          //           await _launchURL();
-          //           // isExtended: true,
-          //           // Overlay.of(context).insert(entry);
-          //         },
-          //       ),
-          //     ),
-          //   ),
-          // ),
+              //         //                                  svgImage(
+              //         // "video-call", ThemeConstants.whitecolor, 40, 30),
+              //         onPressed: () async {
+              //           // SVO Join Code
+              //           await _launchURL();
+              //           // isExtended: true,
+              //           // Overlay.of(context).insert(entry);
+              //         },
+              //       ),
+              //     ),
+              //   ),
+              // ),
 
-          // BottomNavigation()
+              // BottomNavigation()
 
-          //  BottomAppBar(
-          //   shape: const CircularNotchedRectangle(),
-          //   notchMargin: 6.0,
-          //   child: SizedBox(
-          //     height: 60,
-          //     child: Row(
-          //       mainAxisSize: MainAxisSize.max,
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: <Widget>[
-          //         SizedBox(
-          //           height: 50,
-          //           width: 60,
-          //           child: Column(
-          //             children: [
-          //               Padding(
-          //                 padding: const EdgeInsets.only(left: 25),
-          //                 child: SizedBox(
-          //                   height: 50,
-          //                   width: 60,
-          //                   child: InkWell(
-          //                     splashColor: ThemeConstants.bluecolor,
-          //                     onTap: () {
-          //                       Get.toNamed(DashBoard.routeNamed);
-          //                     },
-          //                     child: Padding(
-          //                       padding: const EdgeInsets.only(bottom: 5),
-          //                       child: Column(
-          //                         mainAxisAlignment: MainAxisAlignment.center,
-          //                         children: <Widget>[
-          //                           svgImage("home", ThemeConstants.bluecolor,
-          //                               30, 30),
-          //                         ],
-          //                       ),
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //         SizedBox(
-          //           height: 50,
-          //           width: 60,
-          //           child: Column(
-          //             children: [
-          //               Padding(
-          //                 padding: const EdgeInsets.only(left: 20),
-          //                 child: SizedBox(
-          //                   height: 46,
-          //                   width: 60,
-          //                   child: InkWell(
-          //                     splashColor: ThemeConstants.bluecolor,
-          //                     onTap: () {
-          //                       Get.toNamed(TrackyourTickets.routeNamed);
-          //                     },
-          //                     child: Column(
-          //                       mainAxisAlignment: MainAxisAlignment.center,
-          //                       children: <Widget>[
-          //                         Showcase(
-          //                             descTextStyle: TextStyle(
-          //                                 color: ThemeConstants.whitecolor,
-          //                                 fontSize: 18),
-          //                             tooltipBackgroundColor:
-          //                                 ThemeConstants.bluecolor,
-          //                             overlayColor: Color.fromARGB(183, 0, 0, 0),
-          //                             overlayOpacity: 0.8,
-          //                             // targetBorderRadius: BorderRadius.circular(25.0),
-          //                             // tooltipPadding: const EdgeInsets.only(0.0)
-          //                             targetShapeBorder:
-          //                                 const RoundedRectangleBorder(
-          //                                     borderRadius: BorderRadius.all(
-          //                                         Radius.circular(20))),
-          //                             key: _11,
-          //                             description:
-          //                                 "You can track updates on your ticket from this section.",
-          //                             child: Icon(
-          //                               Icons.track_changes_sharp,
-          //                               size: 35,
-          //                               color: ThemeConstants.TextColor,
-          //                             )),
-          //                       ],
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //         Center(
-          //             child: Padding(
-          //           padding: const EdgeInsets.only(top: 30, left: 5),
-          //           child: CustomAutoSizeTextMontserrat(
-          //             text: "Join SVO link",
-          //             textColor: ThemeConstants.bluecolor,
-          //             fontSize: 13,
-          //           ),
-          //         )),
-          //         SizedBox(
-          //           height: 50,
-          //           width: 60,
-          //           child: Column(
-          //             children: [
-          //               Padding(
-          //                 padding: const EdgeInsets.only(left: 20),
-          //                 child: SizedBox(
-          //                   height: 46,
-          //                   width: 60,
-          //                   child: InkWell(
-          //                     splashColor: Colors.transparent,
-          //                     onTap: () {
-          //                       Get.toNamed(RaiseYourTicket.routeNamed);
-          //                     },
-          //                     child: Column(
-          //                       mainAxisAlignment: MainAxisAlignment.center,
-          //                       children: <Widget>[
-          //                         Showcase(
-          //                             descTextStyle: TextStyle(
-          //                                 color: ThemeConstants.whitecolor,
-          //                                 fontSize: 18),
-          //                             tooltipBackgroundColor:
-          //                                 ThemeConstants.bluecolor,
-          //                             overlayColor: Color.fromARGB(183, 0, 0, 0),
-          //                             overlayOpacity: 0.8,
-          //                             // targetBorderRadius: BorderRadius.circular(25.0),
-          //                             // tooltipPadding: const EdgeInsets.only(0.0)
-          //                             targetShapeBorder:
-          //                                 const RoundedRectangleBorder(
-          //                                     borderRadius: BorderRadius.all(
-          //                                         Radius.circular(20))),
-          //                             key: _12,
-          //                             description:
-          //                                 "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
-          //                             child: Icon(
-          //                               Icons.help_outline_sharp,
-          //                               size: 35,
-          //                               color: ThemeConstants.TextColor,
-          //                             )),
-          //                       ],
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ],
-          //           ),
-          //         ),
-          //         SizedBox(
-          //           height: 50,
-          //           width: 60,
-          //           child: Column(
-          //             children: [
-          //               SizedBox(
-          //                 height: 46,
-          //                 width: 50,
-          //                 child: InkWell(
-          //                   splashColor: ThemeConstants.bluecolor,
-          //                   onTap: () {
-          //                     Get.toNamed(ProfilePageCopy1.routeNamed);
-          //                   },
-          //                   child: Padding(
-          //                     padding: const EdgeInsets.only(bottom: 5),
-          //                     child: Column(
-          //                       mainAxisAlignment: MainAxisAlignment.center,
-          //                       children: <Widget>[
-          //                         svgImage("profile-bottom",
-          //                             ThemeConstants.IconColor, 30, 30),
-          //                       ],
-          //                     ),
-          //                   ),
-          //                 ),
-          //               ),
-          //               const Spacer()
-          //             ],
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // )
+              //  BottomAppBar(
+              //   shape: const CircularNotchedRectangle(),
+              //   notchMargin: 6.0,
+              //   child: SizedBox(
+              //     height: 60,
+              //     child: Row(
+              //       mainAxisSize: MainAxisSize.max,
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: <Widget>[
+              //         SizedBox(
+              //           height: 50,
+              //           width: 60,
+              //           child: Column(
+              //             children: [
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 25),
+              //                 child: SizedBox(
+              //                   height: 50,
+              //                   width: 60,
+              //                   child: InkWell(
+              //                     splashColor: ThemeConstants.bluecolor,
+              //                     onTap: () {
+              //                       Get.toNamed(DashBoard.routeNamed);
+              //                     },
+              //                     child: Padding(
+              //                       padding: const EdgeInsets.only(bottom: 5),
+              //                       child: Column(
+              //                         mainAxisAlignment: MainAxisAlignment.center,
+              //                         children: <Widget>[
+              //                           svgImage("home", ThemeConstants.bluecolor,
+              //                               30, 30),
+              //                         ],
+              //                       ),
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //         SizedBox(
+              //           height: 50,
+              //           width: 60,
+              //           child: Column(
+              //             children: [
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 20),
+              //                 child: SizedBox(
+              //                   height: 46,
+              //                   width: 60,
+              //                   child: InkWell(
+              //                     splashColor: ThemeConstants.bluecolor,
+              //                     onTap: () {
+              //                       Get.toNamed(TrackyourTickets.routeNamed);
+              //                     },
+              //                     child: Column(
+              //                       mainAxisAlignment: MainAxisAlignment.center,
+              //                       children: <Widget>[
+              //                         Showcase(
+              //                             descTextStyle: TextStyle(
+              //                                 color: ThemeConstants.whitecolor,
+              //                                 fontSize: 18),
+              //                             tooltipBackgroundColor:
+              //                                 ThemeConstants.bluecolor,
+              //                             overlayColor: Color.fromARGB(183, 0, 0, 0),
+              //                             overlayOpacity: 0.8,
+              //                             // targetBorderRadius: BorderRadius.circular(25.0),
+              //                             // tooltipPadding: const EdgeInsets.only(0.0)
+              //                             targetShapeBorder:
+              //                                 const RoundedRectangleBorder(
+              //                                     borderRadius: BorderRadius.all(
+              //                                         Radius.circular(20))),
+              //                             key: _11,
+              //                             description:
+              //                                 "You can track updates on your ticket from this section.",
+              //                             child: Icon(
+              //                               Icons.track_changes_sharp,
+              //                               size: 35,
+              //                               color: ThemeConstants.TextColor,
+              //                             )),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //         Center(
+              //             child: Padding(
+              //           padding: const EdgeInsets.only(top: 30, left: 5),
+              //           child: CustomAutoSizeTextMontserrat(
+              //             text: "Join SVO link",
+              //             textColor: ThemeConstants.bluecolor,
+              //             fontSize: 13,
+              //           ),
+              //         )),
+              //         SizedBox(
+              //           height: 50,
+              //           width: 60,
+              //           child: Column(
+              //             children: [
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 20),
+              //                 child: SizedBox(
+              //                   height: 46,
+              //                   width: 60,
+              //                   child: InkWell(
+              //                     splashColor: Colors.transparent,
+              //                     onTap: () {
+              //                       Get.toNamed(RaiseYourTicket.routeNamed);
+              //                     },
+              //                     child: Column(
+              //                       mainAxisAlignment: MainAxisAlignment.center,
+              //                       children: <Widget>[
+              //                         Showcase(
+              //                             descTextStyle: TextStyle(
+              //                                 color: ThemeConstants.whitecolor,
+              //                                 fontSize: 18),
+              //                             tooltipBackgroundColor:
+              //                                 ThemeConstants.bluecolor,
+              //                             overlayColor: Color.fromARGB(183, 0, 0, 0),
+              //                             overlayOpacity: 0.8,
+              //                             // targetBorderRadius: BorderRadius.circular(25.0),
+              //                             // tooltipPadding: const EdgeInsets.only(0.0)
+              //                             targetShapeBorder:
+              //                                 const RoundedRectangleBorder(
+              //                                     borderRadius: BorderRadius.all(
+              //                                         Radius.circular(20))),
+              //                             key: _12,
+              //                             description:
+              //                                 "Need a help? Quicky raise a ticket at Gradlynk support and in minimal time, query shall be resolved.",
+              //                             child: Icon(
+              //                               Icons.help_outline_sharp,
+              //                               size: 35,
+              //                               color: ThemeConstants.TextColor,
+              //                             )),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //         SizedBox(
+              //           height: 50,
+              //           width: 60,
+              //           child: Column(
+              //             children: [
+              //               SizedBox(
+              //                 height: 46,
+              //                 width: 50,
+              //                 child: InkWell(
+              //                   splashColor: ThemeConstants.bluecolor,
+              //                   onTap: () {
+              //                     Get.toNamed(ProfilePageCopy1.routeNamed);
+              //                   },
+              //                   child: Padding(
+              //                     padding: const EdgeInsets.only(bottom: 5),
+              //                     child: Column(
+              //                       mainAxisAlignment: MainAxisAlignment.center,
+              //                       children: <Widget>[
+              //                         svgImage("profile-bottom",
+              //                             ThemeConstants.IconColor, 30, 30),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ),
+              //               ),
+              //               const Spacer()
+              //             ],
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // )
 
-          bottomNavigationBar:
-              CustomButtomNavbar(currentIndex: 0, context2: context),
+              bottomNavigationBar:
+                  CustomButtomNavbar(currentIndex: 0, context2: context),
 
-          // floatingActionButton: Showcase(
-          //   descTextStyle:
-          //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
-          //   tooltipBackgroundColor: ThemeConstants.bluecolor,
-          //   overlayColor: Color.fromARGB(183, 0, 0, 0),
-          //   overlayOpacity: 0.8,
-          //   targetBorderRadius: BorderRadius.circular(25.0),
-          //   tooltipPadding:
-          //       const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
-          //   targetShapeBorder: const RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.all(Radius.circular(20))),
-          //   key: _eight,
-          //   description:
-          //       "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
-          //   child: FloatingActionButton.extended(
-          //     tooltip: "SVO",
-          //     backgroundColor: ThemeConstants.bluecolor,
-          //     onPressed: () async {
-          //       // SVO Join Code
-          //       await _launchURL();
-          //       // isExtended: true,
-          //     },
-          //     icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
-          //     label: CustomAutoSizeTextMontserrat(
-          //       text: "Join SVO",
-          //       textColor: ThemeConstants.whitecolor,
-          //     ),
-          //   ),
-          // ),
-        );
-      });
-    }));
+              // floatingActionButton: Showcase(
+              //   descTextStyle:
+              //       TextStyle(color: ThemeConstants.whitecolor, fontSize: 18),
+              //   tooltipBackgroundColor: ThemeConstants.bluecolor,
+              //   overlayColor: Color.fromARGB(183, 0, 0, 0),
+              //   overlayOpacity: 0.8,
+              //   targetBorderRadius: BorderRadius.circular(25.0),
+              //   tooltipPadding:
+              //       const EdgeInsets.only(left: 5, right: 5, top: 10, bottom: 10),
+              //   targetShapeBorder: const RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.all(Radius.circular(20))),
+              //   key: _eight,
+              //   description:
+              //       "Need Assistance? Join the SIEC Virtual Office and meet your advisor.",
+              //   child: FloatingActionButton.extended(
+              //     tooltip: "SVO",
+              //     backgroundColor: ThemeConstants.bluecolor,
+              //     onPressed: () async {
+              //       // SVO Join Code
+              //       await _launchURL();
+              //       // isExtended: true,
+              //     },
+              //     icon: svgImage("video-call", ThemeConstants.whitecolor, 40, 30),
+              //     label: CustomAutoSizeTextMontserrat(
+              //       text: "Join SVO",
+              //       textColor: ThemeConstants.whitecolor,
+              //     ),
+              //   ),
+              // ),
+            );
+          });
+        }));
   }
 
   caraouselList() {
