@@ -1649,4 +1649,21 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  @override
+  counselorList(String id) async {
+    // TODO: implement counselorList
+
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.counselorList}${id}';
+
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }

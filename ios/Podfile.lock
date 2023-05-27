@@ -59,7 +59,7 @@ PODS:
   - image_gallery_saver (1.5.0):
     - Flutter
   - IosAwnCore (0.7.3)
-  - open_file (0.0.1):
+  - open_file_plus (1.0.0):
     - Flutter
   - package_info (0.0.1):
     - Flutter
@@ -101,7 +101,7 @@ DEPENDENCIES:
   - flutter_splash_screen (from `.symlinks/plugins/flutter_splash_screen/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
-  - open_file (from `.symlinks/plugins/open_file/ios`)
+  - open_file_plus (from `.symlinks/plugins/open_file_plus/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
@@ -146,8 +146,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/fluttertoast/ios"
   image_gallery_saver:
     :path: ".symlinks/plugins/image_gallery_saver/ios"
-  open_file:
-    :path: ".symlinks/plugins/open_file/ios"
+  open_file_plus:
+    :path: ".symlinks/plugins/open_file_plus/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider_foundation:
@@ -183,7 +183,7 @@ SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   image_gallery_saver: 259eab68fb271cfd57d599904f7acdc7832e7ef2
   IosAwnCore: 6494e0e174d49f04f513e8a002187be226889a37
-  open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
+  open_file_plus: 05737718530c14cf02868e3b7754d7fe4df76d8b
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce

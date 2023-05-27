@@ -37,6 +37,7 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/custom_dialog_box.dart';
+
 import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
@@ -505,6 +506,7 @@ class _DashBoardState extends State<DashBoard> {
                                         GestureDetector(
                                           onTap: () {
                                             print('dddd');
+                                            // contactUsDialog(context);
                                             contactUsDialog(context);
                                           },
                                           child: Container(

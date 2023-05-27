@@ -1365,7 +1365,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                                 .firstNameError!);
                                           } else if (profilePageKey.currentState!
                                               .validate()) {
-                                          false) {
                                             getToast(SnackBarConstants
                                                 .contactInformationErrorForAllFields!);
                                           } else if (getNUllChecker(lastName.text) ==

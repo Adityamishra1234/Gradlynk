@@ -160,11 +160,11 @@ class _MyAppState extends State<MyApp> {
           binding: DashBoardBinding(),
           page: () => const DashBoard(),
         ),
-        GetPage(
-            name: ProfilePageCopy1.routeNamed,
-            transition: Transition.cupertino,
-            page: () => ProfilePageCopy1(),
-            binding: ProfilePageBinding()),
+        // GetPage(
+        //     name: ProfilePageCopy1.routeNamed,
+        //     transition: Transition.cupertino,
+        //     page: () => ProfilePageCopy1(),
+        //     binding: ProfilePageBinding()),
         GetPage(
             name: ProfilePageCopy.routeNamed,
             transition: Transition.cupertino,

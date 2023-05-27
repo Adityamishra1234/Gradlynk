@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,6 +17,8 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../utils/constants.dart';
 
 // class FunkyOverlay extends StatefulWidget {
 //   late BuildContext context;
@@ -1024,12 +1028,38 @@ _launchURL() async {
   }
 }
 
+// _launchEmailURL() async {
+//   final call = Uri.parse('mailto:gradlynksupport@siecindia.com');
+//   if (await canLaunchUrl(call)) {
+//     launchUrl(call);
+//   } else {
+//     throw 'Could not launch $call';
+//   }
+// }
+
 _launchEmailURL() async {
-  final call = Uri.parse('mailto:gradlynksupport@siecindia.com');
-  if (await canLaunchUrl(call)) {
-    launchUrl(call);
+  if (Platform.isAndroid) {
+    final call = Uri.parse('mailto:gradlynksupport@siecindia.com');
+
+    if (await canLaunchUrl(call)) {
+      launchUrl(call);
+    } else {
+      getToast('Error in opening gmail');
+    }
   } else {
-    throw 'Could not launch $call';
+    final Uri params = Uri(
+      scheme: 'mailto',
+      path: 'gradlynksupport@siecindia.com',
+      query: '',
+    );
+
+    String url = params.toString();
+
+    if (await canLaunchUrl(params)) {
+      await launchUrl(params);
+    } else {
+      getToast('Error in opening mail');
+    }
   }
 }
 
