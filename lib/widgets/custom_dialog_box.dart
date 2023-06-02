@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,6 +13,7 @@ import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -78,6 +81,7 @@ contactUsDialog(
   //   return Transform.translate(
   //       offset: Offset(0, 0),
   return showAnimatedDialog(
+      barrierDismissible: true,
       animationType: DialogTransitionType.slideFromBottomFade,
       curve: Curves.easeInOutQuart,
       // barrierDismissible: false,
@@ -552,6 +556,7 @@ supportDialog(
   //   return Transform.translate(
   //       offset: Offset(0, 0),
   return showAnimatedDialog(
+      barrierDismissible: true,
       animationType: DialogTransitionType.slideFromBottomFade,
       curve: Curves.easeInOutQuart,
       // barrierDismissible: false,
@@ -1025,11 +1030,26 @@ _launchURL() async {
 }
 
 _launchEmailURL() async {
-  final call = Uri.parse('mailto:gradlynksupport@siecindia.com');
-  if (await canLaunchUrl(call)) {
-    launchUrl(call);
+  if (Platform.isAndroid) {
+    final call = Uri.parse('mailto:gradlynksupport@siecindia.com');
+    if (await canLaunchUrl(call)) {
+      launchUrl(call);
+    } else {
+      getToast('Error i opening gmail');
+    }
   } else {
-    throw 'Could not launch $call';
+    final Uri params = Uri(
+      scheme: 'mailto',
+      path: 'gradlynksupport@siecindia.com',
+      query: '',
+    );
+
+    String url = params.toString();
+    if (await canLaunchUrl(params)) {
+      await launchUrl(params);
+    } else {
+      getToast('Error in opening mail');
+    }
   }
 }
 

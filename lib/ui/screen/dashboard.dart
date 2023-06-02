@@ -90,30 +90,30 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // Get.offAllNamed(DashBoard.routeNamed);
     try {
-      // if (Get.arguments) {
-      ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
-        (_) => Future.delayed(const Duration(milliseconds: 200), () {
-          ShowCaseWidget.of(myContext!).startShowCase([
-            _one,
-            _two,
-            _three,
-            _four,
-            _five,
-            _six,
-            _nine,
-            _ten,
-            _seven,
-            _11,
-            _eight,
-            _12,
-          ]);
-        }),
-      );
+      if (Get.arguments) {
+        ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
+          (_) => Future.delayed(const Duration(milliseconds: 200), () {
+            ShowCaseWidget.of(myContext!).startShowCase([
+              _one,
+              _two,
+              _three,
+              _four,
+              _five,
+              _six,
+              _nine,
+              _ten,
+              _seven,
+              _11,
+              _eight,
+              _12,
+            ]);
+          }),
+        );
 
-      showcase = true;
-      // } else {
-      //   appbar = true;
-      // }
+        showcase = true;
+      } else {
+        appbar = true;
+      }
     } catch (e) {}
     Get.find<BaseController>().profiledetail();
 
