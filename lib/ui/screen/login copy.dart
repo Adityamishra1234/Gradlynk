@@ -23,22 +23,33 @@ class _LoginCopyState extends State<LoginCopy> {
   String? email, password;
   var controller = Get.put(LoginController());
 
+  bool _isKeyBoardVisible = false;
+
   static TextEditingController phoneNumber = TextEditingController();
   static TextEditingController otpcontroller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
+    _focusNode.addListener(_onFocusChange);
 
     // _checkVersion();
   }
 
   @override
   void dispose() {
+    _focusNode.removeListener(_onFocusChange);
     // controller.dispose();
     phoneNumber.text = "";
     otpcontroller.text = "";
     super.dispose();
+  }
+
+  _onFocusChange() {
+    setState(() {
+      _isKeyBoardVisible = _focusNode.hasFocus;
+    });
   }
 
   // void _checkVersion() async {
@@ -86,108 +97,120 @@ class _LoginCopyState extends State<LoginCopy> {
         return Positioned(
             left: 10,
             top: MediaQuery.of(context).size.height * 0.60,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: Row(
-                    children: [
-                      svgImage("location", ThemeConstants.whitecolor, 35, 35),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Mahima chadha \nStudying in Canada",
-                          textColor: ThemeConstants.whitecolor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 0),
-                  child: SizedBox(
+            child: Visibility(
+              visible:
+                  MediaQuery.of(context).viewInsets.bottom != 0 ? false : true,
+              child: Column(
+                children: [
+                  SizedBox(
                     width: MediaQuery.of(context).size.width - 20,
-                    child: CustomAutoSizeTextMontserrat(
-                      text:
-                          "My requirement was 7 each and I must say without, it would not possiable I must Appreciate the hard work and passion of the faculty of ACCT-Siec.",
-                      fontSize: 10,
-                      textColor: ThemeConstants.whitecolor,
+                    child: Row(
+                      children: [
+                        svgImage("location", ThemeConstants.whitecolor, 35, 35),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Mahima chadha \nStudying in Canada",
+                            textColor: ThemeConstants.whitecolor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 20,
+                      child: CustomAutoSizeTextMontserrat(
+                        text:
+                            "My requirement was 7 each and I must say without, it would not possiable I must Appreciate the hard work and passion of the faculty of ACCT-Siec.",
+                        fontSize: 10,
+                        textColor: ThemeConstants.whitecolor,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ));
 
       case 1:
         return Positioned(
             left: 10,
             top: MediaQuery.of(context).size.height * 0.60,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: Row(
-                    children: [
-                      svgImage("location", ThemeConstants.whitecolor, 35, 35),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 0),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "University of Melbourne",
-                          textColor: ThemeConstants.whitecolor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 0),
-                  child: SizedBox(
+            child: Visibility(
+              visible:
+                  MediaQuery.of(context).viewInsets.bottom != 0 ? false : true,
+              child: Column(
+                children: [
+                  SizedBox(
                     width: MediaQuery.of(context).size.width - 20,
-                    child: CustomAutoSizeTextMontserrat(
-                      text:
-                          "The university of Melbourne is apublic research university location in Melbource,Australia Founded in 1853",
-                      fontSize: 10,
-                      textColor: ThemeConstants.whitecolor,
+                    child: Row(
+                      children: [
+                        svgImage("location", ThemeConstants.whitecolor, 35, 35),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "University of Melbourne",
+                            textColor: ThemeConstants.whitecolor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 20,
+                      child: CustomAutoSizeTextMontserrat(
+                        text:
+                            "The university of Melbourne is apublic research university location in Melbource,Australia Founded in 1853",
+                        fontSize: 10,
+                        textColor: ThemeConstants.whitecolor,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ));
 
       case 2:
         return Positioned(
             left: 10,
             top: MediaQuery.of(context).size.height * 0.60,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 20,
-                  child: Row(
-                    children: [
-                      svgImage("location", ThemeConstants.whitecolor, 35, 35),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "University of Toronto",
-                          textColor: ThemeConstants.whitecolor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 0),
-                  child: SizedBox(
+            child: Visibility(
+              visible:
+                  MediaQuery.of(context).viewInsets.bottom != 0 ? false : true,
+              child: Column(
+                children: [
+                  SizedBox(
                     width: MediaQuery.of(context).size.width - 20,
-                    child: CustomAutoSizeTextMontserrat(
-                      text:
-                          "The University of Toronto is a public research university inToronto,Ontario,Canada, located on the ground that surround Queen's Park",
-                      fontSize: 10,
-                      textColor: ThemeConstants.whitecolor,
+                    child: Row(
+                      children: [
+                        svgImage("location", ThemeConstants.whitecolor, 35, 35),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "University of Toronto",
+                            textColor: ThemeConstants.whitecolor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 20,
+                      child: CustomAutoSizeTextMontserrat(
+                        text:
+                            "The University of Toronto is a public research university inToronto,Ontario,Canada, located on the ground that surround Queen's Park",
+                        fontSize: 10,
+                        textColor: ThemeConstants.whitecolor,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ));
 
       default:
@@ -223,9 +246,11 @@ class _LoginCopyState extends State<LoginCopy> {
                     ),
 
                     //Icon And Text
+
                     controller.otpEnable.value == false
                         ? setTextposistion(controller.currentindex.value)
                         : Container(),
+
                     Positioned(
                         top: 40,
                         left: (MediaQuery.of(context).size.width / 3.5),
@@ -252,6 +277,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                   padding: const EdgeInsets.only(
                                       top: 20, left: 10, right: 10),
                                   child: TextFormField(
+                                      focusNode: _focusNode,
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
                                       controller: phoneNumber,

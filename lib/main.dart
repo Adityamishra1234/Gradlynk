@@ -58,6 +58,7 @@ import 'package:studentpanel/ui/screen/test/timepickertest.dart';
 import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
+import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
@@ -127,13 +128,18 @@ class _MyAppState extends State<MyApp> {
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: LoginCopy.routeNamed,
+      initialRoute: '/',
       // Create Route
       getPages: [
         GetPage(
           name: "/",
-          page: () => LoginCopy(),
+          page: () => WelcomeView(),
         ),
+        // GetPage(
+        //   name: "/",
+        //   page: () => LoginCopy(),
+        //   transition: Transition.fade,
+        // ),
         GetPage(
           name: LoginCopy.routeNamed,
           page: () => const LoginCopy(),
@@ -167,7 +173,7 @@ class _MyAppState extends State<MyApp> {
         //     binding: ProfilePageBinding()),
         GetPage(
             name: ProfilePageCopy.routeNamed,
-            transition: Transition.cupertino,
+            transition: Transition.zoom,
             page: () => ProfilePageCopy(),
             binding: ProfilePageBinding()),
         GetPage(

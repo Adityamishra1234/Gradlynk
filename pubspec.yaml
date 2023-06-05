@@ -97,6 +97,7 @@ dependencies:
   fluttertoast: ^8.2.1
   flutter_animated_dialog: ^2.0.1
   cached_network_image: ^3.2.3
+  mailto: ^2.0.0
 
 
 

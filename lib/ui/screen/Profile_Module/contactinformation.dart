@@ -224,7 +224,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                             getToast(SnackBarConstants
                                                 .firstNameError!);
                                           } else if (profilePageKey.currentState!
-                                              .validate()) {
+                                                  .validate() !=
+                                              true) {
                                             getToast(SnackBarConstants
                                                 .contactInformationErrorForAllFields!);
                                           } else if (getNUllChecker(lastName.text) ==
@@ -245,8 +246,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                               true) {
                                             getToast(SnackBarConstants
                                                 .maritalStatusError!);
-                                          } else if (getNUllChecker(
-                                                  mobileNumber.text) ==
+                                          } else if (getNUllChecker(mobileNumber.text) ==
                                               true) {
                                             getToast(SnackBarConstants
                                                 .mobileNumberError!);
@@ -1364,7 +1364,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                             getToast(SnackBarConstants
                                                 .firstNameError!);
                                           } else if (profilePageKey.currentState!
-                                              .validate()) {
+                                                  .validate() !=
+                                              true) {
                                             getToast(SnackBarConstants
                                                 .contactInformationErrorForAllFields!);
                                           } else if (getNUllChecker(lastName.text) ==
@@ -1385,8 +1386,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                               true) {
                                             getToast(SnackBarConstants
                                                 .maritalStatusError!);
-                                          } else if (getNUllChecker(
-                                                  mobileNumber.text) ==
+                                          } else if (getNUllChecker(mobileNumber.text) ==
                                               true) {
                                             getToast(SnackBarConstants
                                                 .mobileNumberError!);

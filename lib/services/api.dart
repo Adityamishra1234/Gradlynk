@@ -90,7 +90,7 @@ abstract class api {
   saveComments(String endpoint);
   qualificationUpdateDropdown(String endpoint);
 
-  counselorList(String endpoint);
+  // counselorList(String endpoint);
 
   profileDataValidation(int enqID);
 
