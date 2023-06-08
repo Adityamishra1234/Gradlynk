@@ -482,7 +482,7 @@ class _DashBoardState extends State<DashBoard> {
                                       child: CarouselSlider(
                                         options: CarouselOptions(
                                           autoPlay: true,
-                                          aspectRatio: 1,
+                                          aspectRatio: 16 / 9,
                                           viewportFraction: 1,
                                           enlargeCenterPage: false,
                                           enlargeStrategy:
@@ -1428,17 +1428,20 @@ class _DashBoardState extends State<DashBoard> {
         onTap: () {
           _launchBannerL('${controller.carouselList[i].imageLink}');
         },
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(100)),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: '${controller.carouselList[i].mobileImage}'),
+        child: AspectRatio(
+          aspectRatio: 16 / 8.5,
+          child: Container(
+            // width: double.infinity,
+            // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(100)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: '${controller.carouselList[i].mobileImage}'),
+            ),
           ),
         ),
       );
