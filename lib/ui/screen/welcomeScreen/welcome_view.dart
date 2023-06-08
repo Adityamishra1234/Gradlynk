@@ -48,7 +48,7 @@ class WelcomeView extends StatelessWidget {
                     )),
                     SizedBox(
                         child: CustomAutoSizeTextMontserrat(
-                      text: 'Yout internaltional Study Partner',
+                      text: 'Your international Study Partner',
                       fontSize: 15,
                       fontWeight: FontWeight.w300,
                     )),

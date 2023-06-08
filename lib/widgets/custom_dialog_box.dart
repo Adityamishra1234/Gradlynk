@@ -739,7 +739,7 @@ supportDialog(
                             ),
                             CustomRichTextWidget(
                               text: '',
-                              text1: "Track issue",
+                              text1: "Track Your Ticket",
                               fontWeight: FontWeight.w600,
                               textColor: ThemeConstants.bluecolor,
                             ),
@@ -749,10 +749,10 @@ supportDialog(
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  // InkWell(
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // // InkWell(
                   //   onTap: () {
                   //     Get.toNamed(ReceiveACallBackView.routeNamed);
                   //   },
@@ -790,50 +790,50 @@ supportDialog(
                   //     ),
                   //   ),
                   // ),
-                  Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                    color: ThemeConstants.ultraLightgreyColor,
-                    child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                      splashColor: ThemeConstants.bluecolor,
-                      onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
-                        Get.toNamed(Suggestedimprovisation.routeNamed);
-                      },
-                      child: Container(
-                        width: 300,
-                        height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        // decoration: BoxDecoration(
-                        //     borderRadius:
-                        //         BorderRadius.all(Radius.circular(25.0))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(7),
-                              height: 35,
-                              width: 35,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.bluecolor,
-                                  shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                'assets/icons/feed back.svg',
-                                color: ThemeConstants.whitecolor,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            CustomAutoSizeTextMontserrat(
-                                text: "Track feedback"),
-                            const Spacer(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Material(
+                  //   borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  //   color: ThemeConstants.ultraLightgreyColor,
+                  //   child: InkWell(
+                  //     borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  //     splashColor: ThemeConstants.bluecolor,
+                  //     onTap: () async {
+                  //       await Future.delayed(Duration(milliseconds: 150));
+                  //       Get.toNamed(Suggestedimprovisation.routeNamed);
+                  //     },
+                  //     child: Container(
+                  //       width: 300,
+                  //       height: 45,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10),
+                  //       // decoration: BoxDecoration(
+                  //       //     borderRadius:
+                  //       //         BorderRadius.all(Radius.circular(25.0))),
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         crossAxisAlignment: CrossAxisAlignment.center,
+                  //         children: [
+                  //           Container(
+                  //             padding: EdgeInsets.all(7),
+                  //             height: 35,
+                  //             width: 35,
+                  //             decoration: BoxDecoration(
+                  //                 color: ThemeConstants.bluecolor,
+                  //                 shape: BoxShape.circle),
+                  //             child: SvgPicture.asset(
+                  //               'assets/icons/feed back.svg',
+                  //               color: ThemeConstants.whitecolor,
+                  //             ),
+                  //           ),
+                  //           const SizedBox(
+                  //             width: 20,
+                  //           ),
+                  //           CustomAutoSizeTextMontserrat(
+                  //               text: "Track feedback"),
+                  //           const Spacer(),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
