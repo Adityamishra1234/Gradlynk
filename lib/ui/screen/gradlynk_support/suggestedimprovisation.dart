@@ -10,12 +10,13 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 class Suggestedimprovisation extends GetView<TrackYourTicketsController> {
   Suggestedimprovisation({super.key});
   static const routeNamed = '/Suggestedimprovisation';
+  @override
   var controller = Get.put(TrackYourTicketsController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: const CustomAppBar("title"),
       drawer: CustomDrawer(index: 11),
       body: controller.obx(
         onLoading: getLoading(context),

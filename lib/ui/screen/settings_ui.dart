@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:studentpanel/widgets/customBottomNavbar.dart';
 
 class Settings extends StatelessWidget {
@@ -14,7 +12,7 @@ class Settings extends StatelessWidget {
           CustomButtomNavbar(currentIndex: 3, context2: context),
       body: Container(
         alignment: Alignment.center,
-        child: Text('Settings'),
+        child: const Text('Settings'),
       ),
     );
   }

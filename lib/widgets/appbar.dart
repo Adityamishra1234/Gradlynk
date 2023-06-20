@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
   @override
   final Size preferredSize;
 
-  CustomAppBar(
+  const CustomAppBar(
     this.title, {
     Key? key,
   })  : preferredSize = const Size.fromHeight(60.0),
@@ -28,7 +27,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         actions: [
           if (displayMobileLayout == true)
             IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black),
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () => Get.back(),
             ),
           if (displayMobileLayout == false)
@@ -58,7 +57,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
             icon: svgImage("notification", ThemeConstants.IconColor, 30, 30),
             onPressed: () {
               //TODO
-              Get.to(NotificationScreen());
+              Get.to(const NotificationScreen());
             },
           ),
           // IconButton(

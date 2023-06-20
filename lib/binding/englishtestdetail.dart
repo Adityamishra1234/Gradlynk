@@ -1,4 +1,3 @@
-import 'package:studentpanel/ui/controllers/detailcontroller.dart';
 import 'package:get/get.dart';
 
 import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';

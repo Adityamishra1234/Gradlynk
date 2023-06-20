@@ -8,7 +8,6 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
-import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:studentpanel/widgets/time_picker.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
@@ -19,7 +18,7 @@ class BookAnAppointment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: CustomDrawer(),
         body: GetBuilder<BookAnAppointmentController>(
           builder: (_) => Column(
@@ -110,9 +109,7 @@ class BookAnAppointment extends StatelessWidget {
                       width: 100,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            elevation: 0.0,
-                            primary: ThemeConstants.bluecolor, // background
-                            onPrimary: ThemeConstants.bluecolor, // foreground
+                            foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
                           ),
                           onPressed: () {
                             if (getNUllChecker(_.nameSelected)) {

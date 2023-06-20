@@ -5,6 +5,6 @@ class ApplicationDetailBinding implements Bindings {
   @override
   void dependencies() {
     // Get.put(ApplicationDetail());
-    Get.lazyPut<ApplicationDetail>(() => ApplicationDetail());
+    Get.lazyPut<ApplicationDetail>(() => const ApplicationDetail());
   }
 }

@@ -7,10 +7,8 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
-import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-import 'reviewshortlistcontroller.dart';
 
 class FinalShortListController extends GetxController {
   ApiServices apiservices = ApiServices();

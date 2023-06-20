@@ -211,7 +211,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                         child: Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: widget.multiSelectEnable
-                                ? Container(
+                                ? SizedBox(
                                     width: double.infinity,
                                     height: 30,
                                     child: Row(
@@ -219,7 +219,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                         Expanded(
                                             child: ListView.separated(
                                           separatorBuilder: (context, index) {
-                                            return SizedBox(
+                                            return const SizedBox(
                                               width: 10,
                                             );
                                           },
@@ -229,7 +229,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                             return Container(
                                                 height: 10,
                                                 alignment: Alignment.center,
-                                                padding: EdgeInsets.all(6),
+                                                padding: const EdgeInsets.all(6),
                                                 decoration: BoxDecoration(
                                                     color: ThemeConstants
                                                         .ultraLightgreyColor,
@@ -244,7 +244,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                                   children: [
                                                     Text(
                                                         '${selectedItemsList[index]}'),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 10,
                                                     ),
                                                     GestureDetector(
@@ -256,7 +256,6 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                                         widget.onMultiSelectedItem!(
                                                             selectedItemsList);
 
-                                                        ;
                                                         // print(
                                                         //     selectedItemsList);
                                                       },
@@ -264,7 +263,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                                           backgroundColor:
                                                               ThemeConstants
                                                                   .bluelightgreycolor,
-                                                          child: Icon(
+                                                          child: const Icon(
                                                             Icons.close,
                                                             size: 17,
                                                           )),
@@ -276,7 +275,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                       ],
                                     ),
                                   )
-                                : Text('${singleSelectedItem}')
+                                : Text(singleSelectedItem)
                             // if selectedItem has null placeholder string available
 
                             // widget.placeholder
@@ -342,7 +341,7 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
             SizedBox(
               height: widget.maxHeight,
               child: Scrollbar(
-                isAlwaysShown: true,
+                thumbVisibility: true,
                 controller: scrollControler,
                 child: ListView.builder(
                   controller: scrollControler,
@@ -401,16 +400,16 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                   Text(widget.itemList.elementAt(index),
                                       textAlign: TextAlign.start,
                                       style: widget.titleStyle),
-                                  if (items.length != 0) ...[
+                                  if (items.isNotEmpty) ...[
                                     selectedItemsList.contains(items[index])
-                                        ? Icon(Icons.check_rounded)
-                                        : Icon(
+                                        ? const Icon(Icons.check_rounded)
+                                        : const Icon(
                                             Icons.check_rounded,
                                             color:
                                                 Color.fromARGB(0, 247, 55, 55),
                                           )
                                   ] else ...[
-                                    Icon(Icons.abc)
+                                    const Icon(Icons.abc)
                                   ]
                                 ],
                               ),

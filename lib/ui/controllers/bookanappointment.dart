@@ -37,10 +37,10 @@ class BookAnAppointmentController extends GetxController {
         name.add("Select your counsellor");
         nameID.add(0);
         model = res;
-        model.forEach((element) {
+        for (var element in model) {
           name.add(element.name!);
           nameID.add(element.id!);
-        });
+        }
         loadingServiceAssigned = true.obs;
         update();
       }

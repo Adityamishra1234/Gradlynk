@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:studentpanel/ui/controllers/trackapplicationcontroller.dart';
@@ -72,7 +71,7 @@ class _TrackApplicationState extends State<TrackApplication> {
         return [
           SliverList(
             delegate: SliverChildListDelegate([
-              CustomAppBar("title"),
+              const CustomAppBar("title"),
               const Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 10),
                 child: Divider(

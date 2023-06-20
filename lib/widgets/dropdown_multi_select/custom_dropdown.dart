@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/customizable_dropdown.dart';
-import 'package:studentpanel/widgets/dropdown_multi_select/customizable_dropdown.dart';
 
 // import 'package:studentpanel/utils/theme.dart';
 // import 'package:studentpanel/widgets/Custom%20Dropdown/customizable_dropdown.dart';
@@ -37,8 +35,8 @@ class CustomDropDownSingleMulti extends StatelessWidget {
                   // color: ThemeConstants.lightblueColor,
                   // border: Border.all(color: ThemeConstants.bluecolor),
                   borderRadius: BorderRadius.circular(10.0)),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
+              child: const Padding(
+                padding: EdgeInsets.all(15.0),
                 // child: CustomAutoSizeTextMontserrat(
                 //   textColor: Colors.black,
                 //   fontSize: 14,
@@ -59,10 +57,10 @@ class CustomDropDownSingleMulti extends StatelessWidget {
                   color: Colors.black,
                 ),
                 titleAlign: TextAlign.center,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   // color: ThemeConstants.lightblueColor,
                   // border: Border.all(color: ThemeConstants.bluecolor),
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 itemList: model,
                 onSelectedItem: (item) {
@@ -70,7 +68,7 @@ class CustomDropDownSingleMulti extends StatelessWidget {
                 },
                 placeholder: Align(
                   alignment: AlignmentDirectional.centerStart,
-                  child: Text('${selectedItems}'),
+                  child: Text(selectedItems),
                   // child: CustomAutoSizeTextMontserrat(
                   //     text: initialSelectedValue))),
                 )));

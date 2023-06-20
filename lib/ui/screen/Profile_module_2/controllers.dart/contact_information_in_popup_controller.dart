@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -66,7 +65,7 @@ class ContactInformationInPopUpController extends GetxController
   profileDataValidator() async {
     loading.value = true;
     var x = await apiservice.profileDataValidation(78623);
-    var z = await ProfileDataValidatorModel.fromJson(x);
+    var z = ProfileDataValidatorModel.fromJson(x);
     data.value = z;
     loading.value = false;
   }

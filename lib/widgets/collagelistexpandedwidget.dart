@@ -1,6 +1,5 @@
 import 'package:animate_icons/animate_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/screen/course_search/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';

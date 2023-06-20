@@ -125,7 +125,7 @@ class TakePictureScreenCommonDocumentState
           ),
           Align(
             alignment: AlignmentDirectional.bottomEnd,
-            child: Container(
+            child: SizedBox(
               height: 50,
               width: 50,
               child: Padding(

@@ -12,7 +12,7 @@ class TestWidget extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Spacer(),
+          const Spacer(),
           TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
@@ -37,7 +37,7 @@ class TestWidget extends StatelessWidget {
           //TODO
           // creat dropdown with validation.
           // CustomDropDownSingle()
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

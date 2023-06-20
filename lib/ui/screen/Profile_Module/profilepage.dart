@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
 
@@ -51,7 +50,7 @@ class ProfilePageCopy extends StatelessWidget {
     final bool displayMobileLayout900 = MediaQuery.of(conx).size.width > 900;
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 1,
@@ -1285,7 +1284,7 @@ class ProfilePageCopy extends StatelessWidget {
 
   getOption(BuildContext context, int index, double width) {
     if (index == 0) {
-      return Expanded(
+      return const Expanded(
           // width: width,
           // height: MediaQuery.of(context).size.height - 210,
           child: ContactInformationCopy());

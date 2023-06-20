@@ -38,7 +38,7 @@ class CustomRichTextWidget extends StatelessWidget {
           text: text1,
           style: TextStyle(
               fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: const Color.fromARGB(255, 0, 0, 0),
               fontWeight: FontWeight.bold,
               // shadows: [
               //   Shadow(

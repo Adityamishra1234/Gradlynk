@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:studentpanel/ui/controllers/trackapplicationcontroller.dart';
@@ -67,7 +66,7 @@ class _TrackApplicationCopyState extends State<TrackApplicationCopy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: const CustomAppBar("title"),
       body: ListView(
         controller: ScrollController(),
         children: [

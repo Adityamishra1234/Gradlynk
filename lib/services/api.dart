@@ -70,12 +70,12 @@ abstract class api {
   Future<String?> sendFile(
     file,
     uploadFilename,
-    String enq_id,
+    String enqId,
     String id,
     String endpoint,
   );
   Future<CommonUploadStatus?> uploadDocumentCommon(
-      file, uploadFilename, String enq_id, String id,
+      file, uploadFilename, String enqId, String id,
       {String orgname = ""});
   getLogin(String? endpoint);
   getDropdownUploadDocument(String endpoint);

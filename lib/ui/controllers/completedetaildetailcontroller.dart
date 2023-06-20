@@ -1,7 +1,16 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 
-class CompleteCourseDetailController extends GetxController {
+class CompleteCourseDetailController extends GetxController with StateMixin {
+  @override
+  void onInit() async {
+    change(null, status: RxStatus.loading());
+
+    change(null, status: RxStatus.success());
+    // TODO: implement onInit
+    super.onInit();
+  }
+
   //
   RxInt index = 0.obs;
 

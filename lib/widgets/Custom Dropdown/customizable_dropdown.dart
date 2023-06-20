@@ -251,7 +251,7 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
             SizedBox(
               height: widget.maxHeight,
               child: Scrollbar(
-                isAlwaysShown: true,
+                thumbVisibility: true,
                 controller: scrollControler,
                 child: ListView.builder(
                   controller: scrollControler,

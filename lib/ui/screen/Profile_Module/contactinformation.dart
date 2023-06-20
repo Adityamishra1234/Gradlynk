@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -14,10 +13,9 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
-import 'package:studentpanel/widgets/customdropdownsingle.dart';
 
 class ContactInformationCopy extends StatefulWidget {
-  ContactInformationCopy({Key? key}) : super(key: key);
+  const ContactInformationCopy({Key? key}) : super(key: key);
   static const routeNamed = '/ContactInformationCopy';
 
   @override
@@ -60,7 +58,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: CustomDrawer(),
         body: controller.obx((state) {
           try {

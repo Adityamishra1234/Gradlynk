@@ -54,7 +54,7 @@ class _VisaDetailState extends State<VisaDetail> {
       width = MediaQuery.of(context).size.width - 240;
     }
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 6,

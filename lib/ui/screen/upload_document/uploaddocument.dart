@@ -1,17 +1,11 @@
 // ignore_for_file: deprecated_member_use
-import 'dart:io';
 import 'package:camera/camera.dart';
-import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
-import 'package:nice_loading_button/nice_loading_button.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
-import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
-import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
@@ -19,14 +13,12 @@ import 'package:studentpanel/widgets/custom_doc_viewer.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
-import 'package:studentpanel/widgets/customdropdownsingle.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:studentpanel/widgets/file_download.dart';
 import 'takepicturescreenCommonDocument.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class UploadDocument extends StatefulWidget {
-  UploadDocument({Key? key}) : super(key: key);
+  const UploadDocument({Key? key}) : super(key: key);
   static const routeNamed = '/UploadDocument';
 
   @override
@@ -46,7 +38,7 @@ class _UploadDocumentState extends State<UploadDocument> {
       width = width - 240;
     }
     return Scaffold(
-        appBar: CustomAppBar(""),
+        appBar: const CustomAppBar(""),
         drawer: displayMobileLayout == false ? CustomDrawer() : null,
         body: GetBuilder<UploadDocumentController>(builder: (_) {
           documentList(_.documentModel, context);

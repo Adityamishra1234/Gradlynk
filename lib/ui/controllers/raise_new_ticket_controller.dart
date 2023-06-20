@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -17,12 +16,12 @@ class RaiseYourTicketController extends GetxController with StateMixin {
     super.onInit();
   }
 
-  sendFile(String enq_id, String? issue, String? suggestion,
+  sendFile(String enqId, String? issue, String? suggestion,
       [file, file2]) async {
     try {
       change(null, status: RxStatus.loading());
       var url = Uri.parse(
-          "${Endpoints.baseUrl}contact-us?enq_id=$enq_id&issue=$issue&suggestion=$suggestion");
+          "${Endpoints.baseUrl}contact-us?enq_id=$enqId&issue=$issue&suggestion=$suggestion");
       var request = http.MultipartRequest("POST", url);
 
       if (getNUllChecker(file) == false) {

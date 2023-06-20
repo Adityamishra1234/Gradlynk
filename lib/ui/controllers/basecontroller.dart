@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hashids2/hashids2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/carouselListModel.dart';
@@ -9,9 +6,7 @@ import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
-import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
-import 'package:studentpanel/ui/screen/updatedialog.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
@@ -72,12 +67,12 @@ class BaseController extends GetxController {
       } else {
         // if(model1.p)
         if (model1.otherCountryOfInterest != null) {
-          model1.otherCountryOfInterest!.forEach((element) {
+          for (var element in model1.otherCountryOfInterest!) {
             countrylist.add("Select your country");
             countryid.add(0);
             countryid.add(element.id!);
             countrylist.add(element.countryName!);
-          });
+          }
         }
         if (getNUllChecker(model1.countryName) == false) {
           countrylist.add(model1.countryName!);
@@ -125,7 +120,7 @@ class BaseController extends GetxController {
     // if (res == true) {
     Get.deleteAll();
     sharedPreferences.clear();
-    Get.offAll(LoginCopy());
+    Get.offAll(const LoginCopy());
     // Get.toNamed(LoginCopy.routeNamed);
     // } else {
     //   sharedPreferences.clear();

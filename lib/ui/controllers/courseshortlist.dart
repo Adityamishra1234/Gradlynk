@@ -8,7 +8,7 @@ import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-class CourseShortListController extends GetxController {
+class CourseShortListController extends GetxController with StateMixin {
   ApiServices apiservices = ApiServices();
 
   // Loading
@@ -22,6 +22,7 @@ class CourseShortListController extends GetxController {
   List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
   CourseSearchModel courseSearchModelCompare2 = CourseSearchModel();
+
   setCompare(RxBool data) {
     compareApply = data;
     update();
@@ -135,26 +136,13 @@ class CourseShortListController extends GetxController {
   courseSearch(String country, String courseLevel, String enqId, String state,
       String city, String boarderIeld, String narrowField) async {
     try {
-      loadingCourseSearch = false.obs;
+      change(null, status: RxStatus.loading());
       courseModelFilter = CourseModelFilter();
       var now = DateTime.now();
       var formatterYear = DateFormat('yyyy');
       var formatterMonth = DateFormat('MM');
 
-      String? endpoint = Endpoints.courseSearchPart1! +
-          country +
-          Endpoints.courseSearchPart2! +
-          courseLevel +
-          Endpoints.courseSearchPart3! +
-          state +
-          Endpoints.courseSearchPart4! +
-          city +
-          Endpoints.courseSearchPart5! +
-          boarderIeld +
-          Endpoints.courseSearchPart6! +
-          narrowField +
-          "&enq_id=" +
-          enqId;
+      String? endpoint = "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
       var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
       if (res != null) {
         courseModelFilter = res;
@@ -175,7 +163,8 @@ class CourseShortListController extends GetxController {
             }
           }
         }
-        loadingCourseSearch = true.obs;
+        change(null, status: RxStatus.success());
+
         update();
         return courseModelFilter;
       }

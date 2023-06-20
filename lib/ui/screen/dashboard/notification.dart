@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hashids2/hashids2.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/screen/My_Application/applicationcompletedetail.dart';
-import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customBottomNavbar.dart';
@@ -29,7 +25,7 @@ class NotificationScreen extends StatelessWidget {
         currentIndex: 2,
         context2: context,
       ),
-      appBar: CustomAppBar("title"),
+      appBar: const CustomAppBar("title"),
       drawer: CustomDrawer(),
       body: GetBuilder<BaseController>(builder: (_) {
         List<Widget> addWidget = [];

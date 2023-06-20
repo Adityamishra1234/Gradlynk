@@ -1,35 +1,28 @@
-import 'dart:convert';
 import 'dart:io';
 // import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
 import 'package:studentpanel/binding/dashboard.dart';
 import 'package:studentpanel/binding/detailbinding.dart';
 import 'package:studentpanel/binding/finalshortlist.dart';
-import 'package:studentpanel/binding/loginbinding.dart';
 import 'package:studentpanel/binding/profilepage.dart';
 import 'package:studentpanel/binding/reviewshortlist.dart';
 import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
-import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
-import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
+import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
@@ -37,7 +30,6 @@ import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart'
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
-import 'package:studentpanel/ui/screen/course_search/remove_compare_course.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
@@ -49,7 +41,6 @@ import 'package:studentpanel/ui/screen/Delete/detail.dart';
 import 'package:studentpanel/ui/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/Delete/sortcopy.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
@@ -59,7 +50,6 @@ import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 import 'ui/screen/Login_Module/animationtest.dart';
@@ -135,6 +125,10 @@ class _MyAppState extends State<MyApp> {
           name: "/",
           page: () => WelcomeView(),
         ),
+        GetPage(
+          name: ReceiveACallBackView.routeNamed,
+          page: () => ReceiveACallBackView(),
+        ),
         // GetPage(
         //   name: "/",
         //   page: () => LoginCopy(),
@@ -196,7 +190,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
             name: UploadDocument.routeNamed,
             transition: Transition.fade,
-            page: () => UploadDocument(),
+            page: () => const UploadDocument(),
             binding: UploadDocumentBinding()),
         GetPage(
           name: ImageViewerScreen.routeNamed,
@@ -282,12 +276,12 @@ class _MyAppState extends State<MyApp> {
             binding: VisaSummaryBinding()),
         GetPage(
             name: UploadDocument.routeNamed,
-            page: () => UploadDocument(),
+            page: () => const UploadDocument(),
             transition: Transition.fade,
             binding: UploadDocumentBinding()),
         GetPage(
           name: DocumentTest.routeNamed,
-          page: () => DocumentTest(),
+          page: () => const DocumentTest(),
           transition: Transition.fade,
         ),
         GetPage(
@@ -302,7 +296,7 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: ApplicationCompleteDetails.routeNamed,
-          page: () => ApplicationCompleteDetails(),
+          page: () => const ApplicationCompleteDetails(),
           transition: Transition.fade,
         ),
         GetPage(
@@ -327,7 +321,7 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: TestWidget.routeNamed,
-          page: () => TestWidget(),
+          page: () => const TestWidget(),
           transition: Transition.fade,
         ),
         GetPage(
@@ -342,14 +336,14 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: RaiseYourTicket.routeNamed,
-          page: () => RaiseYourTicket(),
+          page: () => const RaiseYourTicket(),
           transition: Transition.fade,
         ),
         GetPage(
             name: ProfileView.routeNamed,
             transition: Transition.fade,
             // page: () => ProfilePageCopy1(),
-            page: () => ProfileView(),
+            page: () => const ProfileView(),
             binding: ProfilePageBinding()),
       ],
     );

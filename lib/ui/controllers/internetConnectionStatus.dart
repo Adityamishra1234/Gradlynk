@@ -1,9 +1,3 @@
-import 'dart:async';
-import 'dart:io';
-import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/internet_connection.dart';
 
 mixin InternetConnectionStatusController {
   // getConnectivity() {

@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseInformationProfileController extends GetxController {
@@ -166,7 +165,7 @@ class CourseInformationProfileController extends GetxController {
       //           viewCourseInformationList[i].courseNarrowId!);
       // }
       var res = await apiServices.addProfileModule(
-          Endpoints.baseUrl!, endpoint!, "Course Information", action!);
+          Endpoints.baseUrl!, endpoint, "Course Information", action!);
       loadingViewCourseInformation.value = true;
       update();
     } catch (e) {

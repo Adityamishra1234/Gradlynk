@@ -24,9 +24,9 @@ class CountryGuideController extends GetxController {
           Get.find<BaseController>().model1.id.toString());
       if (res != null) {
         model = res;
-        model.forEach((element) {
+        for (var element in model) {
           countrylist.add(element.country);
-        });
+        }
         url = model[0].document;
         viewDetailsSelected = model[0].details;
         loadingCountryGuide = true.obs;

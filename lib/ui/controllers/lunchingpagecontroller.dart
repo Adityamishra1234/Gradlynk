@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 
 class LunchingPageController extends GetxController {

@@ -74,10 +74,10 @@ class UploadDocumentController extends GetxController {
         documenttypeName.add("Select your document type");
         documenttypeId.add(0);
         dropdownDocumentType = res;
-        dropdownDocumentType.forEach((element) {
+        for (var element in dropdownDocumentType) {
           documenttypeName.add(element.documentType!);
           documenttypeId.add(element.id!);
-        });
+        }
         loadingDocumentType = true.obs;
         update();
       }
@@ -104,11 +104,11 @@ class UploadDocumentController extends GetxController {
         organizationName.add("Select your organiztion name");
         organizationId.add(0);
         dropdownOrganization = res;
-        dropdownOrganization.forEach((element) {
+        for (var element in dropdownOrganization) {
           organizationName
               .add("${element.organisationName!} [${element.applicantType!}]");
           organizationId.add(element.id!);
-        });
+        }
         loadingOrgName = true.obs;
         update();
       }
@@ -136,10 +136,10 @@ class UploadDocumentController extends GetxController {
         documentNameName.add("Select your document Name");
         documentNameId.add(0);
         dropdownDocumentName = res;
-        dropdownDocumentName.forEach((element) {
+        for (var element in dropdownDocumentName) {
           documentNameName.add(element.documentName!);
           documentNameId.add(element.id!);
-        });
+        }
         loadingDocumentName = true.obs;
         update();
       }

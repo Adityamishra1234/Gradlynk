@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
@@ -98,7 +97,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
         await getApplicationDocumentsDirectory();
 
     bool dirDownloadExists = true;
-    var directory;
+    String directory;
     if (io.Platform.isIOS) {
       directory = (await getApplicationDocumentsDirectory()).path;
     } else {
@@ -114,11 +113,11 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
 
     String basenames = path.basename(url);
     final finalPath = path.join(directory, basenames);
-    io.File saveFile = io.File('$finalPath');
+    io.File saveFile = io.File(finalPath);
 
     final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    var sdkVersion = await androidInfo.version.sdkInt;
+    var sdkVersion = androidInfo.version.sdkInt;
 
     print(sdkVersion);
 
@@ -135,7 +134,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
                 NotificationService.showNotification(
                     title: 'Downlaod Completed',
                     body: 'Click to Open',
-                    payload: {'path': '$newpath', 'type': '${widget.payload}'});
+                    payload: {'path': newpath, 'type': widget.payload});
               },
               onDownloadError: (String error) {
                 print('DOWNLOAD ERROR: $error');
@@ -159,7 +158,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
                 NotificationService.showNotification(
                     title: 'Downlaod Completed',
                     body: 'Click to Open',
-                    payload: {'path': '$newpath', 'type': '${widget.payload}'});
+                    payload: {'path': newpath, 'type': widget.payload});
               },
               onDownloadError: (String error) {
                 print('DOWNLOAD ERROR: $error');
@@ -200,26 +199,26 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
   }
 
   Future<void> downloadMainFunction() async {
-    io.HttpClient httpClient = new io.HttpClient();
+    io.HttpClient httpClient = io.HttpClient();
     io.File file;
     String filePath = '';
     String myUrl = '';
     try {
-      String myUrl = '${widget.path}';
+      String myUrl = widget.path;
 
       io.Directory? applicationpath = await getExternalStorageDirectory();
 
       print(applicationpath);
 
       final indexOf = applicationpath!.path.indexOf('0');
-      final pathTemp = applicationpath!.path.substring(0, indexOf + 1);
+      final pathTemp = applicationpath.path.substring(0, indexOf + 1);
       var request = await httpClient.getUrl(Uri.parse(myUrl));
       var response = await request.close();
-      var theMainPath = "${pathTemp}/gradlynk";
+      var theMainPath = "$pathTemp/gradlynk";
       io.Directory finalDirectory = io.Directory(theMainPath);
       String basenames = path.basename(myUrl);
       final finalPath = path.join(theMainPath, basenames);
-      io.File saveFile = io.File('$finalPath');
+      io.File saveFile = io.File(finalPath);
       if (!await finalDirectory.exists()) {
         await finalDirectory.create(recursive: true);
       }
@@ -231,9 +230,10 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
         await NotificationService.showNotification(
             title: 'Download Completed',
             body: 'Click to Open',
-            payload: {'path': '${saveFile.path}', 'type': '${widget.payload}'});
-      } else
-        filePath = 'Error code: ' + response.statusCode.toString();
+            payload: {'path': saveFile.path, 'type': widget.payload});
+      } else {
+        filePath = 'Error code: ${response.statusCode}';
+      }
     } catch (ex) {
       filePath = 'Can not fetch url';
     }

@@ -1,11 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -96,7 +93,7 @@ class _LoginCopyState extends State<LoginCopy> {
       case 0:
         return Positioned(
             left: 10,
-            top: MediaQuery.of(context).size.height * 0.60,
+            top: MediaQuery.of(context).size.height * 0.69,
             child: Visibility(
               visible:
                   MediaQuery.of(context).viewInsets.bottom != 0 ? false : true,
@@ -136,7 +133,7 @@ class _LoginCopyState extends State<LoginCopy> {
       case 1:
         return Positioned(
             left: 10,
-            top: MediaQuery.of(context).size.height * 0.60,
+            top: MediaQuery.of(context).size.height * 0.69,
             child: Visibility(
               visible:
                   MediaQuery.of(context).viewInsets.bottom != 0 ? false : true,
@@ -176,7 +173,7 @@ class _LoginCopyState extends State<LoginCopy> {
       case 2:
         return Positioned(
             left: 10,
-            top: MediaQuery.of(context).size.height * 0.60,
+            top: MediaQuery.of(context).size.height * 0.69,
             child: Visibility(
               visible:
                   MediaQuery.of(context).viewInsets.bottom != 0 ? false : true,
@@ -228,21 +225,23 @@ class _LoginCopyState extends State<LoginCopy> {
                 decoration: BoxDecoration(color: ThemeConstants.bluecolor),
                 child: Stack(
                   children: [
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        onPageChanged: (index, reason) {
-                          controller.setUpdateCurrentIndex(index);
-                        },
-                        aspectRatio: 2.0,
-                        disableCenter: true,
-                        viewportFraction: 1,
-                        enlargeCenterPage: false,
-                        autoPlayCurve: Curves.ease,
-                        autoPlay: true,
-                        height: MediaQuery.of(context).size.height - 100,
-                        autoPlayInterval: const Duration(seconds: 3),
+                    SingleChildScrollView(
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          onPageChanged: (index, reason) {
+                            controller.setUpdateCurrentIndex(index);
+                          },
+                          aspectRatio: 2.0,
+                          disableCenter: true,
+                          viewportFraction: 1,
+                          enlargeCenterPage: false,
+                          autoPlayCurve: Curves.ease,
+                          autoPlay: true,
+                          height: MediaQuery.of(context).size.height - 100,
+                          autoPlayInterval: const Duration(seconds: 3),
+                        ),
+                        items: imglist1,
                       ),
-                      items: imglist1,
                     ),
 
                     //Icon And Text
@@ -267,7 +266,7 @@ class _LoginCopyState extends State<LoginCopy> {
                         alignment: AlignmentDirectional.bottomCenter,
                         heightFactor: 1.1,
                         child: SizedBox(
-                          height: 260,
+                          height: 280,
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             children: [
@@ -380,6 +379,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                             return SnackBarConstants.OTPError;
                                           }
                                         }
+                                        return null;
                                       }),
                                 ),
                               if (controller.otpEnable.value == true)

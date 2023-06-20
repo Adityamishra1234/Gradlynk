@@ -12,7 +12,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class RaiseYourTicket extends StatefulWidget {
-  RaiseYourTicket({super.key});
+  const RaiseYourTicket({super.key});
   static const routeNamed = '/RaiseYourTicket';
 
   @override
@@ -29,7 +29,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("sd"),
+        appBar: const CustomAppBar("sd"),
         drawer: CustomDrawer(
           index: 12,
         ),
@@ -353,11 +353,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                           width: 100,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary:
-                                    ThemeConstants.lightgreycolor, // background
-                                onPrimary:
-                                    ThemeConstants.lightgreycolor, // foreground
+                                foregroundColor: ThemeConstants.lightgreycolor, backgroundColor: ThemeConstants.lightgreycolor, elevation: 0.0, // foreground
                               ),
                               onPressed: () {
                                 setState(() {
@@ -378,10 +374,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                           width: 150,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary: ThemeConstants.bluecolor, // background
-                                onPrimary:
-                                    ThemeConstants.bluecolor, // foreground
+                                foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
                               ),
                               onPressed: () async {
                                 bool temp = true;

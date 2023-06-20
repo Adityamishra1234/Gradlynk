@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
-import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
-import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
-import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/login%20copy.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class AnimationTest extends StatefulWidget {

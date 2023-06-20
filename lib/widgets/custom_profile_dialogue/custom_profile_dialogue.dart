@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
-import 'package:studentpanel/ui/screen/Profile_module_2/contact_information_in_popup.dart';
-import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/contact_information_in_popup_controller.dart';
-import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/custombutton.dart';
 
 class CustomProfileDialogue extends StatelessWidget {
   Widget child;
@@ -30,11 +22,11 @@ class CustomProfileDialogue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.all(15),
+      contentPadding: const EdgeInsets.all(15),
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
-      content: Container(
+      content: SizedBox(
           height: MediaQuery.of(context).size.height * 0.8,
           width: MediaQuery.of(context).size.width * 0.8,
           child: Stack(
@@ -64,7 +56,7 @@ class CustomProfileDialogue extends StatelessWidget {
                 heightFactor: 0.85,
                 alignment: Alignment.centerLeft,
                 child: Container(
-                    padding: EdgeInsets.only(bottom: 10), child: child),
+                    padding: const EdgeInsets.only(bottom: 10), child: child),
               ),
               FractionallySizedBox(
                 heightFactor: 0.1,

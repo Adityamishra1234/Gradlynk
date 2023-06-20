@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
-import 'package:studentpanel/ui/models/countryGuide.dart';
 import 'package:studentpanel/utils/constants.dart';
-import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -18,7 +15,7 @@ class StepsToAdmissions extends StatefulWidget {
 }
 
 class _StepsToAdmissionsState extends State<StepsToAdmissions> {
-  GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {

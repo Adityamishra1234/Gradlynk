@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studentpanel/utils/theme.dart';
 
@@ -93,7 +91,7 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
           children: [
             Flexible(
               child: Text(
-                "${widget.title}",
+                widget.title,
                 style: TextStyle(
                     color: widget.isCompleted == 1
                         ? ThemeConstants.bluecolor

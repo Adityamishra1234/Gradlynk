@@ -235,12 +235,12 @@ class StudentPanelBase {
     }
   }
 
-  errorHandle(String enq_id, String error_message, String statusCode,
+  errorHandle(String enqId, String errorMessage, String statusCode,
       [String extra = ""]) async {
     String endpoint = Endpoints.errorHandlePart1! +
-        enq_id +
+        enqId +
         Endpoints.errorHandlepart2! +
-        error_message +
+        errorMessage +
         Endpoints.errorHandlepart3! +
         statusCode +
         Endpoints.errorHandlepart4! +

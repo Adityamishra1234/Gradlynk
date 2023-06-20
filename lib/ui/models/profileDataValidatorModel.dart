@@ -37,19 +37,19 @@ class ProfileDataValidatorModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['validate_icon_for_personal_info'] = this.validateIconForPersonalInfo;
-    data['validate_icon_for_course_info'] = this.validateIconForCourseInfo;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['validate_icon_for_personal_info'] = validateIconForPersonalInfo;
+    data['validate_icon_for_course_info'] = validateIconForCourseInfo;
     data['validate_icon_for_qualification_info'] =
-        this.validateIconForQualificationInfo;
-    data['validate_icon_for_work_history'] = this.validateIconForWorkHistory;
-    data['validate_icon_for_english_test'] = this.validateIconForEnglishTest;
-    data['validate_icon_for_other_test'] = this.validateIconForOtherTest;
-    data['validate_icon_for_passport'] = this.validateIconForPassport;
+        validateIconForQualificationInfo;
+    data['validate_icon_for_work_history'] = validateIconForWorkHistory;
+    data['validate_icon_for_english_test'] = validateIconForEnglishTest;
+    data['validate_icon_for_other_test'] = validateIconForOtherTest;
+    data['validate_icon_for_passport'] = validateIconForPassport;
     data['validate_icon_for_travel_history'] =
-        this.validateIconForTravelHistory;
-    data['validate_icon_for_relative_info'] = this.validateIconForRelativeInfo;
-    data['totalPercentageComplete'] = this.totalPercentageComplete;
+        validateIconForTravelHistory;
+    data['validate_icon_for_relative_info'] = validateIconForRelativeInfo;
+    data['totalPercentageComplete'] = totalPercentageComplete;
     return data;
   }
 }

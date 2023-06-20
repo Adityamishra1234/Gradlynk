@@ -135,7 +135,7 @@ class ApplicationSummaryController extends GetxController {
     //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
     //     .toList();
 
-    if (query.length == 0) {
+    if (query.isEmpty) {
       searchedList = applicationSummaryModel;
       update();
     } else {

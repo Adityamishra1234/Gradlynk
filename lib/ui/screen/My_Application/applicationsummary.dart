@@ -30,7 +30,7 @@ class ApplicationSummary extends StatelessWidget {
     print(controller.searchedList.length);
 
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: const CustomAppBar("title"),
       drawer: displayMobileLayout == false
           ? CustomDrawer(
               index: 2,
@@ -102,7 +102,7 @@ class ApplicationSummary extends StatelessWidget {
                             contentPadding: EdgeInsets.all(5),
                             hintText: "Search by country or university",
                             prefixIcon: Icon(Icons.search),
-                            focusedBorder: const OutlineInputBorder(
+                            focusedBorder: OutlineInputBorder(
                               // width: 0.0 produces a thin "hairline" border
                               borderSide:
                                   BorderSide(color: Colors.blue, width: 0.5),

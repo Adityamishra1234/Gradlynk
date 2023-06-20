@@ -1,49 +1,26 @@
 import 'dart:async';
-import 'dart:math' as math;
-import 'package:cached_network_svg_image/cached_network_svg_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:bulleted_list/bulleted_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/versioncontroller.dart';
-import 'package:studentpanel/ui/models/carouselListModel.dart';
-import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
-import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
-import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
-import 'package:studentpanel/ui/screen/dashboard/upcomingevent.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
-import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
-import 'package:studentpanel/ui/screen/test/uploadfile.dart';
-import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
-import 'package:studentpanel/ui/screen/updatedialog.dart';
+import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/appbar.dart';
-import 'package:studentpanel/widgets/bottomnavigation.dart';
 import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/custom_dialog_box.dart';
 
-import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
-import 'package:studentpanel/widgets/file_download.dart';
-import 'package:studentpanel/widgets/test.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -69,7 +46,7 @@ class _DashBoardState extends State<DashBoard> {
   );
   bool appbar = false;
   bool showcase = false;
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final GlobalKey _one = GlobalKey();
   final GlobalKey _two = GlobalKey();
@@ -85,7 +62,7 @@ class _DashBoardState extends State<DashBoard> {
   final GlobalKey _12 = GlobalKey();
   BuildContext? myContext;
 
-  var _currentIndex = 0;
+  final _currentIndex = 0;
 
   @override
   void initState() {
@@ -123,17 +100,17 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    final CarouselController _controller = CarouselController();
+    final CarouselController controller = CarouselController();
 
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
 
     final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
 
-    ScrollController _Scrollcontroller = ScrollController();
+    ScrollController Scrollcontroller = ScrollController();
 
     return ShowCaseWidget(
         autoPlay: true,
-        autoPlayDelay: Duration(seconds: 5),
+        autoPlayDelay: const Duration(seconds: 5),
         onComplete: (p0, p1) {
           print(p0);
           if (p0 == 8) {
@@ -141,14 +118,16 @@ class _DashBoardState extends State<DashBoard> {
             setState(() {});
           }
           if (p0 == 2) {
-            _Scrollcontroller.jumpTo(
-                _Scrollcontroller.position.maxScrollExtent);
+            Scrollcontroller.jumpTo(
+                Scrollcontroller.position.maxScrollExtent);
           }
         },
         builder: Builder(builder: (context) {
           myContext = context;
           return GetBuilder<BaseController>(builder: (_) {
             return Scaffold(
+              drawerScrimColor: const Color.fromARGB(110, 255, 255, 255),
+              backgroundColor: const Color.fromARGB(255, 248, 252, 255),
               key: _scaffoldKey,
               appBar: AppBar(
                 elevation: 0,
@@ -165,7 +144,7 @@ class _DashBoardState extends State<DashBoard> {
                         descTextStyle: TextStyle(
                             color: ThemeConstants.whitecolor, fontSize: 18),
                         tooltipBackgroundColor: ThemeConstants.bluecolor,
-                        overlayColor: Color.fromARGB(255, 0, 0, 0),
+                        overlayColor: const Color.fromARGB(255, 0, 0, 0),
                         overlayOpacity: 0.8,
                         key: _nine,
                         description:
@@ -196,7 +175,7 @@ class _DashBoardState extends State<DashBoard> {
                     descTextStyle: TextStyle(
                         color: ThemeConstants.whitecolor, fontSize: 18),
                     tooltipBackgroundColor: ThemeConstants.bluecolor,
-                    overlayColor: Color.fromARGB(178, 0, 0, 0),
+                    overlayColor: const Color.fromARGB(178, 0, 0, 0),
                     overlayOpacity: 0.8,
                     key: _ten,
                     description:
@@ -206,7 +185,7 @@ class _DashBoardState extends State<DashBoard> {
                           "notification", ThemeConstants.IconColor, 30, 30),
                       onPressed: () {
                         //TODO
-                        Get.to(NotificationScreen());
+                        Get.to(const NotificationScreen());
                       },
                     ),
                   ),
@@ -252,14 +231,13 @@ class _DashBoardState extends State<DashBoard> {
                                 index: 0,
                               ),
                             Container(
-                              color: Color.fromARGB(255, 255, 255, 255),
                               child: SizedBox(
                                 height: MediaQuery.of(context).size.height,
                                 width: displayMobileLayout == true
                                     ? MediaQuery.of(context).size.width - 240
                                     : MediaQuery.of(context).size.width,
                                 child: ListView(
-                                  controller: _Scrollcontroller,
+                                  controller: Scrollcontroller,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(top: 10),
@@ -309,8 +287,8 @@ class _DashBoardState extends State<DashBoard> {
                                                         ShowCaseWidget.of(
                                                                 context)
                                                             .next();
-                                                        _Scrollcontroller.jumpTo(
-                                                            _Scrollcontroller
+                                                        Scrollcontroller.jumpTo(
+                                                            Scrollcontroller
                                                                 .position
                                                                 .maxScrollExtent);
                                                       },
@@ -323,7 +301,7 @@ class _DashBoardState extends State<DashBoard> {
                                                       // tooltipBackgroundColor:
                                                       //     ThemeConstants.bluecolor,
                                                       overlayColor:
-                                                          Color.fromARGB(
+                                                          const Color.fromARGB(
                                                               183, 0, 0, 0),
                                                       overlayOpacity: 0.8,
                                                       // tooltipPadding:
@@ -346,8 +324,8 @@ class _DashBoardState extends State<DashBoard> {
                                                           ShowCaseWidget.of(
                                                                   context)
                                                               .next();
-                                                          _Scrollcontroller.jumpTo(
-                                                              _Scrollcontroller
+                                                          Scrollcontroller.jumpTo(
+                                                              Scrollcontroller
                                                                   .position
                                                                   .maxScrollExtent);
                                                         },
@@ -357,7 +335,7 @@ class _DashBoardState extends State<DashBoard> {
                                                                   .only(
                                                             top: 10,
                                                           ),
-                                                          child: Container(
+                                                          child: SizedBox(
                                                             height: MediaQuery.of(
                                                                         context)
                                                                     .size
@@ -477,7 +455,7 @@ class _DashBoardState extends State<DashBoard> {
 
                                     Container(
                                       padding:
-                                          EdgeInsets.only(bottom: 10, top: 1),
+                                          const EdgeInsets.only(bottom: 10, top: 1),
                                       height: 200,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
@@ -509,7 +487,7 @@ class _DashBoardState extends State<DashBoard> {
                                             // contactUsDialog(context);
                                             contactUsDialog(context);
                                           },
-                                          child: Container(
+                                          child: SizedBox(
                                             height: 70,
                                             width: displayMobileLayout
                                                 ? MediaQuery.of(context)
@@ -528,7 +506,7 @@ class _DashBoardState extends State<DashBoard> {
                                               children: [
                                                 Container(
                                                   padding:
-                                                      EdgeInsets.only(left: 20),
+                                                      const EdgeInsets.only(left: 20),
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   height: 60,
@@ -548,7 +526,7 @@ class _DashBoardState extends State<DashBoard> {
                                                             .start,
                                                     children: [
                                                       Container(
-                                                        padding: EdgeInsets
+                                                        padding: const EdgeInsets
                                                             .symmetric(
                                                                 vertical: 0.5,
                                                                 horizontal: 8),
@@ -603,7 +581,7 @@ class _DashBoardState extends State<DashBoard> {
                                                             ThemeConstants
                                                                 .bluecolor,
                                                         overlayColor:
-                                                            Color.fromARGB(
+                                                            const Color.fromARGB(
                                                                 183, 0, 0, 0),
                                                         overlayOpacity: 0.8,
                                                         tooltipPadding:
@@ -734,95 +712,36 @@ class _DashBoardState extends State<DashBoard> {
                                       height: 20,
                                     ),
 
-                                    Wrap(
-                                      runSpacing: 15.0,
-                                      spacing: 30,
-                                      alignment: WrapAlignment.center,
-                                      runAlignment: WrapAlignment.center,
-                                      children: [
-                                        // Create profile
-                                        InkWell(
-                                          onTap: () async {
-                                            // getDailogForAgree(context);
-                                            // Get.to(ProfilePageCopy1());
-                                            Get.toNamed(ProfileView.routeNamed);
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Showcase(
-                                                descTextStyle: TextStyle(
-                                                    color: ThemeConstants
-                                                        .whitecolor,
-                                                    fontSize: 18),
-                                                tooltipBackgroundColor:
-                                                    ThemeConstants.bluecolor,
-                                                overlayColor: Color.fromARGB(
-                                                    183, 0, 0, 0),
-                                                overlayOpacity: 0.8,
-                                                tooltipPadding:
-                                                    const EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 10,
-                                                        bottom: 10),
-                                                targetBorderRadius:
-                                                    BorderRadius.circular(18.0),
-                                                key: _two,
-                                                description:
-                                                    'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
-                                                child: Container(
-                                                    height: 140,
-                                                    width: 140,
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            width: 1.2,
-                                                            color: ThemeConstants
-                                                                .VioletColor),
-                                                        color: const Color(
-                                                            0xFFF1F0FF),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                    .all(
-                                                                Radius.circular(
-                                                                    20))),
-                                                    child: svgImage(
-                                                        "create_profile",
-                                                        const Color(0xFF6F61FF),
-                                                        80,
-                                                        80)),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: Text(
-                                                  "Create your profile",
-                                                  style: _textStyle,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        //Upload Document
-                                        InkWell(
-                                          onTap: () {
-                                            Get.toNamed(
-                                                UploadDocument.routeNamed);
-                                          },
-                                          child: InkWell(
-                                            // color: Colors.amber,
+                                    Container(
+                                      margin:
+                                          const EdgeInsets.symmetric(vertical: 10),
+                                      width: MediaQuery.of(context).size.height,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        // runSpacing: 15.0,
+                                        // spacing: 30,
+                                        // alignment: WrapAlignment.center,
+                                        // runAlignment: WrapAlignment.center,
+                                        children: [
+                                          // Create profile
+                                          InkWell(
+                                            onTap: () async {
+                                              // getDailogForAgree(context);
+                                              // Get.to(ProfilePageCopy1());
+                                              Get.toNamed(
+                                                  ProfileView.routeNamed);
+                                            },
                                             child: Column(
                                               children: [
                                                 Showcase(
-                                                  targetBorderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0),
                                                   descTextStyle: TextStyle(
                                                       color: ThemeConstants
                                                           .whitecolor,
                                                       fontSize: 18),
                                                   tooltipBackgroundColor:
                                                       ThemeConstants.bluecolor,
-                                                  overlayColor: Color.fromARGB(
+                                                  overlayColor: const Color.fromARGB(
                                                       183, 0, 0, 0),
                                                   overlayOpacity: 0.8,
                                                   tooltipPadding:
@@ -831,38 +750,34 @@ class _DashBoardState extends State<DashBoard> {
                                                           right: 5,
                                                           top: 10,
                                                           bottom: 10),
-                                                  targetShapeBorder:
-                                                      const RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          20))),
-                                                  key: _three,
+                                                  targetBorderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  key: _two,
                                                   description:
-                                                      "All documents required for your Application to be uploaded here.",
+                                                      'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
                                                   child: Container(
-                                                      height: 140,
-                                                      width: 140,
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                            width: 1.2,
-                                                            color:
-                                                                ThemeConstants
-                                                                    .yellow,
-                                                          ),
-                                                          color: const Color(
-                                                              0xFFFEF6E6),
+                                                      height: 70,
+                                                      width: 70,
+                                                      padding:
+                                                          const EdgeInsets.all(10),
+                                                      decoration: const BoxDecoration(
+                                                          // border: Border.all(
+                                                          //     width: 1.2,
+                                                          //     color: ThemeConstants
+                                                          //         .VioletColor),
+                                                          color: Color(
+                                                              0xFFF1F0FF),
                                                           borderRadius:
-                                                              const BorderRadius
+                                                              BorderRadius
                                                                       .all(
                                                                   Radius
                                                                       .circular(
                                                                           20))),
                                                       child: svgImage(
-                                                          "upload_document",
+                                                          "create_profile",
                                                           const Color(
-                                                              0xFFF8A300),
+                                                              0xFF6F61FF),
                                                           80,
                                                           80)),
                                                 ),
@@ -870,124 +785,231 @@ class _DashBoardState extends State<DashBoard> {
                                                   padding:
                                                       const EdgeInsets.only(
                                                           top: 10),
-                                                  child: Text(
-                                                    "Upload document",
-                                                    style: _textStyle,
+                                                  child: SizedBox(
+                                                    width: 100,
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13,
+                                                      text:
+                                                          "Create your profile",
+                                                      textalingCentre: true,
+                                                    ),
                                                   ),
-                                                ),
+                                                )
                                               ],
                                             ),
                                           ),
-                                        ),
-                                        //Course Search
-                                        InkWell(
-                                          onTap: () {
-                                            Get.toNamed(
-                                                CourseSearch.routeNamed);
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Showcase(
-                                                descTextStyle: TextStyle(
-                                                    color: ThemeConstants
-                                                        .whitecolor,
-                                                    fontSize: 18),
-                                                tooltipBackgroundColor:
-                                                    ThemeConstants.bluecolor,
-                                                overlayColor: Color.fromARGB(
-                                                    183, 0, 0, 0),
-                                                overlayOpacity: 0.8,
-                                                tooltipPadding:
-                                                    const EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 10,
-                                                        bottom: 10),
-                                                targetBorderRadius:
-                                                    BorderRadius.circular(18.0),
-                                                key: _four,
-                                                description:
-                                                    "Course Search assists you in searching your desired course across the globe.",
-                                                child: Container(
-                                                    height: 140,
-                                                    width: 140,
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            width: 1.2,
-                                                            color: const Color(
-                                                                0xFFF16660)),
-                                                        color: const Color(
-                                                            0xFFFEF0F0),
+                                          //Upload Document
+                                          InkWell(
+                                            onTap: () {
+                                              Get.toNamed(
+                                                  UploadDocument.routeNamed);
+                                            },
+                                            child: InkWell(
+                                              // color: Colors.amber,
+                                              child: Column(
+                                                children: [
+                                                  Showcase(
+                                                    targetBorderRadius:
+                                                        BorderRadius.circular(
+                                                            18.0),
+                                                    descTextStyle: TextStyle(
+                                                        color: ThemeConstants
+                                                            .whitecolor,
+                                                        fontSize: 18),
+                                                    tooltipBackgroundColor:
+                                                        ThemeConstants
+                                                            .bluecolor,
+                                                    overlayColor:
+                                                        const Color.fromARGB(
+                                                            183, 0, 0, 0),
+                                                    overlayOpacity: 0.8,
+                                                    tooltipPadding:
+                                                        const EdgeInsets.only(
+                                                            left: 5,
+                                                            right: 5,
+                                                            top: 10,
+                                                            bottom: 10),
+                                                    targetShapeBorder:
+                                                        const RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            20))),
+                                                    key: _three,
+                                                    description:
+                                                        "All documents required for your Application to be uploaded here.",
+                                                    child: Container(
+                                                        height: 70,
+                                                        padding:
+                                                            const EdgeInsets.all(10),
+                                                        width: 70,
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                                // border:
+                                                                //     Border.all(
+                                                                //   width: 1.2,
+                                                                //   color:
+                                                                //       ThemeConstants
+                                                                //           .yellow,
+                                                                // ),
+                                                                color: Color(
+                                                                    0xFFFEF6E6),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                            .all(
+                                                                        Radius.circular(
+                                                                            20))),
+                                                        child: svgImage(
+                                                            "upload_document",
+                                                            const Color(
+                                                                0xFFF8A300),
+                                                            80,
+                                                            80)),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    child: SizedBox(
+                                                      width: 100,
+                                                      child:
+                                                          CustomAutoSizeTextMontserrat(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 13,
+                                                        text: "Upload document",
+                                                        textalingCentre: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          //Course Search
+                                          InkWell(
+                                            onTap: () {
+                                              Get.toNamed(
+                                                  CourseSearch.routeNamed);
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Showcase(
+                                                  descTextStyle: TextStyle(
+                                                      color: ThemeConstants
+                                                          .whitecolor,
+                                                      fontSize: 18),
+                                                  tooltipBackgroundColor:
+                                                      ThemeConstants.bluecolor,
+                                                  overlayColor: const Color.fromARGB(
+                                                      183, 0, 0, 0),
+                                                  overlayOpacity: 0.8,
+                                                  tooltipPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 5,
+                                                          right: 5,
+                                                          top: 10,
+                                                          bottom: 10),
+                                                  targetBorderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  key: _four,
+                                                  description:
+                                                      "Course Search assists you in searching your desired course across the globe.",
+                                                  child: Container(
+                                                      height: 70,
+                                                      padding:
+                                                          const EdgeInsets.all(10),
+                                                      width: 70,
+                                                      decoration: const BoxDecoration(
+                                                          // border: Border.all(
+                                                          //     width: 1.2,
+                                                          //     color: const Color(
+                                                          //         0xFFF16660)),
+                                                          color: Color(
+                                                              0xFFFEF0F0),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                      .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      child: svgImage(
+                                                          "course",
+                                                          const Color(
+                                                              0xFFF16660),
+                                                          80,
+                                                          80)),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10),
+                                                  child: SizedBox(
+                                                    width: 80,
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13,
+                                                      text: "Course Search",
+                                                      textalingCentre: true,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          // Track Application
+                                          InkWell(
+                                            onTap: () {
+                                              Get.toNamed(ApplicationSummary
+                                                  .routeNamed);
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Showcase(
+                                                  descTextStyle: TextStyle(
+                                                      color: ThemeConstants
+                                                          .whitecolor,
+                                                      fontSize: 18),
+                                                  tooltipBackgroundColor:
+                                                      ThemeConstants.bluecolor,
+                                                  overlayColor: const Color.fromARGB(
+                                                      183, 0, 0, 0),
+                                                  overlayOpacity: 0.8,
+                                                  tooltipPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 5,
+                                                          right: 5,
+                                                          top: 10,
+                                                          bottom: 10),
+                                                  targetBorderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  key: _five,
+                                                  description:
+                                                      "You can keep a track on your Application Stage and Status.",
+                                                  child: Container(
+                                                    height: 70,
+                                                    width: 70,
+                                                    padding: const EdgeInsets.all(12),
+                                                    decoration: const BoxDecoration(
+                                                        // border: Border.all(
+                                                        //     width: 1.2,
+                                                        //     color: const Color(
+                                                        //         0xFF05B4D2)),
+                                                        color: Color(
+                                                            0xFFE8FAFD),
                                                         borderRadius:
-                                                            const BorderRadius
+                                                            BorderRadius
                                                                     .all(
                                                                 Radius.circular(
                                                                     20))),
-                                                    child: svgImage(
-                                                        "course",
-                                                        const Color(0xFFF16660),
-                                                        80,
-                                                        80)),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: Text(
-                                                  "Course Search",
-                                                  style: _textStyle,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        // Track Application
-                                        InkWell(
-                                          onTap: () {
-                                            Get.toNamed(
-                                                ApplicationSummary.routeNamed);
-                                          },
-                                          child: Column(
-                                            children: [
-                                              Showcase(
-                                                descTextStyle: TextStyle(
-                                                    color: ThemeConstants
-                                                        .whitecolor,
-                                                    fontSize: 18),
-                                                tooltipBackgroundColor:
-                                                    ThemeConstants.bluecolor,
-                                                overlayColor: Color.fromARGB(
-                                                    183, 0, 0, 0),
-                                                overlayOpacity: 0.8,
-                                                tooltipPadding:
-                                                    const EdgeInsets.only(
-                                                        left: 5,
-                                                        right: 5,
-                                                        top: 10,
-                                                        bottom: 10),
-                                                targetBorderRadius:
-                                                    BorderRadius.circular(18.0),
-                                                key: _five,
-                                                description:
-                                                    "You can keep a track on your Application Stage and Status.",
-                                                child: Container(
-                                                  height: 140,
-                                                  width: 140,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          width: 1.2,
-                                                          color: const Color(
-                                                              0xFF05B4D2)),
-                                                      color: const Color(
-                                                          0xFFE8FAFD),
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  20))),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            30.0),
                                                     child: svgImage(
                                                         "track",
                                                         const Color(0xFF05B4D2),
@@ -995,21 +1017,71 @@ class _DashBoardState extends State<DashBoard> {
                                                         80),
                                                   ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10),
-                                                child: Text(
-                                                  "Track application",
-                                                  style: _textStyle,
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10),
+                                                  child: SizedBox(
+                                                    width: 100,
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      text: "Track application",
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13,
+                                                      textalingCentre: true,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          // InkWell(
+                                          //   onTap: () {
+                                          //     Get.to(StageProgress());
+                                          //   },
+                                          //   child: Column(
+                                          //     children: [
+                                          //       Container(
+                                          //           height: 140,
+                                          //           width: 140,
+                                          //           decoration: BoxDecoration(
+                                          //               border: Border.all(
+                                          //                 width: 1.2,
+                                          //                 color: ThemeConstants
+                                          //                     .yellow,
+                                          //               ),
+                                          //               color: const Color(
+                                          //                   0xFFFEF6E6),
+                                          //               borderRadius:
+                                          //                   const BorderRadius
+                                          //                           .all(
+                                          //                       Radius.circular(
+                                          //                           20))),
+                                          //           child: svgImage(
+                                          //               "upload_document",
+                                          //               const Color(0xFFF8A300),
+                                          //               80,
+                                          //               80)),
+                                          //       Padding(
+                                          //         padding: const EdgeInsets.only(
+                                          //             top: 10),
+                                          //         child: Text(
+                                          //           "Upload document",
+                                          //           style: _textStyle,
+                                          //         ),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                        ],
+                                      ),
                                     ),
-
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 10),
+                                      child: StageProgress(),
+                                    ),
                                     // Upcoming Event
                                     // if (_.loadingUpcomingEvents.value == true)
                                     //   Padding(
@@ -1461,7 +1533,7 @@ class _DashBoardState extends State<DashBoard> {
     //   throw 'Could not launch $call';
     // }
 
-    var url = '${link}';
+    var url = link;
     // ignore: deprecated_member_use
     if (await canLaunch(url)) {
       // ignore: deprecated_member_use

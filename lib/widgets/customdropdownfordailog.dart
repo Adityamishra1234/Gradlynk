@@ -69,7 +69,7 @@ class _CustomDropDownSingleDailogState
                     );
                   }).toList(),
 
-                  onChanged: (dynamic? newValue) {
+                  onChanged: (dynamic newValue) {
                     widget.initialSelectedValue = newValue!;
                     // initialSelectedValue2 = newValue;
                     widget.callbackFunction(newValue);

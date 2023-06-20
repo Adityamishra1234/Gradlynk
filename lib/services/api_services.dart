@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -42,11 +41,9 @@ import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
-import 'package:studentpanel/utils/theme.dart';
 import 'package:http/http.dart' as http;
 
 class ApiServices extends StudentPanelBase implements api {
@@ -1239,13 +1236,13 @@ class ApiServices extends StudentPanelBase implements api {
   Future<String?> sendFile(
     file,
     uploadFilename,
-    String enq_id,
+    String enqId,
     String id,
     String endpoint,
   ) async {
     try {
       var url = Uri.parse(
-          "${Endpoints.baseUrl}${Endpoints.applicationDocumentUpload}$enq_id&id=$id");
+          "${Endpoints.baseUrl}${Endpoints.applicationDocumentUpload}$enqId&id=$id");
       var request = http.MultipartRequest("POST", url);
 
       request.files
@@ -1263,15 +1260,16 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       getToast(SnackBarConstants.errorMsg!);
     }
+    return null;
   }
 
   @override
   Future<CommonUploadStatus?> uploadDocumentCommon(
-      file, uploadFilename, String enq_id, String id,
+      file, uploadFilename, String enqId, String id,
       {String orgname = ""}) async {
     try {
       var url = Uri.parse(
-          "${Endpoints.baseUrl}${Endpoints.uploadCommonDocumentPart1}$enq_id&id=$id&orgname=$orgname");
+          "${Endpoints.baseUrl}${Endpoints.uploadCommonDocumentPart1}$enqId&id=$id&orgname=$orgname");
       var request = http.MultipartRequest("POST", url);
 
       request.files
@@ -1287,6 +1285,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       getToast(SnackBarConstants.errorMsg!);
     }
+    return null;
   }
 
   @override
@@ -1587,7 +1586,7 @@ class ApiServices extends StudentPanelBase implements api {
   profileDataValidation(int enqID) async {
     try {
       String url =
-          '${Endpoints.baseUrl}${Endpoints.profileDataValidation}${enqID}';
+          '${Endpoints.baseUrl}${Endpoints.profileDataValidation}$enqID';
 
       var res = await httpPostNullBody(url);
       var jsondata = json.decode(res);
@@ -1655,7 +1654,7 @@ class ApiServices extends StudentPanelBase implements api {
     // TODO: implement counselorList
 
     try {
-      String url = '${Endpoints.baseUrl}${Endpoints.counselorList}${id}';
+      String url = '${Endpoints.baseUrl}${Endpoints.counselorList}$id';
 
       var res = await httpPostNullBody(url);
 

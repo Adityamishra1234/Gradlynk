@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/finalshortlistcontroller.dart';
@@ -9,7 +8,6 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/course_search/compare.dart';
 import 'package:studentpanel/ui/screen/complete_course_details/coursesearchfulldetail.dart';
 import 'package:studentpanel/ui/screen/course_search/fliter.dart';
-import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -73,10 +71,10 @@ class _FinalShortListState extends State<FinalShortList> {
           print("object");
         }
         Get.back();
-        return await true;
+        return true;
       },
       child: Scaffold(
-          appBar: CustomAppBar("title"),
+          appBar: const CustomAppBar("title"),
           drawer: displayMobileLayout == false
               ? CustomDrawer(
                   index: 5,

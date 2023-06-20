@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/countryguidecontroller.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -8,20 +7,19 @@ import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
-import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CountryGuide extends StatelessWidget {
   CountryGuide({super.key});
   static const routeNamed = '/CountryGuide';
-  GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
   var controller = Get.put(CountryGuideController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: CustomDrawer(
           index: 8,
         ),

@@ -36,17 +36,17 @@ class IdsFromZipCodeModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['pin_code'] = this.pinCode;
-    data['country_id'] = this.countryId;
-    data['state_id'] = this.stateId;
-    data['city_id'] = this.cityId;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['country_name'] = this.countryName;
-    data['state_name'] = this.stateName;
-    data['city_name'] = this.cityName;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['pin_code'] = pinCode;
+    data['country_id'] = countryId;
+    data['state_id'] = stateId;
+    data['city_id'] = cityId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['country_name'] = countryName;
+    data['state_name'] = stateName;
+    data['city_name'] = cityName;
     return data;
   }
 }

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
 import 'package:studentpanel/ui/controllers/courseshortlist.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/screen/course_search/compare.dart';
 import 'package:studentpanel/ui/screen/complete_course_details/coursesearchfulldetail.dart';
-import 'package:studentpanel/ui/screen/course_search/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/fliter.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -85,7 +82,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
     }
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 4,
@@ -110,7 +107,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
               Get.back();
             }
 
-            return await true;
+            return true;
           },
           child: GetBuilder<ReviewShortListController>(
             builder: (_) => Row(

@@ -726,12 +726,12 @@ class CourseInformation extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 top: 10,
               ),
               child: Row(
-                children: const [],
+                children: [],
               ),
             ),
           ],

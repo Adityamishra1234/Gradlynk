@@ -112,11 +112,11 @@ class DrawerFilter extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 120),
             child: ConfigurableExpansionTile(
-              header: SizedBox(
+              header: const SizedBox(
                 width: 220,
                 height: 40,
                 child: Row(
-                  children: const [
+                  children: [
                     Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: Text(

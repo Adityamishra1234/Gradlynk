@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:studentpanel/ui/controllers/trackyourticketscontroller.dart';
-import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/ticketdatamodel.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/completeticketview.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -16,13 +12,14 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 
 class TrackyourTickets extends GetView<TrackYourTicketsController> {
   TrackyourTickets({super.key});
+  @override
   var controller = Get.put(TrackYourTicketsController());
   static const routeNamed = '/TrackyourTickets';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('title'),
+      appBar: const CustomAppBar('title'),
       drawer: CustomDrawer(
         index: 10,
       ),
@@ -607,11 +604,9 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                             width: 100,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  primary: ThemeConstants
-                                      .lightgreycolor, // background
-                                  onPrimary: ThemeConstants
-                                      .lightgreycolor, // foreground
+                                  foregroundColor: ThemeConstants
+                                      .lightgreycolor, backgroundColor: ThemeConstants
+                                      .lightgreycolor, elevation: 0.0, // foreground
                                 ),
                                 onPressed: () {
                                   setInnerState(() {
@@ -630,11 +625,7 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                             width: 150,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  primary:
-                                      ThemeConstants.bluecolor, // background
-                                  onPrimary:
-                                      ThemeConstants.bluecolor, // foreground
+                                  foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
                                 ),
                                 onPressed: () async {
                                   Get.back();

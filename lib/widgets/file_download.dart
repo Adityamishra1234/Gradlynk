@@ -4,14 +4,11 @@ import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom_downloder_notification/custom_download_button.dart';
@@ -20,7 +17,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class FileDownload extends StatefulWidget {
   String url;
-  FileDownload({Key? key, required this.url});
+  FileDownload({super.key, required this.url});
 
   @override
   State<FileDownload> createState() => _FileDownloadState();
@@ -31,7 +28,7 @@ class _FileDownloadState extends State<FileDownload> {
   bool loading = false;
   double progress = 0;
 
-  ReceivePort _port = ReceivePort();
+  final ReceivePort _port = ReceivePort();
 
   @override
   void initState() {
@@ -95,7 +92,7 @@ class _FileDownloadState extends State<FileDownload> {
             if (Platform.isAndroid) {
               await download(widget.url);
             } else if (Platform.isIOS) {
-              await downloadFile(widget.url!);
+              await downloadFile(widget.url);
             }
             stopLoading();
           }
@@ -105,7 +102,7 @@ class _FileDownloadState extends State<FileDownload> {
   }
 
   Future<bool> saveVideo(String url, String fileName) async {
-    var directory;
+    Directory directory;
     try {
       if (Platform.isAndroid) {
         //TODO
@@ -130,27 +127,29 @@ class _FileDownloadState extends State<FileDownload> {
       } else {
         if (await _requestPermission(Permission.storage)) {
           directory = await getApplicationDocumentsDirectory();
+
+          File saveFile = File("${directory.path}/$fileName");
+          if (!await directory.exists()) {
+            await directory.create(recursive: true);
+          }
+          if (await directory.exists()) {
+            await dio.download(url, saveFile.path,
+                onReceiveProgress: (value1, value2) {
+              setState(() {
+                progress = value1 / value2;
+                print(progress);
+              });
+            });
+            if (Platform.isIOS) {
+              shareFile(saveFile.path);
+            }
+            return true;
+          }
         } else {
           return false;
         }
       }
-      File saveFile = File("${directory.path}/$fileName");
-      if (!await directory.exists()) {
-        await directory.create(recursive: true);
-      }
-      if (await directory.exists()) {
-        await dio.download(url, saveFile.path,
-            onReceiveProgress: (value1, value2) {
-          setState(() {
-            progress = value1 / value2;
-            print(progress);
-          });
-        });
-        if (Platform.isIOS) {
-          shareFile(saveFile.path);
-        }
-        return true;
-      }
+
       return false;
     } catch (e) {
       print(e);
@@ -208,7 +207,7 @@ class _FileDownloadState extends State<FileDownload> {
             await getApplicationDocumentsDirectory();
 
         bool dirDownloadExists = true;
-        var directory;
+        String directory;
         if (Platform.isIOS) {
           directory = (await getApplicationDocumentsDirectory()).path;
         } else {

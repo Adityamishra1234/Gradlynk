@@ -5,7 +5,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class CustomTabbar extends StatefulWidget {
   List<String> tablist;
   List<Widget> listWidget;
-  CustomTabbar({Key? key, required this.tablist, required this.listWidget});
+  CustomTabbar({super.key, required this.tablist, required this.listWidget});
 
   @override
   State<CustomTabbar> createState() => _CustomTabbarState();

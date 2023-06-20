@@ -1,18 +1,12 @@
 //test
 
-import 'dart:convert';
 
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:studentpanel/services/api_services.dart';
-import 'package:studentpanel/ui/controllers/animationtestcontroller.dart';
 import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/login%20copy.dart';
-import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 

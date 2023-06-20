@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:get/get.dart';
 
 class TextScreenController extends GetxController {

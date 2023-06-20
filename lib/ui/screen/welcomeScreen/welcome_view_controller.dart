@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/ui/models/checkbox.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
 
 class WelcomeViewController extends GetxController with StateMixin {
   @override

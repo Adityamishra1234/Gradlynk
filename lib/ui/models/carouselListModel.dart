@@ -9,7 +9,7 @@ class CarouselListModel {
   String? buttonName;
   String? buttonLink;
   String? bannerUntil;
-  Null? day;
+  String? day;
   int? active;
   String? createdAt;
   String? updatedAt;
@@ -48,21 +48,21 @@ class CarouselListModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['priorty'] = this.priorty;
-    data['image'] = this.image;
-    data['mobile_image'] = this.mobileImage;
-    data['image_link'] = this.imageLink;
-    data['heading'] = this.heading;
-    data['sub_heading'] = this.subHeading;
-    data['button_name'] = this.buttonName;
-    data['button_link'] = this.buttonLink;
-    data['banner_until'] = this.bannerUntil;
-    data['day'] = this.day;
-    data['active'] = this.active;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['priorty'] = priorty;
+    data['image'] = image;
+    data['mobile_image'] = mobileImage;
+    data['image_link'] = imageLink;
+    data['heading'] = heading;
+    data['sub_heading'] = subHeading;
+    data['button_name'] = buttonName;
+    data['button_link'] = buttonLink;
+    data['banner_until'] = bannerUntil;
+    data['day'] = day;
+    data['active'] = active;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

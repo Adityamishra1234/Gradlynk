@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class CustomImageViewer extends StatelessWidget {
   String url;

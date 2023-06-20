@@ -1,16 +1,11 @@
 import 'dart:io';
 
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -19,7 +14,6 @@ import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../utils/constants.dart';
 
 // class FunkyOverlay extends StatefulWidget {
 //   late BuildContext context;
@@ -130,7 +124,7 @@ contactUsDialog(
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
 
@@ -177,19 +171,19 @@ contactUsDialog(
                   //   ),
                   // ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
                         _launchURL();
                       },
                       child: Container(
                         width: 300,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -198,7 +192,7 @@ contactUsDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -266,19 +260,19 @@ contactUsDialog(
                   //   ),
                   // ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
                         Get.toNamed(ReceiveACallBackView.routeNamed);
                       },
                       child: Container(
                         width: 300,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -287,7 +281,7 @@ contactUsDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -351,20 +345,20 @@ contactUsDialog(
                   //   ),
                   // ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
 
                         Get.toNamed(ScheduleExpertCall.routeNamed);
                       },
                       child: Container(
                         width: 300,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -373,7 +367,7 @@ contactUsDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -441,20 +435,20 @@ contactUsDialog(
                   //   ),
                   // ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
 
                         _launchURL2();
                       },
                       child: Container(
                         width: 300,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -463,7 +457,7 @@ contactUsDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -606,7 +600,7 @@ supportDialog(
                     ],
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   // InkWell(
@@ -652,19 +646,19 @@ supportDialog(
                   //   ),
                   // ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
                         Get.toNamed(RaiseYourTicket.routeNamed);
                       },
                       child: Container(
                         width: 300,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -673,7 +667,7 @@ supportDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -704,19 +698,19 @@ supportDialog(
                     height: 20,
                   ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
                         Get.toNamed(TrackyourTickets.routeNamed);
                       },
                       child: Container(
                         width: 300,
                         height: 45,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -725,7 +719,7 @@ supportDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(
@@ -878,13 +872,13 @@ supportDialog(
                   //   ),
                   // ),
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        await Future.delayed(const Duration(milliseconds: 150));
 
                         _launchEmailURL();
 
@@ -894,7 +888,7 @@ supportDialog(
                         width: 300,
                         height: 50,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),
@@ -903,7 +897,7 @@ supportDialog(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              padding: EdgeInsets.all(7),
+                              padding: const EdgeInsets.all(7),
                               height: 35,
                               width: 35,
                               decoration: BoxDecoration(

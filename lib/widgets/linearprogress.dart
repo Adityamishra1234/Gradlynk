@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class LinearProgressIndicatorApp extends StatefulWidget {
+  const LinearProgressIndicatorApp({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return LinearProgressIndicatorAppState();

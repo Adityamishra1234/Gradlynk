@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -136,7 +135,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             ),
             Align(
               alignment: AlignmentDirectional.bottomEnd,
-              child: Container(
+              child: SizedBox(
                 height: 50,
                 width: 50,
                 child: Padding(

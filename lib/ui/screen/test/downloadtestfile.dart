@@ -8,6 +8,8 @@ const imgUrl =
 var dio = Dio();
 
 class DownloadFileTest extends StatefulWidget {
+  const DownloadFileTest({super.key});
+
   @override
   _DownloadFileTestState createState() => _DownloadFileTestState();
 }

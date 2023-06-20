@@ -14,7 +14,6 @@ import 'package:studentpanel/ui/screen/Profile_Module/qualificationdetails.dart'
 import 'package:studentpanel/ui/screen/Profile_Module/relativeinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/travinghistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistory.dart';
-import 'package:studentpanel/ui/screen/Profile_module_2/contact_information_in_popup.dart';
 import 'package:studentpanel/widgets/custom_profile_dialogue/custom_profile_dialogue.dart';
 
 class ProfileViewMainController extends GetxController {
@@ -51,7 +50,7 @@ class ProfileViewMainController extends GetxController {
                 title: "Course Info",
                 onTap: () async {
                   Get.back();
-                  await Future.delayed(Duration(milliseconds: 200));
+                  await Future.delayed(const Duration(milliseconds: 200));
                   getDailog(1, context);
                 },
                 child: CourseInformationCopy()));

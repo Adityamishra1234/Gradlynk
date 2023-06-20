@@ -1,46 +1,33 @@
 import 'dart:io';
 import 'dart:isolate';
-import 'dart:typed_data';
 import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:dio/dio.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
-import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
-import 'package:studentpanel/ui/screen/test/downloadtestfile.dart';
 import 'package:studentpanel/ui/screen/test/takepicturescreen.dart';
-import 'package:studentpanel/ui/screen/test/uploadfile.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/constantsWithId.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/Custom_downloder_notification/custom_download_button.dart';
-import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification_payload_types.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/custom_doc_viewer.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
-import 'package:studentpanel/widgets/custom_pdf_viewr.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/custombutton.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
-import 'package:studentpanel/widgets/download_file.dart';
-import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:studentpanel/widgets/file_download.dart';
-import 'package:studentpanel/widgets/loading_button.dart';
 
 class ApplicationCompleteDetails extends StatefulWidget {
   static const routeNamed = '/ApplicationCompleteDetails';
-  ApplicationCompleteDetails({Key? key});
+  const ApplicationCompleteDetails({
+    super.key,
+  });
 
   @override
   State<ApplicationCompleteDetails> createState() =>
@@ -74,7 +61,7 @@ class _ApplicationCompleteDetailsState
           await getApplicationDocumentsDirectory();
 
       bool dirDownloadExists = true;
-      var directory;
+      String directory;
       if (Platform.isIOS) {
         directory = (await getApplicationDocumentsDirectory()).path;
       } else {
@@ -101,7 +88,7 @@ class _ApplicationCompleteDetailsState
     }
   }
 
-  ReceivePort _port = ReceivePort();
+  final ReceivePort _port = ReceivePort();
 
   @override
   void initState() {
@@ -144,7 +131,7 @@ class _ApplicationCompleteDetailsState
       width = MediaQuery.of(context).size.width - 240;
     }
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 2,
@@ -1056,7 +1043,7 @@ class _ApplicationCompleteDetailsState
   //Funcation
 
   Future<bool> saveVideo(String url, String fileName) async {
-    var directory;
+    Directory directory;
     try {
       if (Platform.isAndroid) {
         download(url);
@@ -1080,27 +1067,28 @@ class _ApplicationCompleteDetailsState
       } else {
         if (await _requestPermission(Permission.storage)) {
           directory = await getApplicationDocumentsDirectory();
+          File saveFile = File("${directory.path}/$fileName");
+          if (!await directory.exists()) {
+            await directory.create(recursive: true);
+          }
+          if (await directory.exists()) {
+            await dio.download(url, saveFile.path,
+                onReceiveProgress: (value1, value2) {
+              setState(() {
+                progress = value1 / value2;
+                print(progress);
+              });
+            });
+            if (Platform.isIOS) {
+              shareFile(saveFile.path);
+            }
+            return true;
+          }
         } else {
           return false;
         }
       }
-      File saveFile = File("${directory.path}/$fileName");
-      if (!await directory.exists()) {
-        await directory.create(recursive: true);
-      }
-      if (await directory.exists()) {
-        await dio.download(url, saveFile.path,
-            onReceiveProgress: (value1, value2) {
-          setState(() {
-            progress = value1 / value2;
-            print(progress);
-          });
-        });
-        if (Platform.isIOS) {
-          shareFile(saveFile.path);
-        }
-        return true;
-      }
+
       return false;
     } catch (e) {
       print(e);

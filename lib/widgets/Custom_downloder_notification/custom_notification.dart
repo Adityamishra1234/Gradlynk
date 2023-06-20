@@ -11,7 +11,7 @@ class CustomOpenLocalPath {
   _openAppPrivateFile(String path) async {
 //open an app private storage file
     print(path);
-    final result = await OpenFile.open("$path");
+    final result = await OpenFile.open(path);
   }
 }
 

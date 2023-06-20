@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
-import 'package:studentpanel/utils/constants.dart';
 
 class DrawerGetXController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
@@ -18,7 +17,7 @@ class DrawerGetXController extends GetxController with StateMixin {
   profileDataValidator() async {
     loading.value = true;
     var x = await apiServices.profileDataValidation(78623);
-    var z = await ProfileDataValidatorModel.fromJson(x);
+    var z = ProfileDataValidatorModel.fromJson(x);
     data.value = z;
     loading.value = false;
   }

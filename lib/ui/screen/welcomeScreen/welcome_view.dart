@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
-import 'package:studentpanel/ui/screen/login.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view_controller.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -28,7 +23,7 @@ class WelcomeView extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           alignment: Alignment.center,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: ListView(
 
               // crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +56,7 @@ class WelcomeView extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Data(
@@ -71,7 +66,7 @@ class WelcomeView extends StatelessWidget {
                           title: 'Explore the Globe',
                           context: context),
                       //     Spacer(),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Data(
@@ -80,7 +75,7 @@ class WelcomeView extends StatelessWidget {
                               'Get assistance from experts in the industry and build your dream career.',
                           title: 'Excel with the Experts',
                           context: context),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Data(
@@ -89,17 +84,17 @@ class WelcomeView extends StatelessWidget {
                               'Stay live updated on your application and offer status.',
                           title: 'Track your Journey',
                           context: context),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: InkWell(
                     onTap: () async {
                       Get.offNamed(LoginCopy.routeNamed);
@@ -124,7 +119,7 @@ class WelcomeView extends StatelessWidget {
                         )),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 SizedBox(
@@ -148,7 +143,7 @@ class WelcomeView extends StatelessWidget {
       required String title,
       required String text,
       required BuildContext context}) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 1,
       // color: Colors.amber,
       child: Column(
@@ -179,7 +174,7 @@ class WelcomeView extends StatelessWidget {
                   fontSize: 22,
                   textalingCentre: true,
                 ),
-                Container(
+                SizedBox(
                     width: MediaQuery.of(context).size.height * 0.45,
                     child: Text(
                       text,

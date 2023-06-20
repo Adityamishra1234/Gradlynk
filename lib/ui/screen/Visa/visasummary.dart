@@ -23,7 +23,7 @@ class VisaSummary extends StatelessWidget {
     }
 
     return Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 6,

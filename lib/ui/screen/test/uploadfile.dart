@@ -7,11 +7,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:http_parser/http_parser.dart' show MediaType;
 import 'package:studentpanel/ui/screen/test/multipartrequest.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
-typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
+typedef OnUploadProgressCallback = void Function(int sentBytes, int totalBytes);
 
 class CustomFileUpload extends StatefulWidget {
   String enq_id;
@@ -78,9 +77,9 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
     return httpClient;
   }
 
-  sendFile(file, uploadFilename, String enq_id, String id) async {
+  sendFile(file, uploadFilename, String enqId, String id) async {
     var url = Uri.parse(
-        "${Endpoints.baseUrl}upload-application-document?enq_id=$enq_id&id=$id");
+        "${Endpoints.baseUrl}upload-application-document?enq_id=$enqId&id=$id");
     var request = http.MultipartRequest("POST", url);
 
     request.files.add(await http.MultipartFile.fromPath('doc', file.path,
@@ -182,7 +181,7 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
 
 // request.headers['HeaderKey'] = 'header_value';
 // request.fields['form_key'] = 'form_value';
-    request.files.add(await await http.MultipartFile.fromPath('doc', file.path,
+    request.files.add(await http.MultipartFile.fromPath('doc', file.path,
         filename: file.path));
 
     final streamedResponse = await request.send();

@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/ticketdatamodel.dart';
@@ -16,7 +13,7 @@ class CompleteTicketView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('title'),
+      appBar: const CustomAppBar('title'),
       body: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Column(

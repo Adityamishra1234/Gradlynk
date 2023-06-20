@@ -635,40 +635,36 @@ class QualificationDetailsController extends GetxController with StateMixin {
   getUpdateQualificationDetails(int index) async {
     try {
       change(null, status: RxStatus.loading());
-      if (index != null) {
-        // if (updateForEdit == false) {
-        qualificationName.value.text = modelList[index].courseName ?? "";
-        multiplier.value.text = modelList[index].multiplier ?? "";
-        percentage.value.text = modelList[index].percentage ?? "";
-        reApper.value.text = modelList[index].reapperCount ?? "";
-        // }
-        // if (updateForEdit == false && loadingEditQualification.value == true) {
-        loadingEditQualification.value = false;
-        highestQualificationSelected = modelList[index].courseLevel;
+      qualificationName.value.text = modelList[index].courseName ?? "";
+      multiplier.value.text = modelList[index].multiplier ?? "";
+      percentage.value.text = modelList[index].percentage ?? "";
+      reApper.value.text = modelList[index].reapperCount ?? "";
+      // }
+      // if (updateForEdit == false && loadingEditQualification.value == true) {
+      loadingEditQualification.value = false;
+      highestQualificationSelected = modelList[index].courseLevel;
 
-        streamSelected = modelList[index].streamName ?? "";
-        streamSelectedID =
-            getNUllChecker(modelList[index].streamId.toString()) == false
-                ? modelList[index].streamId.toString()
-                : "";
-        educationStatusSelected = modelList[index].educationStatus ?? "";
-        yearOfPassingSelected = modelList[index].yearOfPassing ?? "";
-        countrySelected = modelList[index].countryName;
-        Get.find<QualificationDetailsController>().loadingEdit.value = 1;
-        // cgpa.text = double.parse(modelList[index].percentage.toString()) /;
-        await getEdit(
-            modelList[index].countryId!,
-            modelList[index].stateName,
-            modelList[index].stateId,
-            modelList[index].cityName,
-            modelList[index].cityId,
-            modelList[index].affiliationName,
-            modelList[index].affiliationId,
-            modelList[index].universityName,
-            modelList[index].passingInstId);
-        change(null, status: RxStatus.success());
-        // }
-      }
+      streamSelected = modelList[index].streamName ?? "";
+      streamSelectedID =
+          getNUllChecker(modelList[index].streamId.toString()) == false
+              ? modelList[index].streamId.toString()
+              : "";
+      educationStatusSelected = modelList[index].educationStatus ?? "";
+      yearOfPassingSelected = modelList[index].yearOfPassing ?? "";
+      countrySelected = modelList[index].countryName;
+      Get.find<QualificationDetailsController>().loadingEdit.value = 1;
+      // cgpa.text = double.parse(modelList[index].percentage.toString()) /;
+      await getEdit(
+          modelList[index].countryId!,
+          modelList[index].stateName,
+          modelList[index].stateId,
+          modelList[index].cityName,
+          modelList[index].cityId,
+          modelList[index].affiliationName,
+          modelList[index].affiliationId,
+          modelList[index].universityName,
+          modelList[index].passingInstId);
+      change(null, status: RxStatus.success());
     } catch (e) {
       print(e.toString());
     }

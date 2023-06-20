@@ -201,8 +201,9 @@ getPhoneNumbervalidation(String? value) {
   if (value != null) {
     if (value.length != 10) {
       return 'Mobile Number must be of 10 digit';
-    } else
+    } else {
       return null;
+    }
   } else {
     return "Mobile Number must be of 10 digit";
   }

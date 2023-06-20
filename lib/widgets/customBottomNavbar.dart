@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/profile_page_copy.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
-import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
-import 'package:studentpanel/ui/screen/settings_ui.dart';
-import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_dialog_box.dart';
 
 class CustomButtomNavbar extends StatelessWidget {
   BuildContext context2;
-  CustomButtomNavbar({required this.currentIndex, required this.context2});
+  CustomButtomNavbar({super.key, required this.currentIndex, required this.context2});
 
   final int currentIndex;
 
@@ -34,7 +24,7 @@ class CustomButtomNavbar extends StatelessWidget {
           // Get.toNamed(ProfilePageCopy1.routeNamed);
           Get.toNamed(ProfileView.routeNamed);
         } else if (i == 2) {
-          Get.to(NotificationScreen());
+          Get.to(const NotificationScreen());
         } else if (i == 3) {
           supportDialog(context2);
         }
@@ -72,7 +62,7 @@ class CustomButtomNavbar extends StatelessWidget {
 
         /// Search
         SalomonBottomBarItem(
-          icon: Icon(
+          icon: const Icon(
             Icons.help_outline_sharp,
           ),
           //   child: svgImage(

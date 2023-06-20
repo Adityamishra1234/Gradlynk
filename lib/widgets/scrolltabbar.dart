@@ -7,6 +7,8 @@ class ScrollTabBar extends StatelessWidget {
   final ScrollController _controller = ScrollController();
   final double _height = 100.0;
 
+  ScrollTabBar({super.key});
+
   void _animateToIndex(int index) {
     _controller.animateTo(
       index * _height,

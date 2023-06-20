@@ -1,37 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:studentpanel/ui/controllers/versioncontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/controller/profilepagecontroller.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/courseinformation.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/englishtestdetails.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/othertestdetails.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/passportdetails.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/qualificationdetails.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/relativeinformation.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/travinghistory.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/workhistory.dart';
-import 'package:studentpanel/ui/screen/Profile_module_2/contact_information_in_popup.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/contact_information_in_popup_controller.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/profile_main_controller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/Custom_Tabbar/custom_tabbar.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/custom_profile_button/custom_profile_button.dart';
-import 'package:studentpanel/widgets/custom_profile_dialogue/custom_profile_dialogue.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 // import 'qualificationdetails.dart';
 
 class ProfileView extends StatelessWidget {
   static const routeNamed = '/ProfileView';
-  ProfileView({super.key});
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +28,10 @@ class ProfileView extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         Get.offAllNamed(DashBoard.routeNamed);
-        return await true;
+        return true;
       },
       child: Scaffold(
-        appBar: CustomAppBar("title"),
+        appBar: const CustomAppBar("title"),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 1,
@@ -116,7 +102,7 @@ class ProfileView extends StatelessWidget {
                                   const SizedBox(
                                     width: 20,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 200,
                                     child: Column(
                                         mainAxisAlignment:
@@ -249,7 +235,7 @@ class ProfileView extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(ContactInformationCopy());
+                                  Get.to(const ContactInformationCopy());
                                 },
                                 child: Container(
                                     decoration: BoxDecoration(

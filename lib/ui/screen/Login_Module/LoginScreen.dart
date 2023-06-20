@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
-import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -12,6 +10,7 @@ class LoginScreen extends GetView<LoginController> {
   LoginScreen({super.key});
   static const routeNamed = '/LoginScreen';
 
+  @override
   var controller = Get.put(LoginController());
 
   static TextEditingController phoneNumber = TextEditingController();

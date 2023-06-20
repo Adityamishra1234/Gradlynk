@@ -10,7 +10,6 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
-import 'package:studentpanel/widgets/customdropdownsingle.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 enum BestTutorSite { Ascending, Deascending }
@@ -32,7 +31,7 @@ class _CourseSearchState extends State<CourseSearch> {
   List<int> cityindexvaluelist = [];
   List<int> courseBoardFieldindexvaluelist = [];
   List<int> courseNarrowFieldIndexvalueList = [];
-  GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _abcKey = GlobalKey<FormState>();
   bool size = false;
   bool isApplyCompare = false;
   late final BestTutorSite _site = BestTutorSite.Ascending;
@@ -45,7 +44,7 @@ class _CourseSearchState extends State<CourseSearch> {
       width = width - 240;
     }
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: const CustomAppBar("title"),
       drawer: displayMobileLayout == false
           ? CustomDrawer(
               index: 3,
