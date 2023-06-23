@@ -558,6 +558,146 @@ getDailogForAgree(
           ));
 }
 
+getBookAnAppointment(
+  BuildContext context,
+) {
+  return showDialog(
+      barrierDismissible: true,
+      context: context,
+      builder: (ctx) => AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                      width: 300.0,
+                      height: 20.0,
+                      child: Center(
+                          child: CustomAutoSizeTextMontserrat(
+                        text: "Book an appointment",
+                        fontSize: 26,
+                        fontWeight: FontWeight.w900,
+                        textColor: ThemeConstants.bluecolor,
+                      ))),
+                  SizedBox(
+                      width: 300.0,
+                      height: 40.0,
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Select the Counsellor",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          textColor: ThemeConstants.blackcolor,
+                        ),
+                      )),
+                  SizedBox(
+                      width: 300.0,
+                      height: 40.0,
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text:
+                              "Your Advisor Simranjeet Canada brampton is in Head Office Branch",
+                          fontSize: 12,
+                          textColor: ThemeConstants.red,
+                        ),
+                      )),
+                  SizedBox(
+                      width: 300.0,
+                      height: 40.0,
+                      child: Row(
+                        children: [
+                          const Icon(Icons.location_on_sharp),
+                          CustomAutoSizeTextMontserrat(
+                            text: "Branch Address:",
+                            fontSize: 12,
+                            textColor: ThemeConstants.blackcolor,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          SizedBox(
+                            width: 150,
+                            child: CustomAutoSizeTextMontserrat(
+                              text:
+                                  "B-2/0 1st floor Opposite Happy Model School",
+                              fontSize: 12,
+                              textColor: ThemeConstants.skycolor,
+                            ),
+                          ),
+                        ],
+                      )),
+                  SizedBox(
+                    width: 300.0,
+                    height: 40.0,
+                    child: Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              color: ThemeConstants.lightgreycolor),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 5, bottom: 5),
+                            child: Row(
+                              children: [
+                                CustomAutoSizeTextMontserrat(
+                                  text: "Connect Virtually",
+                                  fontSize: 12,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              color: ThemeConstants.lightgreycolor),
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, top: 5, bottom: 5),
+                            child: Row(
+                              children: [
+                                CustomAutoSizeTextMontserrat(
+                                  text: "Visit Nearest Branch",
+                                  fontSize: 12,
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                      height: 80.0,
+                      width: 300,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 20,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                                width: 80.0,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Icon(Icons.abc),
+                                    SizedBox(height: 8.0),
+                                    Text('Item $index'),
+                                  ],
+                                ));
+                          }))
+                ],
+              ),
+            ),
+          ));
+}
+
 // contactUsDialog(
 //   BuildContext context,
 // ) {
@@ -1007,5 +1147,3 @@ const html = r"""<!DOCTYPE html>
 //     ),
 //   ));
 // }
-
-

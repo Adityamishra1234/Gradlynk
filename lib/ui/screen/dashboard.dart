@@ -118,8 +118,7 @@ class _DashBoardState extends State<DashBoard> {
             setState(() {});
           }
           if (p0 == 2) {
-            Scrollcontroller.jumpTo(
-                Scrollcontroller.position.maxScrollExtent);
+            Scrollcontroller.jumpTo(Scrollcontroller.position.maxScrollExtent);
           }
         },
         builder: Builder(builder: (context) {
@@ -454,8 +453,8 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
 
                                     Container(
-                                      padding:
-                                          const EdgeInsets.only(bottom: 10, top: 1),
+                                      padding: const EdgeInsets.only(
+                                          bottom: 10, top: 1),
                                       height: 200,
                                       child: CarouselSlider(
                                         options: CarouselOptions(
@@ -499,14 +498,14 @@ class _DashBoardState extends State<DashBoard> {
                                                         .size
                                                         .width *
                                                     0.91,
-
                                             child: Stack(
                                               clipBehavior: Clip.none,
                                               alignment: Alignment.bottomCenter,
                                               children: [
                                                 Container(
                                                   padding:
-                                                      const EdgeInsets.only(left: 20),
+                                                      const EdgeInsets.only(
+                                                          left: 20),
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   height: 60,
@@ -526,8 +525,9 @@ class _DashBoardState extends State<DashBoard> {
                                                             .start,
                                                     children: [
                                                       Container(
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
                                                                 vertical: 0.5,
                                                                 horizontal: 8),
                                                         decoration: BoxDecoration(
@@ -581,7 +581,8 @@ class _DashBoardState extends State<DashBoard> {
                                                             ThemeConstants
                                                                 .bluecolor,
                                                         overlayColor:
-                                                            const Color.fromARGB(
+                                                            const Color
+                                                                    .fromARGB(
                                                                 183, 0, 0, 0),
                                                         overlayOpacity: 0.8,
                                                         tooltipPadding:
@@ -624,88 +625,8 @@ class _DashBoardState extends State<DashBoard> {
                                                 )
                                               ],
                                             ),
-
-                                            // child: ElevatedButton(
-                                            //   style: ElevatedButton.styleFrom(
-                                            //     foregroundColor:
-                                            //         ThemeConstants.whitecolor,
-                                            //     elevation: 0,
-
-                                            //     backgroundColor:
-                                            //         ThemeConstants.whitecolor,
-                                            //     shadowColor:
-                                            //         ThemeConstants.lightblueColor,
-                                            //     side: BorderSide(
-                                            //         color: ThemeConstants
-                                            //             .bluecolor), // foreground
-                                            //   ),
-                                            //   onPressed: () {
-                                            //     Get.toNamed(ScheduleExpertCall
-                                            //         .routeNamed);
-                                            //   },
-                                            //   child: CustomAutoSizeTextMontserrat(
-                                            //     text: "Schedule expert call",
-                                            //     fontSize: 12,
-                                            //     fontWeight: FontWeight.bold,
-                                            //     textColor:
-                                            //         ThemeConstants.bluecolor,
-                                            //   ),
-                                            // ),
                                           ),
                                         ),
-
-                                        // Showcase(
-                                        //   descTextStyle: TextStyle(
-                                        //       color: ThemeConstants.whitecolor,
-                                        //       fontSize: 18),
-                                        //   tooltipBackgroundColor:
-                                        //       ThemeConstants.bluecolor,
-                                        //   overlayColor: Color.fromARGB(183, 0, 0, 0),
-                                        //   overlayOpacity: 0.8,
-                                        //   tooltipPadding: const EdgeInsets.only(
-                                        //       left: 5,
-                                        //       right: 5,
-                                        //       top: 10,
-                                        //       bottom: 10),
-                                        //   targetShapeBorder:
-                                        //       const RoundedRectangleBorder(
-                                        //           borderRadius: BorderRadius.all(
-                                        //               Radius.circular(20))),
-                                        //   key: _seven,
-                                        //   description:
-                                        //       "Appointments compliments time management. Book an Appointment with your advisor now and save your time.",
-                                        //   child: SizedBox(
-                                        //     height: 40,
-                                        //     child: ElevatedButton(
-                                        //       style: ElevatedButton.styleFrom(
-                                        //         foregroundColor:
-                                        //             ThemeConstants.whitecolor,
-                                        //         elevation: 0,
-                                        //         backgroundColor:
-                                        //             ThemeConstants.whitecolor,
-                                        //         shadowColor: ThemeConstants
-                                        //             .lightorangeColor,
-                                        //         side: BorderSide(
-                                        //             color: ThemeConstants
-                                        //                 .orangeColor), // foreground
-                                        //       ),
-                                        //       onPressed: () {
-                                        //         Get.toNamed(
-                                        //             BookAnAppointment.routeNamed);
-                                        //       },
-                                        //       child: CustomAutoSizeTextMontserrat(
-                                        //         text: "Book an appointment",
-                                        //         fontSize: 12,
-                                        //         textColor:
-                                        //             ThemeConstants.orangeColor,
-                                        //         fontWeight: FontWeight.bold,
-                                        //       ),
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // const SizedBox(
-                                        //   width: 20,
-                                        // ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -713,8 +634,8 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
 
                                     Container(
-                                      margin:
-                                          const EdgeInsets.symmetric(vertical: 10),
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 10),
                                       width: MediaQuery.of(context).size.height,
                                       child: Row(
                                         mainAxisAlignment:
@@ -727,10 +648,11 @@ class _DashBoardState extends State<DashBoard> {
                                           // Create profile
                                           InkWell(
                                             onTap: () async {
+                                              getBookAnAppointment(context);
                                               // getDailogForAgree(context);
                                               // Get.to(ProfilePageCopy1());
-                                              Get.toNamed(
-                                                  ProfileView.routeNamed);
+                                              // Get.toNamed(
+                                              //     ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [
@@ -741,8 +663,9 @@ class _DashBoardState extends State<DashBoard> {
                                                       fontSize: 18),
                                                   tooltipBackgroundColor:
                                                       ThemeConstants.bluecolor,
-                                                  overlayColor: const Color.fromARGB(
-                                                      183, 0, 0, 0),
+                                                  overlayColor:
+                                                      const Color.fromARGB(
+                                                          183, 0, 0, 0),
                                                   overlayOpacity: 0.8,
                                                   tooltipPadding:
                                                       const EdgeInsets.only(
@@ -759,19 +682,18 @@ class _DashBoardState extends State<DashBoard> {
                                                   child: Container(
                                                       height: 70,
                                                       width: 70,
-                                                      padding:
-                                                          const EdgeInsets.all(10),
-                                                      decoration: const BoxDecoration(
-                                                          // border: Border.all(
-                                                          //     width: 1.2,
-                                                          //     color: ThemeConstants
-                                                          //         .VioletColor),
-                                                          color: Color(
-                                                              0xFFF1F0FF),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                      .all(
-                                                                  Radius
+                                                      padding: const EdgeInsets
+                                                          .all(10),
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                              // border: Border.all(
+                                                              //     width: 1.2,
+                                                              //     color: ThemeConstants
+                                                              //         .VioletColor),
+                                                              color: Color(
+                                                                  0xFFF1F0FF),
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           20))),
                                                       child: svgImage(
@@ -845,7 +767,8 @@ class _DashBoardState extends State<DashBoard> {
                                                     child: Container(
                                                         height: 70,
                                                         padding:
-                                                            const EdgeInsets.all(10),
+                                                            const EdgeInsets
+                                                                .all(10),
                                                         width: 70,
                                                         decoration:
                                                             const BoxDecoration(
@@ -858,10 +781,9 @@ class _DashBoardState extends State<DashBoard> {
                                                                 // ),
                                                                 color: Color(
                                                                     0xFFFEF6E6),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                            .all(
-                                                                        Radius.circular(
+                                                                borderRadius: BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
                                                                             20))),
                                                         child: svgImage(
                                                             "upload_document",
@@ -905,8 +827,9 @@ class _DashBoardState extends State<DashBoard> {
                                                       fontSize: 18),
                                                   tooltipBackgroundColor:
                                                       ThemeConstants.bluecolor,
-                                                  overlayColor: const Color.fromARGB(
-                                                      183, 0, 0, 0),
+                                                  overlayColor:
+                                                      const Color.fromARGB(
+                                                          183, 0, 0, 0),
                                                   overlayOpacity: 0.8,
                                                   tooltipPadding:
                                                       const EdgeInsets.only(
@@ -922,20 +845,19 @@ class _DashBoardState extends State<DashBoard> {
                                                       "Course Search assists you in searching your desired course across the globe.",
                                                   child: Container(
                                                       height: 70,
-                                                      padding:
-                                                          const EdgeInsets.all(10),
+                                                      padding: const EdgeInsets
+                                                          .all(10),
                                                       width: 70,
-                                                      decoration: const BoxDecoration(
-                                                          // border: Border.all(
-                                                          //     width: 1.2,
-                                                          //     color: const Color(
-                                                          //         0xFFF16660)),
-                                                          color: Color(
-                                                              0xFFFEF0F0),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                      .all(
-                                                                  Radius
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                              // border: Border.all(
+                                                              //     width: 1.2,
+                                                              //     color: const Color(
+                                                              //         0xFFF16660)),
+                                                              color: Color(
+                                                                  0xFFFEF0F0),
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           20))),
                                                       child: svgImage(
@@ -979,8 +901,9 @@ class _DashBoardState extends State<DashBoard> {
                                                       fontSize: 18),
                                                   tooltipBackgroundColor:
                                                       ThemeConstants.bluecolor,
-                                                  overlayColor: const Color.fromARGB(
-                                                      183, 0, 0, 0),
+                                                  overlayColor:
+                                                      const Color.fromARGB(
+                                                          183, 0, 0, 0),
                                                   overlayOpacity: 0.8,
                                                   tooltipPadding:
                                                       const EdgeInsets.only(
@@ -997,19 +920,22 @@ class _DashBoardState extends State<DashBoard> {
                                                   child: Container(
                                                     height: 70,
                                                     width: 70,
-                                                    padding: const EdgeInsets.all(12),
-                                                    decoration: const BoxDecoration(
-                                                        // border: Border.all(
-                                                        //     width: 1.2,
-                                                        //     color: const Color(
-                                                        //         0xFF05B4D2)),
-                                                        color: Color(
-                                                            0xFFE8FAFD),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                    .all(
-                                                                Radius.circular(
-                                                                    20))),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            12),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            // border: Border.all(
+                                                            //     width: 1.2,
+                                                            //     color: const Color(
+                                                            //         0xFF05B4D2)),
+                                                            color: Color(
+                                                                0xFFE8FAFD),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            20))),
                                                     child: svgImage(
                                                         "track",
                                                         const Color(0xFF05B4D2),
