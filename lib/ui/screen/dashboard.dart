@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,7 @@ import 'package:studentpanel/ui/controllers/versioncontroller.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
+import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
@@ -648,11 +650,19 @@ class _DashBoardState extends State<DashBoard> {
                                           // Create profile
                                           InkWell(
                                             onTap: () async {
-                                              getBookAnAppointment(context);
+                                              // showAnimatedDialog(
+                                              //     animationType:
+                                              //         DialogTransitionType
+                                              //             .slideFromBottomFade,
+                                              //     curve: Curves.easeInOutQuart,
+                                              //     context: context,
+                                              //     builder: (_) =>
+                                              //         BookAnAppointment());
+                                              // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
                                               // Get.to(ProfilePageCopy1());
-                                              // Get.toNamed(
-                                              //     ProfileView.routeNamed);
+                                              Get.toNamed(
+                                                  ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [

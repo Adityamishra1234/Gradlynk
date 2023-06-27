@@ -49,25 +49,24 @@ class ContactInformationInPopUpController extends GetxController
 
   StudentPanel model = StudentPanel();
 
-  var data = ProfileDataValidatorModel().obs;
+  var profileValidationData = ProfileDataValidatorModel();
 
-  RxBool loading = false.obs;
+  bool loading = false;
   @override
-  void onInit() {
-    getCountry();
-    getMartialStatus();
-    profiledetail();
-    profileDataValidator();
+  void onInit() async {
+    await getCountry();
+    await getMartialStatus();
+    await profiledetail();
+    await profileDataValidator();
     super.onInit();
+    update();
     change(null, status: RxStatus.success());
   }
 
   profileDataValidator() async {
-    loading.value = true;
     var x = await apiservice.profileDataValidation(78623);
     var z = ProfileDataValidatorModel.fromJson(x);
-    data.value = z;
-    loading.value = false;
+    profileValidationData = z;
   }
 
   profiledetail() async {

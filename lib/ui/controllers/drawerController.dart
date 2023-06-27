@@ -8,14 +8,15 @@ class DrawerGetXController extends GetxController with StateMixin {
   RxBool loading = false.obs;
 
   @override
-  void onInit() {
-    profileDataValidator();
+  void onInit() async {
+    change(null, status: RxStatus.loading());
+    await profileDataValidator();
     super.onInit();
     change(null, status: RxStatus.success());
   }
 
   profileDataValidator() async {
-    loading.value = true;
+    ///todo
     var x = await apiServices.profileDataValidation(78623);
     var z = ProfileDataValidatorModel.fromJson(x);
     data.value = z;

@@ -142,7 +142,8 @@ class CourseShortListController extends GetxController with StateMixin {
       var formatterYear = DateFormat('yyyy');
       var formatterMonth = DateFormat('MM');
 
-      String? endpoint = "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
+      String? endpoint =
+          "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
       var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
       if (res != null) {
         courseModelFilter = res;

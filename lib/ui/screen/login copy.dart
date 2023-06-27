@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,9 @@ class _LoginCopyState extends State<LoginCopy> {
 
   bool _isKeyBoardVisible = false;
 
+  String? appSignature;
+  String? otpCode;
+
   static TextEditingController phoneNumber = TextEditingController();
   static TextEditingController otpcontroller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
@@ -31,11 +35,17 @@ class _LoginCopyState extends State<LoginCopy> {
     super.initState();
     _focusNode.addListener(_onFocusChange);
 
+    SmsAutoFill().getAppSignature.then((signature) {
+      setState(() {
+        appSignature = signature;
+      });
+    });
     // _checkVersion();
   }
 
   @override
   void dispose() {
+    SmsAutoFill().unregisterListener();
     _focusNode.removeListener(_onFocusChange);
     // controller.dispose();
     phoneNumber.text = "";
@@ -259,6 +269,38 @@ class _LoginCopyState extends State<LoginCopy> {
                             child: Image.asset(
                               "assets/images/logo.png",
                             ))),
+
+                    PinFieldAutoFill(
+                      codeLength: 4,
+                      autoFocus: true,
+                      decoration: UnderlineDecoration(
+                        lineHeight: 2,
+                        lineStrokeCap: StrokeCap.square,
+                        bgColorBuilder: PinListenColorBuilder(
+                            Colors.green.shade200, Colors.grey.shade200),
+                        colorBuilder:
+                            const FixedColorBuilder(Colors.transparent),
+                      ),
+                    ),
+                    PhoneFieldHint(
+                      child: TextField(
+                        focusNode: _focusNode,
+                        controller: phoneNumber,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          hintStyle: TextStyle(color: Colors.grey[800]),
+                          hintText: "Enter your phone number",
+                          fillColor: Colors.white,
+                        ),
+                      ),
+                    ),
                     Positioned(
                       bottom: 0,
                       left: 0,

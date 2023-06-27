@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
@@ -13,7 +14,6 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 // class FunkyOverlay extends StatefulWidget {
 //   late BuildContext context;
@@ -174,7 +174,8 @@ contactUsDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -263,7 +264,8 @@ contactUsDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -348,7 +350,8 @@ contactUsDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -438,7 +441,8 @@ contactUsDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -486,51 +490,52 @@ contactUsDialog(
                   const SizedBox(
                     height: 20,
                   ),
-                  // Material(
-                  //   borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                  //   color: ThemeConstants.ultraLightgreyColor,
-                  //   child: InkWell(
-                  //     borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                  //     splashColor: ThemeConstants.bluecolor,
-                  //     onTap: () async {
-                  //       await Future.delayed(Duration(milliseconds: 150));
+                  ////todo
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        await Future.delayed(Duration(milliseconds: 150));
 
-                  //       Get.toNamed(BookAnAppointment.routeNamed);
-                  //     },
-                  //     child: Container(
-                  //       width: 300,
-                  //       height: 45,
-                  //       padding: EdgeInsets.symmetric(horizontal: 10),
-                  //       // decoration: BoxDecoration(
-                  //       //     borderRadius:
-                  //       //         BorderRadius.all(Radius.circular(25.0))),
-                  //       child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //         crossAxisAlignment: CrossAxisAlignment.center,
-                  //         children: [
-                  //           Container(
-                  //             padding: EdgeInsets.all(7),
-                  //             height: 35,
-                  //             width: 35,
-                  //             decoration: BoxDecoration(
-                  //                 color: ThemeConstants.bluecolor,
-                  //                 shape: BoxShape.circle),
-                  //             child: SvgPicture.asset(
-                  //               'assets/icons/Calender icon.svg',
-                  //               color: ThemeConstants.whitecolor,
-                  //             ),
-                  //           ),
-                  //           const SizedBox(
-                  //             width: 20,
-                  //           ),
-                  //           CustomAutoSizeTextMontserrat(
-                  //               text: "Book an appointment"),
-                  //           const Spacer(),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+                        Get.toNamed(BookAnAppointment.routeNamed);
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 45,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                  color: ThemeConstants.bluecolor,
+                                  shape: BoxShape.circle),
+                              child: SvgPicture.asset(
+                                'assets/icons/Calender icon.svg',
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            CustomAutoSizeTextMontserrat(
+                                text: "Book an appointment"),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -649,7 +654,8 @@ supportDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -701,7 +707,8 @@ supportDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -875,7 +882,8 @@ supportDialog(
                     borderRadius: const BorderRadius.all(Radius.circular(25.0)),
                     color: ThemeConstants.ultraLightgreyColor,
                     child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
                         await Future.delayed(const Duration(milliseconds: 150));
@@ -887,8 +895,8 @@ supportDialog(
                       child: Container(
                         width: 300,
                         height: 50,
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         // decoration: BoxDecoration(
                         //     borderRadius:
                         //         BorderRadius.all(Radius.circular(25.0))),

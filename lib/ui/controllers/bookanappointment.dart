@@ -34,8 +34,8 @@ class BookAnAppointmentController extends GetxController {
           Endpoints.serviceAssigness! +
               Get.find<BaseController>().model1.id.toString());
       if (res != null) {
-        name.add("Select your counsellor");
-        nameID.add(0);
+        // name.add("Select your counsellor");
+        // nameID.add(0);
         model = res;
         for (var element in model) {
           name.add(element.name!);
