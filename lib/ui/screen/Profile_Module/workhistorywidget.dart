@@ -58,6 +58,7 @@ class WorkHistoryWidget extends StatelessWidget {
       //       : "";
       // }
       return ListView(
+        padding: EdgeInsets.all(0),
         controller: ScrollController(),
         children: [
           Padding(
