@@ -199,7 +199,7 @@ getEmailvaliation(String? value) {
 
 getPhoneNumbervalidation(String? value) {
   if (value != null) {
-    if (value.length != 10) {
+    if (value.length < 10) {
       return 'Mobile Number must be of 10 digit';
     } else {
       return null;

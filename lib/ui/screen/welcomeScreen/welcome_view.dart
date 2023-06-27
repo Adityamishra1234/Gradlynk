@@ -159,7 +159,7 @@ class WelcomeView extends StatelessWidget {
               child: SvgPicture.asset(
                 icon,
                 color: ThemeConstants.bluecolor,
-                height: 65,
+                height: 50,
               ),
             ),
           ),
