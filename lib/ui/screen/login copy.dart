@@ -411,8 +411,8 @@ class _LoginCopyState extends State<LoginCopy> {
                                                 //   getToast("Please enter your password");
                                                 // }
                                                 else {
-                                                  if (phoneNumber.text.length <
-                                                      10) {
+                                                  if (phoneNumber.text.length >
+                                                      9) {
                                                     controller
                                                         .phonenumberVerfiy(
                                                             phoneNumber.text);

@@ -1,6 +1,5 @@
 //test
 
-
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
@@ -124,7 +123,17 @@ class LoginController extends GetxController with StateMixin {
 
   phonenumberVerfiy(String phonenumber) async {
     change(null, status: RxStatus.loading());
-    var res = await services.phonenumberVerfiy(phonenumber);
+    var d = '';
+    if (phonenumber.length > 10) {
+      var data = phonenumber.indexOf('1');
+      d = phonenumber.substring(3, phonenumber.length);
+      print(d);
+    } else {
+      d = phonenumber;
+    }
+
+    var res = await services.phonenumberVerfiy(d);
+
     if (res == true) {
       otpEnable.value = true;
       change(null, status: RxStatus.success());
