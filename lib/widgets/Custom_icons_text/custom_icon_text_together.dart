@@ -8,10 +8,12 @@ class CustomIconTextTogether extends StatelessWidget {
   final Color color;
   final Color Bgcolor;
   final int textSize;
+  bool showICOn;
   final FontWeight fontWeight;
 
-  const CustomIconTextTogether(
+  CustomIconTextTogether(
       {super.key,
+      required this.showICOn,
       required this.fontWeight,
       required this.textSize,
       required this.Bgcolor,
@@ -32,7 +34,7 @@ class CustomIconTextTogether extends StatelessWidget {
           border: Border.all(width: 1, color: color)),
       child: Row(
         children: [
-          iconData,
+          showICOn == true ? iconData : SizedBox.shrink(),
           SizedBox(
             width: 5,
           ),

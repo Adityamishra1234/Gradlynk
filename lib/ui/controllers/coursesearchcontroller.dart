@@ -8,12 +8,9 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseSearchController extends GetxController {
+////new Updatebool s
 
-////new Updates
-
-courseOr
-
-
+  var courseOrJobbInustry = false;
 
   //Select Code
   int? selectCountryCode;

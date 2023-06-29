@@ -204,22 +204,24 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   CustomIconTextTogether(
+                                      showICOn: true,
                                       fontWeight: FontWeight.w400,
                                       textSize: 10,
                                       Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
                                       iconData: Icon(Icons.abc),
-                                      text: 'text'),
+                                      text: 'Course Selection'),
                                   SizedBox(
                                     width: 15,
                                   ),
                                   CustomIconTextTogether(
+                                      showICOn: true,
                                       fontWeight: FontWeight.w400,
                                       textSize: 10,
                                       Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
                                       iconData: Icon(Icons.abc),
-                                      text: 'text'),
+                                      text: 'Job Industry'),
                                 ],
                               ),
                             ),
@@ -239,6 +241,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                   // fontWeight: FontWeight.bold,,
                                 ),
                               ),
+                            ),
+                            Row(
+                              children: [Container()],
                             ),
                             const SizedBox(
                               height: 5,
