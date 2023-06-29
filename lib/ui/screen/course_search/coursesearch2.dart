@@ -204,14 +204,23 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   CustomIconTextTogether(
-                                      iconData: Icon(Icons.abc), text: 'text'),
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      iconData: Icon(Icons.abc),
+                                      text: 'text'),
                                   SizedBox(
                                     width: 15,
                                   ),
                                   CustomIconTextTogether(
-                                      iconData: Icon(Icons.abc), text: 'text'),
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      iconData: Icon(Icons.abc),
+                                      text: 'text'),
                                 ],
                               ),
+                            ),
+                            SizedBox(
+                              height: 15,
                             ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
@@ -220,8 +229,10 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Level",
                                   mandatory: true,
+                                  fontWeight: FontWeight.w500,
                                   // fontWeight: FontWeight.bold,,
                                   fontSize: 16,
+                                  // fontWeight: FontWeight.bold,,
                                 ),
                               ),
                             ),
