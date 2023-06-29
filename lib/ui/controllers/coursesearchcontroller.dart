@@ -8,6 +8,13 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseSearchController extends GetxController {
+
+////new Updates
+
+courseOr
+
+
+
   //Select Code
   int? selectCountryCode;
   int? selectStateCode;

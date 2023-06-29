@@ -204,6 +204,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   CustomIconTextTogether(
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 10,
                                       Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
                                       iconData: Icon(Icons.abc),
@@ -212,6 +214,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                     width: 15,
                                   ),
                                   CustomIconTextTogether(
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 10,
                                       Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
                                       iconData: Icon(Icons.abc),

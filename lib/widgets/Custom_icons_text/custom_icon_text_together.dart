@@ -7,9 +7,13 @@ class CustomIconTextTogether extends StatelessWidget {
   final String text;
   final Color color;
   final Color Bgcolor;
+  final int textSize;
+  final FontWeight fontWeight;
 
   const CustomIconTextTogether(
       {super.key,
+      required this.fontWeight,
+      required this.textSize,
       required this.Bgcolor,
       required this.iconData,
       required this.color,
@@ -35,8 +39,8 @@ class CustomIconTextTogether extends StatelessWidget {
           CustomAutoSizeTextMontserrat(
             text: '$text',
             textColor: color,
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
+            fontSize: textSize.toDouble(),
+            fontWeight: fontWeight,
           ),
         ],
       ),
