@@ -81,7 +81,7 @@ class StageProgress extends StatelessWidget {
                   iconColor: ThemeConstants.bluecolor,
                   backIconColor: ThemeConstants.lightblueColor,
                   text:
-                      "${Jiffy().add(days: 2).dateTime.month.monthName}  ${Jiffy().add(days: 2).date}",
+                      "${Jiffy.now().add(days: 2).dateTime.month.monthName}  ${Jiffy.now().add(days: 2).date}",
                   text2: 'Shortlist dream course from top University',
                   count: 1,
                   last: true,
@@ -91,7 +91,7 @@ class StageProgress extends StatelessWidget {
                   iconColor: ThemeConstants.yellow,
                   backIconColor: const Color.fromARGB(255, 255, 247, 230),
                   text:
-                      "${Jiffy().add(days: 5).dateTime.month.monthName}  ${Jiffy().add(days: 4).date}",
+                      "${Jiffy.now().add(days: 5).dateTime.month.monthName}  ${Jiffy.now().add(days: 4).date}",
                   text2: 'Finalise better course with the Expert',
                   count: 1,
                   last: true,
@@ -101,7 +101,7 @@ class StageProgress extends StatelessWidget {
                   iconColor: ThemeConstants.bluecolor,
                   backIconColor: ThemeConstants.lightblueColor,
                   text:
-                      "${Jiffy().add(days: 6).dateTime.month.monthName}  ${Jiffy().add(days: 6).date}",
+                      "${Jiffy.now().add(days: 6).dateTime.month.monthName}  ${Jiffy.now().add(days: 6).date}",
                   text2: 'Prepare Document and initiate Application',
                   count: 1,
                   last: true,
@@ -111,7 +111,7 @@ class StageProgress extends StatelessWidget {
                   iconColor: ThemeConstants.yellow,
                   backIconColor: const Color.fromARGB(255, 255, 247, 230),
                   text:
-                      "${Jiffy().add(days: 8).dateTime.month.monthName}  ${Jiffy().add(days: 8).date}",
+                      "${Jiffy.now().add(days: 8).dateTime.month.monthName}  ${Jiffy.now().add(days: 8).date}",
                   count: 1,
                   text2: 'Submit Application',
                   last: true,
@@ -121,7 +121,7 @@ class StageProgress extends StatelessWidget {
                   iconColor: ThemeConstants.bluecolor,
                   backIconColor: ThemeConstants.lightblueColor,
                   text:
-                      "${Jiffy().add(days: 27).dateTime.month.monthName}  ${Jiffy().add(days: 10).date}",
+                      "${Jiffy.now().add(days: 27).dateTime.month.monthName}  ${Jiffy.now().add(days: 10).date}",
                   count: 1,
                   text2: 'Receive Offer Letter',
                   last: true,
@@ -165,7 +165,8 @@ class CustomStepperBox extends StatelessWidget {
   final textHead;
   final textSubHead;
 
-  const CustomStepperBox({super.key, required this.textHead, required this.textSubHead});
+  const CustomStepperBox(
+      {super.key, required this.textHead, required this.textSubHead});
 
   @override
   Widget build(BuildContext context) {

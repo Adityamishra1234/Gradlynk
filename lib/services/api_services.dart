@@ -1665,4 +1665,40 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  @override
+  getCountriesList() async {
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.countryIDWithUrl}';
+
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement getCountriesList
+    // throw UnimplementedError();
+  }
+
+  @override
+  getAllCourseBroadField() async {
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.getAllCourseBroadField}';
+
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      print(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement getAllCourseBroadField
+    // throw UnimplementedError();
+  }
 }

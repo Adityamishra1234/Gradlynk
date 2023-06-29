@@ -471,6 +471,9 @@ class _DashBoardState extends State<DashBoard> {
                                       ),
                                     ),
 
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     // Schedule Expert Call Button And Book an Appointment
                                     Row(
                                       mainAxisAlignment:
@@ -639,10 +642,13 @@ class _DashBoardState extends State<DashBoard> {
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 10),
                                       width: MediaQuery.of(context).size.height,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        // runSpacing: 15.0,
+                                      child: Wrap(
+                                        alignment: WrapAlignment
+                                            .center, // Align boxes to the start of the row
+                                        spacing:
+                                            5, // Set spacing between the boxes
+                                        runSpacing:
+                                            16, // Set spacing between rows of boxes
                                         // spacing: 30,
                                         // alignment: WrapAlignment.center,
                                         // runAlignment: WrapAlignment.center,
@@ -690,8 +696,10 @@ class _DashBoardState extends State<DashBoard> {
                                                   description:
                                                       'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
                                                   child: Container(
-                                                      height: 70,
-                                                      width: 70,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                              maxHeight: 70,
+                                                              maxWidth: 70),
                                                       padding: const EdgeInsets
                                                           .all(10),
                                                       decoration:
@@ -775,11 +783,13 @@ class _DashBoardState extends State<DashBoard> {
                                                     description:
                                                         "All documents required for your Application to be uploaded here.",
                                                     child: Container(
-                                                        height: 70,
+                                                        constraints:
+                                                            BoxConstraints(
+                                                                maxHeight: 70,
+                                                                maxWidth: 70),
                                                         padding:
                                                             const EdgeInsets
                                                                 .all(10),
-                                                        width: 70,
                                                         decoration:
                                                             const BoxDecoration(
                                                                 // border:
@@ -854,10 +864,12 @@ class _DashBoardState extends State<DashBoard> {
                                                   description:
                                                       "Course Search assists you in searching your desired course across the globe.",
                                                   child: Container(
-                                                      height: 70,
                                                       padding: const EdgeInsets
                                                           .all(10),
-                                                      width: 70,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                              maxHeight: 70,
+                                                              maxWidth: 70),
                                                       decoration:
                                                           const BoxDecoration(
                                                               // border: Border.all(
@@ -928,8 +940,9 @@ class _DashBoardState extends State<DashBoard> {
                                                   description:
                                                       "You can keep a track on your Application Stage and Status.",
                                                   child: Container(
-                                                    height: 70,
-                                                    width: 70,
+                                                    constraints: BoxConstraints(
+                                                        maxHeight: 70,
+                                                        maxWidth: 70),
                                                     padding:
                                                         const EdgeInsets.all(
                                                             12),
@@ -1012,6 +1025,9 @@ class _DashBoardState extends State<DashBoard> {
                                           // ),
                                         ],
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
                                     ),
                                     const Padding(
                                       padding: EdgeInsets.symmetric(

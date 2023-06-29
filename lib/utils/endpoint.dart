@@ -134,6 +134,8 @@ class Endpoints {
   static String? carouselList = "carousel-banner";
 
   static String? idsFromZipCode = "ids-from-zip-code";
+
+  static String? getAllCourseBroadField = "get-all-course-broad-field";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

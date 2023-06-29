@@ -18,6 +18,7 @@ import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
+import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
@@ -198,10 +199,10 @@ class _MyAppState extends State<MyApp> {
           page: () => const ImageViewerScreen(),
         ),
         GetPage(
-          name: CourseSearch.routeNamed,
+          name: CourseSearch2.routeNamed,
           transition: Transition.fade,
           binding: CourseSearchBinding(),
-          page: () => const CourseSearch(),
+          page: () => const CourseSearch2(),
         ),
 
         GetPage(

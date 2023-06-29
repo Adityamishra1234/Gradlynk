@@ -33,9 +33,17 @@ class LoginController extends GetxController with StateMixin {
   login(String phone, String otp) async {
     change(null, status: RxStatus.loading());
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    var d = '';
+    if (phone.length > 10) {
+      var data = phone.indexOf('1');
+      d = phone.substring(3, phone.length);
+      print(d);
+    } else {
+      d = phone;
+    }
 
     var responsive = await services.getLogin(
-      Endpoints.login! + phone + Endpoints.login2! + otp,
+      Endpoints.login! + d + Endpoints.login2! + otp,
     );
 
     if (responsive != null) {

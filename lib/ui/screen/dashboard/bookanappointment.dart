@@ -4,10 +4,13 @@ import 'package:studentpanel/ui/controllers/bookanappointment.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_time_picker_only.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+import 'package:studentpanel/widgets/customtextfield.dart';
 import 'package:studentpanel/widgets/time_picker.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
@@ -46,13 +49,18 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                       textColor: ThemeConstants.bluecolor,
                     ),
                     Spacer(),
-                    CircleAvatar(
-                      radius: 12,
-                      backgroundColor: ThemeConstants.lightblueColor,
-                      child: Icon(
-                        Icons.close,
-                        color: ThemeConstants.TextColor,
-                        size: 18,
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: CircleAvatar(
+                        radius: 12,
+                        backgroundColor: ThemeConstants.lightblueColor,
+                        child: Icon(
+                          Icons.close,
+                          color: ThemeConstants.TextColor,
+                          size: 18,
+                        ),
                       ),
                     )
                   ],
@@ -63,10 +71,11 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                   child: CustomAutoSizeTextMontserrat(
                     text: "Select the Counsellor",
                     fontSize: 14,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w400,
                     textColor: ThemeConstants.blackcolor,
                   ),
                 ),
+                SizedBox(height: 5),
                 SizedBox(
                   width: 400,
                   height: 35,
@@ -87,6 +96,7 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                     ),
                   ),
                 ),
+                SizedBox(height: 5),
                 SizedBox(
                     width: 300.0,
                     height: 40.0,
@@ -101,7 +111,7 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                     )),
                 SizedBox(
                     width: 300.0,
-                    height: 40.0,
+                    height: 45.0,
                     child: Row(
                       children: [
                         const Icon(Icons.location_on_sharp),
@@ -113,8 +123,7 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                         const SizedBox(
                           width: 15,
                         ),
-                        SizedBox(
-                          width: 150,
+                        Flexible(
                           child: CustomAutoSizeTextMontserrat(
                             text: "B-2/0 1st floor Opposite Happy Model School",
                             fontSize: 12,
@@ -183,7 +192,21 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                                   Text('Item $index'),
                                 ],
                               ));
-                        }))
+                        })),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        width: 150,
+                        height: 50,
+                        child: CustomTimerWidget(callback: (val) {})),
+                    Container(
+                        height: 50,
+                        width: 150,
+                        child: CustomTimerWidget2(callback: (val) {}))
+                  ],
+                )
               ],
             ),
           ),
@@ -320,10 +343,11 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: ThemeConstants.lightgreycolor),
+                color: Color.fromARGB(255, 238, 238, 238)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
               child: CustomAutoSizeTextMontserrat(
+                textalingCentre: true,
                 text: '${model}',
                 textColor: ThemeConstants.blackcolor,
                 fontSize: 10,

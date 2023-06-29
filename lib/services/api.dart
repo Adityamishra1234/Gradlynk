@@ -97,4 +97,8 @@ abstract class api {
   caraouselList();
 
   idsFromZipcode(int zipCode);
+
+  getCountriesList();
+
+  getAllCourseBroadField();
 }

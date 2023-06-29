@@ -498,9 +498,22 @@ contactUsDialog(
                       borderRadius: BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        await Future.delayed(Duration(milliseconds: 150));
+                        Get.back();
+                        await Future.delayed(Duration(milliseconds: 250));
 
-                        Get.toNamed(BookAnAppointment.routeNamed);
+                        showAnimatedDialog(
+                            barrierDismissible: true,
+                            animationType:
+                                DialogTransitionType.slideFromBottomFade,
+                            curve: Curves.easeInOutQuart,
+                            // barrierDismissible: false,
+                            context: context,
+                            builder: (_) {
+                              return StatefulBuilder(
+                                  builder: (context, setState) {
+                                return BookAnAppointment();
+                              });
+                            });
                       },
                       child: Container(
                         width: 300,

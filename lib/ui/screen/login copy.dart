@@ -1,3 +1,5 @@
+import 'package:alt_sms_autofill/alt_sms_autofill.dart';
+import 'package:android_sms_retriever/android_sms_retriever.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:sms_autofill/sms_autofill.dart';
@@ -27,6 +29,7 @@ class _LoginCopyState extends State<LoginCopy> {
   String? otpCode;
 
   String _code = "";
+
   static TextEditingController phoneNumber = TextEditingController();
   static TextEditingController otpcontroller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
@@ -36,17 +39,39 @@ class _LoginCopyState extends State<LoginCopy> {
     super.initState();
     _focusNode.addListener(_onFocusChange);
 
-    SmsAutoFill().getAppSignature.then((signature) {
-      setState(() {
-        appSignature = signature;
-      });
-    });
     // _checkVersion();
+  }
+
+  signature() async {
+    // String? smsCode = await AndroidSmsRetriever.listenForOneTimeConsent(senderPhoneNumber: );
+
+    otpCode = await AltSmsAutofill().listenForSms;
+
+    var d = otpCode!.split(' ');
+
+    // print(match);
+
+    // var d = int.parse();
+
+    otpcontroller.text = d[8];
+    // print('otpCode)');
+
+    // print(odtpCode);
+    // await SmsAutoFill().getAppSignature.then((signature) {
+    //   setState(() {
+    //     appSignature = signature;
+    //   });
+    // });
+
+    // await SmsAutoFill().listenForCode();
+    // print(appSignature);
   }
 
   @override
   void dispose() {
-    SmsAutoFill().unregisterListener();
+    AltSmsAutofill().unregisterListener();
+
+    // SmsAutoFill().unregisterListener();
     _focusNode.removeListener(_onFocusChange);
     // controller.dispose();
     phoneNumber.text = "";
@@ -413,10 +438,13 @@ class _LoginCopyState extends State<LoginCopy> {
                                                 else {
                                                   if (phoneNumber.text.length >
                                                       9) {
-                                                    controller
+                                                    await controller
                                                         .phonenumberVerfiy(
                                                             phoneNumber.text);
 
+                                                    // await SmsAutoFill()
+                                                    //     .listenForCode();
+                                                    signature();
                                                     // controller.phonenumberVerfiy(
                                                     //     phoneNumber.text);
                                                   } else {
@@ -434,23 +462,52 @@ class _LoginCopyState extends State<LoginCopy> {
                                               )),
                                         ),
                                       ),
-                                  if (controller.otpEnable.value == true)
-                                    PinFieldAutoFill(
-                                      decoration: UnderlineDecoration(
-                                        textStyle: const TextStyle(
-                                            fontSize: 20, color: Colors.black),
-                                        colorBuilder: FixedColorBuilder(
-                                            Colors.black.withOpacity(0.3)),
-                                      ),
-                                      currentCode: _code,
-                                      onCodeSubmitted: (code) {},
-                                      onCodeChanged: (code) {
-                                        if (code!.length == 6) {
-                                          FocusScope.of(context)
-                                              .requestFocus(FocusNode());
-                                        }
-                                      },
-                                    ),
+                                  // if (controller.otpEnable.value == true)
+                                  // PinFieldAutoFill(
+                                  //   decoration: UnderlineDecoration(
+                                  //     textStyle: const TextStyle(
+                                  //         fontSize: 20, color: Colors.black),
+                                  //     colorBuilder: FixedColorBuilder(
+                                  //         Colors.black.withOpacity(0.3)),
+                                  //   ),
+                                  //   currentCode: _code,
+                                  //   onCodeSubmitted: (code) {},
+                                  //   onCodeChanged: (code) {
+                                  //     if (code!.length == 6) {
+                                  //       FocusScope.of(context)
+                                  //           .requestFocus(FocusNode());
+                                  //     }
+                                  //   },
+                                  // ),
+                                  // if (controller.otpEnable.value == true)
+                                  // PinFieldAutoFill(
+                                  //   controller: otpcontroller,
+                                  //   textInputAction: TextInputAction.done,
+                                  //   decoration: UnderlineDecoration(
+                                  //     textStyle: const TextStyle(
+                                  //         fontSize: 20,
+                                  //         color: Color.fromARGB(
+                                  //             255, 255, 255, 255)),
+                                  //     colorBuilder: FixedColorBuilder(
+                                  //         const Color.fromARGB(
+                                  //                 255, 255, 255, 255)
+                                  //             .withOpacity(1)),
+                                  //   ),
+                                  //   currentCode: _code,
+                                  //   codeLength: 6,
+                                  //   onCodeSubmitted: (code) {},
+                                  //   onCodeChanged: (code) {
+                                  //     print(code);
+                                  //     setState(() {
+                                  //       _code = code!;
+                                  //     });
+
+                                  //     if (code!.length == 6) {
+                                  //       FocusScope.of(context)
+                                  //           .requestFocus(FocusNode());
+                                  //     }
+                                  //   },
+                                  // ),
                                   if (controller.otpEnable.value == true)
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -508,6 +565,8 @@ class _LoginCopyState extends State<LoginCopy> {
                                               ),
                                             ),
                                             onPressed: () {
+                                              print(
+                                                  'ddwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwddd${otpcontroller.text} dd ${phoneNumber.text}');
                                               if (otpcontroller.text.length ==
                                                   6) {
                                                 controller.login(
