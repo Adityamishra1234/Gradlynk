@@ -1284,7 +1284,7 @@ class ProfilePageCopy extends StatelessWidget {
 
   getOption(BuildContext context, int index, double width) {
     if (index == 0) {
-      return const Expanded(
+      return Expanded(
           // width: width,
           // height: MediaQuery.of(context).size.height - 210,
           child: ContactInformationCopy());

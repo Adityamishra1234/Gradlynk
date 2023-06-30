@@ -657,7 +657,7 @@ class ApiServices extends StudentPanelBase implements api {
         getToast(
             SnackBarConstants.contactInformation! + dataUpdateStatus.status!);
 
-        return jsondata;
+        return true;
       }
     } catch (e) {
       await errorHandle(

@@ -250,6 +250,7 @@ class ProfileView extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
+                                print(";sadxl");
                                 ProfileController.getDailog(8, context);
                               },
                               child: Padding(

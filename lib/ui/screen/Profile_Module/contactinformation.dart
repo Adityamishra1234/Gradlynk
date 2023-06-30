@@ -25,145 +25,31 @@ class ContactInformationCopy extends StatefulWidget {
 
 class _ContactInformationCopyState extends State<ContactInformationCopy> {
   bool saveAndEdit = true;
-  static TextEditingController firstName = TextEditingController();
-  static TextEditingController lastName = TextEditingController();
-  static TextEditingController mobileNumber = TextEditingController();
-  static TextEditingController alt_Number = TextEditingController();
-  static TextEditingController email = TextEditingController();
-  static TextEditingController whatsappNumber = TextEditingController();
-  static TextEditingController secondaryNumber = TextEditingController();
-  static TextEditingController secondaryEmail = TextEditingController();
-  static TextEditingController street = TextEditingController();
-  static TextEditingController zipCode = TextEditingController();
-  static TextEditingController instagramId = TextEditingController();
-  static TextEditingController facebookId = TextEditingController();
-  static TextEditingController snapchatId = TextEditingController();
-  static TextEditingController otherCountryinterested = TextEditingController();
-  static TextEditingController assignedBranch = TextEditingController();
-  static TextEditingController service = TextEditingController();
-  static TextEditingController firstCountryInterest = TextEditingController();
-  static TextEditingController assignedAdvisors = TextEditingController();
 
   var controller = Get.put(ContactInformationController());
 
   bool socialMedia = false;
   List gender = ["Select gender", "Male", "Female", "Other"];
 
-  GlobalKey<FormState> profilePageKey = GlobalKey<FormState>();
   @override
   void dispose() {
-    profilePageKey;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.editButton == true) {
+      saveAndEdit = false;
+      setState(() {});
+    }
     return Scaffold(
+
         // appBar: const CustomAppBar("title"),
         // drawer: CustomDrawer(),
         body: controller.obx((state) {
-      try {
-        if (controller.loadingStudentPanelData.value == 1) {
-          for (var i = 0; i < controller.model.addtionalDetails!.length; i++) {
-            if (controller.model.addtionalDetails![i].serviceName ==
-                "Student Visa") {
-              assignedBranch.text =
-                  controller.model.addtionalDetails![i].branchName ?? "";
-              service.text =
-                  controller.model.addtionalDetails![i].serviceName ?? "";
-              firstCountryInterest.text =
-                  controller.model.addtionalDetails![i].countryName ?? "";
-              assignedAdvisors.text =
-                  controller.model.addtionalDetails![i].assigned_advisor ?? "";
-              if (getNUllChecker(
-                      controller.model.addtionalDetails![i].assigne) ==
-                  false) {
-                assignedAdvisors.text = assignedAdvisors.text +
-                    controller.model.addtionalDetails![i].assigne!;
-              }
-            }
-          }
-
-          controller.dob = controller.model.dateOfBirth;
-          firstName.text = controller.model.enquiryName ?? "";
-          lastName.text = controller.model.lastname ?? "";
-          mobileNumber.text = getNUllChecker(controller.model.mobile) == false
-              ? controller.model.mobile.toString()
-              : "";
-
-          email.text = controller.model.email ?? "";
-          whatsappNumber.text =
-              getNUllChecker(controller.model.whatsappNumber.toString()) ==
-                      false
-                  ? controller.model.whatsappNumber.toString()
-                  : "";
-          alt_Number.text =
-              getNUllChecker(controller.model.alternateNumber.toString()) ==
-                      false
-                  ? controller.model.alternateNumber.toString()
-                  : "";
-          controller.childrenCountSelected = controller.model.child_count;
-          secondaryEmail.text = controller.model.secondaryEmail ?? "";
-          street.text = controller.model.street ?? "";
-          zipCode.text = getNUllChecker(controller.model.pincode) == false
-              ? controller.model.pincode.toString()
-              : "";
-          controller.genderSelected = controller.model.gender ?? gender[0];
-          for (var i = 0; i < gender.length; i++) {
-            if (gender[i].toString() == controller.model.gender.toString()) {
-              controller.genderSelected = gender[i];
-              controller.genderIdSelected = i;
-              controller.update();
-            }
-          }
-          controller.maritalStatusSelected = controller.model.maritalStatus;
-          for (var i = 1; i < controller.martialStatusList.length; i++) {
-            if (controller.martialStatusList[i].toString() ==
-                controller.model.maritalStatus.toString()) {
-              controller.maritalStatusSelected =
-                  controller.martialStatusList[i];
-              controller.maritalStatusIdSelected = i;
-              controller.update();
-            }
-          }
-          controller.countrySelected = controller.model.countryName;
-          controller.stateSelected = controller.model.stateName;
-          controller.citySelected = controller.model.cityName;
-          String? temp = "";
-          if (controller.model.otherCountryOfInterest != null) {
-            for (var i = 0;
-                i < controller.model.otherCountryOfInterest!.length;
-                i++) {
-              if (i == 0) {
-                temp = controller.model.otherCountryOfInterest![i].countryName!;
-              } else {
-                temp =
-                    "${temp!},${controller.model.otherCountryOfInterest![i].countryName!}";
-              }
-            }
-          }
-          controller.getState(controller.model.countryID.toString());
-          controller.getCity(controller.model.stateID.toString());
-          controller.stateIdSelected = controller.model.stateID;
-          controller.cityIdSelected = controller.model.cityID;
-          controller.countryIdSelected = controller.model.countryID;
-          controller.stateSelected = controller.model.stateName;
-          controller.citySelected = controller.model.cityName;
-          otherCountryinterested.text = temp!;
-          controller.loadingStudentPanelData.value = 3;
-          controller.update();
-        }
-      } catch (e) {
-        ApiServices().errorHandle(
-          Get.find<BaseController>().model1.id.toString(),
-          e.toString(),
-          "1111",
-          StackTrace.current.toString(),
-        );
-      }
       return controller.loadingStudentPanelData.value == 3
           ? Form(
-              key: profilePageKey,
+              key: controller.profilePageKey,
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(0),
                 reverse: false,
@@ -204,112 +90,112 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               fontSize: 16,
                               // fontWeight: FontWeight.bold,
                             ),
-                            const Spacer(),
-                            if (saveAndEdit == false)
-                              TextButton(
-                                  onPressed: () {
-                                    try {
-                                      if (getNUllChecker(firstName.text) ==
-                                          true) {
-                                        getToast(
-                                            SnackBarConstants.firstNameError!);
-                                      } else if (profilePageKey.currentState!
-                                              .validate() !=
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .contactInformationErrorForAllFields!);
-                                      } else if (getNUllChecker(lastName.text) ==
-                                          true) {
-                                        getToast(
-                                            SnackBarConstants.lastNameError!);
-                                      } else if (getNUllChecker(
-                                          controller.dob)) {
-                                        getToast(SnackBarConstants.dobError!);
-                                      } else if (getNUllChecker(
-                                              controller.genderIdSelected) ==
-                                          true) {
-                                        getToast(
-                                            SnackBarConstants.genderError!);
-                                      } else if (getNUllChecker(controller
-                                              .maritalStatusSelected) ==
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .maritalStatusError!);
-                                      } else if (getNUllChecker(
-                                              mobileNumber.text) ==
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .mobileNumberError!);
-                                      } else if (getNUllChecker(
-                                              alt_Number.text) ==
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .alternateNumberError!);
-                                      } else if (getNUllChecker(email.text)) {
-                                        getToast(SnackBarConstants.emailError!);
-                                      } else if (getNUllChecker(
-                                          controller.countrySelected)) {
-                                        getToast(
-                                            SnackBarConstants.countryError!);
-                                      } else if (getNUllChecker(
-                                          controller.stateSelected)) {
-                                        getToast(SnackBarConstants.stateError!);
-                                      } else if (getNUllChecker(
-                                          controller.citySelected)) {
-                                        getToast(SnackBarConstants.cityError!);
-                                      } else if (getNUllChecker(zipCode.text)) {
-                                        getToast(
-                                            SnackBarConstants.zipCodeError!);
-                                      } else {
-                                        updatePesonalDetail(
-                                            Get.find<BaseController>()
-                                                .model1
-                                                .id!,
-                                            firstName.text,
-                                            lastName.text,
-                                            controller.dob,
-                                            controller.genderIdSelected!,
-                                            controller.maritalStatusIdSelected!,
-                                            controller.childrenCountSelected!,
-                                            mobileNumber.text,
-                                            email.text,
-                                            int.parse(whatsappNumber.text),
-                                            int.parse(alt_Number.text),
-                                            controller.countryIdSelected!,
-                                            controller.stateIdSelected!,
-                                            controller.cityIdSelected!,
-                                            street.text,
-                                            int.parse(zipCode.text),
-                                            facebookId.text,
-                                            snapchatId.text,
-                                            instagramId.text,
-                                            secondaryEmail.text);
-                                        saveAndEdit = true;
-                                        setState(() {});
-                                      }
-                                    } catch (e) {
-                                      print(StackTrace.current);
-                                      getToast(SnackBarConstants.errorMsg!);
-                                    }
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "save",
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    textColor: ThemeConstants.bluecolor,
-                                  )),
-                            if (saveAndEdit)
-                              TextButton(
-                                  onPressed: () {
-                                    saveAndEdit = false;
-                                    setState(() {});
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Edit",
-                                    // fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    textColor: ThemeConstants.bluecolor,
-                                  ))
+                            // const Spacer(),
+                            // if (saveAndEdit == false)
+                            //   TextButton(
+                            //       onPressed: () {
+                            //         try {
+                            //           if (getNUllChecker(firstName.text) ==
+                            //               true) {
+                            //             getToast(
+                            //                 SnackBarConstants.firstNameError!);
+                            //           } else if (profilePageKey.currentState!
+                            //                   .validate() !=
+                            //               true) {
+                            //             getToast(SnackBarConstants
+                            //                 .contactInformationErrorForAllFields!);
+                            //           } else if (getNUllChecker(lastName.text) ==
+                            //               true) {
+                            //             getToast(
+                            //                 SnackBarConstants.lastNameError!);
+                            //           } else if (getNUllChecker(
+                            //               controller.dob)) {
+                            //             getToast(SnackBarConstants.dobError!);
+                            //           } else if (getNUllChecker(
+                            //                   controller.genderIdSelected) ==
+                            //               true) {
+                            //             getToast(
+                            //                 SnackBarConstants.genderError!);
+                            //           } else if (getNUllChecker(controller
+                            //                   .maritalStatusSelected) ==
+                            //               true) {
+                            //             getToast(SnackBarConstants
+                            //                 .maritalStatusError!);
+                            //           } else if (getNUllChecker(
+                            //                   mobileNumber.text) ==
+                            //               true) {
+                            //             getToast(SnackBarConstants
+                            //                 .mobileNumberError!);
+                            //           } else if (getNUllChecker(
+                            //                   alt_Number.text) ==
+                            //               true) {
+                            //             getToast(SnackBarConstants
+                            //                 .alternateNumberError!);
+                            //           } else if (getNUllChecker(email.text)) {
+                            //             getToast(SnackBarConstants.emailError!);
+                            //           } else if (getNUllChecker(
+                            //               controller.countrySelected)) {
+                            //             getToast(
+                            //                 SnackBarConstants.countryError!);
+                            //           } else if (getNUllChecker(
+                            //               controller.stateSelected)) {
+                            //             getToast(SnackBarConstants.stateError!);
+                            //           } else if (getNUllChecker(
+                            //               controller.citySelected)) {
+                            //             getToast(SnackBarConstants.cityError!);
+                            //           } else if (getNUllChecker(zipCode.text)) {
+                            //             getToast(
+                            //                 SnackBarConstants.zipCodeError!);
+                            //           } else {
+                            //             updatePesonalDetail(
+                            //                 Get.find<BaseController>()
+                            //                     .model1
+                            //                     .id!,
+                            //                 firstName.text,
+                            //                 lastName.text,
+                            //                 controller.dob,
+                            //                 controller.genderIdSelected!,
+                            //                 controller.maritalStatusIdSelected!,
+                            //                 controller.childrenCountSelected!,
+                            //                 mobileNumber.text,
+                            //                 email.text,
+                            //                 int.parse(whatsappNumber.text),
+                            //                 int.parse(alt_Number.text),
+                            //                 controller.countryIdSelected!,
+                            //                 controller.stateIdSelected!,
+                            //                 controller.cityIdSelected!,
+                            //                 street.text,
+                            //                 int.parse(zipCode.text),
+                            //                 facebookId.text,
+                            //                 snapchatId.text,
+                            //                 instagramId.text,
+                            //                 secondaryEmail.text);
+                            //             saveAndEdit = true;
+                            //             setState(() {});
+                            //           }
+                            //         } catch (e) {
+                            //           print(StackTrace.current);
+                            //           getToast(SnackBarConstants.errorMsg!);
+                            //         }
+                            //       },
+                            //       child: CustomAutoSizeTextMontserrat(
+                            //         text: "save",
+                            //         // fontWeight: FontWeight.bold,
+                            //         fontSize: 18,
+                            //         textColor: ThemeConstants.bluecolor,
+                            //       )),
+                            // if (saveAndEdit)
+                            //   TextButton(
+                            //       onPressed: () {
+                            //         saveAndEdit = false;
+                            //         setState(() {});
+                            //       },
+                            //       child: CustomAutoSizeTextMontserrat(
+                            //         text: "Edit",
+                            //         // fontWeight: FontWeight.bold,
+                            //         fontSize: 18,
+                            //         textColor: ThemeConstants.bluecolor,
+                            //       ))
                           ],
                         ),
                       ),
@@ -319,7 +205,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: firstName,
+                        controller: ContactInformationController.firstName,
                         scrollPadding: EdgeInsets.only(
                             bottom:
                                 MediaQuery.of(context).viewInsets.bottom + 40),
@@ -368,7 +254,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: lastName,
+                        controller: ContactInformationController.lastName,
                         scrollPadding: EdgeInsets.only(
                             bottom:
                                 MediaQuery.of(context).viewInsets.bottom + 40),
@@ -514,7 +400,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: mobileNumber,
+                        controller: ContactInformationController.mobileNumber,
                         keyboardType: TextInputType.number,
                         scrollPadding: EdgeInsets.only(
                             bottom:
@@ -567,17 +453,24 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                   val!;
 
                               if (val == true) {
-                                whatsappNumber.value = mobileNumber.value;
+                                ContactInformationController
+                                        .whatsappNumber.value =
+                                    ContactInformationController
+                                        .mobileNumber.value;
                               } else {
-                                whatsappNumber.clear();
+                                ContactInformationController.whatsappNumber
+                                    .clear();
                               }
                               controller.update();
                             }),
-                        CustomAutoSizeTextMontserrat(
-                          text: "This number is Whatsapp number",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
+                        SizedBox(
+                          width: MediaQuery.sizeOf(context).width * 0.6,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "This number is Whatsapp number",
+                            //textColor: ThemeConstants.TextColor,
+                            fontSize: 16,
+                            // fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ]),
                     ),
@@ -586,7 +479,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: whatsappNumber,
+                        controller: ContactInformationController.whatsappNumber,
                         keyboardType: TextInputType.number,
                         scrollPadding: EdgeInsets.only(
                             bottom:
@@ -632,7 +525,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: alt_Number,
+                        controller: ContactInformationController.alt_Number,
                         keyboardType: TextInputType.number,
                         scrollPadding: EdgeInsets.only(
                             bottom:
@@ -677,7 +570,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: email,
+                        controller: ContactInformationController.email,
                         scrollPadding: EdgeInsets.only(
                             bottom:
                                 MediaQuery.of(context).viewInsets.bottom + 40),
@@ -720,7 +613,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: secondaryEmail,
+                        controller: ContactInformationController.secondaryEmail,
                         scrollPadding: EdgeInsets.only(
                             bottom:
                                 MediaQuery.of(context).viewInsets.bottom + 40),
@@ -765,7 +658,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: zipCode,
+                        controller: ContactInformationController.zipCode,
                         keyboardType: TextInputType.number,
                         scrollPadding: EdgeInsets.only(
                             bottom:
@@ -891,7 +784,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                       child: TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                        controller: street,
+                        controller: ContactInformationController.street,
                         scrollPadding: EdgeInsets.only(
                             bottom:
                                 MediaQuery.of(context).viewInsets.bottom + 40),
@@ -952,7 +845,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                          controller: instagramId,
+                          controller: ContactInformationController.instagramId,
                           scrollPadding: EdgeInsets.only(
                               bottom: MediaQuery.of(context).viewInsets.bottom +
                                   40),
@@ -1002,7 +895,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                          controller: facebookId,
+                          controller: ContactInformationController.facebookId,
                           scrollPadding: EdgeInsets.only(
                               bottom: MediaQuery.of(context).viewInsets.bottom +
                                   40),
@@ -1052,7 +945,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: TextFormField(
                           autovalidateMode: AutovalidateMode.onUserInteraction,
 
-                          controller: snapchatId,
+                          controller: ContactInformationController.snapchatId,
                           scrollPadding: EdgeInsets.only(
                               bottom: MediaQuery.of(context).viewInsets.bottom +
                                   40),
@@ -1107,7 +1000,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         readOnly: true,
                         decoration: InputDecoration(
                           hintStyle: ThemeConstants.montserrattextstyle2,
-                          hintText: assignedAdvisors.text,
+                          hintText: ContactInformationController
+                              .assignedAdvisors.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -1143,7 +1037,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         readOnly: true,
                         decoration: InputDecoration(
                           hintStyle: ThemeConstants.montserrattextstyle2,
-                          hintText: assignedBranch.text,
+                          hintText:
+                              ContactInformationController.assignedBranch.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -1179,7 +1074,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         readOnly: true,
                         decoration: InputDecoration(
                           hintStyle: ThemeConstants.montserrattextstyle2,
-                          hintText: service.text,
+                          hintText: ContactInformationController.service.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -1215,7 +1110,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         readOnly: true,
                         decoration: InputDecoration(
                           hintStyle: ThemeConstants.montserrattextstyle2,
-                          hintText: firstCountryInterest.text,
+                          hintText: ContactInformationController
+                              .firstCountryInterest.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -1252,7 +1148,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         readOnly: true,
                         decoration: InputDecoration(
                           hintStyle: ThemeConstants.montserrattextstyle2,
-                          hintText: otherCountryinterested.text,
+                          hintText: ContactInformationController
+                              .otherCountryinterested.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -1263,148 +1160,64 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         style: ThemeConstants.montserrattextstyle2,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          if (saveAndEdit)
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: SizedBox(
-                                width: 100,
-                                height: 35,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: ThemeConstants.whitecolor,
-                                    side: BorderSide(
-                                        color: ThemeConstants.bluecolor),
-                                    backgroundColor:
-                                        ThemeConstants.whitecolor, // foreground
-                                  ),
-                                  onPressed: () {
-                                    saveAndEdit = false;
-                                    setState(() {});
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Edit",
-                                    textColor: ThemeConstants.bluecolor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          if (saveAndEdit == false)
-                            Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: SizedBox(
-                                width: 100,
-                                height: 35,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: ThemeConstants.whitecolor,
-                                    side: BorderSide(
-                                        color: ThemeConstants.bluecolor),
-                                    backgroundColor:
-                                        ThemeConstants.whitecolor, // foreground
-                                  ),
-                                  onPressed: () {
-                                    try {
-                                      if (getNUllChecker(firstName.text) ==
-                                          true) {
-                                        getToast(
-                                            SnackBarConstants.firstNameError!);
-                                      } else if (profilePageKey.currentState!
-                                              .validate() !=
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .contactInformationErrorForAllFields!);
-                                      } else if (getNUllChecker(lastName.text) ==
-                                          true) {
-                                        getToast(
-                                            SnackBarConstants.lastNameError!);
-                                      } else if (getNUllChecker(
-                                          controller.dob)) {
-                                        getToast(SnackBarConstants.dobError!);
-                                      } else if (getNUllChecker(
-                                              controller.genderIdSelected) ==
-                                          true) {
-                                        getToast(
-                                            SnackBarConstants.genderError!);
-                                      } else if (getNUllChecker(controller
-                                              .maritalStatusSelected) ==
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .maritalStatusError!);
-                                      } else if (getNUllChecker(
-                                              mobileNumber.text) ==
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .mobileNumberError!);
-                                      } else if (getNUllChecker(
-                                              alt_Number.text) ==
-                                          true) {
-                                        getToast(SnackBarConstants
-                                            .alternateNumberError!);
-                                      } else if (getNUllChecker(email.text)) {
-                                        getToast(SnackBarConstants.emailError!);
-                                      } else if (getNUllChecker(
-                                          controller.countrySelected)) {
-                                        getToast(
-                                            SnackBarConstants.countryError!);
-                                      } else if (getNUllChecker(
-                                          controller.stateSelected)) {
-                                        getToast(SnackBarConstants.stateError!);
-                                      } else if (getNUllChecker(
-                                          controller.citySelected)) {
-                                        getToast(SnackBarConstants.cityError!);
-                                      } else if (getNUllChecker(zipCode.text)) {
-                                        getToast(
-                                            SnackBarConstants.zipCodeError!);
-                                      } else {
-                                        updatePesonalDetail(
-                                            Get.find<BaseController>()
-                                                .model1
-                                                .id!,
-                                            firstName.text,
-                                            lastName.text,
-                                            controller.dob,
-                                            controller.genderIdSelected!,
-                                            controller.maritalStatusIdSelected!,
-                                            controller.childrenCountSelected!,
-                                            mobileNumber.text,
-                                            email.text,
-                                            int.parse(whatsappNumber.text),
-                                            int.parse(alt_Number.text),
-                                            controller.countryIdSelected!,
-                                            controller.stateIdSelected!,
-                                            controller.cityIdSelected!,
-                                            street.text,
-                                            int.parse(zipCode.text),
-                                            facebookId.text,
-                                            snapchatId.text,
-                                            instagramId.text,
-                                            secondaryEmail.text);
-                                        saveAndEdit = true;
-                                        setState(() {});
-                                      }
-                                    } catch (e) {
-                                      print(StackTrace.current);
-                                      getToast(e.toString());
-                                    }
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Save",
-                                    textColor: ThemeConstants.bluecolor,
-                                  ),
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 15),
+                    //   child: Row(
+                    //     children: [
+                    //       const Spacer(),
+                    //       if (saveAndEdit)
+                    //         Padding(
+                    //           padding: const EdgeInsets.only(right: 15),
+                    //           child: SizedBox(
+                    //             width: 100,
+                    //             height: 35,
+                    //             child: ElevatedButton(
+                    //               style: ElevatedButton.styleFrom(
+                    //                 foregroundColor: ThemeConstants.whitecolor,
+                    //                 side: BorderSide(
+                    //                     color: ThemeConstants.bluecolor),
+                    //                 backgroundColor:
+                    //                     ThemeConstants.whitecolor, // foreground
+                    //               ),
+                    //               onPressed: () {
+                    //                 saveAndEdit = false;
+                    //                 setState(() {});
+                    //               },
+                    //               child: CustomAutoSizeTextMontserrat(
+                    //                 text: "Edit",
+                    //                 textColor: ThemeConstants.bluecolor,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       if (saveAndEdit == false)
+                    //         Padding(
+                    //           padding: const EdgeInsets.only(right: 15),
+                    //           child: SizedBox(
+                    //             width: 100,
+                    //             height: 35,
+                    //             child: ElevatedButton(
+                    //               style: ElevatedButton.styleFrom(
+                    //                 foregroundColor: ThemeConstants.whitecolor,
+                    //                 side: BorderSide(
+                    //                     color: ThemeConstants.bluecolor),
+                    //                 backgroundColor:
+                    //                     ThemeConstants.whitecolor, // foreground
+                    //               ),
+                    //               onPressed: () {},
+                    //               child: CustomAutoSizeTextMontserrat(
+                    //                 text: "Save",
+                    //                 textColor: ThemeConstants.bluecolor,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //     ],
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 30,
+                    // ),
                     Padding(
                         padding: EdgeInsets.only(
                             bottom: MediaQuery.of(context).viewInsets.bottom)),
@@ -1512,55 +1325,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
     List<String> date = temp.split('-');
     controller.dob = date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
-  }
-
-  updatePesonalDetail(
-      int id,
-      String firstName,
-      String lastName,
-      String? dateOfBirth,
-      int genderId,
-      int maritalStatusId,
-      int childCount,
-      String mobile,
-      String email,
-      int whatsappNumber,
-      int secondaryNumber,
-      int countryId,
-      int stateId,
-      int cityId,
-      String street,
-      int pincode,
-      String facebookId,
-      String snapchatId,
-      String instagramId,
-      String secondaryEmail) {
-    PersonalInformationModel personalInformationModel =
-        PersonalInformationModel(
-            id: id,
-            dateOfBirth: dateOfBirth,
-            genderId: genderId,
-            enquiryName: firstName,
-            familyName: lastName,
-            email: email,
-            secondaryEmail: secondaryEmail,
-            mobile: mobile,
-            maritalStatusId: maritalStatusId,
-            childrenCount: childCount,
-            whatsappNumber: whatsappNumber,
-            alternateNumber: secondaryNumber,
-            countryId: countryId,
-            stateId: stateId,
-            cityId: cityId,
-            street: street,
-            zipCode: pincode,
-            instagramId: instagramId,
-            facebookId: facebookId,
-            snapchatId: snapchatId);
-    controller.updateData(personalInformationModel);
-
-    // saveAndEdit = true;
-    // setState(() {});
   }
 
   List getDropdownModel(bool loading, String? selected, List model) {

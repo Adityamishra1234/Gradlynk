@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/passport.dart';
@@ -217,14 +218,33 @@ class ProfileViewMainController extends GetxController {
             animationType: DialogTransitionType.slideFromBottomFade,
             curve: Curves.easeInOutQuart,
             context: context,
-            builder: (_) => CustomProfileDialogue(
-                enableSaveNext: false,
-                onEdit: () {},
-                title: "Relative Info",
-                onTap: () {
-                  Get.back();
-                },
-                child: ContactInformationCopy()));
+            builder: (_) {
+              bool? editButton = false;
+              return StatefulBuilder(
+                  builder: (thisLowerContext, innerSetState) {
+                return CustomProfileDialogue(
+                    enableEdit: true,
+                    enableSaveNext: true,
+                    onEdit: () {
+                      innerSetState(() {
+                        editButton = true;
+                      });
+                    },
+                    title: "Mandatory Details",
+                    onTap: () async {
+                      var res = await Get.find<ContactInformationController>()
+                          .saveButton();
+                      if (res == true) {
+                        Get.back();
+                        getDailog(0, context);
+                      }
+                      // Get.back();
+                    },
+                    child: ContactInformationCopy(
+                      editButton: editButton,
+                    ));
+              });
+            });
 
       default:
         print('choose a different number!');
