@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:studentpanel/services/api_services.dart';
@@ -5,7 +7,10 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
+import 'package:studentpanel/ui/models/getAllCourseBroadFieldModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CourseSearchController extends GetxController {
 ////new Updatebool s
@@ -115,19 +120,67 @@ class CourseSearchController extends GetxController {
     }
   }
 
+  List<Widget> courseFieldWidgetList = [];
   getCourseBoardField() async {
     try {
-      var res = await apiservices.dropDown1(
-          Endpoints.baseUrl!, Endpoints.courseBoardField!);
-      if (res != null) {
-        Map map = Map<String, dynamic>.from(res);
-        courseBoardList.add("Select Course Level");
-        courseBoardCode.add(0);
-        courseBoardList.addAll(map.keys.toList());
-        courseBoardCode.addAll(map.values.toList());
-        loadingCourseBoardField = true.obs;
-        update();
+      var res = await apiservices.getAllCourseBroadField();
+
+      var data = List<GetAllCourseBroadFieldModel>.from(
+          res.map((e) => GetAllCourseBroadFieldModel.fromJson(e)));
+
+      print(data);
+
+      for (var i = 0; i < data.length; i++) {
+        courseFieldWidgetList.add(InkWell(
+          onTap: () {
+            selectCourseBoardFieldCode = data[i].id;
+            getCoursenarrowField(selectCourseBoardFieldCode!);
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            width: 140,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(width: 1, color: ThemeConstants.bluecolor)),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 50,
+                    height: 50,
+                    child: CachedNetworkImage(
+                      imageUrl: data[i].imageLink!,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    '${data[i].broadFieldName}',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ]),
+          ),
+        ));
       }
+
+      update();
+
+      // if (res != null) {
+      //   Map map = Map<String, dynamic>.from(res);
+      //   courseBoardList.add("Select Course Level");
+      //   courseBoardCode.add(0);
+      //   courseBoardList.addAll(map.keys.toList());
+      //   courseBoardCode.addAll(map.values.toList());
+      //   loadingCourseBoardField = true.obs;
+      //   update();
+      // }
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

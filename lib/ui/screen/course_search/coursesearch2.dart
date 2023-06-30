@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/coursesearchcontroller.dart';
@@ -89,6 +90,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               height: 5,
                             ),
                             CustomDropDownSingle(
+                              bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: getDropdownModel(
                                 _.loadingCountry.value,
                                 _.selectCountryName,
@@ -136,6 +138,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                       width: MediaQuery.of(context).size.width *
                                           0.5,
                                       child: CustomDropDownSingle(
+                                        bgColor:
+                                            ThemeConstants.ultraLightgreyColor2,
                                         model: getDropdownModel(
                                             _.loadingState.value,
                                             _.selectStateName,
@@ -175,6 +179,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                       width: MediaQuery.of(context).size.width *
                                           0.5,
                                       child: CustomDropDownSingle(
+                                        bgColor:
+                                            ThemeConstants.ultraLightgreyColor2,
                                         model: getDropdownModel(
                                             _.loadingCity.value,
                                             _.selectCityName,
@@ -205,22 +211,34 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 children: [
                                   CustomIconTextTogether(
                                       showICOn: true,
+                                      verticalPadding: 5,
+                                      horizontelPadding: 15,
                                       fontWeight: FontWeight.w400,
                                       textSize: 10,
                                       Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
-                                      iconData: Icon(Icons.abc),
+                                      iconData: SvgPicture.asset(
+                                        'assets/icons/Course Selection.svg',
+                                        color: ThemeConstants.TextColor,
+                                        height: 20,
+                                      ),
                                       text: 'Course Selection'),
                                   SizedBox(
                                     width: 15,
                                   ),
                                   CustomIconTextTogether(
+                                      verticalPadding: 5,
+                                      horizontelPadding: 15,
                                       showICOn: true,
                                       fontWeight: FontWeight.w400,
                                       textSize: 10,
+                                      iconData: SvgPicture.asset(
+                                        'assets/icons/Job Industry.svg',
+                                        color: ThemeConstants.TextColor,
+                                        height: 20,
+                                      ),
                                       Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
-                                      iconData: Icon(Icons.abc),
                                       text: 'Job Industry'),
                                 ],
                               ),
@@ -242,53 +260,129 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 ),
                               ),
                             ),
-                            Row(
-                              children: [Container()],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            CustomDropDownSingle(
-                              model: getDropdownModel(
-                                  _.loadingCourseLevel.value,
-                                  _.selectCourseLevelName,
-                                  _.courseLevelList),
-                              initialSelectedValue: getSelectedDropDown(
-                                  _.loadingCourseLevel.value,
-                                  _.selectCourseLevelName,
-                                  _.courseLevelList),
-                              choosefieldtype: false,
-                              callbackFunction: callbackCourseLevel,
-                            ),
-                            const SizedBox(
+                            SizedBox(
                               height: 10,
                             ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  CustomIconTextTogether(
+                                      showICOn: false,
+                                      verticalPadding: 8,
+                                      horizontelPadding: 15,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 10,
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      iconData: Icon(Icons.abc),
+                                      text: 'PG Diploma'),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  CustomIconTextTogether(
+                                      showICOn: false,
+                                      verticalPadding: 8,
+                                      horizontelPadding: 15,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 10,
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      iconData: Icon(Icons.abc),
+                                      text: 'Bachelors'),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  CustomIconTextTogether(
+                                      showICOn: false,
+                                      verticalPadding: 8,
+                                      horizontelPadding: 15,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 10,
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      iconData: Icon(Icons.abc),
+                                      text: 'Master'),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            // CustomDropDownSingle(
+                            //   model: getDropdownModel(
+                            //       _.loadingCourseLevel.value,
+                            //       _.selectCourseLevelName,
+                            //       _.courseLevelList),
+                            //   initialSelectedValue: getSelectedDropDown(
+                            //       _.loadingCourseLevel.value,
+                            //       _.selectCourseLevelName,
+                            //       _.courseLevelList),
+                            //   choosefieldtype: false,
+                            //   callbackFunction: callbackCourseLevel,
+                            // ),
+                            // const SizedBox(
+                            //   height: 15,
+                            // ),
                             Align(
                               alignment: AlignmentDirectional.topStart,
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 20.0),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Broad Field",
+
+                                  // fontWeight: FontWeight.bold,,
+                                  fontWeight: FontWeight.w500,
                                   // fontWeight: FontWeight.bold,,
                                   fontSize: 16,
                                 ),
                               ),
                             ),
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 5),
+                              width: MediaQuery.of(context).size.width * .95,
+                              padding: EdgeInsets.symmetric(vertical: 5),
+                              height: 110,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  ...controller.courseFieldWidgetList,
+                                ],
+                              ),
+                            ),
                             const SizedBox(
                               height: 5,
                             ),
-                            CustomDropDownSingle(
-                              model: getDropdownModel(
-                                  _.loadingCourseBoardField.value,
-                                  _.selectCourseBoardFieldName,
-                                  _.courseBoardList),
-                              initialSelectedValue: getSelectedDropDown(
-                                  _.loadingCourseBoardField.value,
-                                  _.selectCourseBoardFieldName,
-                                  _.courseBoardList),
-                              choosefieldtype: false,
-                              callbackFunction: callbackCourseBroadField,
-                            ),
+                            // Align(
+                            //   alignment: AlignmentDirectional.topStart,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.only(left: 20.0),
+                            //     child: CustomAutoSizeTextMontserrat(
+                            //       text: "Course Narrow Field",
+
+                            //       // fontWeight: FontWeight.bold,,
+                            //       fontWeight: FontWeight.w500,
+                            //       // fontWeight: FontWeight.bold,,
+                            //       fontSize: 16,
+                            //     ),
+                            //   ),
+                            // ),
+                            // const SizedBox(
+                            //   height: 10,
+                            // ),
+                            // CustomDropDownSingle(
+                            //   model: getDropdownModel(
+                            //       _.loadingCourseBoardField.value,
+                            //       _.selectCourseBoardFieldName,
+                            //       _.courseBoardList),
+                            //   initialSelectedValue: getSelectedDropDown(
+                            //       _.loadingCourseBoardField.value,
+                            //       _.selectCourseBoardFieldName,
+                            //       _.courseBoardList),
+                            //   choosefieldtype: false,
+                            //   callbackFunction: callbackCourseBroadField,
+                            // ),
                             const SizedBox(
                               height: 10,
                             ),
@@ -299,6 +393,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 child: CustomAutoSizeTextMontserrat(
                                   text: "Course Narrow Field",
                                   // fontWeight: FontWeight.bold,,
+                                  fontWeight: FontWeight.w500,
+                                  //       // fontWeight: FontWeight.bold,,
                                   fontSize: 16,
                                 ),
                               ),
@@ -307,6 +403,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               height: 5,
                             ),
                             CustomDropDownSingle(
+                              bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: getDropdownModel(
                                   _.loadingCourseNarrowField.value,
                                   _.selectCourseNarrowFieldName,
@@ -318,6 +415,38 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               choosefieldtype: false,
                               callbackFunction: callbackCoursenarrowField,
                             ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            // Align(
+                            //   alignment: AlignmentDirectional.topStart,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.only(left: 20.0),
+                            //     child: CustomAutoSizeTextMontserrat(
+                            //       text: "Specification",
+
+                            //       // fontWeight: FontWeight.bold,,
+                            //       fontWeight: FontWeight.w500,
+                            //       // fontWeight: FontWeight.bold,,
+                            //       fontSize: 16,
+                            //     ),
+                            //   ),
+                            // ),
+                            // const SizedBox(
+                            //   height: 5,
+                            // ),
+                            // CustomDropDownSingle(
+                            //   model: getDropdownModel(
+                            //       _.loadingCourseBoardField.value,
+                            //       _.selectCourseBoardFieldName,
+                            //       _.courseBoardList),
+                            //   initialSelectedValue: getSelectedDropDown(
+                            //       _.loadingCourseBoardField.value,
+                            //       _.selectCourseBoardFieldName,
+                            //       _.courseBoardList),
+                            //   choosefieldtype: false,
+                            //   callbackFunction: callbackCourseBroadField,
+                            // ),
                             Padding(
                               padding: const EdgeInsets.only(top: 20),
                               child: SizedBox(

@@ -8,8 +8,10 @@ class CustomDropDownSingle extends StatelessWidget {
   List model;
   String? initialSelectedValue;
   final Function callbackFunction;
+  Color? bgColor;
   CustomDropDownSingle({
     Key? key,
+    this.bgColor,
     required this.model,
     required this.callbackFunction,
     required this.choosefieldtype,
@@ -51,7 +53,8 @@ class CustomDropDownSingle extends StatelessWidget {
                 ),
                 titleAlign: TextAlign.center,
                 decoration: BoxDecoration(
-                  color: ThemeConstants.lightblueColor,
+                  color:
+                      bgColor == null ? ThemeConstants.lightblueColor : bgColor,
                   // border: Border.all(color: ThemeConstants.bluecolor),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),

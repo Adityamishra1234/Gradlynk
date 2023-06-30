@@ -268,6 +268,7 @@ class CustomStepper extends StatelessWidget {
                       child: SvgPicture.asset(
                         icon,
                         height: 23,
+                        width: 23,
                         color: iconColor,
                         //   ), ,
                       ),

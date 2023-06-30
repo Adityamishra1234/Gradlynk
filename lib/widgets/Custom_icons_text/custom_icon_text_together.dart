@@ -3,16 +3,20 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomIconTextTogether extends StatelessWidget {
-  final Icon iconData;
+  final Widget iconData;
   final String text;
   final Color color;
   final Color Bgcolor;
   final int textSize;
   bool showICOn;
   final FontWeight fontWeight;
+  final double verticalPadding;
+  final double horizontelPadding;
 
   CustomIconTextTogether(
       {super.key,
+      required this.verticalPadding,
+      required this.horizontelPadding,
       required this.showICOn,
       required this.fontWeight,
       required this.textSize,
@@ -24,7 +28,8 @@ class CustomIconTextTogether extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: EdgeInsets.symmetric(
+          vertical: verticalPadding, horizontal: horizontelPadding),
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),

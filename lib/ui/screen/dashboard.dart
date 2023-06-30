@@ -11,6 +11,7 @@ import 'package:studentpanel/ui/controllers/versioncontroller.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
+import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
@@ -744,8 +745,7 @@ class _DashBoardState extends State<DashBoard> {
                                           //Upload Document
                                           InkWell(
                                             onTap: () {
-                                              Get.toNamed(
-                                                  UploadDocument.routeNamed);
+                                              Get.to(CourseSearch());
                                             },
                                             child: InkWell(
                                               // color: Colors.amber,
@@ -836,7 +836,7 @@ class _DashBoardState extends State<DashBoard> {
                                           InkWell(
                                             onTap: () {
                                               Get.toNamed(
-                                                  CourseSearch.routeNamed);
+                                                  CourseSearch2.routeNamed);
                                             },
                                             child: Column(
                                               children: [

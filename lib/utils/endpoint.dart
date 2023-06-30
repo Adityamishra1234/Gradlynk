@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
 class Endpoints {
-  static String? baseUrl = "https://api.sieceducation.in/api/";
+  // static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
+
+  static String? baseUrl = "http://14.97.86.202:205/api/";
+
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
   static String? userHistory = "login-logout-history";
@@ -136,6 +139,9 @@ class Endpoints {
   static String? idsFromZipCode = "ids-from-zip-code";
 
   static String? getAllCourseBroadField = "get-all-course-broad-field";
+
+  static String? getNarrowFieldFromCourseBroadField =
+      "get-course-narrow-fiels-by-broad-field";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {
