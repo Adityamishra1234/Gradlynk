@@ -3,6 +3,7 @@ import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/passport.dart';
@@ -210,6 +211,20 @@ class ProfileViewMainController extends GetxController {
                   Get.back();
                 },
                 child: RelativeInformation()));
+
+      case 8:
+        return showAnimatedDialog(
+            animationType: DialogTransitionType.slideFromBottomFade,
+            curve: Curves.easeInOutQuart,
+            context: context,
+            builder: (_) => CustomProfileDialogue(
+                enableSaveNext: false,
+                onEdit: () {},
+                title: "Relative Info",
+                onTap: () {
+                  Get.back();
+                },
+                child: ContactInformationCopy()));
 
       default:
         print('choose a different number!');

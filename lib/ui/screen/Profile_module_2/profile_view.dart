@@ -140,6 +140,7 @@ class ProfileView extends StatelessWidget {
                                               text:
                                                   "${controller.model.mobile}",
                                               fontSize: 5,
+                                              fontWeight: FontWeight.w400,
                                             )
                                           ],
                                         ),
@@ -166,50 +167,66 @@ class ProfileView extends StatelessWidget {
                                             const SizedBox(
                                               width: 4,
                                             ),
-                                            CustomAutoSizeTextMontserrat(
-                                              text: "${controller.model.email}",
-                                              fontSize: 5,
+                                            Container(
+                                              width: 190,
+                                              child: Wrap(children: [
+                                                CustomAutoSizeTextMontserrat(
+                                                  fontWeight: FontWeight.w400,
+                                                  text:
+                                                      "${controller.model.email}",
+                                                  fontSize: 5,
+                                                ),
+                                              ]),
                                             )
                                           ],
                                         ),
                                         const SizedBox(
                                           height: 2.5,
                                         ),
-                                        Stack(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: ThemeConstants
-                                                      .lightgreycolor,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              width: 200,
-                                              height: 6,
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: const Color.fromARGB(
-                                                      255, 16, 32, 255),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                              width: controller
-                                                      .profileValidationData
-                                                      .totalPercentageComplete!
-                                                      .toDouble() *
-                                                  2,
-                                              height: 6,
-                                            )
-                                          ],
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: Stack(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: ThemeConstants
+                                                        .lightgreycolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                width: 200,
+                                                height: 6,
+                                              ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: const Color.fromARGB(
+                                                        255, 16, 32, 255),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                                width: controller
+                                                        .profileValidationData
+                                                        .totalPercentageComplete!
+                                                        .toDouble() *
+                                                    2,
+                                                height: 6,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                         const SizedBox(
                                           height: 2.5,
                                         ),
-                                        CustomAutoSizeTextMontserrat(
-                                          text:
-                                              "${controller.profileValidationData.totalPercentageComplete}% Profile Completed",
-                                          fontSize: 5,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15),
+                                          child: CustomAutoSizeTextMontserrat(
+                                            fontWeight: FontWeight.w400,
+                                            text:
+                                                "${controller.profileValidationData.totalPercentageComplete}% Profile Completed",
+                                            fontSize: 5,
+                                          ),
                                         )
                                       ]),
                                 )
@@ -233,36 +250,41 @@ class ProfileView extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.to(const ContactInformationCopy());
+                                ProfileController.getDailog(8, context);
                               },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.amber,
-                                    borderRadius: BorderRadius.circular(20),
-                                    // border: Border.all(
-                                    //     width: 1, color: ThemeConstants.lightgreycolor),
-                                  ),
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.all(10),
-                                  height: 80,
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SvgPicture.asset("assets/icons/doc.svg",
-                                            color: ThemeConstants.blackcolor,
-                                            width: 60,
-                                            height: 60),
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Mandatory Details",
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        )
-                                        // CustomAutoSizeTextMontserrat(
-                                        //     text: "Mandatory Details")
-                                      ])),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.amber,
+                                      borderRadius: BorderRadius.circular(20),
+                                      // border: Border.all(
+                                      //     width: 1, color: ThemeConstants.lightgreycolor),
+                                    ),
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.all(10),
+                                    height: 80,
+                                    child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SvgPicture.asset(
+                                              "assets/icons/doc.svg",
+                                              color: ThemeConstants.blackcolor,
+                                              width: 50,
+                                              height: 50),
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Mandatory Details",
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                          )
+                                          // CustomAutoSizeTextMontserrat(
+                                          //     text: "Mandatory Details")
+                                        ])),
+                              ),
                             ),
                             const SizedBox(
                               height: 20,
