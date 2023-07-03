@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:studentpanel/ui/models/fund_calculator.dart';
 
 class Endpoints {
   // static String? baseUrl = "https://api.sieceducation.in/api/";
@@ -142,6 +143,24 @@ class Endpoints {
 
   static String? getNarrowFieldFromCourseBroadField =
       "get-course-narrow-fiels-by-broad-field";
+}
+
+fundCalulator(int inst_course, int enq_id) {
+  return "data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id";
+}
+
+dataNeedFundCalulator(
+  int enq_id,
+  int inst_course,
+  int is_partner,
+  int is_child,
+  int num_of_child, [
+  int child_age1 = 0,
+  int child_age2 = 0,
+  int child_age3 = 0,
+  int child_age4 = 0,
+]) {
+  return "data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id&is_partner=$is_partner&is_child=$is_child&num_of_child=$num_of_child&child_age1=$child_age1&child_age$child_age2=0&child_age3=$child_age3&child_age4=$child_age4";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

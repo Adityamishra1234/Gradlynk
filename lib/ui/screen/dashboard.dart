@@ -14,6 +14,7 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -28,6 +29,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+
+import 'fund/sponsorDetails.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -667,9 +670,9 @@ class _DashBoardState extends State<DashBoard> {
                                               //         BookAnAppointment());
                                               // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
-                                              // Get.to(ProfilePageCopy1());
-                                              Get.toNamed(
-                                                  ProfileView.routeNamed);
+                                              Get.to(const FundPlan());
+                                              // Get.toNamed(
+                                              //     ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [

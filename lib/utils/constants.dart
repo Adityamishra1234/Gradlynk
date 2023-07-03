@@ -209,6 +209,35 @@ getPhoneNumbervalidation(String? value) {
   }
 }
 
+getEmptyValidation(String? value) {
+  print(value);
+  if (value == null) {
+    return '* Required';
+  } else if (value.length < 1) {
+    return '* Required';
+  } else
+    return null;
+}
+
+getEmptyDropDownValidation(String? value) {
+  print(value);
+  if (value == null || value == '') {
+    return '* Please Select one Field';
+  } else
+    return null;
+}
+
+getOtpvalidation(String? value) {
+  if (value != null) {
+    if (value.length != 6) {
+      return 'OTP must be of 6 digit';
+    } else
+      return null;
+  } else {
+    return "OTP must be of 6 digit";
+  }
+}
+
 getsnakbar(String title, String data) {
   return Get.snackbar(
     title,
