@@ -1737,4 +1737,14 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  getdropdownfunPlaner(String endpoint) async {
+    try {
+      var response = await httpGet("${Endpoints.baseUrl}$endpoint");
+      var jsondata = json.decode(response);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }

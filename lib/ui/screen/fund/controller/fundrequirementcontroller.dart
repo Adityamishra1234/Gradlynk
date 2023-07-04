@@ -30,7 +30,6 @@ class FundRequirementController extends GetxController with StateMixin {
   void onInit() {
     // TODO: implement onInit
     getFundRequirement(2900);
-
     super.onInit();
   }
 

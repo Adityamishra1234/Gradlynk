@@ -11,15 +11,17 @@ class FundParameter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            CustomAutoSizeTextMontserrat(
-              text: "Fund Parameter",
-              textColor: ThemeConstants.bluecolor,
-              fontSize: 18,
-            ),
-            ...getlist(model)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomAutoSizeTextMontserrat(
+                text: "Fund Parameter",
+                textColor: ThemeConstants.bluecolor,
+                fontSize: 18,
+              ),
+              ...getlist(model)
+            ],
+          ),
         ),
       ),
     );

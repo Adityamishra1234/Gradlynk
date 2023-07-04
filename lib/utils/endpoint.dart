@@ -142,6 +142,39 @@ class Endpoints {
 
   static String? getNarrowFieldFromCourseBroadField =
       "get-course-narrow-fiels-by-broad-field";
+
+// Fund Planner
+  static String? bifurcated_relation = "get-bifurcated-relation";
+
+  //dropdown
+  static String? source_of_income = "get-source-of-income";
+  static String? get_occupation = "get-occupation";
+  static String? fund_type = "get-fund-types";
+  static String? bankByCountry = "get_bank_by_country?country_id=";
+
+  static String? fundPlannerResult = "funds-planner-get-results?enq_id=";
+  static String? fundPlannerDelete = "funds-planner-delete-results?id=";
+}
+
+getFundPlannersave(
+    String id,
+    String enq_id,
+    String name_of_sponsor,
+    String relationship,
+    String bank_country,
+    String id_of_financial_institution,
+    String type_of_funds,
+    String sponsor_amount,
+    String occupation,
+    String oldfunds,
+    String source_of_income,
+    String doc1) {
+  return "funds-planner-save-results?id=$id&enq_id=$enq_id&name_of_sponsor=$name_of_sponsor&relationship=$relationship&bank_country=$bank_country&id_of_financial_institution=$id_of_financial_institution&type_of_funds=$type_of_funds&sponsor_amount=$sponsor_amount&occupation=$occupation&oldfunds=$oldfunds&source_of_income=$source_of_income&doc1=$doc1";
+}
+
+// Fund Planner
+getFundPlannerDataBasedRelation(String relation_applicant, int enq_id) {
+  return "funds-planner-get-data-based-on-relation?relation_applicant=$relation_applicant&enq_id=$enq_id";
 }
 
 fundCalulator(int inst_course, int enq_id) {
