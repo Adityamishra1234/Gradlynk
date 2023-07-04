@@ -308,4 +308,8 @@ class SnackBarConstants {
   static String flutterStroageToast = "Please give storage access";
   static String receiveACallback =
       "Thanks our counsellor will contact you soon";
+
+  ///
+  static String maxChildCount = "Maxmimum child count 4";
+  static String minChildCount = "Minimum child count 4";
 }

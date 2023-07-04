@@ -63,7 +63,8 @@ class DataNeedFundCalulator {
     childAge4 = json['child_age4'];
     lastUpdatedAt = json['last_updated_at'];
     if (json['tableData'] != null) {
-      tableData = json['tableData'].forEach((v) {
+      tableData = <TableData>[];
+      json['tableData'].forEach((v) {
         tableData!.add(TableData.fromJson(v));
       });
     }
@@ -99,10 +100,10 @@ class DataNeedFundCalulator {
 
 class TableData {
   String? nameOfFiled;
-  int? expenses;
+  String? expenses;
   String? participants;
-  int? total;
-  int? inr;
+  String? total;
+  String? inr;
 
   TableData(
       {this.nameOfFiled,
@@ -111,12 +112,12 @@ class TableData {
       this.total,
       this.inr});
 
-  TableData.fromJson(Map<String?, dynamic> json) {
+  TableData.fromJson(Map<String, dynamic> json) {
     nameOfFiled = json['name_of_filed'];
-    expenses = json['Expenses'];
-    participants = json['participants'];
-    total = json['total'];
-    inr = json['inr'];
+    expenses = json['Expenses'].toString();
+    participants = json['participants'].toString();
+    total = json['total'].toString();
+    inr = json['inr'].toString();
   }
 
   Map<String, dynamic> toJson() {

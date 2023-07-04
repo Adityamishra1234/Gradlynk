@@ -1701,4 +1701,40 @@ class ApiServices extends StudentPanelBase implements api {
     // TODO: implement getAllCourseBroadField
     // throw UnimplementedError();
   }
+
+  @override
+  getFundRequirement(int inst_course, int enq_id) async {
+    try {
+      String url = '${Endpoints.baseUrl}${fundCalulator(inst_course, enq_id)}';
+
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  getFundCalculator(int enq_id, int inst_course, int is_partner, int is_child,
+      int num_of_child,
+      [int child_age1 = 0,
+      int child_age2 = 0,
+      int child_age3 = 0,
+      int child_age4 = 0]) async {
+    try {
+      String url =
+          '${Endpoints.baseUrl}${dataNeedFundCalulator(enq_id, inst_course, is_partner, is_child, num_of_child, child_age1, child_age2, child_age3, child_age4)}';
+
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }

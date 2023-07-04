@@ -101,4 +101,5 @@ abstract class api {
   getCountriesList();
 
   getAllCourseBroadField();
+  getFundRequirement(int inst_course, int enq_id);
 }
