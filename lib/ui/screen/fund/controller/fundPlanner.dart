@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -31,6 +32,12 @@ class FundPlannerController extends GetxController with StateMixin {
     'Father-in-law',
     'Mother-in-law'
   ];
+
+/////
+  String selectedRelationship = '';
+  TextEditingController nameOfThePerson = TextEditingController();
+  TextEditingController occupationOfSponsor = TextEditingController();
+  TextEditingController occupationOfSponsor = TextEditingController();
 
   @override
   void onInit() {
