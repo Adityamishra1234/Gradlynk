@@ -157,19 +157,18 @@ class Endpoints {
 }
 
 getFundPlannersave(
-    String id,
-    String enq_id,
-    String name_of_sponsor,
-    String relationship,
-    String bank_country,
-    String id_of_financial_institution,
-    String type_of_funds,
-    String sponsor_amount,
-    String occupation,
-    String oldfunds,
-    String source_of_income,
-    String doc1) {
-  return "funds-planner-save-results?id=$id&enq_id=$enq_id&name_of_sponsor=$name_of_sponsor&relationship=$relationship&bank_country=$bank_country&id_of_financial_institution=$id_of_financial_institution&type_of_funds=$type_of_funds&sponsor_amount=$sponsor_amount&occupation=$occupation&oldfunds=$oldfunds&source_of_income=$source_of_income&doc1=$doc1";
+    {required String id,
+    required String enq_id,
+    required String name_of_sponsor,
+    required String relationship,
+    required String bank_country,
+    required String id_of_financial_institution,
+    required String type_of_funds,
+    required String sponsor_amount,
+    required String occupation,
+    required String oldfunds,
+    required String source_of_income}) {
+  return "funds-planner-save-results?id=$id&enq_id=$enq_id&name_of_sponsor=$name_of_sponsor&relationship=$relationship&bank_country=$bank_country&id_of_financial_institution=$id_of_financial_institution&type_of_funds=$type_of_funds&sponsor_amount=$sponsor_amount&occupation=$occupation&oldfunds=$oldfunds&source_of_income=$source_of_income";
 }
 
 // Fund Planner
@@ -192,7 +191,7 @@ dataNeedFundCalulator(
   int child_age3 = 0,
   int child_age4 = 0,
 ]) {
-  return "data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id&is_partner=$is_partner&is_child=$is_child&num_of_child=$num_of_child&child_age1=$child_age1&child_age$child_age2=0&child_age3=$child_age3&child_age4=$child_age4";
+  return "data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id&is_partner=$is_partner&is_child=$is_child&num_of_child=$num_of_child&child_age1=$child_age1&child_age2=$child_age2&child_age3=$child_age3&child_age4=$child_age4";
 }
 
 getaddCourseInformationPart3(int index, int courseBroadId, int courseNarrowId) {

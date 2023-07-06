@@ -8,10 +8,13 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
+import 'package:studentpanel/widgets/customtextfield.dart';
 
 class Constants {
   String? id;
@@ -739,6 +742,227 @@ getBookAnAppointment(
               ),
             ),
           ));
+}
+
+gettest(BuildContext context, FundPlannerController controller) {
+  return showDialog(
+    barrierDismissible: true,
+    context: context,
+    builder: (ctx) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+        content: SafeArea(
+          child: Container(
+            padding: EdgeInsets.only(top: 10, right: 10, left: 15, bottom: 10),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomAutoSizeTextMontserrat(
+                        text: "Plan your Funds",
+                        textColor: ThemeConstants.bluecolor,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      CustomAutoSizeTextMontserrat(
+                          text: "Sponsor Details",
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                      const Spacer(),
+                      CustomAutoSizeTextMontserrat(
+                        text: "View Details",
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        textColor: ThemeConstants.bluecolor,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomAutoSizeTextMontserrat(
+                        text: "Relationship with Applicant",
+                        fontSize: 14,
+                        textColor: ThemeConstants.blackcolor,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  SizedBox(height: 10),
+                  SizedBox(
+                    height: 30,
+                    width: MediaQuery.sizeOf(context).width - 20,
+                    child: customDropDownPlanFund(
+                      model: controller.relationShip,
+                      callback: (value) {
+                        controller.selectedRelationship =
+                            controller.relationShip[value];
+                        controller.update();
+                      },
+                      selectedValue: controller.selectedRelationship,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomAutoSizeTextMontserrat(
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.w400,
+                          text: "Name of the Sponsor")),
+                  SizedBox(height: 10),
+                  CustomTextField(
+                      hint: "", controller: TextEditingController()),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomAutoSizeTextMontserrat(
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.w400,
+                          text: "Occupation of Sponsor")),
+                  SizedBox(height: 5),
+                  CustomTextField(
+                      hint: "enter occupation of Sponsor",
+                      controller: TextEditingController()),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomAutoSizeTextMontserrat(
+                      fontSize: 14,
+                      textColor: ThemeConstants.blackcolor,
+                      fontWeight: FontWeight.w400,
+                      text: "Source of Incomes",
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  SizedBox(
+                    height: 30,
+                    width: MediaQuery.sizeOf(context).width - 20,
+                    child: customDropDownPlanFund(
+                      model: controller.sourceIncomeName,
+                      callback: (value) {
+                        print(value);
+                      },
+                      selectedValue: "Business",
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomAutoSizeTextMontserrat(
+                        fontSize: 14,
+                        textColor: ThemeConstants.blackcolor,
+                        fontWeight: FontWeight.w400,
+                        text: "Country of the Financial institution"),
+                  ),
+                  SizedBox(height: 10),
+                  CustomTextField(
+                      hint: "enter Country of the Financial institution",
+                      controller: TextEditingController()),
+                  SizedBox(height: 15),
+                  // CustomAutoSizeTextMontserrat(
+                  //     fontSize: 14,
+                  //     textColor: ThemeConstants.blackcolor,
+                  //     fontWeight: FontWeight.w400,
+                  //     text: "Country of the Financial institution"),
+                  // SizedBox(height: 10),
+                  // CustomTextField(
+                  //     hint: "enter Country of the Financial institution",
+                  //     controller: TextEditingController()),
+                  // CustomAutoSizeTextMontserrat(
+                  //     fontSize: 14,
+                  //     textColor: ThemeConstants.blackcolor,
+                  //     fontWeight: FontWeight.w400,
+                  //     text: "Name of the Financial Institution"),
+                  // SizedBox(height: 10),
+                  // CustomTextField(
+                  //     hint: "enter Name of the Financial Institution",
+                  //     controller: TextEditingController()),
+                  CustomAutoSizeTextMontserrat(
+                      fontSize: 14,
+                      textColor: ThemeConstants.blackcolor,
+                      fontWeight: FontWeight.w400,
+                      text: "Name of the Financial Institution"),
+                  SizedBox(height: 10),
+                  CustomTextField(
+                      hint: "enter Name of the Financial Institution",
+                      controller: TextEditingController()),
+                  SizedBox(height: 10),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomAutoSizeTextMontserrat(
+                          fontSize: 14,
+                          textColor: ThemeConstants.blackcolor,
+                          fontWeight: FontWeight.w400,
+                          text: "Type of Funds")),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 30,
+                    width: MediaQuery.sizeOf(context).width - 20,
+                    child: customDropDownPlanFund(
+                      model: controller.fundTypeName,
+                      callback: (value) {
+                        print(value);
+                      },
+                      selectedValue: "Business",
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  CustomAutoSizeTextMontserrat(
+                      fontSize: 14,
+                      textColor: ThemeConstants.blackcolor,
+                      fontWeight: FontWeight.w400,
+                      text: "Are the funds 6 months old?"),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  CustomTextField(
+                      hint: "Amount", controller: TextEditingController()),
+                  CustomAutoSizeTextMontserrat(
+                      fontSize: 14,
+                      textColor: ThemeConstants.blackcolor,
+                      fontWeight: FontWeight.w400,
+                      text: "Please enter your amount"),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
+                        primary: ThemeConstants.bluecolor, // background
+                        onPrimary: ThemeConstants.bluecolor, // foreground
+                      ),
+                      onPressed: () {},
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Submit",
+                        textColor: ThemeConstants.whitecolor,
+                      )),
+                ],
+              ),
+            ),
+          ),
+        )),
+  );
 }
 
 // contactUsDialog(

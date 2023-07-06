@@ -1738,10 +1738,76 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
-  getdropdownfunPlaner(String endpoint) async {
+  getdropdownfundPlaner(String endpoint) async {
     try {
       var response = await httpGet("${Endpoints.baseUrl}$endpoint");
       var jsondata = json.decode(response);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  getdropdownfunPlanerPost(String endpoint) async {
+    try {
+      var response =
+          await httpPostNullBodyWithNullData("${Endpoints.baseUrl}$endpoint");
+      var jsondata = json.decode(response);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  planYourFundSubmit(String endpoint) async {
+    try {
+      var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
+      var jsondata = json.decode(response);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  Future<String?> fundPlannerFileSend(
+    file,
+    uploadFilename,
+    String endpoint,
+  ) async {
+    try {
+      String endpoint1 =
+          "funds-planner-save-results?id&enq_id=78623&name_of_sponsor=Tetsing&relationship=Mother&bank_country=13&id_of_financial_institution=10&type_of_funds=60&sponsor_amount=10000&occupation=2&oldfunds=1&source_of_income=1";
+
+      var url = Uri.parse("${Endpoints.baseUrl}$endpoint1");
+      var request = http.MultipartRequest("POST", url);
+
+      request.files
+          .add(await http.MultipartFile.fromPath('doc1', file, filename: file));
+      var res = await request.send();
+      var responsed = await http.Response.fromStream(res);
+      if (responsed.statusCode == 200) {
+        var jsondata = json.decode(responsed.body);
+        // FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
+        // getToast(SnackBarConstants.documentUpload!);
+        return "true";
+      } else {
+        return null;
+      }
+    } catch (e) {
+      getToast(SnackBarConstants.errorMsg!);
+    }
+    return null;
+  }
+
+  getFundPlannerData(String enq_id) async {
+    try {
+      var response = await httpPostNullBodyWithNullData(
+          "${Endpoints.baseUrl}${Endpoints.fundPlannerResult}$enq_id");
+      var jsondata = json.decode(response);
+
       return jsondata;
     } catch (e) {
       throw UnimplementedError();

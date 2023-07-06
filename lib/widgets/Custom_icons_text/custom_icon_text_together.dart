@@ -31,12 +31,13 @@ class CustomIconTextTogether extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: verticalPadding, horizontal: horizontelPadding),
       decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
-          ],
-          color: Bgcolor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(width: 1, color: color)),
+        boxShadow: [
+          BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
+        ],
+        color: Bgcolor,
+        borderRadius: BorderRadius.circular(20),
+        // border: Border.all(width: 1, color: color)
+      ),
       child: Row(
         children: [
           showICOn == true ? iconData : SizedBox.shrink(),

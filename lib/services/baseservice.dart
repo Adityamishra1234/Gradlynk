@@ -122,6 +122,35 @@ class StudentPanelBase {
     }
   }
 
+  httpPostNullBodyWithNullData(String url, {bool login = false}) async {
+    // String? token = await getToken();
+    url = url.replaceAll('"null"', "");
+    if (login == false) {
+      await checkUserConnection();
+    }
+
+    var response = await http.post(
+      Uri.parse(url),
+    );
+    switch (response.statusCode) {
+      case 200:
+        return response.body;
+
+      case 440:
+        throw EmptyDataException("440 :${response.body}");
+      case 400:
+        throw BadRequestException("${response.statusCode} :${response.body}");
+      case 401:
+      case 403:
+        throw UnauthorisedException("${response.statusCode} :${response.body}");
+      case 502:
+        throw InternetError("${response.statusCode} :${response.body}");
+      case 500:
+      default:
+        throw FetchDataException("${response.statusCode} :${response.body}");
+    }
+  }
+
   getRequest(String url, {bool login = false}) async {
     // String? token = await getToken();
     url = url.replaceAll('"null"', "");

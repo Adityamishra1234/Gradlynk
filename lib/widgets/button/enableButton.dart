@@ -5,7 +5,12 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class EnableButton extends StatelessWidget {
   bool enabled;
   String text;
-  EnableButton({super.key, required this.text, required this.enabled});
+  double? borderRadius;
+  EnableButton(
+      {super.key,
+      required this.text,
+      required this.enabled,
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,7 @@ class EnableButton extends StatelessWidget {
           color: enabled == true
               ? ThemeConstants.bluecolor
               : ThemeConstants.lightgreycolor,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
           border: Border.all(width: 1, color: Colors.transparent)),
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
