@@ -10,39 +10,55 @@ class RegisterationMainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 25),
-        width: double.infinity,
-        decoration: BoxDecoration(color: ThemeConstants.bluecolor),
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: ThemeConstants.yellow,
-                    borderRadius: BorderRadius.circular(20)),
-                width: 200,
-                height: 30,
-                child: CustomAutoSizeTextMontserrat(
-                  text: 'Welcome to Gradlynk',
-                ),
+      resizeToAvoidBottomInset: true,
+      body: Stack(
+
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // fit: StackFit.expand,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              width: double.infinity,
+
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: ThemeConstants.whitecolor,
+                  borderRadius: BorderRadius.circular(20)),
+              // width: 200,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 80),
+                  Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: ThemeConstants.yellow,
+                        borderRadius: BorderRadius.circular(20)),
+                    width: 200,
+                    height: 30,
+                    child: CustomAutoSizeTextMontserrat(
+                      text: 'Welcome to Gradlynk',
+                    ),
+                  ),
+                  SizedBox(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: 'Create a New Account',
+                      textColor: ThemeConstants.blackcolor,
+                      fontSize: 35,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                child: CustomAutoSizeTextMontserrat(
-                  text: 'Create a New Account',
-                  textColor: ThemeConstants.whitecolor,
-                  fontSize: 45,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              RegisterationFormWidget()
-            ]),
-      ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 225),
+              child: RegisterationFormWidget(),
+            ),
+          ]),
     );
   }
 }

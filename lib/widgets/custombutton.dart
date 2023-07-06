@@ -5,6 +5,7 @@ class CustomButton extends StatelessWidget {
       {Key? key,
       required this.text,
       this.backgroundColor = Colors.red,
+      this.radius,
       required this.onPressed,
       this.horizontelPadding})
       : super(key: key);
@@ -13,6 +14,7 @@ class CustomButton extends StatelessWidget {
   final Color backgroundColor;
   double? horizontelPadding;
   final Function() onPressed;
+  double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class CustomButton extends StatelessWidget {
         // alignment: Alignment.center,
         decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(radius ?? 24),
             boxShadow: [
               BoxShadow(
                   color: Colors.grey,
@@ -36,8 +38,10 @@ class CustomButton extends StatelessWidget {
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style:
-              const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );

@@ -112,4 +112,6 @@ abstract class api {
   getCountriesOfContinent(continentID);
 
   getCareerOutcomes(job_industry_id);
+
+  registerNewUser(String endPoint);
 }

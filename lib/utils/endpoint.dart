@@ -227,3 +227,14 @@ addRelativeInformationPart3(
     String? relationWithrelative) {
   return "&any_relative_country_interested=1&added_relative[$index][id]=$id&added_relative[$index][any_relative_country_interested]=$anyRelativeCountryInterested&added_relative[$index][citizenship_status]=$citizenshipStatus&added_relative[$index][relative_country]=$relativeCountry&added_relative[$index][relation_with_relative]=$relationWithrelative&added_relative[$index][relative_email_id]=$relativeEmailID&added_relative[$index][contact_of_relative]=$contactOfRelative&added_relative[$index][address_of_relative]=$addressOfRelative";
 }
+
+String registerNewUserEndpoint({
+  required name,
+  required phoneNumber,
+  required emailID,
+  required targetDestination,
+  required nearestSiecBranch,
+  required howDidYouHearAboutUS,
+}) {
+  return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS";
+}

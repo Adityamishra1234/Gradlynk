@@ -1851,16 +1851,21 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var res = await httpGet(endpoint);
 
-
-
-
       var jsondata = json.decode(res);
-
-      
 
       return jsondata["universities"];
     } catch (e) {
       throw UnimplementedError();
     }
+  }
+
+  @override
+  registerNewUser(String endPoint) async {
+    try {
+      var res = await httpPostNullBody(endPoint);
+    } catch (e) {}
+
+    // TODO: implement registerNewUser
+    // throw UnimplementedError();
   }
 }
