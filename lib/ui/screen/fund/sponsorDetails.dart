@@ -1,13 +1,11 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class SponsorDetails extends StatelessWidget {
-  SponsorDetails({super.key});
-  var controller = Get.put(FundPlannerController());
+  const SponsorDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +104,7 @@ class subWidgetSponsorDetails extends StatelessWidget {
                 text2: filedName3 ?? "",
               ),
               Singletable(
-                text1: "Country of the Financial inst",
+                text1: "Country of the Financial institution",
                 text2: filedName4 ?? "",
               ),
               Singletable(
@@ -165,5 +163,7 @@ class Singletable extends StatelessWidget {
         ],
       ),
     );
+  }
+}
   }
 }

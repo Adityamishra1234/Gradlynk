@@ -100,6 +100,16 @@ abstract class api {
 
   getCountriesList();
 
-  getAllCourseBroadField();
-  getFundRequirement(int inst_course, int enq_id);
+  getAllCourseBroadField();  getFundRequirement(t inst_course, int enq_id);
+
+  getFundRequirement(String inst_course, int enq_id);
+  getAllTestimonials();
+
+  getYoutubeVideoLink();
+
+  getCountryWithFlags();
+
+  getCountriesOfContinent(continentID);
+
+  getCareerOutcomes(job_industry_id);
 }

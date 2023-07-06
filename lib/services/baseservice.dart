@@ -122,35 +122,6 @@ class StudentPanelBase {
     }
   }
 
-  httpPostNullBodyWithNullData(String url, {bool login = false}) async {
-    // String? token = await getToken();
-    url = url.replaceAll('"null"', "");
-    if (login == false) {
-      await checkUserConnection();
-    }
-
-    var response = await http.post(
-      Uri.parse(url),
-    );
-    switch (response.statusCode) {
-      case 200:
-        return response.body;
-
-      case 440:
-        throw EmptyDataException("440 :${response.body}");
-      case 400:
-        throw BadRequestException("${response.statusCode} :${response.body}");
-      case 401:
-      case 403:
-        throw UnauthorisedException("${response.statusCode} :${response.body}");
-      case 502:
-        throw InternetError("${response.statusCode} :${response.body}");
-      case 500:
-      default:
-        throw FetchDataException("${response.statusCode} :${response.body}");
-    }
-  }
-
   getRequest(String url, {bool login = false}) async {
     // String? token = await getToken();
     url = url.replaceAll('"null"', "");
@@ -256,6 +227,35 @@ class StudentPanelBase {
         return response.body;
       } else {
         return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  errorHandle(String enqId, String errorMessage, String statusCode,
+      [String extra = ""]) async {
+    String endpoint = Endpoints.errorHandlePart1! +
+        enqId +
+        Endpoints.errorHandlepart2! +
+        errorMessage +
+        Endpoints.errorHandlepart3! +
+        statusCode +
+        Endpoints.errorHandlepart4! +
+        extra.replaceAll("#", "");
+
+    try {
+      if (int.parse(statusCode) != 440) {
+        var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
+        if (res != null) {
+          print(res);
+        }
+      }
+    } catch (e) {}
+  }
+}
       }
     } catch (e) {
       if (kDebugMode) {

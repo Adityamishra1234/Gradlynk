@@ -8,13 +8,10 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
-import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
-import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
-import 'package:studentpanel/widgets/customtextfield.dart';
 
 class Constants {
   String? id;
@@ -744,227 +741,6 @@ getBookAnAppointment(
           ));
 }
 
-gettest(BuildContext context, FundPlannerController controller) {
-  return showDialog(
-    barrierDismissible: true,
-    context: context,
-    builder: (ctx) => AlertDialog(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
-        content: SafeArea(
-          child: Container(
-            padding: EdgeInsets.only(top: 10, right: 10, left: 15, bottom: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomAutoSizeTextMontserrat(
-                        text: "Plan your Funds",
-                        textColor: ThemeConstants.bluecolor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      CustomAutoSizeTextMontserrat(
-                          text: "Sponsor Details",
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                      const Spacer(),
-                      CustomAutoSizeTextMontserrat(
-                        text: "View Details",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        textColor: ThemeConstants.bluecolor,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomAutoSizeTextMontserrat(
-                        text: "Relationship with Applicant",
-                        fontSize: 14,
-                        textColor: ThemeConstants.blackcolor,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    height: 30,
-                    width: MediaQuery.sizeOf(context).width - 20,
-                    child: customDropDownPlanFund(
-                      model: controller.relationShip,
-                      callback: (value) {
-                        controller.selectedRelationship =
-                            controller.relationShip[value];
-                        controller.update();
-                      },
-                      selectedValue: controller.selectedRelationship,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: CustomAutoSizeTextMontserrat(
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.w400,
-                          text: "Name of the Sponsor")),
-                  SizedBox(height: 10),
-                  CustomTextField(
-                      hint: "", controller: TextEditingController()),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: CustomAutoSizeTextMontserrat(
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.w400,
-                          text: "Occupation of Sponsor")),
-                  SizedBox(height: 5),
-                  CustomTextField(
-                      hint: "enter occupation of Sponsor",
-                      controller: TextEditingController()),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomAutoSizeTextMontserrat(
-                      fontSize: 14,
-                      textColor: ThemeConstants.blackcolor,
-                      fontWeight: FontWeight.w400,
-                      text: "Source of Incomes",
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    height: 30,
-                    width: MediaQuery.sizeOf(context).width - 20,
-                    child: customDropDownPlanFund(
-                      model: controller.sourceIncomeName,
-                      callback: (value) {
-                        print(value);
-                      },
-                      selectedValue: "Business",
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomAutoSizeTextMontserrat(
-                        fontSize: 14,
-                        textColor: ThemeConstants.blackcolor,
-                        fontWeight: FontWeight.w400,
-                        text: "Country of the Financial institution"),
-                  ),
-                  SizedBox(height: 10),
-                  CustomTextField(
-                      hint: "enter Country of the Financial institution",
-                      controller: TextEditingController()),
-                  SizedBox(height: 15),
-                  // CustomAutoSizeTextMontserrat(
-                  //     fontSize: 14,
-                  //     textColor: ThemeConstants.blackcolor,
-                  //     fontWeight: FontWeight.w400,
-                  //     text: "Country of the Financial institution"),
-                  // SizedBox(height: 10),
-                  // CustomTextField(
-                  //     hint: "enter Country of the Financial institution",
-                  //     controller: TextEditingController()),
-                  // CustomAutoSizeTextMontserrat(
-                  //     fontSize: 14,
-                  //     textColor: ThemeConstants.blackcolor,
-                  //     fontWeight: FontWeight.w400,
-                  //     text: "Name of the Financial Institution"),
-                  // SizedBox(height: 10),
-                  // CustomTextField(
-                  //     hint: "enter Name of the Financial Institution",
-                  //     controller: TextEditingController()),
-                  CustomAutoSizeTextMontserrat(
-                      fontSize: 14,
-                      textColor: ThemeConstants.blackcolor,
-                      fontWeight: FontWeight.w400,
-                      text: "Name of the Financial Institution"),
-                  SizedBox(height: 10),
-                  CustomTextField(
-                      hint: "enter Name of the Financial Institution",
-                      controller: TextEditingController()),
-                  SizedBox(height: 10),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Align(
-                      alignment: Alignment.topLeft,
-                      child: CustomAutoSizeTextMontserrat(
-                          fontSize: 14,
-                          textColor: ThemeConstants.blackcolor,
-                          fontWeight: FontWeight.w400,
-                          text: "Type of Funds")),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: 30,
-                    width: MediaQuery.sizeOf(context).width - 20,
-                    child: customDropDownPlanFund(
-                      model: controller.fundTypeName,
-                      callback: (value) {
-                        print(value);
-                      },
-                      selectedValue: "Business",
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  CustomAutoSizeTextMontserrat(
-                      fontSize: 14,
-                      textColor: ThemeConstants.blackcolor,
-                      fontWeight: FontWeight.w400,
-                      text: "Are the funds 6 months old?"),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  CustomTextField(
-                      hint: "Amount", controller: TextEditingController()),
-                  CustomAutoSizeTextMontserrat(
-                      fontSize: 14,
-                      textColor: ThemeConstants.blackcolor,
-                      fontWeight: FontWeight.w400,
-                      text: "Please enter your amount"),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0.0,
-                        primary: ThemeConstants.bluecolor, // background
-                        onPrimary: ThemeConstants.bluecolor, // foreground
-                      ),
-                      onPressed: () {},
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Submit",
-                        textColor: ThemeConstants.whitecolor,
-                      )),
-                ],
-              ),
-            ),
-          ),
-        )),
-  );
-}
-
 // contactUsDialog(
 //   BuildContext context,
 // ) {
@@ -1190,6 +966,230 @@ const html = r"""<!DOCTYPE html>
                                                     <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
                                                         <div class="white-box">
                                                             <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/book-svgrepo-com.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">3. Start your Course Search</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6"> 
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/file-svgrepo.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">4. Create your Course Shortlist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/shortlist.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">5. Finalize your Application Shortlist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/document.svg" class="img-fluid mt-0" width="40">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">6. Get customized Document Checklist</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">   
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/track.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">7. Track your Application Progress</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/receive-app.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">8. Receive Decision on your Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/fee-payment.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">9. Fee Payment <br><span class="text-success">(SIEC facilitates Education Loan as well)</span></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/visa-application.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">10. Document preparation for Visa Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/visa-sub.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">11. Visa Submission</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/decision-visa.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">12. Decision on Visa Application</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                        
+
+                                                    <div class="col-12 col-sm-12 col-xl-6 col-lg-6 col-md-6">
+                                                        <div class="white-box">
+                                                            <div class="d-flex">
+                                                                <div class="mr-3">
+                                                                    <img src="https://student.siecindia.com/images/worldwide-aeroplane.svg" class="img-fluid mt-0" width="30">
+                                                                </div>
+                                                                <h3 class="mb-0 mr-2">13. Pre Departure - <br> <span>Book your Accomodation &amp; Tickets</span></h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                        
+                                                    </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>""";
+
+// getScheduleExpertCall() {
+//   return Get.bottomSheet(Container(
+//     height: 345,
+//     decoration: BoxDecoration(
+//       color: ThemeConstants.whitecolor,
+//       borderRadius: const BorderRadius.only(
+//           topRight: Radius.circular(15.0), topLeft: Radius.circular(15.0)),
+//     ),
+//     child: Column(
+//       children: [
+//         Padding(
+//           padding: const EdgeInsets.all(10),
+//           child: Container(
+//             height: 50,
+//             width: displayMobileLayout == true
+//                 ? MediaQuery.of(context).size.width - 240
+//                 : MediaQuery.of(context).size.width,
+//             decoration: BoxDecoration(
+//                 color: ThemeConstants.lightblueColor,
+//                 borderRadius: BorderRadiusDirectional.circular(10.0)),
+//             child: Center(
+//               child: CustomAutoSizeTextMontserrat(
+//                 text: "Schedule an Expert call",
+//                 textColor: ThemeConstants.bluecolor,
+//                 fontSize: 14,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//           ),
+//         ),
+//         const SizedBox(
+//           height: 10,
+//         ),
+//         Align(
+//           alignment: AlignmentDirectional.topStart,
+//           child: Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: CustomAutoSizeTextMontserrat(
+//               text: "Select your Counsellor",
+//               fontSize: 14,
+//               fontWeight: FontWeight.w600,
+//             ),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: CustomDropDown(
+//               border: true,
+//               hint: "Select your Counsellor",
+//               callbackFunction: callbackDropDownButton,
+//               model: const ["1", "2", "3"]),
+//         ),
+//         Align(
+//           alignment: AlignmentDirectional.topStart,
+//           child: Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: CustomAutoSizeTextMontserrat(text: "Select your Counsellor"),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: CustomDropDown(
+//               border: true,
+//               hint: "Select your Counsellor",
+//               callbackFunction: callbackDropDownButton,
+//               model: const ["1", "2", "3"]),
+//         ),
+//         Align(
+//           alignment: AlignmentDirectional.topStart,
+//           child: Padding(
+//             padding: const EdgeInsets.only(left: 10),
+//             child: CustomAutoSizeTextMontserrat(text: "Select your Counsellor"),
+//           ),
+//         ),
+//         Padding(
+//           padding: const EdgeInsets.all(10.0),
+//           child: CustomDropDown(
+//               border: true,
+//               hint: "Select your Counsellor",
+//               callbackFunction: callbackDropDownButton,
+//               model: const ["1", "2", "3"]),
+//         ),
+//       ],
+//     ),
+//   ));
+// }
                                                                 <div class="mr-3">
                                                                     <img src="https://student.siecindia.com/images/book-svgrepo-com.svg" class="img-fluid mt-0" width="30">
                                                                 </div>

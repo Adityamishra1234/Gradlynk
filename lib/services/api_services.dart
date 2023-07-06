@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
+import 'package:studentpanel/ui/models/careerOutcomeModel.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
 import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
@@ -1703,7 +1704,101 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   @override
-  getFundRequirement(int inst_course, int enq_id) async {
+  getAllTestimonials() async {
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.testimonialsAll}';
+
+      var res = await httpGet(url);
+
+      var jsondata = json.decode(res);
+
+      print(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  getYoutubeVideoLink() async {
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.getYoutubeVideoLink}';
+
+      var res = await httpGet(url);
+
+      var jsondata = json.decode(res);
+
+      print(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement getYoutubeVideoLink
+    // throw UnimplementedError();
+  }
+
+  @override
+  getCountryWithFlags() async {
+    // TODO: implement getCountryWithFlags
+    try {
+      String url = '${Endpoints.baseUrl}${Endpoints.getCountryWithFlag}';
+
+      var res = await httpGet(url);
+
+      var jsondata = json.decode(res);
+
+      print(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  getCountriesOfContinent(continentID) async {
+    try {
+      String url =
+          '${Endpoints.baseUrl}${Endpoints.countriesOfContinent}${continentID}';
+
+      var res = await httpGet(url);
+
+      var jsondata = json.decode(res);
+
+      print(res);
+
+      return jsondata['data'];
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement getCountriesOfContinent
+    // throw UnimplementedError();
+  }
+
+  @override
+  getCareerOutcomes(job_industry_id) async {
+    try {
+      String url =
+          '${Endpoints.baseUrl}${Endpoints.getCarrerOutcomeByProfession}${job_industry_id}';
+
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      // print(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement getCareerOutcomes
+    // throw UnimplementedError();
+  }
+
+  @override
+  getFundRequirement(String inst_course, int enq_id) async {
     try {
       String url = '${Endpoints.baseUrl}${fundCalulator(inst_course, enq_id)}';
 
@@ -1725,9 +1820,10 @@ class ApiServices extends StudentPanelBase implements api {
       int child_age3 = 0,
       int child_age4 = 0]) async {
     try {
-      String url =
-          '${Endpoints.baseUrl}${dataNeedFundCalulator(enq_id, inst_course, is_partner, is_child, num_of_child, child_age1, child_age2, child_age3, child_age4)}';
+      String url = '${Endpoints.baseUrl}';
 
+      // ${dataNeedFundCalulator(enq_id, inst_course, is_partner, is_child, num_of_child, child_age1, child_age2, child_age3, child_age4)}';
+      print(url);
       var res = await httpPostNullBody(url);
 
       var jsondata = json.decode(res);
@@ -1738,77 +1834,31 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
-  getdropdownfundPlaner(String endpoint) async {
-    try {
-      var response = await httpGet("${Endpoints.baseUrl}$endpoint");
-      var jsondata = json.decode(response);
-      return jsondata;
-    } catch (e) {
-      throw UnimplementedError();
+  getUniversitiesByCountryStateCity(
+      {required int countryId, int? stateID, int? cityID}) async {
+    var endpoint = '';
+    if (stateID == null) {
+      endpoint =
+          '${Endpoints.baseUrl}${Endpoints.courseSearchGetUniversities}$countryId';
+    } else if (cityID == null) {
+      endpoint =
+          '${Endpoints.baseUrl}${Endpoints.courseSearchGetUniversities}$countryId/$stateID';
+    } else {
+      endpoint =
+          '${Endpoints.baseUrl}${Endpoints.courseSearchGetUniversities}$countryId/$stateID/$cityID';
     }
-  }
 
-  getdropdownfunPlanerPost(String endpoint) async {
     try {
-      var response =
-          await httpPostNullBodyWithNullData("${Endpoints.baseUrl}$endpoint");
-      var jsondata = json.decode(response);
+      var res = await httpGet(endpoint);
 
-      return jsondata;
-    } catch (e) {
-      throw UnimplementedError();
-    }
-  }
 
-  planYourFundSubmit(String endpoint) async {
-    try {
-      var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
-      var jsondata = json.decode(response);
 
-      return jsondata;
-    } catch (e) {
-      throw UnimplementedError();
-    }
-  }
 
-  @override
-  Future<String?> fundPlannerFileSend(
-    file,
-    uploadFilename,
-    String endpoint,
-  ) async {
-    try {
-      String endpoint1 =
-          "funds-planner-save-results?id&enq_id=78623&name_of_sponsor=Tetsing&relationship=Mother&bank_country=13&id_of_financial_institution=10&type_of_funds=60&sponsor_amount=10000&occupation=2&oldfunds=1&source_of_income=1";
+      var jsondata = json.decode(res);
 
-      var url = Uri.parse("${Endpoints.baseUrl}$endpoint1");
-      var request = http.MultipartRequest("POST", url);
+      
 
-      request.files
-          .add(await http.MultipartFile.fromPath('doc1', file, filename: file));
-      var res = await request.send();
-      var responsed = await http.Response.fromStream(res);
-      if (responsed.statusCode == 200) {
-        var jsondata = json.decode(responsed.body);
-        // FileUploadStatus status = FileUploadStatus.fromJson(jsondata);
-        // getToast(SnackBarConstants.documentUpload!);
-        return "true";
-      } else {
-        return null;
-      }
-    } catch (e) {
-      getToast(SnackBarConstants.errorMsg!);
-    }
-    return null;
-  }
-
-  getFundPlannerData(String enq_id) async {
-    try {
-      var response = await httpPostNullBodyWithNullData(
-          "${Endpoints.baseUrl}${Endpoints.fundPlannerResult}$enq_id");
-      var jsondata = json.decode(response);
-
-      return jsondata;
+      return jsondata["universities"];
     } catch (e) {
       throw UnimplementedError();
     }

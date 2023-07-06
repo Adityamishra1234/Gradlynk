@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
-    Key? key,
-    required this.text,
-    this.backgroundColor = Colors.red,
-    required this.onPressed,
-  }) : super(key: key);
+  CustomButton(
+      {Key? key,
+      required this.text,
+      this.backgroundColor = Colors.red,
+      required this.onPressed,
+      this.horizontelPadding})
+      : super(key: key);
 
   final String text;
   final Color backgroundColor;
+  double? horizontelPadding;
   final Function() onPressed;
 
   @override
@@ -29,11 +31,13 @@ class CustomButton extends StatelessWidget {
                   offset: Offset.fromDirection(90))
             ]),
         margin: const EdgeInsets.all(8),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(
+            horizontal: horizontelPadding ?? 16, vertical: 8),
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         ),
       ),
     );

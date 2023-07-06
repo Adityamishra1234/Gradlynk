@@ -94,14 +94,18 @@ class _ReviewShortListState extends State<ReviewShortList> {
             if (Get.arguments[7]["previous_screenCourseSearch"].toString() ==
                 "true") {
               Get.find<CourseShortListController>().courseSearch(
-                Get.arguments[0]["countryId"].toString(),
-                Get.arguments[1]["courseLevel"].toString(),
-                Get.find<BaseController>().model1.id.toString(),
-                Get.arguments[3]["statecode"].toString(),
-                Get.arguments[4]["cityCode"].toString(),
-                Get.arguments[5]["boardFieldCode"].toString(),
-                Get.arguments[6]["narrowField"].toString(),
-              );
+                  false,
+                  Get.arguments[0]["countryId"].toString(),
+                  Get.arguments[1]["courseLevel"].toString(),
+                  Get.find<BaseController>().model1.id.toString(),
+                  Get.arguments[3]["statecode"].toString(),
+                  Get.arguments[4]["cityCode"].toString(),
+                  Get.arguments[5]["boardFieldCode"].toString(),
+                  Get.arguments[6]["narrowField"].toString(),
+                  Get.arguments[6]["narrowField"].toString(),
+                  Get.arguments[6]["narrowField"].toString());
+
+              ///todo
               Get.find<CourseShortListController>().update();
             } else {
               Get.back();
@@ -124,6 +128,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
                       ),
                       if (_.loadingCourseShortList.value == true)
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             // const Spacer(),
                             // InkWell(
@@ -150,8 +155,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                             //     ),
                             //   ),
                             // ),
-
-                            const Spacer(),
+                            SizedBox(
+                              width: 10,
+                            ),
                             InkWell(
                               onTap: () {
                                 if (controller1.courseModelFilter
@@ -202,7 +208,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                 ),
                               ),
                             ),
-                            const Spacer(),
+                            SizedBox(
+                              width: 10,
+                            ),
                             InkWell(
                               onTap: () {
                                 if (controller1.compareApply.value == false) {
@@ -233,7 +241,9 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                 ),
                               ),
                             ),
-                            const Spacer(),
+                            SizedBox(
+                              width: 10,
+                            ),
                             InkWell(
                               onTap: () {
                                 controller1.loadingCourseShortList.value =
@@ -273,7 +283,8 @@ class _ReviewShortListState extends State<ReviewShortList> {
                         Expanded(
                           child: Scrollbar(
                             thumbVisibility: true,
-                            thickness: 10,
+                            thickness: 5,
+                            radius: Radius.circular(20),
                             controller: yourScrollController,
                             child: ListView.builder(
                                 controller: yourScrollController,
@@ -397,7 +408,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
                           },
                           child: Container(
                             height: 60,
-                            width: MediaQuery.of(context).size.width,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 color: ThemeConstants.bluecolor,
                                 borderRadius:
@@ -407,19 +418,16 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                 )),
                             child: Center(
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                
                                 children: [
-                                  const Spacer(),
-                                  svgImage("compare", ThemeConstants.whitecolor,
-                                      30, 30),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  // svgImage("compare", ThemeConstants.whitecolor,
+                                  //     30, 30),
                                   CustomAutoSizeTextMontserrat(
                                     text: "Compare",
                                     fontSize: 20,
                                     textColor: ThemeConstants.whitecolor,
                                   ),
-                                  const Spacer(),
                                 ],
                               ),
                             ),

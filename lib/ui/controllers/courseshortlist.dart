@@ -133,8 +133,17 @@ class CourseShortListController extends GetxController with StateMixin {
   //   }
   // }
 
-  courseSearch(String country, String courseLevel, String enqId, String state,
-      String city, String boarderIeld, String narrowField) async {
+  courseSearch(
+      bool searchByJobIndustry,
+      String country,
+      String courseLevel,
+      String enqId,
+      String state,
+      String city,
+      String boarderIeld,
+      String narrowField,
+      String profession,
+      String career_outcome) async {
     try {
       change(null, status: RxStatus.loading());
       courseModelFilter = CourseModelFilter();
@@ -142,8 +151,18 @@ class CourseShortListController extends GetxController with StateMixin {
       var formatterYear = DateFormat('yyyy');
       var formatterMonth = DateFormat('MM');
 
-      String? endpoint =
-          "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
+      String? endpoint = '';
+
+      if (searchByJobIndustry == false) {
+        endpoint =
+            "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
+      } else {
+        endpoint =
+            "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}&enq_id=$enqId&profession=$profession&career_outcome=$career_outcome";
+      }
+
+      print(endpoint);
+
       var res = await apiservices.getCourseSearch(Endpoints.baseUrl!, endpoint);
       if (res != null) {
         courseModelFilter = res;

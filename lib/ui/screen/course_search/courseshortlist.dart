@@ -19,6 +19,7 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 class CourseSearchList extends StatefulWidget {
   static const routeNamed = '/CourseSearchList';
   bool filterRedirect = false;
+  bool? showJobIndustry;
   String? stateCode;
   String? cityCode;
   String? boardFieldCode;
@@ -26,11 +27,14 @@ class CourseSearchList extends StatefulWidget {
   String? countryId;
   String? courseLevel;
   String? enq_id;
+  String? profession;
+  String? career_outcome;
   FilterModel? filterModel;
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   CourseSearchList(
       {Key? key,
       required this.filterRedirect,
+      this.showJobIndustry,
       this.filterModel,
       this.stateCode,
       this.cityCode,
@@ -39,6 +43,8 @@ class CourseSearchList extends StatefulWidget {
       this.countryId,
       this.courseLevel,
       this.courseModelFilter,
+      this.profession,
+      this.career_outcome,
       this.enq_id})
       : super(key: key);
 
@@ -67,14 +73,18 @@ class _CourseSearchListState extends State<CourseSearchList> {
   void didUpdateWidget(covariant CourseSearchList oldWidget) {
     print("didUpdateWidget");
     controller1 = Get.put(CourseShortListController());
-    controller1.courseSearch(
-        widget.countryId!,
-        widget.courseLevel!,
-        widget.enq_id!,
-        widget.stateCode ?? "",
-        widget.cityCode ?? "",
-        widget.boardFieldCode ?? "",
-        widget.narrowField ?? "");
+    // controller1.courseSearch(
+    //   widget.showJobIndustry ?? false,
+    //   widget.countryId!,
+    //   widget.courseLevel!,
+    //   widget.enq_id!,
+    //   widget.stateCode ?? "",
+    //   widget.cityCode ?? "",
+    //   widget.boardFieldCode ?? "",
+    //   widget.narrowField ?? "",
+    //   widget.profession ?? "",
+    //   widget.career_outcome ?? "",
+    // );
 
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
@@ -91,13 +101,16 @@ class _CourseSearchListState extends State<CourseSearchList> {
   void initState() {
     if (widget.filterRedirect == false) {
       controller1.courseSearch(
+          widget.showJobIndustry ?? false,
           widget.countryId!,
           widget.courseLevel!,
           widget.enq_id!,
           widget.stateCode ?? "",
           widget.cityCode ?? "",
           widget.boardFieldCode ?? "",
-          widget.narrowField ?? "");
+          widget.narrowField ?? "",
+          widget.profession ?? "",
+          widget.career_outcome ?? "");
     }
     super.initState();
   }
@@ -228,13 +241,17 @@ class _CourseSearchListState extends State<CourseSearchList> {
                           InkWell(
                             onTap: () {
                               controller1.courseSearch(
-                                  widget.countryId!,
-                                  widget.courseLevel!,
-                                  widget.enq_id!,
-                                  widget.stateCode ?? "",
-                                  widget.cityCode ?? "",
-                                  widget.boardFieldCode ?? "",
-                                  widget.narrowField ?? "");
+                                widget.showJobIndustry ?? false,
+                                widget.countryId!,
+                                widget.courseLevel!,
+                                widget.enq_id!,
+                                widget.stateCode ?? "",
+                                widget.cityCode ?? "",
+                                widget.boardFieldCode ?? "",
+                                widget.narrowField ?? "",
+                                widget.profession ?? "",
+                                widget.career_outcome ?? "",
+                              );
 
                               Get.toNamed(ReviewShortList.routeNamed,
                                   arguments: [

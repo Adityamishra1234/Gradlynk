@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/careerOutcomeModel.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
+import 'package:studentpanel/ui/models/country_with_flag_model.dart';
 import 'package:studentpanel/ui/models/courseseach.dart';
 import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/ui/models/getAllCourseBroadFieldModel.dart';
@@ -12,7 +14,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-class CourseSearchController extends GetxController {
+class CourseSearchController extends GetxController with StateMixin {
 ////new Updatebool s
 
   var courseOrJobbInustry = false;
@@ -71,20 +73,25 @@ class CourseSearchController extends GetxController {
     super.onInit();
     getCountry();
     getCourseLevel();
+    getIndustries();
     getCourseBoardField();
   }
 
-  getCountry() async {
+  List industriesList = [];
+  List industriesCode = [];
+  String? selectedIndustryName = '';
+  String? selectedIndustryCode = '';
+  bool loadingIndustries = false;
+
+  getIndustries() async {
     try {
-      var res =
-          await apiservices.dropDown1(Endpoints.baseUrl!, Endpoints.country!);
+      var res = await apiservices.dropDown1(
+          Endpoints.baseUrl!, Endpoints.jobInstitute!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        countryList.add("Select Country");
-        countryCode.add(0);
-        countryList.addAll(map.keys.toList());
-        countryCode.addAll(map.values.toList());
-        loadingCountry.value = true;
+        industriesList = map.values.toList();
+        industriesCode = map.keys.toList();
+        loadingIndustries = true;
         update();
       }
     } catch (e) {
@@ -94,6 +101,75 @@ class CourseSearchController extends GetxController {
         "1111",
         StackTrace.current.toString(),
       );
+    }
+  }
+
+  List<CareerOutcomeModel> careerOutcomeDropDown = [];
+  List careerOutcomeDropDownName = [];
+  List careerOutcomeDropDownId = [];
+  String? selectedcareerOutcomeDropDownName = '';
+  String? selectedcareerOutcomeDropDownID = null;
+  bool careerOutcomeLoading = false;
+
+  getCareerOutComes() async {
+    try {
+      var res = await apiservices.getCareerOutcomes(selectedIndustryCode);
+      if (res != null) {
+        var data = List<CareerOutcomeModel>.from(
+            res.map((e) => CareerOutcomeModel.fromJson(e)));
+
+        careerOutcomeDropDown = data;
+
+        for (var i = 0; i < careerOutcomeDropDown.length; i++) {
+          careerOutcomeDropDownName.add(careerOutcomeDropDown[i].careerOutcome);
+          careerOutcomeDropDownId.add(careerOutcomeDropDown[i].id);
+        }
+        careerOutcomeLoading = true;
+        update();
+        // Map map = Map<String, dynamic>.from(res);
+        // industriesList = map.values.toList();
+        // industriesCode = map.keys.toList();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  List<CountryWithFlagModel> countryWithFlagDataList = [];
+  CountryWithFlagModel selectedCountry = CountryWithFlagModel();
+
+  getCountry() async {
+    try {
+      var res = await apiservices.getCountryWithFlags();
+      // var res =
+      //     await apiservices.dropDown1(Endpoints.baseUrl!, Endpoints.country!);
+
+      var data = List<CountryWithFlagModel>.from(
+          res.map((e) => CountryWithFlagModel.fromJson(e)));
+
+      if (res != null) {
+        countryWithFlagDataList = data;
+
+        // Map map = Map<String, dynamic>.from(res);
+        // countryList.add("Select Country");
+        // countryCode.add(0);
+        // countryList.addAll(map.keys.toList());
+        // countryCode.addAll(map.values.toList());
+        // loadingCountry.value = true;
+        update();
+      }
+    } catch (e) {
+      // await ApiServices().errorHandle(
+      //   Get.find<BaseController>().model1.id.toString(),
+      //   e.toString(),
+      //   "1111",
+      //   StackTrace.current.toString(),
+      // );
     }
   }
 
@@ -120,7 +196,33 @@ class CourseSearchController extends GetxController {
     }
   }
 
+  RxBool loadingcountryFromContientName = false.obs;
+  var countryFromContientName = [];
+  String? selectedCountryNameFromContinent = 'Select Country';
+  String? selectedCountryCodeFromContinent = '0';
+  var countryFromContientId = [];
+  bool showCountryFromContinentDropDown = false;
+
+  getCountryFromContinent(continentID) async {
+    countryFromContientName = [];
+    countryFromContientId = [];
+
+    var res = await apiservices.getCountriesOfContinent(continentID);
+    Map map = Map<String, dynamic>.from(res);
+    countryFromContientName.add("Select Country");
+    countryFromContientId.add(0);
+    countryFromContientName.addAll(map.values.toList());
+    countryFromContientId.addAll(map.keys.toList());
+
+    print(countryFromContientName);
+    print(countryFromContientId);
+    loadingcountryFromContientName.value = true;
+    showCountryFromContinentDropDown = true;
+    update();
+  }
+
   List<Widget> courseFieldWidgetList = [];
+  List<GetAllCourseBroadFieldModel> AllCourseSearchBroadField = [];
   getCourseBoardField() async {
     try {
       var res = await apiservices.getAllCourseBroadField();
@@ -128,49 +230,54 @@ class CourseSearchController extends GetxController {
       var data = List<GetAllCourseBroadFieldModel>.from(
           res.map((e) => GetAllCourseBroadFieldModel.fromJson(e)));
 
+      AllCourseSearchBroadField = data;
       print(data);
 
-      for (var i = 0; i < data.length; i++) {
-        courseFieldWidgetList.add(InkWell(
-          onTap: () {
-            selectCourseBoardFieldCode = data[i].id;
-            getCoursenarrowField(selectCourseBoardFieldCode!);
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            width: 140,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(width: 1, color: ThemeConstants.bluecolor)),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    child: CachedNetworkImage(
-                      imageUrl: data[i].imageLink!,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    '${data[i].broadFieldName}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                ]),
-          ),
-        ));
-      }
+      // for (var i = 0; i < data.length; i++) {
+      //   courseFieldWidgetList.add(InkWell(
+      //     onTap: () {
+      //       selectCourseBoardFieldCode = data[i].id;
+      //       getCoursenarrowField(selectCourseBoardFieldCode!);
+      //     },
+      //     child: Container(
+      //       padding: EdgeInsets.symmetric(horizontal: 5),
+      //       margin: EdgeInsets.symmetric(horizontal: 10),
+      //       width: 140,
+      //       decoration: BoxDecoration(
+      //           color: selectCourseBoardFieldCode == data[i].id
+      //               ? ThemeConstants.ultraLightgreyColor2
+      //               : ThemeConstants.GreenColor,
+      //           borderRadius: BorderRadius.circular(15),
+      //           border: Border.all(width: 1, color: ThemeConstants.bluecolor)),
+      //       child: Column(
+      //           mainAxisAlignment: MainAxisAlignment.center,
+      //           crossAxisAlignment: CrossAxisAlignment.center,
+      //           children: [
+      //             Container(
+      //               width: 50,
+      //               height: 50,
+      //               child: CachedNetworkImage(
+      //                 imageUrl: data[i].imageLink!,
+      //               ),
+      //             ),
+      //             SizedBox(
+      //               height: 5,
+      //             ),
+      //             Text(
+      //               '${data[i].broadFieldName}',
+      //               textAlign: TextAlign.center,
+      //               style: TextStyle(
+      //                 fontSize: 12,
+      //                 fontWeight: FontWeight.w500,
+      //               ),
+      //             )
+      //           ]),
+      //     ),
+      //   ));
+      // }
 
       update();
+      change(null, status: RxStatus.success());
 
       // if (res != null) {
       //   Map map = Map<String, dynamic>.from(res);
@@ -252,6 +359,15 @@ class CourseSearchController extends GetxController {
       );
     }
   }
+
+///// CourseSelection or  Job industry
+  ///
+  /// 0 course 1 job
+
+  int courseSearchType = 0;
+
+  //// course level
+  int courseLevelSelector = 1;
 
   getCoursenarrowField(int boardField) async {
     courseNarrowList = [];
@@ -378,5 +494,49 @@ class CourseSearchController extends GetxController {
       id,
       enqId,
     );
+  }
+
+  List universityListName = [];
+  List universityListID = [];
+  String? selectedUniversityName = '';
+  String? selectedUniversityID = '';
+  bool universityLoading = false;
+
+  getUniversityDropDownData() async {
+    universityListName = [];
+    selectedUniversityName = null;
+    selectedUniversityID = null;
+    universityLoading = false;
+
+    var countrySelected = '';
+
+    if (showCountryFromContinentDropDown == true) {
+      countrySelected = selectedCountryCodeFromContinent!;
+    } else {
+      countrySelected = selectedCountry.id.toString();
+    }
+
+    var countrySelectedInt = int.parse(countrySelected);
+
+    var res = await apiservices.getUniversitiesByCountryStateCity(
+        countryId: countrySelectedInt,
+        stateID: selectStateCode,
+        cityID: selectCityCode);
+
+    if (res.length != 0) {
+      Map map = Map<String, dynamic>.from(res);
+      universityListName.add("Select University");
+      universityListID.add(0.toString());
+
+      universityListName.addAll(map.values.toList());
+      universityListID.addAll(map.keys.toList());
+      selectedUniversityName = universityListName[0];
+    } else {
+      universityListName.add('No Unibversity Available');
+    }
+
+    universityLoading = true;
+
+    update();
   }
 }

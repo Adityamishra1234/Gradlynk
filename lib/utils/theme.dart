@@ -49,7 +49,7 @@ class ThemeConstants {
   static Color GreenColor = const Color(0xFF2FAF5E);
   static Color ultraLightgreyColor = const Color(0xFFF6F6F6);
   static Color ultraLightgreyColor2 = Color(0xFFF2F1F1);
-
+  static Color ultraLightYellow = const Color(0xFFFFFDF9);
   static Color lightYellow = const Color(0xFFFFEFD8);
   static Color lightSkyblue = const Color(0xFFe7fbfc);
   static Color lightbrow = const Color(0xFFfbefde);

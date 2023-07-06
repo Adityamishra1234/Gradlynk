@@ -82,6 +82,9 @@ class ProfileView extends StatelessWidget {
                               padding: const EdgeInsets.all(10),
                               height: 130,
                               child: Row(children: [
+                                SizedBox(
+                                  width: 10,
+                                ),
                                 CircleAvatar(
                                   onBackgroundImageError:
                                       (exception, stackTrace) {
@@ -92,7 +95,7 @@ class ProfileView extends StatelessWidget {
                                   //   print(exception);
                                   //   print(stackTrace.toString());
                                   // },
-                                  radius: 50.0,
+                                  radius: 40.0,
                                   backgroundImage: const NetworkImage(
                                       "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
                                   backgroundColor: Colors.transparent,

@@ -10,9 +10,11 @@ class CustomTextField extends StatelessWidget {
   bool? obscureText = false;
   bool? readOrEdit = false;
   Color? backgroundCOlour;
+  FontWeight? hintFontWeight;
   bool? forDropDown;
   CustomTextField({
     Key? key,
+    this.hintFontWeight,
     this.forDropDown = true,
     this.backgroundCOlour,
     required this.hint,
@@ -37,6 +39,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
           hintText: hint,
+          hintStyle: TextStyle(fontWeight: hintFontWeight ?? FontWeight.w500),
           filled: true,
           fillColor: backgroundCOlour ?? ThemeConstants.ultraLightgreyColor,
           errorBorder: OutlineInputBorder(

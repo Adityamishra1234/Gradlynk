@@ -20,10 +20,13 @@ import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
+import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
+import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
 import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
@@ -91,7 +94,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   UserModel? userModel;
-  late final GifController controller;
+  // late final GifController controller;
 
   bool dashboardscreen = false;
 
@@ -130,6 +133,16 @@ class _MyAppState extends State<MyApp> {
           name: ReceiveACallBackView.routeNamed,
           page: () => ReceiveACallBackView(),
         ),
+        GetPage(
+          name: FundPlan.routeNamed,
+          page: () => FundPlan(),
+        ),
+
+        GetPage(
+          name: Fundrequirement.routenamed,
+          page: () => Fundrequirement(),
+        ),
+
         // GetPage(
         //   name: "/",
         //   page: () => LoginCopy(),
@@ -148,6 +161,11 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: Login.routeNamed,
           page: () => const Login(),
+          transition: Transition.fade,
+        ),
+        GetPage(
+          name: RegisterationMainView.routeNmaed,
+          page: () => const RegisterationMainView(),
           transition: Transition.fade,
         ),
         GetPage(

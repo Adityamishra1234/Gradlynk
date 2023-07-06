@@ -1,6 +1,7 @@
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
+import 'package:studentpanel/ui/models/getAllTestimonialsModel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
@@ -26,8 +27,35 @@ class DashboardController extends GetxController {
   @override
   void onInit() {
     upcomingEvents();
+    getTestimonials();
+    getYoutubeVideos();
 
     super.onInit();
+  }
+
+  List youtubeVideoLink = [];
+  getYoutubeVideos() async {
+    var res = await apiservices.getYoutubeVideoLink();
+    if (res != null) {
+      print('dfyfrfrhy');
+
+      youtubeVideoLink = res;
+
+      update();
+    }
+  }
+
+  List<GetAllTestimonialsModel> testimonialsList = [];
+  getTestimonials() async {
+    var res = await apiservices.getAllTestimonials();
+    if (res != null) {
+      var data = List<GetAllTestimonialsModel>.from(
+          res.map((e) => GetAllTestimonialsModel.fromJson(e)));
+
+      testimonialsList = data;
+      loadingUpcomingEvents = true.obs;
+      update();
+    }
   }
 
   newAndUpdates() async {

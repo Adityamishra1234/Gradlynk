@@ -29,11 +29,12 @@ class FundRequirementController extends GetxController with StateMixin {
   @override
   void onInit() {
     // TODO: implement onInit
-    getFundRequirement(2900);
+    getFundRequirement(Get.arguments);
+
     super.onInit();
   }
 
-  getFundRequirement(int inst_course) async {
+  getFundRequirement(String inst_course) async {
     var response = await apiServices.getFundRequirement(
         inst_course, Get.find<BaseController>().model1.id!);
     if (response != null) {

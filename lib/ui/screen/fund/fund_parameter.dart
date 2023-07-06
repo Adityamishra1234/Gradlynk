@@ -1,7 +1,13 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:studentpanel/ui/screen/fund/model/dataneedfundcalculator.dart';
+import 'package:studentpanel/utils/conditionals/iconStringFromField.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class FundParameter extends StatelessWidget {
   DataNeedFundCalulator model = DataNeedFundCalulator();
@@ -10,17 +16,24 @@ class FundParameter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar('title'),
+      drawer: CustomDrawer(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomAutoSizeTextMontserrat(
-                text: "Fund Parameter",
-                textColor: ThemeConstants.bluecolor,
-                fontSize: 18,
-              ),
-              ...getlist(model)
-            ],
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "Fund Parameter",
+                  textColor: ThemeConstants.bluecolor,
+                  fontSize: 20,
+                ),
+                ...getlist(model)
+              ],
+            ),
           ),
         ),
       ),
@@ -32,11 +45,14 @@ class FundParameter extends StatelessWidget {
 
     for (var i = 0; i < model.tableData!.length; i++) {
       data.add(FundparameterSubWidget(
+        oddEven: i % 2 == 0,
         title: model.tableData![i].nameOfFiled,
         individual_Expenses: model.tableData![i].expenses,
         partcipants: model.tableData![i].participants,
         total_Expenses: model.tableData![i].total,
         total_Expenses_ind: model.tableData![i].total,
+        iconPath:
+            getIconStringForFundParameter(model.tableData![i].nameOfFiled!),
       ));
     }
 
@@ -49,11 +65,15 @@ class FundparameterSubWidget extends StatelessWidget {
   String? individual_Expenses;
   String? partcipants;
   String? total_Expenses;
+  String? iconPath;
+  bool? oddEven;
 
   String? total_Expenses_ind;
 
   FundparameterSubWidget(
       {Key? key,
+      this.oddEven,
+      this.iconPath,
       required this.title,
       this.individual_Expenses,
       this.partcipants,
@@ -64,37 +84,94 @@ class FundparameterSubWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10.0),
-      margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
-      decoration: BoxDecoration(
-          color: ThemeConstants.lightblueColor,
-          border: Border.all(color: ThemeConstants.bluecolor),
-          borderRadius: const BorderRadius.all(Radius.circular(15.0))),
-      child: Column(
+      margin: EdgeInsets.only(top: 15),
+      child: Stack(
         children: [
-          Align(
-              alignment: Alignment.topLeft,
-              child: CustomAutoSizeTextMontserrat(
-                text: title,
-                textColor: ThemeConstants.bluecolor,
-                fontWeight: FontWeight.w700,
+          Container(
+            padding:
+                const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
+            margin: const EdgeInsets.only(top: 10, left: 5, right: 5),
+            decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 2,
+                      spreadRadius: 0.1,
+                      color: Color.fromARGB(97, 0, 0, 0))
+                ],
+                color: ThemeConstants.whitecolor,
+
+                // color: ThemeConstants.lightblueColor,
+                border: Border.all(
+                    color: oddEven == true
+                        ? ThemeConstants.bluecolor
+                        : ThemeConstants.yellow),
+                borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+            child: Column(
+              children: [
+                FundParameterWidget(
+                  text1: "Individual Expenses(AUD)",
+                  text2: individual_Expenses ?? "",
+                ),
+                FundParameterWidget(
+                  text1: "Partcipants",
+                  text2: partcipants ?? "",
+                ),
+                FundParameterWidget(
+                  text1: "Total Expenses(AUD)",
+                  text2: total_Expenses ?? "",
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 15, top: 15, bottom: 10),
+                  child: DottedLine(
+                    dashColor: ThemeConstants.blackcolor,
+                    lineThickness: 0.5,
+                    dashLength: 10,
+                    dashGapLength: 5,
+                  ),
+                ),
+                FundParameterWidget(
+                  fw: FontWeight.w700,
+                  text1: "Total Expenses(INR)",
+                  text2: total_Expenses_ind ?? "",
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+              // top: -20,
+              left: 25,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      '$iconPath',
+                      width: 30,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    CustomAutoSizeTextMontserrat(
+                      fontSize: 14,
+                      text: title,
+                      textColor: ThemeConstants.blackcolor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ),
+                height: 35,
+                decoration: BoxDecoration(
+                    color: oddEven == true
+                        ? ThemeConstants.lightblueColor
+                        : ThemeConstants.lightYellow,
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(
+                        width: 1,
+                        color: oddEven == true
+                            ? ThemeConstants.bluecolor
+                            : ThemeConstants.yellow)),
               )),
-          FundParameterWidget(
-            text1: "Individual Expenses(AUD)",
-            text2: individual_Expenses ?? "",
-          ),
-          FundParameterWidget(
-            text1: "Partcipants",
-            text2: partcipants ?? "",
-          ),
-          FundParameterWidget(
-            text1: "Total Expenses(AUD)",
-            text2: total_Expenses ?? "",
-          ),
-          FundParameterWidget(
-            text1: "Total Expenses(INR)",
-            text2: total_Expenses_ind ?? "",
-          ),
         ],
       ),
     );
@@ -104,32 +181,42 @@ class FundparameterSubWidget extends StatelessWidget {
 class FundParameterWidget extends StatelessWidget {
   String text1;
   String text2;
+  FontWeight? fw;
 
-  FundParameterWidget({Key? key, required this.text1, required this.text2})
+  FundParameterWidget(
+      {Key? key, this.fw, required this.text1, required this.text2})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     {
-      return Padding(
-        padding: const EdgeInsets.only(top: 5),
-        child: Table(
-          children: [
-            TableRow(children: [
-              CustomAutoSizeTextMontserrat(
-                text: text1,
-                maxLines: 2,
-                fontSize: 14,
-                textColor: ThemeConstants.blackcolor,
-              ),
-              CustomAutoSizeTextMontserrat(
-                text: text2,
-                maxLines: 2,
-                fontSize: 14,
-                textColor: ThemeConstants.TextColor,
-              ),
-            ]),
-          ],
+      return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Table(
+            children: [
+              TableRow(children: [
+                CustomAutoSizeTextMontserrat(
+                  text: text1,
+                  maxLines: 2,
+                  fontSize: 10,
+                  fontWeight: fw ?? FontWeight.w500,
+                  textColor: ThemeConstants.blackcolor,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: text2,
+                  fontWeight: fw ?? FontWeight.w500,
+                  maxLines: 2,
+                  fontSize: 10,
+                  textColor: ThemeConstants.TextColor,
+                ),
+              ]),
+            ],
+          ),
         ),
       );
     }

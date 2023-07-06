@@ -145,16 +145,26 @@ class Endpoints {
 
 // Fund Planner
   static String? bifurcated_relation = "get-bifurcated-relation";
+  /////testimonials
+  static String? testimonialsAll = "testimonials-review";
 
   //dropdown
   static String? source_of_income = "get-source-of-income";
   static String? get_occupation = "get-occupation";
   static String? fund_type = "get-fund-types";
   static String? bankByCountry = "get_bank_by_country?country_id=";
+  static String? getYoutubeVideoLink = "testimonial-videos";
+
+  static String? getCountryWithFlag = "country-flags";
+
+  static String? countriesOfContinent = "countries-of-continent/";
 
   static String? fundPlannerResult = "funds-planner-get-results?enq_id=";
   static String? fundPlannerDelete = "funds-planner-delete-results?id=";
 }
+  static String? getCarrerOutcomeByProfession =
+      "get-carrer-outcome-by-profession?job_industry_id=";
+  static String? courseSearchCountry = "universities/";
 
 getFundPlannersave(
     {required String id,

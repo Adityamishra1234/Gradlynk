@@ -14,8 +14,11 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
+import 'package:studentpanel/ui/screen/dashboard/testimonials.dart';
+import 'package:studentpanel/ui/screen/dashboard/youtube_video_section.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -671,7 +674,7 @@ class _DashBoardState extends State<DashBoard> {
                                               //         BookAnAppointment());
                                               // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
-                                              Get.to(FundPlan());
+                                              Get.to(Fundrequirement());
                                               // Get.toNamed(
                                               //     ProfileView.routeNamed);
                                             },
@@ -749,7 +752,10 @@ class _DashBoardState extends State<DashBoard> {
                                           //Upload Document
                                           InkWell(
                                             onTap: () {
-                                              Get.to(CourseSearch());
+                                              // todo
+                                              Get.toNamed(RegisterationMainView
+                                                  .routeNmaed);
+                                              // Get.to(CourseSearch());
                                             },
                                             child: InkWell(
                                               // color: Colors.amber,
@@ -871,7 +877,7 @@ class _DashBoardState extends State<DashBoard> {
                                                       padding: const EdgeInsets
                                                           .all(10),
                                                       constraints:
-                                                          BoxConstraints(
+                                                          const BoxConstraints(
                                                               maxHeight: 70,
                                                               maxWidth: 70),
                                                       decoration:
@@ -1038,6 +1044,15 @@ class _DashBoardState extends State<DashBoard> {
                                           horizontal: 15, vertical: 10),
                                       child: StageProgress(),
                                     ),
+
+                                    TestiMonial(
+                                      testimonialsList:
+                                          dashboardController.testimonialsList,
+                                    ),
+
+                                    YoutubeVideoSection(
+                                        link: dashboardController
+                                            .youtubeVideoLink),
                                     // Upcoming Event
                                     // if (_.loadingUpcomingEvents.value == true)
                                     //   Padding(

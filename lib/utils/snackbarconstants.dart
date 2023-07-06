@@ -195,6 +195,8 @@ class SnackBarConstants {
   static String? courseSearchPart1 = "Kindly select Country of Interest";
   static String? courseSearchPart2 = "Kindly select Course Level";
   static String? coursesearchPart3 = "Oops! No course found";
+  static String? courseSearchPart4 = "Kindly select profession";
+  static String? courseSearchPart5 = "Kindly select career option";
 
   //CourseSearchList.dart Toast
   static String? courseSearchListPart3 = "Kindly select Course";
@@ -308,9 +310,129 @@ class SnackBarConstants {
   static String flutterStroageToast = "Please give storage access";
   static String receiveACallback =
       "Thanks our counsellor will contact you soon";
+  static String? courseSearchPart2 = "Kindly select Course Level";
+
+  static String? coursesearchPart3 = "Oops! No course found";
+
+  //CourseSearchList.dart Toast
+  static String? courseSearchListPart3 = "Kindly select Course";
+  static String? courseSearchListPart4 = "Oops! Course not found";
+  static String? reviewcourselistPart1 =
+      "No course available in Review course section";
+  static String? finalcourselistPart1 =
+      "No course available in Final shortlist section";
+  static String? applicationPart1 = "No application available now";
+  static String? visaPart1 = "No visa application available now ";
+  // static String? sheduleExpertCall = "Schedule an Expert call";
+  static String? documentUpload = "Document Uploaded Successfully";
+  static String? maxDocumentUploadSize = "Maximum file size 5 MB";
+  static String? courseShortList = "Course shortlisted successfully";
+  static String? courseRemove = "Course removed successfully";
+  static String? courseFinalShortList = "Course final shortlisted successfully";
+  static String? courseFinalRemove = "Course removed successfully";
+  static String? contactInformation =
+      "Contact Information updated successfully";
+  static String? englishTestDetails =
+      " Language test details updated successfully";
+  static String? passportDetails = "Passport details updated successfully";
+  static String? otherTestDetail =
+      "Qualifying test details updated successfully";
+  static String? errorMsg = "Oops! Something went to wrong.";
+  static String? saveComments = "Comment added successfully";
+  static String? phoneNumber =
+      "Kindly check OTP sent on your registered phone number";
+  static String? phoneNumberError =
+      "Phone number not registered with Gradlynk. To get registered give a call";
+  static String? userBlock =
+      "Your profile is temporarily out of service. Kindly contact your advisor. ";
+  static String? phoneNumberError1 = "Kindly enter your phone number";
+  static String? phoneNumberError2 = "Kindly enter a valid phone number";
+  static String? passwordError = "Kindly enter a valid password";
+  static String? OTPError = "Kindly enter a valid OTP";
+  static String? counsellorError = "Kindly select your counsellor";
+  static String? preferresDateError = "Kindly select your preferred date";
+  static String? preferresTimeError = "Kindly select your preferred time";
+  static String? bookAnAppointment =
+      "Your appointment has been successfully booked with Counsellor";
+  static String? sheduleEXpert =
+      "Your Expert Call has been successfully scheduled with Counsellor";
+  static String? fileSelectedError = "No file selected";
+  static String? fileSelectedError2 = "You can upload a maximum of 2 files";
+  static String? feedBackError = "Kindly mention your feedback";
+  static String? raiseIssueError = "Kindly specify your issue";
+  //TODO
+  static String? raiseIssue =
+      "Thankyou, Your ticket has been raised successfully";
+  static String? phonenumber =
+      "Thankyou, Your ticket has been raised successfully";
+
+  //Contact Information
+  static String? firstNameError = "Kindly enter your First Name";
+  static String? lastNameError = "Kindly enter your Last Name";
+  static String? dobError = "Kindly enter your Date of birth";
+  static String? genderError = "Kindly select your Gender";
+  static String? maritalStatusError = "Kindly select your Marital status";
+  static String? mobileNumberError = "Kindly enter your Mobile number";
+  static String? alternateNumberError = "Kindly provide an Alternate number";
+  static String? emailError = "Kindly specify your Email address";
+  static String? countryError = "Kindly select your Country of residence";
+  static String? stateError = "Kindly select your Residential state";
+  static String? cityError = "Kindly select your Residential city";
+  static String? zipCodeError = "Kindly specify a valid Zip Code";
+  static String? contactInformationErrorForAllFields = "Kindly check fields";
+
+//English test Details    //Other Test Details
+  static String? bookTestSelectedError = "Kindly specify Test status";
+  static String? examStatusError = "Kindly specify Exam Status";
+  static String? examnameError = "Kindly specify Exam Name";
+
+  //Passport Details Error
+  static String? citizenSelectError = "Kindly specify Citizenship";
+  static String? passportNumberError = "Kindly specify your Passport number";
+  static String? countrySelectError =
+      "Kindly select the Country of Passport issued";
+  static String? stateSelectError = "Kindly select the State of issue";
+  static String? expireDateError = "Kindly enter your Passport expiration date";
+  static String? placeSelectError = "Kindly select the place of issue";
+  static String? dateOfISsueSelectError =
+      "Kindly enter your Passport issue date";
+
+  // Qualification Details
+  static String? qualificationSelectError =
+      "Kindly select your highest Qualification";
+  static String? qualificationNameErrors =
+      "Kindly specify name of the Qualification";
+  static String? streamSelectError = "Kindly select your Qualification stream";
+  static String? educationStatusSelectError =
+      "Kindly select your Education status";
+  static String? countrySelect = "Kindly select Country of Education";
+
+  // Relative Information
+  static String? citizenShipSelectError =
+      "Kindly select relative CitizenShip status";
+  static String? relationSelectError = "Kindly select relative relation";
+  static String? relationEmailError = "Kindly specify relative Email address";
+  static String? contactnumberError = "Kindly specify relative contact number";
+  static String? addressError = "Kindly specify relative residential address";
+
+  //Working Information
+  static String? lastOrg = "Kindly specify name of last organisation";
+  static String? workingFromSelect = "Kindly specify job start date";
+  static String? industryNameSelect = "Kindly select the industry type";
+  static String? designation = "Kindly specify your designation";
+  static String? employementTypeSelect = "Kindly select your employment type";
+  static String? income = "Kindly specify your income as per ITR";
 
   ///
   static String maxChildCount = "Maxmimum child count 4";
   static String minChildCount = "Minimum child count 4";
   static String fileSize = "your file size more than  5MB";
+}
+  static String flutterStroageToast = "Please give storage access";
+  static String receiveACallback =
+      "Thanks our counsellor will contact you soon";
+
+  ///
+  static String maxChildCount = "Maxmimum child count 4";
+  static String minChildCount = "Minimum child count 4";
 }
