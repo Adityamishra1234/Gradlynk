@@ -21,6 +21,8 @@ import 'package:studentpanel/widgets/uploadDocument.dart';
 class FundPlan extends StatelessWidget {
   FundPlan({super.key});
 
+  static const routenamed = '/FundPlan';
+
   var controller = Get.put(FundPlannerController());
 
   @override

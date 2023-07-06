@@ -14,6 +14,8 @@ import 'package:studentpanel/widgets/customtextfield.dart';
 class Fundrequirement extends StatelessWidget {
   Fundrequirement({super.key});
 
+  static const routenamed = '/Fundrequirement';
+
   var controller = Get.put(FundRequirementController());
 
   @override
@@ -40,7 +42,7 @@ class Fundrequirement extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: ThemeConstants.lightYellow,
+                        color: ThemeConstants.ultraLightYellow,
                         border: Border.all(color: ThemeConstants.yellow),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20.0))),
@@ -214,93 +216,74 @@ class Fundrequirement extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      CustomAutoSizeTextMontserrat(
-                          text: "how many kids \nwould accompany?"),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {
-                          if (controller.manay_kids != 0) {
-                            controller.manay_kids = controller.manay_kids! - 1;
-                            controller.update();
-                          } else {
-                            getToast(SnackBarConstants.minChildCount);
-                          }
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "-",
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 40.0,
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(width: 2),
-                        ),
-                        child: Center(
-                          child: Text(controller.manay_kids.toString()),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          if (controller.manay_kids != 4) {
-                            controller.manay_kids = controller.manay_kids! + 1;
-                            controller.update();
-                          } else {
-                            getToast(SnackBarConstants.maxChildCount);
-                          }
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "+",
-                          fontSize: 40,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                if (controller.manay_kids! >= 1)
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child:
-                            CustomAutoSizeTextMontserrat(text: "Child 1 age"),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        width: 150,
-                        child: CustomTextField(
-                            keybord: TextInputType.number,
-                            hint: "enter the age",
-                            controller: controller.child1),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-                if (controller.manay_kids! >= 2)
+                if (controller.kids == true)
                   Padding(
-                    padding: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
+                      children: [
+                        CustomAutoSizeTextMontserrat(
+                            text: "how many kids \nwould accompany?"),
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            if (controller.manay_kids != 0) {
+                              controller.manay_kids =
+                                  controller.manay_kids! - 1;
+                              controller.update();
+                            } else {
+                              getToast(SnackBarConstants.minChildCount);
+                            }
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "-",
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: 40.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(width: 2),
+                          ),
+                          child: Center(
+                            child: Text(controller.manay_kids.toString()),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            if (controller.manay_kids != 4) {
+                              controller.manay_kids =
+                                  controller.manay_kids! + 1;
+                              controller.update();
+                            } else {
+                              getToast(SnackBarConstants.maxChildCount);
+                            }
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "+",
+                            fontSize: 40,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                if (controller.kids == true)
+                  if (controller.manay_kids! >= 1)
+                    Row(
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child:
-                              CustomAutoSizeTextMontserrat(text: "Child 2 age"),
+                              CustomAutoSizeTextMontserrat(text: "Child 1 age"),
                         ),
                         const Spacer(),
                         SizedBox(
@@ -308,62 +291,88 @@ class Fundrequirement extends StatelessWidget {
                           child: CustomTextField(
                               keybord: TextInputType.number,
                               hint: "enter the age",
-                              controller: controller.child2),
+                              controller: controller.child1),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                       ],
                     ),
-                  ),
-                if (controller.manay_kids! >= 3)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child:
-                              CustomAutoSizeTextMontserrat(text: "Child 3 age"),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 150,
-                          child: CustomTextField(
-                              keybord: TextInputType.number,
-                              hint: "enter the age",
-                              controller: controller.child3),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                      ],
+                if (controller.kids == true)
+                  if (controller.manay_kids! >= 2)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: CustomAutoSizeTextMontserrat(
+                                text: "Child 2 age"),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: 150,
+                            child: CustomTextField(
+                                keybord: TextInputType.number,
+                                hint: "enter the age",
+                                controller: controller.child2),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                if (controller.manay_kids! >= 4)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child:
-                              CustomAutoSizeTextMontserrat(text: "Child 4 age"),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 150,
-                          child: CustomTextField(
-                              keybord: TextInputType.number,
-                              hint: "enter the age",
-                              controller: controller.child4),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                      ],
+                if (controller.kids == true)
+                  if (controller.manay_kids! >= 3)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: CustomAutoSizeTextMontserrat(
+                                text: "Child 3 age"),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: 150,
+                            child: CustomTextField(
+                                keybord: TextInputType.number,
+                                hint: "enter the age",
+                                controller: controller.child3),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                if (controller.kids == true)
+                  if (controller.manay_kids! >= 4)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: CustomAutoSizeTextMontserrat(
+                                text: "Child 4 age"),
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: 150,
+                            child: CustomTextField(
+                                keybord: TextInputType.number,
+                                hint: "enter the age",
+                                controller: controller.child4),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                    ),
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -489,44 +498,6 @@ class CustomIconTextTogether extends StatelessWidget {
   double? textSize;
 
   FontWeight? fontWeight;
-
-  CustomIconTextTogether(
-      {super.key,
-      this.fontWeight,
-      this.textSize,
-      this.Bgcolor,
-      this.iconData,
-      this.color,
-      required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
-          ],
-          color: Bgcolor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(width: 1, color: color ?? Colors.transparent)),
-      child: Row(
-        children: [
-          iconData ?? const SizedBox.shrink(),
-          const SizedBox(
-            width: 5,
-          ),
-          CustomAutoSizeTextMontserrat(
-            text: '$text',
-            textColor: color,
-            fontSize: textSize ?? 14.00,
-            fontWeight: fontWeight,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
   CustomIconTextTogether(
       {super.key,

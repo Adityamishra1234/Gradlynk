@@ -13,7 +13,7 @@ class TestiMonial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       height: 190,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -43,9 +43,9 @@ class TestiMonial extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         margin: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                            color: ThemeConstants.lightblueColor,
-                            // gradient: LinearGradient(
-                            //     colors: [Color(0xFF3E66DD), Color(0xFF6554CF)]),
+                            // color: ThemeConstants.lightblueColor,
+                            gradient: const LinearGradient(
+                                colors: [Color(0xFF3E66DD), Color(0xFF6554CF)]),
                             // color: ThemeConstants.GreenColor,
                             border: Border.all(
                                 width: 0.8, color: ThemeConstants.bluecolor),
@@ -60,11 +60,11 @@ class TestiMonial extends StatelessWidget {
                                 backgroundImage: showProfile == true
                                     ? NetworkImage(
                                         "${testimonialsList[index].image}")
-                                    : NetworkImage(
+                                    : const NetworkImage(
                                         'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Column(
@@ -74,12 +74,12 @@ class TestiMonial extends StatelessWidget {
                                 SizedBox(
                                   width: 190,
                                   child: CustomAutoSizeTextMontserrat(
-                                      textColor: ThemeConstants.blackcolor,
+                                      textColor: ThemeConstants.whitecolor,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
                                       text: "${comment}...."),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 SizedBox(
@@ -92,7 +92,7 @@ class TestiMonial extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 SizedBox(
@@ -104,7 +104,7 @@ class TestiMonial extends StatelessWidget {
                                             testimonialsList[index].rating,
                                         itemBuilder: (context, index) =>
                                             Container(
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.star,
                                                 color: Color(
                                                     0xFFFFC107), // Color of the star's fill

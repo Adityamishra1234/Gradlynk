@@ -161,10 +161,10 @@ class Endpoints {
 
   static String? fundPlannerResult = "funds-planner-get-results?enq_id=";
   static String? fundPlannerDelete = "funds-planner-delete-results?id=";
-}
   static String? getCarrerOutcomeByProfession =
       "get-carrer-outcome-by-profession?job_industry_id=";
-  static String? courseSearchCountry = "universities/";
+  static String? courseSearchGetUniversities = "universities/";
+}
 
 getFundPlannersave(
     {required String id,
@@ -186,7 +186,7 @@ getFundPlannerDataBasedRelation(String relation_applicant, int enq_id) {
   return "funds-planner-get-data-based-on-relation?relation_applicant=$relation_applicant&enq_id=$enq_id";
 }
 
-fundCalulator(int inst_course, int enq_id) {
+fundCalulator(String inst_course, int enq_id) {
   return "data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id";
 }
 

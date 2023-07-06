@@ -36,5 +36,3 @@ class EnableButton extends StatelessWidget {
     );
   }
 }
-  }
-}

@@ -134,7 +134,7 @@ class _MyAppState extends State<MyApp> {
           page: () => ReceiveACallBackView(),
         ),
         GetPage(
-          name: FundPlan.routeNamed,
+          name: FundPlan.routenamed,
           page: () => FundPlan(),
         ),
 

@@ -165,5 +165,3 @@ class Singletable extends StatelessWidget {
     );
   }
 }
-  }
-}

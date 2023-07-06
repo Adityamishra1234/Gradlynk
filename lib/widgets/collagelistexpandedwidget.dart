@@ -828,10 +828,10 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     if (widget.iscompare == true) AddedButtonShow(),
                   // if (widget.iscompare == true) const Spacer(),
                   // const Spacer(),
-                  if (widget.previousRoute != FinalShortList.routeNamed)
+                  if (widget.previousRoute == FinalShortList.routeNamed)
                     FundCalculateButton(),
 
-                  if (widget.previousRoute != FinalShortList.routeNamed)
+                  if (widget.previousRoute == FinalShortList.routeNamed)
                     AddToShortList(),
                   // if (widget.previousRoute != FinalShortList.routeNamed)
                   //   const Spacer(),
@@ -930,7 +930,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               //   widget.callbackForModelCompare!("Model2");
               // }
 
-              print(courseSearchModel.id);
+              // print(courseSearchModel.id);
               Get.toNamed(Fundrequirement.routenamed,
                   arguments: courseSearchModel.id);
               setState(() {});

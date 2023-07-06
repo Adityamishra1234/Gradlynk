@@ -100,9 +100,9 @@ abstract class api {
 
   getCountriesList();
 
-  getAllCourseBroadField();  getFundRequirement(t inst_course, int enq_id);
-
+  getAllCourseBroadField();
   getFundRequirement(String inst_course, int enq_id);
+
   getAllTestimonials();
 
   getYoutubeVideoLink();

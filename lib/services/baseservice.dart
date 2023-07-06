@@ -255,33 +255,66 @@ class StudentPanelBase {
       }
     } catch (e) {}
   }
-}
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+
+  httpPostNullBodyWithNullData(String url, {bool login = false}) async {
+    // String? token = await getToken();
+    url = url.replaceAll('"null"', "");
+    if (login == false) {
+      await checkUserConnection();
+    }
+
+    var response = await http.post(
+      Uri.parse(url),
+    );
+    switch (response.statusCode) {
+      case 200:
+        return response.body;
+
+      case 440:
+        throw EmptyDataException("440 :${response.body}");
+      case 400:
+        throw BadRequestException("${response.statusCode} :${response.body}");
+      case 401:
+      case 403:
+        throw UnauthorisedException("${response.statusCode} :${response.body}");
+      case 502:
+        throw InternetError("${response.statusCode} :${response.body}");
+      case 500:
+      default:
+        throw FetchDataException("${response.statusCode} :${response.body}");
     }
   }
 
-  errorHandle(String enqId, String errorMessage, String statusCode,
-      [String extra = ""]) async {
-    String endpoint = Endpoints.errorHandlePart1! +
-        enqId +
-        Endpoints.errorHandlepart2! +
-        errorMessage +
-        Endpoints.errorHandlepart3! +
-        statusCode +
-        Endpoints.errorHandlepart4! +
-        extra.replaceAll("#", "");
+  // httpPostNullBody(String url, {bool login = false}) async {
+  //   // String? token = await getToken();
+  //   url = url.replaceAll('"null"', "");
+  //   if (login == false) {
+  //     await checkUserConnection();
+  //   }
 
-    try {
-      if (int.parse(statusCode) != 440) {
-        var res = await httpPostNullBody(Endpoints.baseUrl! + endpoint);
-        if (res != null) {
-          print(res);
-        }
-      }
-    } catch (e) {}
-  }
+  //   var response = await http.post(
+  //     Uri.parse(url),
+  //   );
+  //   switch (response.statusCode) {
+  //     case 200:
+  //       return response.body.isNotEmpty &&
+  //               response.body != "" &&
+  //               response.body != "[]" &&
+  //               response.body != []
+  //           ? response.body
+  //           : throw EmptyDataException("440 :${response.body}");
+  //     case 440:
+  //       throw EmptyDataException("440 :${response.body}");
+  //     case 400:
+  //       throw BadRequestException("${response.statusCode} :${response.body}");
+  //     case 401:
+  //     case 403:
+  //       throw UnauthorisedException("${response.statusCode} :${response.body}");
+  //     case 502:
+  //       throw InternetError("${response.statusCode} :${response.body}");
+  //     case 500:
+  //     default:
+  //       throw FetchDataException("${response.statusCode} :${response.body}");
+  //   }
+  // }
 }
