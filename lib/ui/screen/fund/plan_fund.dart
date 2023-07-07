@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/screen/fund/check_fund_status.dart';
 import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/sponsorDetails.dart';
 import 'package:studentpanel/ui/screen/fund/takepicturescreen.dart';
@@ -158,7 +159,7 @@ class FundPlan extends StatelessWidget {
                               const SizedBox(height: 10),
                               CustomTextField(
                                   hint: "",
-                                  controller: TextEditingController()),
+                                  controller: controller.nameOfThePerson),
                               const SizedBox(
                                 height: 15,
                               ),
@@ -171,9 +172,17 @@ class FundPlan extends StatelessWidget {
                                       mandatory: true,
                                       text: "Occupation of Sponsor")),
                               const SizedBox(height: 5),
-                              CustomTextField(
-                                  hint: "enter occupation of Sponsor",
-                                  controller: TextEditingController()),
+                              CustomDropDownSingle(
+                                choosefieldtype: false,
+                                bgColor: ThemeConstants.ultraLightgreyColor2,
+                                model: controller.loadingCountry == true
+                                    ? controller.countryList
+                                    : ["No Data"],
+                                initialSelectedValue:
+                                    controller.selectedCountryName,
+                                callbackFunction: callbackCitizenOf,
+                              ),
+
                               const SizedBox(
                                 height: 15,
                               ),
@@ -222,40 +231,12 @@ class FundPlan extends StatelessWidget {
                                     ? controller.countryList
                                     : ["No Data"],
                                 initialSelectedValue:
-                                    // getNUllChecker(
-                                    //             controller.citizenSelected) ==
-                                    //         false
-                                    //     ? controller.citizenSelected
-                                    //     : controller.loadingCountry.value == true
-                                    //         ? controller.countryList[0]
-                                    //         : "No Data"
-
                                     controller.selectedCountryName,
                                 callbackFunction: callbackCitizenOf,
                               ),
-                              // CustomTextField(
-                              //     hint:
-                              //         "enter Country of the Financial institution",
-                              //     controller: TextEditingController()),
+
                               const SizedBox(height: 15),
-                              // CustomAutoSizeTextMontserrat(
-                              //     fontSize: 14,
-                              //     textColor: ThemeConstants.blackcolor,
-                              //     fontWeight: FontWeight.w400,
-                              //     text: "Country of the Financial institution"),
-                              // SizedBox(height: 10),
-                              // CustomTextField(
-                              //     hint: "enter Country of the Financial institution",
-                              //     controller: TextEditingController()),
-                              // CustomAutoSizeTextMontserrat(
-                              //     fontSize: 14,
-                              //     textColor: ThemeConstants.blackcolor,
-                              //     fontWeight: FontWeight.w400,
-                              //     text: "Name of the Financial Institution"),
-                              // SizedBox(height: 10),
-                              // CustomTextField(
-                              //     hint: "enter Name of the Financial Institution",
-                              //     controller: TextEditingController()),
+
                               CustomAutoSizeTextMontserrat(
                                   fontSize: 14,
                                   textColor: ThemeConstants.blackcolor,
@@ -475,6 +456,10 @@ class FundPlan extends StatelessWidget {
     );
   }
 
+  callbackOccupationSponsor(value) {}
+
+  callbackNameFinancialInstitution(value) {}
+
   callbackSelectedSource1(data) async {
     List temp = [];
     temp = data.toString().split(",");
@@ -508,7 +493,6 @@ class FundPlan extends StatelessWidget {
         if (controller.bankName[i] == data) {
           controller.selectedBankname = data;
           controller.selectedBankCode = controller.bankID[i];
-          // controller.getState(controller.selectCountryCode!);
         }
       }
     }

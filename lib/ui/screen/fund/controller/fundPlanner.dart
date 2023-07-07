@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class FundPlannerController extends GetxController with StateMixin {
@@ -36,10 +36,17 @@ class FundPlannerController extends GetxController with StateMixin {
     'Mother-in-law'
   ];
 
-/////
+// Selected
+  String? countrySelected,
+      nameFinancial,
+      selectedSourceOfIncome,
+      occupationNameSelect;
+  int? countryId, name_FinancialID, selectedSourceID, occupationIDSelect;
+  bool? fund_6_month_old = false;
+
   String selectedRelationship = '';
   TextEditingController nameOfThePerson = TextEditingController();
-  TextEditingController occupationOfSponsor = TextEditingController();
+  // TextEditingController occupationOfSponsor = TextEditingController();
   // TextEditingController nameOfTheFinnacialIntitution = TextEditingController();
   TextEditingController amountData = TextEditingController();
   // TextEditingController countryOfTheFinnacialIntitution= TextEditingController();
@@ -50,7 +57,6 @@ class FundPlannerController extends GetxController with StateMixin {
   // condition
   bool firstTime = true;
 
-  String selectedSourceOfIncome = '';
   String filepath = "";
 
   bool areFunds6MonthsOld = true;
@@ -171,8 +177,7 @@ class FundPlannerController extends GetxController with StateMixin {
   uploadDocumentment() async {
     if (selectedRelationship.isEmpty) {
     } else if (nameOfThePerson.text.isEmpty) {
-    } else if (occupationOfSponsor.text.isEmpty) {
-    } else if (selectedSourceOfIncome.isEmpty) {
+    } else if (selectedSourceOfIncome != null) {
     } else if (selectedCountryCode != null) {
     } else if (selectedBankCode != null) {
     } else if (selectedFundTypeId.isEmpty) {
@@ -187,9 +192,9 @@ class FundPlannerController extends GetxController with StateMixin {
           id_of_financial_institution: selectedBankCode ?? '',
           type_of_funds: selectedFundTypeId,
           sponsor_amount: amountData.text,
-          occupation: occupationOfSponsor.value.text,
+          occupation: occupationIDSelect.toString(),
           oldfunds: areFunds6MonthsOld ? '1' : '0',
-          source_of_income: selectedSourceOfIncome);
+          source_of_income: selectedSourceOfIncome ?? "");
       var res =
           await apiServices.fundPlannerFileSend(filepath, filepath, endpoint);
 
@@ -204,8 +209,7 @@ class FundPlannerController extends GetxController with StateMixin {
     //condition toast
     if (selectedRelationship.isEmpty) {
     } else if (nameOfThePerson.text.isEmpty) {
-    } else if (occupationOfSponsor.text.isEmpty) {
-    } else if (selectedSourceOfIncome.isEmpty) {
+    } else if (selectedSourceOfIncome != null) {
     } else if (selectedCountryCode != null) {
     } else if (selectedBankCode != null) {
     } else if (selectedFundTypeId.isEmpty) {
@@ -223,9 +227,9 @@ class FundPlannerController extends GetxController with StateMixin {
             id_of_financial_institution: selectedBankCode ?? '',
             type_of_funds: selectedFundTypeId,
             sponsor_amount: amountData.text,
-            occupation: occupationOfSponsor.value.text,
+            occupation: occupationIDSelect.toString(),
             oldfunds: areFunds6MonthsOld ? '1' : '0',
-            source_of_income: selectedSourceOfIncome);
+            source_of_income: selectedSourceOfIncome ?? "");
         var res = await apiServices.planYourFundSubmit(endpoint);
         if (res != null) {
           update();
@@ -241,12 +245,21 @@ class FundPlannerController extends GetxController with StateMixin {
     }
   }
 
+  double total_fund = 0.0;
   getFundPlannerData() async {
+    total_fund = 0.0;
     try {
       var res = await apiServices
           .getFundPlannerData(Get.find<BaseController>().model1.id.toString());
       if (res != null) {
         fundplanner = fundPlanner.fromJson(res);
+
+        if (fundplanner.fundPlannersData != null) {
+          for (var i = 0; i < fundplanner.fundPlannersData!.length; i++) {
+            total_fund = total_fund +
+                double.parse(fundplanner.fundPlannersData![i].amount ?? "");
+          }
+        }
       }
     } catch (e) {
       await ApiServices().errorHandle(
@@ -256,5 +269,31 @@ class FundPlannerController extends GetxController with StateMixin {
         StackTrace.current.toString(),
       );
     }
+  }
+
+  editButton(int index) {
+    print(fundplanner.fundPlannersData![index]);
+
+    selectedRelationship =
+        fundplanner.fundPlannersData![index].relationApplicant ?? "";
+
+    nameOfThePerson.text =
+        fundplanner.fundPlannersData![index].sponsorName ?? "";
+    //Drop down
+    occupationNameSelect =
+        fundplanner.fundPlannersData![index].occupationName ?? "";
+
+    selectedSourceOfIncome ==
+            fundplanner.fundPlannersData![index].sourceOfIncomeName ??
+        "";
+    selectedSourceID = fundplanner.fundPlannersData![index].sourceOfIncome;
+    countryId = fundplanner.fundPlannersData![index].countryId;
+    countrySelected = fundplanner.fundPlannersData![index].countryName;
+    nameFinancial = fundplanner.fundPlannersData![index].bankName;
+    name_FinancialID = fundplanner.fundPlannersData![index].bankId;
+    amountData.text = fundplanner.fundPlannersData![index].amount.toString();
+    filepath = fundplanner.fundPlannersData![index].fundDocumentName ?? "";
+    update();
+    Get.to(FundPlan());
   }
 }

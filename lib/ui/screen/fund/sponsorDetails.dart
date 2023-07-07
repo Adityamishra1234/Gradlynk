@@ -1,76 +1,108 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:studentpanel/ui/screen/fund/fund_parameter.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
+import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class SponsorDetails extends StatelessWidget {
-  const SponsorDetails({super.key});
+  SponsorDetails({super.key});
+
+  var controller = Get.put(FundPlannerController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10),
-              child: Align(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10),
+                child: Align(
+                    alignment: Alignment.topLeft,
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Sponsor Details",
+                      fontWeight: FontWeight.bold,
+                    )),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
                   alignment: Alignment.topLeft,
                   child: CustomAutoSizeTextMontserrat(
-                    text: "Sponsor Details",
-                    fontWeight: FontWeight.bold,
-                  )),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Total Planned Amount = 2973535.90",
-                  textColor: ThemeConstants.orangeColor,
+                    text: "Total Planned Amount = 2973535.90",
+                    textColor: ThemeConstants.orangeColor,
+                  ),
                 ),
               ),
-            ),
-            FundparameterSubWidget(
-              title: "",
-            ),
-          ],
+              ...getlist(controller.fundplanner.fundPlannersData ?? [])
+            ],
+          ),
         ),
       ),
     );
   }
+
+  getlist(List<FundPlannersData> model) {
+    List<Widget> list = [];
+
+    for (var i = 0; i < model.length; i++) {
+      list.add(FundparameterSubWidget(
+        title: model[i].sponsorName,
+        index: i,
+        oddEven: i % 2 == 0,
+        sponsor_name: model[i].sponsorName,
+        sponsor_occupation: model[i].occupationName,
+        source_income: model[i].sourceOfIncomeName,
+        country: model[i].countryName,
+        name_finanical: model[i].fundTypeName,
+        // fund_6_month_old: model[i].,
+        amount: model[i].amount,
+        relationApplicant: model[i].relationApplicant,
+      ));
+    }
+    return list;
+  }
 }
 
 class FundparameterSubWidget extends StatelessWidget {
+  int index;
   String? title;
-  String? individual_Expenses;
-  String? partcipants;
-  String? total_Expenses;
-  String? iconPath;
+  String? relationApplicant,
+      sponsor_name,
+      sponsor_occupation,
+      source_income,
+      country,
+      name_finanical,
+      fund_6_month_old;
   bool? oddEven;
 
-  String? total_Expenses_ind;
+  String? amount;
 
   FundparameterSubWidget(
       {Key? key,
+      required this.index,
       this.oddEven,
-      this.iconPath,
+      this.relationApplicant,
+      this.sponsor_name,
+      this.sponsor_occupation,
+      this.source_income,
+      this.country,
+      this.name_finanical,
+      this.fund_6_month_old,
       required this.title,
-      this.individual_Expenses,
-      this.partcipants,
-      this.total_Expenses,
-      this.total_Expenses_ind})
+      this.amount})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 15),
+      margin: const EdgeInsets.only(top: 15),
       child: Stack(
         children: [
           Container(
@@ -78,7 +110,7 @@ class FundparameterSubWidget extends StatelessWidget {
                 const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
             margin: const EdgeInsets.only(top: 10, left: 5, right: 5),
             decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       blurRadius: 2,
                       spreadRadius: 0.1,
@@ -94,17 +126,52 @@ class FundparameterSubWidget extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(15.0))),
             child: Column(
               children: [
-                FundParameterWidget(
-                  text1: "Individual Expenses(AUD)",
-                  text2: individual_Expenses ?? "",
+                InkWell(
+                  onTap: () {
+                    Get.find<FundPlannerController>().editButton(index);
+                  },
+                  child: Row(
+                    children: [
+                      Spacer(),
+                      CustomAutoSizeTextMontserrat(
+                        text: "Edit",
+                        textColor: ThemeConstants.bluecolor,
+                      ),
+                      Icon(
+                        Icons.edit_square,
+                        size: 20,
+                        color: ThemeConstants.bluecolor,
+                      )
+                    ],
+                  ),
                 ),
                 FundParameterWidget(
-                  text1: "Partcipants",
-                  text2: partcipants ?? "",
+                  text1: "Relationship with Applicant",
+                  text2: relationApplicant ?? "",
                 ),
                 FundParameterWidget(
-                  text1: "Total Expenses(AUD)",
-                  text2: total_Expenses ?? "",
+                  text1: "Name of the Sponsor",
+                  text2: sponsor_name ?? "",
+                ),
+                FundParameterWidget(
+                  text1: "Occupation of Sponsor",
+                  text2: sponsor_occupation ?? "",
+                ),
+                FundParameterWidget(
+                  text1: "Source of income",
+                  text2: source_income ?? "",
+                ),
+                FundParameterWidget(
+                  text1: " Country of the Financial institution",
+                  text2: country ?? "",
+                ),
+                FundParameterWidget(
+                  text1: "Name of the Financial Institution",
+                  text2: name_finanical ?? "",
+                ),
+                FundParameterWidget(
+                  text1: "Are the funds 6 months old?",
+                  text2: fund_6_month_old ?? "",
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -118,8 +185,8 @@ class FundparameterSubWidget extends StatelessWidget {
                 ),
                 FundParameterWidget(
                   fw: FontWeight.w700,
-                  text1: "Total Expenses(INR)",
-                  text2: total_Expenses_ind ?? "",
+                  text1: "Amount",
+                  text2: amount ?? "",
                 ),
               ],
             ),
@@ -180,7 +247,7 @@ class FundParameterWidget extends StatelessWidget {
                   fontWeight: fw ?? FontWeight.w500,
                   textColor: ThemeConstants.blackcolor,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 CustomAutoSizeTextMontserrat(
