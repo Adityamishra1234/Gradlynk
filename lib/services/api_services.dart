@@ -873,6 +873,24 @@ class ApiServices extends StudentPanelBase implements api {
     var response;
     try {
       response = await httpPostNullBody(baseUrl + endpoints);
+
+      var jsondata = json.decode(response);
+      return jsondata;
+    } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  dropDownGet(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpGet(baseUrl + endpoints);
+
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
@@ -1862,10 +1880,64 @@ class ApiServices extends StudentPanelBase implements api {
   @override
   registerNewUser(String endPoint) async {
     try {
-      var res = await httpPostNullBody(endPoint);
-    } catch (e) {}
+      var endpoint = '${Endpoints.baseUrl}$endPoint';
+      // print(endpoint);
+      var res = await httpPostNullBody(endpoint);
+      var jsondata = json.decode(res);
+      // print(jsondata);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
 
     // TODO: implement registerNewUser
+    // throw UnimplementedError();
+  }
+
+  @override
+  getAllBranches() async {
+    try {
+      String endPoint = '${Endpoints.baseUrl}${Endpoints.getAllBranches}';
+      var res = await httpGet(endPoint);
+      var jsondata = json.decode(res);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+
+    // TODO: implement getAllBranches
+  }
+
+  @override
+  otpValidationInRegister(String phoneNumber, String otp) async {
+    try {
+      String endPoint =
+          '${Endpoints.baseUrl}${Endpoints.otpValidationForRegister}$otp&mobile_number=$phoneNumber';
+
+      var res = await httpPostNullBody(endPoint);
+      var jsondata = json.decode(res);
+
+
+      
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  resendOtpRegister(String phoneNumber) async {
+    try {
+      String endPoint =
+          '${Endpoints.baseUrl}${Endpoints.resendOtpRegister}$phoneNumber';
+
+      var res = await httpPostNullBody(endPoint);
+      var jsondata = json.decode(res);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement resendOtpRegister
     // throw UnimplementedError();
   }
 }

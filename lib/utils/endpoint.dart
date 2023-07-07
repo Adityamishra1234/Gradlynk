@@ -157,6 +157,14 @@ class Endpoints {
   static String? courseSearchCountry = "universities/";
 
   static String? courseSearchGetUniversities = "universities/";
+
+  static String? getAllBranches = "get-all-branches";
+  static String? getAllLeadSources = "get-all-lead-source";
+
+  //params number_otp=195185&mobile_number=9650117662
+  static String? otpValidationForRegister = "otp-validate-student?number_otp=";
+
+  static String? resendOtpRegister = "otp-number-resend?mobile_number=";
 }
 
 fundCalulator(String inst_course, int enq_id) {

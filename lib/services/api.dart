@@ -114,4 +114,10 @@ abstract class api {
   getCareerOutcomes(job_industry_id);
 
   registerNewUser(String endPoint);
+
+  getAllBranches();
+
+  otpValidationInRegister(String phoneNumber, String otp);
+
+  resendOtpRegister(String phoneNumber);
 }

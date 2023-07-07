@@ -6,9 +6,11 @@ import 'package:sms_autofill/sms_autofill.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class LoginCopy extends StatefulWidget {
@@ -622,9 +624,27 @@ class _LoginCopyState extends State<LoginCopy> {
                                         ),
                                       ],
                                     ),
+
+                                  InkWell(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          RegisterationMainView.routeNmaed);
+                                    },
+                                    child: Container(
+                                      child: CustomRichTextWidget(
+                                          fontWeight2: FontWeight.w700,
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 13,
+                                          textColor: ThemeConstants.whitecolor,
+                                          text1: "Don't have Account?",
+                                          textColor2: ThemeConstants.whitecolor,
+                                          // textColor: ThemeConstants.yellow,
+                                          text: " Register now"),
+                                    ),
+                                  ),
                                   const SizedBox(
                                     height: 30,
-                                  )
+                                  ),
                                 ],
                               ),
                             )

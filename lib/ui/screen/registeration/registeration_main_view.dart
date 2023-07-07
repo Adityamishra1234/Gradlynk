@@ -54,6 +54,11 @@ class RegisterationMainView extends StatelessWidget {
                 ],
               ),
             ),
+            Container(
+              height: MediaQuery.of(context).size.height,
+              alignment: Alignment.bottomCenter,
+              child: Image.asset('assets/images/registerBgImage.png'),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 225),
               child: RegisterationFormWidget(),

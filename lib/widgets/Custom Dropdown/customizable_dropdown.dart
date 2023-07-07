@@ -193,6 +193,8 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
                               selectedItem == null
                                   ? widget.placeholder
                                   : CustomAutoSizeTextMontserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
                                       text: selectedItem ?? "",
                                       // textAlign: widget.titleAlign,
                                       // style: widget.titleStyle

@@ -838,9 +838,11 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                     if (controller.selectedCountry.id == null) {
                                       getToast(
                                           SnackBarConstants.courseSearchPart1!);
-                                    } else if (controller.selectedCountry.id ==
-                                            9998 ||
-                                        controller.selectedCountry.id == 9999) {
+                                    } else if ((controller.selectedCountry.id ==
+                                                9998 ||
+                                            controller.selectedCountry.id ==
+                                                9999) &&
+                                        controller.selectedCountry.id == null) {
                                       getToast(
                                           SnackBarConstants.courseSearchPart1!);
                                     } else if (controller.courseSearchType ==

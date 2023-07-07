@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextFieldSquare extends StatelessWidget {
   TextEditingController controller;
   String hint;
   Validator? validator;
@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
   FontWeight? hintFontWeight;
   double? borderRadius;
   bool? forDropDown;
-  CustomTextField({
+  CustomTextFieldSquare({
     Key? key,
     this.borderRadius,
     this.hintFontWeight,
@@ -58,17 +58,17 @@ class CustomTextField extends StatelessWidget {
                     ? ThemeConstants.lightgreycolor
                     : Colors.transparent),
             borderRadius: forDropDown!
-                ? BorderRadius.circular(borderRadius ?? 200)
+                ? BorderRadius.circular(200)
                 : BorderRadius.circular(0),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                width: forDropDown! ? 0 : 0,
+                width: forDropDown! ? 1 : 0,
                 color: forDropDown!
                     ? ThemeConstants.lightgreycolor
                     : Colors.transparent),
             borderRadius: forDropDown!
-                ? BorderRadius.circular(borderRadius ?? 200)
+                ? BorderRadius.circular(200)
                 : BorderRadius.circular(0),
           ),
           focusedBorder: OutlineInputBorder(
@@ -78,7 +78,7 @@ class CustomTextField extends StatelessWidget {
                     ? ThemeConstants.lightgreycolor
                     : Colors.transparent),
             borderRadius: forDropDown!
-                ? BorderRadius.circular(borderRadius ?? 200)
+                ? BorderRadius.circular(200)
                 : BorderRadius.circular(0),
           ),
         ),
