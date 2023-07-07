@@ -373,7 +373,7 @@ class FundPlan extends StatelessWidget {
                                   textColor: ThemeConstants.blackcolor,
                                   fontWeight: FontWeight.w400,
                                   mandatory: true,
-                                  text: "Please enter your amount"),
+                                  text: "Amount (INR)"),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -423,7 +423,7 @@ class FundPlan extends StatelessWidget {
 
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 20, top: 10),
+                                    const EdgeInsets.only(left: 0, top: 10),
                                 child: Row(
                                   children: [
                                     InkWell(
@@ -437,8 +437,19 @@ class FundPlan extends StatelessWidget {
                                             0,
                                             0.toString());
                                       },
-                                      child: EnableButton(
-                                        enabled: !controller.areFunds6MonthsOld,
+                                      child: CustomIconTextTogether(
+                                        horizontelPadding: 20,
+                                        textSize: 10,
+                                        showICOn: true,
+                                        color: ThemeConstants.whitecolor,
+                                        Bgcolor: ThemeConstants.bluecolor,
+                                        iconData: Icon(
+                                          Icons.download,
+                                          size: 20,
+                                          color: ThemeConstants.whitecolor,
+                                        ),
+
+                                        // enabled: !controller.areFunds6MonthsOld,
                                         text: 'Upload Document',
                                       ),
                                     ),

@@ -4,6 +4,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class FundPlannerController extends GetxController with StateMixin {
@@ -207,12 +208,21 @@ class FundPlannerController extends GetxController with StateMixin {
     //TODO
     //condition toast
     if (selectedRelationship.isEmpty) {
+      getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
-    } else if (selectedSourceOfIncome != null) {
-    } else if (selectedCountryCode != null) {
-    } else if (selectedBankCode != null) {
+      getToast('Kindly specify sponsor name');
+    } else if (occupationNameSelect == null) {
+      getToast('Kindly select sponsor occupation');
+    } else if (selectedSourceOfIncome == null) {
+      getToast('Kindly select sponsor source of income');
+    } else if (selectedCountryCode == null) {
+      getToast('Kindly select country of financial institution');
+    } else if (selectedBankCode == null) {
+      getToast('Kindly select name of financial institution');
     } else if (selectedFundTypeId.isEmpty) {
+      getToast('Kindly select type of funds');
     } else if (amountData.text.isEmpty) {
+      getToast('Kindly specify amount');
     } else {
       try {
         loadingCountry == false;
@@ -291,7 +301,7 @@ class FundPlannerController extends GetxController with StateMixin {
     countryId = fundplanner.fundPlannersData![index].countryId;
 
     countrySelected = fundplanner.fundPlannersData![index].countryName;
-
+    selectedFundTypeName = fundplanner.fundPlannersData![index].fundTypeName!;
     amountData.text = fundplanner.fundPlannersData![index].amount.toString();
     filepath = fundplanner.fundPlannersData![index].fundDocumentName ?? "";
     update();
