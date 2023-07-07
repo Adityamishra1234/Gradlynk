@@ -152,12 +152,11 @@ class FundPlannerController extends GetxController with StateMixin {
 
   String? selectedBankname = '';
   String? selectedBankCode = '';
-  getBankByCountry() async {
+  getBankByCountry(String countryID) async {
     bankName = [];
     loadingBank = false;
-    var id = int.parse(selectedCountryCode!);
 
-    var endpoint = Endpoints.bankByCountry! + id.toString();
+    var endpoint = Endpoints.bankByCountry! + countryID.toString();
     print(endpoint);
     var res = await apiServices.getdropdownfunPlanerPost(endpoint);
     if (res.length == 0) {
@@ -170,7 +169,7 @@ class FundPlannerController extends GetxController with StateMixin {
       print(bankID);
     }
     loadingBank = true;
-    print(bankName);
+
     update();
   }
 
@@ -271,29 +270,34 @@ class FundPlannerController extends GetxController with StateMixin {
     }
   }
 
-  editButton(int index) {
-    print(fundplanner.fundPlannersData![index]);
-
+  editButton(int index) async {
+    change(null, status: RxStatus.success());
     selectedRelationship =
         fundplanner.fundPlannersData![index].relationApplicant ?? "";
 
     nameOfThePerson.text =
         fundplanner.fundPlannersData![index].sponsorName ?? "";
-    //Drop down
+
     occupationNameSelect =
         fundplanner.fundPlannersData![index].occupationName ?? "";
+    occupationIDSelect =
+        fundplanner.fundPlannersData![index].sponsor_occupation;
 
+    print(fundplanner.fundPlannersData![index].sourceOfIncomeName);
     selectedSourceOfIncome ==
             fundplanner.fundPlannersData![index].sourceOfIncomeName ??
         "";
     selectedSourceID = fundplanner.fundPlannersData![index].sourceOfIncome;
     countryId = fundplanner.fundPlannersData![index].countryId;
+
     countrySelected = fundplanner.fundPlannersData![index].countryName;
-    nameFinancial = fundplanner.fundPlannersData![index].bankName;
-    name_FinancialID = fundplanner.fundPlannersData![index].bankId;
+
     amountData.text = fundplanner.fundPlannersData![index].amount.toString();
     filepath = fundplanner.fundPlannersData![index].fundDocumentName ?? "";
     update();
     Get.to(FundPlan());
+    await getBankByCountry(countryId.toString());
+    selectedBankname = fundplanner.fundPlannersData![index].bankName;
+    selectedBankCode = fundplanner.fundPlannersData![index].bankId.toString();
   }
 }

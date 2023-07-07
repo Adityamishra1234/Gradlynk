@@ -50,9 +50,12 @@ class FundPlannersData {
   String? countryName;
   String? documentName;
   String? occupationName;
+  int? sixMonthOldFund;
+  int? sponsor_occupation;
 
   FundPlannersData(
       {this.id,
+      this.sponsor_occupation,
       this.sponsorName,
       this.relationApplicant,
       this.countryId,
@@ -67,6 +70,7 @@ class FundPlannersData {
       this.fundTypeName,
       this.countryName,
       this.documentName,
+      this.sixMonthOldFund,
       this.occupationName});
 
   FundPlannersData.fromJson(Map<String, dynamic> json) {
@@ -86,6 +90,8 @@ class FundPlannersData {
     countryName = json['country_name'];
     documentName = json['document_name'];
     occupationName = json['occupation_name'];
+    sixMonthOldFund = json['six_month_old_fund_availability'];
+    sponsor_occupation = json['source_of_income'];
   }
 
   Map<String, dynamic> toJson() {

@@ -175,12 +175,23 @@ class FundPlan extends StatelessWidget {
                               CustomDropDownSingle(
                                 choosefieldtype: false,
                                 bgColor: ThemeConstants.ultraLightgreyColor2,
-                                model: controller.loadingCountry == true
-                                    ? controller.countryList
-                                    : ["No Data"],
+                                model: controller.occupationName,
                                 initialSelectedValue:
-                                    controller.selectedCountryName,
-                                callbackFunction: callbackCitizenOf,
+                                    controller.occupationNameSelect,
+                                callbackFunction: (value) {
+                                  print(value);
+                                  for (var i = 0;
+                                      i < controller.occupationName.length;
+                                      i++) {
+                                    if (controller.occupationName[i] == value) {
+                                      controller.occupationNameSelect = value;
+                                      controller.occupationIDSelect =
+                                          controller.occupationID[i];
+                                      break;
+                                    }
+                                  }
+                                  controller.update();
+                                },
                               ),
 
                               const SizedBox(
@@ -203,7 +214,6 @@ class FundPlan extends StatelessWidget {
                                 child: customDropDownPlanFund(
                                   model: controller.sourceIncomeName,
                                   callback: (value) {
-                                    print(value);
                                     controller.selectedSourceOfIncome =
                                         controller.sourceIncomeName[value];
                                     controller.update();
@@ -231,8 +241,23 @@ class FundPlan extends StatelessWidget {
                                     ? controller.countryList
                                     : ["No Data"],
                                 initialSelectedValue:
-                                    controller.selectedCountryName,
-                                callbackFunction: callbackCitizenOf,
+                                    controller.countrySelected,
+                                callbackFunction: (value) async {
+                                  print(value);
+                                  for (var i = 0;
+                                      i < controller.countryList.length;
+                                      i++) {
+                                    if (controller.countryList[i] == value) {
+                                      controller.countrySelected = value;
+                                      controller.countryId =
+                                          int.parse(controller.countryCode[i]);
+                                      break;
+                                    }
+                                  }
+                                  controller.update();
+                                  await controller.getBankByCountry(
+                                      controller.countryId.toString());
+                                },
                               ),
 
                               const SizedBox(height: 15),
@@ -251,22 +276,22 @@ class FundPlan extends StatelessWidget {
                                     ? controller.bankName
                                     : ["No Data"],
                                 initialSelectedValue:
-                                    // getNUllChecker(
-                                    //             controller.citizenSelected) ==
-                                    //         false
-                                    //     ? controller.citizenSelected
-                                    //     : controller.loadingCountry.value == true
-                                    //         ? controller.countryList[0]
-                                    //         : "No Data"
-
                                     controller.selectedBankname,
-                                callbackFunction: callbackCitizenOf,
+                                callbackFunction: (value) {
+                                  for (var i = 0;
+                                      i < controller.bankName.length;
+                                      i++) {
+                                    if (controller.bankName[i] == value) {
+                                      controller.selectedBankname = value;
+                                      controller.selectedBankCode =
+                                          controller.bankID[i].toString();
+                                      break;
+                                    }
+                                  }
+                                  controller.update();
+                                },
                               ),
-                              // CustomTextField(
-                              //     hint:
-                              //         "enter Name of the Financial Institution",
-                              //     controller:
-                              //         controller. ),
+
                               const SizedBox(height: 10),
                               const SizedBox(
                                 height: 10,
@@ -456,10 +481,6 @@ class FundPlan extends StatelessWidget {
     );
   }
 
-  callbackOccupationSponsor(value) {}
-
-  callbackNameFinancialInstitution(value) {}
-
   callbackSelectedSource1(data) async {
     List temp = [];
     temp = data.toString().split(",");
@@ -484,21 +505,21 @@ class FundPlan extends StatelessWidget {
     }
   }
 
-  callbackCitizenOf(data) {
-    for (var i = 0; i < controller.bankName.length; i++) {
-      if (i == 0) {
-        controller.selectedBankname = null;
-        controller.selectedBankCode = null;
-      } else {
-        if (controller.bankName[i] == data) {
-          controller.selectedBankname = data;
-          controller.selectedBankCode = controller.bankID[i];
-        }
-      }
-    }
-    controller.getBankByCountry();
-    controller.update();
-  }
+  // callbackCitizenOf(data) {
+  //   for (var i = 0; i < controller.bankName.length; i++) {
+  //     if (i == 0) {
+  //       controller.selectedBankname = null;
+  //       controller.selectedBankCode = null;
+  //     } else {
+  //       if (controller.bankName[i] == data) {
+  //         controller.selectedBankname = data;
+  //         controller.selectedBankCode = controller.bankID[i];
+  //       }
+  //     }
+  //   }
+  //   controller.getBankByCountry();
+  //   controller.update();
+  // }
 }
 
 class customDropDownPlanFund extends StatelessWidget {
