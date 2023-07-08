@@ -78,7 +78,9 @@ class _DashBoardState extends State<DashBoard> {
   void initState() {
     // Get.offAllNamed(DashBoard.routeNamed);
     try {
-      if (Get.arguments) {
+      //todo
+      // if (Get.arguments) {
+      if (false) {
         ambiguate(WidgetsBinding.instance)?.addPostFrameCallback(
           (_) => Future.delayed(const Duration(milliseconds: 200), () {
             ShowCaseWidget.of(myContext!).startShowCase([
