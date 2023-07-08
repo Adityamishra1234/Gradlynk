@@ -677,7 +677,8 @@ class _DashBoardState extends State<DashBoard> {
                                               //         BookAnAppointment());
                                               // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
-                                              Get.to(Fundrequirement());
+                                              // Get.to(Fundrequirement());
+                                              Get.to(LetsGetStartedMainView());
                                               // Get.toNamed(
                                               //     ProfileView.routeNamed);
                                             },
