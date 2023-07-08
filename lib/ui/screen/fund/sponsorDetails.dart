@@ -61,7 +61,7 @@ class SponsorDetails extends StatelessWidget {
         source_income: model[i].sourceOfIncomeName,
         country: model[i].countryName,
         name_finanical: model[i].fundTypeName,
-        // fund_6_month_old: model[i].,
+        fund_6_month_old: model[i].sixMonthOldFund == 1 ? "true" : "false",
         amount: model[i].amount,
         relationApplicant: model[i].relationApplicant,
       ));

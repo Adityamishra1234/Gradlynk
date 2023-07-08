@@ -48,6 +48,7 @@ class FundPlan extends StatelessWidget {
                                 padding: const EdgeInsets.only(bottom: 50),
                                 child: SizedBox(
                                   width: MediaQuery.sizeOf(context).width * 0.5,
+                                  height: 320,
                                   child: Column(
                                     children: [
                                       Image.asset("assets/images/empty.png"),
@@ -107,7 +108,7 @@ class FundPlan extends StatelessWidget {
                                   const Spacer(),
                                   InkWell(
                                     onTap: () {
-                                      Get.to(SponsorDetails());
+                                      controller.getFundPlannerData();
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "View Details",
@@ -216,6 +217,8 @@ class FundPlan extends StatelessWidget {
                                   callback: (value) {
                                     controller.selectedSourceOfIncome =
                                         controller.sourceIncomeName[value];
+                                    controller.selectedSourceID = int.parse(
+                                        controller.sourceIncomeID[value]);
                                     controller.update();
                                   },
                                   selectedValue:
@@ -315,6 +318,8 @@ class FundPlan extends StatelessWidget {
                                   callback: (value) {
                                     controller.selectedFundTypeName =
                                         controller.fundTypeName[value];
+                                    controller.selectedFundTypeId =
+                                        controller.fundTypeID[value].toString();
                                     controller.update();
                                   },
                                   selectedValue:
@@ -444,7 +449,7 @@ class FundPlan extends StatelessWidget {
                                         color: ThemeConstants.whitecolor,
                                         Bgcolor: ThemeConstants.bluecolor,
                                         iconData: Icon(
-                                          Icons.download,
+                                          Icons.upload,
                                           size: 20,
                                           color: ThemeConstants.whitecolor,
                                         ),
@@ -459,7 +464,9 @@ class FundPlan extends StatelessWidget {
                                         padding:
                                             const EdgeInsets.only(left: 10),
                                         child: CustomAutoSizeTextMontserrat(
-                                            text: "lardckwe hq;or32qrdhlo"),
+                                            text: controller.filepath
+                                                .split("/")
+                                                .last),
                                       ),
                                     ),
                                   ],
@@ -477,8 +484,11 @@ class FundPlan extends StatelessWidget {
                                         ThemeConstants.bluecolor, // foreground
                                   ),
                                   onPressed: () {
-                                    controller.uploadDocumentment();
-                                    // controller.submitFundPlannerData();
+                                    if (controller.filepath.isNotEmpty) {
+                                      controller.uploadDocumentment();
+                                    } else {
+                                      controller.submitFundPlannerData();
+                                    }
                                   },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Submit",

@@ -7,6 +7,8 @@ import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
+import 'plan_fund.dart';
+
 class TakePictureScreenFundPlanner extends StatefulWidget {
   TakePictureScreenFundPlanner({
     super.key,
@@ -271,6 +273,8 @@ class DisplayPictureScreen extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     Get.find<FundPlannerController>().filepath = imagePath;
+                    Get.find<FundPlannerController>().update();
+                    Get.to(FundPlan());
                   },
                   child: Container(
                       height: 60,

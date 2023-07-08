@@ -4,8 +4,11 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/ui/screen/fund/sponsorDetails.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/widgets/custom_doc_viewer.dart';
+import 'package:studentpanel/widgets/custom_image_viewer.dart';
 
 class FundPlannerController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
@@ -68,7 +71,7 @@ class FundPlannerController extends GetxController with StateMixin {
     getOccupation();
     getFundType();
     getCountry();
-    getFundPlannerData();
+
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -176,13 +179,23 @@ class FundPlannerController extends GetxController with StateMixin {
 
   uploadDocumentment() async {
     if (selectedRelationship.isEmpty) {
+      getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
-    } else if (selectedSourceOfIncome != null) {
-    } else if (selectedCountryCode != null) {
-    } else if (selectedBankCode != null) {
+      getToast('Kindly specify sponsor name');
+    } else if (occupationNameSelect == null) {
+      getToast('Kindly select sponsor occupation');
+    } else if (selectedSourceID == null) {
+      getToast('Kindly select sponsor source of income');
+    } else if (selectedCountryCode == null) {
+      getToast('Kindly select country of financial institution');
+    } else if (selectedBankCode == null) {
+      getToast('Kindly select name of financial institution');
     } else if (selectedFundTypeId.isEmpty) {
+      getToast('Kindly select type of funds');
     } else if (amountData.text.isEmpty) {
+      getToast('Kindly specify amount');
     } else {
+      change(null, status: RxStatus.loading());
       String endpoint = getFundPlannersave(
           id: 0.toString(),
           enq_id: Get.find<BaseController>().model1.id.toString(),
@@ -199,6 +212,7 @@ class FundPlannerController extends GetxController with StateMixin {
           await apiServices.fundPlannerFileSend(filepath, filepath, endpoint);
 
       if (res != null) {
+        change(null, status: RxStatus.success());
         print(res);
       }
     }
@@ -206,14 +220,14 @@ class FundPlannerController extends GetxController with StateMixin {
 
   submitFundPlannerData() async {
     //TODO
-    //condition toast
+
     if (selectedRelationship.isEmpty) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
       getToast('Kindly specify sponsor name');
     } else if (occupationNameSelect == null) {
       getToast('Kindly select sponsor occupation');
-    } else if (selectedSourceOfIncome == null) {
+    } else if (selectedSourceID == null) {
       getToast('Kindly select sponsor source of income');
     } else if (selectedCountryCode == null) {
       getToast('Kindly select country of financial institution');
@@ -256,13 +270,13 @@ class FundPlannerController extends GetxController with StateMixin {
 
   double total_fund = 0.0;
   getFundPlannerData() async {
+    change(null, status: RxStatus.loading());
     total_fund = 0.0;
     try {
       var res = await apiServices
           .getFundPlannerData(Get.find<BaseController>().model1.id.toString());
       if (res != null) {
         fundplanner = fundPlanner.fromJson(res);
-
         if (fundplanner.fundPlannersData != null) {
           for (var i = 0; i < fundplanner.fundPlannersData!.length; i++) {
             total_fund = total_fund +
@@ -270,6 +284,8 @@ class FundPlannerController extends GetxController with StateMixin {
           }
         }
       }
+      change(null, status: RxStatus.success());
+      Get.to(SponsorDetails());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -309,5 +325,26 @@ class FundPlannerController extends GetxController with StateMixin {
     await getBankByCountry(countryId.toString());
     selectedBankname = fundplanner.fundPlannersData![index].bankName;
     selectedBankCode = fundplanner.fundPlannersData![index].bankId.toString();
+  }
+
+  getViewDocument(String url) {
+    print(url);
+    if (url.contains("pdf")) {
+      return Get.to(CustomDocumentViewer(
+        url: url,
+      ));
+    } else if (url.contains("doc")) {
+      Get.to(CustomDocumentViewer(
+        url: url,
+      ));
+    } else if (url.contains("docx")) {
+      Get.to(CustomDocumentViewer(
+        url: url,
+      ));
+    } else {
+      Get.to(CustomImageViewer(
+        url: url,
+      ));
+    }
   }
 }

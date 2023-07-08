@@ -1935,8 +1935,7 @@ class ApiServices extends StudentPanelBase implements api {
     String endpoint,
   ) async {
     try {
-      String endpoint1 =
-          "funds-planner-save-results?id&enq_id=78623&name_of_sponsor=Tetsing&relationship=Mother&bank_country=13&id_of_financial_institution=10&type_of_funds=60&sponsor_amount=10000&occupation=2&oldfunds=1&source_of_income=1";
+      String endpoint1 = endpoint;
 
       var url = Uri.parse("${Endpoints.baseUrl}$endpoint1");
       var request = http.MultipartRequest("POST", url);
