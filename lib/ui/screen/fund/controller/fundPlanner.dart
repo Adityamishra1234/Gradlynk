@@ -71,7 +71,7 @@ class FundPlannerController extends GetxController with StateMixin {
     getOccupation();
     getFundType();
     getCountry();
-
+    getFundPlannerData();
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -186,7 +186,7 @@ class FundPlannerController extends GetxController with StateMixin {
       getToast('Kindly select sponsor occupation');
     } else if (selectedSourceID == null) {
       getToast('Kindly select sponsor source of income');
-    } else if (selectedCountryCode == null) {
+    } else if (countryId == null) {
       getToast('Kindly select country of financial institution');
     } else if (selectedBankCode == null) {
       getToast('Kindly select name of financial institution');
@@ -201,13 +201,13 @@ class FundPlannerController extends GetxController with StateMixin {
           enq_id: Get.find<BaseController>().model1.id.toString(),
           name_of_sponsor: nameOfThePerson.value.text,
           relationship: selectedRelationship,
-          bank_country: selectedCountryCode.toString(),
+          bank_country: countryId.toString(),
           id_of_financial_institution: selectedBankCode ?? '',
           type_of_funds: selectedFundTypeId,
           sponsor_amount: amountData.text,
           occupation: occupationIDSelect.toString(),
           oldfunds: areFunds6MonthsOld ? '1' : '0',
-          source_of_income: selectedSourceOfIncome ?? "");
+          source_of_income: selectedSourceID.toString() ?? "");
       var res =
           await apiServices.fundPlannerFileSend(filepath, filepath, endpoint);
 
@@ -239,6 +239,8 @@ class FundPlannerController extends GetxController with StateMixin {
       getToast('Kindly specify amount');
     } else {
       try {
+        print("aman");
+        print(selectedCountryCode);
         loadingCountry == false;
         var enq_id = Get.find<BaseController>().model1.id.toString();
         var endpoint = getFundPlannersave(
@@ -252,7 +254,7 @@ class FundPlannerController extends GetxController with StateMixin {
             sponsor_amount: amountData.text,
             occupation: occupationIDSelect.toString(),
             oldfunds: areFunds6MonthsOld ? '1' : '0',
-            source_of_income: selectedSourceOfIncome ?? "");
+            source_of_income: selectedSourceID.toString() ?? "");
         var res = await apiServices.planYourFundSubmit(endpoint);
         if (res != null) {
           update();
@@ -284,6 +286,7 @@ class FundPlannerController extends GetxController with StateMixin {
           }
         }
       }
+      firstTime = false;
       change(null, status: RxStatus.success());
       Get.to(SponsorDetails());
     } catch (e) {

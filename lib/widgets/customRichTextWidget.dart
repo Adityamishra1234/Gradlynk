@@ -10,12 +10,16 @@ class CustomRichTextWidget extends StatelessWidget {
   String? text1;
   String? text3;
   int? maxLines, fontSize;
+  Color? textColor2;
   FontWeight? fontWeight;
   Color? textColor;
   Color? underlinceColor;
+  FontWeight? fontWeight2;
 
   CustomRichTextWidget(
       {Key? key,
+      this.fontWeight2,
+      this.textColor2,
       this.underlinceColor,
       this.text1,
       required this.text,
@@ -38,7 +42,7 @@ class CustomRichTextWidget extends StatelessWidget {
           text: text1,
           style: TextStyle(
               fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-              color: const Color.fromARGB(255, 0, 0, 0),
+              color: textColor ?? const Color.fromARGB(255, 0, 0, 0),
               fontWeight: FontWeight.bold,
               // shadows: [
               //   Shadow(
@@ -53,8 +57,9 @@ class CustomRichTextWidget extends StatelessWidget {
         TextSpan(
           text: text,
           style: GoogleFonts.montserrat(
-              fontWeight: fontWeight ?? FontWeight.w600,
-              color: ThemeConstants.bluecolor,
+              fontWeight: fontWeight2 ?? FontWeight.w600,
+              color: textColor2 ?? ThemeConstants.bluecolor,
+
               // shadows: [
               //   Shadow(
               //       offset: Offset(0, -3),

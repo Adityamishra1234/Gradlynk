@@ -32,6 +32,22 @@ class StudentPanelBase {
     }
   }
 
+  httpGetWithoutLogin(String url) async {
+    await checkUserConnectionWithoutLogin();
+    try {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
   httpPost(String url, var jsonData) async {
     // String? token = await getToken();
     await checkUserConnection();
@@ -89,7 +105,8 @@ class StudentPanelBase {
     }
   }
 
-  httpPostNullBody(String url, {bool login = false}) async {
+  httpPostNullBody(String url,
+      {bool login = false, bool handele404Error = false}) async {
     // String? token = await getToken();
     url = url.replaceAll('"null"', "");
     if (login == false) {
@@ -112,11 +129,18 @@ class StudentPanelBase {
       case 400:
         throw BadRequestException("${response.statusCode} :${response.body}");
       case 401:
+        throw InternetError("${response.statusCode} :${response.body}");
       case 403:
         throw UnauthorisedException("${response.statusCode} :${response.body}");
       case 502:
         throw InternetError("${response.statusCode} :${response.body}");
       case 500:
+        throw InternetError("${response.statusCode} :${response.body}");
+      case 404:
+        return handele404Error == true
+            ? response.body
+            : throw FetchDataException(
+                "${response.statusCode} :${response.body}");
       default:
         throw FetchDataException("${response.statusCode} :${response.body}");
     }

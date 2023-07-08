@@ -9,10 +9,12 @@ class CustomDropDownSingle extends StatelessWidget {
   String? initialSelectedValue;
   final Function callbackFunction;
   Color? bgColor;
+  FontWeight? fontWeight;
   CustomDropDownSingle({
     Key? key,
     this.bgColor,
     required this.model,
+    this.fontWeight,
     required this.callbackFunction,
     required this.choosefieldtype,
     required this.initialSelectedValue,

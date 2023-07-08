@@ -30,7 +30,9 @@ class FundPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('title'),
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(
+        index: 7,
+      ),
       body: controller.obx(
           onLoading: getLoading(context),
           (state) => SafeArea(

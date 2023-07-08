@@ -164,6 +164,14 @@ class Endpoints {
   static String? getCarrerOutcomeByProfession =
       "get-carrer-outcome-by-profession?job_industry_id=";
   static String? courseSearchGetUniversities = "universities/";
+
+  static String? getAllBranches = "get-all-branches";
+  static String? getAllLeadSources = "get-all-lead-source";
+
+  //params number_otp=195185&mobile_number=9650117662
+  static String? otpValidationForRegister = "otp-validate-student?number_otp=";
+
+  static String? resendOtpRegister = "otp-number-resend?mobile_number=";
 }
 
 getFundPlannersave(
@@ -267,4 +275,15 @@ addRelativeInformationPart3(
     String? contactOfRelative,
     String? relationWithrelative) {
   return "&any_relative_country_interested=1&added_relative[$index][id]=$id&added_relative[$index][any_relative_country_interested]=$anyRelativeCountryInterested&added_relative[$index][citizenship_status]=$citizenshipStatus&added_relative[$index][relative_country]=$relativeCountry&added_relative[$index][relation_with_relative]=$relationWithrelative&added_relative[$index][relative_email_id]=$relativeEmailID&added_relative[$index][contact_of_relative]=$contactOfRelative&added_relative[$index][address_of_relative]=$addressOfRelative";
+}
+
+String registerNewUserEndpoint({
+  required name,
+  required phoneNumber,
+  required emailID,
+  required targetDestination,
+  required nearestSiecBranch,
+  required howDidYouHearAboutUS,
+}) {
+  return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS";
 }

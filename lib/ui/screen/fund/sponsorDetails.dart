@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class SponsorDetails extends StatelessWidget {
   SponsorDetails({super.key});
@@ -14,6 +17,10 @@ class SponsorDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar("title"),
+      drawer: CustomDrawer(
+        index: 7,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -37,6 +44,21 @@ class SponsorDetails extends StatelessWidget {
                   child: CustomAutoSizeTextMontserrat(
                     text: "Total Planned Amount = 2973535.90",
                     textColor: ThemeConstants.orangeColor,
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.to(FundPlan());
+                },
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Added Sponsor",
+                      textColor: ThemeConstants.bluecolor,
+                    ),
                   ),
                 ),
               ),

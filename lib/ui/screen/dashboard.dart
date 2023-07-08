@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/versioncontroller.dart';
+import 'package:studentpanel/ui/models/commonuploaddocument.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
@@ -674,9 +675,9 @@ class _DashBoardState extends State<DashBoard> {
                                               //         BookAnAppointment());
                                               // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
-                                              Get.to(FundPlan());
-                                              // Get.toNamed(
-                                              //     ProfileView.routeNamed);
+                                              // Get.to(FundPlan());
+                                              Get.toNamed(
+                                                  ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [
@@ -753,93 +754,91 @@ class _DashBoardState extends State<DashBoard> {
                                           InkWell(
                                             onTap: () {
                                               // todo
-                                              Get.toNamed(RegisterationMainView
-                                                  .routeNmaed);
-                                              // Get.to(CourseSearch());
+                                              // Get.toNamed(RegisterationMainView
+                                              // .routeNmaed);
+                                              Get.toNamed(
+                                                  UploadDocument.routeNamed);
                                             },
-                                            child: InkWell(
-                                              // color: Colors.amber,
-                                              child: Column(
-                                                children: [
-                                                  Showcase(
-                                                    targetBorderRadius:
-                                                        BorderRadius.circular(
-                                                            18.0),
-                                                    descTextStyle: TextStyle(
-                                                        color: ThemeConstants
-                                                            .whitecolor,
-                                                        fontSize: 18),
-                                                    tooltipBackgroundColor:
-                                                        ThemeConstants
-                                                            .bluecolor,
-                                                    overlayColor:
-                                                        const Color.fromARGB(
-                                                            183, 0, 0, 0),
-                                                    overlayOpacity: 0.8,
-                                                    tooltipPadding:
-                                                        const EdgeInsets.only(
-                                                            left: 5,
-                                                            right: 5,
-                                                            top: 10,
-                                                            bottom: 10),
-                                                    targetShapeBorder:
-                                                        const RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                    key: _three,
-                                                    description:
-                                                        "All documents required for your Application to be uploaded here.",
-                                                    child: Container(
-                                                        constraints:
-                                                            BoxConstraints(
-                                                                maxHeight: 70,
-                                                                maxWidth: 70),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(10),
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                                // border:
-                                                                //     Border.all(
-                                                                //   width: 1.2,
-                                                                //   color:
-                                                                //       ThemeConstants
-                                                                //           .yellow,
-                                                                // ),
-                                                                color: Color(
-                                                                    0xFFFEF6E6),
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                        child: svgImage(
-                                                            "upload_document",
-                                                            const Color(
-                                                                0xFFF8A300),
-                                                            80,
-                                                            80)),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 10),
-                                                    child: SizedBox(
-                                                      width: 100,
-                                                      child:
-                                                          CustomAutoSizeTextMontserrat(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: 13,
-                                                        text: "Upload document",
-                                                        textalingCentre: true,
-                                                      ),
+
+                                            // color: Colors.amber,
+                                            child: Column(
+                                              children: [
+                                                Showcase(
+                                                  targetBorderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  descTextStyle: TextStyle(
+                                                      color: ThemeConstants
+                                                          .whitecolor,
+                                                      fontSize: 18),
+                                                  tooltipBackgroundColor:
+                                                      ThemeConstants.bluecolor,
+                                                  overlayColor:
+                                                      const Color.fromARGB(
+                                                          183, 0, 0, 0),
+                                                  overlayOpacity: 0.8,
+                                                  tooltipPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 5,
+                                                          right: 5,
+                                                          top: 10,
+                                                          bottom: 10),
+                                                  targetShapeBorder:
+                                                      const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          20))),
+                                                  key: _three,
+                                                  description:
+                                                      "All documents required for your Application to be uploaded here.",
+                                                  child: Container(
+                                                      constraints:
+                                                          const BoxConstraints(
+                                                              maxHeight: 70,
+                                                              maxWidth: 70),
+                                                      padding: const EdgeInsets
+                                                          .all(10),
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                              // border:
+                                                              //     Border.all(
+                                                              //   width: 1.2,
+                                                              //   color:
+                                                              //       ThemeConstants
+                                                              //           .yellow,
+                                                              // ),
+                                                              color: Color(
+                                                                  0xFFFEF6E6),
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      child: svgImage(
+                                                          "upload_document",
+                                                          const Color(
+                                                              0xFFF8A300),
+                                                          80,
+                                                          80)),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10),
+                                                  child: SizedBox(
+                                                    width: 100,
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 13,
+                                                      text: "Upload document",
+                                                      textalingCentre: true,
                                                     ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                           //Course Search

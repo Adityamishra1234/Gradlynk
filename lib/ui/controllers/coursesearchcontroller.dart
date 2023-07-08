@@ -112,6 +112,12 @@ class CourseSearchController extends GetxController with StateMixin {
   bool careerOutcomeLoading = false;
 
   getCareerOutComes() async {
+    careerOutcomeDropDown = [];
+    careerOutcomeDropDownName = [];
+    careerOutcomeDropDownId = [];
+    // selectedcareerOutcomeDropDownName = null;
+    // selectedcareerOutcomeDropDownID = null;
+
     try {
       var res = await apiservices.getCareerOutcomes(selectedIndustryCode);
       if (res != null) {
@@ -120,11 +126,16 @@ class CourseSearchController extends GetxController with StateMixin {
 
         careerOutcomeDropDown = data;
 
+        careerOutcomeDropDownName.add('Please select');
+        careerOutcomeDropDownId.add('0');
+
         for (var i = 0; i < careerOutcomeDropDown.length; i++) {
           careerOutcomeDropDownName.add(careerOutcomeDropDown[i].careerOutcome);
           careerOutcomeDropDownId.add(careerOutcomeDropDown[i].id);
         }
         careerOutcomeLoading = true;
+        print(careerOutcomeDropDownName);
+
         update();
         // Map map = Map<String, dynamic>.from(res);
         // industriesList = map.values.toList();

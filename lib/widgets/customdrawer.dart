@@ -11,6 +11,7 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_dialog_box.dart';
@@ -582,6 +583,75 @@ class CustomDrawer extends StatelessWidget {
                                             const EdgeInsets.only(left: 10),
                                         child: CustomAutoSizeTextMontserrat(
                                           text: "Gradlynk Support",
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                          textColor: index == 6
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.blackcolor,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      // const Icon(Icons.keyboard_arrow_down),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(FundPlan());
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/totalFees.svg',
+                                        color: index == 7
+                                            ? ThemeConstants.bluecolor
+                                            : const Color.fromARGB(
+                                                255, 31, 31, 31),
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Plan your funds",
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                          textColor: index == 7
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.blackcolor,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      // const Icon(Icons.keyboard_arrow_down),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                  supportDialog(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/Calender icon.svg',
+                                        color: index == 6
+                                            ? ThemeConstants.bluecolor
+                                            : const Color.fromARGB(
+                                                255, 31, 31, 31),
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Mark Attendance",
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500,
                                         ),
