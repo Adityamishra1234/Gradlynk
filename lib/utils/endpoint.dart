@@ -172,6 +172,7 @@ class Endpoints {
   static String? otpValidationForRegister = "otp-validate-student?number_otp=";
 
   static String? resendOtpRegister = "otp-number-resend?mobile_number=";
+  static String? fundplannerDelete = "funds-planner-delete-results?id=";
 }
 
 getFundPlannersave(

@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/custombutton.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class SponsorDetails extends StatelessWidget {
@@ -21,49 +23,52 @@ class SponsorDetails extends StatelessWidget {
       drawer: CustomDrawer(
         index: 7,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10, top: 10),
-                child: Align(
+      body: controller.obx(
+        onLoading: getLoading(context),
+        (state) => SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 10),
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Sponsor Details",
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Align(
                     alignment: Alignment.topLeft,
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Sponsor Details",
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Total Planned Amount = 2973535.90",
-                    textColor: ThemeConstants.orangeColor,
-                  ),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Get.to(FundPlan());
-                },
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Added Sponsor",
-                      textColor: ThemeConstants.bluecolor,
+                      text: "Total Planned Amount = 2973535.90",
+                      textColor: ThemeConstants.orangeColor,
                     ),
                   ),
                 ),
-              ),
-              ...getlist(controller.fundplanner.fundPlannersData ?? [])
-            ],
+                InkWell(
+                  onTap: () {
+                    Get.to(FundPlan());
+                  },
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Added Sponsor",
+                        textColor: ThemeConstants.bluecolor,
+                      ),
+                    ),
+                  ),
+                ),
+                ...getlist(controller.fundplanner.fundPlannersData ?? [])
+              ],
+            ),
           ),
         ),
       ),
@@ -75,25 +80,26 @@ class SponsorDetails extends StatelessWidget {
 
     for (var i = 0; i < model.length; i++) {
       list.add(FundparameterSubWidget(
-        title: model[i].sponsorName,
-        index: i,
-        oddEven: i % 2 == 0,
-        sponsor_name: model[i].sponsorName,
-        sponsor_occupation: model[i].occupationName,
-        source_income: model[i].sourceOfIncomeName,
-        country: model[i].countryName,
-        name_finanical: model[i].fundTypeName,
-        fund_6_month_old: model[i].sixMonthOldFund == 1 ? "true" : "false",
-        amount: model[i].amount,
-        relationApplicant: model[i].relationApplicant,
-      ));
+          title: model[i].sponsorName,
+          index: i,
+          id: model[i].id,
+          oddEven: i % 2 == 0,
+          sponsor_name: model[i].sponsorName,
+          sponsor_occupation: model[i].occupationName,
+          source_income: model[i].sourceOfIncomeName,
+          country: model[i].countryName,
+          name_finanical: model[i].fundTypeName,
+          fund_6_month_old: model[i].sixMonthOldFund == 1 ? "true" : "false",
+          amount: model[i].amount,
+          relationApplicant: model[i].relationApplicant,
+          url: model[i].fundDocumentName));
     }
     return list;
   }
 }
 
 class FundparameterSubWidget extends StatelessWidget {
-  int index;
+  int? index, id;
   String? title;
   String? relationApplicant,
       sponsor_name,
@@ -103,12 +109,15 @@ class FundparameterSubWidget extends StatelessWidget {
       name_finanical,
       fund_6_month_old;
   bool? oddEven;
+  String? url;
 
   String? amount;
 
   FundparameterSubWidget(
       {Key? key,
+      this.id,
       required this.index,
+      this.url,
       this.oddEven,
       this.relationApplicant,
       this.sponsor_name,
@@ -148,25 +157,6 @@ class FundparameterSubWidget extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(15.0))),
             child: Column(
               children: [
-                InkWell(
-                  onTap: () {
-                    Get.find<FundPlannerController>().editButton(index);
-                  },
-                  child: Row(
-                    children: [
-                      Spacer(),
-                      CustomAutoSizeTextMontserrat(
-                        text: "Edit",
-                        textColor: ThemeConstants.bluecolor,
-                      ),
-                      Icon(
-                        Icons.edit_square,
-                        size: 20,
-                        color: ThemeConstants.bluecolor,
-                      )
-                    ],
-                  ),
-                ),
                 FundParameterWidget(
                   text1: "Relationship with Applicant",
                   text2: relationApplicant ?? "",
@@ -209,6 +199,35 @@ class FundparameterSubWidget extends StatelessWidget {
                   fw: FontWeight.w700,
                   text1: "Amount",
                   text2: amount ?? "",
+                ),
+                Row(
+                  children: [
+                    const Spacer(),
+                    CustomButton(
+                      text: "View Document",
+                      onPressed: () {
+                        Get.find<FundPlannerController>()
+                            .getViewDocument(url ?? "");
+                      },
+                      backgroundColor: ThemeConstants.GreenColor,
+                    ),
+                    CustomButton(
+                      text: "Delete",
+                      onPressed: () {
+                        Get.find<FundPlannerController>()
+                            .getDeleteFund(id.toString());
+                      },
+                      backgroundColor: ThemeConstants.orangeColor,
+                    ),
+                    CustomButton(
+                      text: "Edit",
+                      onPressed: () {
+                        Get.find<FundPlannerController>()
+                            .editButton(index ?? 0);
+                      },
+                      backgroundColor: ThemeConstants.bluecolor,
+                    ),
+                  ],
                 ),
               ],
             ),

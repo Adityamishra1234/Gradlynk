@@ -279,6 +279,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                           const SizedBox(
                             width: 25,
                           ),
+
                           InkWell(
                               onTap: () {
                                 Get.toNamed(Fundrequirement.routenamed,

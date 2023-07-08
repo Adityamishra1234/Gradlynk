@@ -350,4 +350,11 @@ class FundPlannerController extends GetxController with StateMixin {
       ));
     }
   }
+
+  getDeleteFund(String id) async {
+    var res = await apiServices.getfundPlanDelete(id);
+    if (res != null) {
+      getFundPlannerData();
+    }
+  }
 }

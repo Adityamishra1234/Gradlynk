@@ -2037,4 +2037,16 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  getfundPlanDelete(String id) async {
+    try {
+      var response = await httpPostNullBodyWithNullData(
+          "${Endpoints.baseUrl}${Endpoints.fundplannerDelete}$id");
+      var jsondata = json.decode(response);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }
