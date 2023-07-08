@@ -627,8 +627,7 @@ class _LoginCopyState extends State<LoginCopy> {
 
                                   InkWell(
                                     onTap: () {
-                                      Get.toNamed(
-                                          RegisterationMainView.routeNmaed);
+                                      Get.to(RegisterationMainView());
                                     },
                                     child: Container(
                                       child: CustomRichTextWidget(

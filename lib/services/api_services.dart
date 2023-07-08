@@ -87,7 +87,7 @@ class ApiServices extends StudentPanelBase implements api {
   getCountry(String baseUrl, String endpoint) async {
     var response;
     try {
-      response = await httpPostNullBody(baseUrl + endpoint);
+      response = await httpPostNullBody(baseUrl + endpoint, login: true);
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
@@ -890,6 +890,23 @@ class ApiServices extends StudentPanelBase implements api {
     var response;
     try {
       response = await httpGet(baseUrl + endpoints);
+
+      var jsondata = json.decode(response);
+      return jsondata;
+    } catch (e) {
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  dropDownGetWithoutLogin(String baseUrl, String endpoints) async {
+    var response;
+    try {
+      response = await httpGetWithoutLogin(baseUrl + endpoints);
 
       var jsondata = json.decode(response);
       return jsondata;
@@ -1801,13 +1818,17 @@ class ApiServices extends StudentPanelBase implements api {
       String url =
           '${Endpoints.baseUrl}${Endpoints.getCarrerOutcomeByProfession}${job_industry_id}';
 
-      var res = await httpPostNullBody(url);
+      var res = await httpPostNullBody(url, handele404Error: true);
 
-      var jsondata = json.decode(res);
+      if (res == 'no data found') {
+        return false;
+      } else {
+        var jsondata = json.decode(res);
 
-      // print(res);
+        // print(res);
 
-      return jsondata;
+        return jsondata;
+      }
     } catch (e) {
       throw UnimplementedError();
     }
@@ -1882,7 +1903,7 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var endpoint = '${Endpoints.baseUrl}$endPoint';
       // print(endpoint);
-      var res = await httpPostNullBody(endpoint);
+      var res = await httpPostNullBody(endpoint, login: true);
       var jsondata = json.decode(res);
       // print(jsondata);
       return jsondata;
@@ -1898,7 +1919,7 @@ class ApiServices extends StudentPanelBase implements api {
   getAllBranches() async {
     try {
       String endPoint = '${Endpoints.baseUrl}${Endpoints.getAllBranches}';
-      var res = await httpGet(endPoint);
+      var res = await httpGetWithoutLogin(endPoint);
       var jsondata = json.decode(res);
       return jsondata;
     } catch (e) {
@@ -1914,11 +1935,9 @@ class ApiServices extends StudentPanelBase implements api {
       String endPoint =
           '${Endpoints.baseUrl}${Endpoints.otpValidationForRegister}$otp&mobile_number=$phoneNumber';
 
-      var res = await httpPostNullBody(endPoint);
+      var res = await httpPostNullBody(endPoint, login: true);
       var jsondata = json.decode(res);
 
-
-      
       return jsondata;
     } catch (e) {
       throw UnimplementedError();
@@ -1931,7 +1950,7 @@ class ApiServices extends StudentPanelBase implements api {
       String endPoint =
           '${Endpoints.baseUrl}${Endpoints.resendOtpRegister}$phoneNumber';
 
-      var res = await httpPostNullBody(endPoint);
+      var res = await httpPostNullBody(endPoint, login: true);
       var jsondata = json.decode(res);
       return jsondata;
     } catch (e) {

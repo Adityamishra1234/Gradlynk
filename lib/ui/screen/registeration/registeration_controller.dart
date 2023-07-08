@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/logincontroller.dart';
+import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/login.dart';
@@ -60,8 +63,8 @@ class RegisterationCopntroller extends GetxController with StateMixin {
   bool loadingLeadSources = false;
   getLeadSources() async {
     loadingLeadSources = false;
-    var res =
-        await api.dropDownGet(Endpoints.baseUrl!, Endpoints.getAllLeadSources!);
+    var res = await api.dropDownGetWithoutLogin(
+        Endpoints.baseUrl!, Endpoints.getAllLeadSources!);
 
     if (res != null) {
       Map map = Map<String, String>.from(res);
@@ -132,20 +135,37 @@ class RegisterationCopntroller extends GetxController with StateMixin {
     return returnData;
   }
 
+  LoginModel? model;
   verifyOtp(String otp) async {
     var res =
         await api.otpValidationInRegister(phoneNumberController.text, otp);
-    if (res['status'] == true) {
-      Get.defaultDialog(
-          content: Container(
-        child: Column(children: [
-          Text('Registeration Successfull'),
-          Text('Redirecting to the login page'),
-        ]),
-      ));
-      await Future.delayed(Duration(seconds: 5));
 
-      Get.to(const LoginCopy());
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (res['status'] == true) {
+      // Get.defaultDialog(
+      //     content: Container(
+      //   child: Column(children: [
+      //     Text('Registeration Successfull'),
+      //     Text('Redirecting to the login page'),
+      //   ]),
+      // ));
+      return getToast(res['message']);
+    }
+    // await Future.delayed(Duration(seconds: 5));
+
+    if (res != null) {
+      // model = res;
+      if (prefs.getBool("showcaseEnable") == false ||
+          prefs.getBool("showcaseEnable") == null) {
+        prefs.setBool("showcaseEnable", false);
+      }
+
+      prefs.setString("phonenumber", model!.user!.mobile.toString());
+      prefs.setString("token", model!.token.toString());
+      prefs.setString("id", model!.user!.id.toString());
+      change(null, status: RxStatus.success());
+
+      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
     } else {
       getToast(res['message']);
     }

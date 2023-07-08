@@ -592,6 +592,70 @@ class CustomDrawer extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                  supportDialog(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/totalFees.svg',
+                                        color: index == 6
+                                            ? ThemeConstants.bluecolor
+                                            : const Color.fromARGB(
+                                                255, 31, 31, 31),
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Plan your funds",
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      // const Icon(Icons.keyboard_arrow_down),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                  supportDialog(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/Calender icon.svg',
+                                        color: index == 6
+                                            ? ThemeConstants.bluecolor
+                                            : const Color.fromARGB(
+                                                255, 31, 31, 31),
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Mark Attendance",
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      // const Icon(Icons.keyboard_arrow_down),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ]),
                       ),
 

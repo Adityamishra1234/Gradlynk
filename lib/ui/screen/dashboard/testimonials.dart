@@ -43,12 +43,17 @@ class TestiMonial extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         margin: const EdgeInsets.all(10.0),
                         decoration: BoxDecoration(
-                            color: ThemeConstants.lightblueColor,
+                            color: index % 2 == 0
+                                ? ThemeConstants.lightblueColor
+                                : ThemeConstants.ultraLightYellow,
                             // gradient: LinearGradient(
                             //     colors: [Color(0xFF3E66DD), Color(0xFF6554CF)]),
                             // color: ThemeConstants.GreenColor,
                             border: Border.all(
-                                width: 0.8, color: ThemeConstants.bluecolor),
+                                width: 0.8,
+                                color: index % 2 == 0
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.yellow),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30.0))),
                         child: Row(
@@ -79,14 +84,17 @@ class TestiMonial extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                       text: "${comment}...."),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
+                                const Spacer(),
                                 SizedBox(
                                   width: 200,
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "${testimonialsList[index].name}",
-                                    textColor: ThemeConstants.bluecolor,
+                                    textColor: index % 2 == 0
+                                        ? ThemeConstants.bluecolor
+                                        : ThemeConstants.yellow,
                                     fontSize: 13,
                                     // textColor: ThemeConstants.bluecolor,
                                     fontWeight: FontWeight.bold,

@@ -476,8 +476,7 @@ class RegisterationFormWidget extends StatelessWidget {
       } else {
         if (controller.branchListName[i] == data) {
           controller.selectedBranchName = data;
-          controller.selectedBranchCode =
-              controller.countryListID[i].toString();
+          controller.selectedBranchCode = controller.branchListID[i];
 
           // controller.getCareerOutComes();
         }
