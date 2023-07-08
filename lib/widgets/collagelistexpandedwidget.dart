@@ -822,13 +822,14 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 runAlignment: WrapAlignment.center,
                 spacing: 20,
                 children: [
-                  if (widget.previousRoute != ReviewShortList.routeNamed)
-                    // SpacerFlex(),
-                    // if (widget.iscompare == true) const Spacer(),
-                    if (widget.iscompare == true) AddedButtonShow(),
+                  // if (widget.previousRoute != ReviewShortList.routeNamed)
+                  // SpacerFlex(),
+                  // if (widget.iscompare == true) const Spacer(),
+
+                  if (widget.iscompare == true) AddedButtonShow(),
                   // if (widget.iscompare == true) const Spacer(),
                   // const Spacer(),
-                  if (widget.previousRoute != FinalShortList.routeNamed)
+                  if (widget.previousRoute == FinalShortList.routeNamed)
                     FundCalculateButton(),
 
                   if (widget.previousRoute != FinalShortList.routeNamed)

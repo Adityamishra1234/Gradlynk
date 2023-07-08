@@ -18,6 +18,7 @@ import 'package:studentpanel/ui/screen/dashboard/testimonials.dart';
 import 'package:studentpanel/ui/screen/dashboard/youtube_video_section.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
 import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
@@ -755,8 +756,10 @@ class _DashBoardState extends State<DashBoard> {
                                           InkWell(
                                             onTap: () {
                                               // todo
-                                              Get.toNamed(RegisterationMainView
-                                                  .routeNmaed);
+                                              Get.toNamed(LetsGetStartedMainView
+                                                      .routeNamed
+                                                  // .routeNmaed
+                                                  );
                                               // Get.to(CourseSearch());
                                             },
                                             child: InkWell(

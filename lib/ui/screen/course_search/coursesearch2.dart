@@ -183,11 +183,11 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     CustomDropDownSingle(
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
-                          controller.loadingcountryFromContientName.value,
+                          controller.loadingcountryFromContientName,
                           controller.selectedCountryNameFromContinent,
                           controller.countryFromContientName),
                       initialSelectedValue: getSelectedDropDown(
-                        controller.loadingcountryFromContientName.value,
+                        controller.loadingcountryFromContientName,
                         controller.selectedCountryNameFromContinent,
                         controller.countryFromContientName,
                       ),
@@ -842,7 +842,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                                 9998 ||
                                             controller.selectedCountry.id ==
                                                 9999) &&
-                                        controller.selectedCountry.id == null) {
+                                        controller
+                                                .selectedCountryCodeFromContinent ==
+                                            null) {
                                       getToast(
                                           SnackBarConstants.courseSearchPart1!);
                                     } else if (controller.courseSearchType ==
@@ -1009,6 +1011,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
           controller.selectedCountryNameFromContinent = data;
           controller.selectedCountryCodeFromContinent =
               controller.countryFromContientId[i];
+
+          controller.selectedCountry.id =
+              int.parse(controller.countryFromContientId[i]);
           // controller.getState(controller.selectCountryCode!);
         }
       }

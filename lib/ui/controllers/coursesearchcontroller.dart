@@ -207,7 +207,7 @@ class CourseSearchController extends GetxController with StateMixin {
     }
   }
 
-  RxBool loadingcountryFromContientName = false.obs;
+  bool loadingcountryFromContientName = false;
   var countryFromContientName = [];
   String? selectedCountryNameFromContinent = 'Select Country';
   String? selectedCountryCodeFromContinent = '0';
@@ -220,14 +220,19 @@ class CourseSearchController extends GetxController with StateMixin {
 
     var res = await apiservices.getCountriesOfContinent(continentID);
     Map map = Map<String, dynamic>.from(res);
+
+    selectedCountryNameFromContinent = 'Select Country';
+    selectedCountryCodeFromContinent = null;
     countryFromContientName.add("Select Country");
     countryFromContientId.add(0);
     countryFromContientName.addAll(map.values.toList());
     countryFromContientId.addAll(map.keys.toList());
 
+    selectedCountry.id == null;
+
     print(countryFromContientName);
     print(countryFromContientId);
-    loadingcountryFromContientName.value = true;
+    loadingcountryFromContientName = true;
     showCountryFromContinentDropDown = true;
     update();
   }
