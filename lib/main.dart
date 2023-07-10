@@ -126,6 +126,12 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       // Create Route
       getPages: [
+        // GetPage(
+        //   name: "/",
+        //   page: () => LetsGetStartedMainView(),
+        // ),
+
+        ///todo
         GetPage(
           name: "/",
           page: () => WelcomeView(),

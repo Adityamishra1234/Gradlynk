@@ -481,6 +481,7 @@ class CustomIconTextTogetherWithDecorator extends StatelessWidget {
   double? fontSize;
   FontWeight? fontWeight;
   Color? textColor;
+  bool? iconBeforeText;
 
   CustomIconTextTogetherWithDecorator(
       {Key? key,
@@ -491,6 +492,7 @@ class CustomIconTextTogetherWithDecorator extends StatelessWidget {
       this.mandatory,
       this.fontSize,
       this.textColor,
+      this.iconBeforeText,
       this.fontWeight,
       this.underline})
       : super(key: key);
@@ -499,7 +501,7 @@ class CustomIconTextTogetherWithDecorator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        iconData,
+        iconBeforeText == true ? iconData : SizedBox.shrink(),
         const SizedBox(
           width: 5,
         ),
@@ -514,6 +516,7 @@ class CustomIconTextTogetherWithDecorator extends StatelessWidget {
             textColor: textColor,
           ),
         ),
+        iconBeforeText == false ? iconData : SizedBox.shrink(),
       ],
     );
   }
@@ -525,11 +528,13 @@ class CustomIconTextTogether extends StatelessWidget {
   Color? color;
   Color? Bgcolor;
   double? textSize;
+  bool? iconBeforeText;
 
   FontWeight? fontWeight;
 
   CustomIconTextTogether(
       {super.key,
+      this.iconBeforeText = true,
       this.fontWeight,
       this.textSize,
       this.Bgcolor,
@@ -550,7 +555,10 @@ class CustomIconTextTogether extends StatelessWidget {
           border: Border.all(width: 1, color: color ?? Colors.transparent)),
       child: Row(
         children: [
-          iconData ?? const SizedBox.shrink(),
+          iconBeforeText! == true
+              ? iconData ?? SizedBox.shrink()
+              : SizedBox.shrink(),
+          // iconData ?? const SizedBox.shrink(),
           const SizedBox(
             width: 5,
           ),
@@ -560,6 +568,9 @@ class CustomIconTextTogether extends StatelessWidget {
             fontSize: textSize ?? 14.00,
             fontWeight: fontWeight,
           ),
+          iconBeforeText == false
+              ? iconData ?? SizedBox.shrink()
+              : SizedBox.shrink(),
         ],
       ),
     );

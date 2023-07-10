@@ -64,6 +64,8 @@ class ThemeConstants {
   static Color bluechatColor = const Color(0xFFD9E6FF);
   static Color firstColor = const Color(0xffff9900);
 
+  static Color shadowColor = Color.fromARGB(64, 0, 0, 0);
+
   static Color lightOrangeColor = const Color(0xFFFFEDE5);
   static Color skinColour = const Color(0xFFF8F8F8);
 
