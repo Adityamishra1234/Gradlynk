@@ -109,7 +109,7 @@ class LetsGetStartedMainView extends StatelessWidget {
                                 width: 20,
                               ),
                               CustomIconTextTogether(
-                                iconBeforeText: false,
+                                // iconBeforeText: false,
                                 text: 'Next',
                                 Bgcolor: ThemeConstants.whitecolor,
                                 color: ThemeConstants.bluecolor,
@@ -187,7 +187,7 @@ class LetsGetStartedMainView extends StatelessWidget {
                                 width: 20,
                               ),
                               CustomIconTextTogether(
-                                iconBeforeText: false,
+                                // iconBeforeText: false,
                                 text: 'Next',
                                 Bgcolor: ThemeConstants.whitecolor,
                                 color: ThemeConstants.bluecolor,

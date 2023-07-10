@@ -102,6 +102,8 @@ class RegisterationFormWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         child: CustomTextField(
+fieldFontWeight: FontWeight.w400,
+                          hintFontWeight: FontWeight.w500,
                           borderRadius: 10,
 
                           hint: '',
@@ -146,6 +148,7 @@ class RegisterationFormWidget extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 7),
                       child: CustomTextField(
+                        fieldFontWeight: FontWeight.w400,
                         borderRadius: 10,
                         hint: '',
                         readOrEdit: controller.showOtp,
@@ -174,6 +177,7 @@ class RegisterationFormWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         child: CustomTextField(
+                          fieldFontWeight: FontWeight.w400,
                           borderRadius: 10,
                           backgroundCOlour: ThemeConstants.ultraLightgreyColor2,
 
