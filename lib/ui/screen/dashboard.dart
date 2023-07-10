@@ -19,6 +19,7 @@ import 'package:studentpanel/ui/screen/dashboard/testimonials.dart';
 import 'package:studentpanel/ui/screen/dashboard/youtube_video_section.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/code_screen.dart';
 import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
@@ -675,9 +676,9 @@ class _DashBoardState extends State<DashBoard> {
                                               //         BookAnAppointment());
                                               // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
-                                              // Get.to(FundPlan());
-                                              Get.toNamed(
-                                                  ProfileView.routeNamed);
+                                              Get.to(CodeScreen());
+                                              // Get.toNamed(
+                                              //     ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [
