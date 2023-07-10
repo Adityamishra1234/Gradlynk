@@ -102,6 +102,8 @@ class RegisterationFormWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         child: CustomTextField(
+fieldFontWeight: FontWeight.w400,
+                          hintFontWeight: FontWeight.w500,
                           borderRadius: 10,
 
                           hint: '',
@@ -146,6 +148,7 @@ class RegisterationFormWidget extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 7),
                       child: CustomTextField(
+                        fieldFontWeight: FontWeight.w400,
                         borderRadius: 10,
                         hint: '',
                         readOrEdit: controller.showOtp,
@@ -174,6 +177,7 @@ class RegisterationFormWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         child: CustomTextField(
+                          fieldFontWeight: FontWeight.w400,
                           borderRadius: 10,
                           backgroundCOlour: ThemeConstants.ultraLightgreyColor2,
 
@@ -390,21 +394,47 @@ class RegisterationFormWidget extends StatelessWidget {
                               return null;
                             }),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      InkWell(
-                        onTap: () {
-                          controller.resendOtp();
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(left: 15),
-                          alignment: Alignment.bottomLeft,
-                          child: CustomAutoSizeTextMontserrat(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 8,
-                            text: 'Resend OTP',
-                            textColor: ThemeConstants.bluecolor,
+                      // InkWell(
+                      //   onTap: () {
+                      //     controller.startResend();
+                      //   },
+                      //   child: Container(
+                      //     padding: EdgeInsets.only(left: 15),
+                      //     alignment: Alignment.bottomLeft,
+                      //     child: CustomAutoSizeTextMontserrat(
+                      //       fontWeight: FontWeight.w500,
+                      //       fontSize: 8,
+                      //       text: 'Resend OTP',
+                      //       textColor: ThemeConstants.bluecolor,
+                      //     ),
+                      //   ),
+                      // ),
+                      Obx(
+                        () => GestureDetector(
+                          onTap: () {
+                            if (controller.resendOTP == 1)
+                              controller.startResend();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 20),
+                            child: Container(
+                              width: double.infinity,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                " ${controller.timer.value == 0 ? 'Resend OTP' : 'Wait for ${controller.timer.value}'}",
+                                style: TextStyle(
+                                    fontWeight: controller.resendOTP == 1
+                                        ? FontWeight.w500
+                                        : FontWeight.bold,
+                                    color: controller.resendOTP == 1
+                                        ? ThemeConstants.GreenColor
+                                        : ThemeConstants.TextColor),
+                              ),
+                            ),
                           ),
                         ),
                       ),

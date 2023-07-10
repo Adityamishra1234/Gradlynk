@@ -47,7 +47,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       branchListName.add("Select Branch");
       branchListID.add(0);
       branchListName.addAll(map.values.toList());
-      branchListID.addAll(map.values.toList());
+      branchListID.addAll(map.keys.toList());
 
       // branchListID = map.keys.toList();
       loadingBranches = true;
@@ -72,7 +72,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       leadSourcesListID.add(0);
 
       leadSourcesListName.addAll(map.values.toList());
-      leadSourcesListID.addAll(map.values.toList());
+      leadSourcesListID.addAll(map.keys.toList());
       // leadSourcesListName = map.values.toList();
       // leadSourcesListID = map.keys.toList();
       loadingLeadSources = true;
@@ -118,7 +118,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
         emailID: emailIdController.text,
         targetDestination: selectedCountryID,
         nearestSiecBranch: selectedBranchCode,
-        howDidYouHearAboutUS: selectedBranchCode);
+        howDidYouHearAboutUS: selectedLeadSourcesCode);
     var res = await api.registerNewUser(endpoint);
     var status = res['status'];
     var returnData;
@@ -126,6 +126,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       showOtp = true;
 
       returnData = true;
+      startTimer();
     } else {
       returnData = false;
       getToast(res['message']);
@@ -137,11 +138,13 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
   LoginModel? model;
   verifyOtp(String otp) async {
-    var res =
-        await api.otpValidationInRegister(phoneNumberController.text, otp);
+    var res = await api.otpValidationInRegister(
+      phoneNumberController.text,
+      otp,
+    );
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (res['status'] == true) {
+    if (res['status'] == false) {
       // Get.defaultDialog(
       //     content: Container(
       //   child: Column(children: [
@@ -149,31 +152,55 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       //     Text('Redirecting to the login page'),
       //   ]),
       // ));
-      return getToast(res['message']);
-    }
-    // await Future.delayed(Duration(seconds: 5));
-
-    if (res != null) {
+      getToast(res['message']);
+    } else if (res['status'] == true) {
       // model = res;
       if (prefs.getBool("showcaseEnable") == false ||
           prefs.getBool("showcaseEnable") == null) {
         prefs.setBool("showcaseEnable", false);
+
+        prefs.setString("phonenumber", phoneNumberController.text);
+        // prefs.setString("token", model!.token.toString());
+        // prefs.setString("id", model!.user!.id.toString());
+        change(null, status: RxStatus.success());
+
+        Get.offAllNamed(DashBoard.routeNamed, arguments: true);
+      } else {
+        getToast(res['message']);
       }
-
-      prefs.setString("phonenumber", model!.user!.mobile.toString());
-      prefs.setString("token", model!.token.toString());
-      prefs.setString("id", model!.user!.id.toString());
-      change(null, status: RxStatus.success());
-
-      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
-    } else {
-      getToast(res['message']);
     }
+    // await Future.delayed(Duration(seconds: 5));
   }
 
-  resendOtp() async {
-    var res = await api.resendOtpRegister(phoneNumberController.text);
+  // var resendOtpTimer = 0;
+  int resendOTP = 1;
 
-    getToast(res['message']);
+  startResend() async {
+    // var res2 = await api.getOTP(email);
+    // var res = await api.resendOtpRegister(phoneNumberController.text);
+
+    // getToast(res['message']);
+    timer.value = 120;
+    startTimer();
+    update();
+  }
+
+  RxInt timer = 120.obs;
+  startTimer() async {
+    resendOTP = 2;
+
+    for (var i = 0; i < 120; i++) {
+      await Future.delayed(Duration(seconds: 1));
+
+      if (timer.value != 0) {
+        timer.value = timer.value - 1;
+        print(timer.value);
+      }
+    }
+
+    resendOTP = 1;
+    update();
+
+    return null;
   }
 }

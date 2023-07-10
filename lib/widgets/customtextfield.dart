@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
@@ -12,9 +13,11 @@ class CustomTextField extends StatelessWidget {
   Color? backgroundCOlour;
   FontWeight? hintFontWeight;
   double? borderRadius;
+  FontWeight? fieldFontWeight;
   bool? forDropDown;
   CustomTextField({
     Key? key,
+    this.fieldFontWeight,
     this.borderRadius,
     this.hintFontWeight,
     this.forDropDown = true,
@@ -36,7 +39,10 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         scrollPadding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-        style: ThemeConstants.montserrattextstyle2,
+        style: GoogleFonts.montserrat(
+        fontWeight: fieldFontWeight ?? FontWeight.w600,
+      
+      ),
         readOnly: readOrEdit == null ? false : readOrEdit!,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),

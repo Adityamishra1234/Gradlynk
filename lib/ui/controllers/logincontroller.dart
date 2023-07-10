@@ -141,6 +141,7 @@ class LoginController extends GetxController with StateMixin {
     }
 
     var res = await services.phonenumberVerfiy(d);
+    
 
     if (res == true) {
       otpEnable.value = true;

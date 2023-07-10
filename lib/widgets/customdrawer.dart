@@ -6,7 +6,6 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/drawerController.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
-import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';

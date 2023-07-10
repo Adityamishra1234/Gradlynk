@@ -6,9 +6,11 @@ import 'package:studentpanel/ui/screen/fund/controller/fundrequirementcontroller
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/button/enableButton.dart';
 
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customtextfield.dart';
 
 class Fundrequirement extends StatelessWidget {
@@ -21,6 +23,8 @@ class Fundrequirement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar("title"),
+      drawer: CustomDrawer(),
       body: SafeArea(
         child: controller.obx(
           onLoading: getLoading(context),

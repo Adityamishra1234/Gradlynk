@@ -48,7 +48,7 @@ class FundPlannerController extends GetxController with StateMixin {
   int? countryId, name_FinancialID, selectedSourceID, occupationIDSelect;
   bool? fund_6_month_old = false;
 
-  String selectedRelationship = '';
+  String? selectedRelationship = '';
   TextEditingController nameOfThePerson = TextEditingController();
   // TextEditingController occupationOfSponsor = TextEditingController();
   // TextEditingController nameOfTheFinnacialIntitution = TextEditingController();
@@ -178,7 +178,7 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   uploadDocumentment() async {
-    if (selectedRelationship.isEmpty) {
+    if (selectedRelationship != null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
       getToast('Kindly specify sponsor name');
@@ -200,7 +200,7 @@ class FundPlannerController extends GetxController with StateMixin {
           id: 0.toString(),
           enq_id: Get.find<BaseController>().model1.id.toString(),
           name_of_sponsor: nameOfThePerson.value.text,
-          relationship: selectedRelationship,
+          relationship: selectedRelationship ?? "",
           bank_country: countryId.toString(),
           id_of_financial_institution: selectedBankCode ?? '',
           type_of_funds: selectedFundTypeId,
@@ -221,7 +221,7 @@ class FundPlannerController extends GetxController with StateMixin {
   submitFundPlannerData() async {
     //TODO
 
-    if (selectedRelationship.isEmpty) {
+    if (selectedRelationship != null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
       getToast('Kindly specify sponsor name');
@@ -247,7 +247,7 @@ class FundPlannerController extends GetxController with StateMixin {
             id: 0.toString(),
             enq_id: enq_id,
             name_of_sponsor: nameOfThePerson.value.text,
-            relationship: selectedRelationship,
+            relationship: selectedRelationship ?? "",
             bank_country: selectedCountryCode.toString(),
             id_of_financial_institution: selectedBankCode ?? '',
             type_of_funds: selectedFundTypeId,
@@ -356,5 +356,19 @@ class FundPlannerController extends GetxController with StateMixin {
     if (res != null) {
       getFundPlannerData();
     }
+  }
+
+  deleteFilledFields() {
+    selectedRelationship = null;
+    nameOfThePerson.text = "";
+    occupationNameSelect = null;
+    occupationIDSelect = null;
+    selectedSourceOfIncome == null;
+    selectedSourceID = null;
+    countryId = null;
+    countrySelected = "";
+    selectedFundTypeName = "";
+    amountData.text = "";
+    filepath = "";
   }
 }

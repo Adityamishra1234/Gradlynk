@@ -158,7 +158,7 @@ class CourseShortListController extends GetxController with StateMixin {
             "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
       } else {
         endpoint =
-            "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}&enq_id=$enqId&profession=$profession&career_outcome=$career_outcome";
+            "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$state${Endpoints.courseSearchPart4!}$city&enq_id=$enqId&profession=$profession&career_outcome=$career_outcome";
       }
 
       print(endpoint);

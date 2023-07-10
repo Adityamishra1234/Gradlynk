@@ -77,7 +77,7 @@ class TestiMonial extends StatelessWidget {
                                 SizedBox(
                                   width: 190,
                                   child: CustomAutoSizeTextMontserrat(
-                                      textColor: ThemeConstants.whitecolor,
+                                      textColor: ThemeConstants.blackcolor,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
                                       text: "${comment}...."),

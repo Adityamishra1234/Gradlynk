@@ -1,3 +1,5 @@
+
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -79,9 +81,66 @@ class CourseSearchController extends GetxController with StateMixin {
 
   List industriesList = [];
   List industriesCode = [];
-  String? selectedIndustryName = '';
+  String? selectedIndustryName = 'Select Profession';
   String? selectedIndustryCode = '';
   bool loadingIndustries = false;
+
+
+clearAll(){
+  change(null , status: RxStatus.loading());
+
+  Get.delete();
+
+
+   // controller.refresh();
+                                    // controller.onDelete();
+                                    // Selected Code
+
+
+selectedCountryCodeFromContinent = null;
+
+// selectedCountry.id = null;
+
+
+                                    selectedCountryNameFromContinent = null;
+                                   selectStateCode = null;
+                                   selectCityCode = null;
+                                   selectCourseBoardFieldCode =
+                                        null;
+                                   selectCountryCode = null;
+                                   selectCourseNarrowFieldCode =
+                                        null;
+                                   selectCourseLevelCode = null;
+                                    //Selected Name
+                                   selectCountryName = null;
+                                   selectStateName = null;
+                                   selectCityName = null;
+                                   selectCourseBoardFieldName =
+                                        null;
+                                   selectCourseNarrowFieldName =
+                                        null;
+                                   selectCourseLevelName = null;
+                                    // Dropdown model
+                                   stateList = [];
+                                   stateCode = [];
+                                   cityList = [];
+                                   cityCode = [];
+                                   courseNarrowList = [];
+                                   courseNarrowCode = [];
+                                    //loading
+                                   loadingState.value = false;
+                                   loadingCity.value = false;
+                                   loadingCourseNarrowField.value =
+                                        false;
+                                   update();
+
+  change(null , status: RxStatus.success());
+
+
+
+
+
+}
 
   getIndustries() async {
     try {
@@ -89,9 +148,10 @@ class CourseSearchController extends GetxController with StateMixin {
           Endpoints.baseUrl!, Endpoints.jobInstitute!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        industriesList = map.values.toList();
-        industriesCode = map.keys.toList();
+        industriesList.addAll(map.values.toList());
+        industriesCode.addAll(map.keys.toList());
         loadingIndustries = true;
+        print(industriesList);
         update();
       }
     } catch (e) {
@@ -207,7 +267,7 @@ class CourseSearchController extends GetxController with StateMixin {
     }
   }
 
-  RxBool loadingcountryFromContientName = false.obs;
+  bool loadingcountryFromContientName = false;
   var countryFromContientName = [];
   String? selectedCountryNameFromContinent = 'Select Country';
   String? selectedCountryCodeFromContinent = '0';
@@ -220,14 +280,19 @@ class CourseSearchController extends GetxController with StateMixin {
 
     var res = await apiservices.getCountriesOfContinent(continentID);
     Map map = Map<String, dynamic>.from(res);
+
+    selectedCountryNameFromContinent = 'Select Country';
+    selectedCountryCodeFromContinent = null;
     countryFromContientName.add("Select Country");
     countryFromContientId.add(0);
     countryFromContientName.addAll(map.values.toList());
     countryFromContientId.addAll(map.keys.toList());
 
+    selectedCountry.id == null;
+
     print(countryFromContientName);
     print(countryFromContientId);
-    loadingcountryFromContientName.value = true;
+    loadingcountryFromContientName = true;
     showCountryFromContinentDropDown = true;
     update();
   }

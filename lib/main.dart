@@ -25,6 +25,7 @@ import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
+import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
 import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
@@ -139,10 +140,14 @@ class _MyAppState extends State<MyApp> {
         ),
 
         GetPage(
+          name: LetsGetStartedMainView.routeNamed,
+          page: () => LetsGetStartedMainView(),
+        ),
+
+        GetPage(
           name: Fundrequirement.routenamed,
           page: () => Fundrequirement(),
         ),
-
         // GetPage(
         //   name: "/",
         //   page: () => LoginCopy(),

@@ -477,25 +477,28 @@ class FundPlan extends StatelessWidget {
                               const SizedBox(
                                 height: 10,
                               ),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0.0,
-                                    primary:
-                                        ThemeConstants.bluecolor, // background
-                                    onPrimary:
-                                        ThemeConstants.bluecolor, // foreground
-                                  ),
-                                  onPressed: () {
-                                    if (controller.filepath.isNotEmpty) {
-                                      controller.uploadDocumentment();
-                                    } else {
-                                      controller.submitFundPlannerData();
-                                    }
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Submit",
-                                    textColor: ThemeConstants.whitecolor,
-                                  )),
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      elevation: 0.0,
+                                      primary: ThemeConstants
+                                          .bluecolor, // background
+                                      onPrimary: ThemeConstants
+                                          .bluecolor, // foreground
+                                    ),
+                                    onPressed: () {
+                                      if (controller.filepath.isNotEmpty) {
+                                        controller.uploadDocumentment();
+                                      } else {
+                                        controller.submitFundPlannerData();
+                                      }
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Submit",
+                                      textColor: ThemeConstants.whitecolor,
+                                    )),
+                              ),
                             ],
                           ),
                         ),

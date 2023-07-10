@@ -47,7 +47,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
     if (displayMobileLayout == true) {
       width = width;
     }
-    return Scaffold(
+    return  Scaffold(
       appBar: const CustomAppBar("title"),
       drawer: displayMobileLayout == false
           ? CustomDrawer(
@@ -58,6 +58,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
           height: MediaQuery.of(context).size.height,
           width: width,
           child: controller.obx(
+            onLoading: getLoading(context),
             (state) => SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -183,11 +184,11 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     CustomDropDownSingle(
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
-                          controller.loadingcountryFromContientName.value,
+                          controller.loadingcountryFromContientName,
                           controller.selectedCountryNameFromContinent,
                           controller.countryFromContientName),
                       initialSelectedValue: getSelectedDropDown(
-                        controller.loadingcountryFromContientName.value,
+                        controller.loadingcountryFromContientName,
                         controller.selectedCountryNameFromContinent,
                         controller.countryFromContientName,
                       ),
@@ -784,37 +785,14 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                               side: BorderSide(
                                                   color: ThemeConstants.TextColor)))),
                                   onPressed: () {
-                                    // Selected Code
-                                    controller.selectStateCode = null;
-                                    controller.selectCityCode = null;
-                                    controller.selectCourseBoardFieldCode =
-                                        null;
-                                    controller.selectCountryCode = null;
-                                    controller.selectCourseNarrowFieldCode =
-                                        null;
-                                    controller.selectCourseLevelCode = null;
-                                    //Selected Name
-                                    controller.selectCountryName = null;
-                                    controller.selectStateName = null;
-                                    controller.selectCityName = null;
-                                    controller.selectCourseBoardFieldName =
-                                        null;
-                                    controller.selectCourseNarrowFieldName =
-                                        null;
-                                    controller.selectCourseLevelName = null;
-                                    // Dropdown model
-                                    controller.stateList = [];
-                                    controller.stateCode = [];
-                                    controller.cityList = [];
-                                    controller.cityCode = [];
-                                    controller.courseNarrowList = [];
-                                    controller.courseNarrowCode = [];
-                                    //loading
-                                    controller.loadingState.value = false;
-                                    controller.loadingCity.value = false;
-                                    controller.loadingCourseNarrowField.value =
-                                        false;
-                                    controller.update();
+
+Get.delete<CourseSearchController>();
+Get.back();
+Get.to(CourseSearch2());
+
+                                    // controller.clearAll();
+                                    
+                                  
                                   },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Clear",
@@ -842,12 +820,14 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                                 9998 ||
                                             controller.selectedCountry.id ==
                                                 9999) &&
-                                        controller.selectedCountry.id == null) {
+                                        controller
+                                                .selectedCountryCodeFromContinent ==
+                                            null) {
                                       getToast(
                                           SnackBarConstants.courseSearchPart1!);
                                     } else if (controller.courseSearchType ==
                                             1 &&
-                                        controller.selectedIndustryName == '') {
+                                        controller.selectedIndustryName == 'Select Profession') {
                                       getToast(
                                           SnackBarConstants.courseSearchPart4!);
                                     } else {
@@ -1009,6 +989,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
           controller.selectedCountryNameFromContinent = data;
           controller.selectedCountryCodeFromContinent =
               controller.countryFromContientId[i];
+
+          controller.selectedCountry.id =
+              int.parse(controller.countryFromContientId[i]);
           // controller.getState(controller.selectCountryCode!);
         }
       }
