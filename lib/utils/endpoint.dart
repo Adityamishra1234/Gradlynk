@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 
 class Endpoints {
-  // static String? baseUrl = "https://api.sieceducation.in/api/";
+  static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
-  static String? baseUrl = "http://192.168.104.204:205/api/";
+  // static String? baseUrl = "http://192.168.104.204:205/api/";
 
   // static String? baseUrl = "http://14.97.86.202:205/api/";
 
@@ -165,6 +165,8 @@ class Endpoints {
   static String? otpValidationForRegister = "otp-validate-student?number_otp=";
 
   static String? resendOtpRegister = "otp-number-resend?mobile_number=";
+
+  static String? which_consent_form = "which-consent-form?enq_id=";
 }
 
 fundCalulator(String inst_course, int enq_id) {
@@ -246,3 +248,35 @@ String registerNewUserEndpoint({
 }) {
   return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS";
 }
+
+String letsGetStartedSendData(
+    {enqId,
+    consentQualifactionData,
+    consentForEnglishtest,
+    consentForEnglishValue,
+    consentForEnglishOverAll,
+    consentForLevelToStudy,
+    selectedBroadField}) {
+  return 'lets-get-started?enq_id=${enqId}&consent_qualifactionData=${consentQualifactionData}&consent_for_english=${consentForEnglishtest}&consent_for_english_value=${consentForEnglishValue}&consent_for_english_over_all=${consentForEnglishOverAll}&consent_for_LevelToStudy=${consentForLevelToStudy}&consent_for_course_broad_fields=${selectedBroadField}';
+  // return '';
+}
+
+
+// api/which-consent-form?enq_id=182058
+// api/lets-get-started?enq_id=182058&consent_qualifactionData=7&consent_for_english=1&consent_for_english_value=TOEFL&consent_for_english_over_all=2&consent_for_LevelToStudy=3&consent_for_course_broad_fields=7
+
+
+// 7 12th
+// 4 Bachelor
+// 3 Master
+// 6  Diploma
+
+// PTE
+// TOEFL
+// Duolingo
+// Cambridge
+// IELTS
+
+// 4:Undergraduate
+// 3:Postgraduate
+// 6:Diploma

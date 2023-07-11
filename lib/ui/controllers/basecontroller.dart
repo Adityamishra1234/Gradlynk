@@ -6,13 +6,14 @@ import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
-class BaseController extends GetxController {
+class BaseController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   StudentPanel model1 = StudentPanel();
   RxBool loadingStudentPanelData1 = false.obs;
@@ -28,8 +29,9 @@ class BaseController extends GetxController {
   RxList<CarouselListModel> carouselList = <CarouselListModel>[].obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+
     profiledetail();
     caraouselData();
   }
@@ -81,10 +83,19 @@ class BaseController extends GetxController {
           countryid.add(model1.countryID!);
         }
       }
+
+      await checkShowLetsGetStarted();
+
       loadingStudentPanelData1 = true.obs;
       update();
     }
     getNotificatin(model1.id.toString());
+  }
+
+  checkShowLetsGetStarted() {
+    if (model1.student_consent == 0) {
+      Get.to(LetsGetStartedMainView());
+    }
   }
 
   getPersonalModal(PersonalInformationModel model) {
