@@ -2043,7 +2043,7 @@ class ApiServices extends StudentPanelBase implements api {
   getfundPlanDelete(String id) async {
     try {
       var response = await httpPostNullBodyWithNullData(
-          "${Endpoints.baseUrl}${Endpoints.fundplannerDelete}$id");
+          "${Endpoints.baseUrl}${Endpoints.fundPlannerDelete}$id");
       var jsondata = json.decode(response);
 
       return jsondata;

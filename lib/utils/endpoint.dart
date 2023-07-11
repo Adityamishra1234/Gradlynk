@@ -6,7 +6,7 @@ class Endpoints {
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
 
-  static String? baseUrl = "http://14.97.86.202:205/api/";
+  // static String? baseUrl = "http://14.97.86.202:205/api/";
 
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
@@ -174,6 +174,7 @@ class Endpoints {
   static String? resendOtpRegister = "otp-number-resend?mobile_number=";
 
   static String? which_consent_form = "which-consent-form?enq_id=";
+}
 
 getFundPlannersave(
     {required String id,
