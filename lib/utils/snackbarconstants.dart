@@ -314,7 +314,7 @@ class SnackBarConstants {
   //CourseSearchList.dart Toast
 
   ///
-  static String maxChildCount = "Maxmimum child count 4";
+  static String maxChildCount = "Maximum child count 4";
   static String minChildCount = "Minimum child count 4";
   static String fileSize = "your file size more than  5MB";
 }

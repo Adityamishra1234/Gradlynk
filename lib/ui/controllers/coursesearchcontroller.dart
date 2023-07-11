@@ -592,7 +592,7 @@ class CourseSearchController extends GetxController with StateMixin {
       universityListID.addAll(map.keys.toList());
       selectedUniversityName = universityListName[0];
     } else {
-      universityListName.add('No Unibversity Available');
+      universityListName.add('No University Available');
     }
 
     universityLoading = true;
