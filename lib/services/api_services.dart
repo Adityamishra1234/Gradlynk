@@ -2051,4 +2051,35 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  @override
+  whichConsentForm(String enqID) async {
+    try {
+      String endPoint =
+          '${Endpoints.baseUrl}${Endpoints.which_consent_form}$enqID';
+
+      var res = await httpPostNullBody(endPoint);
+      var jsondata = json.decode(res);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement whichConsentForm
+    // throw UnimplementedError();
+  }
+
+  @override
+  postLetsGetStarted(String endpoint) async {
+    try {
+      String endPoint = '${Endpoints.baseUrl}${endpoint}';
+
+      var res = await httpPostNullBody(endPoint);
+      var jsondata = json.decode(res);
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+
+    // TODO: implement postLetsGetStarted
+  }
 }

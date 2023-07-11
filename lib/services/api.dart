@@ -120,4 +120,8 @@ abstract class api {
   otpValidationInRegister(String phoneNumber, String otp);
 
   resendOtpRegister(String phoneNumber);
+
+  whichConsentForm(String enqID);
+
+  postLetsGetStarted(String endpoint);
 }
