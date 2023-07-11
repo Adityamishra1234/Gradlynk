@@ -1259,7 +1259,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         if (controller.stateList[i] == varTopic) {
           controller.stateSelected = varTopic;
           controller.stateIdSelected = int.parse(controller.stateCode[i]);
-          controller.getState(controller.stateCode[i]);
+          controller.getCity(controller.stateCode[i]);
         }
       }
     }
