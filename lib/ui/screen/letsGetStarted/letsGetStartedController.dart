@@ -11,6 +11,8 @@ class LetsGetStartedController extends GetxController with StateMixin {
   var baseController = Get.find<BaseController>();
   int questionNumberToShow = 1;
 
+  GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   void onInit() async {
     await whichConsentFormToShow();
