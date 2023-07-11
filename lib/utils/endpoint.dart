@@ -6,7 +6,7 @@ class Endpoints {
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
 
-  // static String? baseUrl = "http://14.97.86.202:205/api/";
+  static String? baseUrl = "http://14.97.86.202:205/api/";
 
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
