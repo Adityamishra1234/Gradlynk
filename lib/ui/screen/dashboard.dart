@@ -652,20 +652,25 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
 
                                     Container(
+                                      height: 120,
                                       margin: const EdgeInsets.symmetric(
                                           vertical: 10),
-                                      width: MediaQuery.of(context).size.height,
-                                      child: Wrap(
-                                        alignment: WrapAlignment
-                                            .center, // Align boxes to the start of the row
-                                        spacing:
-                                            5, // Set spacing between the boxes
-                                        runSpacing:
-                                            16, // Set spacing between rows of boxes
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ListView(
+                                        scrollDirection: Axis.horizontal,
+                                        // alignment: WrapAlignment
+                                        //     .center, // Align boxes to the start of the row
+                                        // spacing:
+                                        //     5, // Set spacing between the boxes
+                                        // runSpacing:
+                                        //     16, // Set spacing between rows of boxes
                                         // spacing: 30,
                                         // alignment: WrapAlignment.center,
                                         // runAlignment: WrapAlignment.center,
                                         children: [
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
                                           // Create profile
                                           InkWell(
                                             onTap: () async {

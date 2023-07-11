@@ -276,19 +276,20 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
 
-                          const SizedBox(
-                            width: 25,
-                          ),
-
-                          InkWell(
-                              onTap: () {
-                                Get.toNamed(Fundrequirement.routenamed,
-                                    arguments: courseSearchModel.id);
-                              },
-                              child: Icon(
-                                Icons.calculate,
-                                color: ThemeConstants.bluecolor,
-                              )),
+                          if (widget.previousRoute == FinalShortList.routeNamed)
+                            const SizedBox(
+                              width: 25,
+                            ),
+                          if (widget.previousRoute == FinalShortList.routeNamed)
+                            InkWell(
+                                onTap: () {
+                                  Get.toNamed(Fundrequirement.routenamed,
+                                      arguments: courseSearchModel.id);
+                                },
+                                child: Icon(
+                                  Icons.calculate,
+                                  color: ThemeConstants.bluecolor,
+                                )),
                           const Spacer(),
                           // Row(
                           //   children: [

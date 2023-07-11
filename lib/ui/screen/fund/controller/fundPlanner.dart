@@ -66,12 +66,12 @@ class FundPlannerController extends GetxController with StateMixin {
   bool areFunds6MonthsOld = true;
 
   @override
-  void onInit() {
-    getSourceOfIncome();
-    getOccupation();
-    getFundType();
-    getCountry();
-    getFundPlannerData();
+  Future<void> onInit() async {
+    await getSourceOfIncome();
+    await getOccupation();
+    await getFundType();
+    await getCountry();
+    await getFundPlannerData();
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -178,7 +178,7 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   uploadDocumentment() async {
-    if (selectedRelationship != null) {
+    if (selectedRelationship == null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
       getToast('Kindly specify sponsor name');
@@ -188,7 +188,7 @@ class FundPlannerController extends GetxController with StateMixin {
       getToast('Kindly select sponsor source of income');
     } else if (countryId == null) {
       getToast('Kindly select country of financial institution');
-    } else if (selectedBankCode == null) {
+    } else if (selectedBankCode == null || selectedBankCode == "") {
       getToast('Kindly select name of financial institution');
     } else if (selectedFundTypeId.isEmpty) {
       getToast('Kindly select type of funds');
@@ -212,6 +212,7 @@ class FundPlannerController extends GetxController with StateMixin {
           await apiServices.fundPlannerFileSend(filepath, filepath, endpoint);
 
       if (res != null) {
+        deleteFilledFields();
         change(null, status: RxStatus.success());
         print(res);
       }
@@ -219,9 +220,7 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   submitFundPlannerData() async {
-    //TODO
-
-    if (selectedRelationship != null) {
+    if (selectedRelationship == null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
       getToast('Kindly specify sponsor name');
@@ -229,9 +228,9 @@ class FundPlannerController extends GetxController with StateMixin {
       getToast('Kindly select sponsor occupation');
     } else if (selectedSourceID == null) {
       getToast('Kindly select sponsor source of income');
-    } else if (selectedCountryCode == null) {
+    } else if (countryId == null) {
       getToast('Kindly select country of financial institution');
-    } else if (selectedBankCode == null) {
+    } else if (selectedBankCode == null || selectedBankCode == "") {
       getToast('Kindly select name of financial institution');
     } else if (selectedFundTypeId.isEmpty) {
       getToast('Kindly select type of funds');
@@ -239,16 +238,14 @@ class FundPlannerController extends GetxController with StateMixin {
       getToast('Kindly specify amount');
     } else {
       try {
-        print("aman");
-        print(selectedCountryCode);
         loadingCountry == false;
         var enq_id = Get.find<BaseController>().model1.id.toString();
         var endpoint = getFundPlannersave(
             id: 0.toString(),
-            enq_id: enq_id,
+            enq_id: Get.find<BaseController>().model1.id.toString(),
             name_of_sponsor: nameOfThePerson.value.text,
             relationship: selectedRelationship ?? "",
-            bank_country: selectedCountryCode.toString(),
+            bank_country: countryId.toString(),
             id_of_financial_institution: selectedBankCode ?? '',
             type_of_funds: selectedFundTypeId,
             sponsor_amount: amountData.text,
@@ -257,6 +254,7 @@ class FundPlannerController extends GetxController with StateMixin {
             source_of_income: selectedSourceID.toString() ?? "");
         var res = await apiServices.planYourFundSubmit(endpoint);
         if (res != null) {
+          deleteFilledFields();
           update();
         }
       } catch (e) {
@@ -370,5 +368,7 @@ class FundPlannerController extends GetxController with StateMixin {
     selectedFundTypeName = "";
     amountData.text = "";
     filepath = "";
+    selectedSourceOfIncome = "";
+    nameFinancial = null;
   }
 }

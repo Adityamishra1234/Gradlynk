@@ -60,7 +60,7 @@ class YoutubeVideoSection extends StatelessWidget {
                             child: YoutubePlayer(
                               controller: YoutubePlayerController(
                                 initialVideoId: '$YtId',
-                                flags: YoutubePlayerFlags(
+                                flags: const YoutubePlayerFlags(
                                   autoPlay: false,
                                   mute: false,
                                 ),

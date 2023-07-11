@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -85,62 +83,48 @@ class CourseSearchController extends GetxController with StateMixin {
   String? selectedIndustryCode = '';
   bool loadingIndustries = false;
 
+  clearAll() {
+    change(null, status: RxStatus.loading());
 
-clearAll(){
-  change(null , status: RxStatus.loading());
+    Get.delete();
 
-  Get.delete();
+    // controller.refresh();
+    // controller.onDelete();
+    // Selected Code
 
+    selectedCountryCodeFromContinent = null;
 
-   // controller.refresh();
-                                    // controller.onDelete();
-                                    // Selected Code
+    selectedCountry.id = null;
 
+    selectedCountryNameFromContinent = null;
+    selectStateCode = null;
+    selectCityCode = null;
+    selectCourseBoardFieldCode = null;
+    selectCountryCode = null;
+    selectCourseNarrowFieldCode = null;
+    selectCourseLevelCode = null;
+    //Selected Name
+    selectCountryName = null;
+    selectStateName = null;
+    selectCityName = null;
+    selectCourseBoardFieldName = null;
+    selectCourseNarrowFieldName = null;
+    selectCourseLevelName = null;
+    // Dropdown model
+    stateList = [];
+    stateCode = [];
+    cityList = [];
+    cityCode = [];
+    courseNarrowList = [];
+    courseNarrowCode = [];
+    //loading
+    loadingState.value = false;
+    loadingCity.value = false;
+    loadingCourseNarrowField.value = false;
+    update();
 
-selectedCountryCodeFromContinent = null;
-
-// selectedCountry.id = null;
-
-
-                                    selectedCountryNameFromContinent = null;
-                                   selectStateCode = null;
-                                   selectCityCode = null;
-                                   selectCourseBoardFieldCode =
-                                        null;
-                                   selectCountryCode = null;
-                                   selectCourseNarrowFieldCode =
-                                        null;
-                                   selectCourseLevelCode = null;
-                                    //Selected Name
-                                   selectCountryName = null;
-                                   selectStateName = null;
-                                   selectCityName = null;
-                                   selectCourseBoardFieldName =
-                                        null;
-                                   selectCourseNarrowFieldName =
-                                        null;
-                                   selectCourseLevelName = null;
-                                    // Dropdown model
-                                   stateList = [];
-                                   stateCode = [];
-                                   cityList = [];
-                                   cityCode = [];
-                                   courseNarrowList = [];
-                                   courseNarrowCode = [];
-                                    //loading
-                                   loadingState.value = false;
-                                   loadingCity.value = false;
-                                   loadingCourseNarrowField.value =
-                                        false;
-                                   update();
-
-  change(null , status: RxStatus.success());
-
-
-
-
-
-}
+    change(null, status: RxStatus.success());
+  }
 
   getIndustries() async {
     try {

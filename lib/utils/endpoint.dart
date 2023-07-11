@@ -201,7 +201,7 @@ fundCalulator(String inst_course, int enq_id) {
 
 dataNeedFundCalulator(
   int enq_id,
-  int inst_course,
+  String inst_course,
   int is_partner,
   int is_child,
   int num_of_child, [

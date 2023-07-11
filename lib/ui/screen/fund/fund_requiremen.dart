@@ -34,12 +34,12 @@ class Fundrequirement extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 10, top: 10),
                       child: CustomAutoSizeTextMontserrat(
                         text: "Calculate Funds Requirement",
-                        fontSize: 18,
+                        fontSize: 20,
                         textColor: ThemeConstants.bluecolor,
-                        fontWeight: FontWeight.bold,
+                        // fontWeight: FontWeight.bold,
                       ),
                     )),
                 Padding(
@@ -151,7 +151,7 @@ class Fundrequirement extends StatelessWidget {
                   child: Row(
                     children: [
                       CustomAutoSizeTextMontserrat(
-                        text: "Will your spouse \naccompany your",
+                        text: "Will your spouse \naccompany you?",
                         mandatory: true,
                       ),
                       const Spacer(),
@@ -189,7 +189,7 @@ class Fundrequirement extends StatelessWidget {
                   child: Row(
                     children: [
                       CustomAutoSizeTextMontserrat(
-                        text: "Are you taking you \nkids along?",
+                        text: "Are you taking your \nkids along?",
                         mandatory: true,
                       ),
                       const Spacer(),
@@ -388,7 +388,8 @@ class Fundrequirement extends StatelessWidget {
                           onPrimary: ThemeConstants.bluecolor, // foreground
                         ),
                         onPressed: () {
-                          controller.getCalculated(1215);
+                          controller
+                              .getCalculated(controller.previousInstCourse!);
                         },
                         child: CustomAutoSizeTextMontserrat(
                           text: "Calculate",

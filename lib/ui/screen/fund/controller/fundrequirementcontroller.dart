@@ -25,11 +25,14 @@ class FundRequirementController extends GetxController with StateMixin {
   bool kids = false;
 //min=0, max=4
   int? manay_kids = 1;
+  String? previousInstCourse;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     // TODO: implement onInit
-    getFundRequirement(Get.arguments);
+    previousInstCourse = Get.arguments.toString();
+
+    await getCalculated(Get.arguments);
 
     super.onInit();
   }
@@ -43,7 +46,7 @@ class FundRequirementController extends GetxController with StateMixin {
     }
   }
 
-  getCalculated(int inst_course) async {
+  getCalculated(String inst_course) async {
     var response = await apiServices.getFundCalculator(
         Get.find<BaseController>().model1.id!,
         inst_course,
@@ -56,6 +59,12 @@ class FundRequirementController extends GetxController with StateMixin {
         int.parse(child4.text == "" ? "0" : child4.text));
     if (response != null) {
       dataNeedFundCalulator = DataNeedFundCalulator.fromJson(response);
+      if (dataNeedFundCalulator.tableData != []) {
+        getFundRequirement(previousInstCourse!);
+      } else {
+        getFundRequirement(previousInstCourse!);
+      }
+
       change(null, status: RxStatus.success());
       Get.to(FundParameter(model: dataNeedFundCalulator));
     }

@@ -545,7 +545,7 @@ class CustomDrawer extends StatelessWidget {
                                                     left: 10, top: 5),
                                                 child:
                                                     CustomAutoSizeTextMontserrat(
-                                                  text: "Final Shortlist",
+                                                  text: "Application Shortlist",
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w500,
                                                   textColor: index == 5
@@ -563,41 +563,7 @@ class CustomDrawer extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   Get.back();
-                                  supportDialog(context);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        'assets/icons/Support.svg',
-                                        color: index == 6
-                                            ? ThemeConstants.bluecolor
-                                            : const Color.fromARGB(
-                                                255, 31, 31, 31),
-                                        width: 20,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: CustomAutoSizeTextMontserrat(
-                                          text: "Gradlynk Support",
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500,
-                                          textColor: index == 6
-                                              ? ThemeConstants.bluecolor
-                                              : ThemeConstants.blackcolor,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      // const Icon(Icons.keyboard_arrow_down),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(FundPlan());
+                                  planYourFundDialog(context);
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 20.0),
@@ -649,10 +615,73 @@ class CustomDrawer extends StatelessWidget {
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(left: 10),
+                                        child: Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Event Zone",
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: ThemeConstants.red,
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(
+                                                              5.0))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 2),
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "New",
+                                                  fontSize: 10,
+                                                  textColor:
+                                                      ThemeConstants.whitecolor,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      // const Icon(Icons.keyboard_arrow_down),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                  supportDialog(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/Support.svg',
+                                        color: index == 6
+                                            ? ThemeConstants.bluecolor
+                                            : const Color.fromARGB(
+                                                255, 31, 31, 31),
+                                        width: 20,
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
                                         child: CustomAutoSizeTextMontserrat(
-                                          text: "Mark Attendance",
+                                          text: "Gradlynk Support",
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500,
+                                          textColor: index == 6
+                                              ? ThemeConstants.bluecolor
+                                              : ThemeConstants.blackcolor,
                                         ),
                                       ),
                                       const Spacer(),

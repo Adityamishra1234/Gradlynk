@@ -360,7 +360,7 @@ class _MyAppState extends State<MyApp> {
         ),
         GetPage(
           name: RaiseYourTicket.routeNamed,
-          page: () => const RaiseYourTicket(),
+          page: () => RaiseYourTicket(),
           transition: Transition.fade,
         ),
         GetPage(

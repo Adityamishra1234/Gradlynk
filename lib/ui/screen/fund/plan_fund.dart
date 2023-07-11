@@ -341,7 +341,9 @@ class FundPlan extends StatelessWidget {
                                         fontWeight: FontWeight.w400,
                                         mandatory: true,
                                         text: "Are the funds 6 months old?"),
-                                    const Spacer(),
+                                    const Spacer(
+                                      flex: 5,
+                                    ),
                                     InkWell(
                                       onTap: () {
                                         controller.areFunds6MonthsOld = true;
@@ -353,7 +355,7 @@ class FundPlan extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(
-                                      width: 15,
+                                      width: 10,
                                     ),
                                     InkWell(
                                       onTap: () {
@@ -366,13 +368,13 @@ class FundPlan extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(
-                                      width: 10,
+                                      width: 5,
                                     )
                                   ],
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 5,
                               ),
 
                               CustomAutoSizeTextMontserrat(

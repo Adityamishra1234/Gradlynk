@@ -440,6 +440,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                                 else {
                                                   if (phoneNumber.text.length >
                                                       9) {
+                                                    otpcontroller.text = "";
                                                     await controller
                                                         .phonenumberVerfiy(
                                                             phoneNumber.text);

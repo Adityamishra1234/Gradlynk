@@ -30,7 +30,7 @@ class WelcomeView extends StatelessWidget {
 
               children: [
                 SizedBox(
-                    height: 50,
+                    height: 40,
                     child: Image.asset(
                       "assets/images/logo.png",
                     )),
@@ -39,7 +39,7 @@ class WelcomeView extends StatelessWidget {
                     SizedBox(
                         child: CustomAutoSizeTextMontserrat(
                       text: 'Welcome to Gradlynk',
-                      fontSize: 28,
+                      fontSize: 24,
                     )),
                     SizedBox(
                         child: CustomAutoSizeTextMontserrat(
@@ -127,7 +127,7 @@ class WelcomeView extends StatelessWidget {
                   child: CustomAutoSizeTextMontserrat(
                     textColor: Colors.grey[700],
                     text: 'Register your story amongst 50K+ success stories',
-                    fontSize: 15,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                     textalingCentre: true,
                   ),
@@ -152,7 +152,7 @@ class WelcomeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            height: 80,
+            height: 50,
             width: 80,
             child: CircleAvatar(
               backgroundColor: ThemeConstants.lightblueColor,
@@ -171,7 +171,7 @@ class WelcomeView extends StatelessWidget {
               children: [
                 CustomAutoSizeTextMontserrat(
                   text: title,
-                  fontSize: 22,
+                  fontSize: 20,
                   textalingCentre: true,
                 ),
                 SizedBox(

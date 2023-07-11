@@ -33,35 +33,48 @@ class SponsorDetails extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10, top: 10),
                   child: Align(
                       alignment: Alignment.topLeft,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "Sponsor Details",
-                        fontWeight: FontWeight.bold,
+                      child: Row(
+                        children: [
+                          CustomAutoSizeTextMontserrat(
+                            text: "Sponsor Details",
+                            fontSize: 20,
+                            textColor: ThemeConstants.bluecolor,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {
+                              Get.to(FundPlan());
+                            },
+                            child: Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "+ Add Sponsor",
+                                  textColor: ThemeConstants.blackcolor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       )),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Total Planned Amount = 2973535.90",
-                      textColor: ThemeConstants.orangeColor,
-                    ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: ThemeConstants.lightOrangeColor,
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.to(FundPlan());
-                  },
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Align(
+                      alignment: Alignment.topLeft,
                       child: CustomAutoSizeTextMontserrat(
-                        text: "Added Sponsor",
-                        textColor: ThemeConstants.bluecolor,
+                        text: "Total Planned Amount = 2973535.90",
+                        textColor: ThemeConstants.orangeColor,
                       ),
                     ),
                   ),
@@ -200,17 +213,21 @@ class FundparameterSubWidget extends StatelessWidget {
                   text1: "Amount",
                   text2: amount ?? "",
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 Row(
                   children: [
                     const Spacer(),
-                    CustomButton(
-                      text: "View Document",
-                      onPressed: () {
-                        Get.find<FundPlannerController>()
-                            .getViewDocument(url ?? "");
-                      },
-                      backgroundColor: ThemeConstants.GreenColor,
-                    ),
+                    if (getNUllChecker(url) == false)
+                      CustomButton(
+                        text: "View Document",
+                        onPressed: () {
+                          Get.find<FundPlannerController>()
+                              .getViewDocument(url ?? "");
+                        },
+                        backgroundColor: ThemeConstants.GreenColor,
+                      ),
                     CustomButton(
                       text: "Delete",
                       onPressed: () {
@@ -227,6 +244,7 @@ class FundparameterSubWidget extends StatelessWidget {
                       },
                       backgroundColor: ThemeConstants.bluecolor,
                     ),
+                    const Spacer()
                   ],
                 ),
               ],

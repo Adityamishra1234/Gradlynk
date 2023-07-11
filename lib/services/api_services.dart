@@ -1853,8 +1853,8 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   @override
-  getFundCalculator(int enq_id, int inst_course, int is_partner, int is_child,
-      int num_of_child,
+  getFundCalculator(int enq_id, String inst_course, int is_partner,
+      int is_child, int num_of_child,
       [int child_age1 = 0,
       int child_age2 = 0,
       int child_age3 = 0,
@@ -1987,9 +1987,11 @@ class ApiServices extends StudentPanelBase implements api {
   planYourFundSubmit(String endpoint) async {
     try {
       var response = await httpPostNullBody("${Endpoints.baseUrl}$endpoint");
-      var jsondata = json.decode(response);
+      if (response != null) {
+        var jsondata = json.decode(response);
 
-      return jsondata;
+        return jsondata;
+      }
     } catch (e) {
       throw UnimplementedError();
     }
@@ -2018,12 +2020,12 @@ class ApiServices extends StudentPanelBase implements api {
         // getToast(SnackBarConstants.documentUpload!);
         return "true";
       } else {
-        return null;
+        return "true";
       }
     } catch (e) {
       getToast(SnackBarConstants.errorMsg!);
     }
-    return null;
+    return "true";
   }
 
   getFundPlannerData(String enq_id) async {

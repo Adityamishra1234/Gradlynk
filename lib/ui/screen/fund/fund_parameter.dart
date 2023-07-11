@@ -1,13 +1,17 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/fund/model/dataneedfundcalculator.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/utils/conditionals/iconStringFromField.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+
+import 'fund_requiremen.dart';
 
 class FundParameter extends StatelessWidget {
   DataNeedFundCalulator model = DataNeedFundCalulator();
@@ -26,10 +30,23 @@ class FundParameter extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Fund Parameter",
-                  textColor: ThemeConstants.bluecolor,
-                  fontSize: 20,
+                Row(
+                  children: [
+                    CustomAutoSizeTextMontserrat(
+                      text: "Fund Parameter",
+                      textColor: ThemeConstants.bluecolor,
+                      fontSize: 20,
+                    ),
+                    const Spacer(),
+                    InkWell(
+                        onTap: () {
+                          Get.to(Fundrequirement());
+                        },
+                        child: CustomAutoSizeTextMontserrat(text: "Edit")),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
                 ),
                 ...getlist(model)
               ],

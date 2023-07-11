@@ -47,7 +47,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
     if (displayMobileLayout == true) {
       width = width;
     }
-    return  Scaffold(
+    return Scaffold(
       appBar: const CustomAppBar("title"),
       drawer: displayMobileLayout == false
           ? CustomDrawer(
@@ -85,9 +85,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
                   ),
 
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 5),
+                    margin: const EdgeInsets.symmetric(vertical: 5),
                     width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     height: 110,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
@@ -115,8 +115,10 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 }
                               },
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 5),
-                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 width: 140,
                                 decoration: BoxDecoration(
                                     color: controller.selectedCountry.id ==
@@ -143,13 +145,13 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                               .flag!,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Text(
                                         '${controller.countryWithFlagDataList[index].country}',
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -159,7 +161,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                             )),
                   ),
                   if (controller.showCountryFromContinentDropDown == true) ...[
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     const SizedBox(
@@ -178,7 +180,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     CustomDropDownSingle(
@@ -197,7 +199,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     ),
                   ],
 
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Row(
@@ -220,7 +222,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Container(
@@ -337,7 +339,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                   //   ),
                   // ),
                   Container(
-                    padding: EdgeInsets.only(left: 15),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -367,7 +369,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               ),
                               text: 'Course Selection'),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
                         InkWell(
@@ -492,7 +494,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 color: controller.courseLevelSelector == 3
                                     ? ThemeConstants.whitecolor
                                     : ThemeConstants.bluecolor,
-                                iconData: Icon(Icons.abc),
+                                iconData: const Icon(Icons.abc),
                                 text: 'Master'),
                           ),
                         ],
@@ -531,9 +533,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
+                      margin: const EdgeInsets.symmetric(vertical: 5),
                       width: MediaQuery.of(context).size.width * .95,
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       height: 110,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -549,8 +551,10 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                       controller.selectCourseBoardFieldCode!);
                                 },
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 5),
-                                  margin: EdgeInsets.symmetric(horizontal: 10),
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   width: 140,
                                   decoration: BoxDecoration(
                                       color: controller
@@ -581,13 +585,13 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                                 .imageLink!,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 5,
                                         ),
                                         Text(
                                           '${controller.AllCourseSearchBroadField[index].broadFieldName}',
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -785,14 +789,11 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                               side: BorderSide(
                                                   color: ThemeConstants.TextColor)))),
                                   onPressed: () {
-
-Get.delete<CourseSearchController>();
-Get.back();
-Get.to(CourseSearch2());
+                                    Get.delete<CourseSearchController>();
+                                    Get.back();
+                                    Get.to(const CourseSearch2());
 
                                     // controller.clearAll();
-                                    
-                                  
                                   },
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "Clear",
@@ -827,7 +828,8 @@ Get.to(CourseSearch2());
                                           SnackBarConstants.courseSearchPart1!);
                                     } else if (controller.courseSearchType ==
                                             1 &&
-                                        controller.selectedIndustryName == 'Select Profession') {
+                                        controller.selectedIndustryName ==
+                                            'Select Profession') {
                                       getToast(
                                           SnackBarConstants.courseSearchPart4!);
                                     } else {
