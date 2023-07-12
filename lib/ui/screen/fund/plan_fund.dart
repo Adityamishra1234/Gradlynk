@@ -90,23 +90,23 @@ class FundPlan extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: CustomAutoSizeTextMontserrat(
-                                    text: "Plan your Funds",
-                                    textColor: ThemeConstants.bluecolor,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w600),
-                              ),
                               const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  CustomAutoSizeTextMontserrat(
-                                      text: "Sponsor Details",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: CustomAutoSizeTextMontserrat(
+                                        text: "Manage Sponsor",
+                                        textColor: ThemeConstants.bluecolor,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  // CustomAutoSizeTextMontserrat(
+                                  //     text: "Sponsor Details",
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.w500),
                                   const Spacer(),
                                   InkWell(
                                     onTap: () {
@@ -619,11 +619,11 @@ class VerticalListForDropdown extends StatelessWidget {
         height: 25,
         padding: const EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
         decoration: BoxDecoration(
-          color: selected == true
-              ? ThemeConstants.bluecolor
-              : ThemeConstants.ultraLightgreyColor2,
-          borderRadius: BorderRadius.circular(20),
-        ),
+            color: selected == true
+                ? ThemeConstants.bluecolor
+                : ThemeConstants.lightblueColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(width: 1, color: ThemeConstants.bluecolor)),
         child: Center(
             child: CustomAutoSizeTextMontserrat(
           text: text,

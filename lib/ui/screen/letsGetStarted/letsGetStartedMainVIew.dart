@@ -92,6 +92,9 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         ),
 
                         if (controller.showConsentTermsForm == true) ...[
+                          SizedBox(
+                            height: 80,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: SizedBox(
@@ -102,24 +105,29 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                   text:
                                       "Welcome to SIEC Gradlynk Student Panel",
                                   fontSize: 26,
-                                  fontWeight: FontWeight.w900,
+                                  fontWeight: FontWeight.w700,
                                   textColor: ThemeConstants.bluecolor,
                                 ))),
+                          ),
+                          SizedBox(
+                            height: 5,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: SizedBox(
                                 width: 300.0,
-                                height: 40.0,
                                 child: Align(
                                   alignment: AlignmentDirectional.topStart,
                                   child: CustomAutoSizeTextMontserrat(
                                     text: "I, agree to the following :",
                                     fontSize: 16,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w500,
                                     textColor: ThemeConstants.blackcolor,
                                   ),
                                 )),
+                          ),
+                          SizedBox(
+                            height: 5,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
@@ -128,11 +136,12 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                 height: 150.0,
                                 child: Center(
                                     child: CustomAutoSizeTextMontserrat(
+                                  fontWeight: FontWeight.w400,
                                   text:
                                       """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
-              2. All the information submitted is correct and collaborates with my legal documents.
-              3. In case of any discrepancy in information, SIEC will not be liable for any halt throughout the process.
-              4.I, agree to all SIEC's Terms & Conditions.""",
+2. All the information submitted is correct and collaborates with my legal documents.
+3. In case of any discrepancy in information, SIEC will not be liable for any halt throughout the process.
+4.I, agree to all SIEC's Terms & Conditions.""",
                                   fontSize: 18,
                                   textColor: ThemeConstants.blackcolor,
                                 ))),
@@ -463,12 +472,12 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                   fontWeight: FontWeight.w600,
                                   fontSize: 28,
                                   text:
-                                      'Specify Your \n${controller.selectedTestYouAppearedFor} score?'),
+                                      'Specify \nYour \n${controller.selectedTestYouAppearedFor} score.'),
                             ),
 
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 50),
+                                  const EdgeInsets.only(left: 30, right: 70),
                               child: TextFormField(
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.symmetric(
@@ -665,20 +674,20 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         ],
 
                         if (controller.questionNumberToShow == 5) ...[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              width: 100,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 5, horizontal: 15),
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.yellow,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: 'Great',
-                              ),
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 15),
+                          //   child: Container(
+                          //     width: 100,
+                          //     padding: EdgeInsets.symmetric(
+                          //         vertical: 5, horizontal: 15),
+                          //     decoration: BoxDecoration(
+                          //         color: ThemeConstants.yellow,
+                          //         borderRadius: BorderRadius.circular(20)),
+                          //     child: CustomAutoSizeTextMontserrat(
+                          //       text: 'Great',
+                          //     ),
+                          //   ),
+                          // ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15, top: 10),
                             child: Container(

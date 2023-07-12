@@ -282,7 +282,7 @@ class ContactInformationController extends GetxController with StateMixin {
     return res;
   }
 
-  saveButton() {
+  saveButton() async {
     try {
       if (getNUllChecker(firstName.text) == true) {
         getToast(SnackBarConstants.firstNameError!);
@@ -335,8 +335,12 @@ class ContactInformationController extends GetxController with StateMixin {
         return res;
       }
     } catch (e) {
-      print(StackTrace.current);
-      getToast(e.toString());
+      await apiservice.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 

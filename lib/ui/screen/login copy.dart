@@ -636,7 +636,9 @@ class _LoginCopyState extends State<LoginCopy> {
                                         ),
                                       ],
                                     ),
-
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   InkWell(
                                     onTap: () {
                                       Get.to(RegisterationMainView());
