@@ -4,6 +4,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/carouselListModel.dart';
 import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
@@ -32,13 +33,26 @@ class BaseController extends GetxController with StateMixin {
   void onInit() async {
     super.onInit();
 
-    profiledetail();
-    caraouselData();
+    await profiledetail();
+    await caraouselData();
+    await profileDataValidator();
+    change(null, status: RxStatus.success());
   }
 
   @override
   onReady() {
     upcomingEvents();
+  }
+
+  var data = ProfileDataValidatorModel().obs;
+  RxBool loading = false.obs;
+  profileDataValidator() async {
+    ///todo
+    var x = await apiServices
+        .profileDataValidation(Get.find<BaseController>().model1.id!);
+    var z = ProfileDataValidatorModel.fromJson(x);
+    data.value = z;
+    // loading.value = false;
   }
 
   getUpdateNotitifcation() {
@@ -93,7 +107,8 @@ class BaseController extends GetxController with StateMixin {
   }
 
   checkShowLetsGetStarted() {
-    if (model1.student_consent == 0) {
+    ///todo
+    if (model1.student_consent == 1) {
       Get.to(LetsGetStartedMainView());
     }
   }

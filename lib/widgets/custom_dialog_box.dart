@@ -924,6 +924,8 @@ supportDialog(
                               width: 20,
                             ),
                             CustomAutoSizeTextMontserrat(
+                                fontWeight: FontWeight.w600,
+                                textColor: ThemeConstants.bluecolor,
                                 text: "Gradlynksupport\n@siecindia.com"),
                             const Spacer(),
                           ],

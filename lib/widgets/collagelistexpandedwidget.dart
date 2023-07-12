@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/remove_compare_course.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
+import 'package:studentpanel/ui/screen/fund/model/fund_calculator.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -170,12 +171,16 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               padding: const EdgeInsets.only(
                                   right: 50, left: 10, top: 10),
                               child: CustomAutoSizeTextMontserrat(
+                                fontSize: 16,
                                 text: courseSearchModel.courseName ?? "",
                                 maxLines: 3,
                                 textColor: ThemeConstants.bluecolor,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
+                          ),
+                          SizedBox(
+                            height: 5,
                           ),
                           Align(
                             alignment: AlignmentDirectional.topStart,
@@ -184,13 +189,34 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   const EdgeInsets.only(left: 10, right: 10),
                               child: CustomAutoSizeTextMontserrat(
                                 text:
-                                    "${courseSearchModel.countryName ?? ""},${courseSearchModel.stateName ?? ""},${courseSearchModel.cityName ?? ""}\n${courseSearchModel.universityName ?? ""}",
+                                    "${courseSearchModel.countryName ?? ""},${courseSearchModel.stateName ?? ""},${courseSearchModel.cityName ?? ""}",
                                 // "Australia,Victor,Melbourne | RMIT University",
                                 maxLines: 3,
                                 textColor: ThemeConstants.bluegreycolor,
                                 fontSize: 14,
                               ),
                             ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                text:
+                                    "${courseSearchModel.universityName ?? ''}",
+                                // "Australia,Victor,Melbourne | RMIT University",
+                                maxLines: 3,
+                                textColor: ThemeConstants.bluegreycolor,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
                           ),
                           Align(
                             alignment: AlignmentDirectional.topStart,
@@ -201,7 +227,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 text: courseSearchModel.campusName,
                                 maxLines: 3,
                                 textColor: ThemeConstants.bluegreycolor,
-                                fontSize: 14,
+                                fontSize: 13,
                               ),
                             ),
                           ),
@@ -285,10 +311,44 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                 onTap: () {
                                   Get.toNamed(Fundrequirement.routenamed,
                                       arguments: courseSearchModel.id);
+                                  // Get.toNamed(Fundrequirement.routenamed,
+                                  //     arguments: courseSearchModel.id);
                                 },
-                                child: Icon(
-                                  Icons.calculate,
-                                  color: ThemeConstants.bluecolor,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 0),
+                                  child: InkWell(
+                                    onTap: (() {
+                                      finalShortList = false;
+                                      courseSearchModel.finalList = "";
+                                      widget.callbackFinalShortListButton!(
+                                          "$index,${courseSearchModel.id!}");
+                                      setState(() {});
+                                    }),
+                                    child: Container(
+                                      height: 25,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: ThemeConstants.bluecolor,
+                                          border: Border.all(
+                                              color: ThemeConstants.bluecolor,
+                                              width: 0.5),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, right: 8),
+                                        child: Center(
+                                          child: CustomAutoSizeTextMontserrat(
+                                            text: "Calculate",
+                                            textColor:
+                                                ThemeConstants.whitecolor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 8,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 )),
                           const Spacer(),
                           // Row(

@@ -45,7 +45,7 @@ class TestiMonial extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: index % 2 == 0
                                 ? ThemeConstants.lightblueColor
-                                : ThemeConstants.ultraLightYellow,
+                                : ThemeConstants.bluecolor,
                             // color: ThemeConstants.GreenColor,
                             border: Border.all(
                                 width: 0.8,
@@ -77,7 +77,9 @@ class TestiMonial extends StatelessWidget {
                                 SizedBox(
                                   width: 190,
                                   child: CustomAutoSizeTextMontserrat(
-                                      textColor: ThemeConstants.blackcolor,
+                                      textColor: index % 2 == 0
+                                          ? ThemeConstants.blackcolor
+                                          : ThemeConstants.whitecolor,
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,
                                       text: "${comment}...."),
@@ -92,7 +94,7 @@ class TestiMonial extends StatelessWidget {
                                     text: "${testimonialsList[index].name}",
                                     textColor: index % 2 == 0
                                         ? ThemeConstants.bluecolor
-                                        : ThemeConstants.yellow,
+                                        : ThemeConstants.whitecolor,
                                     fontSize: 13,
                                     // textColor: ThemeConstants.bluecolor,
                                     fontWeight: FontWeight.bold,

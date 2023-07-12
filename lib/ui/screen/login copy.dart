@@ -2,6 +2,7 @@ import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:android_sms_retriever/android_sms_retriever.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
+import 'package:mobile_number/mobile_number.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,12 @@ class _LoginCopyState extends State<LoginCopy> {
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(_onFocusChange);
+    // _focusNode.addListener(_onFocusChange);
+    MobileNumber.listenPhonePermission((isPermissionGranted) {
+      if (isPermissionGranted) {
+        // initMobileNumberState();
+      } else {}
+    });
 
     // _checkVersion();
   }
@@ -81,10 +87,15 @@ class _LoginCopyState extends State<LoginCopy> {
     super.dispose();
   }
 
-  _onFocusChange() {
-    setState(() {
-      _isKeyBoardVisible = _focusNode.hasFocus;
-    });
+  _onFocusChange() async {
+    SmsAutoFill _autoFill = SmsAutoFill();
+    var completePhoneNumber = await _autoFill.hint;
+    print(completePhoneNumber);
+    // phoneNumber.text = completePhoneNumber!;
+    setState(() {});
+    // setState(() {
+    //   _isKeyBoardVisible = _focusNode.hasFocus;
+    // });
   }
 
   // void _checkVersion() async {
@@ -311,60 +322,59 @@ class _LoginCopyState extends State<LoginCopy> {
                             if (controller.otpEnable.value == false)
                               Stack(
                                 children: [
-                                  if (controller.otpEnable.value == false)
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 10, right: 10),
-                                      child: TextFormField(
-                                          focusNode: _focusNode,
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          controller: phoneNumber,
-                                          keyboardType: TextInputType.number,
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .digitsOnly
-                                          ],
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                            ),
-                                            filled: true,
-                                            hintStyle: TextStyle(
-                                                color: Colors.grey[800]),
-                                            hintText: "Enter your phone number",
-                                            fillColor: Colors.white,
-                                          ),
-                                          validator: (value) {
-                                            return getPhoneNumbervalidation(
-                                                value);
-                                          }),
-                                    ),
+                                  // if (controller.otpEnable.value == false)
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(
+                                  //       top: 20, left: 10, right: 10),
+                                  //   child: TextFormField(
+                                  //       focusNode: _focusNode,
+                                  //       autovalidateMode:
+                                  //           AutovalidateMode.onUserInteraction,
+                                  //       controller: phoneNumber,
+                                  //       keyboardType: TextInputType.number,
+                                  //       inputFormatters: [
+                                  //         FilteringTextInputFormatter.digitsOnly
+                                  //       ],
+                                  //       decoration: InputDecoration(
+                                  //         border: OutlineInputBorder(
+                                  //           borderRadius:
+                                  //               BorderRadius.circular(10.0),
+                                  //         ),
+                                  //         filled: true,
+                                  //         hintStyle: TextStyle(
+                                  //             color: Colors.grey[800]),
+                                  //         hintText: "Enter your phone number",
+                                  //         fillColor: Colors.white,
+                                  //       ),
+                                  //       validator: (value) {
+                                  //         return getPhoneNumbervalidation(
+                                  //             value);
+                                  //       }),
+                                  // ),
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 20, left: 10, right: 10),
-                                    child: PhoneFieldHint(
-                                      child: TextField(
-                                        focusNode: _focusNode,
-                                        controller: phoneNumber,
-                                        keyboardType: TextInputType.number,
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.digitsOnly
-                                        ],
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          filled: true,
-                                          hintStyle: TextStyle(
-                                              color: Colors.grey[800]),
-                                          hintText: "Enter your phone number",
-                                          fillColor: Colors.white,
+                                    // child: PhoneFieldHint(
+                                    child: TextField(
+                                      focusNode: _focusNode,
+                                      controller: phoneNumber,
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly
+                                      ],
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
                                         ),
+                                        filled: true,
+                                        hintStyle:
+                                            TextStyle(color: Colors.grey[800]),
+                                        hintText: "Enter your phone number",
+                                        fillColor: Colors.white,
                                       ),
                                     ),
+                                    // ),
                                   ),
                                 ],
                               ),
@@ -610,6 +620,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                         const Spacer(),
                                         InkWell(
                                           onTap: () {
+                                            signature();
                                             controller.phonenumberVerfiy(
                                                 phoneNumber.text);
                                           },
@@ -625,7 +636,9 @@ class _LoginCopyState extends State<LoginCopy> {
                                         ),
                                       ],
                                     ),
-
+                                  SizedBox(
+                                    height: 10,
+                                  ),
                                   InkWell(
                                     onTap: () {
                                       Get.to(RegisterationMainView());

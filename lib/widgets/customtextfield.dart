@@ -40,9 +40,8 @@ class CustomTextField extends StatelessWidget {
         scrollPadding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).viewInsets.bottom + 30),
         style: GoogleFonts.montserrat(
-        fontWeight: fieldFontWeight ?? FontWeight.w600,
-      
-      ),
+          fontWeight: fieldFontWeight ?? FontWeight.w600,
+        ),
         readOnly: readOrEdit == null ? false : readOrEdit!,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),

@@ -992,8 +992,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
           controller.selectedCountryCodeFromContinent =
               controller.countryFromContientId[i];
 
-          controller.selectedCountry.id =
-              int.parse(controller.countryFromContientId[i]);
+          // controller.selectedCountry.id =
+          //     int.parse(controller.countryFromContientId[i]);
           // controller.getState(controller.selectCountryCode!);
         }
       }

@@ -19,7 +19,8 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class CustomDrawer extends StatelessWidget {
   int? index;
   CustomDrawer({Key? key, this.index}) : super(key: key);
-  var controller = Get.put(DrawerGetXController());
+  // var controller = Get.put(DrawerGetXController());
+  var controller = Get.find<BaseController>();
   @override
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
@@ -600,8 +601,8 @@ class CustomDrawer extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 5),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Plan your funds",
                                             fontSize: 15,
@@ -635,8 +636,8 @@ class CustomDrawer extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 5),
                                           child: Row(
                                             children: [
                                               CustomAutoSizeTextMontserrat(
@@ -671,7 +672,7 @@ class CustomDrawer extends StatelessWidget {
                                             ],
                                           ),
                                         ),
-                                        const Spacer(),
+
                                         // const Icon(Icons.keyboard_arrow_down),
                                       ],
                                     ),
@@ -695,8 +696,8 @@ class CustomDrawer extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
+                                        padding: const EdgeInsets.only(
+                                            left: 10, top: 5),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Gradlynk Support",
                                             fontSize: 15,

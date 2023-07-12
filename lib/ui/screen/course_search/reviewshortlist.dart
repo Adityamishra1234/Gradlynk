@@ -419,7 +419,6 @@ class _ReviewShortListState extends State<ReviewShortList> {
                             child: Center(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                
                                 children: [
                                   // svgImage("compare", ThemeConstants.whitecolor,
                                   //     30, 30),

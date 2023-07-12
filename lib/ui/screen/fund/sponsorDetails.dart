@@ -66,7 +66,7 @@ class SponsorDetails extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: ThemeConstants.lightOrangeColor,
+                    color: Color(0xfffef5f5),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -74,7 +74,7 @@ class SponsorDetails extends StatelessWidget {
                       alignment: Alignment.topLeft,
                       child: CustomAutoSizeTextMontserrat(
                         text: "Total Planned Amount = 2973535.90",
-                        textColor: ThemeConstants.orangeColor,
+                        textColor: Color(0xffdc3545),
                       ),
                     ),
                   ),
@@ -214,37 +214,139 @@ class FundparameterSubWidget extends StatelessWidget {
                   text2: amount ?? "",
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Row(
                   children: [
                     const Spacer(),
                     if (getNUllChecker(url) == false)
-                      CustomButton(
-                        text: "View Document",
-                        onPressed: () {
+                      InkWell(
+                        onTap: () {
                           Get.find<FundPlannerController>()
                               .getViewDocument(url ?? "");
                         },
-                        backgroundColor: ThemeConstants.GreenColor,
+                        child: Container(
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: oddEven == true
+                                  ? ThemeConstants.lightblueColor
+                                  : ThemeConstants.ultraLightYellow,
+                              border: Border.all(
+                                  color: oddEven == true
+                                      ? ThemeConstants.bluecolor
+                                      : ThemeConstants.yellow),
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(5.0)),
+                          child: Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                  text: "View Document",
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  textColor: oddEven == true
+                                      ? ThemeConstants.bluecolor
+                                      : ThemeConstants.yellow),
+                            ),
+                          ),
+                        ),
                       ),
-                    CustomButton(
-                      text: "Delete",
-                      onPressed: () {
-                        Get.find<FundPlannerController>()
-                            .getDeleteFund(id.toString());
-                      },
-                      backgroundColor: ThemeConstants.orangeColor,
+                    // CustomButton(
+                    //   text: "View Document",
+                    //   onPressed: () {
+                    //     Get.find<FundPlannerController>()
+                    //         .getViewDocument(url ?? "");
+                    //   },
+                    //   backgroundColor: ThemeConstants.bluecolor,
+                    // ),
+                    SizedBox(
+                      width: 10,
                     ),
-                    CustomButton(
-                      text: "Edit",
-                      onPressed: () {
+
+                    InkWell(
+                      onTap: () {
                         Get.find<FundPlannerController>()
                             .editButton(index ?? 0);
                       },
-                      backgroundColor: ThemeConstants.bluecolor,
+                      child: Container(
+                        height: 30,
+                        decoration: BoxDecoration(
+                            color: oddEven == true
+                                ? ThemeConstants.lightblueColor
+                                : ThemeConstants.ultraLightYellow,
+                            border: Border.all(
+                              color: oddEven == true
+                                  ? ThemeConstants.bluecolor
+                                  : ThemeConstants.yellow,
+                            ),
+                            borderRadius:
+                                BorderRadiusDirectional.circular(5.0)),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            child: CustomAutoSizeTextMontserrat(
+                                text: "Edit",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                textColor: oddEven == true
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.yellow),
+                          ),
+                        ),
+                      ),
                     ),
-                    const Spacer()
+                    // CustomButton(
+                    //   text: "Edit",
+                    //   onPressed: () {
+                    //     Get.find<FundPlannerController>()
+                    //         .getDeleteFund(id.toString());
+                    //   },
+                    //   backgroundColor: ThemeConstants.bluecolor,
+                    // ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.find<FundPlannerController>()
+                            .getDeleteFund(id.toString());
+                      },
+                      child: Container(
+                        height: 30,
+                        decoration: BoxDecoration(
+                            color: oddEven == true
+                                ? ThemeConstants.lightblueColor
+                                : ThemeConstants.ultraLightYellow,
+                            border: Border.all(
+                              color: oddEven == true
+                                  ? ThemeConstants.bluecolor
+                                  : ThemeConstants.yellow,
+                            ),
+                            borderRadius:
+                                BorderRadiusDirectional.circular(5.0)),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            child: CustomAutoSizeTextMontserrat(
+                                text: "Delete",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                textColor: oddEven == true
+                                    ? ThemeConstants.bluecolor
+                                    : ThemeConstants.yellow),
+                          ),
+                        ),
+                      ),
+                    ),
+                    // CustomButton(
+                    //   text: "Delete",
+                    //   onPressed: () {
+                    //     Get.find<FundPlannerController>()
+                    //         .getDeleteFund(id.toString());
+                    //   },
+                    //   backgroundColor: ThemeConstants.bluecolor,
+                    // ),
                   ],
                 ),
               ],
