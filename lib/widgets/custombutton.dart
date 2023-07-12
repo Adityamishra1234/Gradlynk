@@ -21,6 +21,7 @@ class CustomButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
+        width: 200,
         // alignment: Alignment.center,
         decoration: BoxDecoration(
             color: backgroundColor,
@@ -35,12 +36,14 @@ class CustomButton extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         padding: EdgeInsets.symmetric(
             horizontal: horizontelPadding ?? 16, vertical: 8),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
+        child: Center(
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ),

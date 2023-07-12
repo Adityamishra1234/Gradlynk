@@ -124,4 +124,5 @@ abstract class api {
   whichConsentForm(String enqID);
 
   postLetsGetStarted(String endpoint);
+  getMarkAttandance(String endpoint);
 }

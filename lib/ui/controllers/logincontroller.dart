@@ -141,12 +141,12 @@ class LoginController extends GetxController with StateMixin {
     }
 
     var res = await services.phonenumberVerfiy(d);
-    
 
-    if (res == true) {
+    if (res['status'] == true) {
       otpEnable.value = true;
       change(null, status: RxStatus.success());
     } else {
+      getToast('${res['message']}');
       change(null, status: RxStatus.success());
     }
   }

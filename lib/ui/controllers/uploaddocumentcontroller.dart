@@ -41,6 +41,7 @@ class UploadDocumentController extends GetxController {
   RxBool loadingDocumentName = false.obs;
   RxBool loadingOrgName = false.obs;
   RxBool loadingCommonDocument = false.obs;
+  int is_event = 0;
 
   @override
   void onInit() {
@@ -48,6 +49,9 @@ class UploadDocumentController extends GetxController {
     getDocumentType();
     getOrganizationName();
     getcommondocument();
+    if (Get.arguments != null) {
+      is_event = Get.arguments;
+    }
   }
 
   getDocumentType() async {
@@ -177,7 +181,7 @@ class UploadDocumentController extends GetxController {
     try {
       var res = await apiServices.uploadDocumentCommon(filePath, filePath,
           Get.find<BaseController>().model1.id.toString(), id.toString(),
-          orgname: orgName);
+          orgname: orgName, is_event: is_event);
       if (res != null) {
         CommonUploadStatus model = CommonUploadStatus();
         model = res;
@@ -201,7 +205,10 @@ class UploadDocumentController extends GetxController {
     }
   }
 
-  uploadDocument(String id, {String orgname = ""}) async {
+  uploadDocument(
+    String id, {
+    String orgname = "",
+  }) async {
     try {
       String uploadFilename = "";
       PlatformFile? csvFile2;
@@ -227,7 +234,8 @@ class UploadDocumentController extends GetxController {
                 uploadFilename,
                 Get.find<BaseController>().model1.id.toString(),
                 id,
-                orgname: orgname);
+                orgname: orgname,
+                is_event: is_event);
             if (res != null) {
               CommonUploadStatus model = CommonUploadStatus();
               model = res;

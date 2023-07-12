@@ -109,23 +109,23 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   postLetsGetStartedData() async {
-    // var endpoint = letsGetStartedSendData(
-    //     enqId: baseController.model1.id,
-    //     consentQualifactionData: selectedLastQualification,
-    //     consentForEnglishtest: selectedAppearedInEnglishTest,
-    //     consentForEnglishOverAll: specifyCourseTextController.text,
-    //     consentForEnglishValue: selectedTestYouAppearedFor,
-    //     consentForLevelToStudy: selectedLevelYouWantToStudy,
-    //     selectedBroadField: selectCourseBoardFieldCode);
+    var endpoint = letsGetStartedSendData(
+        enqId: baseController.model1.id,
+        consentQualifactionData: selectedLastQualification,
+        consentForEnglishtest: selectedAppearedInEnglishTest,
+        consentForEnglishOverAll: specifyCourseTextController.text,
+        consentForEnglishValue: selectedTestYouAppearedFor,
+        consentForLevelToStudy: selectedLevelYouWantToStudy,
+        selectedBroadField: selectCourseBoardFieldCode);
 
-    // await api.agree(Get.context!);
-    // var res = await api.postLetsGetStarted(endpoint);
+    await api.agree(Get.context!);
+    var res = await api.postLetsGetStarted(endpoint);
 
-    // if (res['status'] == true) {
-    //   Get.to(DashBoard());
-    // }
+    if (res['status'] == true) {
+      Get.to(DashBoard());
+    }
 
-    // print(res);
+    print(res);
   }
 
   List<Widget> courseFieldWidgetList = [];

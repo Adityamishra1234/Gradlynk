@@ -34,6 +34,9 @@ class WelcomeView extends StatelessWidget {
                     child: Image.asset(
                       "assets/images/logo.png",
                     )),
+                SizedBox(
+                  height: 20,
+                ),
                 Column(
                   children: [
                     SizedBox(
@@ -57,7 +60,7 @@ class WelcomeView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Data(
                           icon: "assets/icons/Explore the world.svg",

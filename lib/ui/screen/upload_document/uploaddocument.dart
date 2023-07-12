@@ -1,4 +1,3 @@
-// ignore_for_file: deprecated_member_use
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
@@ -18,7 +17,8 @@ import 'takepicturescreenCommonDocument.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
 class UploadDocument extends StatefulWidget {
-  const UploadDocument({Key? key}) : super(key: key);
+  bool is_event = false;
+  UploadDocument({Key? key, this.is_event = false}) : super(key: key);
   static const routeNamed = '/UploadDocument';
 
   @override
@@ -38,57 +38,41 @@ class _UploadDocumentState extends State<UploadDocument> {
       width = width - 240;
     }
     return Scaffold(
-        appBar: const CustomAppBar(""),
-        drawer: displayMobileLayout == false ? CustomDrawer() : null,
-        body: GetBuilder<UploadDocumentController>(builder: (_) {
-          documentList(_.documentModel, context);
-          return Row(
-            children: [
-              if (displayMobileLayout == true) CustomDrawer(),
-              Expanded(
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 10),
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "My Document",
-                        fontSize: 20,
-                        textColor: ThemeConstants.bluecolor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
+        appBar: widget.is_event == false ? const CustomAppBar("") : null,
+        drawer: widget.is_event == false
+            ? displayMobileLayout == false
+                ? CustomDrawer()
+                : null
+            : null,
+        body: WillPopScope(
+          onWillPop: () async {
+            if (widget.is_event == true) {}
+            return await true;
+          },
+          child: GetBuilder<UploadDocumentController>(builder: (_) {
+            documentList(_.documentModel, context);
+            return Row(
+              children: [
+                if (displayMobileLayout == true) CustomDrawer(),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 10),
                         child: CustomAutoSizeTextMontserrat(
-                          text: "Document Type",
-                          mandatory: true,
-                          textColor: ThemeConstants.TextColor,
-                          fontSize: 14,
+                          text: "My Document",
+                          fontSize: 20,
+                          textColor: ThemeConstants.bluecolor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    CustomDropDownSingle(
-                      model: getDropdownModel(_.loadingDocumentType.value,
-                          _.documentTypeSelectedName, _.documenttypeName),
-                      callbackFunction: callbackDocumentType,
-                      initialSelectedValue: getSelectedDropDown(
-                          _.loadingDocumentType.value,
-                          _.documentTypeSelectedName,
-                          _.documenttypeName),
-                      choosefieldtype: false,
-                    ),
-                    if (_.documentTypeSelectedID == 3)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
                         child: Align(
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Organization Name",
+                            text: "Document Type",
                             mandatory: true,
                             textColor: ThemeConstants.TextColor,
                             fontSize: 14,
@@ -96,84 +80,111 @@ class _UploadDocumentState extends State<UploadDocument> {
                           ),
                         ),
                       ),
-                    if (_.documentTypeSelectedID == 3)
                       CustomDropDownSingle(
-                        model: getDropdownModel(_.loadingOrgName.value,
-                            _.organizationSelectedName, _.organizationName),
-                        callbackFunction: callbackOrganization,
+                        model: getDropdownModel(_.loadingDocumentType.value,
+                            _.documentTypeSelectedName, _.documenttypeName),
+                        callbackFunction: callbackDocumentType,
                         initialSelectedValue: getSelectedDropDown(
-                            _.loadingOrgName.value,
-                            _.organizationSelectedName,
-                            _.organizationName),
+                            _.loadingDocumentType.value,
+                            _.documentTypeSelectedName,
+                            _.documenttypeName),
                         choosefieldtype: false,
                       ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Document Name",
-                          mandatory: true,
-                          textColor: ThemeConstants.TextColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    CustomDropDownSingle(
-                      model: getDropdownModel(_.loadingDocumentName.value,
-                          _.documentNameSelectedName, _.documentNameName),
-                      callbackFunction: callbackDocumentName,
-                      initialSelectedValue: getSelectedDropDown(
-                          _.loadingDocumentName.value,
-                          _.documentNameSelectedName,
-                          _.documentNameName),
-                      choosefieldtype: false,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    if (_.documentNameSelectedName != null)
-                      Row(
-                        children: [
-                          const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary: ThemeConstants.bluecolor, // background
-                                onPrimary:
-                                    ThemeConstants.bluecolor, // foreground
-                              ),
-                              onPressed: () {
-                                getSourceSelected(callbackSelectedSource1,
-                                    _.documentNameSelectedID.toString(),
-                                    OrgName: getNUllChecker(
-                                                _.organizationSelectedName) ==
-                                            false
-                                        ? ("${_.organizationSelectedName!.split("[")[0]}_${_.organizationSelectedID}")
-                                        : "");
-                              },
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Upload",
-                                textColor: ThemeConstants.whitecolor,
-                              ),
+                      if (_.documentTypeSelectedID == 3)
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 20, right: 10),
+                          child: Align(
+                            alignment: AlignmentDirectional.topStart,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "Organization Name",
+                              mandatory: true,
+                              textColor: ThemeConstants.TextColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(
-                            width: 20,
-                          )
-                        ],
+                        ),
+                      if (_.documentTypeSelectedID == 3)
+                        CustomDropDownSingle(
+                          model: getDropdownModel(_.loadingOrgName.value,
+                              _.organizationSelectedName, _.organizationName),
+                          callbackFunction: callbackOrganization,
+                          initialSelectedValue: getSelectedDropDown(
+                              _.loadingOrgName.value,
+                              _.organizationSelectedName,
+                              _.organizationName),
+                          choosefieldtype: false,
+                        ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 20, right: 10),
+                        child: Align(
+                          alignment: AlignmentDirectional.topStart,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Document Name",
+                            mandatory: true,
+                            textColor: ThemeConstants.TextColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ...documentList(_.documentModel, context)
-                  ],
+                      CustomDropDownSingle(
+                        model: getDropdownModel(_.loadingDocumentName.value,
+                            _.documentNameSelectedName, _.documentNameName),
+                        callbackFunction: callbackDocumentName,
+                        initialSelectedValue: getSelectedDropDown(
+                            _.loadingDocumentName.value,
+                            _.documentNameSelectedName,
+                            _.documentNameName),
+                        choosefieldtype: false,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      if (_.documentNameSelectedName != null)
+                        Row(
+                          children: [
+                            const Spacer(),
+                            SizedBox(
+                              width: 100,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0.0,
+                                  primary:
+                                      ThemeConstants.bluecolor, // background
+                                  onPrimary:
+                                      ThemeConstants.bluecolor, // foreground
+                                ),
+                                onPressed: () {
+                                  getSourceSelected(callbackSelectedSource1,
+                                      _.documentNameSelectedID.toString(),
+                                      OrgName: getNUllChecker(
+                                                  _.organizationSelectedName) ==
+                                              false
+                                          ? ("${_.organizationSelectedName!.split("[")[0]}_${_.organizationSelectedID}")
+                                          : "");
+                                },
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Upload",
+                                  textColor: ThemeConstants.whitecolor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            )
+                          ],
+                        ),
+                      ...documentList(_.documentModel, context)
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-        }));
+              ],
+            );
+          }),
+        ));
   }
 
   //Function
