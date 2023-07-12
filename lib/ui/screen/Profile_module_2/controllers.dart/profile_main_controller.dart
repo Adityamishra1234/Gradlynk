@@ -106,10 +106,10 @@ class ProfileViewMainController extends GetxController {
                     },
                     title: "Language Test",
                     onTap: () async {
-                      Get.back();
                       var res =
                           await Get.find<EnglishTestController>().saveButton();
                       if (res != false) {
+                        Get.back();
                         getDailog(4, context);
                       }
                     },
@@ -137,10 +137,10 @@ class ProfileViewMainController extends GetxController {
                     },
                     title: "Qualifying Test",
                     onTap: () async {
-                      Get.back();
                       var res = await Get.find<OtherTestDetailsController>()
                           .saveButton();
                       if (res == true) {
+                        Get.back();
                         getDailog(5, context);
                       }
                     },
