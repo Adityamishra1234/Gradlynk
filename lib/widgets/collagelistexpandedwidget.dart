@@ -318,11 +318,13 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   padding: const EdgeInsets.only(bottom: 0),
                                   child: InkWell(
                                     onTap: (() {
-                                      finalShortList = false;
-                                      courseSearchModel.finalList = "";
-                                      widget.callbackFinalShortListButton!(
-                                          "$index,${courseSearchModel.id!}");
-                                      setState(() {});
+                                      Get.toNamed(Fundrequirement.routenamed,
+                                          arguments: courseSearchModel.id);
+                                      // finalShortList = false;
+                                      // courseSearchModel.finalList = "";
+                                      // widget.callbackFinalShortListButton!(
+                                      //     "$index,${courseSearchModel.id!}");
+                                      // setState(() {});
                                     }),
                                     child: Container(
                                       height: 25,
