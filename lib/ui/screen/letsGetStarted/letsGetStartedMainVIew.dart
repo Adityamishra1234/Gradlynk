@@ -23,20 +23,20 @@ class LetsGetStartedMainView extends StatefulWidget {
 class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
   var controller = Get.put(LetsGetStartedController());
 
-  @override
-  void initState() {
-    // controller.onInit();
-    controller.initialized;
-    // TODO: implement initState
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // controller.onInit();
+  //   controller.initialized;
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    // TODO: implement dispose
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   // TODO: implement dispose
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,23 +49,23 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
               SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Stack(
+                  alignment: Alignment.topRight,
                   children: [
                     const Positioned(
                       left: -250,
                       top: -250,
                       child: CircleAvatar(
-                        radius: 250,
+                        radius: 240,
                         backgroundColor: Color.fromARGB(32, 0, 76, 138),
                       ),
                     ),
                     Positioned(
-                        right: -10,
-                        top: -50,
-                        child: SizedBox(
-                            width: 300,
-                            height: 500,
-                            child: Image.asset(
-                                'assets/images/letsGetStarted_bgImage.png')))
+                        right: 0,
+                        top: 0,
+                        child: Image.asset(
+                          'assets/images/letsGetStarted_bgImage.png',
+                          width: MediaQuery.of(context).size.width * 0.65,
+                        ))
                     //  Positioned(
                     //   left: -160,
                     //   top: -160,
@@ -182,8 +182,8 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                 horizontal: 35, vertical: 5),
                             child: Wrap(
                               alignment: WrapAlignment.start,
-                              runSpacing: 20,
-                              spacing: 25,
+                              runSpacing: 15,
+                              spacing: 15,
                               children: [
                                 CustomButtonWidget(
                                   onTap: () {
@@ -339,7 +339,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                       CustomButtonWidget(
                                         selectedColor: ThemeConstants.bluecolor,
                                         isSelected: controller
-                                                    .haveAppearedInEnglishTest ==
+                                                    .selectedAppearedInEnglishTest ==
                                                 2
                                             ? true
                                             : false,

@@ -17,9 +17,15 @@ import 'package:studentpanel/widgets/custombutton.dart';
 import 'package:studentpanel/widgets/customdropdownprofilepage.dart';
 import 'package:studentpanel/widgets/customtextfield.dart';
 
-class RegisterationFormWidget extends StatelessWidget {
+class RegisterationFormWidget extends StatefulWidget {
   RegisterationFormWidget({super.key});
 
+  @override
+  State<RegisterationFormWidget> createState() =>
+      _RegisterationFormWidgetState();
+}
+
+class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
   var controller = Get.put(RegisterationCopntroller());
 
   TextEditingController otpcontroller = TextEditingController();
@@ -37,7 +43,9 @@ class RegisterationFormWidget extends StatelessWidget {
 
     // var d = int.parse();
 
-    otpcontroller.text = d[9];
+    otpcontroller.text = d[8];
+
+    setState(() {});
     // print('otpCode)');
 
     // print(odtpCode);
@@ -49,6 +57,26 @@ class RegisterationFormWidget extends StatelessWidget {
 
     // await SmsAutoFill().listenForCode();
     // print(appSignature);
+  }
+
+  void initState() {
+    controller.initialized;
+    super.initState();
+    // _focusNode.addListener(_onFocusChange);
+    // MobileNumber.listenPhonePermission((isPermissionGranted) {
+    //   if (isPermissionGranted) {
+    //     // initMobileNumberState();
+    //   } else {}
+    // });
+
+    // _checkVersion();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -479,7 +507,7 @@ class RegisterationFormWidget extends StatelessWidget {
                       ),
                       CustomButton(
                           backgroundColor: ThemeConstants.bluecolor,
-                          horizontelPadding: 100,
+                          horizontelPadding: 10,
                           radius: 8,
                           text: 'Verify OTP',
                           onPressed: () async {

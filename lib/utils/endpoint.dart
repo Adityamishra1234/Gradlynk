@@ -187,6 +187,13 @@ markAttendanceIntake(
     required String intake_year}) {
   return "save-target-intake-for-event?enq_id=$enq_id&campaign_id=$campaign_id&intake_month=$intake_month&intake_year=$intake_year";
 }
+schedule_a_callBack_post_data({
+  required String enq_id,
+  required String counsellor_id,
+}) {
+  return "schedule-an-express-call?enq_id=$enq_id&counsellor_id=$counsellor_id";
+}
+
 
 getMarkAttandenceAllTime(String enq_id, String event_id) {
   return "send-event-data-for-shortlisting?enq_id=$enq_id&event_id=$event_id";

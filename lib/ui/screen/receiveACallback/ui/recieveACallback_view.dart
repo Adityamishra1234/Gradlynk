@@ -33,6 +33,12 @@ class ReceiveACallBackView extends StatelessWidget {
                           choosefieldtype: false,
                           callbackFunction: (value) {
                             controller.oo.value = value;
+                            for (var i = 0; i < controller.name.length; i++) {
+                              if (controller.oo.value == controller.name[i]) {
+                                controller.seletectedID =
+                                    controller.idList[i].toString();
+                              }
+                            }
                             controller.update();
                             // controller.updatedata(value);
                           },
@@ -50,6 +56,7 @@ class ReceiveACallBackView extends StatelessWidget {
                               if (controller.oo.value !=
                                   'Receive a call back') {
                                 getToast(SnackBarConstants.receiveACallback);
+                                controller.requestCallbackDataPost();
                               }
                             },
                             child: Container(
