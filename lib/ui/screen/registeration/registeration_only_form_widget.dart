@@ -2,6 +2,7 @@ import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/login.dart';
 import 'package:studentpanel/ui/screen/registeration/registeration_controller.dart';
@@ -58,7 +59,7 @@ class RegisterationFormWidget extends StatelessWidget {
           constraints: BoxConstraints(maxHeight: 500, minHeight: 300),
 
           // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           margin: const EdgeInsets.symmetric(horizontal: 40),
           decoration: BoxDecoration(
               boxShadow: const [
@@ -102,7 +103,7 @@ class RegisterationFormWidget extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 7),
                         child: CustomTextField(
-fieldFontWeight: FontWeight.w400,
+                          fieldFontWeight: FontWeight.w400,
                           hintFontWeight: FontWeight.w500,
                           borderRadius: 10,
 
@@ -284,9 +285,9 @@ fieldFontWeight: FontWeight.w400,
                       //         labelTextStr: 'Nearest SIEC Branch'),
                       //   ),
                       // ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      // SizedBox(
+                      //   height: 20,
+                      // ),
                       // SizedBox(
                       //   child: TextFormField(
                       //     controller: controller.howDidYouHearAboutUsController,
@@ -344,31 +345,69 @@ fieldFontWeight: FontWeight.w400,
                       // CustomTextField(hint: '', controller: controller.nameController),
 
                       SizedBox(
-                        height: 10,
+                        height: 20,
                       ),
-                      CustomButton(
-                          backgroundColor: ThemeConstants.bluecolor,
-                          horizontelPadding: 100,
-                          radius: 8,
-                          text: 'Get OTP',
-                          onPressed: () async {
-                            print('object');
-                            if (controller.formKey.currentState!.validate()) {
-                              if (controller.selectedBranchCode == null) {
-                                return getToast('Please Select Branch');
-                              } else if (controller.selectedCountryID == null) {
-                                return getToast('Please Select Country');
-                              } else if (controller.leadSourcesListID == null) {
-                                return getToast('Please select leadsource');
-                              }
-                              var res = await controller.regsiter();
-
-                              if (res == true) {
-                                signature();
-                              }
-                              // Get.toNamed(LoginCopy.routeNamed);
+                      LoadingButton(
+                        loader: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            color: ThemeConstants.whitecolor,
+                          ),
+                        ),
+                        borderRadius: 10,
+                        color: ThemeConstants.bluecolor,
+                        padding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                        onTap: (startLoading, stopLoading, buttonState) async {
+                          startLoading();
+                          print('object');
+                          if (controller.formKey.currentState!.validate()) {
+                            if (controller.selectedBranchCode == null) {
+                              return getToast('Please Select Branch');
+                            } else if (controller.selectedCountryID == null) {
+                              return getToast('Please Select Country');
+                            } else if (controller.leadSourcesListID == null) {
+                              return getToast('Please select leadsource');
                             }
-                          }),
+                            var res = await controller.regsiter();
+
+                            if (res == true) {
+                              signature();
+                            }
+                            // Get.toNamed(LoginCopy.routeNamed);
+                          }
+                          stopLoading();
+                        },
+                        height: 30,
+                        width: 200,
+                        child: CustomAutoSizeTextMontserrat(
+                            textColor: ThemeConstants.whitecolor,
+                            text: "Get OTP"),
+                      ),
+                      // CustomButton(
+                      //     backgroundColor: ThemeConstants.bluecolor,
+                      //     horizontelPadding: 20,
+                      //     radius: 8,
+                      //     text: 'Get OTP',
+                      //     onPressed: () async {
+                      //       print('object');
+                      //       if (controller.formKey.currentState!.validate()) {
+                      //         if (controller.selectedBranchCode == null) {
+                      //           return getToast('Please Select Branch');
+                      //         } else if (controller.selectedCountryID == null) {
+                      //           return getToast('Please Select Country');
+                      //         } else if (controller.leadSourcesListID == null) {
+                      //           return getToast('Please select leadsource');
+                      //         }
+                      //         var res = await controller.regsiter();
+
+                      //         if (res == true) {
+                      //           signature();
+                      //         }
+                      //         // Get.toNamed(LoginCopy.routeNamed);
+                      //       }
+                      //     }),
                     ],
 
                     if (controller.showOtp == true) ...[
@@ -463,7 +502,9 @@ fieldFontWeight: FontWeight.w400,
                             }
                           }),
                     ],
-
+                    SizedBox(
+                      height: 10,
+                    ),
                     InkWell(
                       onTap: () {
                         Get.toNamed(LoginCopy.routeNamed);

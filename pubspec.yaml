@@ -92,7 +92,7 @@ dependencies:
   flutter_html: ^3.0.0-alpha.6
   nice_loading_button: ^0.0.1
   salomon_bottom_bar: ^3.3.2
-  awesome_notifications: ^0.7.4+1
+  awesome_notifications: ^0.7.4
   open_file_plus: ^3.4.1
   fluttertoast: ^8.2.1
   flutter_animated_dialog: ^2.0.1
@@ -106,6 +106,7 @@ dependencies:
   youtube_player_flutter: ^8.1.2
   flutter_pin_code_fields: ^2.2.0
   mobile_number: ^2.1.1
+  pin_code_fields: ^8.0.1
 
 
 

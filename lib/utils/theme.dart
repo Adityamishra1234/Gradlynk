@@ -34,6 +34,7 @@ class ThemeConstants {
   static Color drawerBackgroundColor = const Color(0xff272d34);
   static Color bluecolor = const Color(0xFF1940B3);
   static Color whitecolor = const Color(0xFFFFFFFF);
+  static Color ultrilightblue = const Color(0xFFF2F5FF);
   static Color blackcolor = const Color(0xFF0c0c0c);
   static Color lightgreycolor = const Color(0xFFD3D3D3);
   static Color bluegreycolor = const Color(0xFF525863);
@@ -68,8 +69,7 @@ class ThemeConstants {
   static Color skinColour = const Color(0xFFF8F8F8);
   static Color shadowColor = const Color(0xFFF8F8F8);
 
-  static String icons =
-      """<?xml version="1.0" encoding="utf-8"?>
+  static String icons = """<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 26.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">

@@ -1303,10 +1303,10 @@ class ApiServices extends StudentPanelBase implements api {
   @override
   Future<CommonUploadStatus?> uploadDocumentCommon(
       file, uploadFilename, String enqId, String id,
-      {String orgname = ""}) async {
+      {String orgname = "", int is_event = 0}) async {
     try {
       var url = Uri.parse(
-          "${Endpoints.baseUrl}${Endpoints.uploadCommonDocumentPart1}$enqId&id=$id&orgname=$orgname");
+          "${Endpoints.baseUrl}${Endpoints.uploadCommonDocumentPart1}$enqId&id=$id&orgname=$orgname&is_event=$is_event");
       var request = http.MultipartRequest("POST", url);
 
       request.files
@@ -1583,8 +1583,8 @@ class ApiServices extends StudentPanelBase implements api {
       print(res);
       if (res != null) {
         var jsondata = json.decode(res);
-        getToast(SnackBarConstants.phoneNumber!);
-        return true;
+        // getToast(SnackBarConstants.phoneNumber!);
+        return jsondata;
       }
     } catch (e) {
       getToast(SnackBarConstants.phoneNumberError!);
@@ -2081,5 +2081,35 @@ class ApiServices extends StudentPanelBase implements api {
     }
 
     // TODO: implement postLetsGetStarted
+  }
+
+  @override
+  getMarkAttandance(String endpoint) async {
+    try {
+      String endPoint = '${Endpoints.baseUrl}${endpoint}';
+
+      var res = await httpPostNullBody(endPoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  allTimeMarkAttandance(String endpoint) async {
+    try {
+      String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+
+      var res = await httpPostNullBody(endPoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
   }
 }

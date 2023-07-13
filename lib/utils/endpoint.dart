@@ -6,6 +6,10 @@ class Endpoints {
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
 
+  //
+
+  static String? baseUrl_mark_attendance = "http://14.97.86.202:204/api/";
+
   // static String? baseUrl = "http://14.97.86.202:205/api/";
 
   static String? dashboard = "student-panel-login?mobile_number=";
@@ -176,6 +180,14 @@ class Endpoints {
   static String? which_consent_form = "which-consent-form?enq_id=";
 }
 
+getMarkAttandenceAllTime(String enq_id, String event_id) {
+  return "send-event-data-for-shortlisting?enq_id=$enq_id&event_id=$event_id";
+}
+
+getMarkAttendanceForEvent(String enq_id, String code) {
+  return "mark-attendance-for-event?enq_id=$enq_id&uniqueCode=$code";
+}
+
 getFundPlannersave(
     {required String id,
     required String enq_id,
@@ -302,10 +314,8 @@ String letsGetStartedSendData(
   // return '';
 }
 
-
 // api/which-consent-form?enq_id=182058
 // api/lets-get-started?enq_id=182058&consent_qualifactionData=7&consent_for_english=1&consent_for_english_value=TOEFL&consent_for_english_over_all=2&consent_for_LevelToStudy=3&consent_for_course_broad_fields=7
-
 
 // 7 12th
 // 4 Bachelor

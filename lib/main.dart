@@ -72,7 +72,8 @@ Future<void> main() async {
 
   // Plugin must be initialized before using
   await FlutterDownloader.initialize(
-      debug: true, // optional: set to false to disable printing logs to console (default: true)
+      debug:
+          true, // optional: set to false to disable printing logs to console (default: true)
       ignoreSsl:
           true // option: set to false to disable working with http links (default: false)
       );
@@ -210,11 +211,11 @@ class _MyAppState extends State<MyApp> {
           transition: Transition.fade,
           page: () => OTPScreen(),
         ),
-        GetPage(
-            name: UploadDocument.routeNamed,
-            transition: Transition.fade,
-            page: () => const UploadDocument(),
-            binding: UploadDocumentBinding()),
+        // GetPage(
+        //     name: UploadDocument.routeNamed,
+        //     transition: Transition.fade,
+        //     page: () =>  UploadDocument(),
+        //     binding: UploadDocumentBinding()),
         GetPage(
           name: ImageViewerScreen.routeNamed,
           transition: Transition.fade,
@@ -299,7 +300,7 @@ class _MyAppState extends State<MyApp> {
             binding: VisaSummaryBinding()),
         GetPage(
             name: UploadDocument.routeNamed,
-            page: () => const UploadDocument(),
+            page: () => UploadDocument(),
             transition: Transition.fade,
             binding: UploadDocumentBinding()),
         GetPage(
