@@ -32,6 +32,8 @@ class FundStatus extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: CustomAutoSizeTextMontserrat(
                       text: "Check Fund Status",
+                      fontSize: 18,
+                      textColor: ThemeConstants.bluecolor,
                       fontWeight: FontWeight.bold,
                     )),
               ),
@@ -140,9 +142,12 @@ class FundStatusSubWidget extends StatelessWidget {
                           text:
                               "${model.countryName},${model.stateName},${model.cityName}",
                           textColor: ThemeConstants.TextColor,
-                          fontSize: 14),
+                          fontSize: 13),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
                 Row(
                   children: [
@@ -159,9 +164,12 @@ class FundStatusSubWidget extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                           text: model.universityName,
                           textColor: ThemeConstants.TextColor,
-                          fontSize: 14),
+                          fontSize: 13),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
                 Row(
                   children: [
@@ -178,25 +186,31 @@ class FundStatusSubWidget extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                           text: model.campusName,
                           textColor: ThemeConstants.TextColor,
-                          fontSize: 14),
+                          fontSize: 13),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: CustomAutoSizeTextMontserrat(
                     text: "Duration: ${(model.courseDuration)} months",
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
+                ),
+                SizedBox(
+                  height: 5,
                 ),
                 Align(
                   alignment: Alignment.topLeft,
                   child: CustomAutoSizeTextMontserrat(
                     text:
                         "Annual Tuition Fees: Rs ${(model.convertedTotalFund)}",
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Padding(

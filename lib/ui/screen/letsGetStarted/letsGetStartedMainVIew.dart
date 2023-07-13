@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
+import 'package:studentpanel/utils/conditionals/switchForMaximumScoreEnglsihTest.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom_Tabbar/custom_tabbar.dart';
@@ -77,704 +78,841 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                   ],
                 ),
               ),
-              Container(
-                alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.22,
-                      ),
+              Form(
+                key: controller.formKey,
+                child: Container(
+                  alignment: Alignment.center,
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.22,
+                        ),
 
-                      if (controller.showConsentTermsForm == true) ...[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: SizedBox(
-                              width: 300.0,
-                              height: 60.0,
-                              child: Center(
-                                  child: CustomAutoSizeTextMontserrat(
-                                text: "Welcome to SIEC Gradlynk Student Panel",
-                                fontSize: 26,
-                                fontWeight: FontWeight.w900,
-                                textColor: ThemeConstants.bluecolor,
-                              ))),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: SizedBox(
-                              width: 300.0,
-                              height: 40.0,
-                              child: Align(
-                                alignment: AlignmentDirectional.topStart,
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "I, agree to the following :",
-                                  fontSize: 16,
+                        if (controller.showConsentTermsForm == true) ...[
+                          SizedBox(
+                            height: 80,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: SizedBox(
+                                width: 300.0,
+                                height: 60.0,
+                                child: Center(
+                                    child: CustomAutoSizeTextMontserrat(
+                                  text:
+                                      "Welcome to SIEC Gradlynk Student Panel",
+                                  fontSize: 26,
                                   fontWeight: FontWeight.w700,
-                                  textColor: ThemeConstants.blackcolor,
-                                ),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: SizedBox(
-                              width: 300.0,
-                              height: 150.0,
-                              child: Center(
+                                  textColor: ThemeConstants.bluecolor,
+                                ))),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: SizedBox(
+                                width: 300.0,
+                                child: Align(
+                                  alignment: AlignmentDirectional.topStart,
                                   child: CustomAutoSizeTextMontserrat(
-                                text:
-                                    """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
+                                    text: "I, agree to the following :",
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    textColor: ThemeConstants.blackcolor,
+                                  ),
+                                )),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: SizedBox(
+                                width: 300.0,
+                                height: 150.0,
+                                child: Center(
+                                    child: CustomAutoSizeTextMontserrat(
+                                  fontWeight: FontWeight.w400,
+                                  text:
+                                      """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
 2. All the information submitted is correct and collaborates with my legal documents.
 3. In case of any discrepancy in information, SIEC will not be liable for any halt throughout the process.
 4.I, agree to all SIEC's Terms & Conditions.""",
-                                fontSize: 18,
-                                textColor: ThemeConstants.blackcolor,
-                              ))),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: InkWell(
-                            onTap: () async {
-                              controller.postLetsGetStartedData();
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 300,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.bluecolor,
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              child: Center(
-                                  child: CustomAutoSizeTextMontserrat(
-                                text: "I Agree",
-                                textColor: ThemeConstants.whitecolor,
-                              )),
+                                  fontSize: 18,
+                                  textColor: ThemeConstants.blackcolor,
+                                ))),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: InkWell(
+                              onTap: () async {
+                                controller.postLetsGetStartedData();
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                child: Center(
+                                    child: CustomAutoSizeTextMontserrat(
+                                  text: "I Agree",
+                                  textColor: ThemeConstants.whitecolor,
+                                )),
+                              ),
                             ),
-                          ),
-                        )
-                      ],
-
-                      if (controller.questionNumberToShow == 2) ...[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
-                          child: CustomAutoSizeTextMontserrat(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 28,
-                              text: 'What is your last qualification'),
-                        ),
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 35, vertical: 5),
-                          child: Wrap(
-                            alignment: WrapAlignment.start,
-                            runSpacing: 20,
-                            spacing: 25,
-                            children: [
-                              CustomButtonWidget(
-                                onTap: () {
-                                  controller.selectedQualification(7);
-                                },
-                                isSelected:
-                                    controller.selectedLastQualification == 7
-                                        ? true
-                                        : false,
-                                text: '12th',
-                                selectedColor: ThemeConstants.bluecolor,
-                              ),
-                              CustomButtonWidget(
-                                onTap: () {
-                                  controller.selectedQualification(4);
-                                },
-                                selectedColor: ThemeConstants.bluecolor,
-                                isSelected:
-                                    controller.selectedLastQualification == 4
-                                        ? true
-                                        : false,
-                                text: 'Bachelors',
-                              ),
-                              CustomButtonWidget(
-                                onTap: () {
-                                  controller.selectedQualification(3);
-                                },
-                                text: 'Masters',
-                                selectedColor: ThemeConstants.bluecolor,
-                                isSelected:
-                                    controller.selectedLastQualification == 3
-                                        ? true
-                                        : false,
-                              ),
-                              CustomButtonWidget(
-                                onTap: () {
-                                  controller.selectedQualification(6);
-                                },
-                                selectedColor: ThemeConstants.bluecolor,
-                                isSelected:
-                                    controller.selectedLastQualification == 6
-                                        ? true
-                                        : false,
-                                text: 'Diploma',
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-
-                      //         Padding(
-                      //           padding: const EdgeInsets.symmetric(
-                      //               horizontal: 30, vertical: 20),
-                      //           child: CustomAutoSizeTextMontserrat(
-                      //               fontWeight: FontWeight.w600,
-                      //               fontSize: 28,
-                      //               text: 'What is your last qualification?'),
-                      //         ),
-                      //         Container(
-                      //           padding:
-                      //               EdgeInsets.symmetric(horizontal: 35, vertical: 5),
-                      //           height: MediaQuery.of(context).size.height * 0.4,
-                      //           child: Wrap(
-                      //             alignment: WrapAlignment.start,
-                      //             runSpacing: 20,
-                      //             spacing: 25,
-                      //             children: [
-                      //               CustomButtonWidget(
-                      //                 text: '12th',
-                      //               ),
-                      //               CustomButtonWidget(
-                      //                 text: 'Bachelors',
-                      //               ),
-                      //               CustomButtonWidget(
-                      //                 text: 'Masters',
-                      //               ),
-                      //               CustomButtonWidget(
-                      //                 text: 'Diploma',
-                      //               ),
-                      //               // Row(
-                      //               //   mainAxisAlignment: MainAxisAlignment.end,
-                      //               //   children: [
-                      //               //     CustomIconTextTogether(
-                      //               //       text: 'Back',
-                      //               //       Bgcolor: ThemeConstants.whitecolor,
-                      //               //       color: ThemeConstants.bluecolor,
-                      //               //       fontWeight: FontWeight.w400,
-                      //               //       textSize: 12,
-                      //               //       iconData: Icon(
-                      //               //         Icons.arrow_back_ios_new_rounded,
-                      //               //         size: 10,
-                      //               //         color: ThemeConstants.bluecolor,
-                      //               //       ),
-                      //               //     ),
-                      //               //     const SizedBox(
-                      //               //       width: 20,
-                      //               //     ),
-                      //               //     CustomIconTextTogether(
-                      //               //       // iconBeforeText: false,
-                      //               //       text: 'Next',
-                      //               //       Bgcolor: ThemeConstants.whitecolor,
-                      //               //       color: ThemeConstants.bluecolor,
-                      //               //       fontWeight: FontWeight.w400,
-                      //               //       textSize: 12,
-                      //               //       iconData: Icon(
-                      //               //         Icons.navigate_next,
-                      //               //         size: 15,
-                      //               //         color: ThemeConstants.bluecolor,
-                      //               //       ),
-                      //               //     ),
-                      //               //     const SizedBox(
-                      //               //       width: 35,
-                      //               //     ),
-                      //               //   ],
-                      //               // )
-                      //             ],
-                      //           ),
-                      //         )
-                      //       ]),
-                      // ),
-                      if (controller.questionNumberToShow == 3) ...[
-                        if (controller.questionToShowInEnglsihTest == 0) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: CustomAutoSizeTextMontserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                                text: 'Have you appeared in English ?'),
-                          ),
-                          Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 35, vertical: 5),
-                              child: Wrap(
-                                  alignment: WrapAlignment.start,
-                                  runSpacing: 20,
-                                  spacing: 25,
-                                  children: [
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedAppearedInEnglishTest ==
-                                              1
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller
-                                            .selectedAppearedInEnglishTest = 1;
-                                        controller.update();
-                                      },
-                                      text: 'Yes',
-                                    ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .haveAppearedInEnglishTest ==
-                                              2
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller
-                                            .selectedAppearedInEnglishTest = 2;
-
-                                        controller.update();
-                                      },
-                                      text: 'No',
-                                    ),
-                                    // CustomButtonWidget(
-                                    //   text: 'Masters',
-                                    // ),
-                                    // CustomButtonWidget(
-                                    //   text: 'Diploma',
-                                    // ),
-                                  ])),
-                        ],
-                        if (controller.questionToShowInEnglsihTest == 1) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: CustomAutoSizeTextMontserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                                text: 'Select the test you have appeared for?'),
-                          ),
-                          Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 35, vertical: 5),
-                              child: Wrap(
-                                  alignment: WrapAlignment.start,
-                                  runSpacing: 20,
-                                  spacing: 25,
-                                  children: [
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedTestYouAppearedFor ==
-                                              'IELTS'
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedTestYouAppearedFor =
-                                            'IELTS';
-                                        controller.update();
-                                      },
-                                      text: 'IELTS',
-                                    ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedTestYouAppearedFor ==
-                                              'PTE'
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedTestYouAppearedFor =
-                                            'PTE';
-
-                                        controller.update();
-                                      },
-                                      text: 'PTE',
-                                    ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedTestYouAppearedFor ==
-                                              'TOEFL'
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedTestYouAppearedFor =
-                                            'TOEFL';
-
-                                        controller.update();
-                                      },
-                                      text: 'TOEFL',
-                                    ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedTestYouAppearedFor ==
-                                              'Duolingo'
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedTestYouAppearedFor =
-                                            'Duolingo';
-
-                                        controller.update();
-                                      },
-                                      text: 'Duolingo',
-                                    ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedTestYouAppearedFor ==
-                                              'Cambridge'
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedTestYouAppearedFor =
-                                            'Cambridge';
-
-                                        controller.update();
-                                      },
-                                      text: 'Cambridge',
-                                    ),
-                                    // CustomButtonWidget(
-                                    //   text: 'Masters',
-                                    // ),
-                                    // CustomButtonWidget(
-                                    //   text: 'Diploma',
-                                    // ),
-                                  ])),
-                        ],
-                        if (controller.questionToShowInEnglsihTest == 2) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: CustomAutoSizeTextMontserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                                text:
-                                    'Specify Your  \n ${controller.selectedTestYouAppearedFor} score?'),
-                          ),
-
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: CustomTextField(
-                                keybord: TextInputType.phone,
-                                hint: "Score",
-                                controller:
-                                    controller.specifyCourseTextController),
                           )
-                          // CustomButtonWidget(
-                          //   text: 'Masters',
-                          // ),
-                          // CustomButtonWidget(
-                          //   text: 'Diploma',
-                          // ),
                         ],
 
-                        // Padding(
-                        //   padding: const EdgeInsets.symmetric(
-                        //       horizontal: 30, vertical: 20),
-                        //   child: CustomAutoSizeTextMontserrat(
-                        //       fontWeight: FontWeight.w600,
-                        //       fontSize: 28,
-                        //       text: 'Select the test you have appaered for?'),
-                        // ),
-                        // Container(
-                        //     padding: EdgeInsets.symmetric(
-                        //         horizontal: 35, vertical: 5),
-                        //     child: Wrap(
-                        //         alignment: WrapAlignment.start,
-                        //         runSpacing: 20,
-                        //         spacing: 25,
-                        //         children: [
-                        //           CustomButtonWidget(
-                        //             text: 'IELTS',
-                        //           ),
-                        //           CustomButtonWidget(
-                        //             text: 'PTE',
-                        //           ),
-                        //           CustomButtonWidget(
-                        //             text: 'TOEFL',
-                        //           ),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'Masters',
-                        //           // ),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'Diploma',
-                        //           // ),
-                        //         ])),
-                        // Padding(
-                        //   padding: const EdgeInsets.symmetric(
-                        //       horizontal: 30, vertical: 20),
-                        //   child: CustomAutoSizeTextMontserrat(
-                        //       fontWeight: FontWeight.w600,
-                        //       fontSize: 28,
-                        //       text: 'Specify your score'),
-                        // ),
-                        // Container(
-                        //     padding: EdgeInsets.symmetric(
-                        //         horizontal: 35, vertical: 5),
-                        //     child: Wrap(
-                        //         alignment: WrapAlignment.start,
-                        //         runSpacing: 20,
-                        //         spacing: 25,
-                        //         children: [
-                        //           CustomTextField(
-                        //               hint: 'hint',
-                        //               controller: TextEditingController()),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'IELTS',
-                        //           // ),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'PTE',
-                        //           // ),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'TOEFL',
-                        //           // ),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'Masters',
-                        //           // ),
-                        //           // CustomButtonWidget(
-                        //           //   text: 'Diploma',
-                        //           // ),
-                        //         ]))
-                      ],
-                      // if (controller.questionNumberToShow == 4) ...[],
-
-                      // if (controller.questionNumberToShow == 5) ...[],
-                      if (controller.questionNumberToShow == 4) ...[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 20),
-                          child: CustomAutoSizeTextMontserrat(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 28,
-                              text: 'What level do you want to study at?'),
-                        ),
-                        Container(
+                        if (controller.questionNumberToShow == 2) ...[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 20),
+                            child: CustomAutoSizeTextMontserrat(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 28,
+                                text: 'What is your last qualification'),
+                          ),
+                          Container(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 35, vertical: 5),
                             child: Wrap(
-                                alignment: WrapAlignment.start,
-                                runSpacing: 20,
-                                spacing: 25,
-                                children: [
-                                  CustomButtonWidget(
-                                    selectedColor: ThemeConstants.bluecolor,
-                                    isSelected: controller
-                                                .selectedLevelYouWantToStudy ==
-                                            7
-                                        ? true
-                                        : false,
-                                    onTap: () {
-                                      controller.selectedLevelYouWantToStudy =
-                                          7;
-                                      controller.update();
-                                    },
-                                    text: 'UG',
-                                  ),
-                                  CustomButtonWidget(
-                                    selectedColor: ThemeConstants.bluecolor,
-                                    isSelected: controller
-                                                .selectedLevelYouWantToStudy ==
-                                            4
-                                        ? true
-                                        : false,
-                                    onTap: () {
-                                      controller.selectedLevelYouWantToStudy =
-                                          4;
-                                      controller.update();
-                                    },
-                                    text: 'PG',
-                                  ),
-                                  CustomButtonWidget(
-                                    selectedColor: ThemeConstants.bluecolor,
-                                    isSelected: controller
-                                                .selectedLevelYouWantToStudy ==
-                                            3
-                                        ? true
-                                        : false,
-                                    onTap: () {
-                                      controller.selectedLevelYouWantToStudy =
-                                          3;
-                                      controller.update();
-                                    },
-                                    text: 'Diploma',
-                                  ),
-                                  // CustomButtonWidget(
-                                  //   text: 'Masters',
-                                  // ),
-                                  // CustomButtonWidget(
-                                  //   text: 'Diploma',
-                                  // ),
-                                ]))
-                      ],
+                              alignment: WrapAlignment.start,
+                              runSpacing: 20,
+                              spacing: 25,
+                              children: [
+                                CustomButtonWidget(
+                                  onTap: () {
+                                    controller.selectedQualification(7);
+                                  },
+                                  isSelected:
+                                      controller.selectedLastQualification == 7
+                                          ? true
+                                          : false,
+                                  text: '12th',
+                                  selectedColor: ThemeConstants.bluecolor,
+                                ),
+                                CustomButtonWidget(
+                                  onTap: () {
+                                    controller.selectedQualification(4);
+                                  },
+                                  selectedColor: ThemeConstants.bluecolor,
+                                  isSelected:
+                                      controller.selectedLastQualification == 4
+                                          ? true
+                                          : false,
+                                  text: 'Bachelors',
+                                ),
+                                CustomButtonWidget(
+                                  onTap: () {
+                                    controller.selectedQualification(3);
+                                  },
+                                  text: 'Masters',
+                                  selectedColor: ThemeConstants.bluecolor,
+                                  isSelected:
+                                      controller.selectedLastQualification == 3
+                                          ? true
+                                          : false,
+                                ),
+                                CustomButtonWidget(
+                                  onTap: () {
+                                    controller.selectedQualification(6);
+                                  },
+                                  selectedColor: ThemeConstants.bluecolor,
+                                  isSelected:
+                                      controller.selectedLastQualification == 6
+                                          ? true
+                                          : false,
+                                  text: 'Diploma',
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
 
-                      if (controller.questionNumberToShow == 5) ...[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Container(
-                            width: 100,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 15),
-                            decoration: BoxDecoration(
-                                color: ThemeConstants.yellow,
-                                borderRadius: BorderRadius.circular(20)),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: 'Great',
+                        //         Padding(
+                        //           padding: const EdgeInsets.symmetric(
+                        //               horizontal: 30, vertical: 20),
+                        //           child: CustomAutoSizeTextMontserrat(
+                        //               fontWeight: FontWeight.w600,
+                        //               fontSize: 28,
+                        //               text: 'What is your last qualification?'),
+                        //         ),
+                        //         Container(
+                        //           padding:
+                        //               EdgeInsets.symmetric(horizontal: 35, vertical: 5),
+                        //           height: MediaQuery.of(context).size.height * 0.4,
+                        //           child: Wrap(
+                        //             alignment: WrapAlignment.start,
+                        //             runSpacing: 20,
+                        //             spacing: 25,
+                        //             children: [
+                        //               CustomButtonWidget(
+                        //                 text: '12th',
+                        //               ),
+                        //               CustomButtonWidget(
+                        //                 text: 'Bachelors',
+                        //               ),
+                        //               CustomButtonWidget(
+                        //                 text: 'Masters',
+                        //               ),
+                        //               CustomButtonWidget(
+                        //                 text: 'Diploma',
+                        //               ),
+                        //               // Row(
+                        //               //   mainAxisAlignment: MainAxisAlignment.end,
+                        //               //   children: [
+                        //               //     CustomIconTextTogether(
+                        //               //       text: 'Back',
+                        //               //       Bgcolor: ThemeConstants.whitecolor,
+                        //               //       color: ThemeConstants.bluecolor,
+                        //               //       fontWeight: FontWeight.w400,
+                        //               //       textSize: 12,
+                        //               //       iconData: Icon(
+                        //               //         Icons.arrow_back_ios_new_rounded,
+                        //               //         size: 10,
+                        //               //         color: ThemeConstants.bluecolor,
+                        //               //       ),
+                        //               //     ),
+                        //               //     const SizedBox(
+                        //               //       width: 20,
+                        //               //     ),
+                        //               //     CustomIconTextTogether(
+                        //               //       // iconBeforeText: false,
+                        //               //       text: 'Next',
+                        //               //       Bgcolor: ThemeConstants.whitecolor,
+                        //               //       color: ThemeConstants.bluecolor,
+                        //               //       fontWeight: FontWeight.w400,
+                        //               //       textSize: 12,
+                        //               //       iconData: Icon(
+                        //               //         Icons.navigate_next,
+                        //               //         size: 15,
+                        //               //         color: ThemeConstants.bluecolor,
+                        //               //       ),
+                        //               //     ),
+                        //               //     const SizedBox(
+                        //               //       width: 35,
+                        //               //     ),
+                        //               //   ],
+                        //               // )
+                        //             ],
+                        //           ),
+                        //         )
+                        //       ]),
+                        // ),
+                        if (controller.questionNumberToShow == 3) ...[
+                          if (controller.questionToShowInEnglsihTest == 0) ...[
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 20),
+                              child: CustomAutoSizeTextMontserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 28,
+                                  text: 'Have you appeared in English ?'),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15, top: 10),
-                          child: Container(
-                            child: CustomAutoSizeTextMontserrat(
-                              fontSize: 30,
-                              text: 'What course are you looking for?',
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          width: MediaQuery.of(context).size.width * .95,
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          height: 110,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount:
-                                  controller.AllCourseSearchBroadField.length,
-                              itemBuilder: (context, index) => InkWell(
-                                    onTap: () {
-                                      controller.selectCourseBoardFieldCode =
+                            Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 35, vertical: 5),
+                                child: Wrap(
+                                    alignment: WrapAlignment.start,
+                                    runSpacing: 20,
+                                    spacing: 25,
+                                    children: [
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .selectedAppearedInEnglishTest ==
+                                                1
+                                            ? true
+                                            : false,
+                                        onTap: () {
                                           controller
-                                              .AllCourseSearchBroadField[index]
-                                              .id;
-                                      controller.update();
-                                      // controller.getCoursenarrowField(
-                                      //     controller.selectCourseBoardFieldCode!);
-                                    },
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 5),
-                                      margin:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      width: 140,
-                                      decoration: BoxDecoration(
-                                          color: controller
-                                                      .selectCourseBoardFieldCode ==
-                                                  controller
+                                              .selectedAppearedInEnglishTest = 1;
+                                          controller.update();
+                                        },
+                                        text: 'Yes',
+                                      ),
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .haveAppearedInEnglishTest ==
+                                                2
+                                            ? true
+                                            : false,
+                                        onTap: () {
+                                          controller
+                                              .selectedAppearedInEnglishTest = 2;
+
+                                          controller.update();
+                                        },
+                                        text: 'No',
+                                      ),
+                                      // CustomButtonWidget(
+                                      //   text: 'Masters',
+                                      // ),
+                                      // CustomButtonWidget(
+                                      //   text: 'Diploma',
+                                      // ),
+                                    ])),
+                          ],
+                          if (controller.questionToShowInEnglsihTest == 1) ...[
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 20),
+                              child: CustomAutoSizeTextMontserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 28,
+                                  text:
+                                      'Select the test you have appeared for?'),
+                            ),
+                            Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 35, vertical: 5),
+                                child: Wrap(
+                                    alignment: WrapAlignment.start,
+                                    runSpacing: 20,
+                                    spacing: 25,
+                                    children: [
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .selectedTestYouAppearedFor ==
+                                                'IELTS'
+                                            ? true
+                                            : false,
+                                        onTap: () {
+                                          controller
+                                                  .selectedTestYouAppearedFor =
+                                              'IELTS';
+                                          controller.update();
+                                        },
+                                        text: 'IELTS',
+                                      ),
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .selectedTestYouAppearedFor ==
+                                                'PTE'
+                                            ? true
+                                            : false,
+                                        onTap: () {
+                                          controller
+                                                  .selectedTestYouAppearedFor =
+                                              'PTE';
+
+                                          controller.update();
+                                        },
+                                        text: 'PTE',
+                                      ),
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .selectedTestYouAppearedFor ==
+                                                'TOEFL'
+                                            ? true
+                                            : false,
+                                        onTap: () {
+                                          controller
+                                                  .selectedTestYouAppearedFor =
+                                              'TOEFL';
+
+                                          controller.update();
+                                        },
+                                        text: 'TOEFL',
+                                      ),
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .selectedTestYouAppearedFor ==
+                                                'Duolingo'
+                                            ? true
+                                            : false,
+                                        onTap: () {
+                                          controller
+                                                  .selectedTestYouAppearedFor =
+                                              'Duolingo';
+
+                                          controller.update();
+                                        },
+                                        text: 'Duolingo',
+                                      ),
+                                      CustomButtonWidget(
+                                        selectedColor: ThemeConstants.bluecolor,
+                                        isSelected: controller
+                                                    .selectedTestYouAppearedFor ==
+                                                'Cambridge'
+                                            ? true
+                                            : false,
+                                        onTap: () {
+                                          controller
+                                                  .selectedTestYouAppearedFor =
+                                              'Cambridge';
+
+                                          controller.update();
+                                        },
+                                        text: 'Cambridge',
+                                      ),
+                                      // CustomButtonWidget(
+                                      //   text: 'Masters',
+                                      // ),
+                                      // CustomButtonWidget(
+                                      //   text: 'Diploma',
+                                      // ),
+                                    ])),
+                          ],
+                          if (controller.questionToShowInEnglsihTest == 2) ...[
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 30, vertical: 20),
+                              child: CustomAutoSizeTextMontserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 28,
+                                  text:
+                                      'Specify \nYour \n${controller.selectedTestYouAppearedFor} score.'),
+                            ),
+
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 30, right: 70),
+                              child: TextFormField(
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 12, horizontal: 10),
+                                    hintText: '',
+                                    hintStyle:
+                                        TextStyle(fontWeight: FontWeight.w500),
+                                    filled: true,
+                                    fillColor:
+                                        ThemeConstants.ultraLightgreyColor2,
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: ThemeConstants.red),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0,
+                                          color: ThemeConstants.blackcolor),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 1,
+                                          color: ThemeConstants.blackcolor),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          width: 0,
+                                          color: ThemeConstants.blackcolor),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  keyboardType: TextInputType.phone,
+                                  validator: (value) {
+                                    var res = switchForMaximumScoreEnglishText(
+                                        controller.selectedTestYouAppearedFor!);
+
+                                    var marksFilled = int.parse(value!);
+
+                                    if (marksFilled > res) {
+                                      return 'Maximum marks $res';
+                                    }
+                                  },
+                                  controller:
+                                      controller.specifyCourseTextController),
+                            )
+                            // CustomButtonWidget(
+                            //   text: 'Masters',
+                            // ),
+                            // CustomButtonWidget(
+                            //   text: 'Diploma',
+                            // ),
+                          ],
+
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(
+                          //       horizontal: 30, vertical: 20),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //       fontWeight: FontWeight.w600,
+                          //       fontSize: 28,
+                          //       text: 'Select the test you have appaered for?'),
+                          // ),
+                          // Container(
+                          //     padding: EdgeInsets.symmetric(
+                          //         horizontal: 35, vertical: 5),
+                          //     child: Wrap(
+                          //         alignment: WrapAlignment.start,
+                          //         runSpacing: 20,
+                          //         spacing: 25,
+                          //         children: [
+                          //           CustomButtonWidget(
+                          //             text: 'IELTS',
+                          //           ),
+                          //           CustomButtonWidget(
+                          //             text: 'PTE',
+                          //           ),
+                          //           CustomButtonWidget(
+                          //             text: 'TOEFL',
+                          //           ),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'Masters',
+                          //           // ),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'Diploma',
+                          //           // ),
+                          //         ])),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(
+                          //       horizontal: 30, vertical: 20),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //       fontWeight: FontWeight.w600,
+                          //       fontSize: 28,
+                          //       text: 'Specify your score'),
+                          // ),
+                          // Container(
+                          //     padding: EdgeInsets.symmetric(
+                          //         horizontal: 35, vertical: 5),
+                          //     child: Wrap(
+                          //         alignment: WrapAlignment.start,
+                          //         runSpacing: 20,
+                          //         spacing: 25,
+                          //         children: [
+                          //           CustomTextField(
+                          //               hint: 'hint',
+                          //               controller: TextEditingController()),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'IELTS',
+                          //           // ),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'PTE',
+                          //           // ),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'TOEFL',
+                          //           // ),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'Masters',
+                          //           // ),
+                          //           // CustomButtonWidget(
+                          //           //   text: 'Diploma',
+                          //           // ),
+                          //         ]))
+                        ],
+                        // if (controller.questionNumberToShow == 4) ...[],
+
+                        // if (controller.questionNumberToShow == 5) ...[],
+                        if (controller.questionNumberToShow == 4) ...[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 20),
+                            child: CustomAutoSizeTextMontserrat(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 28,
+                                text: 'What level do you want to study at?'),
+                          ),
+                          Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 35, vertical: 5),
+                              child: Wrap(
+                                  alignment: WrapAlignment.start,
+                                  runSpacing: 20,
+                                  spacing: 25,
+                                  children: [
+                                    CustomButtonWidget(
+                                      selectedColor: ThemeConstants.bluecolor,
+                                      isSelected: controller
+                                                  .selectedLevelYouWantToStudy ==
+                                              7
+                                          ? true
+                                          : false,
+                                      onTap: () {
+                                        controller.selectedLevelYouWantToStudy =
+                                            7;
+                                        controller.update();
+                                      },
+                                      text: 'UG',
+                                    ),
+                                    CustomButtonWidget(
+                                      selectedColor: ThemeConstants.bluecolor,
+                                      isSelected: controller
+                                                  .selectedLevelYouWantToStudy ==
+                                              4
+                                          ? true
+                                          : false,
+                                      onTap: () {
+                                        controller.selectedLevelYouWantToStudy =
+                                            4;
+                                        controller.update();
+                                      },
+                                      text: 'PG',
+                                    ),
+                                    CustomButtonWidget(
+                                      selectedColor: ThemeConstants.bluecolor,
+                                      isSelected: controller
+                                                  .selectedLevelYouWantToStudy ==
+                                              3
+                                          ? true
+                                          : false,
+                                      onTap: () {
+                                        controller.selectedLevelYouWantToStudy =
+                                            3;
+                                        controller.update();
+                                      },
+                                      text: 'Diploma',
+                                    ),
+                                    // CustomButtonWidget(
+                                    //   text: 'Masters',
+                                    // ),
+                                    // CustomButtonWidget(
+                                    //   text: 'Diploma',
+                                    // ),
+                                  ]))
+                        ],
+
+                        if (controller.questionNumberToShow == 5) ...[
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 15),
+                          //   child: Container(
+                          //     width: 100,
+                          //     padding: EdgeInsets.symmetric(
+                          //         vertical: 5, horizontal: 15),
+                          //     decoration: BoxDecoration(
+                          //         color: ThemeConstants.yellow,
+                          //         borderRadius: BorderRadius.circular(20)),
+                          //     child: CustomAutoSizeTextMontserrat(
+                          //       text: 'Great',
+                          //     ),
+                          //   ),
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15, top: 10),
+                            child: Container(
+                              child: CustomAutoSizeTextMontserrat(
+                                fontSize: 30,
+                                text: 'What course are you looking for?',
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 5),
+                            width: MediaQuery.of(context).size.width * .95,
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                            height: 110,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount:
+                                    controller.AllCourseSearchBroadField.length,
+                                itemBuilder: (context, index) => InkWell(
+                                      onTap: () {
+                                        controller.selectCourseBoardFieldCode =
+                                            controller
+                                                .AllCourseSearchBroadField[
+                                                    index]
+                                                .id;
+                                        controller.update();
+                                        // controller.getCoursenarrowField(
+                                        //     controller.selectCourseBoardFieldCode!);
+                                      },
+                                      child: Container(
+                                        padding:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        width: 140,
+                                        decoration: BoxDecoration(
+                                            color: controller
+                                                        .selectCourseBoardFieldCode ==
+                                                    controller
+                                                        .AllCourseSearchBroadField[
+                                                            index]
+                                                        .id
+                                                ? ThemeConstants.lightblueColor
+                                                : ThemeConstants.whitecolor,
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            border: Border.all(
+                                                width: 1,
+                                                color:
+                                                    ThemeConstants.bluecolor)),
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: 50,
+                                                height: 50,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: controller
                                                       .AllCourseSearchBroadField[
                                                           index]
-                                                      .id
-                                              ? ThemeConstants.lightblueColor
-                                              : ThemeConstants.whitecolor,
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: ThemeConstants.bluecolor)),
-                                      child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              width: 50,
-                                              height: 50,
-                                              child: CachedNetworkImage(
-                                                imageUrl: controller
-                                                    .AllCourseSearchBroadField[
-                                                        index]
-                                                    .imageLink!,
+                                                      .imageLink!,
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              '${controller.AllCourseSearchBroadField[index].broadFieldName}',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w500,
+                                              SizedBox(
+                                                height: 5,
                                               ),
-                                            )
-                                          ]),
-                                    ),
-                                  )),
+                                              Text(
+                                                '${controller.AllCourseSearchBroadField[index].broadFieldName}',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              )
+                                            ]),
+                                      ),
+                                    )),
+                          ),
+                        ],
+
+                        SizedBox(
+                          height: 10,
                         ),
-                      ],
 
-                      SizedBox(
-                        height: 10,
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 70),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              // CustomIconTextTogether(
+                              //   text: 'Back',
+                              //   Bgcolor: ThemeConstants.whitecolor,
+                              //   color: ThemeConstants.bluecolor,
+                              //   fontWeight: FontWeight.w400,
+                              //   textSize: 12,
+                              //   iconData: Icon(
+                              //     Icons.arrow_back_ios_new_rounded,
+                              //     size: 10,
+                              //     color: ThemeConstants.bluecolor,
+                              //   ),
+                              // ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(right: 70),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            // CustomIconTextTogether(
-                            //   text: 'Back',
-                            //   Bgcolor: ThemeConstants.whitecolor,
-                            //   color: ThemeConstants.bluecolor,
-                            //   fontWeight: FontWeight.w400,
-                            //   textSize: 12,
-                            //   iconData: Icon(
-                            //     Icons.arrow_back_ios_new_rounded,
-                            //     size: 10,
-                            //     color: ThemeConstants.bluecolor,
-                            //   ),
-                            // ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            if (controller.nextForChange == false)
-                              InkWell(
-                                onTap: () {
-                                  if (controller
-                                              .selectedAppearedInEnglishTest ==
-                                          null &&
-                                      controller.questionToShowInEnglsihTest ==
-                                          0) {
-                                    getToast('Please Select one option');
-                                  } else if (controller
-                                              .selectedTestYouAppearedFor ==
-                                          null &&
-                                      controller.questionToShowInEnglsihTest ==
-                                          1) {
-                                    getToast('Please Select one option');
-                                  }
-                                  // else if (controller.specifyYourScore == null &&
-                                  //     controller.questionToShowInEnglsihTest == 2) {
-                                  //   getToast('Please Select one option');
-                                  // }
-
-                                  else if (controller
-                                              .specifyCourseTextController
-                                              .text ==
-                                          '' &&
-                                      controller.questionToShowInEnglsihTest ==
-                                          2) {
-                                    getToast('Please Select one option');
-                                  } else {
+                              if (controller.nextForChange == false)
+                                InkWell(
+                                  onTap: () {
                                     if (controller
-                                            .questionToShowInEnglsihTest ==
-                                        2) {
-                                      controller.nextForChange = true;
-                                      controller.showQuestion();
-                                    } else {
-                                      controller.showEnglishTestNextQuestion();
+                                                .selectedAppearedInEnglishTest ==
+                                            null &&
+                                        controller
+                                                .questionToShowInEnglsihTest ==
+                                            0) {
+                                      getToast('Please Select one option');
+                                    } else if (controller
+                                                .selectedTestYouAppearedFor ==
+                                            null &&
+                                        controller
+                                                .questionToShowInEnglsihTest ==
+                                            1) {
+                                      getToast('Please Select one option');
                                     }
-                                  }
-                                },
-                                child: Container(
-                                  width: 100,
+                                    // else if (controller.specifyYourScore == null &&
+                                    //     controller.questionToShowInEnglsihTest == 2) {
+                                    //   getToast('Please Select one option');
+                                    // }
+
+                                    else if (controller
+                                                .specifyCourseTextController
+                                                .text ==
+                                            '' &&
+                                        controller
+                                                .questionToShowInEnglsihTest ==
+                                            2) {
+                                      getToast('Please Select one option');
+                                    } else {
+                                      if (controller
+                                              .questionToShowInEnglsihTest ==
+                                          2) {
+                                        if (controller.formKey.currentState!
+                                            .validate()) {
+                                          controller.nextForChange = true;
+                                          controller.showQuestion();
+                                        }
+                                      } else {
+                                        controller
+                                            .showEnglishTestNextQuestion();
+                                      }
+                                    }
+                                  },
+                                  child: Container(
+                                    width: 100,
+                                    child: CustomIconTextTogether(
+                                      // iconBeforeText: false,
+                                      text: 'Next',
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 12,
+                                      iconData: Icon(
+                                        Icons.navigate_next,
+                                        size: 15,
+                                        color: ThemeConstants.bluecolor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                              if (controller.nextForChange == true &&
+                                  controller.showConsentTermsForm == false) ...[
+                                SizedBox(
+                                  height: 40,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    if (controller.selectedLastQualification ==
+                                            null &&
+                                        controller.questionNumberToShow == 2) {
+                                      getToast(
+                                          'Please select last qualification');
+                                    } else if (controller
+                                                .appearedForEnglishTest ==
+                                            null &&
+                                        controller.questionNumberToShow == 3) {
+                                      getToast('Please select one');
+                                    } else if (controller
+                                                .appearedForEnglishTest ==
+                                            null &&
+                                        controller.questionNumberToShow == 3) {
+                                      getToast('Please select one');
+                                    } else if (controller.nextForChange ==
+                                        true) {
+                                      if (controller.questionNumberToShow ==
+                                          4) {
+                                        controller.questionNumberToShow =
+                                            controller.questionNumberToShow + 1;
+                                        controller.update();
+                                      } else if (controller
+                                                  .selectCourseBoardFieldCode ==
+                                              null &&
+                                          controller.questionNumberToShow ==
+                                              5) {
+                                        getToast(
+                                            'Please Select one Broad Field');
+                                      } else {
+                                        if (controller.questionNumberToShow ==
+                                            5) {
+                                          controller.showConsentTermsForm =
+                                              true;
+                                          controller.questionNumberToShow = 0;
+                                          controller.update();
+                                        } else {
+                                          controller.showQuestion();
+                                        }
+                                      }
+                                    }
+                                    // else if (controller.nextForChange ==
+                                    //     false) {
+                                    //   controller.showQuestion();
+                                    // }
+                                  },
                                   child: CustomIconTextTogether(
                                     // iconBeforeText: false,
                                     text: 'Next',
@@ -789,79 +927,16 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     ),
                                   ),
                                 ),
-                              ),
-
-                            if (controller.nextForChange == true &&
-                                controller.showConsentTermsForm == false) ...[
-                              SizedBox(
-                                height: 40,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  if (controller.selectedLastQualification ==
-                                          null &&
-                                      controller.questionNumberToShow == 2) {
-                                    getToast(
-                                        'Please select last qualification');
-                                  } else if (controller
-                                              .appearedForEnglishTest ==
-                                          null &&
-                                      controller.questionNumberToShow == 3) {
-                                    getToast('Please select one');
-                                  } else if (controller
-                                              .appearedForEnglishTest ==
-                                          null &&
-                                      controller.questionNumberToShow == 3) {
-                                    getToast('Please select one');
-                                  } else if (controller.nextForChange == true) {
-                                    if (controller.questionNumberToShow == 4) {
-                                      controller.questionNumberToShow =
-                                          controller.questionNumberToShow + 1;
-                                      controller.update();
-                                    } else if (controller
-                                                .selectCourseBoardFieldCode ==
-                                            null &&
-                                        controller.questionNumberToShow == 5) {
-                                      getToast('Please Select one Broad Field');
-                                    } else {
-                                      if (controller.questionNumberToShow ==
-                                          5) {
-                                        controller.showConsentTermsForm = true;
-                                        controller.questionNumberToShow = 0;
-                                        controller.update();
-                                      } else {
-                                        controller.showQuestion();
-                                      }
-                                    }
-                                  }
-                                  // else if (controller.nextForChange ==
-                                  //     false) {
-                                  //   controller.showQuestion();
-                                  // }
-                                },
-                                child: CustomIconTextTogether(
-                                  // iconBeforeText: false,
-                                  text: 'Next',
-                                  Bgcolor: ThemeConstants.whitecolor,
-                                  color: ThemeConstants.bluecolor,
-                                  fontWeight: FontWeight.w400,
-                                  textSize: 12,
-                                  iconData: Icon(
-                                    Icons.navigate_next,
-                                    size: 15,
-                                    color: ThemeConstants.bluecolor,
-                                  ),
-                                ),
-                              ),
-                            ]
-                          ],
+                              ]
+                            ],
+                          ),
                         ),
-                      ),
 
-                      // SizedBox(
-                      //   height: MediaQuery.of(context).size.height * 0.05,
-                      // )
-                    ]),
+                        // SizedBox(
+                        //   height: MediaQuery.of(context).size.height * 0.05,
+                        // )
+                      ]),
+                ),
               )
             ],
           ),

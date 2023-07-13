@@ -98,7 +98,9 @@ class _FinalShortListState extends State<FinalShortList> {
                         if (_.loadingCourseShortList.value == true)
                           Row(
                             children: [
-                              const Spacer(),
+                              SizedBox(
+                                width: 15,
+                              ),
                               InkWell(
                                 onTap: () {
                                   if (controller1.courseModelFilter
@@ -151,7 +153,9 @@ class _FinalShortListState extends State<FinalShortList> {
                                   ),
                                 ),
                               ),
-                              const Spacer(),
+                              SizedBox(
+                                width: 10,
+                              ),
                               InkWell(
                                 onTap: () {
                                   if (controller1.compareApply.value == false) {

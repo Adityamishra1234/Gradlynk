@@ -32,6 +32,7 @@ import 'package:studentpanel/widgets/custom_dialog_box.dart';
 
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+import 'package:studentpanel/widgets/dashboardeventSection.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -670,7 +671,7 @@ class _DashBoardState extends State<DashBoard> {
                                         // runAlignment: WrapAlignment.center,
                                         children: [
                                           const SizedBox(
-                                            width: 20,
+                                            width: 5,
                                           ),
                                           // Create profile
                                           InkWell(
@@ -1049,6 +1050,13 @@ class _DashBoardState extends State<DashBoard> {
                                     SizedBox(
                                       height: 15,
                                     ),
+
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15, vertical: 10),
+                                      child: DashboardEventSection(),
+                                    ),
+
                                     const Padding(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
