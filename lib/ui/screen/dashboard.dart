@@ -486,7 +486,7 @@ class _DashBoardState extends State<DashBoard> {
                                       ),
                                     ),
 
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     // Schedule Expert Call Button And Book an Appointment
@@ -686,10 +686,10 @@ class _DashBoardState extends State<DashBoard> {
                                               //         BookAnAppointment());
                                               // getBookAnAppointment(context);
                                               // getDailogForAgree(context);
-                                              Get.to(CodeScreen());
+
                                               // Get.to(LetsGetStartedMainView());
-                                              // Get.toNamed(
-                                              //     ProfileView.routeNamed);
+                                              Get.toNamed(
+                                                  ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [
@@ -718,7 +718,7 @@ class _DashBoardState extends State<DashBoard> {
                                                       'Feed all your profile details and get started. Your profile shall be your portfolio to search for the best course.',
                                                   child: Container(
                                                       constraints:
-                                                          BoxConstraints(
+                                                          const BoxConstraints(
                                                               maxHeight: 70,
                                                               maxWidth: 70),
                                                       padding: const EdgeInsets
@@ -961,9 +961,10 @@ class _DashBoardState extends State<DashBoard> {
                                                   description:
                                                       "You can keep a track on your Application Stage and Status.",
                                                   child: Container(
-                                                    constraints: BoxConstraints(
-                                                        maxHeight: 70,
-                                                        maxWidth: 70),
+                                                    constraints:
+                                                        const BoxConstraints(
+                                                            maxHeight: 70,
+                                                            maxWidth: 70),
                                                     padding:
                                                         const EdgeInsets.all(
                                                             12),
@@ -1047,12 +1048,12 @@ class _DashBoardState extends State<DashBoard> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 15,
                                     ),
 
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
                                       child: DashboardEventSection(),
                                     ),

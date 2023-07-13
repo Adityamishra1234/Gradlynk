@@ -2112,4 +2112,19 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  @override
+  markAttendanceIntake(String endpoint) async {
+    try {
+      String endPoint = '${Endpoints.baseUrl}${endpoint}';
+
+      var res = await httpPostNullBody(endPoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }

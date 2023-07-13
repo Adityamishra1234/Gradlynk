@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+
+import '../ui/screen/mark_attendance/document_screen.dart';
 
 class DashboardEventSection extends StatelessWidget {
   const DashboardEventSection({super.key});
@@ -16,7 +21,7 @@ class DashboardEventSection extends StatelessWidget {
             // padding:
             //     const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
             margin: const EdgeInsets.only(top: 10),
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: ThemeConstants.whitecolor,
@@ -55,7 +60,7 @@ class DashboardEventSection extends StatelessWidget {
                               fontSize: 25,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Image.asset(
@@ -75,41 +80,77 @@ class DashboardEventSection extends StatelessWidget {
                         spacing: 5,
                         runSpacing: 5,
                         children: [
-                          Column(
-                            children: [
-                              Container(
-                                  constraints: BoxConstraints(
-                                      maxHeight: 70, maxWidth: 70),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                      // border: Border.all(
-                                      //     width: 1.2,
-                                      //     color: ThemeConstants
-                                      //         .VioletColor),
-                                      color: Color(0xFFF1F0FF),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("create_profile",
-                                      const Color(0xFF6F61FF), 80, 80)),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 100,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "Create your profile",
-                                    textalingCentre: true,
+                          InkWell(
+                            onTap: () {
+                              Get.to(CodeScreen());
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                    constraints: const BoxConstraints(
+                                        maxHeight: 70, maxWidth: 70),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xFFF1F0FF),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/Mark attendence.svg",
+                                      color: ThemeConstants.VioletColor,
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      text: "Mark Attendance",
+                                      textalingCentre: true,
+                                    ),
                                   ),
-                                ),
-                              )
-                            ],
+                                )
+                              ],
+                            ),
                           ),
 
+                          InkWell(
+                            onTap: () {
+                              Get.to(IntakeScreen());
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                    constraints: const BoxConstraints(
+                                        maxHeight: 70, maxWidth: 70),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        color: ThemeConstants.lightYellow,
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/Express entry.svg",
+                                      color: ThemeConstants.yellow,
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      text: "Express Pass",
+                                      textalingCentre: true,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                           Column(
                             children: [
                               Container(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                       maxHeight: 70, maxWidth: 70),
                                   padding: const EdgeInsets.all(10),
                                   decoration: const BoxDecoration(
@@ -139,37 +180,7 @@ class DashboardEventSection extends StatelessWidget {
                           Column(
                             children: [
                               Container(
-                                  constraints: BoxConstraints(
-                                      maxHeight: 70, maxWidth: 70),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                      // border: Border.all(
-                                      //     width: 1.2,
-                                      //     color: ThemeConstants
-                                      //         .VioletColor),
-                                      color: Color(0xFFF1F0FF),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("create_profile",
-                                      const Color(0xFF6F61FF), 80, 80)),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 100,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "Create your profile",
-                                    textalingCentre: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                       maxHeight: 70, maxWidth: 70),
                                   padding: const EdgeInsets.all(10),
                                   decoration: const BoxDecoration(
