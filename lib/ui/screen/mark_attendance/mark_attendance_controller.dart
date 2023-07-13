@@ -37,6 +37,8 @@ class MarkAttendanceController extends GetxController with StateMixin {
         Get.find<BaseController>().model1.id.toString(),
         markAttendanceModel.campaignId.toString()));
     if (res != null) {
+      code = TextEditingController();
+      code.text = "";
       change(null, status: RxStatus.success());
     }
   }
