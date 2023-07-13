@@ -283,16 +283,16 @@ class ContactInformationController extends GetxController with StateMixin {
   }
 
   saveButton() async {
+    change(null, status: RxStatus.success());
+    print("object");
     try {
       if (getNUllChecker(firstName.text) == true) {
         getToast(SnackBarConstants.firstNameError!);
-      } else if (profilePageKey.currentState!.validate() != true) {
-        getToast(SnackBarConstants.contactInformationErrorForAllFields!);
       } else if (getNUllChecker(lastName.text) == true) {
         getToast(SnackBarConstants.lastNameError!);
       } else if (getNUllChecker(dob)) {
         getToast(SnackBarConstants.dobError!);
-      } else if (getNUllChecker(genderIdSelected) == true) {
+      } else if (getNUllChecker(genderSelected) == true) {
         getToast(SnackBarConstants.genderError!);
       } else if (getNUllChecker(maritalStatusSelected) == true) {
         getToast(SnackBarConstants.maritalStatusError!);
@@ -321,8 +321,8 @@ class ContactInformationController extends GetxController with StateMixin {
             childrenCountSelected!,
             mobileNumber.text,
             email.text,
-            int.parse(whatsappNumber.text),
-            int.parse(alt_Number.text),
+            whatsappNumber.text,
+            alt_Number.text,
             countryIdSelected!,
             stateIdSelected!,
             cityIdSelected!,
@@ -335,6 +335,7 @@ class ContactInformationController extends GetxController with StateMixin {
         return res;
       }
     } catch (e) {
+      print(e.toString());
       await apiservice.errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
@@ -354,8 +355,8 @@ class ContactInformationController extends GetxController with StateMixin {
       int childCount,
       String mobile,
       String email,
-      int whatsappNumber,
-      int secondaryNumber,
+      String whatsappNumber,
+      String secondaryNumber,
       int countryId,
       int stateId,
       int cityId,

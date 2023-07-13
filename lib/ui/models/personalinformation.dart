@@ -8,8 +8,8 @@ class PersonalInformationModel {
   String? mobile;
   int? maritalStatusId;
   int? childrenCount;
-  int? whatsappNumber;
-  int? alternateNumber;
+  String? whatsappNumber;
+  String? alternateNumber;
   int? countryId;
   int? stateId;
   int? cityId;
@@ -53,8 +53,8 @@ class PersonalInformationModel {
     mobile = json['mobile'];
     maritalStatusId = json['marital_status'];
     childrenCount = json['children_count'];
-    whatsappNumber = json['whatsup_no'];
-    alternateNumber = json['secondary_mobile'];
+    whatsappNumber = json['whatsup_no'].toString();
+    alternateNumber = json['secondary_mobile'].toString();
     countryId = json['country_live_in'];
     stateId = json['state_id'];
     cityId = json['city_id'];
