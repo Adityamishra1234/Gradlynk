@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/youtube/customyoutube.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubeVideoSection extends StatelessWidget {
-  YoutubeVideoSection({super.key, required this.link});
-  List link;
+  List<YoutubeVideoModel> youtubeVideoModel = [];
+  YoutubeVideoSection({Key? key, required this.youtubeVideoModel})
+      : super(key: key);
+  // List link;
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +31,12 @@ class YoutubeVideoSection extends StatelessWidget {
             Expanded(
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: link.length,
+                    itemCount: youtubeVideoModel.length,
                     itemBuilder: (context, index) {
-                      var YtId = link[index]
-                          .toString()
-                          .substring(32, link[index].toString().length);
+                      // var YtId = link[index]
+                      //     .toString()
+                      //     .substring(32, link[index].toString().length);
 
-                      print(YtId);
-                      // var showProfile = true;
-                      // if (testimonialsList[index].image == '') {
-                      //   showProfile = false;
-                      // }
-
-                      // var comment = testimonialsList[index].comment!.length >
-                      //         120
-                      //     ? testimonialsList[index].comment!.trimToLength(120)
-                      //     : testimonialsList[index].comment!;
                       return Container(
                           width: 280,
                           margin: const EdgeInsets.all(10.0),
@@ -57,17 +52,54 @@ class YoutubeVideoSection extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30.0)),
-                            child: YoutubePlayer(
-                              controller: YoutubePlayerController(
-                                initialVideoId: '$YtId',
-                                flags: const YoutubePlayerFlags(
-                                  autoPlay: false,
-                                  mute: false,
-                                ),
-                              ),
-                              showVideoProgressIndicator: true,
-                              progressIndicatorColor: Colors.red,
-                            ),
+                            child: StatefulBuilder(builder:
+                                (BuildContext context, StateSetter setState) {
+                              bool videoPlay = false;
+                              if (videoPlay == true) {
+                                return SizedBox(
+                                  width: 280,
+                                  child: YouTubeVideoPlayer(
+                                    videoUrl:
+                                        youtubeVideoModel[index].video ?? "",
+                                  ),
+                                );
+                              } else {
+                                return InkWell(
+                                  onTap: () {
+                                    Get.to(YouTubeVideoPlayer(
+                                      videoUrl:
+                                          youtubeVideoModel[index].video ?? "",
+                                    ));
+                                  },
+                                  child: Stack(
+                                    children: [
+                                      Image.network(
+                                          youtubeVideoModel[index].thumbnail ??
+                                              ""),
+                                      Center(
+                                        child: Icon(
+                                          Icons.play_arrow,
+                                          color: ThemeConstants.whitecolor,
+                                          size: 50,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }
+                            }),
+
+                            // YoutubePlayer(
+                            //   controller: YoutubePlayerController(
+                            //     initialVideoId: '$YtId',
+                            //     flags: const YoutubePlayerFlags(
+                            //       autoPlay: false,
+                            //       mute: false,
+                            //     ),
+                            //   ),
+                            //   showVideoProgressIndicator: true,
+                            //   progressIndicatorColor: Colors.red,
+                            // ),
                           ));
                     })),
           ]),

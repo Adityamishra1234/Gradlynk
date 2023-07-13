@@ -1070,8 +1070,8 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
 
                                     YoutubeVideoSection(
-                                        link: dashboardController
-                                            .youtubeVideoLink),
+                                        youtubeVideoModel: dashboardController
+                                            .youtubeVideoModel),
                                     // Upcoming Event
                                     // if (_.loadingUpcomingEvents.value == true)
                                     //   Padding(

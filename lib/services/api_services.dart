@@ -42,6 +42,7 @@ import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -1759,15 +1760,17 @@ class ApiServices extends StudentPanelBase implements api {
   @override
   getYoutubeVideoLink() async {
     try {
+      List<YoutubeVideoModel> model = [];
       String url = '${Endpoints.baseUrl}${Endpoints.getYoutubeVideoLink}';
 
       var res = await httpGet(url);
 
-      var jsondata = json.decode(res);
+      if (res != null) {
+        model = List<YoutubeVideoModel>.from(
+            json.decode(res).map((x) => YoutubeVideoModel.fromJson(x)));
+      }
 
-      print(res);
-
-      return jsondata;
+      return model;
     } catch (e) {
       throw UnimplementedError();
     }

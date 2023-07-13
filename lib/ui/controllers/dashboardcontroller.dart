@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/models/getAllTestimonialsModel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,6 +25,8 @@ class DashboardController extends GetxController {
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
 
+  List<YoutubeVideoModel> youtubeVideoModel = [];
+
   @override
   void onInit() {
     upcomingEvents();
@@ -37,9 +40,8 @@ class DashboardController extends GetxController {
   getYoutubeVideos() async {
     var res = await apiservices.getYoutubeVideoLink();
     if (res != null) {
-      print('dfyfrfrhy');
-
-      youtubeVideoLink = res;
+      youtubeVideoModel = res;
+      // youtubeVideoLink = res;
 
       update();
     }
