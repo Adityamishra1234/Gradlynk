@@ -299,9 +299,7 @@ contactUsDialog(
                             const SizedBox(
                               width: 20,
                             ),
-                            CustomRichTextWidget(
-                                fontWeight: FontWeight.w600,
-                                textColor: ThemeConstants.bluecolor,
+                            CustomAutoSizeTextMontserrat(
                                 text: "Receive a call back"),
                             const Spacer(),
                           ],
@@ -388,9 +386,7 @@ contactUsDialog(
                             const SizedBox(
                               width: 20,
                             ),
-                            CustomRichTextWidget(
-                                fontWeight: FontWeight.w600,
-                                textColor: ThemeConstants.bluecolor,
+                            CustomAutoSizeTextMontserrat(
                                 text: "Schedule an expert call"),
                             const Spacer(),
                           ],
