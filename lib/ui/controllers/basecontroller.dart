@@ -48,6 +48,8 @@ class BaseController extends GetxController with StateMixin {
   RxBool loading = false.obs;
   profileDataValidator() async {
     ///todo
+    ///
+    print(Get.find<BaseController>().model1.id!);
     var x = await apiServices
         .profileDataValidation(Get.find<BaseController>().model1.id!);
     var z = ProfileDataValidatorModel.fromJson(x);

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/passport.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -40,8 +41,8 @@ class PassportDetails extends StatelessWidget {
                   : "";
           controller.passportAvaliable =
               (controller.passportModel.passportAvailable == "1")
-                  ? false.obs
-                  : true.obs;
+                  ? true.obs
+                  : false.obs;
           controller.placeOfIssuseSelected =
               getNUllChecker(controller.passportModel.placeOfIssue) == false
                   ? controller.passportModel.placeOfIssue!
@@ -75,9 +76,11 @@ class PassportDetails extends StatelessWidget {
       }
 
       return ListView(
+        padding: EdgeInsets.all(0),
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+            padding:
+                const EdgeInsets.only(bottom: 5, top: 10, left: 20, right: 10),
             child: Row(
               children: [
                 CustomAutoSizeTextMontserrat(
@@ -94,14 +97,33 @@ class PassportDetails extends StatelessWidget {
             model: const ["Yes", "No"],
             initialSelectedValue:
                 getNUllChecker(controller.passportAvaliable.value) == true
-                    ? "No"
+                    ? "Yes"
                     : controller.passportAvaliable.value == false
-                        ? "Yes"
-                        : "No",
+                        ? "No"
+                        : "Yes",
             choosefieldtype: controller.editSave.value == false,
             callbackFunction: callbackPassportAvaliables,
           ),
-          if (controller.passportAvaliable.value == false)
+          if (controller.passportAvaliable.value == false) ...[
+            Padding(
+              padding: const EdgeInsets.only(
+                  bottom: 5, top: 10, left: 20, right: 10),
+              child: CustomAutoSizeTextMontserrat(
+                text: "Tentative Date",
+                mandatory: true,
+                textColor: ThemeConstants.TextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                height: 40,
+                child: CustomTimerWidget(callback: (value) {
+                  controller.passportModel.passportTentativeDate = value;
+                })),
+          ],
+          if (controller.passportAvaliable.value == true)
             ...getPassportAvaliable(controller, context),
         ],
       );
@@ -422,9 +444,9 @@ class PassportDetails extends StatelessWidget {
   callbackPassportAvaliables(varTopic) {
     // controller.placeOfIssuseSelected = varTopic;
     if (varTopic.toString() == "No") {
-      controller.passportAvaliable.value = true;
-    } else {
       controller.passportAvaliable.value = false;
+    } else {
+      controller.passportAvaliable.value = true;
     }
     controller.update();
   }

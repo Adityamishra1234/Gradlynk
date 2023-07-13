@@ -180,6 +180,13 @@ class Endpoints {
   static String? which_consent_form = "which-consent-form?enq_id=";
 }
 
+schedule_a_callBack_post_data({
+  required String enq_id,
+  required String counsellor_id,
+}) {
+  return "schedule-an-express-call?enq_id=$enq_id&counsellor_id=$counsellor_id";
+}
+
 getMarkAttandenceAllTime(String enq_id, String event_id) {
   return "send-event-data-for-shortlisting?enq_id=$enq_id&event_id=$event_id";
 }

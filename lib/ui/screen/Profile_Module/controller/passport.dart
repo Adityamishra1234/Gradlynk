@@ -32,7 +32,7 @@ class PassportController extends GetxController with StateMixin {
   RxBool editSave = false.obs;
 
 //dropdown
-  RxBool passportAvaliable = true.obs;
+  RxBool passportAvaliable = false.obs;
 
 // Selected
   String? countrySelected;
@@ -183,10 +183,6 @@ class PassportController extends GetxController with StateMixin {
 
   saveButton() async {
     if (passportAvaliable.value == true) {
-      editSave.value = false;
-      update();
-      updatePassport();
-    } else {
       if (citizenSelected == null) {
         getToast(SnackBarConstants.citizenSelectError!);
       } else if (passportNumber.text.isEmpty) {
@@ -195,13 +191,20 @@ class PassportController extends GetxController with StateMixin {
         getToast(SnackBarConstants.countrySelectError!);
       } else if (stateSelected == null) {
         getToast(SnackBarConstants.stateError!);
-      } else if (placeOfIssuseSelected == null) {
-        getToast(SnackBarConstants.placeSelectError!);
-      } else if (dateOfIssue == null) {
+      }
+      // else if (placeOfIssuseSelected == null) {
+      //   getToast(SnackBarConstants.placeSelectError!);
+      // }
+
+      else if (dateOfIssue == null) {
         getToast(SnackBarConstants.dateOfISsueSelectError!);
       } else if (expireDate == null) {
         getToast(SnackBarConstants.expireDateError!);
       } else {
+        //       editSave.value = false;
+        //   update();
+        //   var res = await updatePassport();
+        // } else {
         editSave.value = false;
         update();
         var res = await updatePassport();
@@ -209,6 +212,9 @@ class PassportController extends GetxController with StateMixin {
           return true;
         }
       }
+    } else {
+      var res = await updatePassportNull();
+      return true;
     }
   }
 
@@ -222,7 +228,28 @@ class PassportController extends GetxController with StateMixin {
     passportModel.stateOfIssue = stateCodeSelected;
     passportModel.placeOfIssue = placeOfIssuseSelected;
     passportModel.passportAvailable =
-        passportAvaliable.value == true ? "2" : "1";
+        passportAvaliable.value == true ? "1" : "2";
+    passportModel.passportTentativeDate = null;
+    passportModel.enqId = Get.find<BaseController>().model1.id.toString();
+
+    var res = await updatePassportDetail(
+        Get.find<BaseController>().model1.id.toString(), passportModel);
+    if (res != true) {
+      return true;
+    }
+  }
+
+  updatePassportNull() async {
+    passportModel.dateOfIssue = null;
+    passportModel.expiryDate = null;
+    //  controller.passportModel.passportTentativeDate
+    passportModel.passportNumber = null;
+    passportModel.citizenOf = null;
+    passportModel.countryOfIssue = null;
+    passportModel.stateOfIssue = null;
+    passportModel.placeOfIssue = null;
+    passportModel.passportAvailable =
+        passportAvaliable.value == true ? "1" : "2";
     passportModel.enqId = Get.find<BaseController>().model1.id.toString();
 
     var res = await updatePassportDetail(

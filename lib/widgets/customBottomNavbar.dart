@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
@@ -9,7 +10,8 @@ import 'package:studentpanel/widgets/custom_dialog_box.dart';
 
 class CustomButtomNavbar extends StatelessWidget {
   BuildContext context2;
-  CustomButtomNavbar({super.key, required this.currentIndex, required this.context2});
+  CustomButtomNavbar(
+      {super.key, required this.currentIndex, required this.context2});
 
   final int currentIndex;
 
@@ -19,8 +21,12 @@ class CustomButtomNavbar extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: (i) {
         if (i == 0) {
+          Get.deleteAll();
+
           Get.toNamed(DashBoard.routeNamed);
         } else if (i == 1) {
+          Get.deleteAll();
+
           // Get.toNamed(ProfilePageCopy1.routeNamed);
           Get.toNamed(ProfileView.routeNamed);
         } else if (i == 2) {

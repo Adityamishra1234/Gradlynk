@@ -92,13 +92,13 @@ class ProfileView extends StatelessWidget {
                                   //   print(exception);
                                   //   print(stackTrace.toString());
                                   // },
-                                  radius: 50.0,
+                                  radius: 40.0,
                                   backgroundImage: const NetworkImage(
                                       "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
                                   backgroundColor: Colors.transparent,
                                 ),
                                 const SizedBox(
-                                  width: 20,
+                                  width: 10,
                                 ),
                                 SizedBox(
                                   height: 200,
@@ -304,7 +304,7 @@ class ProfileView extends StatelessWidget {
                             Container(
                               child: Wrap(
                                 runSpacing: 15,
-                                spacing: 40,
+                                spacing: 15,
                                 children: [
                                   InkWell(
                                     splashColor: ThemeConstants.lightgreycolor,

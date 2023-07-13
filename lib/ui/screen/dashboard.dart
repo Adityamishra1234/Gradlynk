@@ -1051,11 +1051,11 @@ class _DashBoardState extends State<DashBoard> {
                                       height: 15,
                                     ),
 
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 10),
-                                      child: DashboardEventSection(),
-                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.symmetric(
+                                    //       horizontal: 15, vertical: 10),
+                                    //   child: DashboardEventSection(),
+                                    // ),
 
                                     const Padding(
                                       padding: EdgeInsets.symmetric(
