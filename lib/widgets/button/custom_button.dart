@@ -28,7 +28,7 @@ class CustomButtonWidget extends StatelessWidget {
         child: Container(
           constraints: BoxConstraints(minWidth: 140),
           height: 35,
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
           decoration: BoxDecoration(
               boxShadow: [
