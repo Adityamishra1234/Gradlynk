@@ -28,9 +28,9 @@ class CodeScreen extends StatelessWidget {
                 height: 420,
                 child: Card(
                   elevation: 5,
-                  child: ListView(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    // crossAxisAlignment: CrossAxisAlignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
                         height: 15,
@@ -65,6 +65,7 @@ class CodeScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: PinCodeTextField(
+                          autoDisposeControllers: false,
                           keyboardType: TextInputType.text,
                           controller: MarkAttendanceController.code,
                           appContext: context,
