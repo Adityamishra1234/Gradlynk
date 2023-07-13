@@ -44,23 +44,23 @@ class DashboardEventSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: '22 July',
-                              textColor: ThemeConstants.bluecolor,
-                              fontSize: 30,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: CustomAutoSizeTextMontserrat(
-                              text: '2023',
-                              textColor: ThemeConstants.bluecolor,
-                              fontSize: 25,
-                            ),
-                          ),
-                          const Spacer(),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 15),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //     text: '22 July',
+                          //     textColor: ThemeConstants.bluecolor,
+                          //     fontSize: 30,
+                          //   ),
+                          // ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 15),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //     text: '2023',
+                          //     textColor: ThemeConstants.bluecolor,
+                          //     fontSize: 25,
+                          //   ),
+                          // ),
+                          // const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Image.asset(
@@ -147,67 +147,67 @@ class DashboardEventSection extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Column(
-                            children: [
-                              Container(
-                                  constraints: const BoxConstraints(
-                                      maxHeight: 70, maxWidth: 70),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                      // border: Border.all(
-                                      //     width: 1.2,
-                                      //     color: ThemeConstants
-                                      //         .VioletColor),
-                                      color: Color(0xFFF1F0FF),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("create_profile",
-                                      const Color(0xFF6F61FF), 80, 80)),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 100,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "Create your profile",
-                                    textalingCentre: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                  constraints: const BoxConstraints(
-                                      maxHeight: 70, maxWidth: 70),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                      // border: Border.all(
-                                      //     width: 1.2,
-                                      //     color: ThemeConstants
-                                      //         .VioletColor),
-                                      color: Color(0xFFF1F0FF),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("create_profile",
-                                      const Color(0xFF6F61FF), 80, 80)),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 100,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "Create your profile",
-                                    textalingCentre: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          // Container(
+                          // Column(
+                          //   children: [
+                          //     Container(
+                          //         constraints: const BoxConstraints(
+                          //             maxHeight: 70, maxWidth: 70),
+                          //         padding: const EdgeInsets.all(10),
+                          //         decoration: const BoxDecoration(
+                          //             // border: Border.all(
+                          //             //     width: 1.2,
+                          //             //     color: ThemeConstants
+                          //             //         .VioletColor),
+                          //             color: Color(0xFFF1F0FF),
+                          //             borderRadius: BorderRadius.all(
+                          //                 Radius.circular(20))),
+                          //         child: svgImage("create_profile",
+                          //             const Color(0xFF6F61FF), 80, 80)),
+                          //     Padding(
+                          //       padding: const EdgeInsets.only(top: 10),
+                          //       child: SizedBox(
+                          //         width: 100,
+                          //         child: CustomAutoSizeTextMontserrat(
+                          //           fontWeight: FontWeight.w500,
+                          //           fontSize: 13,
+                          //           text: "Create your profile",
+                          //           textalingCentre: true,
+                          //         ),
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
+                          // Column(
+                          //   children: [
+                          //     Container(
+                          //         constraints: const BoxConstraints(
+                          //             maxHeight: 70, maxWidth: 70),
+                          //         padding: const EdgeInsets.all(10),
+                          //         decoration: const BoxDecoration(
+                          //             // border: Border.all(
+                          //             //     width: 1.2,
+                          //             //     color: ThemeConstants
+                          //             //         .VioletColor),
+                          //             color: Color(0xFFF1F0FF),
+                          //             borderRadius: BorderRadius.all(
+                          //                 Radius.circular(20))),
+                          //         child: svgImage("create_profile",
+                          //             const Color(0xFF6F61FF), 80, 80)),
+                          //     Padding(
+                          //       padding: const EdgeInsets.only(top: 10),
+                          //       child: SizedBox(
+                          //         width: 100,
+                          //         child: CustomAutoSizeTextMontserrat(
+                          //           fontWeight: FontWeight.w500,
+                          //           fontSize: 13,
+                          //           text: "Create your profile",
+                          //           textalingCentre: true,
+                          //         ),
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
+                          // // Container(
                           //   constraints: BoxConstraints(maxHeight: 70, maxWidth: 70),
                           //   padding: const EdgeInsets.all(12),
                           //   decoration: const BoxDecoration(
