@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/dropdownOrgName.dart';
 import 'package:studentpanel/ui/models/dropdownUploadDocument.dart';
 import 'package:studentpanel/ui/models/dropdowndocumenttype.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -193,8 +194,15 @@ class UploadDocumentController extends GetxController {
       } else {
         getDocumentType();
         getOrganizationName();
+        if (is_event == 1) {
+          Get.offAndToNamed(DashBoard.routeNamed);
+        }
       }
-      Get.offNamed(UploadDocument.routeNamed);
+      if (is_event == 1) {
+        Get.offAndToNamed(DashBoard.routeNamed);
+      } else {
+        Get.offNamed(UploadDocument.routeNamed);
+      }
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -244,6 +252,9 @@ class UploadDocumentController extends GetxController {
               }
               getDocumentType();
               getOrganizationName();
+            }
+            if (is_event == 1) {
+              Get.offAndToNamed(DashBoard.routeNamed);
             }
             update();
           }
