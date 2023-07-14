@@ -65,6 +65,7 @@ class CodeScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: PinCodeTextField(
+                          enablePinAutofill: false,
                           autoDisposeControllers: false,
                           keyboardType: TextInputType.text,
                           controller: MarkAttendanceController.code,
@@ -115,17 +116,15 @@ class CodeScreen extends StatelessWidget {
                               blurRadius: 10,
                             )
                           ],
-                          onCompleted: (v) {
-                            debugPrint("Completed");
-                          },
+                          onCompleted: (v) {},
                           // onTap: () {
                           //   print("Pressed");
                           // },
                           onChanged: (value) {
-                            debugPrint(value);
-                            // setState(() {
-                            //   currentText = value;
-                            // });
+                            // debugPrint(value);
+                            // // setState(() {
+                            // //   currentText = value;
+                            // // });
                           },
                           beforeTextPaste: (text) {
                             debugPrint("Allowing to paste $text");
@@ -139,7 +138,8 @@ class CodeScreen extends StatelessWidget {
                         height: 55,
                         child: CustomButton(
                             text: "Confirm",
-                            onPressed: () async {
+                            onPressed: () {
+                              print("object");
                               controller.getMarkAttendance(
                                   MarkAttendanceController.code.text);
                               controller.update();

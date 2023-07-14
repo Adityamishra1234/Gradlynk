@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import '../ui/screen/mark_attendance/document_screen.dart';
+import '../ui/screen/mark_attendance/code_screen.dart';
 
 class DashboardEventSection extends StatelessWidget {
   const DashboardEventSection({super.key});
