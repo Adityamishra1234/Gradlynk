@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/markAttendanceDocumentStatus.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_model.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
@@ -16,7 +17,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   MarkAttendanceIntake markAttendanceIntakeModel = MarkAttendanceIntake();
 
-  String intake = "";
+  String? intake;
 
   @override
   void onInit() {
@@ -32,8 +33,10 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
       if (markAttendanceModel.uniqueCodeMatch == true) {
         await allTimeAPI();
+        getToast("Event code matched");
       } else {
         getToast("Event code not matched");
+
         change(null, status: RxStatus.success());
       }
     }
@@ -53,21 +56,26 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   getIntakeSubmit() async {
     change(null, status: RxStatus.loading());
-    var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
-        //TODO HardCoded
-        campaign_id: '1996',
-        enq_id: Get.find<BaseController>().model1.id.toString(),
-        intake_month: intake.split("-")[1],
-        intake_year: intake.split("-")[0]));
 
-    if (res != null) {
-      markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
-      await allTimeAPI();
-      if (markAttendanceIntakeModel.documentExists == false) {
-        Get.to(UploadDocument(is_event: true), arguments: 1);
-      } else {
-        Get.toNamed(DashBoard.routeNamed);
+    if (intake != null) {
+      var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
+          //TODO HardCoded
+          campaign_id: '1996',
+          enq_id: Get.find<BaseController>().model1.id.toString(),
+          intake_month: intake!.split("-")[1],
+          intake_year: intake!.split("-")[0]));
+      if (res != null) {
+        markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
+        await allTimeAPI();
+        if (markAttendanceIntakeModel.documentExists == false) {
+          Get.to(MarkAttendanceDocumentStatus());
+        } else {
+          Get.toNamed(DashBoard.routeNamed);
+        }
       }
+    } else {
+      getToast("kindly select your date");
+      change(null, status: RxStatus.success());
     }
   }
 }
