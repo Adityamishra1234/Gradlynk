@@ -1089,6 +1089,13 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     } else if (controller.nextForChange ==
                                         true) {
                                       if (controller.questionNumberToShow ==
+                                              4 &&
+                                          controller
+                                                  .selectedLevelYouWantToStudy ==
+                                              null) {
+                                        getToast("Please select one");
+                                      } else if (controller
+                                              .questionNumberToShow ==
                                           4) {
                                         controller.questionNumberToShow =
                                             controller.questionNumberToShow + 1;

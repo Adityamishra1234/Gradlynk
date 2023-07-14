@@ -46,7 +46,7 @@ class RegisterationMainView extends StatelessWidget {
                     ),
                     SizedBox(
                       child: CustomAutoSizeTextMontserrat(
-                        text: 'Create a New Account',
+                        text: 'Create a New Account (001)',
                         textColor: ThemeConstants.blackcolor,
                         fontSize: 35,
                         fontWeight: FontWeight.w700,

@@ -60,7 +60,10 @@ class DashboardEventSection extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child: Image.asset(
-                              'assets/images/calender.png',
+                              'assets/images/event_image.gif',
+                              gaplessPlayback: false,
+                              width: MediaQuery.of(context).size.width,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ],
@@ -151,7 +154,7 @@ class DashboardEventSection extends StatelessWidget {
                               children: [
                                 Container(
                                     constraints: const BoxConstraints(
-                                        maxHeight: 70, maxWidth: 70),
+                                        maxHeight: 55, maxWidth: 55),
                                     padding: const EdgeInsets.all(10),
                                     decoration: const BoxDecoration(
                                         color: Color(0xFFF1F0FF),

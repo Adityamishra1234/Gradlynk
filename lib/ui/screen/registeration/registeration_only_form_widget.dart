@@ -74,6 +74,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
   @override
   void dispose() {
+    AltSmsAutofill().unregisterListener();
     controller.dispose();
     // TODO: implement dispose
     super.dispose();
@@ -122,6 +123,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             padding: EdgeInsets.only(left: 10),
                             alignment: Alignment.topLeft,
                             child: CustomAutoSizeTextMontserrat(
+                              mandatory: true,
                               text: 'Name',
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
@@ -170,6 +172,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           alignment: Alignment.topLeft,
                           child: CustomAutoSizeTextMontserrat(
                             text: 'Phone Number',
+                            mandatory: true,
                             fontWeight: FontWeight.w400,
                             fontSize: 13,
                           ),
@@ -199,6 +202,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             alignment: Alignment.topLeft,
                             child: CustomAutoSizeTextMontserrat(
                               text: 'Email',
+                              mandatory: true,
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
                             ),
@@ -232,6 +236,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             alignment: Alignment.topLeft,
                             child: CustomAutoSizeTextMontserrat(
                               text: 'Nearest Siec Branch',
+                              mandatory: true,
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
                             ),
@@ -267,6 +272,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             padding: EdgeInsets.only(left: 10),
                             alignment: Alignment.topLeft,
                             child: CustomAutoSizeTextMontserrat(
+                              mandatory: true,
                               text: 'Target Destination',
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
@@ -291,6 +297,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             padding: EdgeInsets.only(left: 10),
                             alignment: Alignment.topLeft,
                             child: CustomAutoSizeTextMontserrat(
+                              mandatory: true,
                               text: 'How did you hear about us?',
                               fontWeight: FontWeight.w400,
                               fontSize: 13,
@@ -394,9 +401,11 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 vertical: 5, horizontal: 20),
                             onTap:
                                 (startLoading, stopLoading, buttonState) async {
-                              startLoading();
+                              // if( b )
+
                               print('object');
                               if (controller.formKey.currentState!.validate()) {
+                                startLoading();
                                 if (controller.selectedBranchCode == "") {
                                   stopLoading();
 
@@ -567,7 +576,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     for (var i = 0; i < controller.countryListName.length; i++) {
       if (i == 0) {
         controller.selectedCountryName = null;
-        controller.selectedCountryID = null;
+        controller.selectedCountryID = '';
       } else {
         if (controller.countryListName[i] == data) {
           controller.selectedCountryName = data;
@@ -584,7 +593,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     for (var i = 0; i < controller.branchListName.length; i++) {
       if (i == 0) {
         controller.selectedBranchName = null;
-        controller.selectedBranchCode = null;
+        controller.selectedBranchCode = '';
       } else {
         if (controller.branchListName[i] == data) {
           controller.selectedBranchName = data;
@@ -601,7 +610,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     for (var i = 0; i < controller.leadSourcesListName.length; i++) {
       if (i == 0) {
         controller.selectedLeadSourcesName = null;
-        controller.selectedLeadSourcesCode = null;
+        controller.selectedLeadSourcesCode = '';
       } else {
         if (controller.leadSourcesListName[i] == data) {
           controller.selectedLeadSourcesName = data;
