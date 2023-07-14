@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformat
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -292,12 +293,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: DatePickerExample(
-                        enableField: saveAndEdit,
-                        date: getNUllChecker(controller.dob) == false
-                            ? controller.dob
-                            : "",
-                        callbackDate: callbackDOB,
+                      child: Container(
+                        height: 40,
+                        child: CustomTimerWidget(
+                          // enableField: saveAndEdit,
+                          // date: getNUllChecker(controller.dob) == false
+                          //     ? controller.dob
+                          //     : "",
+                          callback: callbackDOB,
+                        ),
                       ),
                     ),
                     Padding(
@@ -1314,9 +1318,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
   }
 
   callbackDOB(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dob = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dob = date[0] + "-" + date[1] + '-' + date[2];
+    controller.dob = data;
+
     controller.update();
   }
 

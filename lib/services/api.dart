@@ -125,4 +125,6 @@ abstract class api {
 
   postLetsGetStarted(String endpoint);
   getMarkAttandance(String endpoint);
+
+  requestACallBackPost(String endpoint);
 }

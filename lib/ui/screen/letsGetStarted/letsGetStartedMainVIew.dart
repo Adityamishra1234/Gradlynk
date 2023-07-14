@@ -23,20 +23,20 @@ class LetsGetStartedMainView extends StatefulWidget {
 class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
   var controller = Get.put(LetsGetStartedController());
 
-  @override
-  void initState() {
-    // controller.onInit();
-    controller.initialized;
-    // TODO: implement initState
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // controller.onInit();
+  //   controller.initialized;
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    // TODO: implement dispose
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   controller.dispose();
+  //   // TODO: implement dispose
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,23 +49,23 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
               SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Stack(
+                  alignment: Alignment.topRight,
                   children: [
                     const Positioned(
                       left: -250,
                       top: -250,
                       child: CircleAvatar(
-                        radius: 250,
+                        radius: 240,
                         backgroundColor: Color.fromARGB(32, 0, 76, 138),
                       ),
                     ),
                     Positioned(
-                        right: -10,
-                        top: -50,
-                        child: SizedBox(
-                            width: 300,
-                            height: 500,
-                            child: Image.asset(
-                                'assets/images/letsGetStarted_bgImage.png')))
+                        right: 0,
+                        top: 0,
+                        child: Image.asset(
+                          'assets/images/letsGetStarted_bgImage.png',
+                          width: MediaQuery.of(context).size.width * 0.65,
+                        ))
                     //  Positioned(
                     //   left: -160,
                     //   top: -160,
@@ -169,69 +169,81 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         ],
 
                         if (controller.questionNumberToShow == 2) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: CustomAutoSizeTextMontserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                                text: 'What is your last qualification'),
-                          ),
                           Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 35, vertical: 5),
-                            child: Wrap(
-                              alignment: WrapAlignment.start,
-                              runSpacing: 20,
-                              spacing: 25,
-                              children: [
-                                CustomButtonWidget(
-                                  onTap: () {
-                                    controller.selectedQualification(7);
-                                  },
-                                  isSelected:
-                                      controller.selectedLastQualification == 7
-                                          ? true
-                                          : false,
-                                  text: '12th',
-                                  selectedColor: ThemeConstants.bluecolor,
-                                ),
-                                CustomButtonWidget(
-                                  onTap: () {
-                                    controller.selectedQualification(4);
-                                  },
-                                  selectedColor: ThemeConstants.bluecolor,
-                                  isSelected:
-                                      controller.selectedLastQualification == 4
-                                          ? true
-                                          : false,
-                                  text: 'Bachelors',
-                                ),
-                                CustomButtonWidget(
-                                  onTap: () {
-                                    controller.selectedQualification(3);
-                                  },
-                                  text: 'Masters',
-                                  selectedColor: ThemeConstants.bluecolor,
-                                  isSelected:
-                                      controller.selectedLastQualification == 3
-                                          ? true
-                                          : false,
-                                ),
-                                CustomButtonWidget(
-                                  onTap: () {
-                                    controller.selectedQualification(6);
-                                  },
-                                  selectedColor: ThemeConstants.bluecolor,
-                                  isSelected:
-                                      controller.selectedLastQualification == 6
-                                          ? true
-                                          : false,
-                                  text: 'Diploma',
-                                ),
-                              ],
-                            ),
-                          )
+                            padding: EdgeInsets.only(left: 15),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 28,
+                                      text: 'What is your last qualification'),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Container(
+                                    child: Wrap(
+                                      alignment: WrapAlignment.start,
+                                      runSpacing: 15,
+                                      spacing: 15,
+                                      children: [
+                                        CustomButtonWidget(
+                                          onTap: () {
+                                            controller.selectedQualification(7);
+                                          },
+                                          isSelected: controller
+                                                      .selectedLastQualification ==
+                                                  7
+                                              ? true
+                                              : false,
+                                          text: '12th',
+                                          selectedColor:
+                                              ThemeConstants.bluecolor,
+                                        ),
+                                        CustomButtonWidget(
+                                          onTap: () {
+                                            controller.selectedQualification(4);
+                                          },
+                                          selectedColor:
+                                              ThemeConstants.bluecolor,
+                                          isSelected: controller
+                                                      .selectedLastQualification ==
+                                                  4
+                                              ? true
+                                              : false,
+                                          text: 'Bachelors',
+                                        ),
+                                        CustomButtonWidget(
+                                          onTap: () {
+                                            controller.selectedQualification(3);
+                                          },
+                                          text: 'Masters',
+                                          selectedColor:
+                                              ThemeConstants.bluecolor,
+                                          isSelected: controller
+                                                      .selectedLastQualification ==
+                                                  3
+                                              ? true
+                                              : false,
+                                        ),
+                                        CustomButtonWidget(
+                                          onTap: () {
+                                            controller.selectedQualification(6);
+                                          },
+                                          selectedColor:
+                                              ThemeConstants.bluecolor,
+                                          isSelected: controller
+                                                      .selectedLastQualification ==
+                                                  6
+                                              ? true
+                                              : false,
+                                          text: 'Diploma',
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ]),
+                          ),
                         ],
 
                         //         Padding(
@@ -306,162 +318,178 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         // ),
                         if (controller.questionNumberToShow == 3) ...[
                           if (controller.questionToShowInEnglsihTest == 0) ...[
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 20),
-                              child: CustomAutoSizeTextMontserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 28,
-                                  text: 'Have you appeared in English ?'),
-                            ),
                             Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 35, vertical: 5),
-                                child: Wrap(
-                                    alignment: WrapAlignment.start,
-                                    runSpacing: 20,
-                                    spacing: 25,
+                                padding: EdgeInsets.only(left: 15),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .selectedAppearedInEnglishTest ==
-                                                1
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                              .selectedAppearedInEnglishTest = 1;
-                                          controller.update();
-                                        },
-                                        text: 'Yes',
+                                      CustomAutoSizeTextMontserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 28,
+                                          text:
+                                              'Have you appeared in English ?'),
+                                      SizedBox(
+                                        height: 10,
                                       ),
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .haveAppearedInEnglishTest ==
-                                                2
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                              .selectedAppearedInEnglishTest = 2;
+                                      Container(
+                                          child: Wrap(
+                                              alignment: WrapAlignment.start,
+                                              runSpacing: 20,
+                                              spacing: 15,
+                                              children: [
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedAppearedInEnglishTest ==
+                                                      1
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                    .selectedAppearedInEnglishTest = 1;
+                                                controller.update();
+                                              },
+                                              text: 'Yes',
+                                            ),
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedAppearedInEnglishTest ==
+                                                      2
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                    .selectedAppearedInEnglishTest = 2;
 
-                                          controller.update();
-                                        },
-                                        text: 'No',
-                                      ),
-                                      // CustomButtonWidget(
-                                      //   text: 'Masters',
-                                      // ),
-                                      // CustomButtonWidget(
-                                      //   text: 'Diploma',
-                                      // ),
+                                                controller.update();
+                                              },
+                                              text: 'No',
+                                            ),
+                                            // CustomButtonWidget(
+                                            //   text: 'Masters',
+                                            // ),
+                                            // CustomButtonWidget(
+                                            //   text: 'Diploma',
+                                            // ),
+                                          ])),
                                     ])),
                           ],
                           if (controller.questionToShowInEnglsihTest == 1) ...[
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 20),
-                              child: CustomAutoSizeTextMontserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 28,
-                                  text:
-                                      'Select the test you have appeared for?'),
-                            ),
                             Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 35, vertical: 5),
-                                child: Wrap(
-                                    alignment: WrapAlignment.start,
-                                    runSpacing: 20,
-                                    spacing: 25,
+                                padding: EdgeInsets.only(left: 15),
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .selectedTestYouAppearedFor ==
-                                                'IELTS'
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                                  .selectedTestYouAppearedFor =
-                                              'IELTS';
-                                          controller.update();
-                                        },
-                                        text: 'IELTS',
+                                      CustomAutoSizeTextMontserrat(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 28,
+                                          text:
+                                              'Select the test you have appeared for?'),
+                                      SizedBox(
+                                        height: 15,
                                       ),
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .selectedTestYouAppearedFor ==
-                                                'PTE'
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                                  .selectedTestYouAppearedFor =
-                                              'PTE';
+                                      Container(
+                                          child: Wrap(
+                                              alignment: WrapAlignment.start,
+                                              runSpacing: 20,
+                                              spacing: 25,
+                                              children: [
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedTestYouAppearedFor ==
+                                                      'IELTS'
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                        .selectedTestYouAppearedFor =
+                                                    'IELTS';
+                                                controller.update();
+                                              },
+                                              text: 'IELTS',
+                                            ),
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedTestYouAppearedFor ==
+                                                      'PTE'
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                        .selectedTestYouAppearedFor =
+                                                    'PTE';
 
-                                          controller.update();
-                                        },
-                                        text: 'PTE',
-                                      ),
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .selectedTestYouAppearedFor ==
-                                                'TOEFL'
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                                  .selectedTestYouAppearedFor =
-                                              'TOEFL';
+                                                controller.update();
+                                              },
+                                              text: 'PTE',
+                                            ),
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedTestYouAppearedFor ==
+                                                      'TOEFL'
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                        .selectedTestYouAppearedFor =
+                                                    'TOEFL';
 
-                                          controller.update();
-                                        },
-                                        text: 'TOEFL',
-                                      ),
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .selectedTestYouAppearedFor ==
-                                                'Duolingo'
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                                  .selectedTestYouAppearedFor =
-                                              'Duolingo';
+                                                controller.update();
+                                              },
+                                              text: 'TOEFL',
+                                            ),
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedTestYouAppearedFor ==
+                                                      'Duolingo'
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                        .selectedTestYouAppearedFor =
+                                                    'Duolingo';
 
-                                          controller.update();
-                                        },
-                                        text: 'Duolingo',
-                                      ),
-                                      CustomButtonWidget(
-                                        selectedColor: ThemeConstants.bluecolor,
-                                        isSelected: controller
-                                                    .selectedTestYouAppearedFor ==
-                                                'Cambridge'
-                                            ? true
-                                            : false,
-                                        onTap: () {
-                                          controller
-                                                  .selectedTestYouAppearedFor =
-                                              'Cambridge';
+                                                controller.update();
+                                              },
+                                              text: 'Duolingo',
+                                            ),
+                                            CustomButtonWidget(
+                                              selectedColor:
+                                                  ThemeConstants.bluecolor,
+                                              isSelected: controller
+                                                          .selectedTestYouAppearedFor ==
+                                                      'Cambridge'
+                                                  ? true
+                                                  : false,
+                                              onTap: () {
+                                                controller
+                                                        .selectedTestYouAppearedFor =
+                                                    'Cambridge';
 
-                                          controller.update();
-                                        },
-                                        text: 'Cambridge',
-                                      ),
-                                      // CustomButtonWidget(
-                                      //   text: 'Masters',
-                                      // ),
-                                      // CustomButtonWidget(
-                                      //   text: 'Diploma',
-                                      // ),
+                                                controller.update();
+                                              },
+                                              text: 'Cambridge',
+                                            ),
+                                            // CustomButtonWidget(
+                                            //   text: 'Masters',
+                                            // ),
+                                            // CustomButtonWidget(
+                                            //   text: 'Diploma',
+                                            // ),
+                                          ])),
                                     ])),
                           ],
                           if (controller.questionToShowInEnglsihTest == 2) ...[
@@ -502,13 +530,15 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           width: 1,
-                                          color: ThemeConstants.blackcolor),
+                                          color: ThemeConstants
+                                              .ultraLightgreyColor2),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                          width: 0,
-                                          color: ThemeConstants.blackcolor),
+                                          width: 1,
+                                          color: ThemeConstants
+                                              .ultraLightgreyColor2),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
@@ -606,71 +636,78 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
 
                         // if (controller.questionNumberToShow == 5) ...[],
                         if (controller.questionNumberToShow == 4) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 20),
-                            child: CustomAutoSizeTextMontserrat(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 28,
-                                text: 'What level do you want to study at?'),
-                          ),
                           Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 35, vertical: 5),
-                              child: Wrap(
-                                  alignment: WrapAlignment.start,
-                                  runSpacing: 20,
-                                  spacing: 25,
+                              padding: EdgeInsets.only(left: 15),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedLevelYouWantToStudy ==
-                                              7
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedLevelYouWantToStudy =
-                                            7;
-                                        controller.update();
-                                      },
-                                      text: 'UG',
+                                    CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 28,
+                                        text:
+                                            'What level do you want to study at?'),
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedLevelYouWantToStudy ==
-                                              4
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedLevelYouWantToStudy =
-                                            4;
-                                        controller.update();
-                                      },
-                                      text: 'PG',
-                                    ),
-                                    CustomButtonWidget(
-                                      selectedColor: ThemeConstants.bluecolor,
-                                      isSelected: controller
-                                                  .selectedLevelYouWantToStudy ==
-                                              3
-                                          ? true
-                                          : false,
-                                      onTap: () {
-                                        controller.selectedLevelYouWantToStudy =
-                                            3;
-                                        controller.update();
-                                      },
-                                      text: 'Diploma',
-                                    ),
-                                    // CustomButtonWidget(
-                                    //   text: 'Masters',
-                                    // ),
-                                    // CustomButtonWidget(
-                                    //   text: 'Diploma',
-                                    // ),
-                                  ]))
+                                    Container(
+                                        child: Wrap(
+                                            alignment: WrapAlignment.start,
+                                            runSpacing: 20,
+                                            spacing: 25,
+                                            children: [
+                                          CustomButtonWidget(
+                                            selectedColor:
+                                                ThemeConstants.bluecolor,
+                                            isSelected: controller
+                                                        .selectedLevelYouWantToStudy ==
+                                                    7
+                                                ? true
+                                                : false,
+                                            onTap: () {
+                                              controller
+                                                  .selectedLevelYouWantToStudy = 7;
+                                              controller.update();
+                                            },
+                                            text: 'UG',
+                                          ),
+                                          CustomButtonWidget(
+                                            selectedColor:
+                                                ThemeConstants.bluecolor,
+                                            isSelected: controller
+                                                        .selectedLevelYouWantToStudy ==
+                                                    4
+                                                ? true
+                                                : false,
+                                            onTap: () {
+                                              controller
+                                                  .selectedLevelYouWantToStudy = 4;
+                                              controller.update();
+                                            },
+                                            text: 'PG',
+                                          ),
+                                          CustomButtonWidget(
+                                            selectedColor:
+                                                ThemeConstants.bluecolor,
+                                            isSelected: controller
+                                                        .selectedLevelYouWantToStudy ==
+                                                    3
+                                                ? true
+                                                : false,
+                                            onTap: () {
+                                              controller
+                                                  .selectedLevelYouWantToStudy = 3;
+                                              controller.update();
+                                            },
+                                            text: 'Diploma',
+                                          ),
+                                          // CustomButtonWidget(
+                                          //   text: 'Masters',
+                                          // ),
+                                          // CustomButtonWidget(
+                                          //   text: 'Diploma',
+                                          // ),
+                                        ]))
+                                  ])),
                         ],
 
                         if (controller.questionNumberToShow == 5) ...[
@@ -779,7 +816,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         ),
 
                         Padding(
-                          padding: const EdgeInsets.only(right: 70),
+                          padding: const EdgeInsets.only(right: 105, top: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [

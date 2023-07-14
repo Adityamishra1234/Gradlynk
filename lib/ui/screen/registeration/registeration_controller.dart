@@ -177,9 +177,9 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
   startResend() async {
     // var res2 = await api.getOTP(email);
-    // var res = await api.resendOtpRegister(phoneNumberController.text);
+    var res = await api.resendOtpRegister(phoneNumberController.text);
 
-    // getToast(res['message']);
+    getToast(res['message']);
     timer.value = 120;
     startTimer();
     update();

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import '../ui/screen/mark_attendance/code_screen.dart';
@@ -59,9 +61,12 @@ class DashboardEventSection extends StatelessWidget {
                           // ),
                           // const Spacer(),
                           Padding(
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(0),
                             child: Image.asset(
-                              'assets/images/calender.png',
+                              'assets/icons/event-zone.gif',
+                              gaplessPlayback: false,
+                              width: 250,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ],
@@ -70,188 +75,130 @@ class DashboardEventSection extends StatelessWidget {
                       // height: 180,
                       alignment: Alignment.center,
                       // color: ThemeConstants.GreenColor,
-                      width: MediaQuery.of(context).size.width / 2,
+                      width: MediaQuery.of(context).size.width - 200,
                       child: Wrap(
                         alignment: WrapAlignment.center,
                         runAlignment: WrapAlignment.center,
                         spacing: 5,
                         runSpacing: 5,
                         children: [
-                          InkWell(
-                            onTap: () {
-                              Get.to(CodeScreen());
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                    constraints: const BoxConstraints(
-                                        maxHeight: 70, maxWidth: 70),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xFFF1F0FF),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: SvgPicture.asset(
-                                      "assets/icons/Mark attendence.svg",
-                                      color: ThemeConstants.VioletColor,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      text: "Mark Attendance",
-                                      textalingCentre: true,
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .markAttendance ==
+                              true)
+                            InkWell(
+                              onTap: () {
+                                Get.to(CodeScreen());
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                      constraints: const BoxConstraints(
+                                          maxHeight: 70, maxWidth: 70),
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          color: Color(0xFFF1F0FF),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: SvgPicture.asset(
+                                        "assets/icons/Mark attendence.svg",
+                                        color: ThemeConstants.VioletColor,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "Mark Attendance",
+                                        textalingCentre: true,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-
-                          InkWell(
-                            onTap: () {
-                              Get.to(IntakeScreen());
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                    constraints: const BoxConstraints(
-                                        maxHeight: 70, maxWidth: 70),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(
-                                        color: ThemeConstants.lightYellow,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: SvgPicture.asset(
-                                      "assets/icons/Express entry.svg",
-                                      color: ThemeConstants.yellow,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      text: "Express Pass",
-                                      textalingCentre: true,
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .expressPass ==
+                              true)
+                            InkWell(
+                              onTap: () {
+                                Get.to(IntakeScreen());
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                      constraints: const BoxConstraints(
+                                          maxHeight: 70, maxWidth: 70),
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          color: ThemeConstants.lightYellow,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: SvgPicture.asset(
+                                        "assets/icons/Express entry.svg",
+                                        color: ThemeConstants.yellow,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "Express Pass",
+                                        textalingCentre: true,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          // Column(
-                          //   children: [
-                          //     Container(
-                          //         constraints: const BoxConstraints(
-                          //             maxHeight: 70, maxWidth: 70),
-                          //         padding: const EdgeInsets.all(10),
-                          //         decoration: const BoxDecoration(
-                          //             // border: Border.all(
-                          //             //     width: 1.2,
-                          //             //     color: ThemeConstants
-                          //             //         .VioletColor),
-                          //             color: Color(0xFFF1F0FF),
-                          //             borderRadius: BorderRadius.all(
-                          //                 Radius.circular(20))),
-                          //         child: svgImage("create_profile",
-                          //             const Color(0xFF6F61FF), 80, 80)),
-                          //     Padding(
-                          //       padding: const EdgeInsets.only(top: 10),
-                          //       child: SizedBox(
-                          //         width: 100,
-                          //         child: CustomAutoSizeTextMontserrat(
-                          //           fontWeight: FontWeight.w500,
-                          //           fontSize: 13,
-                          //           text: "Create your profile",
-                          //           textalingCentre: true,
-                          //         ),
-                          //       ),
-                          //     )
-                          //   ],
-                          // ),
-                          // Column(
-                          //   children: [
-                          //     Container(
-                          //         constraints: const BoxConstraints(
-                          //             maxHeight: 70, maxWidth: 70),
-                          //         padding: const EdgeInsets.all(10),
-                          //         decoration: const BoxDecoration(
-                          //             // border: Border.all(
-                          //             //     width: 1.2,
-                          //             //     color: ThemeConstants
-                          //             //         .VioletColor),
-                          //             color: Color(0xFFF1F0FF),
-                          //             borderRadius: BorderRadius.all(
-                          //                 Radius.circular(20))),
-                          //         child: svgImage("create_profile",
-                          //             const Color(0xFF6F61FF), 80, 80)),
-                          //     Padding(
-                          //       padding: const EdgeInsets.only(top: 10),
-                          //       child: SizedBox(
-                          //         width: 100,
-                          //         child: CustomAutoSizeTextMontserrat(
-                          //           fontWeight: FontWeight.w500,
-                          //           fontSize: 13,
-                          //           text: "Create your profile",
-                          //           textalingCentre: true,
-                          //         ),
-                          //       ),
-                          //     )
-                          //   ],
-                          // ),
-                          // // Container(
-                          //   constraints: BoxConstraints(maxHeight: 70, maxWidth: 70),
-                          //   padding: const EdgeInsets.all(12),
-                          //   decoration: const BoxDecoration(
-                          //       // border: Border.all(
-                          //       //     width: 1.2,
-                          //       //     color: const Color(
-                          //       //         0xFF05B4D2)),
-                          //       color: Color(0xFFE8FAFD),
-                          //       borderRadius: BorderRadius.all(Radius.circular(20))),
-                          //   child: svgImage("track", const Color(0xFF05B4D2), 80, 80),
-                          // ),
-                          // Container(
-                          //   constraints: BoxConstraints(maxHeight: 70, maxWidth: 70),
-                          //   padding: const EdgeInsets.all(12),
-                          //   decoration: const BoxDecoration(
-                          //       // border: Border.all(
-                          //       //     width: 1.2,
-                          //       //     color: const Color(
-                          //       //         0xFF05B4D2)),
-                          //       color: Color(0xFFE8FAFD),
-                          //       borderRadius: BorderRadius.all(Radius.circular(20))),
-                          //   child: svgImage("track", const Color(0xFF05B4D2), 80, 80),
-                          // ),
-                          // Container(
-                          //   constraints: BoxConstraints(maxHeight: 70, maxWidth: 70),
-                          //   padding: const EdgeInsets.all(12),
-                          //   decoration: const BoxDecoration(
-                          //       // border: Border.all(
-                          //       //     width: 1.2,
-                          //       //     color: const Color(
-                          //       //         0xFF05B4D2)),
-                          //       color: Color(0xFFE8FAFD),
-                          //       borderRadius: BorderRadius.all(Radius.circular(20))),
-                          //   child: svgImage("track", const Color(0xFF05B4D2), 80, 80),
-                          // ),
-                          // Container(
-                          //   constraints: BoxConstraints(maxHeight: 70, maxWidth: 70),
-                          //   padding: const EdgeInsets.all(12),
-                          //   decoration: const BoxDecoration(
-                          //       // border: Border.all(
-                          //       //     width: 1.2,
-                          //       //     color: const Color(
-                          //       //         0xFF05B4D2)),
-                          //       color: Color(0xFFE8FAFD),
-                          //       borderRadius: BorderRadius.all(Radius.circular(20))),
-                          //   child: svgImage("track", const Color(0xFF05B4D2), 80, 80),
-                          // ),
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .expressPassGenerated ==
+                              true)
+                            InkWell(
+                              onTap: () {
+//TODO for image (Express pass generation)
+                              },
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        constraints: const BoxConstraints(
+                                            maxHeight: 70, maxWidth: 70),
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                            // border: Border.all(
+                                            //     width: 1.2,
+                                            //     color: ThemeConstants
+                                            //         .VioletColor),
+                                            color: ThemeConstants.lightRed,
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(20))),
+                                        child: svgImage("create_profile",
+                                            ThemeConstants.red, 80, 80)),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: SizedBox(
+                                        width: 100,
+                                        child: CustomAutoSizeTextMontserrat(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 13,
+                                          text: "Express Pass View",
+                                          textalingCentre: true,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
                         ],
                       )),
                 ]),

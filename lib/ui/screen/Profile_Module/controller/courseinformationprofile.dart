@@ -58,6 +58,7 @@ class CourseInformationProfileController extends GetxController {
   }
 
   getCoursenarrow() async {
+    loadingCourseBroad.value = false;
     try {
       var res = await apiServices.getCourseNarrowProfile(
           Endpoints.baseUrl!, Endpoints.courseNarrowFieldProfile!);
@@ -152,20 +153,20 @@ class CourseInformationProfileController extends GetxController {
   allDelete(int? enqId, String? action) async {
     try {
       String? endpoint;
-      endpoint = Endpoints.addCourseInformationPart1!;
-      //     enqId.toString() +
-      //     Endpoints.addCourseInformationPart2! +
-      //     courseLevelId.toString();
-      // for (var i = 0; i < viewCourseInformationList.length; i++) {
-      //   print(i);
-      //   endpoint = endpoint! +
-      //       getaddCourseInformationPart3(
-      //           i,
-      //           viewCourseInformationList[i].courseBroadId!,
-      //           viewCourseInformationList[i].courseNarrowId!);
-      // }
+      endpoint = Endpoints.addCourseInformationPart1! + enqId.toString();
+      // +
+      // Endpoints.addCourseInformationPart2! ;
+      //  courseLevelId.toString();
+      for (var i = 0; i < viewCourseInformationList.length; i++) {
+        print(i);
+        endpoint = endpoint! +
+            getaddCourseInformationPart3(
+                i,
+                viewCourseInformationList[i].courseBroadId!,
+                viewCourseInformationList[i].courseNarrowId!);
+      }
       var res = await apiServices.addProfileModule(
-          Endpoints.baseUrl!, endpoint, "Course Information", action!);
+          Endpoints.baseUrl!, endpoint!, "Course Information", action!);
       loadingViewCourseInformation.value = true;
       update();
     } catch (e) {

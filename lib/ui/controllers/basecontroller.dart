@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/models/personalinformation.dart';
 import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -28,6 +29,8 @@ class BaseController extends GetxController with StateMixin {
   List<int> countryid = [];
   bool dashboard = false;
   RxList<CarouselListModel> carouselList = <CarouselListModel>[].obs;
+  EventZoneStatus meetingZoneStatus = EventZoneStatus();
+  List eventlist = [];
 
   @override
   void onInit() async {
@@ -36,6 +39,7 @@ class BaseController extends GetxController with StateMixin {
     await profiledetail();
     await caraouselData();
     await profileDataValidator();
+
     change(null, status: RxStatus.success());
   }
 
@@ -48,6 +52,8 @@ class BaseController extends GetxController with StateMixin {
   RxBool loading = false.obs;
   profileDataValidator() async {
     ///todo
+    ///
+    print(Get.find<BaseController>().model1.id!);
     var x = await apiServices
         .profileDataValidation(Get.find<BaseController>().model1.id!);
     var z = ProfileDataValidatorModel.fromJson(x);
@@ -99,8 +105,9 @@ class BaseController extends GetxController with StateMixin {
       }
 
       await checkShowLetsGetStarted();
-
+      await getEventZone(model1.id.toString());
       loadingStudentPanelData1 = true.obs;
+
       update();
     }
     getNotificatin(model1.id.toString());
@@ -108,8 +115,8 @@ class BaseController extends GetxController with StateMixin {
 
   checkShowLetsGetStarted() {
     ///todo
-    if (model1.student_consent == 1) {
-      Get.to(LetsGetStartedMainView());
+    if (model1.student_consent == 0) {
+      Get.offAll(LetsGetStartedMainView());
     }
   }
 
@@ -152,5 +159,18 @@ class BaseController extends GetxController with StateMixin {
     //   sharedPreferences.clear();
     //   Get.toNamed(LoginScreen.routeNamed);
     // }
+  }
+
+  getEventZone(String end_id) async {
+    var res = await apiServices.getEventZone(Endpoints.eventZone! + end_id);
+    if (res != null) {
+      meetingZoneStatus = res;
+
+      if (meetingZoneStatus.campaignDetails != null) {
+        meetingZoneStatus.campaignDetails!.forEach((element) {
+          eventlist.add(element.campaignName);
+        });
+      }
+    }
   }
 }

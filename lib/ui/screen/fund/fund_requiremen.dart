@@ -388,8 +388,8 @@ class Fundrequirement extends StatelessWidget {
                           onPrimary: ThemeConstants.bluecolor, // foreground
                         ),
                         onPressed: () {
-                          controller
-                              .getCalculated(controller.previousInstCourse!);
+                          controller.getCalculatedInit(
+                              controller.previousInstCourse!);
                         },
                         child: CustomAutoSizeTextMontserrat(
                           text: "Calculate",

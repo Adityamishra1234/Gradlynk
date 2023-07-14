@@ -317,4 +317,6 @@ class SnackBarConstants {
   static String maxChildCount = "Maximum child count 4";
   static String minChildCount = "Minimum child count 4";
   static String fileSize = "your file size more than  5MB";
+
+  static String noTrackApplication = "No Application Available for Tracking";
 }

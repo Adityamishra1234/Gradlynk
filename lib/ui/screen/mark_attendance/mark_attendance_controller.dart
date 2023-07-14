@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/markAttendanceDocumentStatus.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_model.dart';
@@ -16,6 +17,9 @@ class MarkAttendanceController extends GetxController with StateMixin {
   static TextEditingController code = TextEditingController();
 
   MarkAttendanceIntake markAttendanceIntakeModel = MarkAttendanceIntake();
+
+  String? eventSelected;
+  String? id;
 
   String? intake;
 
@@ -54,13 +58,13 @@ class MarkAttendanceController extends GetxController with StateMixin {
     }
   }
 
-  getIntakeSubmit() async {
+  getIntakeSubmit(String campaign_id) async {
     change(null, status: RxStatus.loading());
 
     if (intake != null) {
       var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
           //TODO HardCoded
-          campaign_id: '1996',
+          campaign_id: campaign_id,
           enq_id: Get.find<BaseController>().model1.id.toString(),
           intake_month: intake!.split("-")[1],
           intake_year: intake!.split("-")[0]));
