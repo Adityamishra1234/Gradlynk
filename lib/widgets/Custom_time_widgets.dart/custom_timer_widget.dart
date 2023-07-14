@@ -7,9 +7,11 @@ typedef void StringCallback(String val);
 
 class CustomTimerWidget extends StatefulWidget {
   final StringCallback callback;
+  DateTime? startingDate;
   String? initialTime;
 
-  CustomTimerWidget({Key? key, required this.callback, this.initialTime})
+  CustomTimerWidget(
+      {Key? key, required this.callback, this.initialTime, this.startingDate})
       : super(key: key);
 
   @override
@@ -26,11 +28,14 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
   late String dateToShow;
 
   late DateTime dateTime;
+
+  late DateTime minimumDate;
   @override
   void initState() {
     if (widget.initialTime != null) {
       String dateString = widget.initialTime!;
       dateTime = Jiffy.parse(dateString).dateTime;
+
       // String formattedDate = Jiffy(dateTime).format('MMM do yyyy');
       // print(formattedDate); // Output: Jun 13th 2023
       dateToShow = widget.initialTime ??
@@ -44,6 +49,8 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
       // TODO: implement initState
       super.initState();
     }
+
+    minimumDate = widget.startingDate ?? Jiffy.parse('1990/09/23').dateTime;
   }
   // @override
   // void initState() {
@@ -98,6 +105,7 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
                     ),
                     Expanded(
                       child: CupertinoDatePicker(
+                        minimumDate: minimumDate,
                         initialDateTime: dateTime,
                         onDateTimeChanged: (DateTime newdate) {
                           setState(() {
@@ -107,8 +115,8 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
                           widget.callback(dateToShow);
                         },
                         maximumDate: DateTime(2025, 12, 30),
-                        minimumYear: 2004,
-                        maximumYear: 2035,
+                        // minimumYear: 1,
+                        // maximumYear: 2035,
                         minuteInterval: 1,
                         mode: CupertinoDatePickerMode.date,
                       ),

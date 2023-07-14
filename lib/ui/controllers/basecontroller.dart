@@ -110,8 +110,8 @@ class BaseController extends GetxController with StateMixin {
 
   checkShowLetsGetStarted() {
     ///todo
-    if (model1.student_consent == 1) {
-      Get.to(LetsGetStartedMainView());
+    if (model1.student_consent == 0) {
+      Get.offAll(LetsGetStartedMainView());
     }
   }
 

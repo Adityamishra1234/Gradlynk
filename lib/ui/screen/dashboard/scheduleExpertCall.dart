@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:studentpanel/ui/controllers/scheduleExpertCall.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -76,10 +78,14 @@ class ScheduleExpertCall extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                child: DatePickerExample(
-                    enableField: false,
-                    date: _.dateSelected,
-                    callbackDate: callbackDatePicker),
+                child: Container(
+                  height: 50,
+                  child: CustomTimerWidget(
+                      startingDate: Jiffy.now().dateTime,
+                      // enableField: false,
+                      // date: _.dateSelected,
+                      callback: callbackDatePicker),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -88,6 +94,7 @@ class ScheduleExpertCall extends StatelessWidget {
                   child: CustomAutoSizeTextMontserrat(
                     text: "Preferred Time",
                     mandatory: true,
+
                     //textColor: ThemeConstants.TextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -109,7 +116,9 @@ class ScheduleExpertCall extends StatelessWidget {
                       width: 100,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
+                            foregroundColor: ThemeConstants.bluecolor,
+                            backgroundColor: ThemeConstants.bluecolor,
+                            elevation: 0.0, // foreground
                           ),
                           onPressed: () {
                             if (getNUllChecker(_.nameSelected)) {
@@ -172,9 +181,11 @@ class ScheduleExpertCall extends StatelessWidget {
   }
 
   callbackDatePicker(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateSelected = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dateSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.dateSelected = data;
+
     controller.update();
   }
 
