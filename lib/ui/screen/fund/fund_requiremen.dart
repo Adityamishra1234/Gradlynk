@@ -501,11 +501,12 @@ class CustomIconTextTogether extends StatelessWidget {
   Color? color;
   Color? Bgcolor;
   double? textSize;
-
+  bool? iconBeforetext;
   FontWeight? fontWeight;
 
   CustomIconTextTogether(
       {super.key,
+      this.iconBeforetext = false,
       this.fontWeight,
       this.textSize,
       this.Bgcolor,
@@ -516,7 +517,7 @@ class CustomIconTextTogether extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
@@ -525,17 +526,20 @@ class CustomIconTextTogether extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(width: 1, color: color ?? Colors.transparent)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          iconData ?? const SizedBox.shrink(),
-          const SizedBox(
-            width: 5,
-          ),
+          iconBeforetext == true
+              ? iconData ?? const SizedBox.shrink()
+              : const SizedBox.shrink(),
           CustomAutoSizeTextMontserrat(
             text: '$text',
             textColor: color,
             fontSize: textSize ?? 14.00,
             fontWeight: fontWeight,
           ),
+          iconBeforetext == false
+              ? iconData ?? const SizedBox.shrink()
+              : const SizedBox.shrink(),
         ],
       ),
     );

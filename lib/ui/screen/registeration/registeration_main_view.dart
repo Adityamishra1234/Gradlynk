@@ -11,59 +11,61 @@ class RegisterationMainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: Stack(
+      body: SafeArea(
+        child: Stack(
 
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // fit: StackFit.expand,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 25),
-              width: double.infinity,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // fit: StackFit.expand,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                width: double.infinity,
 
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: ThemeConstants.whitecolor,
-                  borderRadius: BorderRadius.circular(20)),
-              // width: 200,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 80),
-                  Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: ThemeConstants.yellow,
-                        borderRadius: BorderRadius.circular(20)),
-                    width: 200,
-                    height: 30,
-                    child: CustomAutoSizeTextMontserrat(
-                      text: 'Welcome to Gradlynk',
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: ThemeConstants.whitecolor,
+                    borderRadius: BorderRadius.circular(20)),
+                // width: 200,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 20),
+                    Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: ThemeConstants.yellow,
+                          borderRadius: BorderRadius.circular(20)),
+                      width: 200,
+                      height: 30,
+                      child: CustomAutoSizeTextMontserrat(
+                        text: 'Welcome to Gradlynk',
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    child: CustomAutoSizeTextMontserrat(
-                      text: 'Create a New Account',
-                      textColor: ThemeConstants.blackcolor,
-                      fontSize: 35,
-                      fontWeight: FontWeight.w700,
+                    SizedBox(
+                      child: CustomAutoSizeTextMontserrat(
+                        text: 'Create a New Account',
+                        textColor: ThemeConstants.blackcolor,
+                        fontSize: 35,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              alignment: Alignment.bottomCenter,
-              child: Image.asset('assets/images/registerBgImage.png'),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 225),
-              child: RegisterationFormWidget(),
-            ),
-          ]),
+              Container(
+                height: MediaQuery.of(context).size.height,
+                alignment: Alignment.bottomCenter,
+                child: Image.asset('assets/images/registerBgImage.png'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 150),
+                child: RegisterationFormWidget(),
+              ),
+            ]),
+      ),
     );
   }
 }

@@ -81,473 +81,486 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return controller.obx((state) => Container(
-          // elevation: 5,
+    return controller.obx(
+        onLoading: getLoading(context),
+        (state) => Container(
+              // elevation: 5,
 
-          constraints: BoxConstraints(maxHeight: 500, minHeight: 300),
+              constraints: BoxConstraints(maxHeight: 500, minHeight: 300),
 
-          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          margin: const EdgeInsets.symmetric(horizontal: 40),
-          decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                    color: Color.fromARGB(41, 0, 0, 0),
-                    blurRadius: 4,
-                    spreadRadius: 2)
-              ],
-              color: ThemeConstants.whitecolor,
-              borderRadius: BorderRadius.circular(20)),
-          child: SingleChildScrollView(
-            padding: EdgeInsets.only(top: 10),
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: CustomAutoSizeTextMontserrat(
-                    //     text: 'Name',
-                    //     fontWeight: FontWeight.w500,
-                    //   ),
-                    // ),
+              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 40),
+              decoration: BoxDecoration(
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Color.fromARGB(41, 0, 0, 0),
+                        blurRadius: 4,
+                        spreadRadius: 2)
+                  ],
+                  color: ThemeConstants.whitecolor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(top: 10),
+                child: Form(
+                  key: controller.formKey,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: CustomAutoSizeTextMontserrat(
+                        //     text: 'Name',
+                        //     fontWeight: FontWeight.w500,
+                        //   ),
+                        // ),
 
-                    if (controller.showOtp == false) ...[
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        alignment: Alignment.topLeft,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: 'Name',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 7),
-                        child: CustomTextField(
-                          fieldFontWeight: FontWeight.w400,
-                          hintFontWeight: FontWeight.w500,
-                          borderRadius: 10,
+                        if (controller.showOtp == false) ...[
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: 'Name',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 7),
+                            child: CustomTextField(
+                              fieldFontWeight: FontWeight.w400,
+                              hintFontWeight: FontWeight.w500,
+                              borderRadius: 10,
 
-                          hint: '',
-                          backgroundCOlour: ThemeConstants.ultraLightgreyColor2,
-                          validator: Validator.notEmpty,
-                          // autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.nameController,
-                          // decoration: CustomInputDecoration.textFieldStyle(
-                          //     labelTextStr: 'Name'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      // SizedBox(
-                      //   height: 40,
-                      //   child: TextFormField(
-                      //     decoration: CustomInputDecoration.textFieldStyle(
-                      //         labelTextStr: 'Phone Number'),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: 40,
-                      //   child: TextFormField(
-                      //     decoration: CustomInputDecoration.textFieldStyle(
-                      //         labelTextStr: 'Phone Number'),
-                      //   ),
-                      // ),
-                    ],
-                    Container(
-                      padding: EdgeInsets.only(left: 10),
-                      alignment: Alignment.topLeft,
-                      child: CustomAutoSizeTextMontserrat(
-                        text: 'Phone Number',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7),
-                      child: CustomTextField(
-                        fieldFontWeight: FontWeight.w400,
-                        borderRadius: 10,
-                        hint: '',
-                        readOrEdit: controller.showOtp,
-                        validator: Validator.phone,
-                        controller: controller.phoneNumberController,
-                        // decoration: CustomInputDecoration.textFieldStyle(
-                        //     labelTextStr: 'Phone Number'),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    if (controller.showOtp == false) ...[
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        alignment: Alignment.topLeft,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: 'Email',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 7),
-                        child: CustomTextField(
-                          fieldFontWeight: FontWeight.w400,
-                          borderRadius: 10,
-                          backgroundCOlour: ThemeConstants.ultraLightgreyColor2,
-
-                          // validator: (value) {
-                          //   return getEmailvaliation(value);
-                          // },
-                          hint: '',
-                          validator: Validator.email,
-                          controller: controller.emailIdController,
-                          // decoration: CustomInputDecoration.textFieldStyle(
-                          //     labelTextStr: 'Email ID'),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        alignment: Alignment.topLeft,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: 'Nearest Siec Branch',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      SizedBox(
-                          child: CustomDropDownSingle(
-                        bgColor: ThemeConstants.ultraLightgreyColor2,
-                        model: controller.branchListName,
-                        choosefieldtype: false,
-                        initialSelectedValue: controller.selectedBranchName,
-                        callbackFunction: callBackSelectedBranch,
-                      )),
-
-                      SizedBox(
-                        height: 20,
-                      ),
-                      // SizedBox(
-
-                      //   child: TextFormField(
-                      //     validator: (value) {
-                      //       return getEmptyValidation(value);
-                      //     },
-                      //     controller: controller.targetDestinationController,
-                      //     decoration: CustomInputDecoration.textFieldStyle(
-                      //         labelTextStr: 'Target Destination'),
-                      //   ),
-                      // ),
-
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        alignment: Alignment.topLeft,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: 'Target Destination',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      SizedBox(
-                          child: CustomDropDownSingle(
-                        bgColor: ThemeConstants.ultraLightgreyColor2,
-                        model: controller.countryListName,
-                        choosefieldtype: false,
-                        initialSelectedValue: controller.selectedCountryName,
-                        callbackFunction: callBackSelectedDestination,
-                      )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        alignment: Alignment.topLeft,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: 'How did you hear about us?',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      SizedBox(
-                          child: CustomDropDownSingle(
-                        bgColor: ThemeConstants.ultraLightgreyColor2,
-                        model: controller.leadSourcesListName,
-                        choosefieldtype: false,
-                        initialSelectedValue:
-                            controller.selectedLeadSourcesName,
-                        callbackFunction: callBackSelectedLeadSource,
-                      )),
-                      // SizedBox(
-                      //   child: TextFormField(
-                      //     controller: controller.nearestSiecBranch,
-                      //     validator: (value) {
-                      //       return getEmptyValidation(value);
-                      //     },
-                      //     decoration: CustomInputDecoration.textFieldStyle(
-                      //         labelTextStr: 'Nearest SIEC Branch'),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: 20,
-                      // ),
-                      // SizedBox(
-                      //   child: TextFormField(
-                      //     controller: controller.howDidYouHearAboutUsController,
-                      //     validator: (value) {
-                      //       return getEmptyValidation(value);
-                      //     },
-                      //     decoration: CustomInputDecoration.textFieldStyle(
-                      //         labelTextStr: 'How did you hear about us?'),
-                      //   ),
-                      // ),
-                      // CustomTextField(hint: '', controller: controller.nameController),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: CustomAutoSizeTextMontserrat(
-                      //     text: 'Phone Number',
-                      //     fontWeight: FontWeight.w500,
-                      //   ),
-                      // ),
-                      // CustomTextField(hint: '', controller: controller.nameController),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: CustomAutoSizeTextMontserrat(
-                      //     text: 'Email ID',
-                      //     fontWeight: FontWeight.w500,
-                      //   ),
-                      // ),
-                      // CustomTextField(hint: '', controller: controller.nameController),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: CustomAutoSizeTextMontserrat(
-                      //     text: 'Target Destination',
-                      //     fontWeight: FontWeight.w500,
-                      //   ),
-                      // ),
-                      // CustomTextField(hint: '', controller: controller.nameController),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(8.0),
-                      //   child: CustomAutoSizeTextMontserrat(
-                      //     text: 'How did you hear about us?',
-                      //     fontWeight: FontWeight.w500,
-                      //   ),
-                      // ),
-                      // CustomTextField(hint: '', controller: controller.nameController),
-
-                      SizedBox(
-                        height: 20,
-                      ),
-                      LoadingButton(
-                        loader: SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(
-                            color: ThemeConstants.whitecolor,
+                              hint: '',
+                              backgroundCOlour:
+                                  ThemeConstants.ultraLightgreyColor2,
+                              validator: Validator.notEmpty,
+                              // autovalidateMode: AutovalidateMode.onUserInteraction,
+                              controller: controller.nameController,
+                              // decoration: CustomInputDecoration.textFieldStyle(
+                              //     labelTextStr: 'Name'),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          // SizedBox(
+                          //   height: 40,
+                          //   child: TextFormField(
+                          //     decoration: CustomInputDecoration.textFieldStyle(
+                          //         labelTextStr: 'Phone Number'),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 40,
+                          //   child: TextFormField(
+                          //     decoration: CustomInputDecoration.textFieldStyle(
+                          //         labelTextStr: 'Phone Number'),
+                          //   ),
+                          // ),
+                        ],
+                        Container(
+                          padding: EdgeInsets.only(left: 10),
+                          alignment: Alignment.topLeft,
+                          child: CustomAutoSizeTextMontserrat(
+                            text: 'Phone Number',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13,
                           ),
                         ),
-                        borderRadius: 10,
-                        color: ThemeConstants.bluecolor,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                        onTap: (startLoading, stopLoading, buttonState) async {
-                          startLoading();
-                          print('object');
-                          if (controller.formKey.currentState!.validate()) {
-                            if (controller.selectedBranchCode == null) {
-                              return getToast('Please Select Branch');
-                            } else if (controller.selectedCountryID == null) {
-                              return getToast('Please Select Country');
-                            } else if (controller.leadSourcesListID == null) {
-                              return getToast('Please select leadsource');
-                            }
-                            var res = await controller.regsiter();
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 7),
+                          child: CustomTextField(
+                            fieldFontWeight: FontWeight.w400,
+                            borderRadius: 10,
+                            hint: '',
+                            readOrEdit: controller.showOtp,
+                            validator: Validator.phone,
+                            controller: controller.phoneNumberController,
+                            // decoration: CustomInputDecoration.textFieldStyle(
+                            //     labelTextStr: 'Phone Number'),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        if (controller.showOtp == false) ...[
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: 'Email',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 7),
+                            child: CustomTextField(
+                              fieldFontWeight: FontWeight.w400,
+                              borderRadius: 10,
+                              backgroundCOlour:
+                                  ThemeConstants.ultraLightgreyColor2,
 
-                            if (res == true) {
-                              signature();
-                            }
-                            // Get.toNamed(LoginCopy.routeNamed);
-                          }
-                          stopLoading();
-                        },
-                        height: 30,
-                        width: 200,
-                        child: CustomAutoSizeTextMontserrat(
-                            textColor: ThemeConstants.whitecolor,
-                            text: "Get OTP"),
-                      ),
-                      // CustomButton(
-                      //     backgroundColor: ThemeConstants.bluecolor,
-                      //     horizontelPadding: 20,
-                      //     radius: 8,
-                      //     text: 'Get OTP',
-                      //     onPressed: () async {
-                      //       print('object');
-                      //       if (controller.formKey.currentState!.validate()) {
-                      //         if (controller.selectedBranchCode == null) {
-                      //           return getToast('Please Select Branch');
-                      //         } else if (controller.selectedCountryID == null) {
-                      //           return getToast('Please Select Country');
-                      //         } else if (controller.leadSourcesListID == null) {
-                      //           return getToast('Please select leadsource');
-                      //         }
-                      //         var res = await controller.regsiter();
+                              // validator: (value) {
+                              //   return getEmailvaliation(value);
+                              // },
+                              hint: '',
+                              validator: Validator.email,
+                              controller: controller.emailIdController,
+                              // decoration: CustomInputDecoration.textFieldStyle(
+                              //     labelTextStr: 'Email ID'),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: 'Nearest Siec Branch',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                              child: CustomDropDownSingle(
+                            bgColor: ThemeConstants.ultraLightgreyColor2,
+                            model: controller.branchListName,
+                            choosefieldtype: false,
+                            initialSelectedValue: controller.selectedBranchName,
+                            callbackFunction: callBackSelectedBranch,
+                          )),
 
-                      //         if (res == true) {
-                      //           signature();
-                      //         }
-                      //         // Get.toNamed(LoginCopy.routeNamed);
-                      //       }
-                      //     }),
-                    ],
+                          SizedBox(
+                            height: 20,
+                          ),
+                          // SizedBox(
 
-                    if (controller.showOtp == true) ...[
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 20, left: 10, right: 10),
-                        child: TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            controller: otpcontroller,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            decoration: CustomInputDecoration.textFieldStyle(
-                                labelTextStr: 'OTP'),
-                            validator: (value) {
-                              if (value != null) {
-                                if (value.length != 6) {
-                                  return SnackBarConstants.OTPError;
-                                }
-                              }
-                              return null;
-                            }),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      // InkWell(
-                      //   onTap: () {
-                      //     controller.startResend();
-                      //   },
-                      //   child: Container(
-                      //     padding: EdgeInsets.only(left: 15),
-                      //     alignment: Alignment.bottomLeft,
-                      //     child: CustomAutoSizeTextMontserrat(
-                      //       fontWeight: FontWeight.w500,
-                      //       fontSize: 8,
-                      //       text: 'Resend OTP',
-                      //       textColor: ThemeConstants.bluecolor,
-                      //     ),
-                      //   ),
-                      // ),
-                      Obx(
-                        () => GestureDetector(
-                          onTap: () {
-                            if (controller.resendOTP == 1)
-                              controller.startResend();
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
+                          //   child: TextFormField(
+                          //     validator: (value) {
+                          //       return getEmptyValidation(value);
+                          //     },
+                          //     controller: controller.targetDestinationController,
+                          //     decoration: CustomInputDecoration.textFieldStyle(
+                          //         labelTextStr: 'Target Destination'),
+                          //   ),
+                          // ),
+
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: 'Target Destination',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                              child: CustomDropDownSingle(
+                            bgColor: ThemeConstants.ultraLightgreyColor2,
+                            model: controller.countryListName,
+                            choosefieldtype: false,
+                            initialSelectedValue:
+                                controller.selectedCountryName,
+                            callbackFunction: callBackSelectedDestination,
+                          )),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: CustomAutoSizeTextMontserrat(
+                              text: 'How did you hear about us?',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                              child: CustomDropDownSingle(
+                            bgColor: ThemeConstants.ultraLightgreyColor2,
+                            model: controller.leadSourcesListName,
+                            choosefieldtype: false,
+                            initialSelectedValue:
+                                controller.selectedLeadSourcesName,
+                            callbackFunction: callBackSelectedLeadSource,
+                          )),
+                          // SizedBox(
+                          //   child: TextFormField(
+                          //     controller: controller.nearestSiecBranch,
+                          //     validator: (value) {
+                          //       return getEmptyValidation(value);
+                          //     },
+                          //     decoration: CustomInputDecoration.textFieldStyle(
+                          //         labelTextStr: 'Nearest SIEC Branch'),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   height: 20,
+                          // ),
+                          // SizedBox(
+                          //   child: TextFormField(
+                          //     controller: controller.howDidYouHearAboutUsController,
+                          //     validator: (value) {
+                          //       return getEmptyValidation(value);
+                          //     },
+                          //     decoration: CustomInputDecoration.textFieldStyle(
+                          //         labelTextStr: 'How did you hear about us?'),
+                          //   ),
+                          // ),
+                          // CustomTextField(hint: '', controller: controller.nameController),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //     text: 'Phone Number',
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                          // CustomTextField(hint: '', controller: controller.nameController),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //     text: 'Email ID',
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                          // CustomTextField(hint: '', controller: controller.nameController),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //     text: 'Target Destination',
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                          // CustomTextField(hint: '', controller: controller.nameController),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: CustomAutoSizeTextMontserrat(
+                          //     text: 'How did you hear about us?',
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                          // CustomTextField(hint: '', controller: controller.nameController),
+
+                          SizedBox(
+                            height: 20,
+                          ),
+                          LoadingButton(
+                            loader: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            borderRadius: 10,
+                            color: ThemeConstants.bluecolor,
+                            padding: EdgeInsets.symmetric(
                                 vertical: 5, horizontal: 20),
-                            child: Container(
-                              width: double.infinity,
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                " ${controller.timer.value == 0 ? 'Resend OTP' : 'Wait for ${controller.timer.value}'}",
-                                style: TextStyle(
-                                    fontWeight: controller.resendOTP == 1
-                                        ? FontWeight.w500
-                                        : FontWeight.bold,
-                                    color: controller.resendOTP == 1
-                                        ? ThemeConstants.GreenColor
-                                        : ThemeConstants.TextColor),
+                            onTap:
+                                (startLoading, stopLoading, buttonState) async {
+                              startLoading();
+                              print('object');
+                              if (controller.formKey.currentState!.validate()) {
+                                if (controller.selectedBranchCode == "") {
+                                  stopLoading();
+
+                                  return getToast('Please Select Branch');
+                                } else if (controller.selectedCountryID == "") {
+                                  stopLoading();
+                                  return getToast('Please Select Country');
+                                } else if (controller.selectedLeadSourcesCode ==
+                                    "") {
+                                  stopLoading();
+                                  return getToast('Please select leadsource');
+                                }
+                                var res = await controller.regsiter();
+
+                                if (res == true) {
+                                  signature();
+                                }
+                                stopLoading();
+                                // Get.toNamed(LoginCopy.routeNamed);
+                              }
+                            },
+                            height: 30,
+                            width: 200,
+                            child: CustomAutoSizeTextMontserrat(
+                                textColor: ThemeConstants.whitecolor,
+                                text: "Get OTP"),
+                          ),
+                          // CustomButton(
+                          //     backgroundColor: ThemeConstants.bluecolor,
+                          //     horizontelPadding: 20,
+                          //     radius: 8,
+                          //     text: 'Get OTP',
+                          //     onPressed: () async {
+                          //       print('object');
+                          //       if (controller.formKey.currentState!.validate()) {
+                          //         if (controller.selectedBranchCode == null) {
+                          //           return getToast('Please Select Branch');
+                          //         } else if (controller.selectedCountryID == null) {
+                          //           return getToast('Please Select Country');
+                          //         } else if (controller.leadSourcesListID == null) {
+                          //           return getToast('Please select leadsource');
+                          //         }
+                          //         var res = await controller.regsiter();
+
+                          //         if (res == true) {
+                          //           signature();
+                          //         }
+                          //         // Get.toNamed(LoginCopy.routeNamed);
+                          //       }
+                          //     }),
+                        ],
+
+                        if (controller.showOtp == true) ...[
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                top: 20, left: 10, right: 10),
+                            child: TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                controller: otpcontroller,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                decoration:
+                                    CustomInputDecoration.textFieldStyle(
+                                        labelTextStr: 'OTP'),
+                                validator: (value) {
+                                  if (value != null) {
+                                    if (value.length != 6) {
+                                      return SnackBarConstants.OTPError;
+                                    }
+                                  }
+                                  return null;
+                                }),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     controller.startResend();
+                          //   },
+                          //   child: Container(
+                          //     padding: EdgeInsets.only(left: 15),
+                          //     alignment: Alignment.bottomLeft,
+                          //     child: CustomAutoSizeTextMontserrat(
+                          //       fontWeight: FontWeight.w500,
+                          //       fontSize: 8,
+                          //       text: 'Resend OTP',
+                          //       textColor: ThemeConstants.bluecolor,
+                          //     ),
+                          //   ),
+                          // ),
+                          Obx(
+                            () => GestureDetector(
+                              onTap: () {
+                                if (controller.resendOTP == 1)
+                                  controller.startResend();
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 20),
+                                child: Container(
+                                  width: double.infinity,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    " ${controller.timer.value == 0 ? 'Resend OTP' : 'Wait for ${controller.timer.value}'}",
+                                    style: TextStyle(
+                                        fontWeight: controller.resendOTP == 1
+                                            ? FontWeight.w500
+                                            : FontWeight.bold,
+                                        color: controller.resendOTP == 1
+                                            ? ThemeConstants.GreenColor
+                                            : ThemeConstants.TextColor),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      CustomButton(
-                          backgroundColor: ThemeConstants.bluecolor,
-                          horizontelPadding: 10,
-                          radius: 8,
-                          text: 'Verify OTP',
-                          onPressed: () async {
-                            print('object');
-                            if (controller.formKey.currentState!.validate()) {
-                              // if (controller.selectedBranchCode == null) {
-                              //   return getToast('Please Select Branch');
-                              // } else if (controller.selectedCountryID == null) {
-                              //   return getToast('Please Select Country');
-                              // } else if (controller.leadSourcesListID == null) {
-                              //   return getToast('Please select leadsource');
-                              // }
-                              // var res = await controller.regsiter();
+                          CustomButton(
+                              backgroundColor: ThemeConstants.bluecolor,
+                              horizontelPadding: 10,
+                              radius: 8,
+                              text: 'Verify OTP',
+                              onPressed: () async {
+                                print('object');
+                                if (controller.formKey.currentState!
+                                    .validate()) {
+                                  // if (controller.selectedBranchCode == null) {
+                                  //   return getToast('Please Select Branch');
+                                  // } else if (controller.selectedCountryID == null) {
+                                  //   return getToast('Please Select Country');
+                                  // } else if (controller.leadSourcesListID == null) {
+                                  //   return getToast('Please select leadsource');
+                                  // }
+                                  // var res = await controller.regsiter();
 
-                              // if (res == true) {
-                              //   signature();
-                              // }
-                              controller.verifyOtp(otpcontroller.text);
-                              // Get.toNamed(LoginCopy.routeNamed);
-                            }
-                          }),
-                    ],
-                    SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(LoginCopy.routeNamed);
-                      },
-                      child: CustomRichTextWidget(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 8,
-                        text: ' Login now',
-                        text1: 'Already have Account?',
-                      ),
-                    )
-                  ]),
-            ),
-          ),
-        ));
+                                  // if (res == true) {
+                                  //   signature();
+                                  // }
+                                  controller.verifyOtp(otpcontroller.text);
+                                  // Get.toNamed(LoginCopy.routeNamed);
+                                }
+                              }),
+                        ],
+                        SizedBox(
+                          height: 10,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(LoginCopy.routeNamed);
+                          },
+                          child: CustomRichTextWidget(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 8,
+                            text: ' Login now',
+                            text1: 'Already have Account?',
+                          ),
+                        )
+                      ]),
+                ),
+              ),
+            ));
   }
 
   callBackSelectedDestination(data) {

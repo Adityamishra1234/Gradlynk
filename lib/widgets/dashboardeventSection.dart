@@ -35,7 +35,6 @@ class DashboardEventSection extends StatelessWidget {
                 children: [
                   Container(
                       width: 150,
-                      height: 200,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,10 +71,10 @@ class DashboardEventSection extends StatelessWidget {
                       // color: ThemeConstants.GreenColor,
                       width: MediaQuery.of(context).size.width / 2,
                       child: Wrap(
-                        alignment: WrapAlignment.center,
+                        alignment: WrapAlignment.start,
                         runAlignment: WrapAlignment.center,
                         spacing: 5,
-                        runSpacing: 5,
+                        runSpacing: 10,
                         children: [
                           InkWell(
                             onTap: () {
@@ -137,6 +136,39 @@ class DashboardEventSection extends StatelessWidget {
                                       fontWeight: FontWeight.w500,
                                       fontSize: 13,
                                       text: "Express Pass",
+                                      textalingCentre: true,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.to(CodeScreen());
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                    constraints: const BoxConstraints(
+                                        maxHeight: 70, maxWidth: 70),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xFFF1F0FF),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: SvgPicture.asset(
+                                      "assets/icons/Mark attendence.svg",
+                                      color: ThemeConstants.VioletColor,
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      text: "Mark Attendance",
                                       textalingCentre: true,
                                     ),
                                   ),

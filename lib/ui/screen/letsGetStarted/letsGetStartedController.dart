@@ -9,7 +9,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 class LetsGetStartedController extends GetxController with StateMixin {
   ApiServices api = ApiServices();
   var baseController = Get.find<BaseController>();
-  int questionNumberToShow = 1;
+  int questionNumberToShow = 0;
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -26,6 +26,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   showEnglishTestNextQuestion() {
+    widthOfSlider = widthOfSlider + 40;
     questionToShowInEnglsihTest = questionToShowInEnglsihTest + 1;
     update();
   }
@@ -50,6 +51,8 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
     // print(questionsToShowList);
   }
+
+  double widthOfSlider = 10;
 
   //firstQuestion
   int? selectedLastQualification = null;
@@ -79,14 +82,18 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //     showQuestion();
       //   }
       // } else {
-
-      var toShowOrNot = !questionsToShowList[questionNumberToShow + 1];
+      widthOfSlider = widthOfSlider + 40;
+      var toShowOrNot = questionNumberToShow == 0
+          ? questionsToShowList[questionNumberToShow + 1]
+          : !questionsToShowList[questionNumberToShow + 1];
       if (toShowOrNot == true) {
+        nextForChange = true;
         questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
           nextForChange = false;
         }
       } else {
+        nextForChange = true;
         questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
           nextForChange = false;
@@ -108,6 +115,20 @@ class LetsGetStartedController extends GetxController with StateMixin {
     }
 
     update();
+  }
+
+  back() {
+    widthOfSlider = widthOfSlider - 80;
+    // questionToShowInEnglsihTest = 0;
+    questionNumberToShow = questionNumberToShow - 2;
+    showQuestion();
+  }
+
+  backForEnglish() {
+    widthOfSlider = widthOfSlider - 80;
+    questionToShowInEnglsihTest = questionToShowInEnglsihTest - 2;
+    // questionNumberToShow = questionNumberToShow - 2;
+    showEnglishTestNextQuestion();
   }
 
   postLetsGetStartedData() async {

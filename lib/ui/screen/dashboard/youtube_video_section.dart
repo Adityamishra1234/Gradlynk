@@ -72,10 +72,13 @@ class YoutubeVideoSection extends StatelessWidget {
                                     ));
                                   },
                                   child: Stack(
+                                    fit: StackFit.expand,
                                     children: [
                                       Image.network(
-                                          youtubeVideoModel[index].thumbnail ??
-                                              ""),
+                                        youtubeVideoModel[index].thumbnail ??
+                                            "",
+                                        fit: BoxFit.cover,
+                                      ),
                                       Center(
                                         child: Icon(
                                           Icons.play_arrow,
