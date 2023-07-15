@@ -85,16 +85,18 @@ class WorkHistoryCopy extends StatelessWidget {
   }
 
   callbackWorkingFrom(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.workingFromSelected = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.workingFromSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.workingFromSelected = data;
     controller.update();
   }
 
   callbackWorkingTill(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.workingTillSelected = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.workingTillSelected = date[0] + "-" + date[1] + '-' + date[2];
+    controller.workingTillSelected = data;
     controller.update();
   }
 }

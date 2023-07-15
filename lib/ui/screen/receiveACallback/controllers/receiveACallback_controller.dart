@@ -65,6 +65,7 @@ class ReceiveACallbackController extends GetxController with StateMixin {
 
     if (res['status'] == 'success') {
       getToast('We will contact you soon');
+      Get.back();
     }
   }
 }

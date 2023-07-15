@@ -40,6 +40,7 @@ class _LoginCopyState extends State<LoginCopy> {
   @override
   void initState() {
     super.initState();
+
     // _focusNode.addListener(_onFocusChange);
     MobileNumber.listenPhonePermission((isPermissionGranted) {
       if (isPermissionGranted) {
@@ -84,6 +85,7 @@ class _LoginCopyState extends State<LoginCopy> {
     // controller.dispose();
     phoneNumber.text = "";
     otpcontroller.text = "";
+
     super.dispose();
   }
 
@@ -641,6 +643,9 @@ class _LoginCopyState extends State<LoginCopy> {
                                   ),
                                   InkWell(
                                     onTap: () {
+                                      phoneNumber.clear();
+                                      controller.otpEnable.value = false;
+                                      controller.update();
                                       Get.to(RegisterationMainView());
                                     },
                                     child: Container(

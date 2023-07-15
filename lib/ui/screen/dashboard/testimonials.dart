@@ -51,7 +51,7 @@ class TestiMonial extends StatelessWidget {
                                 width: 0.8,
                                 color: index % 2 == 0
                                     ? ThemeConstants.bluecolor
-                                    : ThemeConstants.yellow),
+                                    : ThemeConstants.bluecolor),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30.0))),
                         child: Row(

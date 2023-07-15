@@ -108,9 +108,14 @@ class BaseController extends GetxController with StateMixin {
     getNotificatin(model1.id.toString());
   }
 
-  checkShowLetsGetStarted() {
+  checkShowLetsGetStarted() async {
     ///todo
+    ///
+    ///
+
     if (model1.student_consent == 0) {
+      change(null, status: RxStatus.success());
+      await Future.delayed(Duration(seconds: 5));
       Get.offAll(LetsGetStartedMainView());
     }
   }

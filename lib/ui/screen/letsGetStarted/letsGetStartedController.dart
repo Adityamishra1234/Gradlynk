@@ -44,12 +44,15 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
     questionsToShowList.addAll(map.values.toList());
 
+    ///todo
+    questionsToShowList = [true, false, false, false, false, false];
+
     showQuestion();
 
     update();
     // questionsToShowString.addAll(map.keys.toList());
 
-    // print(questionsToShowList);
+    print(questionsToShowList);
   }
 
   double widthOfSlider = 10;
@@ -69,10 +72,12 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
   int questionToShowInEnglsihTest = 0;
 
+  int indexOfQuestion = 0;
+
   TextEditingController specifyCourseTextController = TextEditingController();
 
   showQuestion() {
-    if (questionNumberToShow < questionsToShowList.length) {
+    if (questionNumberToShow <= questionsToShowList.length) {
       // if (questionNumberToShow == 2) {
       //   var toShowOrNot = questionsToShowList[questionNumberToShow];
       //   if (toShowOrNot == true) {
@@ -82,10 +87,13 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //     showQuestion();
       //   }
       // } else {
+
       widthOfSlider = widthOfSlider + 40;
       var toShowOrNot = questionNumberToShow == 0
           ? questionsToShowList[questionNumberToShow + 1]
-          : !questionsToShowList[questionNumberToShow + 1];
+          : questionNumberToShow == 5
+              ? questionsToShowList[5]
+              : !questionsToShowList[questionNumberToShow + 1];
       if (toShowOrNot == true) {
         nextForChange = true;
         questionNumberToShow = questionNumberToShow + 1;
@@ -99,21 +107,21 @@ class LetsGetStartedController extends GetxController with StateMixin {
           nextForChange = false;
         }
 
-        if (questionNumberToShow != 4) {
+        if (questionNumberToShow != 6) {
           showQuestion();
         }
 
-        if (questionNumberToShow == 4) {
-          questionNumberToShow = 5;
+        if (questionNumberToShow == 6) {
+          questionNumberToShow = 0;
+          showConsentTermsForm = true;
           nextForChange = true;
         }
 
         // }
+
+        print(questionsToShowList);
       }
-
-      print(questionsToShowList);
     }
-
     update();
   }
 

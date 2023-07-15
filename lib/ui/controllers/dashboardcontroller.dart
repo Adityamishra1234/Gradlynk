@@ -28,10 +28,10 @@ class DashboardController extends GetxController {
   List<YoutubeVideoModel> youtubeVideoModel = [];
 
   @override
-  void onInit() {
-    upcomingEvents();
-    getTestimonials();
-    getYoutubeVideos();
+  void onInit() async {
+    await upcomingEvents();
+    await getTestimonials();
+    await getYoutubeVideos();
 
     super.onInit();
   }

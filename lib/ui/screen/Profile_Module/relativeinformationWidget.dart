@@ -68,17 +68,25 @@ class RelativeInformationWidget extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-                child: Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Any relatives residing in the Interested Country",
-                    textColor: ThemeConstants.TextColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 10),
+                    child: Align(
+                      alignment: AlignmentDirectional.topStart,
+                      child: Container(
+                        width: 150,
+                        child: CustomAutoSizeTextMontserrat(
+                          text:
+                              "Any relatives residing in the Interested Country",
+                          textColor: ThemeConstants.TextColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               CustomDropDownSingle(
                 model: const ["Yes", "No"],

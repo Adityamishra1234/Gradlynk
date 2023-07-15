@@ -43,22 +43,8 @@ class TravelHistoryWidget extends StatelessWidget {
       // For Edit
 
       return ListView(
+        padding: EdgeInsets.all(0),
         children: [
-          Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: SizedBox(
-              height: 30,
-              child: TextButton(
-                  onPressed: () {
-                    controller.viewDetails.value = true;
-                    controller.update();
-                  },
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "View Details",
-                    textColor: ThemeConstants.orangeColor,
-                  )),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 10),
             child: Row(
@@ -70,6 +56,21 @@ class TravelHistoryWidget extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 const Spacer(),
+                Align(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: SizedBox(
+                    height: 30,
+                    child: TextButton(
+                        onPressed: () {
+                          controller.viewDetails.value = true;
+                          controller.update();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "View Details",
+                          textColor: ThemeConstants.orangeColor,
+                        )),
+                  ),
+                ),
               ],
             ),
           ),

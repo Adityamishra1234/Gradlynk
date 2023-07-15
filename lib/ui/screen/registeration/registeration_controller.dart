@@ -203,4 +203,6 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
     return null;
   }
+
+  bool buttonClickEnabled = true;
 }

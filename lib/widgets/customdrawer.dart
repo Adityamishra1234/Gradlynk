@@ -583,101 +583,235 @@ class CustomDrawer extends StatelessWidget {
                                         ),
                                       )),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                    planYourFundDialog(context);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/totalFees.svg',
-                                          color: index == 7
-                                              ? ThemeConstants.bluecolor
-                                              : const Color.fromARGB(
-                                                  255, 31, 31, 31),
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 5),
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Plan your funds",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                            textColor: index == 7
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.blackcolor,
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        // const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                    supportDialog(context);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/Calender icon.svg',
-                                          color: index == 6
-                                              ? ThemeConstants.bluecolor
-                                              : const Color.fromARGB(
-                                                  255, 31, 31, 31),
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 5),
-                                          child: Row(
-                                            children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Event Zone",
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Container(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.back();
+                                          planYourFundDialog(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/icons/totalFees.svg',
+                                              color: index == 7
+                                                  ? ThemeConstants.bluecolor
+                                                  : const Color.fromARGB(
+                                                      255, 31, 31, 31),
+                                              width: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
                                                 decoration: BoxDecoration(
-                                                    color: ThemeConstants.red,
+                                                    // color: index == 5
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
                                                     borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                5.0))),
+                                                        BorderRadius.circular(
+                                                            10.0)),
                                                 child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 2),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
-                                                    text: "New",
-                                                    fontSize: 10,
-                                                    textColor: ThemeConstants
-                                                        .whitecolor,
+                                                    text: "Plan your funds",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 7
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
                                                   ),
                                                 ),
-                                              )
-                                            ],
-                                          ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-
-                                        // const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                      )),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.back();
+                                          supportDialog(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/icons/Calender icon.svg',
+                                              color: index == 6
+                                                  ? ThemeConstants.bluecolor
+                                                  : const Color.fromARGB(
+                                                      255, 31, 31, 31),
+                                              width: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 5
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Event Zone",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 7
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: ThemeConstants.red,
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(
+                                                              5.0))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 2),
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "New",
+                                                  fontSize: 10,
+                                                  textColor:
+                                                      ThemeConstants.whitecolor,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                                // InkWell(
+                                //   onTap: () {
+                                //     Get.back();
+                                //     planYourFundDialog(context);
+                                //   },
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.only(left: 20.0),
+                                //     child: Row(
+                                //       children: [
+                                //         SvgPicture.asset(
+                                //           'assets/icons/totalFees.svg',
+                                //           color: index == 7
+                                //               ? ThemeConstants.bluecolor
+                                //               : const Color.fromARGB(
+                                //                   255, 31, 31, 31),
+                                //           width: 20,
+                                //         ),
+                                //         Padding(
+                                //           padding: const EdgeInsets.only(
+                                //               left: 10, top: 5),
+                                //           child: CustomAutoSizeTextMontserrat(
+                                //             text: "Plan your funds",
+                                //             fontSize: 15,
+                                //             fontWeight: FontWeight.w500,
+                                //             textColor: index == 7
+                                //                 ? ThemeConstants.bluecolor
+                                //                 : ThemeConstants.blackcolor,
+                                //           ),
+                                //         ),
+                                //         const Spacer(),
+                                //         // const Icon(Icons.keyboard_arrow_down),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // InkWell(
+                                //   onTap: () {
+                                //     Get.back();
+                                //     supportDialog(context);
+                                //   },
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.only(left: 20.0),
+                                //     child: Row(
+                                //       children: [
+                                //         SvgPicture.asset(
+                                //           'assets/icons/Calender icon.svg',
+                                //           color: index == 6
+                                //               ? ThemeConstants.bluecolor
+                                //               : const Color.fromARGB(
+                                //                   255, 31, 31, 31),
+                                //           width: 20,
+                                //         ),
+                                //         Padding(
+                                //           padding: const EdgeInsets.only(
+                                //               left: 10, top: 5),
+                                //           child: Row(
+                                //             children: [
+                                //               CustomAutoSizeTextMontserrat(
+                                //                 text: "Event Zone",
+                                //                 fontSize: 15,
+                                //                 fontWeight: FontWeight.w500,
+                                //               ),
+                                //               const SizedBox(
+                                //                 width: 10,
+                                //               ),
+                                //               Container(
+                                //                 decoration: BoxDecoration(
+                                //                     color: ThemeConstants.red,
+                                //                     borderRadius:
+                                //                         const BorderRadius.all(
+                                //                             Radius.circular(
+                                //                                 5.0))),
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets
+                                //                           .symmetric(
+                                //                       horizontal: 5,
+                                //                       vertical: 2),
+                                //                   child:
+                                //                       CustomAutoSizeTextMontserrat(
+                                //                     text: "New",
+                                //                     fontSize: 10,
+                                //                     textColor: ThemeConstants
+                                //                         .whitecolor,
+                                //                   ),
+                                //                 ),
+                                //               )
+                                //             ],
+                                //           ),
+                                //         ),
+
+                                //         // const Icon(Icons.keyboard_arrow_down),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
                                 InkWell(
                                   onTap: () {
                                     Get.back();
@@ -696,8 +830,8 @@ class CustomDrawer extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 5),
+                                          padding: const EdgeInsets.only(
+                                              left: 10, top: 5),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Gradlynk Support",
                                             fontSize: 15,
