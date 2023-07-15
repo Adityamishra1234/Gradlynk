@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import '../ui/screen/mark_attendance/code_screen.dart';
 
@@ -43,23 +44,6 @@ class DashboardEventSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Padding(
-                          //   padding: const EdgeInsets.only(left: 15),
-                          //   child: CustomAutoSizeTextMontserrat(
-                          //     text: '22 July',
-                          //     textColor: ThemeConstants.bluecolor,
-                          //     fontSize: 30,
-                          //   ),
-                          // ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(left: 15),
-                          //   child: CustomAutoSizeTextMontserrat(
-                          //     text: '2023',
-                          //     textColor: ThemeConstants.bluecolor,
-                          //     fontSize: 25,
-                          //   ),
-                          // ),
-                          // const Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(0),
                             child: Image.asset(
@@ -148,7 +132,7 @@ class DashboardEventSection extends StatelessWidget {
                                       child: CustomAutoSizeTextMontserrat(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
-                                        text: "Express Pass",
+                                        text: "Apply For Express Pass",
                                         textalingCentre: true,
                                       ),
                                     ),
@@ -162,7 +146,13 @@ class DashboardEventSection extends StatelessWidget {
                               true)
                             InkWell(
                               onTap: () {
-//TODO for image (Express pass generation)
+                                try {
+                                  Get.to(CustomImageViewer(
+                                    url: Get.find<BaseController>()
+                                        .meetingZoneStatus
+                                        .expressPassView!,
+                                  ));
+                                } catch (e) {}
                               },
                               child: Align(
                                 alignment: Alignment.topLeft,

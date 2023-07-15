@@ -105,7 +105,7 @@ class BaseController extends GetxController with StateMixin {
       }
 
       await checkShowLetsGetStarted();
-      await getEventZone(model1.id.toString());
+      await eventZone(model1.id.toString());
       loadingStudentPanelData1 = true.obs;
 
       update();
@@ -161,16 +161,17 @@ class BaseController extends GetxController with StateMixin {
     // }
   }
 
-  getEventZone(String end_id) async {
+  eventZone(String end_id) async {
+    eventlist = [];
     var res = await apiServices.getEventZone(Endpoints.eventZone! + end_id);
     if (res != null) {
       meetingZoneStatus = res;
-
       if (meetingZoneStatus.campaignDetails != null) {
         meetingZoneStatus.campaignDetails!.forEach((element) {
           eventlist.add(element.campaignName);
         });
       }
     }
+    eventlist = eventlist.toSet().toList();
   }
 }

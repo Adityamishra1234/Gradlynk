@@ -24,7 +24,7 @@ class EventZoneStatus {
     if (json['campaign_details'] != null) {
       campaignDetails = <CampaignDetails>[];
       json['campaign_details'].forEach((v) {
-        campaignDetails!.add(new CampaignDetails.fromJson(v));
+        campaignDetails!.add(CampaignDetails.fromJson(v));
       });
     }
     expressPassGenerated = json['express_pass_generated'];
@@ -32,17 +32,17 @@ class EventZoneStatus {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['track_application'] = this.trackApplication;
-    data['express_pass'] = this.expressPass;
-    data['mark_attendance'] = this.markAttendance;
-    if (this.campaignDetails != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['track_application'] = trackApplication;
+    data['express_pass'] = expressPass;
+    data['mark_attendance'] = markAttendance;
+    if (campaignDetails != null) {
       data['campaign_details'] =
-          this.campaignDetails!.map((v) => v.toJson()).toList();
+          campaignDetails!.map((v) => v.toJson()).toList();
     }
-    data['express_pass_generated'] = this.expressPassGenerated;
-    data['express_pass_view'] = this.expressPassView;
+    data['express_pass_generated'] = expressPassGenerated;
+    data['express_pass_view'] = expressPassView;
     return data;
   }
 }
@@ -59,9 +59,9 @@ class CampaignDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['campaign_name'] = this.campaignName;
-    data['id'] = this.id;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['campaign_name'] = campaignName;
+    data['id'] = id;
     return data;
   }
 }

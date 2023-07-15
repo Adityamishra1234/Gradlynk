@@ -119,7 +119,6 @@ class IntakeScreen extends StatelessWidget {
                                         .campaignDetails![0]
                                         .id
                                         .toString());
-                                ;
                               }
                             }
                           } catch (e) {}

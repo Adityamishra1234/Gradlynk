@@ -405,8 +405,8 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                                         .toString(),
                                     issueController.text,
                                     suggesationController.text,
-                                    files.isNotEmpty ? files[0] : "",
-                                    files.isNotEmpty ? files[1] : "",
+                                    files.isNotEmpty ? files[0] : null,
+                                    files.length == 2 ? files[1] : null,
                                   );
                                   if (res != null) {
                                     getToast("Ticket raise successful");
