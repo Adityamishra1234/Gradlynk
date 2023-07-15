@@ -29,6 +29,9 @@ class MarkAttendanceController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
   }
 
+  String campaignName = '';
+  String passName = '';
+
   getMarkAttendance(String code) async {
     change(null, status: RxStatus.loading());
     var res = await apiServices.getMarkAttandance(getMarkAttendanceForEvent(
@@ -37,6 +40,9 @@ class MarkAttendanceController extends GetxController with StateMixin {
       markAttendanceModel = MarkAttendanceModel.fromJson(res);
 
       if (markAttendanceModel.uniqueCodeMatch == true) {
+        campaignName = markAttendanceModel.campaignName!;
+        // passName = markAttendanceModel.pa!;
+
         await allTimeAPI();
         if (markAttendanceModel.attendanceMarked == false) {
           Get.to(IntakeScreen());

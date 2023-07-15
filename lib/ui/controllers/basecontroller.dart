@@ -45,7 +45,7 @@ class BaseController extends GetxController with StateMixin {
 
   @override
   onReady() {
-    upcomingEvents();
+    // upcomingEvents();
   }
 
   var data = ProfileDataValidatorModel().obs;
@@ -105,7 +105,7 @@ class BaseController extends GetxController with StateMixin {
       }
 
       await checkShowLetsGetStarted();
-      await eventZone(model1.id.toString());
+      // await eventZone(model1.id.toString());
       loadingStudentPanelData1 = true.obs;
 
       update();

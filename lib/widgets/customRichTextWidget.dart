@@ -15,9 +15,13 @@ class CustomRichTextWidget extends StatelessWidget {
   Color? textColor;
   Color? underlinceColor;
   FontWeight? fontWeight2;
+  TextStyle? customMiddleTextStyle;
+  Color? firstTextColor;
 
   CustomRichTextWidget(
       {Key? key,
+      this.firstTextColor,
+      this.customMiddleTextStyle,
       this.fontWeight2,
       this.textColor2,
       this.underlinceColor,
@@ -42,7 +46,9 @@ class CustomRichTextWidget extends StatelessWidget {
           text: text1,
           style: TextStyle(
               fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-              color: textColor ?? const Color.fromARGB(255, 0, 0, 0),
+              color: firstTextColor ??
+                  textColor ??
+                  const Color.fromARGB(255, 0, 0, 0),
               fontWeight: FontWeight.bold,
               // shadows: [
               //   Shadow(
@@ -56,28 +62,29 @@ class CustomRichTextWidget extends StatelessWidget {
         ),
         TextSpan(
           text: text,
-          style: GoogleFonts.montserrat(
-              fontWeight: fontWeight2 ?? FontWeight.w600,
-              color: textColor2 ?? ThemeConstants.bluecolor,
+          style: customMiddleTextStyle ??
+              GoogleFonts.montserrat(
+                  fontWeight: fontWeight2 ?? FontWeight.w600,
+                  color: textColor2 ?? ThemeConstants.bluecolor,
 
-              // shadows: [
-              //   Shadow(
-              //       offset: Offset(0, -3),
-              //       color: textColor ?? ThemeConstants.blackcolor)
-              // ],
-              fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
-              // decoration: TextDecoration.underline,
-              decorationStyle: TextDecorationStyle.solid,
-              decorationColor: Colors.transparent,
-              decorationThickness: 4
-              // decoration: TextDecoration.underline,
+                  // shadows: [
+                  //   Shadow(
+                  //       offset: Offset(0, -3),
+                  //       color: textColor ?? ThemeConstants.blackcolor)
+                  // ],
+                  fontSize: fontSize == null ? 16.0 : fontSize! * 1.00,
+                  // decoration: TextDecoration.underline,
+                  decorationStyle: TextDecorationStyle.solid,
+                  decorationColor: Colors.transparent,
+                  decorationThickness: 4
+                  // decoration: TextDecoration.underline,
 
-              //   decoration: underline != null
-              //       ? underline == true
-              //           ? TextDecoration.underline
-              //           : TextDecoration.none
-              //       : TextDecoration.none,
-              ),
+                  //   decoration: underline != null
+                  //       ? underline == true
+                  //           ? TextDecoration.underline
+                  //           : TextDecoration.none
+                  //       : TextDecoration.none,
+                  ),
         ),
         TextSpan(
           text: text3,

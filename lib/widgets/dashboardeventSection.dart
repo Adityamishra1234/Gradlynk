@@ -78,7 +78,7 @@ class DashboardEventSection extends StatelessWidget {
                                 children: [
                                   Container(
                                       constraints: const BoxConstraints(
-                                          maxHeight: 70, maxWidth: 70),
+                                          maxHeight: 60, maxWidth: 60),
                                       padding: const EdgeInsets.all(10),
                                       decoration: const BoxDecoration(
                                           color: Color(0xFFF1F0FF),
@@ -115,7 +115,7 @@ class DashboardEventSection extends StatelessWidget {
                                 children: [
                                   Container(
                                       constraints: const BoxConstraints(
-                                          maxHeight: 70, maxWidth: 70),
+                                          maxHeight: 60, maxWidth: 60),
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           color: ThemeConstants.lightYellow,
@@ -160,7 +160,7 @@ class DashboardEventSection extends StatelessWidget {
                                   children: [
                                     Container(
                                         constraints: const BoxConstraints(
-                                            maxHeight: 70, maxWidth: 70),
+                                            maxHeight: 60, maxWidth: 60),
                                         padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
                                             // border: Border.all(
