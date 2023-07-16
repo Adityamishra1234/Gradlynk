@@ -284,6 +284,9 @@ class FundPlannerController extends GetxController with StateMixin {
           }
         }
       }
+
+      
+      
       firstTime = false;
       change(null, status: RxStatus.success());
       Get.to(SponsorDetails());

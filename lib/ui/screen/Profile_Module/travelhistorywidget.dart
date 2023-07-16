@@ -85,6 +85,58 @@ class TravelHistoryWidget extends StatelessWidget {
             choosefieldtype: false,
             callbackFunction: callbackTravelAbroad,
           ),
+
+            if (controller.travelAbroadSelected == "No")
+          Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Row(
+            children: [
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, right: 20),
+                child: SizedBox(
+                  width: 90,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: ThemeConstants.bluecolor,
+                        elevation: 0.0,
+                        backgroundColor: ThemeConstants.bluecolor, // foreground
+                      ),
+                      onPressed: () async {
+                        // controller.modelList.add(TravelHistoryModel(
+                        //     travelStatus: controller.travelStatusSelected,
+                        //     chooseCountry: int.parse(
+                        //         controller.countryCodeSelected ?? "0"),
+                        //     typeOfVisa: controller.typeOfVisaCodeSelected,
+                        //     visaStatus: controller.visaStatusSelected,
+                        //     dateOfApplication: TravelHistoryController
+                        //         .dateOfApplication.value.text,
+                        //     dateOfRejection: TravelHistoryController
+                        //         .dateOfReject1.value.text,
+                        //     reasonOfRejection: TravelHistoryController
+                        //         .reasonOfRejection.value.text,
+                        //     proofAvailable: int.parse(
+                        //         controller.proofAvailableSelectedID ?? "0"),
+                        //     countryName: controller.countrySelected,
+                        //     applicationNumber: TravelHistoryController
+                        //         .applicationNumber.value.text,
+                        //     visaNumber:
+                        //         TravelHistoryController.visaNumber.value.text));
+                        // controller.update();
+                        controller.updateTravelHistory(
+                            Get.find<BaseController>().model1.id.toString(),
+                            controller.travelAbroadSelected!,
+                            "added");
+                      },
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Add",
+                        textColor: ThemeConstants.whitecolor,
+                      )),
+                ),
+              ),
+            ],
+          ),
+        ),
           if (controller.travelAbroadSelected == "Yes")
             ...getTravelledAbroad(controller, context),
         ],

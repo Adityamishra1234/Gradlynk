@@ -42,10 +42,14 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
     var map = Map<String, bool>.from(res);
 
+
+
     questionsToShowList.addAll(map.values.toList());
 
+
+
     ///todo
-    questionsToShowList = [true, false, false, false, false, false];
+    // questionsToShowList = [true, true, false, true, false, false];
 
     showQuestion();
 
@@ -77,7 +81,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
   TextEditingController specifyCourseTextController = TextEditingController();
 
   showQuestion() {
-    if (questionNumberToShow <= questionsToShowList.length) {
+    if (questionNumberToShow < questionsToShowList.length) {
       // if (questionNumberToShow == 2) {
       //   var toShowOrNot = questionsToShowList[questionNumberToShow];
       //   if (toShowOrNot == true) {
@@ -88,34 +92,45 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //   }
       // } else {
 
+if(  questionNumberToShow != 5 ){
+
+questionNumberToShow++;
+
+}else{
+ questionNumberToShow = 0;
+          showConsentTermsForm = true;
+          nextForChange = true;
+return;
+}
+
       widthOfSlider = widthOfSlider + 40;
-      var toShowOrNot = questionNumberToShow == 0
-          ? questionsToShowList[questionNumberToShow + 1]
-          : questionNumberToShow == 5
-              ? questionsToShowList[5]
-              : !questionsToShowList[questionNumberToShow + 1];
+      var toShowOrNot = questionNumberToShow == 1
+          ? questionsToShowList[questionNumberToShow]
+          // : questionNumberToShow == 5
+          //     ? questionsToShowList[5]
+              : !questionsToShowList[questionNumberToShow];
       if (toShowOrNot == true) {
         nextForChange = true;
-        questionNumberToShow = questionNumberToShow + 1;
+        // questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
           nextForChange = false;
         }
-      } else {
+      } else if( toShowOrNot == false ){
         nextForChange = true;
-        questionNumberToShow = questionNumberToShow + 1;
+        // questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
           nextForChange = false;
         }
 
-        if (questionNumberToShow != 6) {
+        if (questionNumberToShow != 5) {
           showQuestion();
         }
 
-        if (questionNumberToShow == 6) {
-          questionNumberToShow = 0;
-          showConsentTermsForm = true;
-          nextForChange = true;
-        }
+        // if (questionNumberToShow == 5) {
+        //   questionNumberToShow = 0;
+        //   showConsentTermsForm = true;
+        //   nextForChange = true;
+        // }
 
         // }
 
@@ -153,7 +168,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
     var res = await api.postLetsGetStarted(endpoint);
 
     if (res['status'] == true) {
-      Get.to(DashBoard());
+      Get.offAllNamed(DashBoard.routeNamed);
     }
 
     print(res);

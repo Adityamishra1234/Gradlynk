@@ -22,7 +22,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   var controller = Get.put(ContactInformationController());
 
-  bool socialMedia = false;
+
   List gender = ["Select gender", "Male", "Female", "Other"];
 
   @override
@@ -813,16 +813,17 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     CheckboxListTile(
                       title: CustomAutoSizeTextMontserrat(
                           text: "Are you available on Social Media"),
-                      value: socialMedia,
+                      value:controller.socialMedia,
                       onChanged: (newValue) {
                         setState(() {
-                          socialMedia = newValue!;
+                         controller.socialMedia = newValue!;
+                       controller.update();
                         });
                       },
                       controlAffinity: ListTileControlAffinity
                           .leading, //  <-- leading Checkbox
                     ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -836,7 +837,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: TextFormField(
@@ -872,7 +873,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           },
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -886,7 +887,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: TextFormField(
@@ -922,7 +923,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           },
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -936,7 +937,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: TextFormField(
@@ -1294,6 +1295,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   callbackMaritalStatus(varTopic) {
     for (var i = 1; i < controller.martialStatusList.length; i++) {
+      
+    
       if (i == 0) {
         controller.maritalStatusSelected = null;
         controller.maritalStatusIdSelected = null;
@@ -1301,8 +1304,15 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
       if (controller.martialStatusList[i].toString() == varTopic.toString()) {
         controller.maritalStatusSelected = controller.martialStatusList[i];
         controller.maritalStatusIdSelected = i;
+    
+    
       }
-    }
+  }
+  
+  if( controller.maritalStatusIdSelected == 2 ){
+
+    controller.childrenCountSelected = 0;
+  }
     controller.update();
   }
 

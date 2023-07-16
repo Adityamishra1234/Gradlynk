@@ -94,7 +94,7 @@ class ProfileView extends StatelessWidget {
                                   // },
                                   radius: 40.0,
                                   backgroundImage: const NetworkImage(
-                                      "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
+                                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                                   backgroundColor: Colors.transparent,
                                 ),
                                 const SizedBox(

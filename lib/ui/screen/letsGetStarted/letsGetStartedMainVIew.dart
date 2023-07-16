@@ -199,7 +199,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                 ]),
                           ),
                         ],
-                        if (controller.showConsentTermsForm == true) ...[
+                        if (controller.showConsentTermsForm == true  ) ...[
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: SizedBox(

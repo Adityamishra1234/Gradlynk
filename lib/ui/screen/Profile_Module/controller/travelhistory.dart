@@ -32,7 +32,7 @@ class TravelHistoryController extends GetxController with StateMixin {
   RxBool updateForEdit = true.obs;
 
   // Selected
-  String? travelAbroadSelected;
+  String? travelAbroadSelected = 'No';
   String? travelAbroadSelectedID;
   String? travelStatusSelected;
   String? countrySelected;

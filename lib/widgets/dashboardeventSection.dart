@@ -21,7 +21,7 @@ class DashboardEventSection extends StatelessWidget {
             // padding:
             //     const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
             margin: const EdgeInsets.only(top: 10),
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: ThemeConstants.whitecolor,
@@ -139,39 +139,39 @@ class DashboardEventSection extends StatelessWidget {
                               ],
                             ),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(CodeScreen());
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                    constraints: const BoxConstraints(
-                                        maxHeight: 55, maxWidth: 55),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xFFF1F0FF),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: SvgPicture.asset(
-                                      "assets/icons/Mark attendence.svg",
-                                      color: ThemeConstants.VioletColor,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      text: "Mark Attendance",
-                                        textalingCentre: true,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     Get.to(CodeScreen());
+                          //   },
+                          //   child: Column(
+                          //     children: [
+                          //       Container(
+                          //           constraints: const BoxConstraints(
+                          //               maxHeight: 55, maxWidth: 55),
+                          //           padding: const EdgeInsets.all(10),
+                          //           decoration: const BoxDecoration(
+                          //               color: Color(0xFFF1F0FF),
+                          //               borderRadius: BorderRadius.all(
+                          //                   Radius.circular(20))),
+                          //           child: SvgPicture.asset(
+                          //             "assets/icons/Mark attendence.svg",
+                          //             color: ThemeConstants.VioletColor,
+                          //           )),
+                          //       Padding(
+                          //         padding: const EdgeInsets.only(top: 10),
+                          //         child: SizedBox(
+                          //           width: 100,
+                          //           child: CustomAutoSizeTextMontserrat(
+                          //             fontWeight: FontWeight.w500,
+                          //             fontSize: 13,
+                          //             text: "Mark Attendance",
+                          //               textalingCentre: true,
+                          //             ),
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //   ),
                           if (Get.find<BaseController>()
                                   .meetingZoneStatus
                                   .expressPassGenerated ==
