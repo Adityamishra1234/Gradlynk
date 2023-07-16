@@ -146,6 +146,7 @@ class ApplicationSummary extends StatelessWidget {
                                         CustomAutoSizeTextMontserrat(
                                           text: controller.searchedList[index]
                                               .universityName,
+                                          fontSize: 14,
                                           textColor: ThemeConstants.bluecolor,
                                           fontWeight: FontWeight.bold,
                                         ),

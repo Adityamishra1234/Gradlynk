@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/models/getAllTestimonialsModel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';

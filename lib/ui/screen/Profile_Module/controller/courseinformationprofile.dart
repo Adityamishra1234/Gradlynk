@@ -58,6 +58,7 @@ class CourseInformationProfileController extends GetxController {
   }
 
   getCoursenarrow() async {
+    loadingCourseBroad.value = false;
     try {
       var res = await apiServices.getCourseNarrowProfile(
           Endpoints.baseUrl!, Endpoints.courseNarrowFieldProfile!);

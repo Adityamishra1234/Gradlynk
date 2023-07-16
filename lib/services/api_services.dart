@@ -42,6 +42,7 @@ import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -1877,6 +1878,25 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  @override
+  getFundCalculatorInit(
+    int enq_id,
+    String inst_course,
+  ) async {
+    try {
+      String url =
+          '${Endpoints.baseUrl}data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id';
+      print(url);
+      var res = await httpPostNullBody(url);
+
+      var jsondata = json.decode(res);
+
+      return jsondata;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
   getUniversitiesByCountryStateCity(
       {required int countryId, int? stateID, int? cityID}) async {
     var endpoint = '';
@@ -2126,6 +2146,39 @@ class ApiServices extends StudentPanelBase implements api {
       if (res != null) {
         var jsondata = json.decode(res);
         return jsondata;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  @override
+  requestACallBackPost(String endpoint) async {
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+
+      var res = await httpPostNullBody('${Endpoints.baseUrl}$endpoint');
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement requestACallBackPost
+  }
+
+  getEventZone(String endpoint) async {
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+
+      var res = await httpPostNullBody('${Endpoints.baseUrl}$endpoint');
+      if (res != null) {
+        var jsondata = json.decode(res);
+        EventZoneStatus model = EventZoneStatus();
+        model = EventZoneStatus.fromJson(jsondata);
+
+        return model;
       }
     } catch (e) {
       throw UnimplementedError();

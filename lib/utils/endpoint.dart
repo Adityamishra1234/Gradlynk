@@ -178,6 +178,8 @@ class Endpoints {
   static String? resendOtpRegister = "otp-number-resend?mobile_number=";
 
   static String? which_consent_form = "which-consent-form?enq_id=";
+
+  static String? eventZone = "show-menu?enq_id=";
 }
 
 markAttendanceIntake(

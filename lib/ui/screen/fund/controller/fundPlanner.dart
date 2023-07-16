@@ -48,7 +48,7 @@ class FundPlannerController extends GetxController with StateMixin {
   int? countryId, name_FinancialID, selectedSourceID, occupationIDSelect;
   bool? fund_6_month_old = false;
 
-  String? selectedRelationship = '';
+  String? selectedRelationship;
   TextEditingController nameOfThePerson = TextEditingController();
   // TextEditingController occupationOfSponsor = TextEditingController();
   // TextEditingController nameOfTheFinnacialIntitution = TextEditingController();
