@@ -1560,7 +1560,7 @@ eventZoneDrawerPopUp(
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Gradlynk Support",
+                            text: "Event Zone",
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
                             textColor: ThemeConstants.bluecolor,
