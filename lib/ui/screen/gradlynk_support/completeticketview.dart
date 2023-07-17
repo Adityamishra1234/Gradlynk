@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/models/ticketdatamodel.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/customdrawer.dart';
 
 class CompleteTicketView extends StatelessWidget {
   Data model = Data();
@@ -14,6 +15,7 @@ class CompleteTicketView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar('title'),
+      drawer: CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Column(
