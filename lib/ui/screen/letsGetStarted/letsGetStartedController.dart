@@ -42,14 +42,10 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
     var map = Map<String, bool>.from(res);
 
-
-
     questionsToShowList.addAll(map.values.toList());
 
-
-
     ///todo
-    // questionsToShowList = [true, true, false, true, false, false];
+    // questionsToShowList = [true, true, false, false, false, false];
 
     showQuestion();
 
@@ -92,30 +88,29 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //   }
       // } else {
 
-if(  questionNumberToShow != 5 ){
-
-questionNumberToShow++;
-
-}else{
- questionNumberToShow = 0;
-          showConsentTermsForm = true;
-          nextForChange = true;
-return;
-}
+      if (questionNumberToShow != 5) {
+        questionNumberToShow++;
+      } else {
+        questionNumberToShow = 0;
+        showConsentTermsForm = true;
+        nextForChange = true;
+        update();
+        return;
+      }
 
       widthOfSlider = widthOfSlider + 40;
       var toShowOrNot = questionNumberToShow == 1
           ? questionsToShowList[questionNumberToShow]
           // : questionNumberToShow == 5
           //     ? questionsToShowList[5]
-              : !questionsToShowList[questionNumberToShow];
+          : !questionsToShowList[questionNumberToShow];
       if (toShowOrNot == true) {
         nextForChange = true;
         // questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
           nextForChange = false;
         }
-      } else if( toShowOrNot == false ){
+      } else if (toShowOrNot == false) {
         nextForChange = true;
         // questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
@@ -124,6 +119,12 @@ return;
 
         if (questionNumberToShow != 5) {
           showQuestion();
+        } else {
+          questionNumberToShow = 0;
+          showConsentTermsForm = true;
+          nextForChange = true;
+          update();
+          return;
         }
 
         // if (questionNumberToShow == 5) {
