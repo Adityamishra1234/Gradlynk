@@ -2189,7 +2189,7 @@ class ApiServices extends StudentPanelBase implements api {
   // requestACallBackPost(String endpoint) async {
   //   try {
   //     // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
-
+  //
   //     var res = await httpPostNullBody('${Endpoints.baseUrl}$endpoint');
   //     if (res != null) {
   //       var jsondata = json.decode(res);
@@ -2198,6 +2198,6 @@ class ApiServices extends StudentPanelBase implements api {
   //   } catch (e) {
   //     throw UnimplementedError();
   //   }
-  //   // TODO: implement requestACallBackPost
+  // TODO: implement requestACallBackPost
   // }
 }

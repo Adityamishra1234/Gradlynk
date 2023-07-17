@@ -2,20 +2,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:studentpanel/ui/models/getAllTestimonialsModel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/extensions/textTrimmer.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class TestiMonial extends StatelessWidget {
-  TestiMonial({super.key, required this.testimonialsList});
+  TestiMonial({super.key, required this.testimonialsList, required this.isLoading });
   List<GetAllTestimonialsModel> testimonialsList;
+  bool isLoading;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return   Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       height: 190,
-      child: Column(
+      child:       isLoading == false ?   Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,6 +26,7 @@ class TestiMonial extends StatelessWidget {
               child: CustomAutoSizeTextMontserrat(
                   textColor: ThemeConstants.bluecolor, text: 'Testimonials'),
             ),
+      
             Expanded(
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -51,7 +54,7 @@ class TestiMonial extends StatelessWidget {
                                 width: 0.8,
                                 color: index % 2 == 0
                                     ? ThemeConstants.bluecolor
-                                    : ThemeConstants.yellow),
+                                    : ThemeConstants.bluecolor),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30.0))),
                         child: Row(
@@ -124,8 +127,8 @@ class TestiMonial extends StatelessWidget {
                           ],
                         ),
                       );
-                    })),
-          ]),
+                    }))  ,
+          ]): getLoading(context),
     );
   }
 }

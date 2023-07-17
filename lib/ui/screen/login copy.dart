@@ -40,6 +40,7 @@ class _LoginCopyState extends State<LoginCopy> {
   @override
   void initState() {
     super.initState();
+
     // _focusNode.addListener(_onFocusChange);
     MobileNumber.listenPhonePermission((isPermissionGranted) {
       if (isPermissionGranted) {
@@ -84,6 +85,7 @@ class _LoginCopyState extends State<LoginCopy> {
     // controller.dispose();
     phoneNumber.text = "";
     otpcontroller.text = "";
+
     super.dispose();
   }
 
@@ -355,7 +357,17 @@ class _LoginCopyState extends State<LoginCopy> {
                                     padding: const EdgeInsets.only(
                                         top: 20, left: 10, right: 10),
                                     // child: PhoneFieldHint(
-                                    child: TextField(
+                                    child: TextFormField(
+                                      validator: (value) {
+                                        if (value != null) {
+                                          print(value);
+                                          if (value.length != 10) {
+                                            return 'Enter 10 digit Number';
+                                          }
+                                        }
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
                                       focusNode: _focusNode,
                                       controller: phoneNumber,
                                       keyboardType: TextInputType.number,
@@ -641,6 +653,9 @@ class _LoginCopyState extends State<LoginCopy> {
                                   ),
                                   InkWell(
                                     onTap: () {
+                                      phoneNumber.clear();
+                                      controller.otpEnable.value = false;
+                                      controller.update();
                                       Get.to(RegisterationMainView());
                                     },
                                     child: Container(

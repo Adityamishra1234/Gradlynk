@@ -32,7 +32,7 @@ class TravelHistoryController extends GetxController with StateMixin {
   RxBool updateForEdit = true.obs;
 
   // Selected
-  String? travelAbroadSelected;
+  String? travelAbroadSelected = 'No';
   String? travelAbroadSelectedID;
   String? travelStatusSelected;
   String? countrySelected;
@@ -243,6 +243,31 @@ class TravelHistoryController extends GetxController with StateMixin {
                 modelList[i].visaNumber,
                 modelList[i].dateOfApplication);
       }
+
+      var res = await apiServices.updateTravelHistory(endpoint, action);
+      if (res == true) {
+        resetfields();
+      }
+      change(null, status: RxStatus.success());
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  updateTravelHistoryNo(
+      String enqId, String travelHistory, String action) async {
+    change(null, status: RxStatus.loading());
+    try {
+      String endpoint;
+      endpoint = Endpoints.addTravelHistoryPart1! +
+          enqId +
+          Endpoints.addTravelHistoryPart2! +
+          travelHistory;
 
       var res = await apiServices.updateTravelHistory(endpoint, action);
       if (res == true) {

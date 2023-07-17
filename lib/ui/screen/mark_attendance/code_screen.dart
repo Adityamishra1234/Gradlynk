@@ -156,7 +156,8 @@ class CodeScreen extends StatelessWidget {
                   height: 10,
                 ),
                 if (controller.markAttendanceModel.studentCategory != null)
-                  Container(
+                if( controller.showBelowContent = false )...[
+ Container(
                     padding: const EdgeInsets.symmetric(horizontal: 80),
                     child: CustomAutoSizeTextMontserrat(
                       textalingCentre: true,
@@ -190,6 +191,10 @@ class CodeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
+
+                ]
+
+               
               ],
             ),
           ),

@@ -403,27 +403,30 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 (startLoading, stopLoading, buttonState) async {
                               // if( b )
 
-                              print('object');
-                              if (controller.formKey.currentState!.validate()) {
+                              if (controller.formKey.currentState!.validate() &&
+                                  controller.buttonClickEnabled == true) {
+                                print('object');
+                                controller.buttonClickEnabled = false;
+                                controller.update();
                                 startLoading();
                                 if (controller.selectedBranchCode == "") {
-                                  stopLoading();
-
-                                  return getToast('Please Select Branch');
+                                  getToast('Please Select Branch');
                                 } else if (controller.selectedCountryID == "") {
-                                  stopLoading();
-                                  return getToast('Please Select Country');
+                                  getToast('Please Select Country');
                                 } else if (controller.selectedLeadSourcesCode ==
                                     "") {
-                                  stopLoading();
-                                  return getToast('Please select leadsource');
-                                }
-                                var res = await controller.regsiter();
+                                  getToast('Please select leadsource');
+                                } else {
+                                  await Future.delayed(Duration(seconds: 20));
+                                  var res = await controller.regsiter();
 
-                                if (res == true) {
-                                  signature();
+                                  if (res == true) {
+                                    signature();
+                                  }
                                 }
+                                controller.buttonClickEnabled = true;
                                 stopLoading();
+                                controller.update();
                                 // Get.toNamed(LoginCopy.routeNamed);
                               }
                             },
@@ -526,31 +529,69 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               ),
                             ),
                           ),
-                          CustomButton(
-                              backgroundColor: ThemeConstants.bluecolor,
-                              horizontelPadding: 10,
-                              radius: 8,
-                              text: 'Verify OTP',
-                              onPressed: () async {
-                                print('object');
-                                if (controller.formKey.currentState!
-                                    .validate()) {
-                                  // if (controller.selectedBranchCode == null) {
-                                  //   return getToast('Please Select Branch');
-                                  // } else if (controller.selectedCountryID == null) {
-                                  //   return getToast('Please Select Country');
-                                  // } else if (controller.leadSourcesListID == null) {
-                                  //   return getToast('Please select leadsource');
-                                  // }
-                                  // var res = await controller.regsiter();
 
-                                  // if (res == true) {
-                                  //   signature();
-                                  // }
-                                  controller.verifyOtp(otpcontroller.text);
-                                  // Get.toNamed(LoginCopy.routeNamed);
-                                }
-                              }),
+                          LoadingButton(
+                            loader: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: ThemeConstants.whitecolor,
+                              ),
+                            ),
+                            borderRadius: 10,
+                            color: ThemeConstants.bluecolor,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 20),
+                            onTap:
+                                (startLoading, stopLoading, buttonState) async {
+                              // if( b )
+
+                              print('object');
+                              if (controller.formKey.currentState!.validate() &&
+                                  controller.buttonClickEnabled) {
+                                startLoading();
+                                controller.buttonClickEnabled = false;
+                                controller.update();
+
+                                await controller.verifyOtp(otpcontroller.text);
+                                controller.buttonClickEnabled = true;
+                                controller.update();
+                                stopLoading();
+                                // Get.toNamed(LoginCopy.routeNamed);
+                              }
+                            },
+                            height: 30,
+                            width: 200,
+                            child: CustomAutoSizeTextMontserrat(
+                                textColor: ThemeConstants.whitecolor,
+                                text: "Verify OTP"),
+                          ),
+                          // CustomButton(
+                          //     backgroundColor: ThemeConstants.bluecolor,
+                          //     horizontelPadding: 10,
+                          //     radius: 8,
+                          //     text: 'Verify OTP',
+                          //     onPressed: () async {
+                          //       print('object');
+                          //       if (controller.formKey.currentState!
+                          //               .validate() &&
+                          //           controller.buttonClickEnabled == true) {
+                          //         // if (controller.selectedBranchCode == null) {
+                          //         //   return getToast('Please Select Branch');
+                          //         // } else if (controller.selectedCountryID == null) {
+                          //         //   return getToast('Please Select Country');
+                          //         // } else if (controller.leadSourcesListID == null) {
+                          //         //   return getToast('Please select leadsource');
+                          //         // }
+                          //         // var res = await controller.regsiter();
+
+                          //         // if (res == true) {
+                          //         //   signature();
+                          //         // }
+                          //         controller.verifyOtp(otpcontroller.text);
+                          //         // Get.toNamed(LoginCopy.routeNamed);
+                          //       }
+                          //     }),
                         ],
                         SizedBox(
                           height: 10,

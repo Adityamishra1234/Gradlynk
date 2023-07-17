@@ -32,6 +32,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
   String campaignName = '';
   String passName = '';
 
+bool showBelowContent = false;
   getMarkAttendance(String code) async {
     change(null, status: RxStatus.loading());
     var res = await apiServices.getMarkAttandance(getMarkAttendanceForEvent(

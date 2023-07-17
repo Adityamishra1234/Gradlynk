@@ -95,29 +95,29 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                           SizedBox(
                             height: 80,
                           ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Stack(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.ultraLightgreyColor,
-                                    borderRadius: BorderRadius.circular(20)),
-                                width: 240,
-                                height: 10,
-                              ),
-                              AnimatedContainer(
-                                curve: Curves.fastOutSlowIn,
-                                duration: Duration(milliseconds: 800),
-                                width: controller.widthOfSlider,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.bluecolor,
-                                    borderRadius: BorderRadius.circular(20)),
-                              )
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 15),
+                        //   child: Stack(
+                        //     children: [
+                        //       Container(
+                        //         decoration: BoxDecoration(
+                        //             color: ThemeConstants.ultraLightgreyColor,
+                        //             borderRadius: BorderRadius.circular(20)),
+                        //         width: 240,
+                        //         height: 10,
+                        //       ),
+                        //       AnimatedContainer(
+                        //         curve: Curves.fastOutSlowIn,
+                        //         duration: Duration(milliseconds: 800),
+                        //         width: controller.widthOfSlider,
+                        //         height: 10,
+                        //         decoration: BoxDecoration(
+                        //             color: ThemeConstants.bluecolor,
+                        //             borderRadius: BorderRadius.circular(20)),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
 
                         SizedBox(
                           height: 10,
@@ -199,7 +199,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                 ]),
                           ),
                         ],
-                        if (controller.showConsentTermsForm == true) ...[
+                        if (controller.showConsentTermsForm == true  ) ...[
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: SizedBox(
@@ -1097,8 +1097,9 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                       } else if (controller
                                               .questionNumberToShow ==
                                           4) {
-                                        controller.questionNumberToShow =
-                                            controller.questionNumberToShow + 1;
+                                        controller.showQuestion();
+                                        // controller.questionNumberToShow =
+                                        //     controller.questionNumberToShow + 1;
                                         controller.update();
                                       } else if (controller
                                                   .selectCourseBoardFieldCode ==

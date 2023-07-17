@@ -281,7 +281,7 @@ class ContactInformationController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
     return res;
   }
-
+  bool socialMedia = false;
   saveButton() async {
     change(null, status: RxStatus.success());
     print("object");
@@ -310,7 +310,10 @@ class ContactInformationController extends GetxController with StateMixin {
         getToast(SnackBarConstants.cityError!);
       } else if (getNUllChecker(zipCode.text)) {
         getToast(SnackBarConstants.zipCodeError!);
-      } else {
+      } else if (socialMedia == true && (  instagramId.text == '' && snapchatId.text == '' && facebookId.text == '' ) ) {
+
+        getToast("Please enter one social media id");
+      }else {
         var res = updatePesonalDetail(
             Get.find<BaseController>().model1.id!,
             firstName.text,

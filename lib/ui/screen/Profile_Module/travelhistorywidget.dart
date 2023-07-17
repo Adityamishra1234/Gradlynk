@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -43,34 +44,38 @@ class TravelHistoryWidget extends StatelessWidget {
       // For Edit
 
       return ListView(
+        padding: EdgeInsets.all(0),
         children: [
-          Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: SizedBox(
-              height: 30,
-              child: TextButton(
-                  onPressed: () {
-                    controller.viewDetails.value = true;
-                    controller.update();
-                  },
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "View Details",
-                    textColor: ThemeConstants.orangeColor,
-                  )),
-            ),
-          ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 10),
-            child: Row(
-              children: [
-                CustomAutoSizeTextMontserrat(
-                  text: "Have you travelled Abroad?",
-                  textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-                const Spacer(),
-              ],
+            padding: const EdgeInsets.only(
+              left: 20,
+            ),
+            child: Container(
+              child: Wrap(
+                alignment: WrapAlignment.spaceBetween,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Container(
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Have you travelled Abroad?",
+                      textColor: ThemeConstants.TextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    child: TextButton(
+                        onPressed: () {
+                          controller.viewDetails.value = true;
+                          controller.update();
+                        },
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "View Details",
+                          textColor: ThemeConstants.orangeColor,
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
           CustomDropDownSingle(
@@ -84,6 +89,58 @@ class TravelHistoryWidget extends StatelessWidget {
             choosefieldtype: false,
             callbackFunction: callbackTravelAbroad,
           ),
+          if (controller.travelAbroadSelected == "No")
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                children: [
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, right: 20),
+                    child: SizedBox(
+                      width: 90,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: ThemeConstants.bluecolor,
+                            elevation: 0.0,
+                            backgroundColor:
+                                ThemeConstants.bluecolor, // foreground
+                          ),
+                          onPressed: () async {
+                            // controller.modelList.add(TravelHistoryModel(
+                            //     travelStatus: controller.travelStatusSelected,
+                            //     chooseCountry: int.parse(
+                            //         controller.countryCodeSelected ?? "0"),
+                            //     typeOfVisa: controller.typeOfVisaCodeSelected,
+                            //     visaStatus: controller.visaStatusSelected,
+                            //     dateOfApplication: TravelHistoryController
+                            //         .dateOfApplication.value.text,
+                            //     dateOfRejection: TravelHistoryController
+                            //         .dateOfReject1.value.text,
+                            //     reasonOfRejection: TravelHistoryController
+                            //         .reasonOfRejection.value.text,
+                            //     proofAvailable: int.parse(
+                            //         controller.proofAvailableSelectedID ?? "0"),
+                            //     countryName: controller.countrySelected,
+                            //     applicationNumber: TravelHistoryController
+                            //         .applicationNumber.value.text,
+                            //     visaNumber:
+                            //         TravelHistoryController.visaNumber.value.text));
+                            // controller.update();
+                            controller.updateTravelHistory(
+                                Get.find<BaseController>().model1.id.toString(),
+                                controller.travelAbroadSelected!,
+                                "added");
+                          },
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Add",
+                            textColor: ThemeConstants.whitecolor,
+                          )),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           if (controller.travelAbroadSelected == "Yes")
             ...getTravelledAbroad(controller, context),
         ],
@@ -232,12 +289,18 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: false,
-            date: controller.dateOfApplicatiton,
-            callbackDate: callbackDateOfApplciation),
+      SizedBox(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+              // enableField: false,
+
+              initialTime: controller.dateOfApplicatiton,
+              callback: (value) {
+                callbackDateOfApplciation(value);
+              }),
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -251,13 +314,24 @@ class TravelHistoryWidget extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: false,
-            date: controller.dateOfReject,
-            callbackDate: callbackDateOfReject),
+      SizedBox(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+              // enableField: false,
+
+              initialTime: controller.dateOfReject,
+              callback: (value) {
+                callbackDateOfReject(value);
+              }),
+        ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: false, date: controller.dateOfReject, callbackDate: c),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(

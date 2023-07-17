@@ -1,5 +1,10 @@
+import 'dart:io' as io;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
@@ -7,8 +12,13 @@ import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/fund/sponsorDetails.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/widgets/custom_doc_viewer.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
+import 'package:studentpanel/widgets/permission_service.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as path;
+import 'package:device_info_plus/device_info_plus.dart';
 
 class FundPlannerController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
@@ -284,6 +294,7 @@ class FundPlannerController extends GetxController with StateMixin {
           }
         }
       }
+
       firstTime = false;
       change(null, status: RxStatus.success());
       Get.to(SponsorDetails());
@@ -319,13 +330,132 @@ class FundPlannerController extends GetxController with StateMixin {
 
     countrySelected = fundplanner.fundPlannersData![index].countryName;
     selectedFundTypeName = fundplanner.fundPlannersData![index].fundTypeName!;
+    selectedFundTypeId = fundplanner.fundPlannersData![index].fundType!;
     amountData.text = fundplanner.fundPlannersData![index].amount.toString();
     filepath = fundplanner.fundPlannersData![index].fundDocumentName ?? "";
+
     update();
     Get.to(FundPlan());
     await getBankByCountry(countryId.toString());
     selectedBankname = fundplanner.fundPlannersData![index].bankName;
     selectedBankCode = fundplanner.fundPlannersData![index].bankId.toString();
+
+    download(
+        'https://www.adobe.com/acrobat/hub/how-to/media_10a1d64500ea0cd293a4d9864cb6bcec6fcd7ffc7.jpeg');
+  }
+
+  String pathOfImage = '';
+
+  Future download(String url) async {
+    var status = await Permission.storage.request();
+    var d = await Permission.photos.request();
+    var y = await Permission.notification.request();
+
+    // print(status);
+    // if (await Permission.storage.request().isGranted) {
+    final io.Directory tempDir = await getTemporaryDirectory();
+
+    final io.Directory appDocumentsDir =
+        await getApplicationDocumentsDirectory();
+
+    bool dirDownloadExists = true;
+    String directory;
+    if (io.Platform.isIOS) {
+      directory = (await getApplicationDocumentsDirectory()).path;
+    } else {
+      directory = "/storage/emulated/0/Download/";
+
+      dirDownloadExists = await io.Directory(directory).exists();
+      if (dirDownloadExists) {
+        directory = "/storage/emulated/0/Download/";
+      } else {
+        directory = "/storage/emulated/0/Downloads/";
+      }
+    }
+
+    String basenames = path.basename(url);
+    final finalPath = path.join(directory, basenames);
+    io.File saveFile = io.File(finalPath);
+
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    var sdkVersion = androidInfo.version.sdkInt;
+
+    print(sdkVersion);
+
+// 33=> d
+// 30 less=>status
+    if (sdkVersion > 30) {
+      if (d.isGranted) {
+        if (y.isGranted) {
+          await FileDownloader.downloadFile(
+              url: url,
+              name: basenames,
+              onDownloadCompleted: (String paths) {
+                var newpath = paths;
+                // NotificationService.showNotification(
+                //     title: 'Downlaod Completed',
+                //     body: 'Click to Open',
+                //     payload: {'path': newpath, 'type': widget.payload});
+              },
+              onDownloadError: (String error) {
+                print('DOWNLOAD ERROR: $error');
+              });
+        } else {
+          await Permission.notification.request();
+        }
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => openAppSettings());
+      }
+    } else {
+      if (status.isGranted) {
+        if (y.isGranted) {
+          await FileDownloader.downloadFile(
+              url: url,
+              name: basenames,
+              onDownloadCompleted: (String paths) {
+                var newpath = paths;
+                // NotificationService.showNotification(
+                //     title: 'Downlaod Completed',
+                //     body: 'Click to Open',
+                //     payload: {'path': newpath, 'type': widget.payload});
+              },
+              onDownloadError: (String error) {
+                print('DOWNLOAD ERROR: $error');
+              });
+        } else {
+          await Permission.notification.request();
+        }
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => openAppSettings());
+      }
+    }
+
+    // }
+
+    // await dio.Dio().download(url, saveFile.path);
+
+    // print(saveFile.path);
+
+    // var res = await FlutterDownloader.enqueue(
+    //   url: url,
+
+    //   headers: {}, // optional: header send with url (auth token etc)
+    //   savedDir: directory,
+    //   saveInPublicStorage: true,
+    //   showNotification:
+    //       false, // show download progress in status bar (for Android)
+    //   openFileFromNotification:
+    //       false, // click on notification to open downloaded file (for Android)
+    // );
+
+    // }
+
+    filepath = finalPath;
   }
 
   getViewDocument(String url) {

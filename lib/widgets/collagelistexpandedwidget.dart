@@ -236,9 +236,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                      ),
+                          left: 10, right: 10, bottom: 10),
                       child: Row(
                         children: [
                           svgImage("clock", ThemeConstants.bluelightgreycolor,
@@ -306,6 +304,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             const SizedBox(
                               width: 25,
                             ),
+
+                          Spacer(),
                           if (widget.previousRoute == FinalShortList.routeNamed)
                             InkWell(
                                 onTap: () {
@@ -353,7 +353,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                     ),
                                   ),
                                 )),
-                          const Spacer(),
+
                           // Row(
                           //   children: [
                           //     // const Spacer(),

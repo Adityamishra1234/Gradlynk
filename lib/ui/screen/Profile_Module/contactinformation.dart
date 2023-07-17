@@ -22,7 +22,6 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   var controller = Get.put(ContactInformationController());
 
-  bool socialMedia = false;
   List gender = ["Select gender", "Male", "Female", "Other"];
 
   @override
@@ -291,16 +290,19 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Container(
-                        height: 40,
-                        child: CustomTimerWidget(
-                          // enableField: saveAndEdit,
-                          // date: getNUllChecker(controller.dob) == false
-                          //     ? controller.dob
-                          //     : "",
-                          callback: callbackDOB,
+                    IgnorePointer(
+                      ignoring: saveAndEdit,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Container(
+                          height: 40,
+                          child: CustomTimerWidget(
+                            // enableField: saveAndEdit,
+                            // date: getNUllChecker(controller.dob) == false
+                            //     ? controller.dob
+                            //     : "",
+                            callback: callbackDOB,
+                          ),
                         ),
                       ),
                     ),
@@ -375,7 +377,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         initialSelectedValue:
                             controller.childrenCountSelected != null
                                 ? controller.childrenCountSelected.toString()
-                                : "1",
+                                : "0",
                         choosefieldtype: saveAndEdit,
                       ),
                     Padding(
@@ -427,19 +429,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         },
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Whatsapp Number",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+
                     Container(
                       child: Row(children: [
                         Checkbox(
@@ -465,11 +455,25 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           child: CustomAutoSizeTextMontserrat(
                             text: "This number is Whatsapp number",
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ]),
+                    ),
+
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Whatsapp Number",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
@@ -812,17 +816,20 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                     CheckboxListTile(
                       title: CustomAutoSizeTextMontserrat(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
                           text: "Are you available on Social Media"),
-                      value: socialMedia,
+                      value: controller.socialMedia,
                       onChanged: (newValue) {
                         setState(() {
-                          socialMedia = newValue!;
+                          controller.socialMedia = newValue!;
+                          controller.update();
                         });
                       },
                       controlAffinity: ListTileControlAffinity
                           .leading, //  <-- leading Checkbox
                     ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -836,7 +843,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: TextFormField(
@@ -872,7 +879,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           },
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -886,7 +893,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: TextFormField(
@@ -922,7 +929,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           },
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -936,7 +943,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           ),
                         ),
                       ),
-                    if (socialMedia == true)
+                    if (controller.socialMedia == true)
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
                         child: TextFormField(
@@ -1302,6 +1309,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
         controller.maritalStatusSelected = controller.martialStatusList[i];
         controller.maritalStatusIdSelected = i;
       }
+    }
+
+    if (controller.maritalStatusIdSelected == 2) {
+      controller.childrenCountSelected = 0;
     }
     controller.update();
   }
