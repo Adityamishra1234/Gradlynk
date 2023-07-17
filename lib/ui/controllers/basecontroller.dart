@@ -175,6 +175,7 @@ class BaseController extends GetxController with StateMixin {
   }
 
   eventZone(String end_id) async {
+    change(null, status: RxStatus.loading());
     eventlist = [];
     var res = await apiServices.getEventZone(Endpoints.eventZone! + end_id);
     if (res != null) {
@@ -186,5 +187,6 @@ class BaseController extends GetxController with StateMixin {
       }
     }
     eventlist = eventlist.toSet().toList();
+    change(null, status: RxStatus.success());
   }
 }
