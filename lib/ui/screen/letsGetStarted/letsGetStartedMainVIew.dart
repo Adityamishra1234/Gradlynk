@@ -637,7 +637,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     var res = switchForMaximumScoreEnglishText(
                                         controller.selectedTestYouAppearedFor!);
 
-                                    var marksFilled = int.parse(value!);
+                                    var marksFilled = double.parse(value!);
 
                                     if (marksFilled > res) {
                                       return 'Maximum marks $res';

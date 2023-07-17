@@ -517,7 +517,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                   width: double.infinity,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    " ${controller.timer.value == 0 ? 'Resend OTP' : 'Wait for ${controller.timer.value}'}",
+                                    " ${controller.timer.value == 0 ? 'Resend OTP' : 'Wait for ${controller.timer.value}sec'}",
                                     style: TextStyle(
                                         fontWeight: controller.resendOTP == 1
                                             ? FontWeight.w500

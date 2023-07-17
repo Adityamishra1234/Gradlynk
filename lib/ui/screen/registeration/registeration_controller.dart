@@ -76,7 +76,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       // leadSourcesListName = map.values.toList();
       // leadSourcesListID = map.keys.toList();
       loadingLeadSources = true;
-      selectedLeadSourcesName = 'Please Select Lead Source';
+      selectedLeadSourcesName = 'Kindly Select';
       update();
     }
   }

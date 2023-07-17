@@ -1,7 +1,7 @@
 switchForMaximumScoreEnglishText(String selected) {
   switch (selected) {
     case 'IELTS':
-      return 10;
+      return 9.5;
     case 'PTE':
       return 90;
     case 'TOEFL':
