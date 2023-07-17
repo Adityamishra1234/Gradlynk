@@ -80,17 +80,21 @@ class DashboardEventSection extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                      constraints: const BoxConstraints(
-                                          maxHeight: 60, maxWidth: 60),
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: const BoxDecoration(
-                                          color: Color(0xFFF1F0FF),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: SvgPicture.asset(
-                                        "assets/icons/Mark attendence.svg",
-                                        color: ThemeConstants.VioletColor,
-                                      )),
+                                    constraints: const BoxConstraints(
+                                        maxHeight: 60, maxWidth: 60),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xFFF1F0FF),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: svgImage("Mark attendence",
+                                        ThemeConstants.VioletColor, 30, 30),
+
+                                    // SvgPicture.asset(
+                                    //   "assets/icons/Mark attendence.svg",
+                                    //   color: ThemeConstants.VioletColor,
+                                    // )
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: SizedBox(
@@ -117,17 +121,16 @@ class DashboardEventSection extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Container(
-                                      constraints: const BoxConstraints(
-                                          maxHeight: 60, maxWidth: 60),
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          color: ThemeConstants.lightYellow,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: SvgPicture.asset(
-                                        "assets/icons/Express entry.svg",
-                                        color: ThemeConstants.yellow,
-                                      )),
+                                    constraints: const BoxConstraints(
+                                        maxHeight: 60, maxWidth: 60),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                        color: ThemeConstants.lightYellow,
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: svgImage("Express entry",
+                                        ThemeConstants.VioletColor, 30, 30),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: SizedBox(

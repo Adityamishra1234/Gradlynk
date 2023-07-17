@@ -58,11 +58,8 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: SvgPicture.asset(
-                              "assets/icons/Country.svg",
-                              width: 20,
-                              height: 20,
-                            ),
+                            child: svgImage(
+                                "Country", ThemeConstants.IconColor, 20, 20),
                           ),
                           text1: 'Country',
                           text2: controller.model.country ?? "",

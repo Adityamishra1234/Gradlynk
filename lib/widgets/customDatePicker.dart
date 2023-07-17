@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class DatePickerExample extends StatefulWidget {
@@ -69,40 +70,48 @@ class _DatePickerExampleState extends State<DatePickerExample> {
               fontSize: 22.0,
             ),
             child: Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width - 10,
-              decoration: BoxDecoration(
-                  color: ThemeConstants.lightblueColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(15.0))),
-              child: CupertinoButton(
-                  // Display a CupertinoDatePicker in date picker mode.
-                  onPressed: () => _showDialog(
-                        CupertinoDatePicker(
-                          initialDateTime: date,
-                          mode: CupertinoDatePickerMode.date,
-                          use24hFormat: true,
-                          // This is called when the user changes the date.
-                          onDateTimeChanged: (DateTime newDate) {
-                            setState(() {
-                              dateFormatError = false;
-                              date = newDate;
-                              widget.callbackDate(newDate);
-                            });
-                          },
-                        ),
-                      ),
-                  // In this example, the date is formatted manually. You can
-                  // use the intl package to format the value based on the
-                  // user's locale settings.
-                  child: Align(
-                    alignment: AlignmentDirectional.topStart,
-                    child: CustomAutoSizeTextMontserrat(
-                      text: dateFormatError == true
-                          ? "0000-00-00"
-                          : '${date.year}-${date.month}-${date.day}',
-                    ),
-                  )),
-            ),
+                height: 45,
+                width: MediaQuery.of(context).size.width - 10,
+                decoration: BoxDecoration(
+                    color: ThemeConstants.lightblueColor,
+                    borderRadius:
+                        const BorderRadius.all(Radius.circular(15.0))),
+                child: CustomTimerWidget(
+                  isBlank: true,
+                  callback: (value) {
+                    widget.callbackDate(value);
+                  },
+                )
+                // CupertinoButton(
+
+                //     // Display a CupertinoDatePicker in date picker mode.
+                //     onPressed: () => _showDialog(
+                //           CupertinoDatePicker(
+                //             initialDateTime: date,
+                //             mode: CupertinoDatePickerMode.date,
+                //             use24hFormat: true,
+                //             // This is called when the user changes the date.
+                //             onDateTimeChanged: (DateTime newDate) {
+                //               setState(() {
+                //                 dateFormatError = false;
+                //                 date = newDate;
+                //                 widget.callbackDate(newDate);
+                //               });
+                //             },
+                //           ),
+                //         ),
+                //     // In this example, the date is formatted manually. You can
+                //     // use the intl package to format the value based on the
+                //     // user's locale settings.
+                //     child: Align(
+                //       alignment: AlignmentDirectional.topStart,
+                //       child: CustomAutoSizeTextMontserrat(
+                //         text: dateFormatError == true
+                //             ? "0000-00-00"
+                //             : '${date.year}-${date.month}-${date.day}',
+                //       ),
+                //     )),
+                ),
           )
         : Padding(
             padding: const EdgeInsets.only(),

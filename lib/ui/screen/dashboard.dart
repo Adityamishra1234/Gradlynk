@@ -632,13 +632,18 @@ class _DashBoardState extends State<DashBoard> {
                                                           padding:
                                                               const EdgeInsets
                                                                   .all(10),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                            'assets/icons/dialer_icon.svg',
-                                                            color:
-                                                                ThemeConstants
-                                                                    .whitecolor,
-                                                          ),
+                                                          child: svgImage(
+                                                              "dialer_icon",
+                                                              ThemeConstants
+                                                                  .whitecolor,
+                                                              30,
+                                                              30),
+                                                          // SvgPicture.asset(
+                                                          //   'assets/icons/dialer_icon.svg',
+                                                          //   color:
+                                                          //       ThemeConstants
+                                                          //           .whitecolor,
+                                                          // ),
                                                         ),
                                                       ),
                                                     ],

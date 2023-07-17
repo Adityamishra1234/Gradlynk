@@ -360,13 +360,13 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               color: controller.courseSearchType == 0
                                   ? ThemeConstants.whitecolor
                                   : ThemeConstants.bluecolor,
-                              iconData: SvgPicture.asset(
-                                'assets/icons/Course Selection.svg',
-                                color: controller.courseSearchType == 0
-                                    ? ThemeConstants.whitecolor
-                                    : ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              iconData: svgImage(
+                                  "Course Selection",
+                                  controller.courseSearchType == 0
+                                      ? ThemeConstants.whitecolor
+                                      : ThemeConstants.bluecolor,
+                                  20,
+                                  20),
                               text: 'Course Selection'),
                         ),
                         const SizedBox(
@@ -383,13 +383,13 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               showICOn: true,
                               fontWeight: FontWeight.w400,
                               textSize: 10,
-                              iconData: SvgPicture.asset(
-                                'assets/icons/Job Industry.svg',
-                                color: controller.courseSearchType == 1
-                                    ? ThemeConstants.whitecolor
-                                    : ThemeConstants.bluecolor,
-                                height: 20,
-                              ),
+                              iconData: svgImage(
+                                  "Job Industry",
+                                  controller.courseSearchType == 1
+                                      ? ThemeConstants.whitecolor
+                                      : ThemeConstants.bluecolor,
+                                  20,
+                                  20),
                               borderColor: controller.courseSearchType == 1
                                   ? ThemeConstants.bluecolor
                                   : ThemeConstants.whitecolor,

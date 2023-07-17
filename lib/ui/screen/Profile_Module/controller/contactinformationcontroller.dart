@@ -281,6 +281,7 @@ class ContactInformationController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
     return res;
   }
+
   bool socialMedia = false;
   saveButton() async {
     change(null, status: RxStatus.success());
@@ -298,7 +299,8 @@ class ContactInformationController extends GetxController with StateMixin {
         getToast(SnackBarConstants.maritalStatusError!);
       } else if (getNUllChecker(mobileNumber.text) == true) {
         getToast(SnackBarConstants.mobileNumberError!);
-      } else if (getNUllChecker(alt_Number.text) == true) {
+      } else if (getNUllChecker(alt_Number.text) == true ||
+          alt_Number.text.length != 10) {
         getToast(SnackBarConstants.alternateNumberError!);
       } else if (getNUllChecker(email.text)) {
         getToast(SnackBarConstants.emailError!);
@@ -310,10 +312,12 @@ class ContactInformationController extends GetxController with StateMixin {
         getToast(SnackBarConstants.cityError!);
       } else if (getNUllChecker(zipCode.text)) {
         getToast(SnackBarConstants.zipCodeError!);
-      } else if (socialMedia == true && (  instagramId.text == '' && snapchatId.text == '' && facebookId.text == '' ) ) {
-
+      } else if (socialMedia == true &&
+          (instagramId.text == '' &&
+              snapchatId.text == '' &&
+              facebookId.text == '')) {
         getToast("Please enter one social media id");
-      }else {
+      } else {
         var res = updatePesonalDetail(
             Get.find<BaseController>().model1.id!,
             firstName.text,

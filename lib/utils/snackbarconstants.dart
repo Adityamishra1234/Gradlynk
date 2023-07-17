@@ -257,7 +257,8 @@ class SnackBarConstants {
   static String? genderError = "Kindly select your Gender";
   static String? maritalStatusError = "Kindly select your Marital status";
   static String? mobileNumberError = "Kindly enter your Mobile number";
-  static String? alternateNumberError = "Kindly provide an Alternate number";
+  static String? alternateNumberError =
+      "Kindly provide an Correct Alternate number";
   static String? emailError = "Kindly specify your Email address";
   static String? countryError = "Kindly select your Country of residence";
   static String? stateError = "Kindly select your Residential state";

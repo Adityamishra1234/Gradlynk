@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/fund_parameter.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -151,12 +152,7 @@ class FundStatusSubWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SvgPicture.asset(
-                      "assets/icons/University.svg",
-                      color: ThemeConstants.bluecolor,
-                      width: 20,
-                      height: 20,
-                    ),
+                    svgImage("University", ThemeConstants.bluecolor, 20, 20),
                     const SizedBox(
                       width: 5,
                     ),
