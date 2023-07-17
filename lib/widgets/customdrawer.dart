@@ -662,7 +662,19 @@ class CustomDrawer extends StatelessWidget {
                                         onTap: () {
                                           Get.back();
                                           eventZoneDrawerPopUp(
-                                              context, true, true, true);
+                                              context,
+                                              Get.find<BaseController>()
+                                                      .meetingZoneStatus
+                                                      .markAttendance ??
+                                                  false,
+                                              Get.find<BaseController>()
+                                                      .meetingZoneStatus
+                                                      .expressPass ??
+                                                  false,
+                                              Get.find<BaseController>()
+                                                      .meetingZoneStatus
+                                                      .expressPassGenerated ??
+                                                  false);
                                         },
                                         child: Row(
                                           children: [
@@ -827,6 +839,7 @@ class CustomDrawer extends StatelessWidget {
                                 //     ),
                                 //   ),
                                 // ),
+
                                 InkWell(
                                   onTap: () {
                                     Get.back();

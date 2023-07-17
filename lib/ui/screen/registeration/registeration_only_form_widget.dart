@@ -75,7 +75,8 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
   @override
   void dispose() {
     AltSmsAutofill().unregisterListener();
-    controller.dispose();
+
+    // controller.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -598,7 +599,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                         ),
                         InkWell(
                           onTap: () {
-                            Get.toNamed(LoginCopy.routeNamed);
+                            Get.back();
                           },
                           child: CustomRichTextWidget(
                             fontWeight: FontWeight.w500,

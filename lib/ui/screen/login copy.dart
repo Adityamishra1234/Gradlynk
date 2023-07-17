@@ -656,7 +656,8 @@ class _LoginCopyState extends State<LoginCopy> {
                                       phoneNumber.clear();
                                       controller.otpEnable.value = false;
                                       controller.update();
-                                      Get.to(RegisterationMainView());
+                                      Get.toNamed(
+                                          RegisterationMainView.routeNmaed);
                                     },
                                     child: Container(
                                       child: CustomRichTextWidget(

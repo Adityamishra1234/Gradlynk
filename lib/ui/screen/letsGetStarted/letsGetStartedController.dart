@@ -45,7 +45,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
     questionsToShowList.addAll(map.values.toList());
 
     ///todo
-    // questionsToShowList = [true, true, false, true, false, false];
+    // questionsToShowList = [true, true, false, false, false, false];
 
     showQuestion();
 
@@ -94,6 +94,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
         questionNumberToShow = 0;
         showConsentTermsForm = true;
         nextForChange = true;
+        update();
         return;
       }
 
@@ -118,6 +119,12 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
         if (questionNumberToShow != 5) {
           showQuestion();
+        } else {
+          questionNumberToShow = 0;
+          showConsentTermsForm = true;
+          nextForChange = true;
+          update();
+          return;
         }
 
         // if (questionNumberToShow == 5) {
