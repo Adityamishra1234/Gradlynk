@@ -42,11 +42,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
     var map = Map<String, bool>.from(res);
 
-
-
     questionsToShowList.addAll(map.values.toList());
-
-
 
     ///todo
     // questionsToShowList = [true, true, false, true, false, false];
@@ -92,30 +88,28 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //   }
       // } else {
 
-if(  questionNumberToShow != 5 ){
-
-questionNumberToShow++;
-
-}else{
- questionNumberToShow = 0;
-          showConsentTermsForm = true;
-          nextForChange = true;
-return;
-}
+      if (questionNumberToShow != 5) {
+        questionNumberToShow++;
+      } else {
+        questionNumberToShow = 0;
+        showConsentTermsForm = true;
+        nextForChange = true;
+        return;
+      }
 
       widthOfSlider = widthOfSlider + 40;
       var toShowOrNot = questionNumberToShow == 1
           ? questionsToShowList[questionNumberToShow]
           // : questionNumberToShow == 5
           //     ? questionsToShowList[5]
-              : !questionsToShowList[questionNumberToShow];
+          : !questionsToShowList[questionNumberToShow];
       if (toShowOrNot == true) {
         nextForChange = true;
         // questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
           nextForChange = false;
         }
-      } else if( toShowOrNot == false ){
+      } else if (toShowOrNot == false) {
         nextForChange = true;
         // questionNumberToShow = questionNumberToShow + 1;
         if (questionNumberToShow == 3) {
@@ -155,6 +149,7 @@ return;
   }
 
   postLetsGetStartedData() async {
+    change(null, status: RxStatus.loading());
     var endpoint = letsGetStartedSendData(
         enqId: baseController.model1.id,
         consentQualifactionData: selectedLastQualification,
@@ -168,6 +163,7 @@ return;
     var res = await api.postLetsGetStarted(endpoint);
 
     if (res['status'] == true) {
+      change(null, status: RxStatus.success());
       Get.offAllNamed(DashBoard.routeNamed);
     }
 
