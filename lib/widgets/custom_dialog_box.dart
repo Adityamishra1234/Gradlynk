@@ -21,7 +21,7 @@ import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../ui/screen/mark_attendance/thanks_screen.dart';
+import '../ui/screen/mark_attendance/code_screen.dart';
 
 // class FunkyOverlay extends StatefulWidget {
 //   late BuildContext context;
