@@ -31,19 +31,6 @@ class CodeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                // Container(
-                //   alignment: Alignment.center,
-                //   width: double.infinity,
-                //   color: ThemeConstants.ultrilightblue,
-                //   height: 60,
-                //   padding: EdgeInsets.symmetric(horizontal: 30),
-                //   child: CustomAutoSizeTextMontserrat(
-                //       textColor: ThemeConstants.bluecolor,
-                //       textalingCentre: true,
-                //       fontSize: 14,
-                //       text:
-                //           'UK Applications Day Delhi - 22 July 23 Offline Event'),
-                // ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -85,10 +72,6 @@ class CodeScreen extends StatelessWidget {
                     length: 6,
                     cursorHeight: 15,
 
-                    // obscuringWidget: CustomAutoSizeTextMontserrat(
-                    //   text: "*",
-                    //   fontSize: 25,
-                    // ),
                     blinkWhenObscuring: true,
                     animationType: AnimationType.fade,
                     validator: (v) {
@@ -156,45 +139,41 @@ class CodeScreen extends StatelessWidget {
                   height: 10,
                 ),
                 if (controller.markAttendanceModel.studentCategory != null)
-                if( controller.showBelowContent = false )...[
- Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 80),
-                    child: CustomAutoSizeTextMontserrat(
-                      textalingCentre: true,
-                      fontWeight: FontWeight.w700,
-                      text: controller.markAttendanceModel.campaignName,
-                      fontSize: 15,
+                  if (controller.showBelowContent != false) ...[
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 80),
+                      child: CustomAutoSizeTextMontserrat(
+                        textalingCentre: true,
+                        fontWeight: FontWeight.w700,
+                        text: controller.markAttendanceModel.campaignName,
+                        fontSize: 15,
+                      ),
                     ),
-                  ),
-                const SizedBox(
-                  height: 10,
-                ),
-                if (controller.markAttendanceModel.studentCategory != null)
-                  CustomAutoSizeTextMontserrat(
-                      textColor: ThemeConstants.red,
-                      fontSize: 13,
-                      text: "Your Attendance has been Marked."),
-                const SizedBox(
-                  height: 5,
-                ),
-                if (controller.markAttendanceModel.studentCategory != null)
-                  CustomRichTextWidget(
-                      firstTextColor: ThemeConstants.blackcolor,
-                      customMiddleTextStyle: GoogleFonts.dancingScript(),
-                      text1: 'Your',
-                      text3: 'has been generated.',
-                      textColor: const Color(0xFFebaa2b),
-                      fontSize: 16,
-                      text:
-                          " ${controller.markAttendanceModel.studentCategory ?? ""}Express Pass "),
-
-                const SizedBox(
-                  height: 30,
-                ),
-
-                ]
-
-               
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    if (controller.markAttendanceModel.studentCategory != null)
+                      CustomAutoSizeTextMontserrat(
+                          textColor: ThemeConstants.red,
+                          fontSize: 13,
+                          text: "Your Attendance has been Marked."),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    if (controller.markAttendanceModel.studentCategory != null)
+                      CustomRichTextWidget(
+                          firstTextColor: ThemeConstants.blackcolor,
+                          customMiddleTextStyle: GoogleFonts.dancingScript(),
+                          text1: 'Your',
+                          text3: 'has been generated.',
+                          textColor: const Color(0xFFebaa2b),
+                          fontSize: 16,
+                          text:
+                              " ${controller.markAttendanceModel.studentCategory ?? ""} Express Pass "),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ]
               ],
             ),
           ),
