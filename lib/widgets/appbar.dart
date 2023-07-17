@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -36,6 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: IconButton(
                 icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
                 onPressed: () {
+                  Get.find<BaseController>().profileDataValidator();
                   Scaffold.of(context).openDrawer();
                   DrawerFilter();
                 },

@@ -62,26 +62,27 @@ class WorkHistoryWidget extends StatelessWidget {
         padding: EdgeInsets.all(0),
         controller: ScrollController(),
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-                child: Align(
-                  alignment: AlignmentDirectional.topStart,
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "Name of Last Organisation",
-                    mandatory: true,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    textColor: ThemeConstants.TextColor,
+          Container(
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+                  child: Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Name of Last Organisation",
+                      mandatory: true,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      textColor: ThemeConstants.TextColor,
+                    ),
                   ),
                 ),
-              ),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Align(
-                  alignment: AlignmentDirectional.bottomEnd,
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
                   child: InkWell(
                       onTap: () {
                         // if (controller.loadingViewQualification.value == true) {
@@ -95,21 +96,21 @@ class WorkHistoryWidget extends StatelessWidget {
                             fontSize: 12, color: ThemeConstants.orangeColor),
                       ))),
                 ),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.only(right: 10),
-              //   child: Align(
-              //     alignment: AlignmentDirectional.bottomEnd,
-              //     child: TextButton(
-              //         onPressed: () {},
-              //         child: CustomAutoSizeTextMontserrat(
-              //           text: "View Details",
-              //           fontSize: 14,
-              //           textColor: ThemeConstants.orangeColor,
-              //         )),
-              //   ),
-              // ),
-            ],
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 10),
+                //   child: Align(
+                //     alignment: AlignmentDirectional.bottomEnd,
+                //     child: TextButton(
+                //         onPressed: () {},
+                //         child: CustomAutoSizeTextMontserrat(
+                //           text: "View Details",
+                //           fontSize: 14,
+                //           textColor: ThemeConstants.orangeColor,
+                //         )),
+                //   ),
+                // ),
+              ],
+            ),
           ),
           Obx(
             () => Padding(

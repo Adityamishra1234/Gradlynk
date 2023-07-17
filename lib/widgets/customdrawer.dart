@@ -78,61 +78,69 @@ class CustomDrawer extends StatelessWidget {
                             const SizedBox(
                               width: 15,
                             ),
-                            SizedBox(
-                              height: 200,
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    const SizedBox(
-                                      height: 2.5,
-                                    ),
-                                    const SizedBox(
-                                      height: 2.5,
-                                    ),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  ThemeConstants.lightgreycolor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          width: 120,
-                                          height: 5,
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: const Color.fromARGB(
-                                                  255, 16, 32, 255),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          width: controller.data.value
-                                                  .totalPercentageComplete!
-                                                  .toDouble() *
-                                              1.2,
-                                          height: 5,
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      "${controller.data.value.totalPercentageComplete}% completed",
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          color: ThemeConstants.TextColor),
-                                    )
-                                  ]),
-                            )
+                            if (controller.loadinValidatorDataForDashboard ==
+                                false) ...[
+                              SizedBox(
+                                height: 200,
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      const SizedBox(
+                                        height: 2.5,
+                                      ),
+                                      const SizedBox(
+                                        height: 2.5,
+                                      ),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: ThemeConstants
+                                                    .lightgreycolor,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            width: 120,
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: const Color.fromARGB(
+                                                    255, 16, 32, 255),
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            width: controller.data.value
+                                                    .totalPercentageComplete!
+                                                    .toDouble() *
+                                                1.2,
+                                            height: 5,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "${controller.data.value.totalPercentageComplete}% completed",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500,
+                                            color: ThemeConstants.TextColor),
+                                      )
+                                    ]),
+                              )
+                            ] else ...[
+                              CircularProgressIndicator(
+                                color: ThemeConstants.bluecolor,
+                              )
+                            ]
                           ]),
                         ),
 
@@ -647,7 +655,8 @@ class CustomDrawer extends StatelessWidget {
                                             ThemeConstants.whitecolor,
                                         onTap: () {
                                           Get.back();
-                                          supportDialog(context);
+                                          eventZoneDrawerPopUp(
+                                              context, true, true, true);
                                         },
                                         child: Row(
                                           children: [

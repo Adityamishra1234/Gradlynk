@@ -75,7 +75,7 @@ class RelativeInformationWidget extends StatelessWidget {
                     child: Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Container(
-                        width: 150,
+                        width: 260,
                         child: CustomAutoSizeTextMontserrat(
                           text:
                               "Any relatives residing in the Interested Country",

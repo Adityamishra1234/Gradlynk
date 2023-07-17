@@ -101,7 +101,10 @@ class _QualificationWidgetState extends State<QualificationWidget> {
       return SingleChildScrollView(
         child: Column(
           children: [
-            Row(
+            Container(
+                child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20, right: 10),
@@ -116,27 +119,23 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                     ),
                   ),
                 ),
-                Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: InkWell(
-                        onTap: () {
-                          // if (controller.loadingViewQualification.value == true) {
-                          controller.setaddedQualification(true);
-                          // }
-                        },
-                        child: Container(
-                            child: Text(
-                          "View Details",
-                          style: TextStyle(
-                              fontSize: 12, color: ThemeConstants.orangeColor),
-                        ))),
-                  ),
+                  padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                  child: InkWell(
+                      onTap: () {
+                        // if (controller.loadingViewQualification.value == true) {
+                        controller.setaddedQualification(true);
+                        // }
+                      },
+                      child: Container(
+                          child: Text(
+                        "View Details",
+                        style: TextStyle(
+                            fontSize: 12, color: ThemeConstants.orangeColor),
+                      ))),
                 ),
               ],
-            ),
+            )),
             CustomDropDownSingle(
               model: getDropdownModel(
                   controller.loadingHighestQualification.value,

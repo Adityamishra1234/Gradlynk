@@ -146,174 +146,149 @@ class Fundrequirement extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                if(  controller.model.maritalStatus == 'Married' )...[
- Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      CustomAutoSizeTextMontserrat(
-                        text: "Will your spouse \naccompany you?",
-                        mandatory: true,
-                      ),
-                      const Spacer(),
-                      InkWell(
-                          onTap: () {
-                            controller.spouse_accompany = true.obs;
-                            controller.update();
-                          },
-                          child: EnableButton(
-                            enabled: controller.spouse_accompany.value,
-                            text: 'Yes',
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                          onTap: () {
-                            controller.spouse_accompany = false.obs;
-                            controller.update();
-                          },
-                          child: EnableButton(
-                            enabled: controller.spouse_accompany == true.obs
-                                ? false
-                                : true,
-                            text: 'No',
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      CustomAutoSizeTextMontserrat(
-                        text: "Are you taking your \nkids along?",
-                        mandatory: true,
-                      ),
-                      const Spacer(),
-                      InkWell(
-                          onTap: () {
-                            controller.kids = true;
-                            controller.update();
-                          },
-                          child: EnableButton(
-                            enabled: controller.kids,
-                            text: 'Yes',
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                          onTap: () {
-                            controller.kids = false;
-                            controller.update();
-                          },
-                          child: EnableButton(
-                            enabled: controller.kids == true ? false : true,
-                            text: 'No',
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-                ),
-                if (controller.kids == true)
+                if (controller.model.maritalStatus == 'Married') ...[
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
                         CustomAutoSizeTextMontserrat(
-                            text: "how many kids \nwould accompany?"),
+                          text: "Will your spouse \naccompany you?",
+                          mandatory: true,
+                        ),
                         const Spacer(),
                         InkWell(
-                          onTap: () {
-                            if (controller.manay_kids != 0) {
-                              controller.manay_kids =
-                                  controller.manay_kids! - 1;
+                            onTap: () {
+                              controller.spouse_accompany = true.obs;
                               controller.update();
-                            } else {
-                              getToast(SnackBarConstants.minChildCount);
-                            }
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "-",
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(width: 2),
-                          ),
-                          child: Center(
-                            child: Text(controller.manay_kids.toString()),
-                          ),
-                        ),
+                            },
+                            child: EnableButton(
+                              enabled: controller.spouse_accompany.value,
+                              text: 'Yes',
+                            )),
                         const SizedBox(
                           width: 10,
                         ),
                         InkWell(
-                          onTap: () {
-                            if (controller.manay_kids != 4) {
-                              controller.manay_kids =
-                                  controller.manay_kids! + 1;
+                            onTap: () {
+                              controller.spouse_accompany = false.obs;
                               controller.update();
-                            } else {
-                              getToast(SnackBarConstants.maxChildCount);
-                            }
-                          },
-                          child: CustomAutoSizeTextMontserrat(
-                            text: "+",
-                            fontSize: 40,
-                            fontWeight: FontWeight.w500,
-                          ),
+                            },
+                            child: EnableButton(
+                              enabled: controller.spouse_accompany == true.obs
+                                  ? false
+                                  : true,
+                              text: 'No',
+                            )),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        CustomAutoSizeTextMontserrat(
+                          text: "Are you taking your \nkids along?",
+                          mandatory: true,
+                        ),
+                        const Spacer(),
+                        InkWell(
+                            onTap: () {
+                              controller.kids = true;
+                              controller.update();
+                            },
+                            child: EnableButton(
+                              enabled: controller.kids,
+                              text: 'Yes',
+                            )),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        InkWell(
+                            onTap: () {
+                              controller.kids = false;
+                              controller.update();
+                            },
+                            child: EnableButton(
+                              enabled: controller.kids == true ? false : true,
+                              text: 'No',
+                            )),
+                        const SizedBox(
+                          width: 10,
                         ),
                       ],
                     ),
                   ),
-                if (controller.kids == true)
-                  if (controller.manay_kids! >= 1)
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child:
-                              CustomAutoSizeTextMontserrat(text: "Child 1 age"),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 150,
-                          child: CustomTextField(
-                              keybord: TextInputType.number,
-                              hint: "enter the age",
-                              controller: controller.child1),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                      ],
-                    ),
-                if (controller.kids == true)
-                  if (controller.manay_kids! >= 2)
+                  if (controller.kids == true)
                     Padding(
-                      padding: const EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
+                        children: [
+                          CustomAutoSizeTextMontserrat(
+                              text: "how many kids \nwould accompany?"),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {
+                              if (controller.manay_kids != 0) {
+                                controller.manay_kids =
+                                    controller.manay_kids! - 1;
+                                controller.update();
+                              } else {
+                                getToast(SnackBarConstants.minChildCount);
+                              }
+                            },
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "-",
+                              fontSize: 40,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            width: 40.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(width: 2),
+                            ),
+                            child: Center(
+                              child: Text(controller.manay_kids.toString()),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              if (controller.manay_kids != 4) {
+                                controller.manay_kids =
+                                    controller.manay_kids! + 1;
+                                controller.update();
+                              } else {
+                                getToast(SnackBarConstants.maxChildCount);
+                              }
+                            },
+                            child: CustomAutoSizeTextMontserrat(
+                              text: "+",
+                              fontSize: 40,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (controller.kids == true)
+                    if (controller.manay_kids! >= 1)
+                      Row(
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: CustomAutoSizeTextMontserrat(
-                                text: "Child 2 age"),
+                                text: "Child 1 age"),
                           ),
                           const Spacer(),
                           SizedBox(
@@ -321,67 +296,89 @@ class Fundrequirement extends StatelessWidget {
                             child: CustomTextField(
                                 keybord: TextInputType.number,
                                 hint: "enter the age",
-                                controller: controller.child2),
+                                controller: controller.child1),
                           ),
                           const SizedBox(
                             width: 10,
                           ),
                         ],
                       ),
-                    ),
-                if (controller.kids == true)
-                  if (controller.manay_kids! >= 3)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                                text: "Child 3 age"),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 150,
-                            child: CustomTextField(
-                                keybord: TextInputType.number,
-                                hint: "enter the age",
-                                controller: controller.child3),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                        ],
+                  if (controller.kids == true)
+                    if (controller.manay_kids! >= 2)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                  text: "Child 2 age"),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 150,
+                              child: CustomTextField(
+                                  keybord: TextInputType.number,
+                                  hint: "enter the age",
+                                  controller: controller.child2),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                if (controller.kids == true)
-                  if (controller.manay_kids! >= 4)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: CustomAutoSizeTextMontserrat(
-                                text: "Child 4 age"),
-                          ),
-                          const Spacer(),
-                          SizedBox(
-                            width: 150,
-                            child: CustomTextField(
-                                keybord: TextInputType.number,
-                                hint: "enter the age",
-                                controller: controller.child4),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                        ],
+                  if (controller.kids == true)
+                    if (controller.manay_kids! >= 3)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                  text: "Child 3 age"),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 150,
+                              child: CustomTextField(
+                                  keybord: TextInputType.number,
+                                  hint: "enter the age",
+                                  controller: controller.child3),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-
+                  if (controller.kids == true)
+                    if (controller.manay_kids! >= 4)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: CustomAutoSizeTextMontserrat(
+                                  text: "Child 4 age"),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 150,
+                              child: CustomTextField(
+                                  keybord: TextInputType.number,
+                                  hint: "enter the age",
+                                  controller: controller.child4),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
+                      ),
                 ],
-               
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -393,8 +390,8 @@ class Fundrequirement extends StatelessWidget {
                           onPrimary: ThemeConstants.bluecolor, // foreground
                         ),
                         onPressed: () {
-                          controller.getCalculatedInit(
-                              controller.previousInstCourse!);
+                          controller
+                              .getCalculated(controller.previousInstCourse!);
                         },
                         child: CustomAutoSizeTextMontserrat(
                           text: "Calculate",

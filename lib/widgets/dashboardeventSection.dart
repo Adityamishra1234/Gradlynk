@@ -20,7 +20,7 @@ class DashboardEventSection extends StatelessWidget {
           Container(
             // padding:
             //     const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
-            margin: const EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
@@ -132,13 +132,13 @@ class DashboardEventSection extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
                                         text: "Apply For Express Pass",
-                                      textalingCentre: true,
+                                        textalingCentre: true,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
                           // InkWell(
                           //   onTap: () {
                           //     Get.to(CodeScreen());
@@ -245,6 +245,19 @@ class DashboardEventSection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               )),
+          Positioned(
+            top: 0,
+            right: 15,
+            child: Padding(
+              padding: const EdgeInsets.all(0),
+              child: Image.asset(
+                'assets/images/new.png',
+                gaplessPlayback: false,
+                width: 35,
+                fit: BoxFit.contain,
+              ),
+            ),
+          )
         ],
       ),
     );
