@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
 import 'package:studentpanel/ui/screen/dashboard/scheduleExpertCall.dart';
 import 'package:studentpanel/ui/screen/fund/check_fund_status.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/track_your_tickets.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
+import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../ui/screen/mark_attendance/thanks_screen.dart';
 
 // class FunkyOverlay extends StatefulWidget {
 //   late BuildContext context;
@@ -1637,9 +1643,7 @@ eventZoneDrawerPopUp(
                             const BorderRadius.all(Radius.circular(25.0)),
                         splashColor: ThemeConstants.bluecolor,
                         onTap: () async {
-                          await Future.delayed(
-                              const Duration(milliseconds: 150));
-                          Get.toNamed(RaiseYourTicket.routeNamed);
+                          Get.to(CodeScreen());
                         },
                         child: Container(
                           width: 300,
@@ -1694,9 +1698,10 @@ eventZoneDrawerPopUp(
                             const BorderRadius.all(Radius.circular(25.0)),
                         splashColor: ThemeConstants.bluecolor,
                         onTap: () async {
-                          await Future.delayed(
-                              const Duration(milliseconds: 150));
-                          Get.toNamed(TrackyourTickets.routeNamed);
+                          // await Future.delayed(
+                          //     const Duration(milliseconds: 150));
+                          // Get.toNamed(TrackyourTickets.routeNamed);
+                          Get.to(IntakeScreen());
                         },
                         child: Container(
                           width: 300,
@@ -1873,12 +1878,17 @@ eventZoneDrawerPopUp(
                             const BorderRadius.all(Radius.circular(25.0)),
                         splashColor: ThemeConstants.bluecolor,
                         onTap: () async {
-                          await Future.delayed(
-                              const Duration(milliseconds: 150));
+                          // await Future.delayed(
+                          //     const Duration(milliseconds: 150));
 
-                          _launchEmailURL();
+                          // _launchEmailURL();
 
                           // Get.toNamed(ScheduleExpertCall.routeNamed);
+                          Get.to(CustomImageViewer(
+                              url: Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .expressPassView
+                                  .toString()));
                         },
                         child: Container(
                           width: 300,
