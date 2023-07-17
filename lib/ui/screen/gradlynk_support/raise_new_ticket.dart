@@ -387,7 +387,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                                 if (controller.raiseAnIssue.value == true) {
                                   if (issueController.text.isEmpty) {
                                     temp = false;
-                                    getToast("Please enter issuse");
+                                    getToast("Kindly enter your issue");
                                   }
                                 }
                                 if (controller.suggestAnImprovisation.value ==

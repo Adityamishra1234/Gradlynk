@@ -25,6 +25,8 @@ class DashboardController extends GetxController {
 
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
+  EventZoneStatus meetingZoneStatus = EventZoneStatus();
+  List eventlist = [];
 
   List<YoutubeVideoModel> youtubeVideoModel = [];
 
@@ -33,6 +35,10 @@ class DashboardController extends GetxController {
     await upcomingEvents();
     await getTestimonials();
     await getYoutubeVideos();
+    if (Get.find<BaseController>().model1.id != null) {
+      await Get.find<BaseController>()
+          .eventZone(Get.find<BaseController>().model1.id.toString());
+    }
 
     super.onInit();
   }
@@ -40,16 +46,14 @@ class DashboardController extends GetxController {
   List youtubeVideoLink = [];
   bool youtubeVideoLoading = true;
   getYoutubeVideos() async {
-  youtubeVideoLoading = true;
-update();
+    youtubeVideoLoading = true;
+    update();
     var res = await apiservices.getYoutubeVideoLink();
     if (res != null) {
       youtubeVideoModel = res;
       // youtubeVideoLink = res;
-
-      
     }
-  youtubeVideoLoading = false;
+    youtubeVideoLoading = false;
 
     update();
   }
@@ -66,13 +70,10 @@ update();
 
       testimonialsList = data;
       loadingUpcomingEvents = true.obs;
-
-
-  
     }
 
-testimonialsLoading = false;
-        update();
+    testimonialsLoading = false;
+    update();
   }
 
   newAndUpdates() async {
