@@ -389,25 +389,25 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             height: 20,
                           ),
                           LoadingButton(
-                            loader: SizedBox(
-                              width: 20,
-                              height: 20,
+                            animate: true,
+                            loader: Container(
+                              padding: EdgeInsets.all(10),
+                              width: 40,
+                              height: 40,
                               child: CircularProgressIndicator(
-                                color: ThemeConstants.whitecolor,
-                              ),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white)),
                             ),
                             borderRadius: 10,
                             color: ThemeConstants.bluecolor,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 20),
                             onTap:
                                 (startLoading, stopLoading, buttonState) async {
                               // if( b )
 
                               if (controller.formKey.currentState!.validate() &&
                                   controller.buttonClickEnabled == true) {
-                                print('object');
                                 controller.buttonClickEnabled = false;
+                                print('object');
                                 controller.update();
                                 startLoading();
                                 if (controller.selectedBranchCode == "") {
@@ -418,7 +418,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                     "") {
                                   getToast('Please select leadsource');
                                 } else {
-                                  await Future.delayed(Duration(seconds: 20));
+                                  // await Future.delayed(Duration(seconds: 10));
                                   var res = await controller.regsiter();
 
                                   if (res == true) {
@@ -532,12 +532,14 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
 
                           LoadingButton(
-                            loader: SizedBox(
-                              width: 20,
-                              height: 20,
+                            animate: true,
+                            loader: Container(
+                              padding: EdgeInsets.all(10),
+                              width: 40,
+                              height: 40,
                               child: CircularProgressIndicator(
-                                color: ThemeConstants.whitecolor,
-                              ),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white)),
                             ),
                             borderRadius: 10,
                             color: ThemeConstants.bluecolor,

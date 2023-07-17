@@ -173,9 +173,6 @@ class WorkHistoryWidget extends StatelessWidget {
           ),
           Container(
             height: 45,
-            decoration: BoxDecoration(
-              color: ThemeConstants.lightblueColor,
-            ),
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: CustomTimerWidget(

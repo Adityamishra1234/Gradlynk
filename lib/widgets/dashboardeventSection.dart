@@ -33,12 +33,12 @@ class DashboardEventSection extends StatelessWidget {
                       color: Color.fromARGB(20, 0, 0, 0))
                 ]),
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      width: 150,
-                      height: 250,
+                      width: 130,
+                      height: 230,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,6 +56,7 @@ class DashboardEventSection extends StatelessWidget {
                         ],
                       )),
                   Container(
+                      padding: EdgeInsets.only(left: 8),
                       // height: 180,
                       alignment: Alignment.center,
                       // color: ThemeConstants.GreenColor,
@@ -63,11 +64,11 @@ class DashboardEventSection extends StatelessWidget {
                       child: Wrap(
                         // mainAxisAlignment: MainAxisAlignment.end,
                         // crossAxisAlignment: CrossAxisAlignment.end,
-                        alignment: WrapAlignment.end,
-                        crossAxisAlignment: WrapCrossAlignment.end,
-                        runAlignment: WrapAlignment.end,
+                        alignment: WrapAlignment.start,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        runAlignment: WrapAlignment.start,
                         spacing: 5,
-                        runSpacing: 10,
+                        runSpacing: 30,
                         children: [
                           if (Get.find<BaseController>()
                                   .meetingZoneStatus
@@ -129,7 +130,7 @@ class DashboardEventSection extends StatelessWidget {
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(20))),
                                     child: svgImage("Express entry",
-                                        ThemeConstants.VioletColor, 30, 30),
+                                        ThemeConstants.orangeColor, 30, 30),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
@@ -164,7 +165,7 @@ class DashboardEventSection extends StatelessWidget {
                                 children: [
                                   Container(
                                       constraints: const BoxConstraints(
-                                          maxHeight: 60, maxWidth: 60),
+                                          maxHeight: 50, maxWidth: 50),
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           // border: Border.all(
@@ -179,7 +180,7 @@ class DashboardEventSection extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: SizedBox(
-                                      width: 100,
+                                      width: 70,
                                       child: CustomAutoSizeTextMontserrat(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
