@@ -80,7 +80,7 @@ class IntakeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
                   child: CustomAutoSizeTextMontserrat(
-                    text: "What your target intake",
+                    text: "What your target intake?",
                     textColor: ThemeConstants.bluecolor,
                     fontSize: 18,
                   ),

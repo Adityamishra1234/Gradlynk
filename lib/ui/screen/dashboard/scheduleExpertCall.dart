@@ -84,6 +84,7 @@ class ScheduleExpertCall extends StatelessWidget {
                       startingDate: Jiffy.now().dateTime,
                       // enableField: false,
                       // date: _.dateSelected,
+                      isBlank: true,
                       callback: callbackDatePicker),
                 ),
               ),

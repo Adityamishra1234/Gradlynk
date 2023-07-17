@@ -32,6 +32,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
   String campaignName = '';
   String passName = '';
 
+  bool showBelowContent = false;
   getMarkAttendance(String code) async {
     change(null, status: RxStatus.loading());
     var res = await apiServices.getMarkAttandance(getMarkAttendanceForEvent(
@@ -51,10 +52,11 @@ class MarkAttendanceController extends GetxController with StateMixin {
         }
       } else {
         getToast("Event code not matched");
-
-        change(null, status: RxStatus.success());
       }
     }
+    showBelowContent = true;
+    change(null, status: RxStatus.success());
+    update();
   }
 
   allTimeAPI({String? campaignId}) async {

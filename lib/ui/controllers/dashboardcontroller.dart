@@ -25,31 +25,44 @@ class DashboardController extends GetxController {
 
   RxBool loadingServiceName = false.obs;
   List<String>? model = [];
+  EventZoneStatus meetingZoneStatus = EventZoneStatus();
+  List eventlist = [];
 
   List<YoutubeVideoModel> youtubeVideoModel = [];
 
   @override
-  void onInit() {
-    upcomingEvents();
-    getTestimonials();
-    getYoutubeVideos();
+  void onInit() async {
+    await upcomingEvents();
+    await getTestimonials();
+    await getYoutubeVideos();
+    if (Get.find<BaseController>().model1.id != null) {
+      await Get.find<BaseController>()
+          .eventZone(Get.find<BaseController>().model1.id.toString());
+    }
 
     super.onInit();
   }
 
   List youtubeVideoLink = [];
+  bool youtubeVideoLoading = true;
   getYoutubeVideos() async {
+    youtubeVideoLoading = true;
+    update();
     var res = await apiservices.getYoutubeVideoLink();
     if (res != null) {
       youtubeVideoModel = res;
       // youtubeVideoLink = res;
-
-      update();
     }
+    youtubeVideoLoading = false;
+
+    update();
   }
 
   List<GetAllTestimonialsModel> testimonialsList = [];
+  bool testimonialsLoading = true;
   getTestimonials() async {
+    testimonialsLoading = true;
+    update();
     var res = await apiservices.getAllTestimonials();
     if (res != null) {
       var data = List<GetAllTestimonialsModel>.from(
@@ -57,8 +70,10 @@ class DashboardController extends GetxController {
 
       testimonialsList = data;
       loadingUpcomingEvents = true.obs;
-      update();
     }
+
+    testimonialsLoading = false;
+    update();
   }
 
   newAndUpdates() async {

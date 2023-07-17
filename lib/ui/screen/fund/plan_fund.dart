@@ -459,7 +459,7 @@ class FundPlan extends StatelessWidget {
                                         ),
 
                                         // enabled: !controller.areFunds6MonthsOld,
-                                        text: 'Upload Document',
+                                        text: 'Upload Funds Document',
                                       ),
                                     ),
                                     // if (controller.filepath.isNotEmpty)

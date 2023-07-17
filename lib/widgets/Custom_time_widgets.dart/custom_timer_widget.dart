@@ -9,9 +9,14 @@ class CustomTimerWidget extends StatefulWidget {
   final StringCallback callback;
   DateTime? startingDate;
   String? initialTime;
+  bool? isBlank;
 
   CustomTimerWidget(
-      {Key? key, required this.callback, this.initialTime, this.startingDate})
+      {Key? key,
+      this.isBlank,
+      required this.callback,
+      this.initialTime,
+      this.startingDate})
       : super(key: key);
 
   @override
@@ -42,8 +47,9 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
           '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
     } else {
       print('object');
-      dateToShow =
-          '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+      dateToShow = widget.isBlank == true
+          ? ''
+          : '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
 
       dateTime = DateTime.now();
       // TODO: implement initState

@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dar
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -61,32 +62,54 @@ class WorkHistoryWidget extends StatelessWidget {
         padding: EdgeInsets.all(0),
         controller: ScrollController(),
         children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.bottomEnd,
-              child: TextButton(
-                  onPressed: () {
-                    controller.setViewDetails(true);
-                  },
-                  child: CustomAutoSizeTextMontserrat(
-                    text: "View Details",
-                    fontSize: 14,
-                    textColor: ThemeConstants.orangeColor,
-                  )),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-            child: Align(
-              alignment: AlignmentDirectional.topStart,
-              child: CustomAutoSizeTextMontserrat(
-                text: "Name of Last Organisation",
-                mandatory: true,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                textColor: ThemeConstants.TextColor,
-              ),
+          Container(
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+                  child: Align(
+                    alignment: AlignmentDirectional.topStart,
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Name of Last Organisation",
+                      mandatory: true,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      textColor: ThemeConstants.TextColor,
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                  child: InkWell(
+                      onTap: () {
+                        // if (controller.loadingViewQualification.value == true) {
+                        controller.setViewDetails(true);
+                        // }
+                      },
+                      child: Container(
+                          child: Text(
+                        "View Details",
+                        style: TextStyle(
+                            fontSize: 12, color: ThemeConstants.orangeColor),
+                      ))),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 10),
+                //   child: Align(
+                //     alignment: AlignmentDirectional.bottomEnd,
+                //     child: TextButton(
+                //         onPressed: () {},
+                //         child: CustomAutoSizeTextMontserrat(
+                //           text: "View Details",
+                //           fontSize: 14,
+                //           textColor: ThemeConstants.orangeColor,
+                //         )),
+                //   ),
+                // ),
+              ],
             ),
           ),
           Obx(
@@ -122,12 +145,18 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: DatePickerExample(
-              enableField: false,
-              date: controller.workingFromSelected,
-              callbackDate: callbackWorkingForm,
+          Container(
+            height: 45,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: CustomTimerWidget(
+                isBlank: true,
+                // enableField: false,
+                // date: controller.workingFromSelected,
+                callback: (value) {
+                  callbackWorkingForm(value);
+                },
+              ),
             ),
           ),
           Padding(
@@ -142,14 +171,28 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: DatePickerExample(
-              enableField: false,
-              date: controller.workingTillSelected,
-              callbackDate: callbackWorkingTill,
+          Container(
+            height: 45,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: CustomTimerWidget(
+                isBlank: true,
+                // enableField: false,
+                // date: controller.workingFromSelected,
+                callback: (value) {
+                  callbackWorkingTill(value);
+                },
+              ),
             ),
           ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 10, right: 10),
+          //   child: DatePickerExample(
+          //     enableField: false,
+          //     date: controller.workingTillSelected,
+          //     callbackDate: callbackWorkingTill,
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
             child: Align(

@@ -23,24 +23,10 @@ class LetsGetStartedMainView extends StatefulWidget {
 class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
   var controller = Get.put(LetsGetStartedController());
 
-  // @override
-  // void initState() {
-  //   // controller.onInit();
-  //   controller.initialized;
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   controller.dispose();
-  //   // TODO: implement dispose
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 248, 252, 255),
       body: controller.obx(
         (state) => SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -90,11 +76,115 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.22,
                         ),
-
-                        if (controller.showConsentTermsForm == true) ...[
+                        if (controller.showConsentTermsForm == true)
                           SizedBox(
                             height: 80,
                           ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 15),
+                        //   child: Stack(
+                        //     children: [
+                        //       Container(
+                        //         decoration: BoxDecoration(
+                        //             color: ThemeConstants.ultraLightgreyColor,
+                        //             borderRadius: BorderRadius.circular(20)),
+                        //         width: 240,
+                        //         height: 10,
+                        //       ),
+                        //       AnimatedContainer(
+                        //         curve: Curves.fastOutSlowIn,
+                        //         duration: Duration(milliseconds: 800),
+                        //         width: controller.widthOfSlider,
+                        //         height: 10,
+                        //         decoration: BoxDecoration(
+                        //             color: ThemeConstants.bluecolor,
+                        //             borderRadius: BorderRadius.circular(20)),
+                        //       )
+                        //     ],
+                        //   ),
+                        // ),
+
+                        SizedBox(
+                          height: 10,
+                        ),
+                        if (controller.questionNumberToShow == 1) ...[
+                          Container(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 28,
+                                      text: "Let's Get Started!"),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  // Container(
+                                  //   child: Wrap(
+                                  //     alignment: WrapAlignment.start,
+                                  //     runSpacing: 15,
+                                  //     spacing: 15,
+                                  //     children: [
+                                  //       CustomButtonWidget(
+                                  //         onTapF: () {
+                                  //           controller.selectedQualification(7);
+                                  //         },
+                                  //         isSelected: controller
+                                  //                     .selectedLastQualification ==
+                                  //                 7
+                                  //             ? true
+                                  //             : false,
+                                  //         text: '12th',
+                                  //         selectedColor:
+                                  //             ThemeConstants.bluecolor,
+                                  //       ),
+                                  //       CustomButtonWidget(
+                                  //         onTap: () {
+                                  //           controller.selectedQualification(4);
+                                  //         },
+                                  //         selectedColor:
+                                  //             ThemeConstants.bluecolor,
+                                  //         isSelected: controller
+                                  //                     .selectedLastQualification ==
+                                  //                 4
+                                  //             ? true
+                                  //             : false,
+                                  //         text: 'Bachelors',
+                                  //       ),
+                                  //       CustomButtonWidget(
+                                  //         onTap: () {
+                                  //           controller.selectedQualification(3);
+                                  //         },
+                                  //         text: 'Masters',
+                                  //         selectedColor:
+                                  //             ThemeConstants.bluecolor,
+                                  //         isSelected: controller
+                                  //                     .selectedLastQualification ==
+                                  //                 3
+                                  //             ? true
+                                  //             : false,
+                                  //       ),
+                                  //       CustomButtonWidget(
+                                  //         onTap: () {
+                                  //           controller.selectedQualification(6);
+                                  //         },
+                                  //         selectedColor:
+                                  //             ThemeConstants.bluecolor,
+                                  //         isSelected: controller
+                                  //                     .selectedLastQualification ==
+                                  //                 6
+                                  //             ? true
+                                  //             : false,
+                                  //         text: 'Diploma',
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  // )
+                                ]),
+                          ),
+                        ],
+                        if (controller.showConsentTermsForm == true) ...[
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: SizedBox(
@@ -150,7 +240,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                             padding: const EdgeInsets.all(10.0),
                             child: InkWell(
                               onTap: () async {
-                                controller.postLetsGetStartedData();
+                                await controller.postLetsGetStartedData();
                               },
                               child: Container(
                                 height: 35,
@@ -328,7 +418,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                           fontWeight: FontWeight.w600,
                                           fontSize: 28,
                                           text:
-                                              'Have you appeared in English ?'),
+                                              'Have you appeared in English test?'),
                                       SizedBox(
                                         height: 10,
                                       ),
@@ -832,7 +922,61 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                               //     color: ThemeConstants.bluecolor,
                               //   ),
                               // ),
-
+                              if ((controller.questionNumberToShow != 0 &&
+                                      controller.questionNumberToShow != 1 &&
+                                      controller.questionNumberToShow != 2 &&
+                                      controller.questionToShowInEnglsihTest ==
+                                          0) ||
+                                  controller.questionNumberToShow == 4)
+                                InkWell(
+                                  onTap: () {
+                                    controller.back();
+                                  },
+                                  child: Container(
+                                    width: 100,
+                                    child: CustomIconTextTogether(
+                                      iconBeforetext: true,
+                                      // iconBeforeText: false,
+                                      text: 'Back',
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 12,
+                                      iconData: Icon(
+                                        Icons.arrow_circle_left,
+                                        size: 15,
+                                        color: ThemeConstants.bluecolor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              if (controller.questionNumberToShow == 3 &&
+                                  controller.questionToShowInEnglsihTest != 0)
+                                InkWell(
+                                  onTap: () {
+                                    controller.backForEnglish();
+                                  },
+                                  child: Container(
+                                    width: 100,
+                                    child: CustomIconTextTogether(
+                                      iconBeforetext: true,
+                                      // iconBeforeText: false,
+                                      text: 'Back',
+                                      Bgcolor: ThemeConstants.whitecolor,
+                                      color: ThemeConstants.bluecolor,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 12,
+                                      iconData: Icon(
+                                        Icons.arrow_circle_left,
+                                        size: 15,
+                                        color: ThemeConstants.bluecolor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              SizedBox(
+                                width: 20,
+                              ),
                               if (controller.nextForChange == false)
                                 InkWell(
                                   onTap: () {
@@ -873,6 +1017,14 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                           controller.nextForChange = true;
                                           controller.showQuestion();
                                         }
+                                      } else if (controller
+                                                  .questionToShowInEnglsihTest ==
+                                              0 &&
+                                          controller
+                                                  .selectedAppearedInEnglishTest ==
+                                              2) {
+                                        controller.nextForChange = true;
+                                        controller.showQuestion();
                                       } else {
                                         controller
                                             .showEnglishTestNextQuestion();
@@ -889,8 +1041,8 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                       fontWeight: FontWeight.w400,
                                       textSize: 12,
                                       iconData: Icon(
-                                        Icons.navigate_next,
-                                        size: 15,
+                                        Icons.arrow_circle_right,
+                                        size: 20,
                                         color: ThemeConstants.bluecolor,
                                       ),
                                     ),
@@ -922,9 +1074,17 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     } else if (controller.nextForChange ==
                                         true) {
                                       if (controller.questionNumberToShow ==
+                                              4 &&
+                                          controller
+                                                  .selectedLevelYouWantToStudy ==
+                                              null) {
+                                        getToast("Please select one");
+                                      } else if (controller
+                                              .questionNumberToShow ==
                                           4) {
-                                        controller.questionNumberToShow =
-                                            controller.questionNumberToShow + 1;
+                                        controller.showQuestion();
+                                        // controller.questionNumberToShow =
+                                        //     controller.questionNumberToShow + 1;
                                         controller.update();
                                       } else if (controller
                                                   .selectCourseBoardFieldCode ==
@@ -950,17 +1110,20 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     //   controller.showQuestion();
                                     // }
                                   },
-                                  child: CustomIconTextTogether(
-                                    // iconBeforeText: false,
-                                    text: 'Next',
-                                    Bgcolor: ThemeConstants.whitecolor,
-                                    color: ThemeConstants.bluecolor,
-                                    fontWeight: FontWeight.w400,
-                                    textSize: 12,
-                                    iconData: Icon(
-                                      Icons.navigate_next,
-                                      size: 15,
+                                  child: Container(
+                                    width: 100,
+                                    child: CustomIconTextTogether(
+                                      // iconBeforeText: false,
+                                      text: 'Next',
+                                      Bgcolor: ThemeConstants.whitecolor,
                                       color: ThemeConstants.bluecolor,
+                                      fontWeight: FontWeight.w400,
+                                      textSize: 12,
+                                      iconData: Icon(
+                                        Icons.arrow_circle_right,
+                                        size: 15,
+                                        color: ThemeConstants.bluecolor,
+                                      ),
                                     ),
                                   ),
                                 ),

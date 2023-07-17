@@ -132,16 +132,19 @@ class TravingHistory extends StatelessWidget {
   }
 
   callbackDateOfApplication(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOfApplicatiton = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dateOfApplicatiton = date[0] + "-" + date[1] + '-' + date[2];
+    controller.dateOfApplicatiton = data;
     controller.update();
   }
 
   callbackDateOfReject(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOfReject = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dateOfReject = date[0] + "-" + date[1] + '-' + date[2];
+
+    controller.dateOfReject = data;
     controller.update();
   }
 }

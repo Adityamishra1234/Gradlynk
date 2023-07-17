@@ -169,6 +169,7 @@ class _DashBoardState extends State<DashBoard> {
                           icon: svgImage(
                               "menu", ThemeConstants.IconColor, 35, 35),
                           onPressed: () {
+                            Get.find<BaseController>().profileDataValidator();
                             _scaffoldKey.currentState!.openDrawer();
 
                             DrawerFilter();
@@ -1078,11 +1079,16 @@ class _DashBoardState extends State<DashBoard> {
                                     TestiMonial(
                                       testimonialsList:
                                           dashboardController.testimonialsList,
+                                      isLoading: dashboardController
+                                          .testimonialsLoading,
                                     ),
 
                                     YoutubeVideoSection(
-                                        youtubeVideoModel: dashboardController
-                                            .youtubeVideoModel),
+                                      youtubeVideoModel:
+                                          dashboardController.youtubeVideoModel,
+                                      isLoading: dashboardController
+                                          .youtubeVideoLoading,
+                                    ),
                                     // Upcoming Event
                                     // if (_.loadingUpcomingEvents.value == true)
                                     //   Padding(

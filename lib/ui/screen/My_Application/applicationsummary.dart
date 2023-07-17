@@ -360,10 +360,10 @@ class ApplicationSummary extends StatelessWidget {
           ],
         );
       }),
-      bottomNavigationBar: CustomButtomNavbar(
-        currentIndex: 3,
-        context2: context,
-      ),
+      // bottomNavigationBar: CustomButtomNavbar(
+      //   currentIndex: 5,
+      //   context2: context,
+      // ),
     );
   }
 }

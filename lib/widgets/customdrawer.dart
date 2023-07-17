@@ -72,67 +72,81 @@ class CustomDrawer extends StatelessWidget {
                               // },
                               radius: 25.0,
                               backgroundImage: const NetworkImage(
-                                  "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250"),
+                                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                               backgroundColor: Colors.transparent,
                             ),
                             const SizedBox(
                               width: 15,
                             ),
-                            SizedBox(
-                              height: 200,
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomAutoSizeTextMontserrat(
-                                      text:
-                                          "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    const SizedBox(
-                                      height: 2.5,
-                                    ),
-                                    const SizedBox(
-                                      height: 2.5,
-                                    ),
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color:
-                                                  ThemeConstants.lightgreycolor,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          width: 120,
-                                          height: 5,
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              color: const Color.fromARGB(
-                                                  255, 16, 32, 255),
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                          width: controller.data.value
-                                                  .totalPercentageComplete!
-                                                  .toDouble() *
-                                              1.2,
-                                          height: 5,
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      "${controller.data.value.totalPercentageComplete}% completed",
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w500,
-                                          color: ThemeConstants.TextColor),
-                                    )
-                                  ]),
-                            )
+                            if (controller.loadinValidatorDataForDashboard ==
+                                false) ...[
+                              SizedBox(
+                                height: 200,
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      const SizedBox(
+                                        height: 2.5,
+                                      ),
+                                      const SizedBox(
+                                        height: 2.5,
+                                      ),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: ThemeConstants
+                                                    .lightgreycolor,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            width: 120,
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: const Color.fromARGB(
+                                                    255, 16, 32, 255),
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                            width: controller.data.value
+                                                    .totalPercentageComplete!
+                                                    .toDouble() *
+                                                1.2,
+                                            height: 5,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "${controller.data.value.totalPercentageComplete}% completed",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500,
+                                            color: ThemeConstants.TextColor),
+                                      )
+                                    ]),
+                              )
+                            ] else ...[
+                              Spacer(),
+                              SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CircularProgressIndicator(
+                                  color: ThemeConstants.bluecolor,
+                                ),
+                              ),
+                              Spacer(),
+                            ]
                           ]),
                         ),
 
@@ -583,101 +597,249 @@ class CustomDrawer extends StatelessWidget {
                                         ),
                                       )),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                    planYourFundDialog(context);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/totalFees.svg',
-                                          color: index == 7
-                                              ? ThemeConstants.bluecolor
-                                              : const Color.fromARGB(
-                                                  255, 31, 31, 31),
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 5),
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Plan your funds",
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                            textColor: index == 7
-                                                ? ThemeConstants.bluecolor
-                                                : ThemeConstants.blackcolor,
-                                          ),
-                                        ),
-                                        const Spacer(),
-                                        // const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.back();
-                                    supportDialog(context);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/Calender icon.svg',
-                                          color: index == 6
-                                              ? ThemeConstants.bluecolor
-                                              : const Color.fromARGB(
-                                                  255, 31, 31, 31),
-                                          width: 20,
-                                        ),
-                                        Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 5),
-                                          child: Row(
-                                            children: [
-                                              CustomAutoSizeTextMontserrat(
-                                                text: "Event Zone",
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Container(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.back();
+                                          planYourFundDialog(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/icons/totalFees.svg',
+                                              color: index == 7
+                                                  ? ThemeConstants.bluecolor
+                                                  : const Color.fromARGB(
+                                                      255, 31, 31, 31),
+                                              width: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
                                                 decoration: BoxDecoration(
-                                                    color: ThemeConstants.red,
+                                                    // color: index == 5
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
                                                     borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                5.0))),
+                                                        BorderRadius.circular(
+                                                            10.0)),
                                                 child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 2),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
-                                                    text: "New",
-                                                    fontSize: 10,
-                                                    textColor: ThemeConstants
-                                                        .whitecolor,
+                                                    text: "Plan your funds",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 7
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
                                                   ),
                                                 ),
-                                              )
-                                            ],
-                                          ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-
-                                        // const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                      )),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.back();
+                                          eventZoneDrawerPopUp(
+                                              context,
+                                              Get.find<BaseController>()
+                                                      .meetingZoneStatus
+                                                      .markAttendance ??
+                                                  false,
+                                              Get.find<BaseController>()
+                                                      .meetingZoneStatus
+                                                      .expressPass ??
+                                                  false,
+                                              Get.find<BaseController>()
+                                                      .meetingZoneStatus
+                                                      .expressPassGenerated ??
+                                                  false);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              'assets/icons/Calender icon.svg',
+                                              color: index == 8
+                                                  ? ThemeConstants.bluecolor
+                                                  : const Color.fromARGB(
+                                                      255, 31, 31, 31),
+                                              width: 20,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 8
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Event Zone",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 8
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: ThemeConstants.red,
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(
+                                                              5.0))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 5,
+                                                        vertical: 2),
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "New",
+                                                  fontSize: 10,
+                                                  textColor:
+                                                      ThemeConstants.whitecolor,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                                // InkWell(
+                                //   onTap: () {
+                                //     Get.back();
+                                //     planYourFundDialog(context);
+                                //   },
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.only(left: 20.0),
+                                //     child: Row(
+                                //       children: [
+                                //         SvgPicture.asset(
+                                //           'assets/icons/totalFees.svg',
+                                //           color: index == 7
+                                //               ? ThemeConstants.bluecolor
+                                //               : const Color.fromARGB(
+                                //                   255, 31, 31, 31),
+                                //           width: 20,
+                                //         ),
+                                //         Padding(
+                                //           padding: const EdgeInsets.only(
+                                //               left: 10, top: 5),
+                                //           child: CustomAutoSizeTextMontserrat(
+                                //             text: "Plan your funds",
+                                //             fontSize: 15,
+                                //             fontWeight: FontWeight.w500,
+                                //             textColor: index == 7
+                                //                 ? ThemeConstants.bluecolor
+                                //                 : ThemeConstants.blackcolor,
+                                //           ),
+                                //         ),
+                                //         const Spacer(),
+                                //         // const Icon(Icons.keyboard_arrow_down),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // InkWell(
+                                //   onTap: () {
+                                //     Get.back();
+                                //     supportDialog(context);
+                                //   },
+                                //   child: Padding(
+                                //     padding: const EdgeInsets.only(left: 20.0),
+                                //     child: Row(
+                                //       children: [
+                                //         SvgPicture.asset(
+                                //           'assets/icons/Calender icon.svg',
+                                //           color: index == 6
+                                //               ? ThemeConstants.bluecolor
+                                //               : const Color.fromARGB(
+                                //                   255, 31, 31, 31),
+                                //           width: 20,
+                                //         ),
+                                //         Padding(
+                                //           padding: const EdgeInsets.only(
+                                //               left: 10, top: 5),
+                                //           child: Row(
+                                //             children: [
+                                //               CustomAutoSizeTextMontserrat(
+                                //                 text: "Event Zone",
+                                //                 fontSize: 15,
+                                //                 fontWeight: FontWeight.w500,
+                                //               ),
+                                //               const SizedBox(
+                                //                 width: 10,
+                                //               ),
+                                //               Container(
+                                //                 decoration: BoxDecoration(
+                                //                     color: ThemeConstants.red,
+                                //                     borderRadius:
+                                //                         const BorderRadius.all(
+                                //                             Radius.circular(
+                                //                                 5.0))),
+                                //                 child: Padding(
+                                //                   padding: const EdgeInsets
+                                //                           .symmetric(
+                                //                       horizontal: 5,
+                                //                       vertical: 2),
+                                //                   child:
+                                //                       CustomAutoSizeTextMontserrat(
+                                //                     text: "New",
+                                //                     fontSize: 10,
+                                //                     textColor: ThemeConstants
+                                //                         .whitecolor,
+                                //                   ),
+                                //                 ),
+                                //               )
+                                //             ],
+                                //           ),
+                                //         ),
+
+                                //         // const Icon(Icons.keyboard_arrow_down),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+
                                 InkWell(
                                   onTap: () {
                                     Get.back();
@@ -696,8 +858,8 @@ class CustomDrawer extends StatelessWidget {
                                           width: 20,
                                         ),
                                         Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 5),
+                                          padding: const EdgeInsets.only(
+                                              left: 10, top: 5),
                                           child: CustomAutoSizeTextMontserrat(
                                             text: "Gradlynk Support",
                                             fontSize: 15,

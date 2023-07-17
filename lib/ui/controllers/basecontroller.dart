@@ -50,14 +50,22 @@ class BaseController extends GetxController with StateMixin {
 
   var data = ProfileDataValidatorModel().obs;
   RxBool loading = false.obs;
+
+  bool loadinValidatorDataForDashboard = false;
   profileDataValidator() async {
     ///todo
     ///
+    ///
+    loadinValidatorDataForDashboard = true;
+    update();
     print(Get.find<BaseController>().model1.id!);
     var x = await apiServices
         .profileDataValidation(Get.find<BaseController>().model1.id!);
     var z = ProfileDataValidatorModel.fromJson(x);
     data.value = z;
+    loadinValidatorDataForDashboard = false;
+
+    update();
     // loading.value = false;
   }
 
@@ -113,9 +121,14 @@ class BaseController extends GetxController with StateMixin {
     getNotificatin(model1.id.toString());
   }
 
-  checkShowLetsGetStarted() {
+  checkShowLetsGetStarted() async {
     ///todo
+    ///
+    ///
+
     if (model1.student_consent == 0) {
+      change(null, status: RxStatus.success());
+      await Future.delayed(Duration(seconds: 5));
       Get.offAll(LetsGetStartedMainView());
     }
   }
@@ -162,6 +175,7 @@ class BaseController extends GetxController with StateMixin {
   }
 
   eventZone(String end_id) async {
+    change(null, status: RxStatus.loading());
     eventlist = [];
     var res = await apiServices.getEventZone(Endpoints.eventZone! + end_id);
     if (res != null) {
@@ -173,5 +187,6 @@ class BaseController extends GetxController with StateMixin {
       }
     }
     eventlist = eventlist.toSet().toList();
+    change(null, status: RxStatus.success());
   }
 }

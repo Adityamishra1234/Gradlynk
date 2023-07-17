@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetext.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -9,7 +10,8 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubeVideoSection extends StatelessWidget {
   List<YoutubeVideoModel> youtubeVideoModel = [];
-  YoutubeVideoSection({Key? key, required this.youtubeVideoModel})
+   bool isLoading;
+  YoutubeVideoSection({Key? key, required this.youtubeVideoModel ,required this.isLoading} )
       : super(key: key);
   // List link;
 
@@ -18,7 +20,7 @@ class YoutubeVideoSection extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       height: 190,
-      child: Column(
+      child: isLoading == false ?  Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -72,10 +74,13 @@ class YoutubeVideoSection extends StatelessWidget {
                                     ));
                                   },
                                   child: Stack(
+                                    fit: StackFit.expand,
                                     children: [
                                       Image.network(
-                                          youtubeVideoModel[index].thumbnail ??
-                                              ""),
+                                        youtubeVideoModel[index].thumbnail ??
+                                            "",
+                                        fit: BoxFit.cover,
+                                      ),
                                       Center(
                                         child: Icon(
                                           Icons.play_arrow,
@@ -102,7 +107,7 @@ class YoutubeVideoSection extends StatelessWidget {
                             // ),
                           ));
                     })),
-          ]),
+          ]) : getLoading(context),
     );
   }
 }

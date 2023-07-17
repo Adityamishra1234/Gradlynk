@@ -9,7 +9,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 class LetsGetStartedController extends GetxController with StateMixin {
   ApiServices api = ApiServices();
   var baseController = Get.find<BaseController>();
-  int questionNumberToShow = 1;
+  int questionNumberToShow = 0;
 
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -26,6 +26,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   showEnglishTestNextQuestion() {
+    widthOfSlider = widthOfSlider + 40;
     questionToShowInEnglsihTest = questionToShowInEnglsihTest + 1;
     update();
   }
@@ -43,13 +44,18 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
     questionsToShowList.addAll(map.values.toList());
 
+    ///todo
+    // questionsToShowList = [true, true, false, false, false, false];
+
     showQuestion();
 
     update();
     // questionsToShowString.addAll(map.keys.toList());
 
-    // print(questionsToShowList);
+    print(questionsToShowList);
   }
+
+  double widthOfSlider = 10;
 
   //firstQuestion
   int? selectedLastQualification = null;
@@ -66,6 +72,8 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
   int questionToShowInEnglsihTest = 0;
 
+  int indexOfQuestion = 0;
+
   TextEditingController specifyCourseTextController = TextEditingController();
 
   showQuestion() {
@@ -80,37 +88,75 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //   }
       // } else {
 
-      var toShowOrNot = !questionsToShowList[questionNumberToShow + 1];
-      if (toShowOrNot == true) {
-        questionNumberToShow = questionNumberToShow + 1;
-        if (questionNumberToShow == 3) {
-          nextForChange = false;
-        }
+      if (questionNumberToShow != 5) {
+        questionNumberToShow++;
       } else {
-        questionNumberToShow = questionNumberToShow + 1;
-        if (questionNumberToShow == 3) {
-          nextForChange = false;
-        }
-
-        if (questionNumberToShow != 4) {
-          showQuestion();
-        }
-
-        if (questionNumberToShow == 4) {
-          questionNumberToShow = 5;
-          nextForChange = true;
-        }
-
-        // }
+        questionNumberToShow = 0;
+        showConsentTermsForm = true;
+        nextForChange = true;
+        update();
+        return;
       }
 
-      print(questionsToShowList);
-    }
+      widthOfSlider = widthOfSlider + 40;
+      var toShowOrNot = questionNumberToShow == 1
+          ? questionsToShowList[questionNumberToShow]
+          // : questionNumberToShow == 5
+          //     ? questionsToShowList[5]
+          : !questionsToShowList[questionNumberToShow];
+      if (toShowOrNot == true) {
+        nextForChange = true;
+        // questionNumberToShow = questionNumberToShow + 1;
+        if (questionNumberToShow == 3) {
+          nextForChange = false;
+        }
+      } else if (toShowOrNot == false) {
+        nextForChange = true;
+        // questionNumberToShow = questionNumberToShow + 1;
+        if (questionNumberToShow == 3) {
+          nextForChange = false;
+        }
 
+        if (questionNumberToShow != 5) {
+          showQuestion();
+        } else {
+          questionNumberToShow = 0;
+          showConsentTermsForm = true;
+          nextForChange = true;
+          update();
+          return;
+        }
+
+        // if (questionNumberToShow == 5) {
+        //   questionNumberToShow = 0;
+        //   showConsentTermsForm = true;
+        //   nextForChange = true;
+        // }
+
+        // }
+
+        print(questionsToShowList);
+      }
+    }
     update();
   }
 
+  back() {
+    widthOfSlider = widthOfSlider - 80;
+    // questionToShowInEnglsihTest = 0;
+    questionNumberToShow = questionNumberToShow - 2;
+    showQuestion();
+  }
+
+  backForEnglish() {
+    widthOfSlider = widthOfSlider - 80;
+    questionToShowInEnglsihTest = questionToShowInEnglsihTest - 2;
+    // questionNumberToShow = questionNumberToShow - 2;
+    showEnglishTestNextQuestion();
+  }
+
   postLetsGetStartedData() async {
+    change(null, status: RxStatus.loading());
     var endpoint = letsGetStartedSendData(
         enqId: baseController.model1.id,
         consentQualifactionData: selectedLastQualification,
@@ -124,7 +170,8 @@ class LetsGetStartedController extends GetxController with StateMixin {
     var res = await api.postLetsGetStarted(endpoint);
 
     if (res['status'] == true) {
-      Get.to(DashBoard());
+      change(null, status: RxStatus.success());
+      Get.offAllNamed(DashBoard.routeNamed);
     }
 
     print(res);

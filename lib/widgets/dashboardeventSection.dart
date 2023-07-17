@@ -20,8 +20,8 @@ class DashboardEventSection extends StatelessWidget {
           Container(
             // padding:
             //     const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
-            margin: const EdgeInsets.only(top: 10),
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+            margin: const EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: ThemeConstants.whitecolor,
@@ -38,7 +38,7 @@ class DashboardEventSection extends StatelessWidget {
                 children: [
                   Container(
                       width: 150,
-                      height: 200,
+                      height: 250,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +49,7 @@ class DashboardEventSection extends StatelessWidget {
                             child: Image.asset(
                               'assets/icons/event-zone.gif',
                               gaplessPlayback: false,
-                              width: 250,
+                              width: MediaQuery.of(context).size.width,
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -61,10 +61,13 @@ class DashboardEventSection extends StatelessWidget {
                       // color: ThemeConstants.GreenColor,
                       width: MediaQuery.of(context).size.width - 200,
                       child: Wrap(
-                        alignment: WrapAlignment.center,
-                        runAlignment: WrapAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.end,
+                        // crossAxisAlignment: CrossAxisAlignment.end,
+                        alignment: WrapAlignment.end,
+                        crossAxisAlignment: WrapCrossAlignment.end,
+                        runAlignment: WrapAlignment.end,
                         spacing: 5,
-                        runSpacing: 5,
+                        runSpacing: 10,
                         children: [
                           if (Get.find<BaseController>()
                                   .meetingZoneStatus
@@ -91,7 +94,7 @@ class DashboardEventSection extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: SizedBox(
-                                      width: 100,
+                                      width: 60,
                                       child: CustomAutoSizeTextMontserrat(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
@@ -154,39 +157,35 @@ class DashboardEventSection extends StatelessWidget {
                                   ));
                                 } catch (e) {}
                               },
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        constraints: const BoxConstraints(
-                                            maxHeight: 60, maxWidth: 60),
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                            // border: Border.all(
-                                            //     width: 1.2,
-                                            //     color: ThemeConstants
-                                            //         .VioletColor),
-                                            color: ThemeConstants.lightRed,
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                                    Radius.circular(20))),
-                                        child: svgImage("create_profile",
-                                            ThemeConstants.red, 80, 80)),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: SizedBox(
-                                        width: 100,
-                                        child: CustomAutoSizeTextMontserrat(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 13,
-                                          text: "Express Pass View",
-                                          textalingCentre: true,
-                                        ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                      constraints: const BoxConstraints(
+                                          maxHeight: 60, maxWidth: 60),
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          // border: Border.all(
+                                          //     width: 1.2,
+                                          //     color: ThemeConstants
+                                          //         .VioletColor),
+                                          color: ThemeConstants.lightRed,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: svgImage("create_profile",
+                                          ThemeConstants.red, 80, 80)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "Express Pass View",
+                                        textalingCentre: true,
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                         ],
@@ -213,6 +212,19 @@ class DashboardEventSection extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               )),
+          Positioned(
+            top: 0,
+            right: 15,
+            child: Padding(
+              padding: const EdgeInsets.all(0),
+              child: Image.asset(
+                'assets/images/new.png',
+                gaplessPlayback: false,
+                width: 35,
+                fit: BoxFit.contain,
+              ),
+            ),
+          )
         ],
       ),
     );

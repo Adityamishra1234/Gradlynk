@@ -240,9 +240,11 @@ class FundStatusSubWidget extends StatelessWidget {
             ),
           ),
           Positioned(
+
               // top: -20,
               left: 25,
               child: Container(
+                width: 280,
                 padding:
                     const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 height: 35,
@@ -257,6 +259,7 @@ class FundStatusSubWidget extends StatelessWidget {
                             ? ThemeConstants.bluecolor
                             : ThemeConstants.yellow)),
                 child: CustomAutoSizeTextMontserrat(
+                  maxLines: 1,
                   fontSize: 14,
                   text: title,
                   textColor: ThemeConstants.blackcolor,

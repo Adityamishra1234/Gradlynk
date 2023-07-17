@@ -5,6 +5,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetail
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -265,10 +266,14 @@ class OthertestDetail extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? true : false,
-            date: controller.dateOfExamSelected,
-            callbackDate: callbackExamName),
+        child: SizedBox(
+          height: 40,
+          child: CustomTimerWidget(
+              startingDate: DateTime.now(),
+              // enableField: controller.editSave.value == true ? true : false,
+              // date: controller.dateOfExamSelected,
+              callback: callbackExamName),
+        ),
       )
     ];
   }
