@@ -87,6 +87,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
         if (markAttendanceIntakeModel.documentExists == false) {
           Get.to(MarkAttendanceDocumentStatus());
         } else {
+          getToast("kindly view your express pass view option");
           Get.toNamed(DashBoard.routeNamed);
         }
       }
