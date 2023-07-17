@@ -427,19 +427,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         },
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 20, right: 10),
-                      child: Align(
-                        alignment: AlignmentDirectional.topStart,
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Whatsapp Number",
-                          //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
-                          // fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                   
                     Container(
                       child: Row(children: [
                         Checkbox(
@@ -465,11 +453,25 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           child: CustomAutoSizeTextMontserrat(
                             text: "This number is Whatsapp number",
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ]),
+                    ),
+
+                     Padding(
+                      padding:
+                          const EdgeInsets.only(top: 10, left: 20, right: 10),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: CustomAutoSizeTextMontserrat(
+                          text: "Whatsapp Number",
+                          //textColor: ThemeConstants.TextColor,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
@@ -812,6 +814,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     ),
                     CheckboxListTile(
                       title: CustomAutoSizeTextMontserrat(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
                           text: "Are you available on Social Media"),
                       value:controller.socialMedia,
                       onChanged: (newValue) {

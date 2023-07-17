@@ -38,18 +38,27 @@ class DashboardController extends GetxController {
   }
 
   List youtubeVideoLink = [];
+  bool youtubeVideoLoading = true;
   getYoutubeVideos() async {
+  youtubeVideoLoading = true;
+update();
     var res = await apiservices.getYoutubeVideoLink();
     if (res != null) {
       youtubeVideoModel = res;
       // youtubeVideoLink = res;
 
-      update();
+      
     }
+  youtubeVideoLoading = false;
+
+    update();
   }
 
   List<GetAllTestimonialsModel> testimonialsList = [];
+  bool testimonialsLoading = true;
   getTestimonials() async {
+    testimonialsLoading = true;
+    update();
     var res = await apiservices.getAllTestimonials();
     if (res != null) {
       var data = List<GetAllTestimonialsModel>.from(
@@ -57,8 +66,13 @@ class DashboardController extends GetxController {
 
       testimonialsList = data;
       loadingUpcomingEvents = true.obs;
-      update();
+
+
+  
     }
+
+testimonialsLoading = false;
+        update();
   }
 
   newAndUpdates() async {

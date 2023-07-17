@@ -146,7 +146,9 @@ class Fundrequirement extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
+
+                if(  controller.model.maritalStatus == 'Married' )...[
+ Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     children: [
@@ -377,6 +379,9 @@ class Fundrequirement extends StatelessWidget {
                         ],
                       ),
                     ),
+
+                ],
+               
                 Align(
                   alignment: Alignment.topRight,
                   child: Padding(

@@ -653,7 +653,7 @@ class CustomDrawer extends StatelessWidget {
                                           children: [
                                             SvgPicture.asset(
                                               'assets/icons/Calender icon.svg',
-                                              color: index == 6
+                                              color: index == 8
                                                   ? ThemeConstants.bluecolor
                                                   : const Color.fromARGB(
                                                       255, 31, 31, 31),
@@ -665,7 +665,7 @@ class CustomDrawer extends StatelessWidget {
                                               child: Container(
                                                 height: 30,
                                                 decoration: BoxDecoration(
-                                                    // color: index == 5
+                                                    // color: index == 8
                                                     //     ? ThemeConstants.lightblueColor
                                                     //     : ThemeConstants.whitecolor,
                                                     borderRadius:
@@ -680,7 +680,7 @@ class CustomDrawer extends StatelessWidget {
                                                     text: "Event Zone",
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w500,
-                                                    textColor: index == 7
+                                                    textColor: index == 8
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : ThemeConstants

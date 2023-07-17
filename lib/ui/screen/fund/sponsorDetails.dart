@@ -73,7 +73,7 @@ class SponsorDetails extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: CustomAutoSizeTextMontserrat(
-                        text: "Total Planned Amount = 2973535.90",
+                        text: "Total Planned Amount = ${controller.total_fund}",
                         textColor: Color(0xffdc3545),
                       ),
                     ),

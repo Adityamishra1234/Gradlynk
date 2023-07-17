@@ -155,7 +155,9 @@ class CodeScreen extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
+
+                if( controller.showBelowContent = false )...[
+ Container(
                   padding: EdgeInsets.symmetric(horizontal: 80),
                   child: CustomAutoSizeTextMontserrat(
                     textalingCentre: true,
@@ -187,6 +189,10 @@ class CodeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
+
+                ]
+
+               
               ],
             ),
           ),
