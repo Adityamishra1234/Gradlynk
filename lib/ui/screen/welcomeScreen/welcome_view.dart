@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view_controller.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -63,7 +64,7 @@ class WelcomeView extends StatelessWidget {
                         height: 10,
                       ),
                       Data(
-                          icon: "assets/icons/Explore the world.svg",
+                          icon: "Explore the world",
                           text:
                               'Discover courses from top universities across Australia, Canada, USA, UK, Europe, New Zealand and Asia.',
                           title: 'Explore the Globe',
@@ -73,7 +74,7 @@ class WelcomeView extends StatelessWidget {
                         height: 20,
                       ),
                       Data(
-                          icon: "assets/icons/Expert.svg",
+                          icon: "Expert",
                           text:
                               'Get assistance from experts in the industry and build your dream career.',
                           title: 'Excel with the Experts',
@@ -82,7 +83,7 @@ class WelcomeView extends StatelessWidget {
                         height: 20,
                       ),
                       Data(
-                          icon: "assets/icons/Track Issue.svg",
+                          icon: "Track Issue",
                           text:
                               'Stay live updated on your application and offer status.',
                           title: 'Track your Journey',
@@ -159,11 +160,14 @@ class WelcomeView extends StatelessWidget {
             width: 80,
             child: CircleAvatar(
               backgroundColor: ThemeConstants.lightblueColor,
-              child: SvgPicture.asset(
-                icon,
-                color: ThemeConstants.bluecolor,
-                height: 50,
-              ),
+              child: 
+               svgImage(
+                              "$icon", ThemeConstants.bluecolor, 50, 50),
+              // SvgPicture.asset(
+              //   icon,
+              //   color: ThemeConstants.bluecolor,
+              //   height: 50,
+              // ),
             ),
           ),
           Container(

@@ -925,10 +925,10 @@ supportDialog(
                               decoration: BoxDecoration(
                                   color: ThemeConstants.bluecolor,
                                   shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                'assets/icons/mail.svg',
-                                color: ThemeConstants.whitecolor,
-                              ),
+                              child: 
+                              svgImage(
+                              "mail",ThemeConstants.whitecolor, 35, 35),
+                            
                             ),
                             const SizedBox(
                               width: 20,
@@ -1123,10 +1123,13 @@ planYourFundDialog(
                               decoration: BoxDecoration(
                                   color: ThemeConstants.bluecolor,
                                   shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                'assets/icons/manage_sponsor.svg',
-                                color: ThemeConstants.whitecolor,
-                              ),
+                              child: 
+                              svgImage(
+                              "manage_sponsor",ThemeConstants.whitecolor, 35, 35),
+                              // SvgPicture.asset(
+                              //   'assets/icons/manage_sponsor.svg',
+                              //   color: ThemeConstants.whitecolor,
+                              // ),
                             ),
                             const SizedBox(
                               width: 20,
@@ -1177,10 +1180,14 @@ planYourFundDialog(
                               decoration: BoxDecoration(
                                   color: ThemeConstants.bluecolor,
                                   shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                'assets/icons/fund_status.svg',
-                                color: ThemeConstants.whitecolor,
-                              ),
+                              child: 
+                               svgImage(
+                              "fund_status",  ThemeConstants.whitecolor, 35, 35),
+                              
+                              // SvgPicture.asset(
+                              //   'assets/icons/fund_status.svg',
+                              //   color: ThemeConstants.whitecolor,
+                              // ),
                             ),
                             const SizedBox(
                               width: 20,
@@ -1663,10 +1670,14 @@ eventZoneDrawerPopUp(
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.bluecolor,
                                     shape: BoxShape.circle),
-                                child: SvgPicture.asset(
-                                  'assets/icons/Mark attendence.svg',
-                                  color: ThemeConstants.whitecolor,
-                                ),
+                                child:
+                                
+                                 svgImage(
+                              "Mark attendence", ThemeConstants.whitecolor, 35, 35),
+                                //  SvgPicture.asset(
+                                //   'assets/icons/Mark attendence.svg',
+                                //   color: ThemeConstants.whitecolor,
+                                // ),
                               ),
                               const SizedBox(
                                 width: 20,
@@ -1721,10 +1732,13 @@ eventZoneDrawerPopUp(
                                 decoration: BoxDecoration(
                                     color: ThemeConstants.bluecolor,
                                     shape: BoxShape.circle),
-                                child: SvgPicture.asset(
-                                  'assets/icons/Express entry.svg',
-                                  color: ThemeConstants.whitecolor,
-                                ),
+                                child: 
+                                 svgImage(
+                              "Express entry",  ThemeConstants.whitecolor, 35, 35),
+                                // SvgPicture.asset(
+                                //   'assets/icons/Express entry.svg',
+                                //   color: ThemeConstants.whitecolor,
+                                // ),
                               ),
                               const SizedBox(
                                 width: 20,

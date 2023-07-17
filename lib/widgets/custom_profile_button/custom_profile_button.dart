@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class CustomProfileButton extends StatefulWidget {
@@ -99,11 +100,15 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
               ),
             ),
             widget.isCompleted == 1
-                ? SvgPicture.asset(
-                    "assets/icons/tick.svg",
-                    height: 30,
-                    color: ThemeConstants.bluecolor,
-                  )
+                ? 
+                
+                 svgImage(
+                              "tick", ThemeConstants.bluecolor, 35, 35)
+                // SvgPicture.asset(
+                //     "assets/icons/tick.svg",
+                //     height: 30,
+                //     color: ThemeConstants.bluecolor,
+                //   )
                 : Icon(
                     Icons.error_outline_rounded,
                     color: ThemeConstants.red,

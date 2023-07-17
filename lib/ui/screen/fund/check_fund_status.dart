@@ -169,12 +169,14 @@ class FundStatusSubWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SvgPicture.asset(
-                      "assets/icons/building.svg",
-                      color: ThemeConstants.GreenColor,
-                      width: 20,
-                      height: 20,
-                    ),
+                     svgImage(
+                              "building", ThemeConstants.GreenColor, 20, 20),
+                    // SvgPicture.asset(
+                    //   "assets/icons/building.svg",
+                    //   color: ThemeConstants.GreenColor,
+                    //   width: 20,
+                    //   height: 20,
+                    // ),
                     const SizedBox(
                       width: 5,
                     ),

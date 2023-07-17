@@ -92,9 +92,12 @@ class IntakeScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 15, right: 15),
                   child: SizedBox(
                       height: 50,
-                      child: CustomTimerWidget(callback: (value) {
+                      child: CustomTimerWidget(
+                        isBlank: true,
+                        callback: (value) {
                         controller.intake = value;
                         controller.update();
+                        
                       })),
                 ),
                 Center(

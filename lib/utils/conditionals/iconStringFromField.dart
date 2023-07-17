@@ -2,41 +2,41 @@ getIconStringForFundParameter(String nameOftheField) {
   var iconString = '';
   switch (nameOftheField) {
     case 'Course fee':
-      iconString = 'assets/icons/totalFees.svg';
+      iconString = 'totalFees';
       break;
     case 'Living Expense':
-      iconString = 'assets/icons/Living Expense.svg';
+      iconString = 'Living Expense';
       break;
     case 'Children Expense':
-      iconString = 'assets/icons/Children Expense (18 Age).svg';
+      iconString = 'Children Expense (18 Age)';
       break;
     case 'Children School Expense':
-      iconString = 'assets/icons/University.svg';
+      iconString = 'University';
       break;
     case 'Children Expense (>18 Age)':
-      iconString = 'assets/icons/Children Expense (18 Age).svg';
+      iconString = 'Children Expense (18 Age)';
       break;
     case 'Total funds required (1 year)':
-      iconString = 'assets/icons/totalFees.svg';
+      iconString = 'totalFees';
       break;
     case 'Spouse Expense':
-      iconString = 'assets/icons/Spouse Expense.svg';
+      iconString = 'Spouse Expense';
       break;
 
     case 'Family Insurance (Assumptive)':
-      iconString = 'assets/icons/totalFees.svg';
+      iconString = 'totalFees';
       break;
     case 'Travel expense':
-      iconString = 'assets/icons/Annual Tuition Fees.svg';
+      iconString = 'Annual Tuition Fees';
       break;
     case 'Total funds required (1 year)':
-      iconString = 'assets/icons/totalFees.svg';
+      iconString = 'totalFees';
       break;
     // case 'Total funds required (1 year)':
     //   iconString = 'assets/icons/totalFees.svg';
     //   break;
     default:
-      iconString = 'assets/icons/totalFees.svg';
+      iconString = 'totalFees';
   }
 
   return iconString;

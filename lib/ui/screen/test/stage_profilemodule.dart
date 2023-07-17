@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/extensions.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -66,7 +67,7 @@ class StageProgress extends StatelessWidget {
                   text2: 'Enroll With SIEC',
                   count: 1,
                   last: true,
-                  icon: 'assets/icons/enroll.svg',
+                  icon: 'enroll',
                 ),
                 CustomStepper(
                   iconColor: ThemeConstants.yellow,
@@ -75,7 +76,7 @@ class StageProgress extends StatelessWidget {
                   text2: 'Build your Profile',
                   count: 1,
                   last: true,
-                  icon: 'assets/icons/Build_profile.svg',
+                  icon: 'Build_profile',
                 ),
                 CustomStepper(
                   iconColor: ThemeConstants.bluecolor,
@@ -85,7 +86,7 @@ class StageProgress extends StatelessWidget {
                   text2: 'Shortlist dream course from top University',
                   count: 1,
                   last: true,
-                  icon: 'assets/icons/Shortlist.svg',
+                  icon: 'Shortlist',
                 ),
                 CustomStepper(
                   iconColor: ThemeConstants.yellow,
@@ -95,7 +96,7 @@ class StageProgress extends StatelessWidget {
                   text2: 'Finalise better course with the Expert',
                   count: 1,
                   last: true,
-                  icon: 'assets/icons/Expert.svg',
+                  icon: 'Expert',
                 ),
                 CustomStepper(
                   iconColor: ThemeConstants.bluecolor,
@@ -105,7 +106,7 @@ class StageProgress extends StatelessWidget {
                   text2: 'Prepare Document and initiate Application',
                   count: 1,
                   last: true,
-                  icon: 'assets/icons/document.svg',
+                  icon: 'document',
                 ),
                 CustomStepper(
                   iconColor: ThemeConstants.yellow,
@@ -115,7 +116,7 @@ class StageProgress extends StatelessWidget {
                   count: 1,
                   text2: 'Submit Application',
                   last: true,
-                  icon: 'assets/icons/submit.svg',
+                  icon: 'submit',
                 ),
                 CustomStepper(
                   iconColor: ThemeConstants.bluecolor,
@@ -126,7 +127,7 @@ class StageProgress extends StatelessWidget {
                   text2: 'Receive Offer Letter',
                   last: true,
                   first: true,
-                  icon: 'assets/icons/offer letter.svg',
+                  icon: 'offer letter',
                 ),
               ],
             ),
@@ -265,13 +266,16 @@ class CustomStepper extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(color: iconColor)),
                     child: Center(
-                      child: SvgPicture.asset(
-                        icon,
-                        height: 23,
-                        width: 23,
-                        color: iconColor,
-                        //   ), ,
-                      ),
+                      child:
+                       svgImage(
+                              "$icon", ThemeConstants.IconColor, 23, 23),
+                      //  SvgPicture.asset(
+                      //   icon,
+                      //   height: 23,
+                      //   width: 23,
+                      //   color: iconColor,
+                      //   //   ), ,
+                      // ),
                     ),
                   ),
                   CustomStepperBox(textHead: text, textSubHead: text2),

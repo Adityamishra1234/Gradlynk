@@ -67,11 +67,15 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: SvgPicture.asset(
-                              "assets/icons/University.svg",
-                              width: 20,
-                              height: 20,
-                            ),
+                            child: 
+                             svgImage(
+                              "University", ThemeConstants.IconColor, 20, 20),
+                            
+                            // SvgPicture.asset(
+                            //   "assets/icons/University.svg",
+                            //   width: 20,
+                            //   height: 20,
+                            // ),
                           ),
                           text1: 'University',
                           text2: controller.model.university ?? "",
@@ -79,11 +83,14 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: SvgPicture.asset(
-                              "assets/icons/Course.svg",
-                              width: 20,
-                              height: 20,
-                            ),
+                            child: 
+                             svgImage(
+                              "Course", ThemeConstants.IconColor, 20, 20),
+                            // SvgPicture.asset(
+                            //   "assets/icons/Course.svg",
+                            //   width: 20,
+                            //   height: 20,
+                            // ),
                           ),
                           text1: 'Course',
                           text2: controller.model.courseName ?? "",
@@ -91,11 +98,14 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: SvgPicture.asset(
-                              "assets/icons/Duration.svg",
-                              width: 20,
-                              height: 20,
-                            ),
+                            child:
+                             svgImage(
+                              "Duration", ThemeConstants.IconColor, 20, 20),
+                            //  SvgPicture.asset(
+                            //   "assets/icons/Duration.svg",
+                            //   width: 20,
+                            //   height: 20,
+                            // ),
                           ),
                           text1: 'Duration',
                           text2: controller.model.courseDuration ?? "",
@@ -103,11 +113,14 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: SvgPicture.asset(
-                              "assets/icons/Annual Tuition Fees.svg",
-                              width: 20,
-                              height: 20,
-                            ),
+                            child: 
+                             svgImage(
+                              "Annual Tuition Fees", ThemeConstants.IconColor, 20, 20),
+                            // SvgPicture.asset(
+                            //   "assets/icons/Annual Tuition Fees.svg",
+                            //   width: 20,
+                            //   height: 20,
+                            // ),
                           ),
                           text1: 'Annual Tuttion Fees',
                           text2: controller.model.atf ?? "",
@@ -115,11 +128,14 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: SvgPicture.asset(
-                              "assets/icons/totalFees.svg",
-                              width: 20,
-                              height: 20,
-                            ),
+                            child: 
+                             svgImage(
+                              "totalFees", ThemeConstants.IconColor, 20, 20),
+                            // SvgPicture.asset(
+                            //   "assets/icons/totalFees.svg",
+                            //   width: 20,
+                            //   height: 20,
+                            // ),
                           ),
                           text1: 'Total Tution Fees',
                           text2: controller.model.ttf ?? "",

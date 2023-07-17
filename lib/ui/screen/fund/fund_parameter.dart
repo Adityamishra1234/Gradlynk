@@ -162,10 +162,13 @@ class FundparameterSubWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   children: [
-                    SvgPicture.asset(
-                      '$iconPath',
-                      width: 30,
-                    ),
+
+                     svgImage(
+                              "$iconPath", ThemeConstants.GreenColor, 20, 20),
+                    // SvgPicture.asset(
+                    //   '$iconPath',
+                    //   width: 30,
+                    // ),
                     SizedBox(
                       width: 10,
                     ),

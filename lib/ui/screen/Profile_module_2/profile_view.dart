@@ -272,11 +272,13 @@ class ProfileView extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          SvgPicture.asset(
-                                              "assets/icons/doc.svg",
-                                              color: ThemeConstants.blackcolor,
-                                              width: 50,
-                                              height: 50),
+                                           svgImage(
+                              "doc", ThemeConstants.IconColor, 35, 35),
+                                          // SvgPicture.asset(
+                                          //     "assets/icons/doc.svg",
+                                          //     color: ThemeConstants.blackcolor,
+                                          //     width: 50,
+                                          //     height: 50),
                                           CustomAutoSizeTextMontserrat(
                                             text: "Mandatory Details",
                                             fontSize: 20,
