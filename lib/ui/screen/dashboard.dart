@@ -930,83 +930,88 @@ class _DashBoardState extends State<DashBoard> {
                                             ),
                                           ),
                                           // Track Application
-                                          InkWell(
-                                            onTap: () {
-                                              Get.toNamed(ApplicationSummary
-                                                  .routeNamed);
-                                            },
-                                            child: Column(
-                                              children: [
-                                                Showcase(
-                                                  descTextStyle: TextStyle(
-                                                      color: ThemeConstants
-                                                          .whitecolor,
-                                                      fontSize: 18),
-                                                  tooltipBackgroundColor:
-                                                      ThemeConstants.bluecolor,
-                                                  overlayColor:
-                                                      const Color.fromARGB(
-                                                          183, 0, 0, 0),
-                                                  overlayOpacity: 0.8,
-                                                  tooltipPadding:
-                                                      const EdgeInsets.only(
-                                                          left: 5,
-                                                          right: 5,
-                                                          top: 10,
-                                                          bottom: 10),
-                                                  targetBorderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0),
-                                                  key: _five,
-                                                  description:
-                                                      "You can keep a track on your Application Stage and Status.",
-                                                  child: Container(
-                                                    constraints:
-                                                        const BoxConstraints(
-                                                            maxHeight: 70,
-                                                            maxWidth: 70),
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            12),
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            // border: Border.all(
-                                                            //     width: 1.2,
-                                                            //     color: const Color(
-                                                            //         0xFF05B4D2)),
-                                                            color: Color(
-                                                                0xFFE8FAFD),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            20))),
-                                                    child: svgImage(
-                                                        "track",
-                                                        const Color(0xFF05B4D2),
-                                                        80,
-                                                        80),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 10),
-                                                  child: SizedBox(
-                                                    width: 100,
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text: "Track application",
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 13,
-                                                      textalingCentre: true,
+                                          if (_.meetingZoneStatus
+                                                  .trackApplication ==
+                                              true)
+                                            InkWell(
+                                              onTap: () {
+                                                Get.toNamed(ApplicationSummary
+                                                    .routeNamed);
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Showcase(
+                                                    descTextStyle: TextStyle(
+                                                        color: ThemeConstants
+                                                            .whitecolor,
+                                                        fontSize: 18),
+                                                    tooltipBackgroundColor:
+                                                        ThemeConstants
+                                                            .bluecolor,
+                                                    overlayColor:
+                                                        const Color.fromARGB(
+                                                            183, 0, 0, 0),
+                                                    overlayOpacity: 0.8,
+                                                    tooltipPadding:
+                                                        const EdgeInsets.only(
+                                                            left: 5,
+                                                            right: 5,
+                                                            top: 10,
+                                                            bottom: 10),
+                                                    targetBorderRadius:
+                                                        BorderRadius.circular(
+                                                            18.0),
+                                                    key: _five,
+                                                    description:
+                                                        "You can keep a track on your Application Stage and Status.",
+                                                    child: Container(
+                                                      constraints:
+                                                          const BoxConstraints(
+                                                              maxHeight: 70,
+                                                              maxWidth: 70),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              12),
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                              // border: Border.all(
+                                                              //     width: 1.2,
+                                                              //     color: const Color(
+                                                              //         0xFF05B4D2)),
+                                                              color: Color(
+                                                                  0xFFE8FAFD),
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          20))),
+                                                      child: svgImage(
+                                                          "track",
+                                                          const Color(
+                                                              0xFF05B4D2),
+                                                          80,
+                                                          80),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10),
+                                                    child: SizedBox(
+                                                      width: 100,
+                                                      child:
+                                                          CustomAutoSizeTextMontserrat(
+                                                        text:
+                                                            "Track application",
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 13,
+                                                        textalingCentre: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
                                           // InkWell(
                                           //   onTap: () {
                                           //     Get.to(StageProgress());
@@ -1051,12 +1056,18 @@ class _DashBoardState extends State<DashBoard> {
                                     const SizedBox(
                                       height: 15,
                                     ),
-
-                                    const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 10),
-                                      child: DashboardEventSection(),
-                                    ),
+                                    if (_.meetingZoneStatus.markAttendance ==
+                                            true ||
+                                        _.meetingZoneStatus.expressPass ==
+                                            true ||
+                                        _.meetingZoneStatus
+                                                .expressPassGenerated ==
+                                            true)
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 15, vertical: 10),
+                                        child: DashboardEventSection(),
+                                      ),
 
                                     const Padding(
                                       padding: EdgeInsets.symmetric(

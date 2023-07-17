@@ -48,7 +48,7 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                       fontWeight: FontWeight.w700,
                       textColor: ThemeConstants.bluecolor,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     InkWell(
                       onTap: () {
                         Get.back();
@@ -65,7 +65,7 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                     )
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Align(
                   alignment: AlignmentDirectional.topStart,
                   child: CustomAutoSizeTextMontserrat(
@@ -75,14 +75,14 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                     textColor: ThemeConstants.blackcolor,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 SizedBox(
                   width: 400,
                   height: 35,
                   child: Obx(
                     () => ListView(
                       scrollDirection: Axis.horizontal,
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       children: [
                         if (controller.loadingServiceAssigned == true) ...[
                           ...getDropdownModel(
@@ -90,13 +90,13 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                               controller.nameSelected,
                               controller.name),
                         ] else ...[
-                          CircularProgressIndicator()
+                          const CircularProgressIndicator()
                         ]
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 SizedBox(
                     width: 300.0,
                     height: 40.0,
@@ -187,13 +187,13 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  Icon(Icons.abc),
-                                  SizedBox(height: 8.0),
+                                  const Icon(Icons.abc),
+                                  const SizedBox(height: 8.0),
                                   Text('Item $index'),
                                 ],
                               ));
                         })),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -339,11 +339,11 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
       for (var i = 0; i < model.length; i++) {
         print(model[i]);
         data.add(Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Color.fromARGB(255, 238, 238, 238)),
+                color: const Color.fromARGB(255, 238, 238, 238)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
               child: CustomAutoSizeTextMontserrat(
@@ -357,7 +357,7 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
       return data;
     } else {
       return [
-        SizedBox(
+        const SizedBox(
           child: CircularProgressIndicator(),
         )
       ];

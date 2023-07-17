@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/markAttendanceDocumentStatus.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_model.dart';
@@ -17,12 +19,18 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   MarkAttendanceIntake markAttendanceIntakeModel = MarkAttendanceIntake();
 
+  String? eventSelected;
+  String? id;
+
   String? intake;
 
   @override
   void onInit() {
     change(null, status: RxStatus.success());
   }
+
+  String campaignName = '';
+  String passName = '';
 
   getMarkAttendance(String code) async {
     change(null, status: RxStatus.loading());
@@ -32,8 +40,15 @@ class MarkAttendanceController extends GetxController with StateMixin {
       markAttendanceModel = MarkAttendanceModel.fromJson(res);
 
       if (markAttendanceModel.uniqueCodeMatch == true) {
+        campaignName = markAttendanceModel.campaignName!;
+        // passName = markAttendanceModel.pa!;
+
         await allTimeAPI();
-        getToast("Event code matched");
+        if (markAttendanceModel.attendanceMarked == false) {
+          Get.to(IntakeScreen(
+            id: markAttendanceModel.campaignId.toString(),
+          ));
+        }
       } else {
         getToast("Event code not matched");
 
@@ -42,11 +57,11 @@ class MarkAttendanceController extends GetxController with StateMixin {
     }
   }
 
-  allTimeAPI() async {
+  allTimeAPI({String? campaignId}) async {
     change(null, status: RxStatus.loading());
     var res = await apiServices.allTimeMarkAttandance(getMarkAttandenceAllTime(
         Get.find<BaseController>().model1.id.toString(),
-        markAttendanceModel.campaignId.toString()));
+        campaignId ?? markAttendanceModel.campaignId.toString()));
     if (res != null) {
       code = TextEditingController();
       code.text = "";
@@ -54,19 +69,19 @@ class MarkAttendanceController extends GetxController with StateMixin {
     }
   }
 
-  getIntakeSubmit() async {
+  getIntakeSubmit(String campaign_id) async {
     change(null, status: RxStatus.loading());
 
     if (intake != null) {
       var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
           //TODO HardCoded
-          campaign_id: '1996',
+          campaign_id: campaign_id,
           enq_id: Get.find<BaseController>().model1.id.toString(),
           intake_month: intake!.split("-")[1],
           intake_year: intake!.split("-")[0]));
       if (res != null) {
         markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
-        await allTimeAPI();
+        await allTimeAPI(campaignId: campaign_id);
         if (markAttendanceIntakeModel.documentExists == false) {
           Get.to(MarkAttendanceDocumentStatus());
         } else {

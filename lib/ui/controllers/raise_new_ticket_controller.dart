@@ -19,6 +19,7 @@ class RaiseYourTicketController extends GetxController with StateMixin {
 
   sendFile(String enq_id, String? issue, String? suggestion,
       [file, file2]) async {
+    print("object");
     try {
       change(null, status: RxStatus.loading());
       var url = Uri.parse(

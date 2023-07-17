@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/mark_attendance_controller.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/custombutton.dart';
+import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
 class IntakeScreen extends StatelessWidget {
-  IntakeScreen({super.key});
+  String? id;
+  IntakeScreen({Key? key, this.id}) : super(key: key);
 
   var controller = Get.put(MarkAttendanceController());
 
@@ -21,61 +26,110 @@ class IntakeScreen extends StatelessWidget {
         (state) => Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.5,
-              child: Card(
-                elevation: 5,
-                child: ListView(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: ThemeConstants.bluecolor),
-                            shape: BoxShape.circle,
-                            color: ThemeConstants.ultrilightblue),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child:
-                              Image.asset("assets/images/mark_At_intake.png"),
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: CustomAutoSizeTextMontserrat(
-                        text: "What your target intake",
-                        textColor: ThemeConstants.bluecolor,
-                        fontSize: 18,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: SizedBox(
-                          height: 50,
-                          child: CustomTimerWidget(callback: (value) {
-                            controller.intake = value;
-                            controller.update();
-                          })),
-                    ),
-                    SizedBox(
-                      height: 55,
-                      child: CustomButton(
-                          text: "Next",
-                          onPressed: () {
-                            controller.getIntakeSubmit();
-                          },
-                          backgroundColor: ThemeConstants.bluecolor),
-                    )
-                  ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: ThemeConstants.bluecolor),
+                          shape: BoxShape.circle,
+                          color: ThemeConstants.ultrilightblue),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset("assets/images/mark_At_intake.png"),
+                      )),
                 ),
-              ),
+                const SizedBox(
+                  height: 20,
+                ),
+                if (Get.find<BaseController>().eventlist.length > 1)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: "Select your event",
+                      fontSize: 14,
+                      textColor: ThemeConstants.bluecolor,
+                    ),
+                  ),
+                if (Get.find<BaseController>().eventlist.length > 1)
+                  CustomDropDownSingle(
+                    bgColor: ThemeConstants.ultraLightgreyColor2,
+                    model: Get.find<BaseController>().eventlist,
+                    initialSelectedValue:
+                        Get.find<BaseController>().eventlist[0],
+                    choosefieldtype: false,
+                    callbackFunction: (value) {
+                      for (var i = 0;
+                          i < Get.find<BaseController>().eventlist.length;
+                          i++) {
+                        if (Get.find<BaseController>().eventlist[i] == value) {
+                          controller.eventSelected = value;
+                          controller.id = Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .campaignDetails![i]
+                              .id
+                              .toString();
+                        }
+                      }
+                    },
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "What your target intake",
+                    textColor: ThemeConstants.bluecolor,
+                    fontSize: 18,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: SizedBox(
+                      height: 50,
+                      child: CustomTimerWidget(callback: (value) {
+                        controller.intake = value;
+                        controller.update();
+                      })),
+                ),
+                Center(
+                  child: SizedBox(
+                    height: 55,
+                    child: CustomButton(
+                        text: "Next",
+                        onPressed: () {
+                          try {
+                            if (id != null) {
+                              controller.getIntakeSubmit(id!);
+                            } else {
+                              if (Get.find<BaseController>().eventlist.length >
+                                  1) {
+                                controller.getIntakeSubmit(controller.id!);
+                              } else {
+                                if (Get.find<BaseController>()
+                                        .meetingZoneStatus
+                                        .campaignDetails !=
+                                    null) {
+                                  controller.getIntakeSubmit(
+                                      Get.find<BaseController>()
+                                          .meetingZoneStatus
+                                          .campaignDetails![0]
+                                          .id
+                                          .toString());
+                                }
+                              }
+                            }
+                          } catch (e) {}
+                        },
+                        backgroundColor: ThemeConstants.bluecolor),
+                  ),
+                )
+              ],
             ),
           ),
         ),

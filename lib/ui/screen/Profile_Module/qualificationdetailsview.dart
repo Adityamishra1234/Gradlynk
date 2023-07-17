@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -163,13 +164,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].countryName ?? "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].countryName,
                                     )),
                               ]),
                               rowSpacer,
@@ -189,13 +185,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].stateName ?? "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].stateName,
                                     )),
                               ]),
                               rowSpacer,
@@ -215,13 +206,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].affiliationName ?? "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].affiliationName,
                                     )),
                               ]),
                               rowSpacer,
@@ -241,13 +227,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].cityName ?? "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].cityName,
                                     )),
                               ]),
                               rowSpacer,
@@ -267,13 +248,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].universityName ?? "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].universityName,
                                     )),
                               ]),
                               rowSpacer,
@@ -293,13 +269,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].educationStatus ?? "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].educationStatus,
                                     )),
                               ]),
                               rowSpacer,
@@ -319,17 +290,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].yearOfPassing != null
-                                          ? model[index]
-                                              .yearOfPassing
-                                              .toString()
-                                          : "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].yearOfPassing,
                                     )),
                               ]),
                               rowSpacer,
@@ -349,15 +311,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].yearOfPassing != null
-                                          ? model[index].percentage.toString()
-                                          : "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].yearOfPassing,
                                     )),
                               ]),
                               rowSpacer,
@@ -367,7 +322,7 @@ class QualificationDetailView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: "Re-appears/Blacklogs",
+                                      text: "Re-appears/Backlogs",
                                       fontSize: 12,
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
@@ -377,15 +332,8 @@ class QualificationDetailView extends StatelessWidget {
                                 ),
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
-                                    child: HtmlWidget(
-                                      model[index].yearOfPassing != null
-                                          ? model[index].reapperCount.toString()
-                                          : "",
-                                      textStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w600,
-                                        color: ThemeConstants.TextColor,
-                                        fontSize: 12,
-                                      ),
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: model[index].yearOfPassing,
                                     )),
                               ]),
                             ],
