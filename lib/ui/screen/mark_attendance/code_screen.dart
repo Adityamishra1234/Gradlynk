@@ -152,37 +152,40 @@ class CodeScreen extends StatelessWidget {
                       },
                       backgroundColor: ThemeConstants.bluecolor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 80),
-                  child: CustomAutoSizeTextMontserrat(
-                    textalingCentre: true,
-                    fontWeight: FontWeight.w700,
-                    text:
-                        "UK Applications Day Delhi - 22 July 23 Offline Event",
-                    fontSize: 15,
+                if (controller.markAttendanceModel.studentCategory != null)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 80),
+                    child: CustomAutoSizeTextMontserrat(
+                      textalingCentre: true,
+                      fontWeight: FontWeight.w700,
+                      text: controller.markAttendanceModel.campaignName,
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                CustomAutoSizeTextMontserrat(
-                    textColor: ThemeConstants.red,
-                    fontSize: 13,
-                    text: "Your Attendance has been Marked."),
-                SizedBox(
+                if (controller.markAttendanceModel.studentCategory != null)
+                  CustomAutoSizeTextMontserrat(
+                      textColor: ThemeConstants.red,
+                      fontSize: 13,
+                      text: "Your Attendance has been Marked."),
+                const SizedBox(
                   height: 5,
                 ),
-                CustomRichTextWidget(
-                    firstTextColor: ThemeConstants.blackcolor,
-                    customMiddleTextStyle: GoogleFonts.dancingScript(),
-                    text1: 'Your',
-                    text3: 'has been generated.',
-                    textColor: Color(0xFFebaa2b),
-                    fontSize: 16,
-                    text: " Gold Express Pass "),
+                if (controller.markAttendanceModel.studentCategory != null)
+                  CustomRichTextWidget(
+                      firstTextColor: ThemeConstants.blackcolor,
+                      customMiddleTextStyle: GoogleFonts.dancingScript(),
+                      text1: 'Your',
+                      text3: 'has been generated.',
+                      textColor: const Color(0xFFebaa2b),
+                      fontSize: 16,
+                      text:
+                          " ${controller.markAttendanceModel.studentCategory ?? ""}Express Pass "),
 
                 const SizedBox(
                   height: 30,
