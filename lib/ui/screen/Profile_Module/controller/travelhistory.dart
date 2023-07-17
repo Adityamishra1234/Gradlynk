@@ -267,7 +267,7 @@ class TravelHistoryController extends GetxController with StateMixin {
       endpoint = Endpoints.addTravelHistoryPart1! +
           enqId +
           Endpoints.addTravelHistoryPart2! +
-          travelHistory;
+          "0";
 
       var res = await apiServices.updateTravelHistory(endpoint, action);
       if (res == true) {

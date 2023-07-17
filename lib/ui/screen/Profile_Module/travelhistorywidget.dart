@@ -127,7 +127,7 @@ class TravelHistoryWidget extends StatelessWidget {
                             //     visaNumber:
                             //         TravelHistoryController.visaNumber.value.text));
                             // controller.update();
-                            controller.updateTravelHistory(
+                            controller.updateTravelHistoryNo(
                                 Get.find<BaseController>().model1.id.toString(),
                                 controller.travelAbroadSelected!,
                                 "added");
