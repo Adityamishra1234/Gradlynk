@@ -1904,10 +1904,10 @@ eventZoneDrawerPopUp(
                               const SizedBox(
                                 width: 20,
                               ),
-                              CustomAutoSizeTextMontserrat(
+                              CustomRichTextWidget(
                                   fontWeight: FontWeight.w600,
                                   textColor: ThemeConstants.bluecolor,
-                                  text: "Download Express Pass"),
+                                  text: "View Express Pass"),
                               const Spacer(),
                             ],
                           ),

@@ -137,9 +137,15 @@ class CustomDrawer extends StatelessWidget {
                                     ]),
                               )
                             ] else ...[
-                              CircularProgressIndicator(
-                                color: ThemeConstants.bluecolor,
-                              )
+                              Spacer(),
+                              SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CircularProgressIndicator(
+                                  color: ThemeConstants.bluecolor,
+                                ),
+                              ),
+                              Spacer(),
                             ]
                           ]),
                         ),
