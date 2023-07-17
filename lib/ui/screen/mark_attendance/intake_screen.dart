@@ -13,9 +13,8 @@ import 'package:studentpanel/widgets/custombutton.dart';
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
 class IntakeScreen extends StatelessWidget {
-  IntakeScreen({
-    Key? key,
-  }) : super(key: key);
+  String? id;
+  IntakeScreen({Key? key, this.id}) : super(key: key);
 
   var controller = Get.put(MarkAttendanceController());
 
@@ -105,20 +104,24 @@ class IntakeScreen extends StatelessWidget {
                         text: "Next",
                         onPressed: () {
                           try {
-                            if (Get.find<BaseController>().eventlist.length >
-                                1) {
-                              controller.getIntakeSubmit(controller.id!);
+                            if (id != null) {
+                              controller.getIntakeSubmit(id!);
                             } else {
-                              if (Get.find<BaseController>()
-                                      .meetingZoneStatus
-                                      .campaignDetails !=
-                                  null) {
-                                controller.getIntakeSubmit(
-                                    Get.find<BaseController>()
+                              if (Get.find<BaseController>().eventlist.length >
+                                  1) {
+                                controller.getIntakeSubmit(controller.id!);
+                              } else {
+                                if (Get.find<BaseController>()
                                         .meetingZoneStatus
-                                        .campaignDetails![0]
-                                        .id
-                                        .toString());
+                                        .campaignDetails !=
+                                    null) {
+                                  controller.getIntakeSubmit(
+                                      Get.find<BaseController>()
+                                          .meetingZoneStatus
+                                          .campaignDetails![0]
+                                          .id
+                                          .toString());
+                                }
                               }
                             }
                           } catch (e) {}
