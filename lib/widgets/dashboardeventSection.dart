@@ -47,7 +47,7 @@ class DashboardEventSection extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(0),
                             child: Image.asset(
-                              'assets/images/event_image.gif',
+                              'assets/icons/event-zone.gif',
                               gaplessPlayback: false,
                               width: MediaQuery.of(context).size.width,
                               fit: BoxFit.contain,

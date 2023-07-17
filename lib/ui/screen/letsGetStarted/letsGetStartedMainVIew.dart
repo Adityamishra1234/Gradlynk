@@ -199,7 +199,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                 ]),
                           ),
                         ],
-                        if (controller.showConsentTermsForm == true  ) ...[
+                        if (controller.showConsentTermsForm == true) ...[
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: SizedBox(
@@ -255,7 +255,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                             padding: const EdgeInsets.all(10.0),
                             child: InkWell(
                               onTap: () async {
-                                controller.postLetsGetStartedData();
+                                await controller.postLetsGetStartedData();
                               },
                               child: Container(
                                 height: 35,
