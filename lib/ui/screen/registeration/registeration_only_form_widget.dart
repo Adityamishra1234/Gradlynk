@@ -418,7 +418,6 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                     "") {
                                   getToast('Please select leadsource');
                                 } else {
-                                  // await Future.delayed(Duration(seconds: 10));
                                   var res = await controller.regsiter();
 
                                   if (res == true) {

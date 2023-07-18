@@ -35,11 +35,11 @@ class IntakeScreen extends StatelessWidget {
                       width: 200,
                       height: 200,
                       decoration: BoxDecoration(
-                          border: Border.all(color: ThemeConstants.bluecolor),
+                          // border: Border.all(color: ThemeConstants.bluecolor),
                           shape: BoxShape.circle,
                           color: ThemeConstants.ultrilightblue),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(30),
                         child: Image.asset("assets/images/mark_At_intake.png"),
                       )),
                 ),
@@ -78,7 +78,7 @@ class IntakeScreen extends StatelessWidget {
                     },
                   ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  padding: const EdgeInsets.only(left: 10, right: 15),
                   child: CustomAutoSizeTextMontserrat(
                     text: "What your target intake?",
                     textColor: ThemeConstants.bluecolor,
@@ -93,12 +93,11 @@ class IntakeScreen extends StatelessWidget {
                   child: SizedBox(
                       height: 50,
                       child: CustomTimerWidget(
-                        isBlank: true,
-                        callback: (value) {
-                        controller.intake = value;
-                        controller.update();
-                        
-                      })),
+                          isBlank: true,
+                          callback: (value) {
+                            controller.intake = value;
+                            controller.update();
+                          })),
                 ),
                 Center(
                   child: SizedBox(
