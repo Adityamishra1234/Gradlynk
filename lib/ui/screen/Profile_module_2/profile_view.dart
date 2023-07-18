@@ -400,7 +400,9 @@ class ProfileView extends StatelessWidget {
                                       ProfileController.getDailog(7, context);
                                     },
                                     child: CustomProfileButton(
-                                      isCompleted: 1,
+                                      isCompleted: int.parse(controller
+                                          .profileValidationData
+                                          .validateIconForRelativeInfo!),
                                       title: "Relative Info",
                                     ),
                                   ),
