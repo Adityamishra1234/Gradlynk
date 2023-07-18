@@ -44,7 +44,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
         campaignName = markAttendanceModel.campaignName!;
         // passName = markAttendanceModel.pa!;
 
-        await allTimeAPI();
+        // await allTimeAPI();
         if (markAttendanceModel.attendanceMarked == false) {
           Get.to(IntakeScreen(
             id: markAttendanceModel.campaignId.toString(),
@@ -61,6 +61,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   allTimeAPI({String? campaignId}) async {
     change(null, status: RxStatus.loading());
+    print(Get.find<BaseController>().model1.id.toString());
     var res = await apiServices.allTimeMarkAttandance(getMarkAttandenceAllTime(
         Get.find<BaseController>().model1.id.toString(),
         campaignId ?? markAttendanceModel.campaignId.toString()));
@@ -83,7 +84,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
           intake_year: intake!.split("-")[0]));
       if (res != null) {
         markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
-        await allTimeAPI(campaignId: campaign_id);
+        // await allTimeAPI(campaignId: campaign_id);
         if (markAttendanceIntakeModel.documentExists == false) {
           Get.to(MarkAttendanceDocumentStatus());
         } else {
