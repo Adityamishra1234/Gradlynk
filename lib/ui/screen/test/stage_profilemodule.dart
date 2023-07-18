@@ -266,9 +266,7 @@ class CustomStepper extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(color: iconColor)),
                     child: Center(
-                      child:
-                       svgImage(
-                              "$icon", ThemeConstants.IconColor, 23, 23),
+                      child: svgImage("$icon", iconColor, 23, 23),
                       //  SvgPicture.asset(
                       //   icon,
                       //   height: 23,

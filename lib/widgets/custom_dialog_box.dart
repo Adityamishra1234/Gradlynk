@@ -701,10 +701,12 @@ supportDialog(
                               decoration: BoxDecoration(
                                   color: ThemeConstants.bluecolor,
                                   shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                'assets/icons/raise ticket.svg',
-                                color: ThemeConstants.whitecolor,
-                              ),
+                              child: svgImage("raise ticket",
+                                  ThemeConstants.whitecolor, 20, 20),
+                              // SvgPicture.asset(
+                              //   'assets/icons/raise ticket.svg',
+                              //   color: ThemeConstants.whitecolor,
+                              // ),
                             ),
                             const SizedBox(
                               width: 20,
@@ -754,10 +756,8 @@ supportDialog(
                               decoration: BoxDecoration(
                                   color: ThemeConstants.bluecolor,
                                   shape: BoxShape.circle),
-                              child: SvgPicture.asset(
-                                'assets/icons/Track Issue.svg',
-                                color: ThemeConstants.whitecolor,
-                              ),
+                              child: svgImage("Track Issue",
+                                  ThemeConstants.whitecolor, 20, 20),
                             ),
                             const SizedBox(
                               width: 20,
