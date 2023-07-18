@@ -188,6 +188,7 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   uploadDocumentment() async {
+    change(null, status: RxStatus.loading());
     if (selectedRelationship == null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
@@ -230,6 +231,7 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   submitFundPlannerData() async {
+    change(null, status: RxStatus.loading());
     if (selectedRelationship == null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
@@ -265,7 +267,7 @@ class FundPlannerController extends GetxController with StateMixin {
         var res = await apiServices.planYourFundSubmit(endpoint);
         if (res != null) {
           deleteFilledFields();
-          update();
+          change(null, status: RxStatus.success());
         }
       } catch (e) {
         await ApiServices().errorHandle(

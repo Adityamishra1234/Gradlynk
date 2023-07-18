@@ -204,7 +204,7 @@ class SnackBarConstants {
   static String? reviewcourselistPart1 =
       "No course available in Review course section";
   static String? finalcourselistPart1 =
-      "No course available in Final shortlist section";
+      "No course available in Application shortlist section";
   static String? applicationPart1 = "No application available now";
   static String? visaPart1 = "No visa application available now ";
   // static String? sheduleExpertCall = "Schedule an Expert call";

@@ -196,7 +196,7 @@ class FundparameterSubWidget extends StatelessWidget {
                 ),
                 FundParameterWidget(
                   text1: "Are the funds 6 months old?",
-                  text2: fund_6_month_old ?? "",
+                  text2: fund_6_month_old == true ? "yes" : "No",
                 ),
                 Padding(
                   padding: const EdgeInsets.only(

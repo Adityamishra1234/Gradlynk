@@ -265,7 +265,7 @@ class _ReviewShortListState extends State<ReviewShortList> {
                                     padding: const EdgeInsets.only(
                                         left: 5, right: 5),
                                     child: CustomAutoSizeTextMontserrat(
-                                        text: "Final Shortlist",
+                                        text: "Application Shortlist",
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
                                         textColor: ThemeConstants.VioletColor),
