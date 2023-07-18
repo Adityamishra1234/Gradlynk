@@ -87,7 +87,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
         markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
         await allTimeAPI(campaignId: campaign_id);
         if (markAttendanceIntakeModel.documentExists == false) {
-          Get.to(AfterIntakeScreenView()  , arguments: [ {""}] );
+          Get.to(AfterIntakeScreenView());
         } else {
           getToast("kindly view your express pass view option");
           Get.toNamed(DashBoard.routeNamed);

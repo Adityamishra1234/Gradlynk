@@ -112,45 +112,6 @@ class DashboardEventSection extends StatelessWidget {
                                 ],
                               ),
                             ),
-
-                          //todo
-                          InkWell(
-                            onTap: () {
-                              Get.to(AfterIntakeScreenView());
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                  constraints: const BoxConstraints(
-                                      maxHeight: 60, maxWidth: 60),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFFF1F0FF),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("Mark attendence",
-                                      ThemeConstants.VioletColor, 30, 30),
-
-                                  // SvgPicture.asset(
-                                  //   "assets/icons/Mark attendence.svg",
-                                  //   color: ThemeConstants.VioletColor,
-                                  // )
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: 80,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      text: "Mark Attendance",
-                                      textalingCentre: true,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
                           if (Get.find<BaseController>()
                                   .meetingZoneStatus
                                   .expressPass ==

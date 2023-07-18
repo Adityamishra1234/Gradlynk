@@ -17,7 +17,7 @@ class AfterIntakeScreenView extends StatelessWidget {
 
   var controller = Get.put(MarkAttendanceController());
 
-  MarkAttendanceIntake arguments = Get.arguments();
+  // MarkAttendanceIntake arguments = Get.arguments();
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class AfterIntakeScreenView extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Container(
-                  height: 500,
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  //  constraints: BoxConstraints( minHeight:  ),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: ThemeConstants.whitecolor,
@@ -50,32 +50,38 @@ class AfterIntakeScreenView extends StatelessWidget {
                       ]),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       CustomAutoSizeTextMontserrat(
                           textalingCentre: true,
                           textColor: ThemeConstants.blackcolor,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontWeight: FontWeight.w700,
                           text: "Skip the long Queues and avail for"),
                       SizedBox(
                         height: 10,
                       ),
-                      CustomRichTextWidget(
-                          firstTextColor: ThemeConstants.blackcolor,
-                          customMiddleTextStyle: GoogleFonts.dancingScript(),
-                          // text1: '',
-                          // text3: 'has been generated in the View Express Pass Section.',
-                          textColor: const Color(0xFFebaa2b),
-                          fontSize: 35,
-                          text: "${arguments.studentCategory ?? ""}"),
-                      // "Platinum Express Pass"),
+                      Align(
+                        alignment: Alignment.center,
+                        child: CustomRichTextWidget(
+                            firstTextColor: ThemeConstants.blackcolor,
+                            customMiddleTextStyle: GoogleFonts.dancingScript(
+                                textStyle: TextStyle()),
+                            // text1: '',
+                            // text3: 'has been generated in the View Express Pass Section.',
+                            textColor: const Color(0xFFebaa2b),
+                            fontSize: 25,
+                            text:
+                                //"${arguments.studentCategory ?? ""}"),
+                                "Platinum Express Pass"),
+                      ),
                       SizedBox(
                         height: 10,
                       ),
                       CustomAutoSizeTextMontserrat(
                           textalingCentre: true,
                           textColor: ThemeConstants.blackcolor,
-                          fontSize: 20,
+                          fontSize: 15,
                           fontWeight: FontWeight.w700,
                           text: "By Uploading your Documents."),
                       SizedBox(
