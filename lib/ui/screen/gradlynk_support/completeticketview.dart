@@ -61,19 +61,19 @@ class CompleteTicketView extends StatelessWidget {
             ),
             Row(
               children: [
-                SizedBox(
-                    height: 200,
-                    width: 100,
-                    child: Image.network(
-                        "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg")),
+                if (model.documentName1 != null)
+                  SizedBox(
+                      height: 200,
+                      width: 100,
+                      child: Image.network(model.documentName1!)),
                 const SizedBox(
                   width: 10,
                 ),
-                SizedBox(
-                    height: 200,
-                    width: 100,
-                    child: Image.network(
-                        "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg")),
+                if (model.documentName2 != null)
+                  SizedBox(
+                      height: 200,
+                      width: 100,
+                      child: Image.network(model.documentName2!)),
               ],
             )
           ],
