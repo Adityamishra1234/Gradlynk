@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/afterIntakePassView.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -70,13 +71,52 @@ class DashboardEventSection extends StatelessWidget {
                         spacing: 10,
                         runSpacing: 20,
                         children: [
-                          // if (Get.find<BaseController>()
-                          //         .meetingZoneStatus
-                          //         .markAttendance ==
-                          //     true)
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .markAttendance ==
+                              true)
+                            InkWell(
+                              onTap: () {
+                                Get.to(CodeScreen());
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    constraints: const BoxConstraints(
+                                        maxHeight: 60, maxWidth: 60),
+                                    padding: const EdgeInsets.all(10),
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xFFF1F0FF),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: svgImage("Mark attendence",
+                                        ThemeConstants.VioletColor, 30, 30),
+
+                                    // SvgPicture.asset(
+                                    //   "assets/icons/Mark attendence.svg",
+                                    //   color: ThemeConstants.VioletColor,
+                                    // )
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 80,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "Mark Attendance",
+                                        textalingCentre: true,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+
+                          //todo
                           InkWell(
                             onTap: () {
-                              Get.to(CodeScreen());
+                              Get.to(AfterIntakeScreenView());
                             },
                             child: Column(
                               children: [
@@ -111,87 +151,87 @@ class DashboardEventSection extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // if (Get.find<BaseController>()
-                          //         .meetingZoneStatus
-                          //         .expressPass ==
-                          //     true)
-                          InkWell(
-                            onTap: () {
-                              Get.to(IntakeScreen());
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                  constraints: const BoxConstraints(
-                                      maxHeight: 60, maxWidth: 60),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      color: ThemeConstants.lightYellow,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("Express entry",
-                                      ThemeConstants.orangeColor, 30, 30),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      text: "Apply For Express Pass",
-                                      textalingCentre: true,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          // if (Get.find<BaseController>()
-                          //         .meetingZoneStatus
-                          //         .expressPassGenerated ==
-                          //     true)
-                          InkWell(
-                            onTap: () {
-                              try {
-                                Get.to(CustomImageViewer(
-                                  url: Get.find<BaseController>()
-                                      .meetingZoneStatus
-                                      .expressPassView!,
-                                ));
-                              } catch (e) {}
-                            },
-                            child: Column(
-                              children: [
-                                Container(
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .expressPass ==
+                              true)
+                            InkWell(
+                              onTap: () {
+                                Get.to(IntakeScreen());
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
                                     constraints: const BoxConstraints(
-                                        maxHeight: 50, maxWidth: 120),
+                                        maxHeight: 60, maxWidth: 60),
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                        // border: Border.all(
-                                        //     width: 1.2,
-                                        //     color: ThemeConstants
-                                        //         .VioletColor),
-                                        color: ThemeConstants.lightRed,
+                                        color: ThemeConstants.lightYellow,
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(20))),
-                                    child: svgImage("create_profile",
-                                        ThemeConstants.red, 80, 80)),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      text: "View Express Pass",
-                                      textalingCentre: true,
-                                    ),
+                                    child: svgImage("Express entry",
+                                        ThemeConstants.orangeColor, 30, 30),
                                   ),
-                                )
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "Apply For Express Pass",
+                                        textalingCentre: true,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .expressPassGenerated ==
+                              true)
+                            InkWell(
+                              onTap: () {
+                                try {
+                                  Get.to(CustomImageViewer(
+                                    url: Get.find<BaseController>()
+                                        .meetingZoneStatus
+                                        .expressPassView!,
+                                  ));
+                                } catch (e) {}
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                      constraints: const BoxConstraints(
+                                          maxHeight: 50, maxWidth: 120),
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          // border: Border.all(
+                                          //     width: 1.2,
+                                          //     color: ThemeConstants
+                                          //         .VioletColor),
+                                          color: ThemeConstants.lightRed,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: svgImage("create_profile",
+                                          ThemeConstants.red, 80, 80)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "View Express Pass",
+                                        textalingCentre: true,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                         ],
                       )),
                 ]),

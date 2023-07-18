@@ -4,6 +4,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/afterIntakePassView.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/intake_screen.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/markAttendanceDocumentStatus.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
@@ -86,7 +87,7 @@ class MarkAttendanceController extends GetxController with StateMixin {
         markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
         await allTimeAPI(campaignId: campaign_id);
         if (markAttendanceIntakeModel.documentExists == false) {
-          Get.to(MarkAttendanceDocumentStatus());
+          Get.to(AfterIntakeScreenView()  , arguments: [ {""}] );
         } else {
           getToast("kindly view your express pass view option");
           Get.toNamed(DashBoard.routeNamed);
