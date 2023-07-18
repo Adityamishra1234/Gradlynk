@@ -228,9 +228,9 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                     child: CustomAutoSizeTextMontserrat(
                                   fontWeight: FontWeight.w400,
                                   text:
-                                      """1. Neither, I nor my heirs, will claim against SIC for using my information throughout the process.
-2. All the information submitted is correct and collaborates with my legal documents.
-3. In case of any discrepancy in information, SIEC will not be liable for any halt throughout the process.
+                                      """1. All the information submitted in the panel is correct. 
+2. All the information matches legal documents.
+3. In case of any discrepancy in information, SIEC will not be liable for any delay in the process.
 4.I, agree to all SIEC's Terms & Conditions.""",
                                   fontSize: 18,
                                   textColor: ThemeConstants.blackcolor,
