@@ -61,9 +61,13 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   allTimeAPI({String? campaignId}) async {
     change(null, status: RxStatus.loading());
-    var res = await apiServices.allTimeMarkAttandance(getMarkAttandenceAllTime(
-        Get.find<BaseController>().model1.id.toString(),
-        campaignId ?? markAttendanceModel.campaignId.toString()));
+
+    var url = await apiServices.getBaseUrlForAllApi();
+    var res = await apiServices.allTimeMarkAttandance(
+        url,
+        getMarkAttandenceAllTime(
+            Get.find<BaseController>().model1.id.toString(),
+            campaignId ?? markAttendanceModel.campaignId.toString()));
     if (res != null) {
       code = TextEditingController();
       code.text = "";

@@ -134,18 +134,19 @@ class Fundrequirement extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      CustomAutoSizeTextMontserrat(text: "Marital Status"),
-                      const Spacer(),
-                      EnableButton(
-                          text: controller.model.maritalStatus ?? "",
-                          enabled: true)
-                    ],
+                if (controller.model.maritalStatus != null)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        CustomAutoSizeTextMontserrat(text: "Marital Status"),
+                        const Spacer(),
+                        EnableButton(
+                            text: controller.model.maritalStatus ?? "",
+                            enabled: true)
+                      ],
+                    ),
                   ),
-                ),
                 if (controller.model.maritalStatus == 'Married') ...[
                   Padding(
                     padding: const EdgeInsets.all(8.0),

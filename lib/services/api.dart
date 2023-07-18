@@ -127,4 +127,6 @@ abstract class api {
   getMarkAttandance(String endpoint);
 
   requestACallBackPost(String endpoint);
+
+  getBaseUrlForAllApi();
 }

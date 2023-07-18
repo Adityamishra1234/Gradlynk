@@ -180,6 +180,8 @@ class Endpoints {
   static String? which_consent_form = "which-consent-form?enq_id=";
 
   static String? eventZone = "show-menu?enq_id=";
+
+  static String? getBaseUrlForAllAPi = "base-url";
 }
 
 markAttendanceIntake(

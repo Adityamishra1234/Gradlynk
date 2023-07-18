@@ -2123,9 +2123,9 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   @override
-  allTimeMarkAttandance(String endpoint) async {
+  allTimeMarkAttandance(String baseUrl, String endpoint) async {
     try {
-      String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+      String endPoint = '${baseUrl}${endpoint}';
 
       var res = await httpPostNullBody(endPoint);
       if (res != null) {
@@ -2200,4 +2200,24 @@ class ApiServices extends StudentPanelBase implements api {
   //   }
   // TODO: implement requestACallBackPost
   // }
+
+  @override
+  getBaseUrlForAllApi() async {
+    // TODO: implement getBaseUrlForAllApi
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+
+      var res =
+          await httpGet('${Endpoints.baseUrl}${Endpoints.getBaseUrlForAllAPi}');
+      if (res != null) {
+        // var jsondata = json.decode(res);
+        // EventZoneStatus model = EventZoneStatus();
+        // model = EventZoneStatus.fromJson(jsondata);
+
+        return res;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
 }
