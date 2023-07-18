@@ -1319,7 +1319,13 @@ class ApiServices extends StudentPanelBase implements api {
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
         CommonUploadStatus status = CommonUploadStatus.fromJson(jsondata);
-        getToast(SnackBarConstants.documentUpload!);
+        if (is_event == 1) {
+          getToast(
+              "Your are now eligible for Platinum Pass. Visit the View Express Pass Section.");
+        } else {
+          getToast(SnackBarConstants.documentUpload!);
+        }
+
         return status;
       }
     } catch (e) {
@@ -2185,6 +2191,22 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  eventOcumentznotSubmited(String endpoint) async {
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+
+      var res = await httpPostNullBody('${Endpoints.baseUrl}$endpoint');
+      if (res != null) {
+        var jsondata = json.decode(res);
+        EventZoneStatus model = EventZoneStatus();
+        model = EventZoneStatus.fromJson(jsondata);
+
+        return model;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
   // @override
   // requestACallBackPost(String endpoint) async {
   //   try {

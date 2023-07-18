@@ -3,11 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/markAttendanceDocumentStatus.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/mark_attendance_controller.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -17,10 +19,9 @@ class AfterIntakeScreenView extends StatelessWidget {
 
   var controller = Get.put(MarkAttendanceController());
 
-  // MarkAttendanceIntake arguments = Get.arguments();
-
   @override
   Widget build(BuildContext context) {
+    var arguments = Get.arguments;
     return Scaffold(
       backgroundColor: ThemeConstants.whitecolor,
       body: Stack(
@@ -116,7 +117,9 @@ class AfterIntakeScreenView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(UploadDocument());
+                          getToast(
+                              'Your pass will be generated once you submit the document at the event');
+                          Get.offAndToNamed(DashBoard.routeNamed);
                         },
                         child: CustomIconTextTogether(
                           text: 'Submit To Siec Desk',
@@ -143,7 +146,11 @@ class AfterIntakeScreenView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(UploadDocument());
+                          getToast(
+                              'Your pass is accessible in View Express Pass Section');
+
+                          controller.documentNotSubmi(arguments);
+                          Get.offAndToNamed(DashBoard.routeNamed);
                         },
                         child: CustomIconTextTogether(
                           text: 'Continue with Gold Pass',

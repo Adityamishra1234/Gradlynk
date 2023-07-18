@@ -87,15 +87,28 @@ class MarkAttendanceController extends GetxController with StateMixin {
         markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
         await allTimeAPI(campaignId: campaign_id);
         if (markAttendanceIntakeModel.documentExists == false) {
-          Get.to(AfterIntakeScreenView());
+          if (markAttendanceIntakeModel.studentCategory == "C") {
+            getToast(
+                "Your Silver Express Pass is accessible in View Express Pass Section.");
+            Get.offAndToNamed(DashBoard.routeNamed);
+          } else {
+            Get.to(AfterIntakeScreenView(), arguments: campaign_id);
+          }
         } else {
           getToast("kindly view your express pass view option");
-          Get.toNamed(DashBoard.routeNamed);
+          Get.offAndToNamed(DashBoard.routeNamed);
         }
       }
     } else {
       getToast("kindly select your date");
       change(null, status: RxStatus.success());
     }
+  }
+
+  documentNotSubmi(String campainID) async {
+    String endpoint = documentNotSubmit(
+        Get.find<BaseController>().model1.id.toString(), campainID);
+
+    var res = await apiServices.eventOcumentznotSubmited(endpoint);
   }
 }

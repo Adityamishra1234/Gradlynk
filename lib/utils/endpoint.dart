@@ -180,6 +180,11 @@ class Endpoints {
   static String? which_consent_form = "which-consent-form?enq_id=";
 
   static String? eventZone = "show-menu?enq_id=";
+  static String? documentNotSubmit = "show-menu?enq_id=";
+}
+
+documentNotSubmit(String enq_id, String campaign_id) {
+  return "document-not-submit-in-event?enq_id=$enq_id&campaign_id=$campaign_id";
 }
 
 markAttendanceIntake(
