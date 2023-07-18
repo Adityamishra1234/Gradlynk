@@ -21,7 +21,7 @@ class DashboardEventSection extends StatelessWidget {
             // padding:
             //     const EdgeInsets.only(left: 20, right: 10, top: 30, bottom: 20),
             margin: const EdgeInsets.only(top: 15),
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: ThemeConstants.whitecolor,
@@ -38,7 +38,7 @@ class DashboardEventSection extends StatelessWidget {
                 children: [
                   Container(
                       width: 130,
-                      height: 230,
+                      height: 190,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +56,7 @@ class DashboardEventSection extends StatelessWidget {
                         ],
                       )),
                   Container(
-                      padding: EdgeInsets.only(left: 8),
+                      padding: EdgeInsets.symmetric(vertical: 10),
                       // height: 180,
                       alignment: Alignment.center,
                       // color: ThemeConstants.GreenColor,
@@ -64,134 +64,134 @@ class DashboardEventSection extends StatelessWidget {
                       child: Wrap(
                         // mainAxisAlignment: MainAxisAlignment.end,
                         // crossAxisAlignment: CrossAxisAlignment.end,
-                        alignment: WrapAlignment.start,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        runAlignment: WrapAlignment.start,
-                        spacing: 5,
-                        runSpacing: 30,
+                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        runAlignment: WrapAlignment.center,
+                        spacing: 10,
+                        runSpacing: 20,
                         children: [
-                          if (Get.find<BaseController>()
-                                  .meetingZoneStatus
-                                  .markAttendance ==
-                              true)
-                            InkWell(
-                              onTap: () {
-                                Get.to(CodeScreen());
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
-                                    constraints: const BoxConstraints(
-                                        maxHeight: 60, maxWidth: 60),
-                                    padding: const EdgeInsets.all(10),
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xFFF1F0FF),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: svgImage("Mark attendence",
-                                        ThemeConstants.VioletColor, 30, 30),
+                          // if (Get.find<BaseController>()
+                          //         .meetingZoneStatus
+                          //         .markAttendance ==
+                          //     true)
+                          InkWell(
+                            onTap: () {
+                              Get.to(CodeScreen());
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  constraints: const BoxConstraints(
+                                      maxHeight: 60, maxWidth: 60),
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: const BoxDecoration(
+                                      color: Color(0xFFF1F0FF),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: svgImage("Mark attendence",
+                                      ThemeConstants.VioletColor, 30, 30),
 
-                                    // SvgPicture.asset(
-                                    //   "assets/icons/Mark attendence.svg",
-                                    //   color: ThemeConstants.VioletColor,
-                                    // )
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: SizedBox(
-                                      width: 60,
-                                      child: CustomAutoSizeTextMontserrat(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        text: "Mark Attendance",
-                                        textalingCentre: true,
-                                      ),
+                                  // SvgPicture.asset(
+                                  //   "assets/icons/Mark attendence.svg",
+                                  //   color: ThemeConstants.VioletColor,
+                                  // )
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 80,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      text: "Mark Attendance",
+                                      textalingCentre: true,
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                )
+                              ],
                             ),
-                          if (Get.find<BaseController>()
-                                  .meetingZoneStatus
-                                  .expressPass ==
-                              true)
-                            InkWell(
-                              onTap: () {
-                                Get.to(IntakeScreen());
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
+                          ),
+                          // if (Get.find<BaseController>()
+                          //         .meetingZoneStatus
+                          //         .expressPass ==
+                          //     true)
+                          InkWell(
+                            onTap: () {
+                              Get.to(IntakeScreen());
+                            },
+                            child: Column(
+                              children: [
+                                Container(
+                                  constraints: const BoxConstraints(
+                                      maxHeight: 60, maxWidth: 60),
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.lightYellow,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: svgImage("Express entry",
+                                      ThemeConstants.orangeColor, 30, 30),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      text: "Apply For Express Pass",
+                                      textalingCentre: true,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          // if (Get.find<BaseController>()
+                          //         .meetingZoneStatus
+                          //         .expressPassGenerated ==
+                          //     true)
+                          InkWell(
+                            onTap: () {
+                              try {
+                                Get.to(CustomImageViewer(
+                                  url: Get.find<BaseController>()
+                                      .meetingZoneStatus
+                                      .expressPassView!,
+                                ));
+                              } catch (e) {}
+                            },
+                            child: Column(
+                              children: [
+                                Container(
                                     constraints: const BoxConstraints(
-                                        maxHeight: 60, maxWidth: 60),
+                                        maxHeight: 50, maxWidth: 120),
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                        color: ThemeConstants.lightYellow,
+                                        // border: Border.all(
+                                        //     width: 1.2,
+                                        //     color: ThemeConstants
+                                        //         .VioletColor),
+                                        color: ThemeConstants.lightRed,
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(20))),
-                                    child: svgImage("Express entry",
-                                        ThemeConstants.orangeColor, 30, 30),
+                                    child: svgImage("create_profile",
+                                        ThemeConstants.red, 80, 80)),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: SizedBox(
+                                    width: 100,
+                                    child: CustomAutoSizeTextMontserrat(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      text: "View Express Pass",
+                                      textalingCentre: true,
+                                    ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: SizedBox(
-                                      width: 100,
-                                      child: CustomAutoSizeTextMontserrat(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        text: "Apply For Express Pass",
-                                        textalingCentre: true,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             ),
-                          if (Get.find<BaseController>()
-                                  .meetingZoneStatus
-                                  .expressPassGenerated ==
-                              true)
-                            InkWell(
-                              onTap: () {
-                                try {
-                                  Get.to(CustomImageViewer(
-                                    url: Get.find<BaseController>()
-                                        .meetingZoneStatus
-                                        .expressPassView!,
-                                  ));
-                                } catch (e) {}
-                              },
-                              child: Column(
-                                children: [
-                                  Container(
-                                      constraints: const BoxConstraints(
-                                          maxHeight: 50, maxWidth: 50),
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          // border: Border.all(
-                                          //     width: 1.2,
-                                          //     color: ThemeConstants
-                                          //         .VioletColor),
-                                          color: ThemeConstants.lightRed,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20))),
-                                      child: svgImage("create_profile",
-                                          ThemeConstants.red, 80, 80)),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: SizedBox(
-                                      width: 70,
-                                      child: CustomAutoSizeTextMontserrat(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        text: "Express Pass View",
-                                        textalingCentre: true,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                          ),
                         ],
                       )),
                 ]),
