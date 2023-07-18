@@ -462,7 +462,7 @@ class WorkHistoryWidget extends StatelessWidget {
   String getSelectedDropDown(bool loading, String? selected, List model) {
     if (loading == true && model.isNotEmpty) {
       if (selected == null) {
-        return model[0].toString();
+        return 'Kindly Select one';
       } else {
         return selected;
       }

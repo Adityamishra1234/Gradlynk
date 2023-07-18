@@ -65,9 +65,9 @@ class DashboardEventSection extends StatelessWidget {
                       child: Wrap(
                         // mainAxisAlignment: MainAxisAlignment.end,
                         // crossAxisAlignment: CrossAxisAlignment.end,
-                        alignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        runAlignment: WrapAlignment.center,
+                        alignment: WrapAlignment.start,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        runAlignment: WrapAlignment.start,
                         spacing: 10,
                         runSpacing: 20,
                         children: [
