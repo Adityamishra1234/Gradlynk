@@ -243,10 +243,10 @@ class EnglishTestController extends GetxController with StateMixin {
         // englishTestDetailsViewModel.comprehension = writing.text;
         // englishTestDetailsViewModel.conversation = reading.text;
         // englishTestDetailsViewModel.production = writing.text;
-        if (getNUllChecker(tentativeExamDate.text)) {
+        if (examStatusSelected == "Test Already Taken") {
           englishTestDetailsViewModel.overAll = overallScoreController.text;
         } else {
-          englishTestDetailsViewModel.overAll = overallScoreController.text;
+          englishTestDetailsViewModel.overAll = "";
         }
         await updateEnglishTestDetaisl(
             Get.find<BaseController>().model1.id.toString(),
