@@ -158,7 +158,7 @@ class PassportDetails extends StatelessWidget {
             getNUllChecker(controller.citizenSelected) == false
                 ? controller.citizenSelected
                 : controller.loadingCountry.value == true
-                    ? controller.countryList[0]
+                    ? 'Kindly select'
                     : "No Data",
         choosefieldtype: controller.editSave.value == false,
         callbackFunction: callbackCitizenOf,
@@ -242,7 +242,7 @@ class PassportDetails extends StatelessWidget {
             getNUllChecker(controller.countrySelected) == false
                 ? controller.countrySelected
                 : controller.loadingCountry.value == true
-                    ? controller.countryList[0]
+                    ? 'Kindly select'
                     : "No Data",
         choosefieldtype: controller.editSave.value == false,
         callbackFunction: callbackCountry,
@@ -315,14 +315,17 @@ class PassportDetails extends StatelessWidget {
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: CustomTimerWidget(
-            isBlank: true,
-            // enableField: false,
-
-            initialTime: controller.dateOfIssue,
-            callback: (value) {
-              callbackDateOfIssue(value);
-            },
+          child: IgnorePointer(
+            ignoring: controller.editSave.value == false,
+            child: CustomTimerWidget(
+              isBlank: true,
+              // enableField: false,
+          
+              initialTime: controller.dateOfIssue,
+              callback: (value) {
+                callbackDateOfIssue(value);
+              },
+            ),
           ),
         ),
       ),

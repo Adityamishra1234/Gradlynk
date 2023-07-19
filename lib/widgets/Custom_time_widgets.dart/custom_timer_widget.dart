@@ -123,7 +123,7 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
                           });
                           widget.callback(dateToShow);
                         },
-                        maximumDate: DateTime(2025, 12, 30),
+                        maximumDate: DateTime(2040, 12, 30),
                         // minimumYear: 1,
                         // maximumYear: 2035,
                         minuteInterval: 1,

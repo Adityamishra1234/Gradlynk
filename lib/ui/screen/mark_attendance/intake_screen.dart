@@ -32,8 +32,8 @@ class IntakeScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Container(
-                      width: 200,
-                      height: 200,
+                      width: 180,
+                      height: 180,
                       decoration: BoxDecoration(
                           // border: Border.all(color: ThemeConstants.bluecolor),
                           shape: BoxShape.circle,
@@ -78,7 +78,7 @@ class IntakeScreen extends StatelessWidget {
                     },
                   ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 15),
+                  padding: const EdgeInsets.only(left: 15, right: 15),
                   child: CustomAutoSizeTextMontserrat(
                     text: "What is your target intake?",
                     textColor: ThemeConstants.bluecolor,

@@ -368,14 +368,18 @@ class EnglishTestDetails extends StatelessWidget {
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: CustomTimerWidget(
-            isBlank: true,
-            // enableField: false,
-
-            initialTime: controller.dateOfExamSelected,
-            callback: (value) {
-              callbackDateOfExam(value);
-            },
+          child:IgnorePointer(
+            ignoring: controller.editSave.value == true ? true : false,
+          
+            child: CustomTimerWidget(
+              isBlank: true,
+              // enableField: false,
+          
+              initialTime: controller.dateOfExamSelected,
+              callback: (value) {
+                callbackDateOfExam(value);
+              },
+            ),
           ),
         ),
       ),
@@ -407,14 +411,17 @@ class EnglishTestDetails extends StatelessWidget {
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: CustomTimerWidget(
-            isBlank: true,
-            // enableField: false,
-
-            initialTime: controller.dateOfTestReportSelcted,
-            callback: (value) {
-              callbackDateOfTestReport(value);
-            },
+          child: IgnorePointer(
+             ignoring: controller.editSave.value == true ? true : false,
+            child: CustomTimerWidget(
+              isBlank: true,
+              // enableField: false,
+          
+              initialTime: controller.dateOfTestReportSelcted,
+              callback: (value) {
+                callbackDateOfTestReport(value);
+              },
+            ),
           ),
         ),
       ),
@@ -442,14 +449,17 @@ class EnglishTestDetails extends StatelessWidget {
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: CustomTimerWidget(
-            isBlank: true,
-            // enableField: false,
-
-            initialTime: controller.testscoreExpirationDateSelcted,
-            callback: (value) {
-              callbackTextScoreExpirationdate(value);
-            },
+          child: IgnorePointer(
+             ignoring: controller.editSave.value == true ? true : false,
+            child: CustomTimerWidget(
+              isBlank: true,
+              // enableField: false,
+          
+              initialTime: controller.testscoreExpirationDateSelcted,
+              callback: (value) {
+                callbackTextScoreExpirationdate(value);
+              },
+            ),
           ),
         ),
       ),
