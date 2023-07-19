@@ -416,7 +416,8 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                   getToast('Please Select Country');
                                 } else if (controller.selectedLeadSourcesCode ==
                                     "") {
-                                  getToast('Please select lead source');
+                                  getToast(
+                                      'Please select how you heard about us');
                                 } else {
                                   var res = await controller.regsiter();
 

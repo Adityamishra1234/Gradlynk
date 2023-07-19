@@ -39,7 +39,8 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
   void initState() {
     if (widget.initialTime != null &&
         widget.initialTime != '' &&
-        widget.initialTime != "0000-00-00") {
+        widget.initialTime != "0000-00-00" &&
+        widget.initialTime != 'null') {
       String dateString = widget.initialTime!;
       dateTime = Jiffy.parse(dateString).dateTime;
 

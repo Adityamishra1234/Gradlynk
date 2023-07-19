@@ -51,6 +51,7 @@ class WorkHistoryView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(
+              padding: EdgeInsets.all(0),
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(

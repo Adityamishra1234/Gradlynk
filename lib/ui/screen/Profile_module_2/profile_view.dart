@@ -92,13 +92,13 @@ class ProfileView extends StatelessWidget {
                                   //   print(exception);
                                   //   print(stackTrace.toString());
                                   // },
-                                  radius: 40.0,
+                                  radius: 35.0,
                                   backgroundImage: const NetworkImage(
                                       "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                                   backgroundColor: Colors.transparent,
                                 ),
                                 const SizedBox(
-                                  width: 10,
+                                  width: 20,
                                 ),
                                 SizedBox(
                                   height: 200,
@@ -114,7 +114,7 @@ class ProfileView extends StatelessWidget {
                                           fontSize: 18,
                                         ),
                                         const SizedBox(
-                                          height: 2.5,
+                                          height: 4,
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -145,7 +145,7 @@ class ProfileView extends StatelessWidget {
                                           ],
                                         ),
                                         const SizedBox(
-                                          height: 2.5,
+                                          height: 4,
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -181,7 +181,7 @@ class ProfileView extends StatelessWidget {
                                           ],
                                         ),
                                         const SizedBox(
-                                          height: 2.5,
+                                          height: 4,
                                         ),
                                         Padding(
                                           padding:
@@ -216,7 +216,7 @@ class ProfileView extends StatelessWidget {
                                           ),
                                         ),
                                         const SizedBox(
-                                          height: 2.5,
+                                          height: 4,
                                         ),
                                         Padding(
                                           padding:

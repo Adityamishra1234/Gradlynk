@@ -794,7 +794,9 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-
+          onSaved: (value) {
+            controller.update();
+          },
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: EnglishTestController.speaking,
