@@ -72,14 +72,14 @@ class EnglishTestDetails extends StatelessWidget {
             if (controller.examStatusCodeSelected == 3)
               ...testAllReadyTaken(context),
             if (controller.examStatusCodeSelected == 3 &&
-                controller.tentative.value == true)
+                controller.tentative.value == 'Tentative')
               ...tentative(context),
             if (controller.examStatusCodeSelected == 3 &&
-                controller.tentative.value == false &&
+                controller.tentative.value == 'Definite' &&
                 controller.duolingo.value == false)
               ...definite(context),
             if (controller.examStatusCodeSelected == 3 &&
-                controller.tentative.value == false &&
+                controller.tentative.value == 'Definite' &&
                 controller.duolingo.value == true)
               ...duolingo(context),
             SizedBox(
@@ -153,12 +153,14 @@ class EnglishTestDetails extends StatelessWidget {
   }
 
   callbackTentativeDefinite(varTopic) {
+    EnglishTestController.overallScoreController.clear();
+
     if (varTopic.toString() == "Tentative") {
-      controller.tentative.value = true;
+      controller.tentative.value = varTopic;
 
       controller.update();
     } else {
-      controller.tentative.value = false;
+      controller.tentative.value = varTopic;
       controller.update();
     }
   }
@@ -476,8 +478,7 @@ class EnglishTestDetails extends StatelessWidget {
       ),
       CustomDropDownSingle(
         model: const ["Tentative", "Definite"],
-        initialSelectedValue:
-            controller.tentative.value == true ? "Tentative" : "Definite",
+        initialSelectedValue: controller.tentative.value,
         choosefieldtype: controller.editSave.value == true ? true : false,
         callbackFunction: callbackTentativeDefinite,
       ),

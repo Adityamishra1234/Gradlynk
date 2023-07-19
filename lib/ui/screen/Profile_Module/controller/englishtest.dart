@@ -28,7 +28,7 @@ class EnglishTestController extends GetxController with StateMixin {
   // loading
   RxBool loadingExamStaus = false.obs;
   RxBool loadingExamName2 = false.obs;
-  RxBool tentative = true.obs;
+  RxString tentative = ''.obs;
   RxBool duolingo = false.obs;
   RxBool loadingViewEnglishTestDetails = false.obs;
   RxBool editSave = true.obs;
@@ -153,14 +153,30 @@ class EnglishTestController extends GetxController with StateMixin {
         englishTestDetailsViewModel.examStatusID =
             examStatusCodeSelected.toString();
         englishTestDetailsViewModel.examName = examNameSelected;
-        englishTestDetailsViewModel.reading = reading.text;
-        englishTestDetailsViewModel.writing = writing.text;
-        englishTestDetailsViewModel.listening = listening.text;
-        englishTestDetailsViewModel.speaking = speaking.text;
-        englishTestDetailsViewModel.literacy = listening.text;
-        englishTestDetailsViewModel.comprehension = writing.text;
-        englishTestDetailsViewModel.conversation = reading.text;
-        englishTestDetailsViewModel.production = writing.text;
+
+        if (examNameSelected == 'Duolingo') {
+          englishTestDetailsViewModel.literacy = listening.text;
+          englishTestDetailsViewModel.comprehension = writing.text;
+          englishTestDetailsViewModel.conversation = reading.text;
+          englishTestDetailsViewModel.production = writing.text;
+
+          englishTestDetailsViewModel.reading = null;
+          englishTestDetailsViewModel.writing = null;
+          englishTestDetailsViewModel.listening = null;
+          englishTestDetailsViewModel.speaking = null;
+        } else {
+          englishTestDetailsViewModel.reading = reading.text;
+          englishTestDetailsViewModel.writing = writing.text;
+          englishTestDetailsViewModel.listening = listening.text;
+          englishTestDetailsViewModel.speaking = speaking.text;
+
+          englishTestDetailsViewModel.literacy = null;
+          englishTestDetailsViewModel.comprehension = null;
+          englishTestDetailsViewModel.conversation = null;
+          englishTestDetailsViewModel.production = null;
+        }
+
+        englishTestDetailsViewModel.scoreType = tentative.value;
 
         if (getNUllChecker(tentativeExamDate.text)) {
           englishTestDetailsViewModel.overAll = overallScoreController.text;
@@ -194,19 +210,43 @@ class EnglishTestController extends GetxController with StateMixin {
         englishTestDetailsViewModel.examStatusID =
             examStatusCodeSelected.toString();
         englishTestDetailsViewModel.examName = examNameSelected;
-        englishTestDetailsViewModel.reading = reading.text;
-        englishTestDetailsViewModel.writing = writing.text;
-        englishTestDetailsViewModel.listening = listening.text;
-        englishTestDetailsViewModel.speaking = speaking.text;
-        englishTestDetailsViewModel.literacy = listening.text;
-        englishTestDetailsViewModel.comprehension = writing.text;
-        englishTestDetailsViewModel.conversation = reading.text;
-        englishTestDetailsViewModel.production = writing.text;
+
+        if (examNameSelected == 'Duolingo') {
+          englishTestDetailsViewModel.literacy = listening.text;
+          englishTestDetailsViewModel.comprehension = writing.text;
+          englishTestDetailsViewModel.conversation = reading.text;
+          englishTestDetailsViewModel.production = writing.text;
+
+          englishTestDetailsViewModel.reading = null;
+          englishTestDetailsViewModel.writing = null;
+          englishTestDetailsViewModel.listening = null;
+          englishTestDetailsViewModel.speaking = null;
+        } else {
+          englishTestDetailsViewModel.reading = reading.text;
+          englishTestDetailsViewModel.writing = writing.text;
+          englishTestDetailsViewModel.listening = listening.text;
+          englishTestDetailsViewModel.speaking = speaking.text;
+
+          englishTestDetailsViewModel.literacy = null;
+          englishTestDetailsViewModel.comprehension = null;
+          englishTestDetailsViewModel.conversation = null;
+          englishTestDetailsViewModel.production = null;
+        }
+
+        englishTestDetailsViewModel.scoreType = tentative.value;
+
+        // englishTestDetailsViewModel.reading = reading.text;
+        // englishTestDetailsViewModel.writing = writing.text;
+        // englishTestDetailsViewModel.listening = listening.text;
+        // englishTestDetailsViewModel.speaking = speaking.text;
+        // englishTestDetailsViewModel.literacy = listening.text;
+        // englishTestDetailsViewModel.comprehension = writing.text;
+        // englishTestDetailsViewModel.conversation = reading.text;
+        // englishTestDetailsViewModel.production = writing.text;
         if (getNUllChecker(tentativeExamDate.text)) {
           englishTestDetailsViewModel.overAll = overallScoreController.text;
         } else {
-          englishTestDetailsViewModel.overAll =
-              englishTestDetailsViewModel.overAll;
+          englishTestDetailsViewModel.overAll = overallScoreController.text;
         }
         await updateEnglishTestDetaisl(
             Get.find<BaseController>().model1.id.toString(),
@@ -256,7 +296,7 @@ class EnglishTestController extends GetxController with StateMixin {
           getNUllChecker(englishTestDetailsViewModel.writing) ||
           getNUllChecker(englishTestDetailsViewModel.literacy) ||
           getNUllChecker(englishTestDetailsViewModel.analyticalWriting)) {
-        tentative.value = true;
+        tentative.value = 'Tentative';
       }
       loadingFirstTime.value = true;
     } catch (e) {
