@@ -543,17 +543,18 @@ class EnglishTestDetails extends StatelessWidget {
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: EnglishTestController.listening,
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .listeningKey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .listeningKey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
+          onChanged: (value) {
+            controller.update();
+            // if (Get.find<EnglishTestController>()
+            //     .listeningKey
+            //     .currentState!
+            //     .validate()) {
+            //   Get.find<EnglishTestController>()
+            //       .listeningKey
+            //       .currentState!
+            //       .save();
+            // }
+          },
           validator: (value) {
             if (getNUllChecker(value) == false) {
               if (controller.examNameSelected == "PTE") {
@@ -628,7 +629,6 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: EnglishTestController.writing,
@@ -644,17 +644,18 @@ class EnglishTestDetails extends StatelessWidget {
             ),
           ),
           style: ThemeConstants.montserrattextstyle,
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .writingKey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .writingKey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
+          onChanged: (value) {
+            controller.update();
+            // if (Get.find<EnglishTestController>()
+            //     .writingKey
+            //     .currentState!
+            //     .validate()) {
+            //   Get.find<EnglishTestController>()
+            //       .writingKey
+            //       .currentState!
+            //       .save();
+            // }
+          },
           validator: (value) {
             if (getNUllChecker(value) == false) {
               if (controller.examNameSelected == "PTE") {
@@ -711,7 +712,6 @@ class EnglishTestDetails extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-
           keyboardType: TextInputType.number,
           readOnly: controller.editSave.value == true ? true : false,
           controller: EnglishTestController.reading,
@@ -727,17 +727,18 @@ class EnglishTestDetails extends StatelessWidget {
             ),
           ),
           style: ThemeConstants.montserrattextstyle,
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .readingKey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .readingKey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
+          onChanged: (value) {
+            controller.update();
+            // if (Get.find<EnglishTestController>()
+            //     .readingKey
+            //     .currentState!
+            //     .validate()) {
+            //   Get.find<EnglishTestController>()
+            //       .readingKey
+            //       .currentState!
+            //       .save();
+            // }
+          },
           validator: (value) {
             if (getNUllChecker(value) == false) {
               if (controller.examNameSelected == "PTE") {
@@ -812,17 +813,18 @@ class EnglishTestDetails extends StatelessWidget {
             ),
           ),
           style: ThemeConstants.montserrattextstyle,
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .speakingKey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .speakingKey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
+          onChanged: (value) {
+            controller.update();
+            // if (Get.find<EnglishTestController>()
+            //     .speakingKey
+            //     .currentState!
+            //     .validate()) {
+            //   Get.find<EnglishTestController>()
+            //       .speakingKey
+            //       .currentState!
+            //       .save();
+            // }
+          },
           validator: (value) {
             if (getNUllChecker(value) == false) {
               if (controller.examNameSelected == "PTE") {
@@ -1154,7 +1156,6 @@ class EnglishTestDetails extends StatelessWidget {
           EnglishTestController.overallScoreController.text =
               temp.toStringAsFixed(2);
         }
-
         return [
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
