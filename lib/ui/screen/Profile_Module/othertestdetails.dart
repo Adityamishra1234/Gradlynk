@@ -157,7 +157,7 @@ class OthertestDetail extends StatelessWidget {
               initialSelectedValue: controller.loadingExamStaus.value == true
                   ? getNUllChecker(controller.examStatusSelected) == false
                       ? controller.examStatusSelected.toString()
-                      : controller.examStatusList[0]
+                      : 'Kindly Select'
                   : "No Data",
               choosefieldtype: controller.editSave.value == true ? true : false,
               callbackFunction: callbackExamStatus,
@@ -247,7 +247,7 @@ class OthertestDetail extends StatelessWidget {
         initialSelectedValue: controller.loadingExamName.value == true
             ? getNUllChecker(controller.examNameSelected) == false
                 ? controller.examNameSelected.toString()
-                : controller.examNameList[0]
+                : "Kindly Select"
             : "No Data",
         choosefieldtype: controller.editSave.value == true ? true : false,
         callbackFunction: callbackExamName,
@@ -269,11 +269,12 @@ class OthertestDetail extends StatelessWidget {
         child: SizedBox(
           height: 40,
           child: CustomTimerWidget(
-              initialTime: '',
+              isBlank: true,
+              initialTime: controller.otherTestDetailsModel.dateOfExam,
               startingDate: DateTime.now(),
               // enableField: controller.editSave.value == true ? true : false,
               // date: controller.dateOfExamSelected,
-              callback: callbackExamName),
+              callback: callbackDateOfExam),
         ),
       )
     ];
@@ -1396,9 +1397,9 @@ class OthertestDetail extends StatelessWidget {
   }
 
   callbackDateOfExam(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOfExamSelected = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.dateOfExamSelected = data;
     controller.update();
   }
 
