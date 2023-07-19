@@ -37,7 +37,9 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
   late DateTime minimumDate;
   @override
   void initState() {
-    if (widget.initialTime != null) {
+    if (widget.initialTime != null &&
+        widget.initialTime != '' &&
+        widget.initialTime != "0000-00-00") {
       String dateString = widget.initialTime!;
       dateTime = Jiffy.parse(dateString).dateTime;
 

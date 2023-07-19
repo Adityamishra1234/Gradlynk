@@ -48,6 +48,7 @@ class RelativeInformationView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(
+              padding: EdgeInsets.all(0),
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
@@ -231,29 +232,29 @@ class RelativeInformationView extends StatelessWidget {
                           child: Row(
                             children: [
                               const Spacer(),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20, right: 20),
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      foregroundColor:
-                                          ThemeConstants.whitecolor,
-                                      elevation: 0.0,
-                                      backgroundColor:
-                                          ThemeConstants.whitecolor,
-                                      side: BorderSide(
-                                          color: ThemeConstants.TextColor),
-                                      // foreground
-                                    ),
-                                    onPressed: () async {
-                                      // Api call
-                                      callbackDelete(index);
-                                    },
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Delete",
-                                      textColor: ThemeConstants.TextColor,
-                                    )),
-                              ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(top: 20, right: 20),
+                              //   child: ElevatedButton(
+                              //       style: ElevatedButton.styleFrom(
+                              //         foregroundColor:
+                              //             ThemeConstants.whitecolor,
+                              //         elevation: 0.0,
+                              //         backgroundColor:
+                              //             ThemeConstants.whitecolor,
+                              //         side: BorderSide(
+                              //             color: ThemeConstants.TextColor),
+                              //         // foreground
+                              //       ),
+                              //       onPressed: () async {
+                              //         // Api call
+                              //         callbackDelete(index);
+                              //       },
+                              //       child: CustomAutoSizeTextMontserrat(
+                              //         text: "Delete",
+                              //         textColor: ThemeConstants.TextColor,
+                              //       )),
+                              // ),
                               Padding(
                                 padding:
                                     const EdgeInsets.only(top: 20, right: 20),

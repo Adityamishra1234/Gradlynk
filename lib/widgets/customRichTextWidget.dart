@@ -40,7 +40,7 @@ class CustomRichTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoSizeText.rich(
       // text ?? "",
-
+      textAlign: TextAlign.center,
       TextSpan(children: <InlineSpan>[
         TextSpan(
           text: text1,

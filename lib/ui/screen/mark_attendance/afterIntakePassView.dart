@@ -93,7 +93,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           Get.to(UploadDocument(is_event: true), arguments: 1);
                         },
                         child: CustomIconTextTogether(
-                          text: 'Uplaod Document',
+                          text: 'Upload Document',
                           iconBeforetext: true,
                           color: ThemeConstants.red,
                           Bgcolor: ThemeConstants.whitecolor,

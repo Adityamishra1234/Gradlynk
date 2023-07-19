@@ -119,9 +119,12 @@ class PassportDetails extends StatelessWidget {
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 height: 40,
-                child: CustomTimerWidget(callback: (value) {
-                  controller.passportModel.passportTentativeDate = value;
-                })),
+                child: CustomTimerWidget(
+                    isBlank: true,
+                    initialTime: controller.passportModel.passportTentativeDate,
+                    callback: (value) {
+                      controller.passportModel.passportTentativeDate = value;
+                    })),
           ],
           if (controller.passportAvaliable.value == true)
             ...getPassportAvaliable(controller, context),
@@ -308,13 +311,28 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? false : true,
-            date: controller.dateOfIssue,
-            callbackDate: callbackDateOfIssue),
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.dateOfIssue,
+            callback: (value) {
+              callbackDateOfIssue(value);
+            },
+          ),
+        ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: controller.editSave.value == true ? false : true,
+      //       date: controller.dateOfIssue,
+      //       callbackDate: callbackDateOfIssue),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -328,13 +346,28 @@ class PassportDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? false : true,
-            date: controller.expireDate,
-            callbackDate: callbackExpireDate),
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.expireDate,
+            callback: (value) {
+              callbackExpireDate(value);
+            },
+          ),
+        ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: controller.editSave.value == true ? false : true,
+      //       date: controller.expireDate,
+      //       callbackDate: callbackExpireDate),
+      // ),
       // Padding(
       //   padding: const EdgeInsets.only(top: 15),
       //   child: Row(
@@ -471,16 +504,18 @@ class PassportDetails extends StatelessWidget {
   // }
 
   callbackDateOfIssue(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOfIssue = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.dateOfIssue = data;
+    // date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 
   callbackExpireDate(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.expireDate = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.expireDate = data;
+    // date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 }

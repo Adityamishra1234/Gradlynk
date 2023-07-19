@@ -295,7 +295,7 @@ class TravelHistoryWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: CustomTimerWidget(
               // enableField: false,
-
+              isBlank: true,
               initialTime: controller.dateOfApplicatiton,
               callback: (value) {
                 callbackDateOfApplciation(value);
@@ -320,7 +320,7 @@ class TravelHistoryWidget extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: CustomTimerWidget(
               // enableField: false,
-
+              isBlank: true,
               initialTime: controller.dateOfReject,
               callback: (value) {
                 callbackDateOfReject(value);
