@@ -452,7 +452,8 @@ class RelativeInformationWidget extends StatelessWidget {
   String getSelectedDropDown(bool loading, String? selected, List model) {
     if (loading == true) {
       if (selected == null) {
-        return model[0].toString();
+        // return' model[0].toString()';
+        return 'Please Select';
       } else {
         return selected;
       }

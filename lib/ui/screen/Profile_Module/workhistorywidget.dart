@@ -152,7 +152,7 @@ class WorkHistoryWidget extends StatelessWidget {
               child: CustomTimerWidget(
                 isBlank: true,
                 // enableField: false,
-                // date: controller.workingFromSelected,
+                initialTime: controller.workingFromSelected,
                 callback: (value) {
                   callbackWorkingForm(value);
                 },
@@ -177,6 +177,8 @@ class WorkHistoryWidget extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: CustomTimerWidget(
                 isBlank: true,
+
+                initialTime: controller.workingTillSelected,
                 // enableField: false,
                 // date: controller.workingFromSelected,
                 callback: (value) {

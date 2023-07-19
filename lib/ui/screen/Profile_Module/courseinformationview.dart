@@ -103,28 +103,28 @@ class CourseInformationView extends StatelessWidget {
                           child: Row(
                             children: [
                               const Spacer(),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20, right: 20),
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      foregroundColor:
-                                          ThemeConstants.whitecolor,
-                                      elevation: 0.0,
-                                      backgroundColor:
-                                          ThemeConstants.whitecolor,
-                                      side: BorderSide(
-                                          color: ThemeConstants.TextColor),
-                                      // foreground
-                                    ),
-                                    onPressed: () async {
-                                      callbackIndexDelete(index);
-                                    },
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Delete",
-                                      textColor: ThemeConstants.TextColor,
-                                    )),
-                              ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(top: 20, right: 20),
+                              //   child: ElevatedButton(
+                              //       style: ElevatedButton.styleFrom(
+                              //         foregroundColor:
+                              //             ThemeConstants.whitecolor,
+                              //         elevation: 0.0,
+                              //         backgroundColor:
+                              //             ThemeConstants.whitecolor,
+                              //         side: BorderSide(
+                              //             color: ThemeConstants.TextColor),
+                              //         // foreground
+                              //       ),
+                              //       onPressed: () async {
+                              //         callbackIndexDelete(index);
+                              //       },
+                              //       child: CustomAutoSizeTextMontserrat(
+                              //         text: "Delete",
+                              //         textColor: ThemeConstants.TextColor,
+                              //       )),
+                              // ),
                               Padding(
                                 padding:
                                     const EdgeInsets.only(top: 20, right: 20),

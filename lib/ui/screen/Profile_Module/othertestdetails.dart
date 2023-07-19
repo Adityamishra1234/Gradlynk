@@ -269,6 +269,7 @@ class OthertestDetail extends StatelessWidget {
         child: SizedBox(
           height: 40,
           child: CustomTimerWidget(
+              initialTime: '',
               startingDate: DateTime.now(),
               // enableField: controller.editSave.value == true ? true : false,
               // date: controller.dateOfExamSelected,
@@ -346,13 +347,28 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? true : false,
-            date: controller.tentativeDateSelected,
-            callbackDate: callbackTentativeExamDate),
-      )
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.tentativeDateSelected,
+            callback: (value) {
+              callbackTentativeExamDate(value);
+            },
+          ),
+        ),
+      ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: controller.editSave.value == true ? true : false,
+      //       date: controller.tentativeDateSelected,
+      //       callbackDate: callbackTentativeExamDate),
+      // )
     ];
   }
 
@@ -399,13 +415,28 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? true : false,
-            date: controller.dateOfExamSelected,
-            callbackDate: callbackExamName),
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.dateOfExamSelected,
+            callback: (value) {
+              callbackExamName(value);
+            },
+          ),
+        ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: controller.editSave.value == true ? true : false,
+      //       date: controller.dateOfExamSelected,
+      //       callbackDate: callbackExamName),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -418,13 +449,28 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? true : false,
-            date: controller.dateOftestReportSelected,
-            callbackDate: callbackTextScoreExpirationdate),
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.dateOftestReportSelected,
+            callback: (value) {
+              callbackDateOfTestReport(value);
+            },
+          ),
+        ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: controller.editSave.value == true ? true : false,
+      //       date: controller.dateOftestReportSelected,
+      //       callbackDate: callbackTextScoreExpirationdate),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -437,13 +483,28 @@ class OthertestDetail extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-            enableField: controller.editSave.value == true ? true : false,
-            date: controller.testScoreExpirationDateSelected,
-            callbackDate: callbackTextScoreExpirationdate),
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.testScoreExpirationDateSelected,
+            callback: (value) {
+              callbackTextScoreExpirationdate(value);
+            },
+          ),
+        ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //       enableField: controller.editSave.value == true ? true : false,
+      //       date: controller.testScoreExpirationDateSelected,
+      //       callbackDate: callbackTextScoreExpirationdate),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -1342,25 +1403,26 @@ class OthertestDetail extends StatelessWidget {
   }
 
   callbackTentativeExamDate(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.tentativeDateSelected = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.tentativeDateSelected = data;
+
+    // date[0] + "-" + date[1] + '-' + date[2];
     controller.update();
   }
 
   callbackDateOfTestReport(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOftestReportSelected =
-        date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.dateOftestReportSelected = data;
     controller.update();
   }
 
   callbackTextScoreExpirationdate(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.testScoreExpirationDateSelected =
-        date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.testScoreExpirationDateSelected = data;
+
     controller.update();
   }
 }

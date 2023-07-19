@@ -6,6 +6,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -92,33 +93,35 @@ class EnglishTestDetails extends StatelessWidget {
 
 // CallBack Funcation
   callbackDateOfExam(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOfExamSelected = date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dateOfExamSelected = date[0] + "-" + date[1] + '-' + date[2];
+
+    controller.dateOfExamSelected = data;
     controller.update();
   }
 
   callbackTentativeExamDate(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.tentativeExamDateSelcted =
-        date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.tentativeExamDateSelcted =
+    //     date[0] + "-" + date[1] + '-' + date[2];
+    controller.tentativeExamDateSelcted = data;
+
     controller.update();
   }
 
   callbackDateOfTestReport(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.dateOfTestReportSelcted =
-        date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.dateOfTestReportSelcted = data;
     controller.update();
   }
 
   callbackTextScoreExpirationdate(data) {
-    String temp = data.toString().split(' ')[0];
-    List<String> date = temp.split('-');
-    controller.testscoreExpirationDateSelcted =
-        date[0] + "-" + date[1] + '-' + date[2];
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    controller.testscoreExpirationDateSelcted = data;
     controller.update();
   }
 
@@ -206,18 +209,33 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: getNUllChecker(
-                      controller.englishTestDetailsViewModel.dateOfExam) ==
-                  false
-              ? controller.dateOfExamSelected
-              : "",
-          callbackDate: callbackDateOfExam,
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.dateOfExamSelected,
+            callback: (value) {
+              callbackDateOfExam(value);
+            },
+          ),
         ),
-      )
+      ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //     enableField: controller.editSave.value == true ? true : false,
+      //     date: getNUllChecker(
+      //                 controller.englishTestDetailsViewModel.dateOfExam) ==
+      //             false
+      //         ? controller.dateOfExamSelected
+      //         : "",
+      //     callbackDate: callbackDateOfExam,
+      //   ),
+      // )
     ];
   }
 
@@ -277,16 +295,31 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: getNUllChecker(controller.tentativeExamDateSelcted) == false
-              ? controller.tentativeExamDateSelcted
-              : null,
-          callbackDate: callbackTentativeExamDate,
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.tentativeExamDateSelcted,
+            callback: (value) {
+              callbackTentativeExamDate(value);
+            },
+          ),
         ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //     enableField: controller.editSave.value == true ? true : false,
+      //     date: getNUllChecker(controller.tentativeExamDateSelcted) == false
+      //         ? controller.tentativeExamDateSelcted
+      //         : null,
+      //     callbackDate: callbackTentativeExamDate,
+      //   ),
+      // ),
     ];
   }
 
@@ -329,18 +362,33 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          date: getNUllChecker(
-                      controller.englishTestDetailsViewModel.dateOfExam) ==
-                  false
-              ? controller.dateOfExamSelected
-              : "",
-          callbackDate: callbackDateOfExam,
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.dateOfExamSelected,
+            callback: (value) {
+              callbackDateOfExam(value);
+            },
+          ),
         ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //     enableField: controller.editSave.value == true ? true : false,
+      //     date: getNUllChecker(
+      //                 controller.englishTestDetailsViewModel.dateOfExam) ==
+      //             false
+      //         ? controller.dateOfExamSelected
+      //         : "",
+      //     callbackDate: callbackDateOfExam,
+      //   ),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -353,14 +401,29 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          callbackDate: callbackDateOfTestReport,
-          date: controller.dateOfTestReportSelcted,
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.dateOfTestReportSelcted,
+            callback: (value) {
+              callbackDateOfTestReport(value);
+            },
+          ),
         ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //     enableField: controller.editSave.value == true ? true : false,
+      //     callbackDate: callbackDateOfTestReport,
+      //     date: controller.dateOfTestReportSelcted,
+      //   ),
+      // ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
         child: Align(
@@ -373,14 +436,29 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: DatePickerExample(
-          enableField: controller.editSave.value == true ? true : false,
-          callbackDate: callbackTextScoreExpirationdate,
-          date: controller.testscoreExpirationDateSelcted,
+      Container(
+        height: 45,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: CustomTimerWidget(
+            isBlank: true,
+            // enableField: false,
+
+            initialTime: controller.testscoreExpirationDateSelcted,
+            callback: (value) {
+              callbackTextScoreExpirationdate(value);
+            },
+          ),
         ),
       ),
+      // Padding(
+      //   padding: const EdgeInsets.only(left: 10, right: 10),
+      //   child: DatePickerExample(
+      //     enableField: controller.editSave.value == true ? true : false,
+      //     callbackDate: callbackTextScoreExpirationdate,
+      //     date: controller.testscoreExpirationDateSelcted,
+      //   ),
+      // ),
       const SizedBox(
         height: 10,
       ),
