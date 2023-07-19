@@ -52,10 +52,11 @@ class EnglishTestController extends GetxController with StateMixin {
   bool? save = false;
 
   @override
-  void onInit() {
-    getExamName();
-    getExamStatus();
-    getEnglishTestDetails(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    await getExamName();
+    await getExamStatus();
+    await getEnglishTestDetails(
+        Get.find<BaseController>().model1.id.toString());
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -101,13 +102,14 @@ class EnglishTestController extends GetxController with StateMixin {
   }
 
   getEnglishTestDetails(String enqId) async {
+    change(null, status: RxStatus.loading());
     try {
       var res = await apiServices.viewEnglishTestDetails(
           Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enqId);
       if (res != null) {
         englishTestDetailsViewModel = res;
         loadingViewEnglishTestDetails = true.obs;
-        update();
+        viewCondition();
       }
     } catch (e) {
       await ApiServices().errorHandle(
@@ -219,4 +221,48 @@ class EnglishTestController extends GetxController with StateMixin {
   //   updateEnglishTestDetaisl(
   //       Get.find<BaseController>().model1.id.toString(), model);
   // }
+
+  viewCondition() async {
+    change(null, status: RxStatus.loading());
+
+    try {
+      //exam status
+      dateOfExamSelected = englishTestDetailsViewModel.dateOfExam;
+      dateOfTestReportSelcted = englishTestDetailsViewModel.resultDate;
+      testscoreExpirationDateSelcted =
+          englishTestDetailsViewModel.expirationDate;
+      tentativeExamDateSelcted = englishTestDetailsViewModel.tentativeExamDate;
+      EnglishTestController.overallScoreController.text =
+          getNUllChecker(englishTestDetailsViewModel.overAll) == false
+              ? englishTestDetailsViewModel.overAll.toString()
+              : "";
+      for (var i = 0; i < examStatusCode.length; i++) {
+        if (examStatusCode[i].toString() ==
+            englishTestDetailsViewModel.examStatusID) {
+          examStatusCodeSelected = int.parse(examStatusCode[i]);
+          examStatusSelected = examStatusList[i];
+        }
+      }
+
+      //Exam Name
+      if (englishTestDetailsViewModel.examName == "Duolingo") {
+        duolingo.value = true;
+      } else {
+        examNameSelected = englishTestDetailsViewModel.examName;
+        duolingo.value = false;
+      }
+      //tentative / Definite +
+      if (getNUllChecker(englishTestDetailsViewModel.listening) ||
+          getNUllChecker(englishTestDetailsViewModel.writing) ||
+          getNUllChecker(englishTestDetailsViewModel.literacy) ||
+          getNUllChecker(englishTestDetailsViewModel.analyticalWriting)) {
+        tentative.value = true;
+      }
+      loadingFirstTime.value = true;
+    } catch (e) {
+      print(e.toString());
+    }
+    change(null, status: RxStatus.success());
+    update();
+  }
 }

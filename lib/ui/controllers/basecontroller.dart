@@ -128,7 +128,7 @@ class BaseController extends GetxController with StateMixin {
 
     if (model1.student_consent == 0) {
       change(null, status: RxStatus.success());
-      await Future.delayed(Duration(seconds: 5));
+
       Get.offAll(LetsGetStartedMainView());
     }
   }

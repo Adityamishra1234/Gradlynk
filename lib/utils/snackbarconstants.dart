@@ -214,8 +214,7 @@ class SnackBarConstants {
   static String? courseRemove = "Course removed successfully";
   static String? courseFinalShortList = "Course final shortlisted successfully";
   static String? courseFinalRemove = "Course removed successfully";
-  static String? contactInformation =
-      "Contact Information updated successfully";
+  static String? contactInformation = "Contact Information updated ";
   static String? englishTestDetails =
       " Language test details updated successfully";
   static String? passportDetails = "Passport details updated successfully";

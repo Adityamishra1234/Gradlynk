@@ -68,8 +68,8 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
     if (res != null) {
       Map map = Map<String, String>.from(res);
-      leadSourcesListName.add("Select Lead Sources");
-      leadSourcesListID.add(0);
+      // leadSourcesListName.add("Select Lead Sources");
+      // leadSourcesListID.add(0);
 
       leadSourcesListName.addAll(map.values.toList());
       leadSourcesListID.addAll(map.keys.toList());

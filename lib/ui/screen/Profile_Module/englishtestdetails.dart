@@ -22,13 +22,13 @@ class EnglishTestDetails extends StatelessWidget {
       controller.update();
     }
     return controller.obx((state) {
-      if (controller.loadingFirstTime.value == false) {
-        if (controller.loadingExamName2.value == true &&
-            controller.loadingExamStaus.value == true &&
-            controller.loadingViewEnglishTestDetails.value == true) {
-          viewCondition();
-        }
-      }
+      // if (controller.loadingFirstTime.value == false) {
+      //   if (controller.loadingExamName2.value == true &&
+      //       controller.loadingExamStaus.value == true &&
+      //       controller.loadingViewEnglishTestDetails.value == true) {
+      //     viewCondition();
+      //   }
+      // }
 
       return SingleChildScrollView(
         child: Column(
@@ -47,90 +47,6 @@ class EnglishTestDetails extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     const Spacer(),
-                    // if (controller.editSave.value == true)
-                    //   TextButton(
-                    //       onPressed: () {
-                    //         controller.editSave.value = false;
-                    //         controller.update();
-                    //       },
-                    //       child: CustomAutoSizeTextMontserrat(
-                    //         text: "edit",
-                    //         textColor: ThemeConstants.bluecolor,
-                    //       )),
-                    // if (controller.editSave.value == false)
-                    //   TextButton(
-                    //       onPressed: () {
-                    //         if (controller.examStatusSelected ==
-                    //             "Not Yet Registered") {
-                    //           if (controller.bookTestSelcted == null) {
-                    //             getToast(
-                    //                 SnackBarConstants.bookTestSelectedError!);
-                    //           }
-                    //         }
-                    //         if (controller.examStatusSelected == null) {
-                    //           getToast(SnackBarConstants.examStatusError!);
-                    //         } else {
-                    //           if (controller.examNameSelected == null) {
-                    //             getToast(SnackBarConstants.examnameError!);
-                    //           } else {
-                    //             EnglishTestDetailsViewModel
-                    //                 englishTestDetailsViewModel =
-                    //                 EnglishTestDetailsViewModel();
-                    //             englishTestDetailsViewModel =
-                    //                 controller.englishTestDetailsViewModel;
-                    //             englishTestDetailsViewModel.dateOfExam =
-                    //                 controller.dateOfExamSelected;
-                    //             englishTestDetailsViewModel.tentativeExamDate =
-                    //                 controller.tentativeExamDateSelcted;
-                    //             englishTestDetailsViewModel.expirationDate =
-                    //                 controller.testscoreExpirationDateSelcted;
-                    //             englishTestDetailsViewModel.resultDate =
-                    //                 controller.dateOfTestReportSelcted;
-                    //             englishTestDetailsViewModel.enqId =
-                    //                 Get.find<BaseController>()
-                    //                     .model1
-                    //                     .id
-                    //                     .toString();
-                    //             englishTestDetailsViewModel.examStatusID =
-                    //                 controller.examStatusCodeSelected
-                    //                     .toString();
-                    //             englishTestDetailsViewModel.examName =
-                    //                 controller.examNameSelected;
-                    //             englishTestDetailsViewModel.reading =
-                    //                EnglishTestController. reading.text;
-                    //             englishTestDetailsViewModel.writing =
-                    //                EnglishTestController.  writing.text;
-                    //             englishTestDetailsViewModel.listening =
-                    //                 EnglishTestController. listening.text;
-                    //             englishTestDetailsViewModel.speaking =
-                    //                EnglishTestController.  speaking.text;
-                    //             englishTestDetailsViewModel.literacy =
-                    //                 EnglishTestController. listening.text;
-                    //             englishTestDetailsViewModel.comprehension =
-                    //                 EnglishTestController. writing.text;
-                    //             englishTestDetailsViewModel.conversation =
-                    //                 EnglishTestController. reading.text;
-                    //             englishTestDetailsViewModel.production =
-                    //                 EnglishTestController. writing.text;
-                    //             if (getNUllChecker(EnglishTestController. tentativeExamDate.text)) {
-                    //               englishTestDetailsViewModel.overAll =
-                    //                   EnglishTestController. overallScoreController.text;
-                    //             } else {
-                    //               englishTestDetailsViewModel.overAll =
-                    //                   controller
-                    //                       .englishTestDetailsViewModel.overAll;
-                    //             }
-                    //             updateEnglishTestDetails(
-                    //                 englishTestDetailsViewModel);
-                    //             controller.editSave.value = true;
-                    //             controller.update();
-                    //           }
-                    //         }
-                    //       },
-                    //       child: CustomAutoSizeTextMontserrat(
-                    //         text: "save",
-                    //         textColor: ThemeConstants.bluecolor,
-                    //       )),
                   ],
                 ),
               ),
@@ -165,163 +81,6 @@ class EnglishTestDetails extends StatelessWidget {
                 controller.tentative.value == false &&
                 controller.duolingo.value == true)
               ...duolingo(context),
-            // Align(
-            //   alignment: AlignmentDirectional.topEnd,
-            //   child: Padding(
-            //     padding: const EdgeInsets.only(top: 20, right: 20),
-            //     child: SizedBox(
-            //       width: 90,
-            //       child: controller.editSave.value == false
-            //           ? ElevatedButton(
-            //               style: ElevatedButton.styleFrom(
-            //                 foregroundColor: ThemeConstants.bluecolor,
-            //                 elevation: 0.0,
-            //                 backgroundColor:
-            //                     ThemeConstants.bluecolor, // foreground
-            //               ),
-            //               onPressed: () async {
-            //                 if (controller.examStatusSelected == null) {
-            //                   getToast(SnackBarConstants.examStatusError!);
-            //                 } else if (controller.examStatusSelected ==
-            //                     "Not Yet Registered") {
-            //                   if (controller.bookTestSelcted == null) {
-            //                     getToast(
-            //                         SnackBarConstants.bookTestSelectedError!);
-            //                   } else {
-            //                     EnglishTestDetailsViewModel
-            //                         englishTestDetailsViewModel =
-            //                         EnglishTestDetailsViewModel();
-            //                     englishTestDetailsViewModel =
-            //                         controller.englishTestDetailsViewModel;
-            //                     englishTestDetailsViewModel.dateOfExam =
-            //                         controller.dateOfExamSelected;
-            //                     englishTestDetailsViewModel.tentativeExamDate =
-            //                         controller.tentativeExamDateSelcted;
-            //                     englishTestDetailsViewModel.expirationDate =
-            //                         controller.testscoreExpirationDateSelcted;
-            //                     englishTestDetailsViewModel.resultDate =
-            //                         controller.dateOfTestReportSelcted;
-            //                     englishTestDetailsViewModel.enqId =
-            //                         Get.find<BaseController>()
-            //                             .model1
-            //                             .id
-            //                             .toString();
-            //                     englishTestDetailsViewModel.examStatusID =
-            //                         controller.examStatusCodeSelected
-            //                             .toString();
-            //                     englishTestDetailsViewModel.examName =
-            //                         controller.examNameSelected;
-            //                     englishTestDetailsViewModel.reading =
-            //                         reading.text;
-            //                     englishTestDetailsViewModel.writing =
-            //                         writing.text;
-            //                     englishTestDetailsViewModel.listening =
-            //                         listening.text;
-            //                     englishTestDetailsViewModel.speaking =
-            //                         speaking.text;
-            //                     englishTestDetailsViewModel.literacy =
-            //                         listening.text;
-            //                     englishTestDetailsViewModel.comprehension =
-            //                         writing.text;
-            //                     englishTestDetailsViewModel.conversation =
-            //                         reading.text;
-            //                     englishTestDetailsViewModel.production =
-            //                         writing.text;
-
-            //                     if (getNUllChecker(tentativeExamDate.text)) {
-            //                       englishTestDetailsViewModel.overAll =
-            //                           overallScoreController.text;
-            //                     } else {
-            //                       englishTestDetailsViewModel.overAll =
-            //                           controller
-            //                               .englishTestDetailsViewModel.overAll;
-            //                     }
-            //                     updateEnglishTestDetails(
-            //                         englishTestDetailsViewModel);
-            //                     controller.editSave.value = true;
-            //                     controller.update();
-            //                   }
-            //                 } else {
-            //                   if (controller.examNameSelected == null) {
-            //                     getToast(SnackBarConstants.examnameError!);
-            //                   } else {
-            //                     EnglishTestDetailsViewModel
-            //                         englishTestDetailsViewModel =
-            //                         EnglishTestDetailsViewModel();
-            //                     englishTestDetailsViewModel =
-            //                         controller.englishTestDetailsViewModel;
-            //                     englishTestDetailsViewModel.dateOfExam =
-            //                         controller.dateOfExamSelected;
-            //                     englishTestDetailsViewModel.tentativeExamDate =
-            //                         controller.tentativeExamDateSelcted;
-            //                     englishTestDetailsViewModel.expirationDate =
-            //                         controller.testscoreExpirationDateSelcted;
-            //                     englishTestDetailsViewModel.resultDate =
-            //                         controller.dateOfTestReportSelcted;
-            //                     englishTestDetailsViewModel.enqId =
-            //                         Get.find<BaseController>()
-            //                             .model1
-            //                             .id
-            //                             .toString();
-            //                     englishTestDetailsViewModel.examStatusID =
-            //                         controller.examStatusCodeSelected
-            //                             .toString();
-            //                     englishTestDetailsViewModel.examName =
-            //                         controller.examNameSelected;
-            //                     englishTestDetailsViewModel.reading =
-            //                         reading.text;
-            //                     englishTestDetailsViewModel.writing =
-            //                         writing.text;
-            //                     englishTestDetailsViewModel.listening =
-            //                         listening.text;
-            //                     englishTestDetailsViewModel.speaking =
-            //                         speaking.text;
-            //                     englishTestDetailsViewModel.literacy =
-            //                         listening.text;
-            //                     englishTestDetailsViewModel.comprehension =
-            //                         writing.text;
-            //                     englishTestDetailsViewModel.conversation =
-            //                         reading.text;
-            //                     englishTestDetailsViewModel.production =
-            //                         writing.text;
-            //                     if (getNUllChecker(tentativeExamDate.text)) {
-            //                       englishTestDetailsViewModel.overAll =
-            //                           overallScoreController.text;
-            //                     } else {
-            //                       englishTestDetailsViewModel.overAll =
-            //                           controller
-            //                               .englishTestDetailsViewModel.overAll;
-            //                     }
-            //                     updateEnglishTestDetails(
-            //                         englishTestDetailsViewModel);
-            //                     controller.editSave.value = true;
-            //                     controller.update();
-            //                   }
-            //                 }
-            //               },
-            //               child: CustomAutoSizeTextMontserrat(
-            //                 text: "Save",
-            //                 textColor: ThemeConstants.whitecolor,
-            //               ))
-            //           : ElevatedButton(
-            //               style: ElevatedButton.styleFrom(
-            //                 foregroundColor: ThemeConstants.bluecolor,
-            //                 elevation: 0.0,
-            //                 backgroundColor:
-            //                     ThemeConstants.bluecolor, // foreground
-            //               ),
-            //               onPressed: () async {
-            //                 controller.editSave.value = false;
-            //                 controller.update();
-            //               },
-            //               child: CustomAutoSizeTextMontserrat(
-            //                 text: "Edit",
-            //                 textColor: ThemeConstants.whitecolor,
-            //               )),
-            //     ),
-            //   ),
-            // ),
-
             SizedBox(
               height: MediaQuery.of(context).viewInsets.bottom,
             ),
@@ -1353,54 +1112,6 @@ class EnglishTestDetails extends StatelessWidget {
     } catch (e) {
       print(e.toString());
       return [Container()];
-    }
-  }
-
-  viewCondition() {
-    try {
-      //exam status
-      controller.dateOfExamSelected =
-          controller.englishTestDetailsViewModel.dateOfExam;
-      controller.dateOfTestReportSelcted =
-          controller.englishTestDetailsViewModel.resultDate;
-      controller.testscoreExpirationDateSelcted =
-          controller.englishTestDetailsViewModel.expirationDate;
-      controller.tentativeExamDateSelcted =
-          controller.englishTestDetailsViewModel.tentativeExamDate;
-      EnglishTestController.overallScoreController.text =
-          getNUllChecker(controller.englishTestDetailsViewModel.overAll) ==
-                  false
-              ? controller.englishTestDetailsViewModel.overAll.toString()
-              : "";
-      for (var i = 0; i < controller.examStatusCode.length; i++) {
-        if (controller.examStatusCode[i].toString() ==
-            controller.englishTestDetailsViewModel.examStatusID) {
-          controller.examStatusCodeSelected =
-              int.parse(controller.examStatusCode[i]);
-          controller.examStatusSelected = controller.examStatusList[i];
-        }
-      }
-
-      //Exam Name
-      if (controller.englishTestDetailsViewModel.examName == "Duolingo") {
-        controller.duolingo.value = true;
-      } else {
-        controller.examNameSelected =
-            controller.englishTestDetailsViewModel.examName;
-        controller.duolingo.value = false;
-      }
-      //tentative / Definite
-      if (getNUllChecker(controller.englishTestDetailsViewModel.listening) ||
-          getNUllChecker(controller.englishTestDetailsViewModel.writing) ||
-          getNUllChecker(controller.englishTestDetailsViewModel.literacy) ||
-          getNUllChecker(
-              controller.englishTestDetailsViewModel.analyticalWriting)) {
-        controller.tentative.value = true;
-      }
-      controller.loadingFirstTime.value = true;
-      controller.update();
-    } catch (e) {
-      print(e.toString());
     }
   }
 }

@@ -272,8 +272,8 @@ class ProfileView extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                           svgImage(
-                              "doc", ThemeConstants.IconColor, 35, 35),
+                                          svgImage("doc",
+                                              ThemeConstants.IconColor, 35, 35),
                                           // SvgPicture.asset(
                                           //     "assets/icons/doc.svg",
                                           //     color: ThemeConstants.blackcolor,
