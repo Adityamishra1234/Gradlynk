@@ -35,16 +35,17 @@ class AfterIntakeScreenView extends StatelessWidget {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Container(
                   //  constraints: BoxConstraints( minHeight:  ),
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: ThemeConstants.whitecolor,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
-                        BoxShadow(
+                        const BoxShadow(
                             color: Color.fromARGB(29, 0, 0, 0),
                             blurRadius: 2,
                             spreadRadius: 2)
@@ -59,7 +60,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           text: "Skip the long Queues and avail for"),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Align(
@@ -67,7 +68,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                         child: CustomRichTextWidget(
                             firstTextColor: ThemeConstants.blackcolor,
                             customMiddleTextStyle: GoogleFonts.dancingScript(
-                                textStyle: TextStyle()),
+                                textStyle: const TextStyle()),
                             // text1: '',
                             // text3: 'has been generated in the View Express Pass Section.',
                             textColor: const Color(0xFFebaa2b),
@@ -76,7 +77,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                                 //"${arguments.studentCategory ?? ""}"),
                                 "Platinum Express Pass"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       CustomAutoSizeTextMontserrat(
@@ -85,7 +86,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           fontSize: 15,
                           fontWeight: FontWeight.w700,
                           text: "By Uploading your Documents."),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
@@ -103,7 +104,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       CustomAutoSizeTextMontserrat(
@@ -112,7 +113,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           text: "or"),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       InkWell(
@@ -132,7 +133,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       CustomAutoSizeTextMontserrat(
@@ -141,7 +142,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
                           text: "or"),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       InkWell(
