@@ -325,7 +325,7 @@ class ContactInformationController extends GetxController with StateMixin {
             dob,
             genderIdSelected!,
             maritalStatusIdSelected!,
-            childrenCountSelected!,
+            childrenCountSelected ?? 0,
             mobileNumber.text,
             email.text,
             whatsappNumber.text,

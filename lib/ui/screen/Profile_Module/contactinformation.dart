@@ -297,6 +297,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: Container(
                           height: 40,
                           child: CustomTimerWidget(
+                            isBlank: true,
+                            initialTime: controller.dob,
                             // enableField: saveAndEdit,
                             // date: getNUllChecker(controller.dob) == false
                             //     ? controller.dob
@@ -372,7 +374,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     if (controller.maritalStatusIdSelected == 1 ||
                         controller.maritalStatusIdSelected == 3)
                       CustomDropDownSingle(
-                        model: const ["1", "2", "3", "4"],
+                        model: const ['0', "1", "2", "3", "4"],
                         callbackFunction: callbackChildrenCount,
                         initialSelectedValue:
                             controller.childrenCountSelected != null

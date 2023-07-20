@@ -123,6 +123,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "S2C_studentpanel",
+
       debugShowCheckedModeBanner: false,
       // Initial Route
       initialRoute: '/',

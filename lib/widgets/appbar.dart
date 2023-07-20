@@ -43,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 },
               ),
             ),
-          svgImage("work", Colors.transparent, 32, 32),
+          // svgImage("work", Colors.transparent, 32, 32),
 
           const Spacer(),
           Padding(

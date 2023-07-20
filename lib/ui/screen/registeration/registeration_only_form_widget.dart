@@ -36,15 +36,15 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
     // otpCode = await AltSmsAutofill().listenForSms!;
 
-    var d = otpCode!.split(' ');
+    // var d = otpCode!.split(' ');
 
     // print(match);
 
     // var d = int.parse();
 
-    otpcontroller.text = d[8];
+    // otpcontroller.text = d[8];
 
-    setState(() {});
+    // setState(() {});
     // print('otpCode)');
 
     // print(odtpCode);

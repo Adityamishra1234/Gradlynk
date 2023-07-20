@@ -177,7 +177,7 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                       ),
                     ),
-                  svgImage("work", Colors.transparent, 32, 32),
+                  // svgImage("work", Colors.transparent, 32, 32),
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
