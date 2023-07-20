@@ -32,7 +32,7 @@ class WelcomeViewController extends GetxController with StateMixin {
     if (phonenumber == null) {
       return;
     } else {
-      Get.toNamed(DashBoard.routeNamed);
+      Get.offNamed(DashBoard.routeNamed);
     }
   }
 }
