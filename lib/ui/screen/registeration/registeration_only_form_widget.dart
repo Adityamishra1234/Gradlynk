@@ -1,4 +1,3 @@
-import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -35,7 +34,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
   signature() async {
     // String? smsCode = await AndroidSmsRetriever.listenForOneTimeConsent(senderPhoneNumber: );
 
-    otpCode = await AltSmsAutofill().listenForSms!;
+    // otpCode = await AltSmsAutofill().listenForSms!;
 
     var d = otpCode!.split(' ');
 
@@ -74,7 +73,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
   @override
   void dispose() {
-    AltSmsAutofill().unregisterListener();
+    // AltSmsAutofill().unregisterListener();
 
     // controller.dispose();
     // TODO: implement dispose

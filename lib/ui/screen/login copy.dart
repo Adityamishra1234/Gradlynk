@@ -1,9 +1,6 @@
-import 'package:alt_sms_autofill/alt_sms_autofill.dart';
-import 'package:android_sms_retriever/android_sms_retriever.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile_number/mobile_number.dart';
-import 'package:sms_autofill/sms_autofill.dart';
+
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,11 +39,11 @@ class _LoginCopyState extends State<LoginCopy> {
     super.initState();
 
     // _focusNode.addListener(_onFocusChange);
-    MobileNumber.listenPhonePermission((isPermissionGranted) {
-      if (isPermissionGranted) {
-        // initMobileNumberState();
-      } else {}
-    });
+    // MobileNumber.listenPhonePermission((isPermissionGranted) {
+    //   if (isPermissionGranted) {
+    //     // initMobileNumberState();
+    //   } else {}
+    // });
 
     // _checkVersion();
   }
@@ -54,7 +51,7 @@ class _LoginCopyState extends State<LoginCopy> {
   signature() async {
     // String? smsCode = await AndroidSmsRetriever.listenForOneTimeConsent(senderPhoneNumber: );
 
-    otpCode = await AltSmsAutofill().listenForSms;
+    // otpCode = await AltSmsAutofill().listenForSms;
 
     var d = otpCode!.split(' ');
 
@@ -78,7 +75,7 @@ class _LoginCopyState extends State<LoginCopy> {
 
   @override
   void dispose() {
-    AltSmsAutofill().unregisterListener();
+    // AltSmsAutofill().unregisterListener();
 
     // SmsAutoFill().unregisterListener();
     _focusNode.removeListener(_onFocusChange);
@@ -90,9 +87,9 @@ class _LoginCopyState extends State<LoginCopy> {
   }
 
   _onFocusChange() async {
-    SmsAutoFill _autoFill = SmsAutoFill();
-    var completePhoneNumber = await _autoFill.hint;
-    print(completePhoneNumber);
+    // SmsAutoFill _autoFill = SmsAutoFill();
+    // var completePhoneNumber = await _autoFill.hint;
+    // print(completePhoneNumber);
     // phoneNumber.text = completePhoneNumber!;
     setState(() {});
     // setState(() {
