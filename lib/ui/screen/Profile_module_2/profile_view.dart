@@ -296,9 +296,36 @@ class ProfileView extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 20),
                                 width: double.infinity,
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Advance Application Details",
-                                  fontSize: 15,
+                                child: Row(
+                                  children: [
+                                    CustomAutoSizeTextMontserrat(
+                                      text: "Advance Application Details",
+                                      fontSize: 15,
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                          color: ThemeConstants.bluecolor,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await controller
+                                              .profileDataValidator();
+                                        },
+                                        child: Icon(
+                                          Icons.refresh_rounded,
+                                          size: 20,
+                                          color: ThemeConstants.whitecolor,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 )),
                             const SizedBox(
                               height: 20,
