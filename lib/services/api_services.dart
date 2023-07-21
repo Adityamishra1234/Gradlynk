@@ -1639,7 +1639,12 @@ class ApiServices extends StudentPanelBase implements api {
       print(jsondata);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1674,7 +1679,12 @@ class ApiServices extends StudentPanelBase implements api {
       print(jsondata);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement caraouselList
     // throw UnimplementedError();
@@ -1687,11 +1697,18 @@ class ApiServices extends StudentPanelBase implements api {
       String url = '${Endpoints.baseUrl}${Endpoints.idsFromZipCode}';
 
       var res = await httpPost(url, json.encode({"zip_code": zipCode}));
-      var jsondata = json.decode(res);
-      print(jsondata);
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        print(jsondata);
+        return jsondata;
+      }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1708,7 +1725,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1723,7 +1745,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement getCountriesList
     // throw UnimplementedError();
@@ -1742,7 +1769,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement getAllCourseBroadField
     // throw UnimplementedError();
@@ -1761,7 +1793,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1780,7 +1817,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return model;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement getYoutubeVideoLink
     // throw UnimplementedError();
@@ -1800,7 +1842,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1818,7 +1865,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata['data'];
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement getCountriesOfContinent
     // throw UnimplementedError();
@@ -1842,7 +1894,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement getCareerOutcomes
     // throw UnimplementedError();
@@ -1859,7 +1916,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1880,7 +1942,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1899,7 +1966,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1924,7 +1996,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata["universities"];
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1938,7 +2015,12 @@ class ApiServices extends StudentPanelBase implements api {
       // print(jsondata);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
 
     // TODO: implement registerNewUser
@@ -1953,7 +2035,12 @@ class ApiServices extends StudentPanelBase implements api {
       var jsondata = json.decode(res);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
 
     // TODO: implement getAllBranches
@@ -1970,7 +2057,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -1984,7 +2076,12 @@ class ApiServices extends StudentPanelBase implements api {
       var jsondata = json.decode(res);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement resendOtpRegister
     // throw UnimplementedError();
@@ -1996,7 +2093,12 @@ class ApiServices extends StudentPanelBase implements api {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement resendOtpRegister
     // throw UnimplementedError();
@@ -2010,7 +2112,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2023,7 +2130,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2054,6 +2166,12 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       getToast(SnackBarConstants.errorMsg!);
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     return "true";
   }
@@ -2066,7 +2184,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2078,7 +2201,12 @@ class ApiServices extends StudentPanelBase implements api {
 
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2092,7 +2220,12 @@ class ApiServices extends StudentPanelBase implements api {
       var jsondata = json.decode(res);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement whichConsentForm
     // throw UnimplementedError();
@@ -2107,7 +2240,12 @@ class ApiServices extends StudentPanelBase implements api {
       var jsondata = json.decode(res);
       return jsondata;
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
 
     // TODO: implement postLetsGetStarted
@@ -2124,7 +2262,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2139,7 +2282,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2154,7 +2302,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2169,7 +2322,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
     // TODO: implement requestACallBackPost
   }
@@ -2187,7 +2345,12 @@ class ApiServices extends StudentPanelBase implements api {
         return model;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2204,7 +2367,12 @@ class ApiServices extends StudentPanelBase implements api {
         return model;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
   // @override
@@ -2239,7 +2407,12 @@ class ApiServices extends StudentPanelBase implements api {
         return res;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 }
