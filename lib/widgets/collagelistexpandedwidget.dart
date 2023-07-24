@@ -891,79 +891,101 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               ),
 
             // Button List
-            Row(
-              children: [
-                if (widget.previousRoute != ReviewShortList.routeNamed)
-                  SpacerFlex(),
-                if (widget.iscompare == true) const Spacer(),
-                if (widget.iscompare == true) AddedButtonShow(),
-                if (widget.iscompare == true) const Spacer(),
-                // const Spacer(),
-                if (widget.previousRoute != FinalShortList.routeNamed)
-                  const Spacer(),
-                if (widget.previousRoute != FinalShortList.routeNamed)
-                  AddToShortList(),
-                if (widget.previousRoute != FinalShortList.routeNamed)
-                  const Spacer(),
-                FinalButton(),
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: Wrap(
+                alignment: WrapAlignment.end,
+                crossAxisAlignment: WrapCrossAlignment.end,
+                spacing: 10.0,
+                runSpacing: 10.0,
+                children: [
+                  if (widget.previousRoute != ReviewShortList.routeNamed)
+                    // SpacerFlex(),
+                    // if (widget.iscompare == true) const Spacer(),
+                    if (widget.iscompare == true)
+                      SizedBox(
+                        width: 80,
+                        child: AddedButtonShow(),
+                      ),
 
-                if ((finalShortList == true ||
-                        widget.finalShortListFirst == true) &&
-                    courseSearchModel.finalList == "")
-                  const Spacer(),
-                // FinalButton(),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: InkWell(
-                    onTap: (() {
-                      setState(() {
-                        if (resize == false) {
-                          onStartIconPress(context);
-                        } else {
-                          onEndIconPress(context);
-                        }
-                      });
-                    }),
-                    child: Container(
-                      height: 35,
-                      decoration: BoxDecoration(
-                          color: ThemeConstants.lightblueColor,
-                          border: Border.all(
-                            color: ThemeConstants.bluecolor,
-                          ),
-                          borderRadius: BorderRadius.circular(5.0)),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
-                          child: Row(
-                            children: [
-                              resize == false
-                                  ? Icon(
-                                      Icons.arrow_downward,
-                                      size: 15,
-                                      color: ThemeConstants.bluecolor,
-                                    )
-                                  : Icon(
-                                      Icons.arrow_upward,
-                                      size: 15,
-                                      color: ThemeConstants.bluecolor,
-                                    ),
-                              CustomAutoSizeTextMontserrat(
-                                text: "Details",
-                                textColor: ThemeConstants.bluecolor,
-                                fontSize: 8,
-                                fontWeight: FontWeight.w700,
+                  // if (widget.iscompare == true) const Spacer(),
+                  // const Spacer(),
+                  // if (widget.previousRoute != FinalShortList.routeNamed)
+                  // const Spacer(),
+                  if (widget.previousRoute != FinalShortList.routeNamed)
+                    SizedBox(
+                      width: 80,
+                      child: AddToShortList(),
+                    ),
+                  if (widget.previousRoute != FinalShortList.routeNamed)
+                    // const Spacer(),
+
+                    SizedBox(
+                      width: 100,
+                      child: FinalButton(),
+                    ),
+
+                  // if ((finalShortList == true ||
+                  //         widget.finalShortListFirst == true) &&
+                  //     courseSearchModel.finalList == "")
+                  //   const Spacer(),
+                  // // FinalButton(),
+                  // const Spacer(),
+                  SizedBox(
+                    width: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 10, right: 10),
+                      child: InkWell(
+                        onTap: (() {
+                          setState(() {
+                            if (resize == false) {
+                              onStartIconPress(context);
+                            } else {
+                              onEndIconPress(context);
+                            }
+                          });
+                        }),
+                        child: Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                              color: ThemeConstants.lightblueColor,
+                              border: Border.all(
+                                color: ThemeConstants.bluecolor,
                               ),
-                            ],
+                              borderRadius: BorderRadius.circular(5.0)),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 5, right: 5),
+                              child: Row(
+                                children: [
+                                  resize == false
+                                      ? Icon(
+                                          Icons.arrow_downward,
+                                          size: 15,
+                                          color: ThemeConstants.bluecolor,
+                                        )
+                                      : Icon(
+                                          Icons.arrow_upward,
+                                          size: 15,
+                                          color: ThemeConstants.bluecolor,
+                                        ),
+                                  CustomAutoSizeTextMontserrat(
+                                    text: "Details",
+                                    textColor: ThemeConstants.bluecolor,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                const Spacer(),
-              ],
+                  // const Spacer(),
+                ],
+              ),
             ),
 
             // if (widget.iscompare == true) AddedButtonShow(),
