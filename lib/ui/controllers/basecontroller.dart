@@ -56,16 +56,26 @@ class BaseController extends GetxController with StateMixin {
     ///todo
     ///
     ///
-    loadinValidatorDataForDashboard = true;
-    update();
-    print(Get.find<BaseController>().model1.id!);
-    var x = await apiServices
-        .profileDataValidation(Get.find<BaseController>().model1.id!);
-    var z = ProfileDataValidatorModel.fromJson(x);
-    data.value = z;
-    loadinValidatorDataForDashboard = false;
+    try {
+      loadinValidatorDataForDashboard = true;
+      update();
+      print(Get.find<BaseController>().model1.id!);
+      var x = await apiServices
+          .profileDataValidation(Get.find<BaseController>().model1.id!);
+      var z = ProfileDataValidatorModel.fromJson(x);
+      data.value = z;
+      loadinValidatorDataForDashboard = false;
 
-    update();
+      update();
+    } on Exception catch (e) {
+      await apiServices.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+      // TODO
+    }
     // loading.value = false;
   }
 
@@ -84,41 +94,53 @@ class BaseController extends GetxController with StateMixin {
   }
 
   profiledetail() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String phonenumber = sharedPreferences.getString("phonenumber").toString();
-    var res = await apiServices.dashboard(
-        Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");
-    if (res != null) {
-      model1 = res;
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      String phonenumber =
+          sharedPreferences.getString("phonenumber").toString();
+      var res = await apiServices.dashboard(
+          Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");
+      if (res != null) {
+        model1 = res;
 
-      if (model1.is_block == 1) {
-        getToast(SnackBarConstants.userBlock!);
-        logout();
-      } else {
-        // if(model1.p)
-        if (model1.otherCountryOfInterest != null) {
-          for (var element in model1.otherCountryOfInterest!) {
-            countrylist.add("Select your country");
-            countryid.add(0);
-            countryid.add(element.id!);
-            countrylist.add(element.countryName!);
+        if (model1.is_block == 1) {
+          getToast(SnackBarConstants.userBlock!);
+          logout();
+        } else {
+          // if(model1.p)
+          if (model1.otherCountryOfInterest != null) {
+            for (var element in model1.otherCountryOfInterest!) {
+              countrylist.add("Select your country");
+              countryid.add(0);
+              countryid.add(element.id!);
+              countrylist.add(element.countryName!);
+            }
+          }
+          if (getNUllChecker(model1.countryName) == false) {
+            countrylist.add(model1.countryName!);
+          }
+          if (getNUllChecker(model1.countryID) == false) {
+            countryid.add(model1.countryID!);
           }
         }
-        if (getNUllChecker(model1.countryName) == false) {
-          countrylist.add(model1.countryName!);
-        }
-        if (getNUllChecker(model1.countryID) == false) {
-          countryid.add(model1.countryID!);
-        }
+
+        await checkShowLetsGetStarted();
+        await eventZone(model1.id.toString());
+        loadingStudentPanelData1 = true.obs;
+
+        update();
       }
-
-      await checkShowLetsGetStarted();
-      await eventZone(model1.id.toString());
-      loadingStudentPanelData1 = true.obs;
-
-      update();
+      getNotificatin(model1.id.toString());
+    } on Exception catch (e) {
+      await apiServices.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+      // TODO
     }
-    getNotificatin(model1.id.toString());
   }
 
   checkShowLetsGetStarted() async {

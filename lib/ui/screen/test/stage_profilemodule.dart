@@ -173,7 +173,7 @@ class CustomStepperBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
-      width: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.width * 0.45,
       height: 150,
       // alignment: Alignment.topLeft,
       decoration: BoxDecoration(

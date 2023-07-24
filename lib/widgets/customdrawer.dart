@@ -286,10 +286,14 @@ class CustomDrawer extends StatelessWidget {
                                               const EdgeInsets.only(right: 10),
                                           child: Row(
                                             children: [
-                                               svgImage(
-                              "Dashboard",  index == 0
-                                                    ? ThemeConstants.bluecolor
-                                                    : ThemeConstants.blackcolor, 20, 20),
+                                              svgImage(
+                                                  "Dashboard",
+                                                  index == 0
+                                                      ? ThemeConstants.bluecolor
+                                                      : ThemeConstants
+                                                          .blackcolor,
+                                                  20,
+                                                  20),
                                               // SvgPicture.asset(
                                               //   'assets/icons/.svg',
                                               //   color:
@@ -337,11 +341,14 @@ class CustomDrawer extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             // svgImage('track', ThemeConstants.IconColor, 20, 20),
- svgImage(
-                              "Profile",  index == 1
-                                                  ? ThemeConstants.bluecolor
-                                                  : const Color.fromARGB(
-                                                      255, 31, 31, 31), 20, 20),
+                                            svgImage(
+                                                "Profile",
+                                                index == 1
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
 
 // SvgPicture.asset(
 //                                               'assets/icons/Profile.svg',
@@ -395,11 +402,14 @@ class CustomDrawer extends StatelessWidget {
                                         },
                                         child: Row(
                                           children: [
-                                             svgImage(
-                              "Track appli", index == 2
-                                                  ? ThemeConstants.bluecolor
-                                                  : const Color.fromARGB(
-                                                      255, 31, 31, 31), 20, 20),
+                                            svgImage(
+                                                "Track appli",
+                                                index == 2
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
                                             // SvgPicture.asset(
                                             //   'assets/icons/Track appli.svg',
                                             //   color: index == 2
@@ -458,11 +468,14 @@ class CustomDrawer extends StatelessWidget {
                                               const EdgeInsets.only(right: 10),
                                           child: Row(
                                             children: [
-                                               svgImage(
-                              "Course search",  index == 3
-                                                    ? ThemeConstants.bluecolor
-                                                    : const Color.fromARGB(
-                                                        255, 31, 31, 31), 20, 20),
+                                              svgImage(
+                                                  "Course search",
+                                                  index == 3
+                                                      ? ThemeConstants.bluecolor
+                                                      : const Color.fromARGB(
+                                                          255, 31, 31, 31),
+                                                  20,
+                                                  20),
                                               // SvgPicture.asset(
                                               //   'assets/icons/Course search.svg',
                                               //   color: index == 3
@@ -516,11 +529,14 @@ class CustomDrawer extends StatelessWidget {
                                         },
                                         child: Row(
                                           children: [
-                                             svgImage(
-                              "Review Course", index == 4
-                                                  ? ThemeConstants.bluecolor
-                                                  : const Color.fromARGB(
-                                                      255, 31, 31, 31), 20, 20),
+                                            svgImage(
+                                                "Review Course",
+                                                index == 4
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
                                             // SvgPicture.asset(
                                             //   'assets/icons/Review Course.svg',
                                             //   color: index == 4
@@ -577,11 +593,14 @@ class CustomDrawer extends StatelessWidget {
                                         },
                                         child: Row(
                                           children: [
-                                             svgImage(
-                              "Shortlist",  index == 5
-                                                  ? ThemeConstants.bluecolor
-                                                  : const Color.fromARGB(
-                                                      255, 31, 31, 31), 20, 20),
+                                            svgImage(
+                                                "Shortlist",
+                                                index == 5
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
                                             // SvgPicture.asset(
                                             //   'assets/icons/Shortlist.svg',
                                             //   color: index == 5
@@ -638,11 +657,14 @@ class CustomDrawer extends StatelessWidget {
                                         },
                                         child: Row(
                                           children: [
-                                             svgImage(
-                              "totalFees",  index == 7
-                                                  ? ThemeConstants.bluecolor
-                                                  : const Color.fromARGB(
-                                                      255, 31, 31, 31), 20, 20),
+                                            svgImage(
+                                                "totalFees",
+                                                index == 7
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
                                             // SvgPicture.asset(
                                             //   'assets/icons/totalFees.svg',
                                             //   color: index == 7
@@ -714,11 +736,14 @@ class CustomDrawer extends StatelessWidget {
                                         },
                                         child: Row(
                                           children: [
-                                             svgImage(
-                              "Calender icon", index == 8
-                                                  ? ThemeConstants.bluecolor
-                                                  : const Color.fromARGB(
-                                                      255, 31, 31, 31), 20, 20),
+                                            svgImage(
+                                                "Calender icon",
+                                                index == 8
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
                                             // SvgPicture.asset(
                                             //   'assets/icons/Calender icon.svg',
                                             //   color: index == 8
@@ -890,11 +915,14 @@ class CustomDrawer extends StatelessWidget {
                                     padding: const EdgeInsets.only(left: 20.0),
                                     child: Row(
                                       children: [
-                                         svgImage(
-                              "Support", index == 6
-                                              ? ThemeConstants.bluecolor
-                                              : const Color.fromARGB(
-                                                  255, 31, 31, 31), 20, 20),
+                                        svgImage(
+                                            "Support",
+                                            index == 6
+                                                ? ThemeConstants.bluecolor
+                                                : const Color.fromARGB(
+                                                    255, 31, 31, 31),
+                                            20,
+                                            20),
                                         // SvgPicture.asset(
                                         //   'assets/icons/Support.svg',
                                         //   color: index == 6
@@ -1110,10 +1138,12 @@ class CustomDrawer extends StatelessWidget {
                         const SizedBox(),
                         SizedBox(
                           width: 200,
-                          child:
-                           svgImage(
-                              "navBottomImg",  const Color.fromARGB(176, 158, 158, 158), 200,200),
-                          
+                          child: svgImage(
+                              "navBottomImg",
+                              const Color.fromARGB(176, 158, 158, 158),
+                              200,
+                              200),
+
                           //  SvgPicture.asset(
                           //     'assets/icons/navBottomImg.svg',
                           //     color: const Color.fromARGB(176, 158, 158, 158)),

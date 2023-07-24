@@ -420,9 +420,9 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 } else {
                                   var res = await controller.regsiter();
 
-                                  if (res == true) {
-                                    signature();
-                                  }
+                                  // if (res == true) {
+                                  //   signature();
+                                  // }
                                 }
                                 controller.buttonClickEnabled = true;
                                 stopLoading();
