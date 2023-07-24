@@ -119,7 +119,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                               const Spacer(),
                                               Container(
                                                 height: 80,
-                                                width: 170,
+                                                width: 150,
                                                 decoration: BoxDecoration(
                                                   color: ThemeConstants
                                                       .lightblueColor,
@@ -132,7 +132,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                     const Spacer(),
                                                     CustomAutoSizeTextMontserrat(
                                                       text: "Course Duration ",
-                                                      maxLines: 2,
                                                       textColor: ThemeConstants
                                                           .bluecolor,
                                                       fontWeight:
@@ -147,7 +146,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                           ? "${(int.parse(completeCourseDetail![0].courseDuration!) / 12).toStringAsFixed(1)} Year"
                                                           : "",
                                                       fontSize: 14,
-                                                      maxLines: 2,
                                                       textColor: ThemeConstants
                                                           .blackcolor,
                                                     ),
@@ -158,7 +156,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                               const Spacer(),
                                               Container(
                                                 height: 80,
-                                                width: 170,
+                                                width: 150,
                                                 decoration: BoxDecoration(
                                                   color: ThemeConstants
                                                       .lightgreentColor,
@@ -176,7 +174,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                       CustomAutoSizeTextMontserrat(
                                                         text:
                                                             "Total Tutions Fees",
-                                                        maxLines: 2,
                                                         textColor:
                                                             ThemeConstants
                                                                 .GreenColor,
@@ -193,7 +190,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                           text:
                                                               "${completeCourseDetail![0].totalTutionFees}${completeCourseDetail![0].countryCurrencyCode} (${completeCourseDetail![0].totalTutionFeesInr}INR)",
                                                           // "347200 USD (INR 2,56,92)",
-                                                          maxLines: 2,
+
                                                           fontSize: 14,
                                                           textColor:
                                                               ThemeConstants
@@ -217,7 +214,7 @@ class CourseSearchFullDetail extends StatelessWidget {
                                               const Spacer(),
                                               Container(
                                                 height: 80,
-                                                width: 170,
+                                                width: 150,
                                                 decoration: BoxDecoration(
                                                   color: ThemeConstants
                                                       .lightorangeColor,
@@ -230,7 +227,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                     const Spacer(),
                                                     CustomAutoSizeTextMontserrat(
                                                       text: "Course Level",
-                                                      maxLines: 2,
                                                       textColor: ThemeConstants
                                                           .orangeColor,
                                                       fontWeight:
@@ -241,7 +237,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                           completeCourseDetail![
                                                                   0]
                                                               .courseLevel,
-                                                      maxLines: 2,
                                                       fontSize: 14,
                                                       textColor: ThemeConstants
                                                           .blackcolor,
@@ -252,8 +247,8 @@ class CourseSearchFullDetail extends StatelessWidget {
                                               ),
                                               const Spacer(),
                                               Container(
-                                                height: 80,
-                                                width: 170,
+                                                height: 100,
+                                                width: 150,
                                                 decoration: BoxDecoration(
                                                   color: ThemeConstants
                                                       .lightVioletColor,
@@ -268,7 +263,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                       text: "Avaliable Intake",
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      maxLines: 2,
                                                       textColor: ThemeConstants
                                                           .VioletColor,
                                                     ),
@@ -277,7 +271,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                           completeCourseDetail![
                                                                   0]
                                                               .intakeFromYear,
-                                                      maxLines: 2,
                                                       textColor: ThemeConstants
                                                           .blackcolor,
                                                       fontSize: 14,
@@ -325,7 +318,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
                                                     text: "Worlds Ranking",
-                                                    maxLines: 2,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -348,7 +340,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                 CustomAutoSizeTextMontserrat(
                                                   text:
                                                       "ARWU:${completeCourseDetail![0].arwuRank ?? ""}",
-                                                  maxLines: 2,
                                                   fontSize: 12,
                                                   textColor: ThemeConstants
                                                       .bluegreycolor,
@@ -362,7 +353,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                 CustomAutoSizeTextMontserrat(
                                                   text:
                                                       "Times:${completeCourseDetail![0].timesRank ?? ""}",
-                                                  maxLines: 2,
                                                   fontSize: 12,
                                                   textColor: ThemeConstants
                                                       .bluegreycolor,
@@ -376,7 +366,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                 CustomAutoSizeTextMontserrat(
                                                   text:
                                                       "US News:${completeCourseDetail![0].usNewsRank ?? ""}",
-                                                  maxLines: 2,
                                                   textColor: ThemeConstants
                                                       .bluegreycolor,
                                                   fontWeight: FontWeight.w600,
@@ -390,7 +379,6 @@ class CourseSearchFullDetail extends StatelessWidget {
                                                 CustomAutoSizeTextMontserrat(
                                                   text:
                                                       "QS World:${completeCourseDetail![0].qsWorldRank ?? ""}",
-                                                  maxLines: 2,
                                                   textColor: ThemeConstants
                                                       .bluegreycolor,
                                                   fontWeight: FontWeight.w600,
