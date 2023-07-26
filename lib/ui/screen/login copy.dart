@@ -629,7 +629,6 @@ class _LoginCopyState extends State<LoginCopy> {
                                         const Spacer(),
                                         InkWell(
                                           onTap: () {
-                                            signature();
                                             controller.phonenumberVerfiy(
                                                 phoneNumber.text);
                                           },

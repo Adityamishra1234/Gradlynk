@@ -241,35 +241,36 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: LoadingButton(
-        height: 35,
-        borderRadius: 8,
-        animate: true,
-        color: ThemeConstants.bluecolor,
-        width: MediaQuery.of(context).size.width * 0.44,
-        loader: Container(
-          padding: const EdgeInsets.all(10),
-          width: 40,
-          height: 40,
-          child: const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-          ),
+    return LoadingButton(
+      height: 35,
+      width: 35,
+      animate: true,
+      borderRadius: 200,
+      padding: EdgeInsets.all(0),
+      color: ThemeConstants.bluecolor,
+
+      loader: Container(
+        padding: const EdgeInsets.all(10),
+        width: 40,
+        height: 40,
+        child: const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
-        child: CustomAutoSizeTextMontserrat(
-          text: 'Download',
-          textColor: ThemeConstants.whitecolor,
-        ),
-        onTap: (startLoading, stopLoading, buttonState) async {
-          print(widget.path);
-          if (buttonState == ButtonState.idle) {
-            startLoading();
-            await download(widget.path);
-            // await Future.delayed(const Duration(seconds: 5))
-            stopLoading();
-          }
-        },
       ),
+      child: Icon(Icons.download_rounded),
+      // child: CustomAutoSizeTextMontserrat(
+      //   text: 'Download',
+      //   textColor: ThemeConstants.whitecolor,
+      // ),
+      onTap: (startLoading, stopLoading, buttonState) async {
+        print(widget.path);
+        if (buttonState == ButtonState.idle) {
+          startLoading();
+          await download(widget.path);
+          // await Future.delayed(const Duration(seconds: 5))
+          stopLoading();
+        }
+      },
     );
 
     //      Container(

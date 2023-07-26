@@ -168,7 +168,7 @@ class ProfileView extends StatelessWidget {
                                               width: 4,
                                             ),
                                             Container(
-                                              width: 190,
+                                              width: 170,
                                               child: Wrap(children: [
                                                 CustomAutoSizeTextMontserrat(
                                                   fontWeight: FontWeight.w400,
@@ -195,7 +195,7 @@ class ProfileView extends StatelessWidget {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20)),
-                                                width: 200,
+                                                width: 150,
                                                 height: 6,
                                               ),
                                               Container(
@@ -209,7 +209,7 @@ class ProfileView extends StatelessWidget {
                                                         .profileValidationData
                                                         .totalPercentageComplete!
                                                         .toDouble() *
-                                                    2,
+                                                    1.5,
                                                 height: 6,
                                               )
                                             ],
@@ -338,6 +338,7 @@ class ProfileView extends StatelessWidget {
                                   InkWell(
                                     splashColor: ThemeConstants.lightgreycolor,
                                     onTap: () {
+                                      print(context.size!.width);
                                       ProfileController.getDailog(0, context);
                                     },
                                     child: CustomProfileButton(

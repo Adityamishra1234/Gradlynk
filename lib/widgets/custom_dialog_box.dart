@@ -594,12 +594,12 @@ supportDialog(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 240,
+                          width: 200,
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Gradlynk Support",
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.w800,
                             textColor: ThemeConstants.bluecolor,
                           )),

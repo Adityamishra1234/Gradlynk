@@ -304,7 +304,6 @@ class _UploadDocumentState extends State<UploadDocument> {
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
-                        const Spacer(),
                         SizedBox(
                           width: 120,
                           child: CustomAutoSizeTextMontserrat(
@@ -325,19 +324,23 @@ class _UploadDocumentState extends State<UploadDocument> {
                           },
                           child: Container(
                             height: 35,
-                            width: 70,
+                            width: 35,
                             decoration: BoxDecoration(
                                 border: Border.all(
                                     color: ThemeConstants.orangeColor),
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(10.0))),
+                                    Radius.circular(50))),
                             child: Center(
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "View",
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500,
-                                textColor: ThemeConstants.orangeColor,
+                              child: Icon(
+                                Icons.remove_red_eye,
+                                color: ThemeConstants.orangeColor,
                               ),
+                              // child: CustomAutoSizeTextMontserrat(
+                              //   text: "View",
+                              //   fontSize: 10,
+                              //   fontWeight: FontWeight.w500,
+                              //   textColor: ThemeConstants.orangeColor,
+                              // ),
                             ),
                           ),
                         ),

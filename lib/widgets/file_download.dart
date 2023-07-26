@@ -80,10 +80,12 @@ class _FileDownloadState extends State<FileDownload> {
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
         ),
-        child: CustomAutoSizeTextMontserrat(
-          text: "Download",
-          textColor: ThemeConstants.whitecolor,
-        ),
+        child: Icon(Icons.download_rounded),
+
+        // CustomAutoSizeTextMontserrat(
+        //   text: "Download",
+        //   textColor: ThemeConstants.whitecolor,
+        // ),
         onTap: (startLoading, stopLoading, buttonState) async {
           if (buttonState == ButtonState.idle) {
             startLoading();
