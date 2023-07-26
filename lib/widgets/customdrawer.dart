@@ -710,106 +710,116 @@ class CustomDrawer extends StatelessWidget {
                                         ),
                                       )),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Align(
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: InkWell(
-                                        highlightColor:
-                                            ThemeConstants.whitecolor,
-                                        onTap: () {
-                                          Get.back();
-                                          eventZoneDrawerPopUp(
-                                              context,
-                                              Get.find<BaseController>()
-                                                      .meetingZoneStatus
-                                                      .markAttendance ??
-                                                  false,
-                                              Get.find<BaseController>()
-                                                      .meetingZoneStatus
-                                                      .expressPass ??
-                                                  false,
-                                              Get.find<BaseController>()
-                                                      .meetingZoneStatus
-                                                      .expressPassGenerated ??
-                                                  false);
-                                        },
-                                        child: Row(
-                                          children: [
-                                            svgImage(
-                                                "Calender icon",
-                                                index == 8
-                                                    ? ThemeConstants.bluecolor
-                                                    : const Color.fromARGB(
-                                                        255, 31, 31, 31),
-                                                20,
-                                                20),
-                                            // SvgPicture.asset(
-                                            //   'assets/icons/Calender icon.svg',
-                                            //   color: index == 8
-                                            //       ? ThemeConstants.bluecolor
-                                            //       : const Color.fromARGB(
-                                            //           255, 31, 31, 31),
-                                            //   width: 20,
-                                            // ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 10),
-                                              child: Container(
-                                                height: 30,
-                                                decoration: BoxDecoration(
-                                                    // color: index == 8
-                                                    //     ? ThemeConstants.lightblueColor
-                                                    //     : ThemeConstants.whitecolor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10, top: 5),
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: "Event Zone",
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w500,
-                                                    textColor: index == 8
-                                                        ? ThemeConstants
-                                                            .bluecolor
-                                                        : ThemeConstants
-                                                            .blackcolor,
+                                if (controller
+                                            .meetingZoneStatus.markAttendance ==
+                                        true ||
+                                    controller.meetingZoneStatus.expressPass ==
+                                        true ||
+                                    controller.meetingZoneStatus
+                                            .expressPassGenerated ==
+                                        true)
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: Align(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: InkWell(
+                                          highlightColor:
+                                              ThemeConstants.whitecolor,
+                                          onTap: () {
+                                            Get.back();
+                                            eventZoneDrawerPopUp(
+                                                context,
+                                                Get.find<BaseController>()
+                                                        .meetingZoneStatus
+                                                        .markAttendance ??
+                                                    false,
+                                                Get.find<BaseController>()
+                                                        .meetingZoneStatus
+                                                        .expressPass ??
+                                                    false,
+                                                Get.find<BaseController>()
+                                                        .meetingZoneStatus
+                                                        .expressPassGenerated ??
+                                                    false);
+                                          },
+                                          child: Row(
+                                            children: [
+                                              svgImage(
+                                                  "Calender icon",
+                                                  index == 8
+                                                      ? ThemeConstants.bluecolor
+                                                      : const Color.fromARGB(
+                                                          255, 31, 31, 31),
+                                                  20,
+                                                  20),
+                                              // SvgPicture.asset(
+                                              //   'assets/icons/Calender icon.svg',
+                                              //   color: index == 8
+                                              //       ? ThemeConstants.bluecolor
+                                              //       : const Color.fromARGB(
+                                              //           255, 31, 31, 31),
+                                              //   width: 20,
+                                              // ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
+                                                child: Container(
+                                                  height: 30,
+                                                  decoration: BoxDecoration(
+                                                      // color: index == 8
+                                                      //     ? ThemeConstants.lightblueColor
+                                                      //     : ThemeConstants.whitecolor,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10, top: 5),
+                                                    child:
+                                                        CustomAutoSizeTextMontserrat(
+                                                      text: "Event Zone",
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      textColor: index == 8
+                                                          ? ThemeConstants
+                                                              .bluecolor
+                                                          : ThemeConstants
+                                                              .blackcolor,
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: ThemeConstants.red,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(
-                                                              5.0))),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5,
-                                                        vertical: 2),
-                                                child:
-                                                    CustomAutoSizeTextMontserrat(
-                                                  text: "New",
-                                                  fontSize: 10,
-                                                  textColor:
-                                                      ThemeConstants.whitecolor,
-                                                ),
+                                              const SizedBox(
+                                                width: 5,
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                ),
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: ThemeConstants.red,
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                5.0))),
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 5,
+                                                      vertical: 2),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "New",
+                                                    fontSize: 10,
+                                                    textColor: ThemeConstants
+                                                        .whitecolor,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                  ),
                                 // InkWell(
                                 //   onTap: () {
                                 //     Get.back();

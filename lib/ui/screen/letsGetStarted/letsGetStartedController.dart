@@ -37,22 +37,31 @@ class LetsGetStartedController extends GetxController with StateMixin {
   bool showConsentTermsForm = false;
 
   whichConsentFormToShow() async {
-    questionsToShowList = [];
-    var res = await api.whichConsentForm(baseController.model1.id.toString());
+    try {
+      questionsToShowList = [];
+      var res = await api.whichConsentForm(baseController.model1.id.toString());
 
-    var map = Map<String, bool>.from(res);
+      var map = Map<String, bool>.from(res);
 
-    questionsToShowList.addAll(map.values.toList());
+      questionsToShowList.addAll(map.values.toList());
 
-    ///todo
-    // questionsToShowList = [true, true, false, false, false, false];
+      ///todo
+      // questionsToShowList = [true, true, false, false, false, false];
 
-    showQuestion();
+      showQuestion();
 
-    update();
-    // questionsToShowString.addAll(map.keys.toList());
+      update();
+      // questionsToShowString.addAll(map.keys.toList());
 
-    print(questionsToShowList);
+      print(questionsToShowList);
+    } catch (e) {
+      await api.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
   }
 
   double widthOfSlider = 10;
@@ -156,25 +165,34 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   postLetsGetStartedData() async {
-    change(null, status: RxStatus.loading());
-    var endpoint = letsGetStartedSendData(
-        enqId: baseController.model1.id,
-        consentQualifactionData: selectedLastQualification,
-        consentForEnglishtest: selectedAppearedInEnglishTest,
-        consentForEnglishOverAll: specifyCourseTextController.text,
-        consentForEnglishValue: selectedTestYouAppearedFor,
-        consentForLevelToStudy: selectedLevelYouWantToStudy,
-        selectedBroadField: selectCourseBoardFieldCode);
+    try {
+      change(null, status: RxStatus.loading());
+      var endpoint = letsGetStartedSendData(
+          enqId: baseController.model1.id,
+          consentQualifactionData: selectedLastQualification,
+          consentForEnglishtest: selectedAppearedInEnglishTest,
+          consentForEnglishOverAll: specifyCourseTextController.text,
+          consentForEnglishValue: selectedTestYouAppearedFor,
+          consentForLevelToStudy: selectedLevelYouWantToStudy,
+          selectedBroadField: selectCourseBoardFieldCode);
 
-    await api.agree(Get.context!);
-    var res = await api.postLetsGetStarted(endpoint);
+      await api.agree(Get.context!);
+      var res = await api.postLetsGetStarted(endpoint);
 
-    if (res['status'] == true) {
-      change(null, status: RxStatus.success());
-      Get.offAllNamed(DashBoard.routeNamed);
+      if (res['status'] == true) {
+        change(null, status: RxStatus.success());
+        Get.offAllNamed(DashBoard.routeNamed);
+      }
+
+      print(res);
+    } catch (e) {
+      await api.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
-
-    print(res);
   }
 
   List<Widget> courseFieldWidgetList = [];

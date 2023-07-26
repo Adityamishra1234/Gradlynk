@@ -1065,7 +1065,7 @@ planYourFundDialog(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 240,
+                          width: 200,
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(
@@ -1565,7 +1565,7 @@ eventZoneDrawerPopUp(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 240,
+                          width: 200,
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(
