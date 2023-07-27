@@ -1912,9 +1912,11 @@ class ApiServices extends StudentPanelBase implements api {
 
       var res = await httpPostNullBody(url);
 
-      var jsondata = json.decode(res);
+      if (res != null) {
+        var jsondata = json.decode(res);
 
-      return jsondata;
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -1935,12 +1937,14 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       String url =
           '${Endpoints.baseUrl}${dataNeedFundCalulator(enq_id, inst_course, is_partner, is_child, num_of_child, child_age1, child_age2, child_age3, child_age4)}';
-      print(url);
+
       var res = await httpPostNullBody(url);
 
-      var jsondata = json.decode(res);
+      if (res != null) {
+        var jsondata = json.decode(res);
 
-      return jsondata;
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -1961,10 +1965,11 @@ class ApiServices extends StudentPanelBase implements api {
           '${Endpoints.baseUrl}data-needed-for-funds-calculators?inst_course=$inst_course&enq_id=$enq_id';
       print(url);
       var res = await httpPostNullBody(url);
+      if (res != null) {
+        var jsondata = json.decode(res);
 
-      var jsondata = json.decode(res);
-
-      return jsondata;
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -1992,9 +1997,11 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var res = await httpGet(endpoint);
 
-      var jsondata = json.decode(res);
+      if (res != null) {
+        var jsondata = json.decode(res);
 
-      return jsondata["universities"];
+        return jsondata["universities"];
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2011,9 +2018,11 @@ class ApiServices extends StudentPanelBase implements api {
       var endpoint = '${Endpoints.baseUrl}$endPoint';
       // print(endpoint);
       var res = await httpPostNullBody(endpoint, login: true);
-      var jsondata = json.decode(res);
-      // print(jsondata);
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        // print(jsondata);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2032,8 +2041,10 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       String endPoint = '${Endpoints.baseUrl}${Endpoints.getAllBranches}';
       var res = await httpGetWithoutLogin(endPoint);
-      var jsondata = json.decode(res);
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2053,9 +2064,10 @@ class ApiServices extends StudentPanelBase implements api {
           '${Endpoints.baseUrl}${Endpoints.otpValidationForRegister}$otp&mobile_number=$phoneNumber';
 
       var res = await httpPostNullBody(endPoint, login: true);
-      var jsondata = json.decode(res);
-
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2073,8 +2085,10 @@ class ApiServices extends StudentPanelBase implements api {
           '${Endpoints.baseUrl}${Endpoints.resendOtpRegister}$phoneNumber';
 
       var res = await httpPostNullBody(endPoint, login: true);
-      var jsondata = json.decode(res);
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2090,8 +2104,10 @@ class ApiServices extends StudentPanelBase implements api {
   getdropdownfundPlaner(String endpoint) async {
     try {
       var response = await httpGet("${Endpoints.baseUrl}$endpoint");
-      var jsondata = json.decode(response);
-      return jsondata;
+      if (response != null) {
+        var jsondata = json.decode(response);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2108,9 +2124,10 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var response =
           await httpPostNullBodyWithNullData("${Endpoints.baseUrl}$endpoint");
-      var jsondata = json.decode(response);
-
-      return jsondata;
+      if (response != null) {
+        var jsondata = json.decode(response);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2180,9 +2197,10 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var response = await httpPostNullBodyWithNullData(
           "${Endpoints.baseUrl}${Endpoints.fundPlannerResult}$enq_id");
-      var jsondata = json.decode(response);
-
-      return jsondata;
+      if (response != null) {
+        var jsondata = json.decode(response);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2197,9 +2215,11 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var response = await httpPostNullBodyWithNullData(
           "${Endpoints.baseUrl}${Endpoints.fundPlannerDelete}$id");
-      var jsondata = json.decode(response);
+      if (response != null) {
+        var jsondata = json.decode(response);
 
-      return jsondata;
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2217,8 +2237,10 @@ class ApiServices extends StudentPanelBase implements api {
           '${Endpoints.baseUrl}${Endpoints.which_consent_form}$enqID';
 
       var res = await httpPostNullBody(endPoint);
-      var jsondata = json.decode(res);
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
@@ -2237,8 +2259,10 @@ class ApiServices extends StudentPanelBase implements api {
       String endPoint = '${Endpoints.baseUrl}${endpoint}';
 
       var res = await httpPostNullBody(endPoint);
-      var jsondata = json.decode(res);
-      return jsondata;
+      if (res != null) {
+        var jsondata = json.decode(res);
+        return jsondata;
+      }
     } catch (e) {
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
