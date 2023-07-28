@@ -20,6 +20,7 @@ import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
+import 'package:studentpanel/ui/screen/fund/fund_parameter.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
@@ -133,9 +134,14 @@ class _MyAppState extends State<MyApp> {
           name: "/",
           page: () => WelcomeView(),
         ),
+
         GetPage(
           name: ReceiveACallBackView.routeNamed,
           page: () => ReceiveACallBackView(),
+        ),
+        GetPage(
+          name: FundParameter.routeNamed,
+          page: () => FundParameter(),
         ),
         GetPage(
           name: FundPlan.routenamed,

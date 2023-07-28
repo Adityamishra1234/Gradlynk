@@ -7,9 +7,11 @@ import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
+import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 
 class DashboardController extends GetxController {
   DropDownModel? dropDownModel;

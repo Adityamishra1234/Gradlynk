@@ -60,13 +60,8 @@ class FundPlannerController extends GetxController with StateMixin {
 
   String? selectedRelationship;
   TextEditingController nameOfThePerson = TextEditingController();
-  // TextEditingController occupationOfSponsor = TextEditingController();
-  // TextEditingController nameOfTheFinnacialIntitution = TextEditingController();
-  TextEditingController amountData = TextEditingController();
-  // TextEditingController countryOfTheFinnacialIntitution= TextEditingController();
-  // TextEditingController occupationOfSponsor = TextEditingController();
 
-  // TextEditingController occupationOfSponsor = TextEditingController();
+  TextEditingController amountData = TextEditingController();
 
   // condition
   bool firstTime = true;
@@ -347,7 +342,6 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   String pathOfImage = '';
-
   Future download(String url) async {
     var status = await Permission.storage.request();
     var d = await Permission.photos.request();

@@ -40,6 +40,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'fund/sponsorDetails.dart';
+import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -503,7 +504,6 @@ class _DashBoardState extends State<DashBoard> {
 
                                         GestureDetector(
                                           onTap: () {
-                                            print('dddd');
                                             // contactUsDialog(context);
                                             contactUsDialog(context);
                                           },

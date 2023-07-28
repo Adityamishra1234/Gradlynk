@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/models/studentpanel.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
+import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -44,8 +45,8 @@ class BaseController extends GetxController with StateMixin {
   }
 
   @override
-  onReady() {
-    // upcomingEvents();
+  onReady() async {
+    await getFundPlannerData();
   }
 
   var data = ProfileDataValidatorModel().obs;
@@ -144,10 +145,6 @@ class BaseController extends GetxController with StateMixin {
   }
 
   checkShowLetsGetStarted() async {
-    ///todo
-    ///
-    ///
-
     if (model1.student_consent == 0) {
       change(null, status: RxStatus.success());
 
@@ -210,5 +207,31 @@ class BaseController extends GetxController with StateMixin {
     eventlist = eventlist.toSet().toList();
 
     update();
+  }
+
+  fundPlanner fundplanner = fundPlanner();
+  double total_fund = 0.0;
+  getFundPlannerData() async {
+    total_fund = 0.0;
+    try {
+      var res = await apiServices
+          .getFundPlannerData(Get.find<BaseController>().model1.id.toString());
+      if (res != null) {
+        fundplanner = fundPlanner.fromJson(res);
+        if (fundplanner.fundPlannersData != null) {
+          for (var i = 0; i < fundplanner.fundPlannersData!.length; i++) {
+            total_fund = total_fund +
+                double.parse(fundplanner.fundPlannersData![i].amount ?? "");
+          }
+        }
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
   }
 }

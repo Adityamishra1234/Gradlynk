@@ -8,18 +8,15 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-import 'package:studentpanel/widgets/custombutton.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 class SponsorDetails extends StatelessWidget {
-  SponsorDetails({super.key});
-
   var controller = Get.put(FundPlannerController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar: const CustomAppBar("title"),
       drawer: CustomDrawer(
         index: 7,
       ),

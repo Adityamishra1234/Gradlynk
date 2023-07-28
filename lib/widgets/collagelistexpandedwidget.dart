@@ -7,6 +7,7 @@ import 'package:studentpanel/ui/screen/course_search/courseshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/remove_compare_course.dart';
+import 'package:studentpanel/ui/screen/fund/fund_parameter.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/fund/model/fund_calculator.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -318,7 +319,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                   padding: const EdgeInsets.only(bottom: 0),
                                   child: InkWell(
                                     onTap: (() {
-                                      Get.toNamed(Fundrequirement.routenamed,
+                                      Get.toNamed(FundParameter.routeNamed,
                                           arguments: courseSearchModel.id);
 
                                       // finalShortList = false;

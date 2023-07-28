@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
+import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';

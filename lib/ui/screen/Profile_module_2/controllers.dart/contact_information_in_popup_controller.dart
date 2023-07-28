@@ -59,7 +59,6 @@ class ContactInformationInPopUpController extends GetxController
     await profiledetail();
     await profileDataValidator();
     super.onInit();
-    update();
     change(null, status: RxStatus.success());
   }
 

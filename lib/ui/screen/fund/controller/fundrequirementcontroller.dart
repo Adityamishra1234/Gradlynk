@@ -66,25 +66,25 @@ class FundRequirementController extends GetxController with StateMixin {
       }
 
       change(null, status: RxStatus.success());
-      Get.to(FundParameter(model: dataNeedFundCalulator));
+      Get.to(FundParameter());
     }
   }
 
-  getCalculatedInit(String inst_course) async {
-    var response = await apiServices.getFundCalculatorInit(
-      Get.find<BaseController>().model1.id!,
-      inst_course,
-    );
-    if (response != null) {
-      dataNeedFundCalulator = DataNeedFundCalulator.fromJson(response);
-      if (dataNeedFundCalulator.tableData != []) {
-        getFundRequirement(previousInstCourse!);
-      } else {
-        getFundRequirement(previousInstCourse!);
-      }
+  // getCalculatedInit(String inst_course) async {
+  //   var response = await apiServices.getFundCalculatorInit(
+  //     Get.find<BaseController>().model1.id!,
+  //     inst_course,
+  //   );
+  //   if (response != null) {
+  //     dataNeedFundCalulator = DataNeedFundCalulator.fromJson(response);
+  //     if (dataNeedFundCalulator.tableData != []) {
+  //       getFundRequirement(previousInstCourse!);
+  //     } else {
+  //       getFundRequirement(previousInstCourse!);
+  //     }
 
-      change(null, status: RxStatus.success());
-      Get.to(FundParameter(model: dataNeedFundCalulator));
-    }
-  }
+  //     change(null, status: RxStatus.success());
+  //     Get.to(FundParameter(model: dataNeedFundCalulator));
+  //   }
+  // }
 }
