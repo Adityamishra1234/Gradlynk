@@ -235,7 +235,10 @@ class _UploadDocumentState extends State<UploadDocument> {
                 Get.find<BaseController>().model1.id.toString(),
                 controller.documenttypeId[i].toString());
           }
-
+          controller.documentNameSelectedName = null;
+          controller.documentNameSelectedID = null;
+          controller.organizationSelectedName = null;
+          controller.organizationSelectedID = null;
           controller.update();
         }
       }
