@@ -27,8 +27,6 @@ class WelcomeViewController extends GetxController with StateMixin {
   check() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? phonenumber = prefs.getString("phonenumber");
-    print(phonenumber);
-
     if (phonenumber == null) {
       return;
     } else {

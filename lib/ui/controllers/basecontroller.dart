@@ -11,6 +11,7 @@ import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
 import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
+import 'package:studentpanel/ui/screen/login.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
@@ -98,40 +99,44 @@ class BaseController extends GetxController with StateMixin {
     try {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
-      String phonenumber =
-          sharedPreferences.getString("phonenumber").toString();
-      var res = await apiServices.dashboard(
-          Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");
-      if (res != null) {
-        model1 = res;
+      String? phonenumber = sharedPreferences.getString("phonenumber");
+      if (phonenumber != null) {
+        var res = await apiServices.dashboard(
+            Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");
+        if (res != null) {
+          model1 = res;
 
-        if (model1.is_block == 1) {
-          getToast(SnackBarConstants.userBlock!);
-          logout();
-        } else {
-          // if(model1.p)
-          if (model1.otherCountryOfInterest != null) {
-            for (var element in model1.otherCountryOfInterest!) {
-              countrylist.add("Select your country");
-              countryid.add(0);
-              countryid.add(element.id!);
-              countrylist.add(element.countryName!);
+          if (model1.is_block == 1) {
+            getToast(SnackBarConstants.userBlock!);
+            logout();
+          } else {
+            // if(model1.p)
+            if (model1.otherCountryOfInterest != null) {
+              for (var element in model1.otherCountryOfInterest!) {
+                countrylist.add("Select your country");
+                countryid.add(0);
+                countryid.add(element.id!);
+                countrylist.add(element.countryName!);
+              }
+            }
+            if (getNUllChecker(model1.countryName) == false) {
+              countrylist.add(model1.countryName!);
+            }
+            if (getNUllChecker(model1.countryID) == false) {
+              countryid.add(model1.countryID!);
             }
           }
-          if (getNUllChecker(model1.countryName) == false) {
-            countrylist.add(model1.countryName!);
-          }
-          if (getNUllChecker(model1.countryID) == false) {
-            countryid.add(model1.countryID!);
-          }
+
+          await checkShowLetsGetStarted();
+          await eventZone(model1.id.toString());
+          loadingStudentPanelData1 = true.obs;
+
+          update();
         }
-
-        await checkShowLetsGetStarted();
-        await eventZone(model1.id.toString());
-        loadingStudentPanelData1 = true.obs;
-
-        update();
+      } else {
+        Get.toNamed(Login.routeNamed);
       }
+
       getNotificatin(model1.id.toString());
     } on Exception catch (e) {
       await apiServices.errorHandle(

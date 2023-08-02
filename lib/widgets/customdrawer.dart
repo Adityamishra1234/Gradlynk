@@ -32,12 +32,14 @@ class CustomDrawer extends StatelessWidget {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(35), bottomRight: Radius.circular(35))),
+
       width: 240,
       child: SingleChildScrollView(
           child: Container(
+        color: ThemeConstants.GreenColor,
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * 0.005),
+        // padding: EdgeInsets.symmetric(
+        //     vertical: MediaQuery.of(context).size.height * 0.005),
         // decoration: BoxDecoration(
         //     color: ThemeConstants.blackcolor,
         //     borderRadius: BorderRadius.only(
@@ -265,9 +267,7 @@ class CustomDrawer extends StatelessWidget {
                         // ),
 
                         SizedBox(
-                          height: displayMobileLayout
-                              ? MediaQuery.of(context).size.height * 1
-                              : MediaQuery.of(context).size.height * 0.55,
+                          height: MediaQuery.sizeOf(context).height - 400,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

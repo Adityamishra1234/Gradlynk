@@ -254,7 +254,6 @@ class _UploadDocumentState extends State<UploadDocument> {
         if (controller.organizationName[i] == varTopic) {
           controller.organizationSelectedName = controller.organizationName[i];
           controller.organizationSelectedID = controller.organizationId[i];
-          print(controller.organizationName[i].split(" [")[0]);
           controller.getDocumentName(
               Get.find<BaseController>().model1.id.toString(), "3",
               organizationName:
