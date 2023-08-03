@@ -37,11 +37,11 @@ class CustomAutoSizeTextMontserrat extends StatelessWidget {
               TextSpan(text: '*', style: TextStyle(color: ThemeConstants.red))
           ]),
       textAlign: textalingCentre == true ? TextAlign.center : null,
-
+      minFontSize: 11,
       maxLines: maxLines ?? 100000,
       overflow: TextOverflow.ellipsis,
       style: GoogleFonts.montserrat(
-        fontWeight: fontWeight ?? FontWeight.w500,
+        fontWeight: fontWeight ?? FontWeight.w400,
         color: textColor ?? Colors.black,
         fontSize: fontSize == null ? 12.0 : fontSize! * 1.00,
         decoration: underline != null

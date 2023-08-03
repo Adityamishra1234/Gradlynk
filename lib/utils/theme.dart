@@ -22,6 +22,11 @@ class ThemeConstants {
     fontSize: 14,
     fontWeight: FontWeight.bold,
   );
+  static TextStyle montserrattextstyle4 = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
 
   static getTextStyle(bool sizechange) {
     return GoogleFonts.montserrat(
@@ -43,6 +48,8 @@ class ThemeConstants {
   static Color VioletColor = const Color(0xFF6366F1);
   static Color lightgreentColor = const Color(0xFFF4FDF8);
   static Color lightblueColor = const Color(0xFFF1F4FB);
+  static Color lightblueColor2 = Color.fromARGB(255, 198, 215, 255);
+
   static Color lightorangeColor = const Color(0xFFFFF7F1);
   static Color orangeColor = const Color(0xFFF97316);
   static Color TextColor = const Color(0xFF677082);

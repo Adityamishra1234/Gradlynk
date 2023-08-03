@@ -261,6 +261,7 @@ class UploadDocumentController extends GetxController {
         }
       }
     } catch (e) {
+      await getToast('Please give Storage Permission');
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString(),

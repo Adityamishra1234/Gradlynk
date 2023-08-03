@@ -324,16 +324,17 @@ class _UploadDocumentState extends State<UploadDocument> {
                           },
                           child: Container(
                             height: 35,
-                            width: 35,
+                            width: 55,
                             decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: ThemeConstants.orangeColor),
+                                border:
+                                    Border.all(color: ThemeConstants.bluecolor),
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(50))),
+                                    Radius.circular(20))),
                             child: Center(
                               child: Icon(
                                 Icons.remove_red_eye,
-                                color: ThemeConstants.orangeColor,
+                                size: 18,
+                                color: ThemeConstants.bluecolor,
                               ),
                               // child: CustomAutoSizeTextMontserrat(
                               //   text: "View",

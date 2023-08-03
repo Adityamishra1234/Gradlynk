@@ -76,10 +76,10 @@ class ContactInformationController extends GetxController with StateMixin {
   GlobalKey<FormState> profilePageKey = GlobalKey<FormState>();
 
   @override
-  void onInit() {
-    getCountry();
-    getMartialStatus();
-    profiledetail();
+  void onInit() async {
+    await getCountry();
+    await getMartialStatus();
+    await profiledetail();
     super.onInit();
     change(null, status: RxStatus.success());
   }

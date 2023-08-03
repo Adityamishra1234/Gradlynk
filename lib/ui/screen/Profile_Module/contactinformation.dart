@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -31,6 +32,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
 
   @override
   Widget build(BuildContext context) {
+    bool tabOrLand = MediaQuery.of(context).size.width > 600;
     if (widget.editButton == true) {
       saveAndEdit = false;
       setState(() {});
@@ -80,7 +82,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               text: "First Name",
                               //textColor: ThemeConstants.TextColor,
                               mandatory: true,
-                              fontSize: 16,
+                              fontSize: SizeConfig.fontLabelSize,
+                              fontWeight: FontWeight.bold,
+                              textColor: ThemeConstants.TextColor,
                               // fontWeight: FontWeight.bold,
                             ),
                             // const Spacer(),
@@ -205,6 +209,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         readOnly: saveAndEdit,
                         decoration: InputDecoration(
                           hintText: "Enter your First Name",
+                          hintStyle: TextStyle(
+                            fontSize: SizeConfig.fontLabelSize,
+                          ),
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(
@@ -212,7 +219,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.firstNameKey.currentState!
                         //       .validate()) {
@@ -236,8 +245,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Last Name",
                           mandatory: true,
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           // textColor: ThemeConstants.blackcolor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -261,7 +272,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.lastNameKey.currentState!.validate()) {
                         //     controller.lastNameKey.currentState!.save();
@@ -284,8 +297,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Date of Birth",
                           mandatory: true,
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -316,8 +331,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Gender",
                           mandatory: true,
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -338,8 +355,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Marital status",
                           mandatory: true,
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -365,8 +384,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Children Count",
+                            fontWeight: FontWeight.bold,
+                            textColor: ThemeConstants.TextColor,
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 16,
+                            fontSize: SizeConfig.fontLabelSize,
                             // fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -389,8 +410,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Mobile Number",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           mandatory: true,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                           //textColor: ThemeConstants.TextColor,
                         ),
@@ -453,11 +476,14 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               controller.update();
                             }),
                         SizedBox(
-                          width: MediaQuery.sizeOf(context).width * 0.6,
+                          width: tabOrLand == true
+                              ? 150
+                              : MediaQuery.sizeOf(context).width * 0.6,
                           child: CustomAutoSizeTextMontserrat(
+                            maxLines: 5,
                             text: "This number is Whatsapp number",
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 15,
+                            fontSize: 13,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -471,8 +497,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Whatsapp Number",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -497,7 +525,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.whatsappNumberkey.currentState!
                         //       .validate()) {
@@ -516,8 +546,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Alternate Number",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           mandatory: true,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                           //textColor: ThemeConstants.TextColor,
                         ),
@@ -543,7 +575,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.alternateNumberKey.currentState!
                         //       .validate()) {
@@ -562,9 +596,12 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Email",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           mandatory: true,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
+
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -587,7 +624,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.emailKey.currentState!.validate()) {
                         //     controller.emailKey.currentState!.save();
@@ -605,8 +644,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Secondary Email",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -630,7 +671,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.secondaryemailKey.currentState!
                         //       .validate()) {
@@ -649,9 +692,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Zip Code",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           mandatory: true,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -676,7 +721,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         // onChanged: (value) {
                         //   if (controller.zipcodekey.currentState!.validate()) {
                         //     controller.zipcodekey.currentState!.save();
@@ -704,9 +751,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Country of residence",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           mandatory: true,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -729,8 +778,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "State",
                           mandatory: true,
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -752,9 +803,11 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "City",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           mandatory: true,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -776,8 +829,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Street",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -801,8 +856,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
-                        // onChanged: (value) {
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                         //   if (controller.streetkey.currentState!.validate()) {
                         //     controller.streetkey.currentState!.save();
                         //   }
@@ -819,7 +875,8 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                     CheckboxListTile(
                       title: CustomAutoSizeTextMontserrat(
                           fontSize: 15,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           text: "Are you available on Social Media"),
                       value: controller.socialMedia,
                       onChanged: (newValue) {
@@ -839,8 +896,12 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Instagram Id",
+
+                            fontWeight: FontWeight.bold,
+                            textColor: ThemeConstants.TextColor,
+
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 16,
+                            fontSize: SizeConfig.fontLabelSize,
                             // fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -865,7 +926,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                           ),
-                          style: ThemeConstants.montserrattextstyle2,
+                          style: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           // onChanged: (value) {
                           //   if (controller.instragramkey.currentState!
                           //       .validate()) {
@@ -889,8 +952,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Facebook Id",
+                            fontWeight: FontWeight.bold,
+                            textColor: ThemeConstants.TextColor,
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 16,
+                            fontSize: SizeConfig.fontLabelSize,
                             // fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -915,7 +980,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                           ),
-                          style: ThemeConstants.montserrattextstyle2,
+                          style: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           // onChanged: (value) {
                           //   if (controller.facebookkey.currentState!
                           //       .validate()) {
@@ -939,8 +1006,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           alignment: AlignmentDirectional.topStart,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Snapchat Id",
+                            fontWeight: FontWeight.bold,
+                            textColor: ThemeConstants.TextColor,
                             //textColor: ThemeConstants.TextColor,
-                            fontSize: 16,
+                            fontSize: SizeConfig.fontLabelSize,
                             // fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -965,7 +1034,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                           ),
-                          style: ThemeConstants.montserrattextstyle2,
+                          style: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           // onChanged: (value) {
                           //   if (controller.firstNameKey.currentState!
                           //       .validate()) {
@@ -988,8 +1059,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Assigned Advisors",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1005,7 +1078,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintStyle: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           hintText: ContactInformationController
                               .assignedAdvisors.text,
                           filled: true,
@@ -1015,7 +1090,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                       ),
                     ),
                     Padding(
@@ -1025,8 +1102,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Assigned Branch",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1042,7 +1121,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintStyle: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           hintText:
                               ContactInformationController.assignedBranch.text,
                           filled: true,
@@ -1052,7 +1133,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                       ),
                     ),
                     Padding(
@@ -1062,8 +1145,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Service",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1079,7 +1164,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintStyle: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           hintText: ContactInformationController.service.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
@@ -1088,7 +1175,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                       ),
                     ),
                     Padding(
@@ -1098,8 +1187,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "First Country of Interest",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1115,7 +1206,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintStyle: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           hintText: ContactInformationController
                               .firstCountryInterest.text,
                           filled: true,
@@ -1125,7 +1218,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                       ),
                     ),
                     Padding(
@@ -1135,8 +1230,10 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                         alignment: AlignmentDirectional.topStart,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Other country interested",
+                          fontWeight: FontWeight.bold,
+                          textColor: ThemeConstants.TextColor,
                           //textColor: ThemeConstants.TextColor,
-                          fontSize: 16,
+                          fontSize: SizeConfig.fontLabelSize,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -1153,7 +1250,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                                 MediaQuery.of(context).viewInsets.bottom + 30),
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintStyle: ThemeConstants.montserrattextstyle2,
+                          hintStyle: saveAndEdit
+                              ? ThemeConstants.montserrattextstyle2
+                              : ThemeConstants.montserrattextstyle4,
                           hintText: ContactInformationController
                               .otherCountryinterested.text,
                           filled: true,
@@ -1163,7 +1262,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        style: ThemeConstants.montserrattextstyle2,
+                        style: saveAndEdit
+                            ? ThemeConstants.montserrattextstyle2
+                            : ThemeConstants.montserrattextstyle4,
                       ),
                     ),
                     // Padding(

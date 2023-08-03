@@ -8,8 +8,9 @@ class WelcomeViewController extends GetxController with StateMixin {
   @override
   void onInit() async {
     await check();
-    change(null, status: RxStatus.success());
+
     // hideScreen();
+    change(null, status: RxStatus.success());
   }
 
   // Future<void> hideScreen() async {
