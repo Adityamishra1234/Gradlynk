@@ -100,7 +100,7 @@ class ProfileView extends StatelessWidget {
                                         ),
                                         CustomAutoSizeTextMontserrat(
                                           text: "${controller.model.mobile}",
-                                          fontSize: 5,
+                                              fontSize: 10,
                                           fontWeight: FontWeight.w400,
                                         )
                                       ],
@@ -128,12 +128,12 @@ class ProfileView extends StatelessWidget {
                                           width: 4,
                                         ),
                                         Container(
-                                          width: 190,
+                                              width: 170,
                                           child: Wrap(children: [
                                             CustomAutoSizeTextMontserrat(
                                               fontWeight: FontWeight.w400,
                                               text: "${controller.model.email}",
-                                              fontSize: 5,
+                                                  fontSize: 10,
                                             ),
                                           ]),
                                         )
@@ -152,7 +152,7 @@ class ProfileView extends StatelessWidget {
                                                     .lightgreycolor,
                                                 borderRadius:
                                                     BorderRadius.circular(20)),
-                                            width: 200,
+                                                width: 150,
                                             height: 6,
                                           ),
                                           Container(
@@ -165,7 +165,7 @@ class ProfileView extends StatelessWidget {
                                                     .profileValidationData
                                                     .totalPercentageComplete!
                                                     .toDouble() *
-                                                2,
+                                                    1.5,
                                             height: 6,
                                           )
                                         ],
@@ -180,7 +180,7 @@ class ProfileView extends StatelessWidget {
                                         fontWeight: FontWeight.w400,
                                         text:
                                             "${controller.profileValidationData.totalPercentageComplete}% Profile Completed",
-                                        fontSize: 5,
+                                            fontSize: 10,
                                       ),
                                     )
                                   ]),
@@ -224,13 +224,20 @@ class ProfileView extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      svgImage("doc", ThemeConstants.IconColor,
-                                          35, 35),
-
+                                          svgImage(
+                                              "doc",
+                                              ThemeConstants.blackcolor,
+                                              35,
+                                              35),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
                                       CustomAutoSizeTextMontserrat(
                                         text: "Mandatory Details",
                                         fontSize: 20,
                                         fontWeight: FontWeight.w500,
+                                            textColor:
+                                                ThemeConstants.blackcolor,
                                       )
                                       // CustomAutoSizeTextMontserrat(
                                       //     text: "Mandatory Details")
@@ -283,6 +290,7 @@ class ProfileView extends StatelessWidget {
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
+                                      print(context.size!.width);
                                   ProfileController.getDailog(0, context);
                                 },
                                 child: CustomProfileButton(

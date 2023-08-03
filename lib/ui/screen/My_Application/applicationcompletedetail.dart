@@ -803,7 +803,7 @@ class _ApplicationCompleteDetailsState
                                         secondField: "How did you apply?",
                                         firstFiledName: _
                                             .model.applied_for_other_university,
-                                        secondFieldName: "Hard code",
+                                        secondFieldName: "",
                                       ),
                                       getTable(
                                         firstField: "Country Name",

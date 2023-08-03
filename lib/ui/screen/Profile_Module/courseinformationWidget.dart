@@ -43,6 +43,7 @@ class CourseInformationWidget extends StatelessWidget {
                         //textColor: ThemeConstants.TextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
+                        textColor: ThemeConstants.TextColor,
                       ),
                     ),
                   ),
@@ -66,6 +67,8 @@ class CourseInformationWidget extends StatelessWidget {
                       child: CustomAutoSizeTextMontserrat(
                         text: "Course Broad Field",
                         mandatory: true,
+                        textColor: ThemeConstants.TextColor,
+
                         //textColor: ThemeConstants.TextColor,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -100,6 +103,8 @@ class CourseInformationWidget extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: CustomAutoSizeTextMontserrat(
                         text: "Course Narrow Field",
+                        textColor: ThemeConstants.TextColor,
+
                         mandatory: true,
                         //textColor: ThemeConstants.TextColor,
                         fontSize: 14,

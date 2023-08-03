@@ -306,7 +306,6 @@ class _UploadDocumentState extends State<UploadDocument> {
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
-                        const Spacer(),
                         SizedBox(
                           width: 120,
                           child: CustomAutoSizeTextMontserrat(
@@ -327,19 +326,24 @@ class _UploadDocumentState extends State<UploadDocument> {
                           },
                           child: Container(
                             height: 35,
-                            width: 70,
+                            width: 55,
                             decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: ThemeConstants.orangeColor),
+                                border:
+                                    Border.all(color: ThemeConstants.bluecolor),
                                 borderRadius: const BorderRadius.all(
-                                    Radius.circular(10.0))),
+                                    Radius.circular(20))),
                             child: Center(
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "View",
-                                fontSize: 10,
-                                fontWeight: FontWeight.w500,
-                                textColor: ThemeConstants.orangeColor,
+                              child: Icon(
+                                Icons.remove_red_eye,
+                                size: 18,
+                                color: ThemeConstants.bluecolor,
                               ),
+                              // child: CustomAutoSizeTextMontserrat(
+                              //   text: "View",
+                              //   fontSize: 10,
+                              //   fontWeight: FontWeight.w500,
+                              //   textColor: ThemeConstants.orangeColor,
+                              // ),
                             ),
                           ),
                         ),

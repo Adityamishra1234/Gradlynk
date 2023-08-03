@@ -57,15 +57,24 @@ class ReceiveACallbackController extends GetxController with StateMixin {
   }
 
   requestCallbackDataPost() async {
-    var endpoint = schedule_a_callBack_post_data(
-        counsellor_id: seletectedID,
-        enq_id: Get.find<BaseController>().model1.id!.toString());
+    try {
+      var endpoint = schedule_a_callBack_post_data(
+          counsellor_id: seletectedID,
+          enq_id: Get.find<BaseController>().model1.id!.toString());
 
-    var res = await apiservices.requestACallBackPost(endpoint);
+      var res = await apiservices.requestACallBackPost(endpoint);
 
-    if (res['status'] == 'success') {
-      getToast('We will contact you soon');
-      Get.back();
+      if (res['status'] == 'success') {
+        getToast('We will contact you soon');
+        Get.back();
+      }
+    } catch (e) {
+      await apiservices.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 }

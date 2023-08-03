@@ -34,7 +34,7 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() async {
-    await upcomingEvents();
+    // await upcomingEvents();
     await getTestimonials();
     await getYoutubeVideos();
     if (Get.find<BaseController>().model1.id != null) {

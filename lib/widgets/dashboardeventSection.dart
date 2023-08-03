@@ -15,6 +15,7 @@ class DashboardEventSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool foldPhone = MediaQuery.of(context).size.width > 650;
     return Container(
       child: Stack(
         children: [
@@ -59,9 +60,12 @@ class DashboardEventSection extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       // height: 180,
-                      alignment: Alignment.center,
+                      alignment: Alignment.centerLeft,
+
                       // color: ThemeConstants.GreenColor,
-                      width: MediaQuery.of(context).size.width - 200,
+                      width: foldPhone == true
+                          ? MediaQuery.of(context).size.width - 200 - 240
+                          : MediaQuery.of(context).size.width - 200,
                       child: Wrap(
                         // mainAxisAlignment: MainAxisAlignment.end,
                         // crossAxisAlignment: CrossAxisAlignment.end,

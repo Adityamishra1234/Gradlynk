@@ -147,9 +147,9 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
         width: double.infinity,
         // height: 50,
         decoration: BoxDecoration(
-            color: Colors.transparent,
-            border: Border.all(color: ThemeConstants.lightgreycolor, width: 1),
-            borderRadius: BorderRadius.circular(50)),
+            color: ThemeConstants.lightblueColor,
+            // border: Border.all(color: ThemeConstants.lightgreycolor, width: 1),
+            borderRadius: BorderRadius.circular(10)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

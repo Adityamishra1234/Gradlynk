@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
+import 'package:studentpanel/binding/app_bindings.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
@@ -14,6 +15,8 @@ import 'package:studentpanel/binding/reviewshortlist.dart';
 import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
+import 'package:studentpanel/middlewares/welcomeViewMiddleWare.dart';
+import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
@@ -68,6 +71,7 @@ import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(
@@ -86,6 +90,7 @@ Future<void> main() async {
   //   DeviceOrientation.portraitUp,
   //   DeviceOrientation.portraitDown,
   // ]);
+
   runApp(const MyApp());
 }
 
@@ -124,7 +129,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "S2C_studentpanel",
-
+      // initialBinding: AppBinding(),
       debugShowCheckedModeBanner: false,
       // Initial Route
       initialRoute: '/',
@@ -135,6 +140,9 @@ class _MyAppState extends State<MyApp> {
           page: () => WelcomeView(),
         ),
 
+        //   name: "/wel",
+        //   page: () => WelcomeView(),
+        // ),
         GetPage(
           name: ReceiveACallBackView.routeNamed,
           page: () => ReceiveACallBackView(),

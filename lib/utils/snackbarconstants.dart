@@ -197,6 +197,7 @@ class SnackBarConstants {
   static String? coursesearchPart3 = "Oops! No course found";
   static String? courseSearchPart4 = "Kindly select profession";
   static String? courseSearchPart5 = "Kindly select career option";
+  static String? courseSearchPart6 = "Kindly select course level";
 
   //CourseSearchList.dart Toast
   static String? courseSearchListPart3 = "Kindly select Course";

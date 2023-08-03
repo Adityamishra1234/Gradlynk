@@ -562,7 +562,7 @@ class _DashBoardState extends State<DashBoard> {
                                                         child:
                                                             CustomAutoSizeTextMontserrat(
                                                           text: "Need Help?",
-                                                          fontSize: 5,
+                                                          fontSize: 14,
                                                           textColor:
                                                               Colors.white,
                                                         ),

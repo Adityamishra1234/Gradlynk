@@ -187,11 +187,11 @@ class CourseSearchController extends GetxController with StateMixin {
       }
     } catch (e) {
       await ApiServices().errorHandle(
-        Get.find<BaseController>().model1.id.toString(),
-        e.toString(),
-        "1111",
-        StackTrace.current.toString(),
-      );
+          Get.find<BaseController>().model1.id.toString(),
+          e.toString(),
+          "1111",
+          StackTrace.current.toString(),
+          selectedIndustryCode.toString());
     }
   }
 
@@ -427,7 +427,7 @@ class CourseSearchController extends GetxController with StateMixin {
   int courseSearchType = 0;
 
   //// course level
-  int courseLevelSelector = 1;
+  int courseLevelSelector = 4;
 
   getCoursenarrowField(int boardField) async {
     courseNarrowList = [];

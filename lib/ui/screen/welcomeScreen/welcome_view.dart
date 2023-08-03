@@ -160,9 +160,7 @@ class WelcomeView extends StatelessWidget {
             width: 80,
             child: CircleAvatar(
               backgroundColor: ThemeConstants.lightblueColor,
-              child: 
-               svgImage(
-                              "$icon", ThemeConstants.bluecolor, 50, 50),
+              child: svgImage("$icon", ThemeConstants.bluecolor, 50, 50),
               // SvgPicture.asset(
               //   icon,
               //   color: ThemeConstants.bluecolor,

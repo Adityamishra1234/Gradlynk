@@ -125,7 +125,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                             controller
                                                 .countryWithFlagDataList[index]
                                                 .id
-                                        ? ThemeConstants.lightblueColor
+                                        ? ThemeConstants.lightblueColor2
                                         : ThemeConstants.whitecolor,
                                     borderRadius: BorderRadius.circular(15),
                                     border: Border.all(
@@ -426,98 +426,148 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     const SizedBox(
                       height: 10,
                     ),
+
                     Padding(
                       padding: const EdgeInsets.only(left: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              controller.courseLevelSelector = 1;
-                              controller.update();
-                            },
-                            child: CustomIconTextTogether(
-                                showICOn: false,
-                                verticalPadding: 8,
-                                horizontelPadding: 15,
-                                fontWeight: FontWeight.w400,
-                                textSize: 10,
-                                Bgcolor: controller.courseLevelSelector == 1
-                                    ? ThemeConstants.bluecolor
-                                    : ThemeConstants.whitecolor,
-                                color: controller.courseLevelSelector == 1
-                                    ? ThemeConstants.whitecolor
-                                    : ThemeConstants.bluecolor,
-                                iconData: const Icon(Icons.abc),
-                                text: 'PG Diploma'),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              controller.courseLevelSelector = 2;
-                              controller.update();
-                            },
-                            child: CustomIconTextTogether(
-                                showICOn: false,
-                                verticalPadding: 8,
-                                horizontelPadding: 15,
-                                fontWeight: FontWeight.w400,
-                                textSize: 10,
-                                Bgcolor: controller.courseLevelSelector == 2
-                                    ? ThemeConstants.bluecolor
-                                    : ThemeConstants.whitecolor,
-                                color: controller.courseLevelSelector == 2
-                                    ? ThemeConstants.whitecolor
-                                    : ThemeConstants.bluecolor,
-                                iconData: const Icon(Icons.abc),
-                                text: 'Bachelors'),
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              controller.courseLevelSelector = 3;
-                              controller.update();
-                            },
-                            child: CustomIconTextTogether(
-                                showICOn: false,
-                                verticalPadding: 8,
-                                horizontelPadding: 15,
-                                fontWeight: FontWeight.w400,
-                                textSize: 10,
-                                Bgcolor: controller.courseLevelSelector == 3
-                                    ? ThemeConstants.bluecolor
-                                    : ThemeConstants.whitecolor,
-                                color: controller.courseLevelSelector == 3
-                                    ? ThemeConstants.whitecolor
-                                    : ThemeConstants.bluecolor,
-                                iconData: const Icon(Icons.abc),
-                                text: 'Master'),
-                          ),
-                        ],
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 30,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          // mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                controller.courseLevelSelector = 5;
+                                controller.update();
+                              },
+                              child: CustomIconTextTogether(
+                                  showICOn: false,
+                                  verticalPadding: 8,
+                                  horizontelPadding: 15,
+                                  fontWeight: FontWeight.w400,
+                                  textSize: 10,
+                                  Bgcolor: controller.courseLevelSelector == 5
+                                      ? ThemeConstants.bluecolor
+                                      : ThemeConstants.whitecolor,
+                                  color: controller.courseLevelSelector == 5
+                                      ? ThemeConstants.whitecolor
+                                      : ThemeConstants.bluecolor,
+                                  iconData: const Icon(Icons.abc),
+                                  text: 'PG Diploma'),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                controller.courseLevelSelector = 4;
+                                controller.update();
+                              },
+                              child: CustomIconTextTogether(
+                                  showICOn: false,
+                                  verticalPadding: 8,
+                                  horizontelPadding: 15,
+                                  fontWeight: FontWeight.w400,
+                                  textSize: 10,
+                                  Bgcolor: controller.courseLevelSelector == 4
+                                      ? ThemeConstants.bluecolor
+                                      : ThemeConstants.whitecolor,
+                                  color: controller.courseLevelSelector == 4
+                                      ? ThemeConstants.whitecolor
+                                      : ThemeConstants.bluecolor,
+                                  iconData: const Icon(Icons.abc),
+                                  text: 'Bachelors'),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                controller.courseLevelSelector = 3;
+                                controller.update();
+                              },
+                              child: CustomIconTextTogether(
+                                  showICOn: false,
+                                  verticalPadding: 8,
+                                  horizontelPadding: 15,
+                                  fontWeight: FontWeight.w400,
+                                  textSize: 10,
+                                  Bgcolor: controller.courseLevelSelector == 3
+                                      ? ThemeConstants.bluecolor
+                                      : ThemeConstants.whitecolor,
+                                  color: controller.courseLevelSelector == 3
+                                      ? ThemeConstants.whitecolor
+                                      : ThemeConstants.bluecolor,
+                                  iconData: const Icon(Icons.abc),
+                                  text: 'Master'),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                controller.courseLevelSelector = 1;
+                                controller.update();
+                              },
+                              child: CustomIconTextTogether(
+                                  showICOn: false,
+                                  verticalPadding: 8,
+                                  horizontelPadding: 15,
+                                  fontWeight: FontWeight.w400,
+                                  textSize: 10,
+                                  Bgcolor: controller.courseLevelSelector == 1
+                                      ? ThemeConstants.bluecolor
+                                      : ThemeConstants.whitecolor,
+                                  color: controller.courseLevelSelector == 1
+                                      ? ThemeConstants.whitecolor
+                                      : ThemeConstants.bluecolor,
+                                  iconData: const Icon(Icons.abc),
+                                  text: 'Others'),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 15,
                     ),
-                    // CustomDropDownSingle(
-                    //   model: getDropdownModel(
-                    //       _.loadingCourseLevel.value,
-                    //       _.selectCourseLevelName,
-                    //       _.courseLevelList),
-                    //   initialSelectedValue: getSelectedDropDown(
-                    //       _.loadingCourseLevel.value,
-                    //       _.selectCourseLevelName,
-                    //       _.courseLevelList),
-                    //   choosefieldtype: false,
-                    //   callbackFunction: callbackCourseLevel,
-                    // ),
-                    // const SizedBox(
-                    //   height: 15,
-                    // ),
+                    if (controller.courseLevelSelector == 1) ...[
+                      Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Other options",
+
+                            // fontWeight: FontWeight.bold,,
+                            fontWeight: FontWeight.w500,
+                            // fontWeight: FontWeight.bold,,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomDropDownSingle(
+                        bgColor: ThemeConstants.ultraLightgreyColor2,
+                        model: getDropdownModel(
+                            controller.loadingCourseLevel.value,
+                            controller.selectCourseLevelName,
+                            controller.courseLevelList),
+                        initialSelectedValue: getSelectedDropDown(
+                            controller.loadingCourseLevel.value,
+                            controller.selectCourseLevelName,
+                            controller.courseLevelList),
+                        choosefieldtype: false,
+                        callbackFunction: callbackCourseLevel,
+                      ),
+                    ],
+
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Align(
                       alignment: AlignmentDirectional.topStart,
                       child: Padding(
@@ -563,7 +613,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                                   .AllCourseSearchBroadField[
                                                       index]
                                                   .id
-                                          ? ThemeConstants.lightblueColor
+                                          ? ThemeConstants.lightblueColor2
                                           : ThemeConstants.whitecolor,
                                       borderRadius: BorderRadius.circular(15),
                                       border: Border.all(
@@ -817,6 +867,10 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                     if (controller.selectedCountry.id == null) {
                                       getToast(
                                           SnackBarConstants.courseSearchPart1!);
+                                    } else if (controller.courseLevelSelector ==
+                                        1) {
+                                      getToast(
+                                          SnackBarConstants.courseSearchPart6!);
                                     } else if ((controller.selectedCountry.id ==
                                                 9998 ||
                                             controller.selectedCountry.id ==

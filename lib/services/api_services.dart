@@ -80,6 +80,7 @@ class ApiServices extends StudentPanelBase implements api {
         "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
+        endpoint,
         StackTrace.current.toString(),
       );
     }

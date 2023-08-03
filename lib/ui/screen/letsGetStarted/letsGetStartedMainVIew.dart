@@ -25,6 +25,8 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
 
   @override
   Widget build(BuildContext context) {
+    bool tabOrLand = MediaQuery.of(context).size.width > 600;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 248, 252, 255),
       body: controller.obx(
@@ -50,7 +52,9 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         top: 0,
                         child: Image.asset(
                           'assets/images/letsGetStarted_bgImage.png',
-                          width: MediaQuery.of(context).size.width * 0.65,
+                          width: tabOrLand
+                              ? MediaQuery.of(context).size.width * 0.40
+                              : MediaQuery.of(context).size.width * 0.65,
                         ))
                     //  Positioned(
                     //   left: -160,

@@ -113,7 +113,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                     child: CustomAutoSizeTextMontserrat(
                       text: "Highest Qualification",
                       mandatory: true,
-                      textColor: ThemeConstants.blackcolor,
+                      textColor: ThemeConstants.TextColor,
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
@@ -155,7 +155,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Qualification Name",
                   mandatory: true,
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -189,7 +189,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Stream",
                   mandatory: true,
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -212,7 +212,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Education Status",
                   mandatory: true,
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -236,7 +236,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "Year of Passing",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -258,7 +258,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "CGPA",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -322,7 +322,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "Multiplier",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -386,7 +386,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "Percentage",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -432,7 +432,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Country of Education",
                   mandatory: true,
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -454,7 +454,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "State",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -476,7 +476,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "City",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -498,7 +498,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "Affiliation",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -523,7 +523,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Name of the Institution",
                   mandatory: true,
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -545,7 +545,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 alignment: AlignmentDirectional.topStart,
                 child: CustomAutoSizeTextMontserrat(
                   text: "Re-appear/Backlog",
-                  textColor: ThemeConstants.blackcolor,
+                  textColor: ThemeConstants.TextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -606,6 +606,9 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                                     .educationStatusSelectError!);
                               } else if (controller.countrySelected == null) {
                                 getToast(SnackBarConstants.countrySelect!);
+                              } else if (controller.institutionSelected ==
+                                  null) {
+                                getToast('Please Seelct a institution');
                               } else {
                                 controller.modelList
                                     .add(QualificationDetailsViewModel(

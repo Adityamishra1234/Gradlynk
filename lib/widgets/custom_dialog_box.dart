@@ -84,8 +84,8 @@ contactUsDialog(
       builder: (ctx) => AlertDialog(
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            insetPadding: const EdgeInsets.all(0),
-            contentPadding: EdgeInsets.all(15.0),
+            insetPadding: const EdgeInsets.all(10),
+            contentPadding: EdgeInsets.all(10),
             content: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -94,12 +94,12 @@ contactUsDialog(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        height: 40.0,
+                        width: 140,
+                        height: 35.0,
                         alignment: Alignment.centerLeft,
                         child: CustomAutoSizeTextMontserrat(
                           text: "Contact Us",
-                          fontSize: 30,
+                          fontSize: 22,
                           fontWeight: FontWeight.w800,
                           textColor: ThemeConstants.bluecolor,
                         )),
@@ -583,12 +583,12 @@ supportDialog(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 240,
+                          width: 200,
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(
                             text: "Gradlynk Support",
-                            fontSize: 22,
+                            fontSize: 20,
                             fontWeight: FontWeight.w800,
                             textColor: ThemeConstants.bluecolor,
                           )),
@@ -1054,7 +1054,7 @@ planYourFundDialog(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 240,
+                          width: 200,
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(
@@ -1566,7 +1566,7 @@ eventZoneDrawerPopUp(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 240,
+                          width: 200,
                           height: 35.0,
                           alignment: Alignment.centerLeft,
                           child: CustomAutoSizeTextMontserrat(

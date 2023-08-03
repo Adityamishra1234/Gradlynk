@@ -108,9 +108,10 @@ class ContactInformationInPopUpController extends GetxController
         for (var element in temp) {
           countryCode.add(element.toString());
         }
-        loadingCountry = true.obs;
+
         update();
       }
+      loadingCountry.value = true;
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

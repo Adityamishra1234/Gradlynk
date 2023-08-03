@@ -511,13 +511,14 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 20),
+                                    vertical: 10, horizontal: 10),
                                 child: Container(
                                   width: double.infinity,
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    " ${controller.timer.value == 0 ? 'Resend OTP' : 'Wait for ${controller.timer.value}sec'}",
+                                    "${controller.timer.value == 0 ? 'Resend OTP' : 'Resend OTP in ${controller.timer.value} sec'}",
                                     style: TextStyle(
+                                        fontSize: 13,
                                         fontWeight: controller.resendOTP == 1
                                             ? FontWeight.w500
                                             : FontWeight.bold,

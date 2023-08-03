@@ -74,8 +74,8 @@ class RelativeInformationWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, right: 10),
                     child: Align(
                       alignment: AlignmentDirectional.topStart,
-                      child: Container(
-                        width: 260,
+                      child: SizedBox(
+                        width: 200,
                         child: CustomAutoSizeTextMontserrat(
                           text:
                               "Any relatives residing in the Interested Country",

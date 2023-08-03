@@ -35,29 +35,38 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   bool showBelowContent = false;
   getMarkAttendance(String code) async {
-    change(null, status: RxStatus.loading());
-    var res = await apiServices.getMarkAttandance(getMarkAttendanceForEvent(
-        Get.find<BaseController>().model1.id.toString(), code));
-    if (res != null) {
-      markAttendanceModel = MarkAttendanceModel.fromJson(res);
+    try {
+      change(null, status: RxStatus.loading());
+      var res = await apiServices.getMarkAttandance(getMarkAttendanceForEvent(
+          Get.find<BaseController>().model1.id.toString(), code));
+      if (res != null) {
+        markAttendanceModel = MarkAttendanceModel.fromJson(res);
 
-      if (markAttendanceModel.uniqueCodeMatch == true) {
-        campaignName = markAttendanceModel.campaignName!;
-        // passName = markAttendanceModel.pa!;
+        if (markAttendanceModel.uniqueCodeMatch == true) {
+          campaignName = markAttendanceModel.campaignName!;
+          // passName = markAttendanceModel.pa!;
 
-        await allTimeAPI();
-        if (markAttendanceModel.attendanceMarked == false) {
-          Get.to(IntakeScreen(
-            id: markAttendanceModel.campaignId.toString(),
-          ));
+          await allTimeAPI();
+          if (markAttendanceModel.attendanceMarked == false) {
+            Get.to(IntakeScreen(
+              id: markAttendanceModel.campaignId.toString(),
+            ));
+          }
+        } else {
+          getToast("Event code not matched");
         }
-      } else {
-        getToast("Event code not matched");
       }
+      showBelowContent = true;
+      change(null, status: RxStatus.success());
+      update();
+    } catch (e) {
+      await apiServices.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
-    showBelowContent = true;
-    change(null, status: RxStatus.success());
-    update();
   }
 
   allTimeAPI({String? campaignId}) async {
@@ -77,34 +86,42 @@ class MarkAttendanceController extends GetxController with StateMixin {
   }
 
   getIntakeSubmit(String campaign_id) async {
-    change(null, status: RxStatus.loading());
-
-    if (intake != null) {
-      var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
-          //TODO HardCoded
-          campaign_id: campaign_id,
-          enq_id: Get.find<BaseController>().model1.id.toString(),
-          intake_month: intake!.split("-")[1],
-          intake_year: intake!.split("-")[0]));
-      if (res != null) {
-        markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
-        await allTimeAPI(campaignId: campaign_id);
-        if (markAttendanceIntakeModel.documentExists == false) {
-          if (markAttendanceIntakeModel.studentCategory == "C") {
-            getToast(
-                "Your Silver Express Pass is accessible in View Express Pass Section.");
-            Get.offAndToNamed(DashBoard.routeNamed);
+    try {
+      change(null, status: RxStatus.loading());
+      if (intake != null) {
+        var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
+            //TODO HardCoded
+            campaign_id: campaign_id,
+            enq_id: Get.find<BaseController>().model1.id.toString(),
+            intake_month: intake!.split("-")[1],
+            intake_year: intake!.split("-")[0]));
+        if (res != null) {
+          markAttendanceIntakeModel = MarkAttendanceIntake.fromJson(res);
+          await allTimeAPI(campaignId: campaign_id);
+          if (markAttendanceIntakeModel.documentExists == false) {
+            if (markAttendanceIntakeModel.studentCategory == "C") {
+              getToast(
+                  "Your Silver Express Pass is accessible in View Express Pass Section.");
+              Get.offAndToNamed(DashBoard.routeNamed);
+            } else {
+              Get.to(AfterIntakeScreenView(), arguments: campaign_id);
+            }
           } else {
-            Get.to(AfterIntakeScreenView(), arguments: campaign_id);
+            getToast("kindly view your express pass view option");
+            Get.offAndToNamed(DashBoard.routeNamed);
           }
-        } else {
-          getToast("kindly view your express pass view option");
-          Get.offAndToNamed(DashBoard.routeNamed);
         }
+      } else {
+        getToast("kindly select your date");
+        change(null, status: RxStatus.success());
       }
-    } else {
-      getToast("kindly select your date");
-      change(null, status: RxStatus.success());
+    } catch (e) {
+      await apiServices.errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
