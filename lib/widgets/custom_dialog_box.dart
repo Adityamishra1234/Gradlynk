@@ -1106,8 +1106,10 @@ planYourFundDialog(
                                       .fundplanner
                                       .uniCalculatedData !=
                                   null) {
+                            Get.back();
                             Get.to(SponsorDetails());
                           } else {
+                            Get.back();
                             Get.to(FundPlan());
                           }
                         } catch (e) {

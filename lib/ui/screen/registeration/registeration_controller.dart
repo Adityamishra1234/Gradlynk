@@ -51,7 +51,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
       // branchListID = map.keys.toList();
       loadingBranches = true;
-      selectedBranchName = 'Please Select a Branch';
+      selectedBranchName = 'Kindly select';
       update();
     }
   }
@@ -97,7 +97,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
         countryListID.add(0);
         countryListName.addAll(map.keys.toList());
         countryListID.addAll(map.values.toList());
-        selectedCountryName = 'Please Select a Country';
+        selectedCountryName = 'Kindly select';
         loadingCountry = true;
         update();
       }

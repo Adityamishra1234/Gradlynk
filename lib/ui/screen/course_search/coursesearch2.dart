@@ -438,7 +438,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           children: [
                             InkWell(
                               onTap: () {
-                                controller.courseLevelSelector = 5;
+                                controller.courseLevelSelector = 6;
                                 controller.update();
                               },
                               child: CustomIconTextTogether(
@@ -447,14 +447,14 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                   horizontelPadding: 15,
                                   fontWeight: FontWeight.w400,
                                   textSize: 10,
-                                  Bgcolor: controller.courseLevelSelector == 5
+                                  Bgcolor: controller.courseLevelSelector == 6
                                       ? ThemeConstants.bluecolor
                                       : ThemeConstants.whitecolor,
-                                  color: controller.courseLevelSelector == 5
+                                  color: controller.courseLevelSelector == 6
                                       ? ThemeConstants.whitecolor
                                       : ThemeConstants.bluecolor,
                                   iconData: const Icon(Icons.abc),
-                                  text: 'PG Diploma'),
+                                  text: 'Diploma'),
                             ),
                             const SizedBox(
                               width: 15,
@@ -520,12 +520,12 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                   Bgcolor: controller.courseLevelSelector !=
                                               3 &&
                                           controller.courseLevelSelector != 4 &&
-                                          controller.courseLevelSelector != 5
+                                          controller.courseLevelSelector != 6
                                       ? ThemeConstants.bluecolor
                                       : ThemeConstants.whitecolor,
                                   color: controller.courseLevelSelector != 3 &&
                                           controller.courseLevelSelector != 4 &&
-                                          controller.courseLevelSelector != 5
+                                          controller.courseLevelSelector != 6
                                       ? ThemeConstants.whitecolor
                                       : ThemeConstants.bluecolor,
                                   iconData: const Icon(Icons.abc),
@@ -540,7 +540,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     ),
                     if (controller.courseLevelSelector != 3 &&
                         controller.courseLevelSelector != 4 &&
-                        controller.courseLevelSelector != 5) ...[
+                        controller.courseLevelSelector != 6) ...[
                       Align(
                         alignment: AlignmentDirectional.topStart,
                         child: Padding(
