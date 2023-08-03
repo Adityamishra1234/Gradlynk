@@ -269,7 +269,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
                               child: SizedBox(
-                                width: 100,
+                                width: 80,
                                 child: CustomAutoSizeTextMontserrat(
                                   text: getNUllChecker(
                                               courseSearchModel.currencyCode) ==
@@ -302,11 +302,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                             ),
 
                           if (widget.previousRoute == FinalShortList.routeNamed)
-                            const SizedBox(
-                              width: 25,
-                            ),
-
-                          Spacer(),
+                            Spacer(),
                           if (widget.previousRoute == FinalShortList.routeNamed)
                             InkWell(
                                 onTap: () {
