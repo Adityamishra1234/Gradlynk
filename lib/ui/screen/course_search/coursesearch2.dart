@@ -507,7 +507,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                             ),
                             InkWell(
                               onTap: () {
-                                controller.courseLevelSelector = 1;
+                                controller.selectCourseLevelName = '';
+                                controller.courseLevelSelector = 200;
                                 controller.update();
                               },
                               child: CustomIconTextTogether(
@@ -516,10 +517,15 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                   horizontelPadding: 15,
                                   fontWeight: FontWeight.w400,
                                   textSize: 10,
-                                  Bgcolor: controller.courseLevelSelector == 1
+                                  Bgcolor: controller.courseLevelSelector !=
+                                              3 &&
+                                          controller.courseLevelSelector != 4 &&
+                                          controller.courseLevelSelector != 5
                                       ? ThemeConstants.bluecolor
                                       : ThemeConstants.whitecolor,
-                                  color: controller.courseLevelSelector == 1
+                                  color: controller.courseLevelSelector != 3 &&
+                                          controller.courseLevelSelector != 4 &&
+                                          controller.courseLevelSelector != 5
                                       ? ThemeConstants.whitecolor
                                       : ThemeConstants.bluecolor,
                                   iconData: const Icon(Icons.abc),
@@ -532,7 +538,9 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     const SizedBox(
                       height: 15,
                     ),
-                    if (controller.courseLevelSelector == 1) ...[
+                    if (controller.courseLevelSelector != 3 &&
+                        controller.courseLevelSelector != 4 &&
+                        controller.courseLevelSelector != 5) ...[
                       Align(
                         alignment: AlignmentDirectional.topStart,
                         child: Padding(
@@ -868,7 +876,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                       getToast(
                                           SnackBarConstants.courseSearchPart1!);
                                     } else if (controller.courseLevelSelector ==
-                                        1) {
+                                        200) {
                                       getToast(
                                           SnackBarConstants.courseSearchPart6!);
                                     } else if ((controller.selectedCountry.id ==
@@ -968,7 +976,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                       //       _.selectCourseBoardFieldCode ==
                                       //               null
                                       //           ? ""
-                                      //           : _.selectCourseBoardFieldCode
+                                      //            : _.selectCourseBoardFieldCode
                                       //               .toString(),
                                       //   countryId:
                                       //       _.selectCountryCode ==
@@ -1109,14 +1117,10 @@ class _CourseSearch2State extends State<CourseSearch2> {
 
   callbackCourseLevel(data) {
     for (var i = 0; i < controller.courseLevelList.length; i++) {
-      if (i == 0) {
-        controller.selectCourseLevelName = null;
-        controller.selectCourseLevelCode = null;
-      } else {
-        if (controller.courseLevelList[i] == data) {
-          controller.selectCourseLevelName = data;
-          controller.selectCourseLevelCode = controller.courseLevelCode[i];
-        }
+      if (controller.courseLevelList[i] == data) {
+        controller.selectCourseLevelName = data;
+        controller.selectCourseLevelCode = controller.courseLevelCode[i];
+        controller.courseLevelSelector = controller.courseLevelCode[i];
       }
     }
     controller.update();

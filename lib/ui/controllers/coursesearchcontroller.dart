@@ -234,8 +234,8 @@ class CourseSearchController extends GetxController with StateMixin {
           Endpoints.baseUrl!, Endpoints.courselevel!);
       if (res != null) {
         Map map = Map<String, dynamic>.from(res);
-        courseLevelList.add("Select Course Level");
-        courseLevelCode.add(0);
+        // courseLevelList.add("Select Course Level");
+        // courseLevelCode.add(0);
         courseLevelList.addAll(map.keys.toList());
         courseLevelCode.addAll(map.values.toList());
         loadingCourseLevel.value = true;
