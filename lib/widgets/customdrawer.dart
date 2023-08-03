@@ -36,7 +36,6 @@ class CustomDrawer extends StatelessWidget {
       width: 240,
       child: SingleChildScrollView(
           child: Container(
-        color: ThemeConstants.GreenColor,
         height: MediaQuery.of(context).size.height,
         // padding: EdgeInsets.symmetric(
         //     vertical: MediaQuery.of(context).size.height * 0.005),
@@ -500,7 +499,7 @@ class CustomDrawer extends StatelessWidget {
                                                           left: 10, top: 5),
                                                   child:
                                                       CustomAutoSizeTextMontserrat(
-                                                    text: "Course Search",
+                                                    text: "Search Course",
                                                     fontWeight: FontWeight.w500,
                                                     fontSize: 15,
                                                     textColor: index == 3

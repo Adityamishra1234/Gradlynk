@@ -889,7 +889,7 @@ class _DashBoardState extends State<DashBoard> {
                                                           18.0),
                                                   key: _four,
                                                   description:
-                                                      "Course Search assists you in searching your desired course across the globe.",
+                                                      "Search Course assists you in searching your desired course across the globe.",
                                                   child: Container(
                                                       padding: const EdgeInsets
                                                           .all(10),
@@ -927,7 +927,7 @@ class _DashBoardState extends State<DashBoard> {
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontSize: 13,
-                                                      text: "Course Search",
+                                                      text: "Search Course",
                                                       textalingCentre: true,
                                                     ),
                                                   ),
