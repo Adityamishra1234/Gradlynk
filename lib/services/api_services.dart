@@ -8,7 +8,6 @@ import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
-import 'package:studentpanel/ui/models/careerOutcomeModel.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
 import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
@@ -78,7 +77,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -95,7 +94,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -114,7 +113,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -134,7 +133,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint$countrydata",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint||$countrydata",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -150,7 +149,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -170,7 +169,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint$statedata",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint||$statedata",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -189,7 +188,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -210,7 +209,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint$broadFieldId",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint||$broadFieldId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -226,7 +225,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -252,7 +251,7 @@ class ApiServices extends StudentPanelBase implements api {
       return courseModelFilter;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -287,7 +286,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -311,7 +310,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$id$enqId",
+        "${Get.find<BaseController>().model1.id.toString()}||$id||$enqId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -329,7 +328,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$id$enqId",
+        "${Get.find<BaseController>().model1.id.toString()}||$id||$enqId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -358,7 +357,7 @@ class ApiServices extends StudentPanelBase implements api {
       return courseModelFilter;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$enqId",
+        "${Get.find<BaseController>().model1.id.toString()}||$enqId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -384,7 +383,7 @@ class ApiServices extends StudentPanelBase implements api {
       getToast(SnackBarConstants.noTrackApplication);
       Get.back();
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$enqId",
+        "${Get.find<BaseController>().model1.id.toString()}||$enqId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -410,14 +409,14 @@ class ApiServices extends StudentPanelBase implements api {
       return courseModelFilter;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints$enqId",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints||$enqId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
       );
       try {
         await Get.find<ReviewShortListController>().GetCourseShortList(
-            "${Get.find<BaseController>().model1.id.toString()}$endpoints$enqId");
+            "${Get.find<BaseController>().model1.id.toString()}||$endpoints||$enqId");
         Get.find<ReviewShortListController>().update();
       } catch (e) {}
 
@@ -439,7 +438,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints$apliId",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints||$apliId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -617,7 +616,7 @@ class ApiServices extends StudentPanelBase implements api {
       return filterModel;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -638,7 +637,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -666,7 +665,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -685,7 +684,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -704,7 +703,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -727,7 +726,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -769,7 +768,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -787,7 +786,7 @@ class ApiServices extends StudentPanelBase implements api {
       return streamDropDown;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -805,7 +804,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -825,7 +824,7 @@ class ApiServices extends StudentPanelBase implements api {
       return affiliationDropDown;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -844,7 +843,7 @@ class ApiServices extends StudentPanelBase implements api {
       return dropdown;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -864,7 +863,7 @@ class ApiServices extends StudentPanelBase implements api {
       return qualificationDetailsView;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -882,7 +881,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -899,7 +898,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -916,7 +915,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -936,7 +935,7 @@ class ApiServices extends StudentPanelBase implements api {
       return workHistoryViewModel;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -959,7 +958,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -983,7 +982,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1007,7 +1006,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1031,7 +1030,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1052,7 +1051,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1074,7 +1073,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1094,7 +1093,7 @@ class ApiServices extends StudentPanelBase implements api {
       return travelHistoryList;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1116,7 +1115,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1134,7 +1133,7 @@ class ApiServices extends StudentPanelBase implements api {
       return model;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoints",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoints",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1156,7 +1155,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1179,7 +1178,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       Get.back();
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1201,7 +1200,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1223,7 +1222,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1244,7 +1243,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       print(e.toString());
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1264,7 +1263,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1346,7 +1345,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       // await errorHandle(
-      //    "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+      //    "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
       //   e.toString().split(":")[1].toString(),
       //   e.toString().split(":")[0].toString(),
       //   StackTrace.current.toString(),
@@ -1367,7 +1366,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1387,7 +1386,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1407,7 +1406,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1427,7 +1426,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1447,7 +1446,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1467,7 +1466,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1486,7 +1485,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1506,7 +1505,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1528,7 +1527,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       print(e.toString());
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1554,7 +1553,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       print(e.toString());
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1575,7 +1574,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       print(e.toString());
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1599,7 +1598,7 @@ class ApiServices extends StudentPanelBase implements api {
       getToast(SnackBarConstants.phoneNumberError!);
       print(e.toString());
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$phoneNumber",
+        "${Get.find<BaseController>().model1.id.toString()}||$phoneNumber",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1613,14 +1612,14 @@ class ApiServices extends StudentPanelBase implements api {
       var res = await httpPostNullBody(
         Endpoints.baseUrl! +
             Endpoints.agree! +
-            "${Get.find<BaseController>().model1.id.toString()}",
+            "${Get.find<BaseController>().model1.id.toString()}||",
       );
       if (res != null) {
         Navigator.pop(context);
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1640,7 +1639,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$enqID",
+        "${Get.find<BaseController>().model1.id.toString()}||$enqID",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1680,7 +1679,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1704,7 +1703,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1726,7 +1725,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1746,7 +1745,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1770,7 +1769,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1794,7 +1793,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1818,7 +1817,7 @@ class ApiServices extends StudentPanelBase implements api {
       return model;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1843,7 +1842,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata;
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1866,7 +1865,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata['data'];
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1895,7 +1894,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1919,7 +1918,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1947,7 +1946,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$enq_id||$inst_course||$is_partner||$is_child||$child_age1||$child_age2||$child_age3||$child_age4",
+        "${Get.find<BaseController>().model1.id.toString()}||$enq_id||$inst_course||$is_partner||$is_child||$child_age1||$child_age2||$child_age3||$child_age4",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1972,7 +1971,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$enq_id||$inst_course",
+        "${Get.find<BaseController>().model1.id.toString()}||$enq_id||$inst_course",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2004,7 +2003,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2025,7 +2024,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endPoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endPoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2047,7 +2046,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endPoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endPoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2069,7 +2068,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endPoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endPoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2089,7 +2088,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endPoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endPoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2108,7 +2107,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2128,7 +2127,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2146,7 +2145,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2182,7 +2181,7 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       getToast(SnackBarConstants.errorMsg!);
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2201,7 +2200,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$enq_id",
+        "${Get.find<BaseController>().model1.id.toString()}||$enq_id",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2220,7 +2219,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$id",
+        "${Get.find<BaseController>().model1.id.toString()}||$id",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2240,7 +2239,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endPoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endPoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2262,7 +2261,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2284,7 +2283,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2304,7 +2303,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2324,7 +2323,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2344,7 +2343,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2367,7 +2366,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2389,7 +2388,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}$endpoint",
+        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -2429,7 +2428,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}",
+        "${Get.find<BaseController>().model1.id.toString()}||",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
