@@ -257,7 +257,10 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
         ),
       ),
-      child: Icon(Icons.download_rounded),
+      child: Icon(
+        Icons.download_rounded,
+        size: 18,
+      ),
       // child: CustomAutoSizeTextMontserrat(
       //   text: 'Download',
       //   textColor: ThemeConstants.whitecolor,

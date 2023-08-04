@@ -161,16 +161,19 @@ class CodeScreen extends StatelessWidget {
                       height: 5,
                     ),
                     if (controller.markAttendanceModel.studentCategory != null)
-                      CustomRichTextWidget(
-                          firstTextColor: ThemeConstants.blackcolor,
-                          customMiddleTextStyle: GoogleFonts.dancingScript(),
-                          text1: 'Your',
-                          text3:
-                              'has been generated in the View Express Pass Section.',
-                          textColor: const Color(0xFFebaa2b),
-                          fontSize: 16,
-                          text:
-                              " ${controller.markAttendanceModel.studentCategory ?? ""} Express Pass "),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CustomRichTextWidget(
+                            firstTextColor: ThemeConstants.blackcolor,
+                            customMiddleTextStyle: GoogleFonts.dancingScript(),
+                            text1: 'Your',
+                            text3:
+                                'has been generated in the View Express Pass Section.',
+                            textColor: const Color(0xFFebaa2b),
+                            fontSize: 16,
+                            text:
+                                " ${controller.markAttendanceModel.studentCategory ?? ""} Express Pass "),
+                      ),
                     const SizedBox(
                       height: 30,
                     ),

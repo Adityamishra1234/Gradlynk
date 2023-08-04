@@ -547,7 +547,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Other Course level options",
+                            text: "Other Course level",
 
                             // fontWeight: FontWeight.bold,,
                             fontWeight: FontWeight.w500,
