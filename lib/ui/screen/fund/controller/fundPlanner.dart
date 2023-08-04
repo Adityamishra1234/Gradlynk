@@ -176,8 +176,6 @@ class FundPlannerController extends GetxController with StateMixin {
       Map map = Map<String, dynamic>.from(res);
       bankName.addAll(map.keys.toList());
       bankID.addAll(map.values.toList());
-      print(bankName);
-      print(bankID);
     }
     loadingBank = true;
 
@@ -296,7 +294,6 @@ class FundPlannerController extends GetxController with StateMixin {
 
       firstTime = false;
       change(null, status: RxStatus.success());
-      Get.to(SponsorDetails());
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

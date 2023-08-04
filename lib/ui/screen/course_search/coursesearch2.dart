@@ -507,7 +507,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                             ),
                             InkWell(
                               onTap: () {
-                                controller.selectCourseLevelName = '';
+                                controller.selectCourseLevelName =
+                                    'Kindly select';
                                 controller.courseLevelSelector = 200;
                                 controller.update();
                               },
@@ -546,7 +547,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20.0),
                           child: CustomAutoSizeTextMontserrat(
-                            text: "Other options",
+                            text: "Other Course level options",
 
                             // fontWeight: FontWeight.bold,,
                             fontWeight: FontWeight.w500,

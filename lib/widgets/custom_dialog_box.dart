@@ -1097,15 +1097,18 @@ planYourFundDialog(
                           const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
+                        print(Get.find<BaseController>().model1.id);
                         try {
                           if (Get.find<BaseController>()
                                       .fundplanner
-                                      .fundPlannersData !=
-                                  null ||
+                                      .fundPlannersData!
+                                      .length >
+                                  0 ||
                               Get.find<BaseController>()
                                       .fundplanner
-                                      .uniCalculatedData !=
-                                  null) {
+                                      .uniCalculatedData!
+                                      .length >
+                                  0) {
                             Get.back();
                             Get.to(SponsorDetails());
                           } else {
