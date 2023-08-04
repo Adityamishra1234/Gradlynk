@@ -369,11 +369,11 @@ getSourceSelected(Function callbackSelectedSource, String id, int index,
               top: 10,
               child: InkWell(
                 onTap: () {
-                  Get.find<ApplicationCompleteDetailsController>()
-                      .model
-                      .documents![index]
-                      .viewLink = "";
-                  Get.find<ApplicationCompleteDetailsController>().update();
+                  // Get.find<ApplicationCompleteDetailsController>()
+                  //     .model
+                  //     .documents![index]
+                  //     .viewLink = "";
+                  // Get.find<ApplicationCompleteDetailsController>().update();
                   Get.back();
                 },
                 child: Container(

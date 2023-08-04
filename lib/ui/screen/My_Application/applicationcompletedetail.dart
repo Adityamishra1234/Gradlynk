@@ -1163,15 +1163,17 @@ class _ApplicationCompleteDetailsState
 
   getViewDocument(String url) {
     print(url);
-    if (url.contains("pdf")) {
+    String extension = url.split('.').last;
+    print(extension);
+    if (extension == "pdf") {
       return Get.to(CustomDocumentViewer(
         url: url,
       ));
-    } else if (url.contains("doc")) {
+    } else if (extension == "doc") {
       Get.to(CustomDocumentViewer(
         url: url,
       ));
-    } else if (url.contains("docx")) {
+    } else if (extension == "docx") {
       Get.to(CustomDocumentViewer(
         url: url,
       ));

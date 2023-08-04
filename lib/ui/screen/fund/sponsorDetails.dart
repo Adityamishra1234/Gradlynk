@@ -41,6 +41,7 @@ class SponsorDetails extends StatelessWidget {
                           const Spacer(),
                           InkWell(
                             onTap: () {
+                              controller.indexOfSponsorDetail = null;
                               Get.to(FundPlan());
                             },
                             child: Align(
@@ -263,6 +264,8 @@ class FundparameterSubWidget extends StatelessWidget {
 
                     InkWell(
                       onTap: () {
+                        Get.find<FundPlannerController>().indexOfSponsorDetail =
+                            index;
                         Get.find<FundPlannerController>()
                             .editButton(index ?? 0);
                       },
