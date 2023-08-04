@@ -185,7 +185,7 @@ class DashboardEventSection extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: SizedBox(
-                                      width: 100,
+                                      width: 80,
                                       child: CustomAutoSizeTextMontserrat(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,

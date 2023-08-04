@@ -315,7 +315,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                         ),
                         const Spacer(),
                         SizedBox(
-                            width: 100,
+                            width: 55,
                             child: FileDownload(url: model[i].viewlink!)),
                         const SizedBox(
                           width: 10,
@@ -347,7 +347,6 @@ class _UploadDocumentState extends State<UploadDocument> {
                             ),
                           ),
                         ),
-                        const Spacer(),
                       ],
                     ),
                   ),

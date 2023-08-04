@@ -30,7 +30,7 @@ class Endpoints {
   static String? courseSearchPart2 = '&course_level=';
   static String? courseSearchPart3 = '&state=';
   static String? courseSearchPart4 = '&city=';
-  static String? courseSearchPart5 = '&broard_field=';
+  static String? courseSearchPart5 = '&broad_field_id';
   static String? courseSearchPart6 = '&narrow_filed=';
   static String? completeCoursePart1 = 'get-course-details?university_id=';
   static String? completeCoursePart2 = '&course_id=';

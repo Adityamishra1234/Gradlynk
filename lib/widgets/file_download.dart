@@ -73,14 +73,17 @@ class _FileDownloadState extends State<FileDownload> {
         color: Colors.indigo,
         width: 120,
         loader: Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           width: 30,
           height: 30,
           child: const CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
         ),
-        child: Icon(Icons.download_rounded),
+        child: Icon(
+          Icons.download_rounded,
+          size: 16,
+        ),
 
         // CustomAutoSizeTextMontserrat(
         //   text: "Download",
