@@ -276,7 +276,7 @@ class _DashBoardState extends State<DashBoard> {
                                                 alignment: AlignmentDirectional
                                                     .topStart,
                                                 child: Text(
-                                                  "Hi,",
+                                                  "Hi, code(003)",
                                                   style: GoogleFonts.roboto(
                                                       fontWeight:
                                                           FontWeight.bold,

@@ -25,9 +25,9 @@ class EntryRequirement extends StatelessWidget {
     try {
       testTypeList.addAll(completeCourseDetail[0].testType!.split('|'));
       for (var element in testTypeList) {
-          examType.add(element.toString().split("=>")[0]);
-          temp.add(element.toString().split("=>")[1].split(","));
-        }
+        examType.add(element.toString().split("=>")[0]);
+        temp.add(element.toString().split("=>")[1].split(","));
+      }
       for (var i = 0; i < (temp.length); i++) {
         print(temp[i].length);
         for (var j = 0; j < (temp[i].length); j++) {
@@ -580,14 +580,14 @@ class EntryRequirement extends StatelessWidget {
                 ]),
                 TableRow(children: [
                   CustomAutoSizeTextMontserrat(
-                    text: "hard code",
+                    text: "",
                     textColor: ThemeConstants.TextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     maxLines: 2,
                   ),
                   CustomAutoSizeTextMontserrat(
-                    text: "hard code",
+                    text: "",
                     textColor: ThemeConstants.TextColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,

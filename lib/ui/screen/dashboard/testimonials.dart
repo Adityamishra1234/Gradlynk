@@ -59,105 +59,116 @@ class TestiMonial extends StatelessWidget {
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(20.0))),
-                                        content: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Row(
+                                        content: SizedBox(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.90,
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: CircleAvatar(
-                                                      radius: 23.0,
-                                                      backgroundImage: showProfile ==
-                                                              true
-                                                          ? NetworkImage(
-                                                              "${testimonialsList[index].image}")
-                                                          : const NetworkImage(
-                                                              'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
-                                                    ),
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      Get.back();
-                                                    },
-                                                    child: Container(
-                                                      width: 25,
-                                                      height: 25,
-                                                      alignment:
-                                                          Alignment.centerRight,
-                                                      child: CircleAvatar(
-                                                        radius: 25,
-                                                        backgroundColor:
-                                                            ThemeConstants
-                                                                .ultraLightgreyColor,
-                                                        child: Icon(
-                                                          Icons.close,
-                                                          color: ThemeConstants
-                                                              .bluecolor,
-                                                          size: 20,
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: CircleAvatar(
+                                                          radius: 23.0,
+                                                          backgroundImage: showProfile ==
+                                                                  true
+                                                              ? NetworkImage(
+                                                                  "${testimonialsList[index].image}")
+                                                              : const NetworkImage(
+                                                                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                                height: 20,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                  textColor:
-                                                      ThemeConstants.blackcolor,
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.w400,
-                                                  text:
-                                                      "${testimonialsList[index].comment!}"),
-                                              const SizedBox(
-                                                height: 20,
-                                              ),
-                                              CustomAutoSizeTextMontserrat(
-                                                text:
-                                                    "${testimonialsList[index].name}",
-                                                textColor:
-                                                    ThemeConstants.bluecolor,
-                                                fontSize: 13,
-                                                // textColor: ThemeConstants.bluecolor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              SizedBox(
-                                                  height: 20,
-                                                  width: 150,
-                                                  child: ListView.builder(
-                                                      scrollDirection:
-                                                          Axis.horizontal,
-                                                      itemCount:
-                                                          testimonialsList[
-                                                                  index]
-                                                              .rating,
-                                                      itemBuilder: (context,
-                                                              index) =>
-                                                          Container(
-                                                            child: const Icon(
-                                                              Icons.star,
-                                                              color: Color(
-                                                                  0xFFFFC107), // Color of the star's fill
-                                                              size: 22,
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          Get.back();
+                                                        },
+                                                        child: Container(
+                                                          width: 25,
+                                                          height: 25,
+                                                          alignment: Alignment
+                                                              .centerRight,
+                                                          child: CircleAvatar(
+                                                            radius: 25,
+                                                            backgroundColor:
+                                                                ThemeConstants
+                                                                    .ultraLightgreyColor,
+                                                            child: Icon(
+                                                              Icons.close,
+                                                              color:
+                                                                  ThemeConstants
+                                                                      .bluecolor,
+                                                              size: 20,
                                                             ),
-                                                          ))),
-                                            ])));
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                    height: 20,
+                                                  ),
+                                                  CustomAutoSizeTextMontserrat(
+                                                      textColor: ThemeConstants
+                                                          .blackcolor,
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      text:
+                                                          "${testimonialsList[index].comment!}"),
+                                                  const SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  CustomAutoSizeTextMontserrat(
+                                                    text:
+                                                        "${testimonialsList[index].name}",
+                                                    textColor: ThemeConstants
+                                                        .bluecolor,
+                                                    fontSize: 13,
+                                                    // textColor: ThemeConstants.bluecolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  SizedBox(
+                                                      height: 20,
+                                                      width: 150,
+                                                      child: ListView.builder(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          itemCount:
+                                                              testimonialsList[
+                                                                      index]
+                                                                  .rating,
+                                                          itemBuilder: (context,
+                                                                  index) =>
+                                                              Container(
+                                                                child:
+                                                                    const Icon(
+                                                                  Icons.star,
+                                                                  color: Color(
+                                                                      0xFFFFC107), // Color of the star's fill
+                                                                  size: 22,
+                                                                ),
+                                                              ))),
+                                                ]),
+                                          ),
+                                        )));
                               },
                               child: Container(
                                 width: 280,
