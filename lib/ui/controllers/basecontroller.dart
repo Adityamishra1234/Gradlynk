@@ -45,11 +45,6 @@ class BaseController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
   }
 
-  @override
-  onReady() async {
-    await getFundPlannerData();
-  }
-
   var data = ProfileDataValidatorModel().obs;
   RxBool loading = false.obs;
 
@@ -129,6 +124,7 @@ class BaseController extends GetxController with StateMixin {
 
           await checkShowLetsGetStarted();
           await eventZone(model1.id.toString());
+          await getFundPlannerData();
           loadingStudentPanelData1 = true.obs;
 
           update();
@@ -230,6 +226,7 @@ class BaseController extends GetxController with StateMixin {
           }
         }
       }
+      print(total_fund);
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

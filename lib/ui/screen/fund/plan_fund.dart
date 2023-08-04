@@ -111,6 +111,7 @@ class FundPlan extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
                                       controller.getFundPlannerData();
+                                      Get.to(SponsorDetails());
                                     },
                                     child: CustomAutoSizeTextMontserrat(
                                       text: "View Details",
