@@ -29,7 +29,7 @@ class FundPlannerController extends GetxController with StateMixin {
   List occupationName = [];
   List occupationID = [];
 
-  int? indexOfSponsorDetail = null;
+  String? selectedId;
 
   bool loadingBank = false;
   List bankName = [];
@@ -162,6 +162,8 @@ class FundPlannerController extends GetxController with StateMixin {
   String? selectedBankname = '';
   String? selectedBankCode = '';
   getBankByCountry(String countryID) async {
+    selectedBankCode = null;
+    selectedBankname = null;
     bankName = [];
     loadingBank = false;
 
@@ -183,7 +185,6 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   uploadDocumentment() async {
-    change(null, status: RxStatus.loading());
     if (selectedRelationship == null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
@@ -203,10 +204,7 @@ class FundPlannerController extends GetxController with StateMixin {
     } else {
       change(null, status: RxStatus.loading());
       String endpoint = getFundPlannersave(
-          id: indexOfSponsorDetail! != null
-              ? fundplanner.fundPlannersData![indexOfSponsorDetail!].id
-                  .toString()
-              : 0.toString(),
+          id: selectedId ?? "",
           // id: 0.toString(),
           enq_id: Get.find<BaseController>().model1.id.toString(),
           name_of_sponsor: nameOfThePerson.value.text,
@@ -230,7 +228,6 @@ class FundPlannerController extends GetxController with StateMixin {
   }
 
   submitFundPlannerData() async {
-    change(null, status: RxStatus.loading());
     if (selectedRelationship == null) {
       getToast('Kindly select the relationship');
     } else if (nameOfThePerson.text.isEmpty) {
@@ -249,10 +246,11 @@ class FundPlannerController extends GetxController with StateMixin {
       getToast('Kindly specify amount');
     } else {
       try {
+        change(null, status: RxStatus.loading());
         loadingCountry == false;
         var enq_id = Get.find<BaseController>().model1.id.toString();
         var endpoint = getFundPlannersave(
-            id: 0.toString(),
+            id: selectedId ?? "",
             enq_id: Get.find<BaseController>().model1.id.toString(),
             name_of_sponsor: nameOfThePerson.value.text,
             relationship: selectedRelationship ?? "",
@@ -311,6 +309,7 @@ class FundPlannerController extends GetxController with StateMixin {
 
   editButton(int index) async {
     change(null, status: RxStatus.success());
+    selectedId = fundplanner.fundPlannersData![index].id.toString();
     selectedRelationship =
         fundplanner.fundPlannersData![index].relationApplicant ?? "";
 
@@ -501,5 +500,9 @@ class FundPlannerController extends GetxController with StateMixin {
     filepath = "";
     selectedSourceOfIncome = "";
     nameFinancial = null;
+    name_FinancialID = null;
+    selectedId = null;
+    selectedBankCode = null;
+    selectedBankname = null;
   }
 }
