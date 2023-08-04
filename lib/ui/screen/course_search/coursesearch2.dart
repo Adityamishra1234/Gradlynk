@@ -937,10 +937,19 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                                                     .id ==
                                                                 null
                                                             ? ""
-                                                            : controller
-                                                                .selectedCountry
-                                                                .id
-                                                                .toString(),
+                                                            : controller.selectedCountry.id ==
+                                                                        9998 ||
+                                                                    controller
+                                                                            .selectedCountry
+                                                                            .id ==
+                                                                        9999
+                                                                ? controller
+                                                                    .selectedCountryCodeFromContinent
+                                                                    .toString()
+                                                                : controller
+                                                                    .selectedCountry
+                                                                    .id
+                                                                    .toString(),
                                                         narrowField: controller
                                                                     .selectCourseNarrowFieldCode ==
                                                                 null
