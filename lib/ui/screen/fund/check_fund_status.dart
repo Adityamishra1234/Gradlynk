@@ -21,32 +21,34 @@ class FundStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
-      drawer: CustomDrawer(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10, top: 10),
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Check Fund Status",
-                      fontSize: 18,
-                      textColor: ThemeConstants.bluecolor,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ...getlist(controller.fundplanner.uniCalculatedData ?? [])
-            ],
-          ),
-        ),
-      ),
-    );
+        appBar: CustomAppBar("title"),
+        drawer: CustomDrawer(),
+        body: controller.obx(
+            (state) => SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10, top: 10),
+                          child: Align(
+                              alignment: Alignment.topLeft,
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Check Fund Status",
+                                fontSize: 18,
+                                textColor: ThemeConstants.bluecolor,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        ...getlist(
+                            controller.fundplanner.uniCalculatedData ?? [])
+                      ],
+                    ),
+                  ),
+                ),
+            onLoading: getLoading(context)));
   }
 
   getlist(List<UniCalculatedData> model) {
@@ -169,8 +171,7 @@ class FundStatusSubWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                     svgImage(
-                              "building", ThemeConstants.GreenColor, 20, 20),
+                    svgImage("building", ThemeConstants.GreenColor, 20, 20),
                     // SvgPicture.asset(
                     //   "assets/icons/building.svg",
                     //   color: ThemeConstants.GreenColor,
