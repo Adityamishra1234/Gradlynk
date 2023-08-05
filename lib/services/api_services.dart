@@ -305,9 +305,9 @@ class ApiServices extends StudentPanelBase implements api {
           getToast(SnackBarConstants.courseShortList!);
         } else if (response.toString() == "Course Removed From Shortlist") {
           getToast(SnackBarConstants.courseRemove!);
+        } else {
+          getToast(response);
         }
-      } else {
-        getToast(response);
       }
     } catch (e) {
       await errorHandle(

@@ -892,37 +892,29 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             // Button List
             Align(
               alignment: AlignmentDirectional.topEnd,
-              child: Wrap(
-                alignment: WrapAlignment.end,
-                crossAxisAlignment: WrapCrossAlignment.end,
-                spacing: 10.0,
-                runSpacing: 10.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                // alignment: WrapAlignment.end,
+                // crossAxisAlignment: WrapCrossAlignment.end,
+                // spacing: 10.0,
+                // runSpacing: 10.0,
                 children: [
-                  if (widget.previousRoute != ReviewShortList.routeNamed)
-                    // SpacerFlex(),
-                    // if (widget.iscompare == true) const Spacer(),
-                    if (widget.iscompare == true)
-                      SizedBox(
-                        width: 80,
-                        child: AddedButtonShow(),
-                      ),
+                  // if (widget.previousRoute != ReviewShortList.routeNamed)
+                  // SpacerFlex(),
+                  // if (widget.iscompare == true) const Spacer(),
+                  if (widget.iscompare == true) AddedButtonShow(),
 
                   // if (widget.iscompare == true) const Spacer(),
                   // const Spacer(),
                   // if (widget.previousRoute != FinalShortList.routeNamed)
                   // const Spacer(),
                   if (widget.previousRoute != FinalShortList.routeNamed)
-                    SizedBox(
-                      width: 80,
-                      child: AddToShortList(),
-                    ),
-                  if (widget.previousRoute != FinalShortList.routeNamed)
-                    // const Spacer(),
+                    AddToShortList(),
 
-                    SizedBox(
-                      width: 100,
-                      child: FinalButton(),
-                    ),
+                  // if (widget.previousRoute != FinalShortList.routeNamed)
+                  // const Spacer(),
+
+                  FinalButton(),
 
                   // if ((finalShortList == true ||
                   //         widget.finalShortListFirst == true) &&
@@ -933,7 +925,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                   SizedBox(
                     width: 100,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 10, right: 10),
+                      padding: const EdgeInsets.only(
+                          bottom: 10, right: 10, left: 10),
                       child: InkWell(
                         onTap: (() {
                           setState(() {
@@ -1040,7 +1033,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
     else if (widget.courseSearchModelCompare1Id != courseSearchModel.id &&
         widget.courseSearchModelCompare2Id != courseSearchModel.id) {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.only(bottom: 10, left: 10),
         child: SizedBox(
             width: 90,
             height: 35,
@@ -1167,7 +1160,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 courseSearchModel.shortList.toString() == "1") &&
             widget.courseShortListFirst == true) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10, left: 10),
             child: InkWell(
               onTap: () {
                 widget.shortList = false;
@@ -1178,6 +1171,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
               },
               child: Container(
                 height: 35,
+                width: 70,
                 decoration: BoxDecoration(
                     color: ThemeConstants.lightRed,
                     border: Border.all(color: ThemeConstants.red, width: 0.5),
@@ -1203,7 +1197,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             widget.courseShortListFirst == true &&
             widget.shortList == false) {
           return Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10, left: 10),
             child: InkWell(
               onTap: (() {
                 widget.shortList = true;
@@ -1252,6 +1246,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
             },
             child: Container(
               height: 35,
+              width: 70,
               decoration: BoxDecoration(
                   color: ThemeConstants.lightRed,
                   border: Border.all(color: ThemeConstants.red, width: 0.5),
@@ -1330,7 +1325,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   FinalButton() {
     if (courseSearchModel.finalList == "Final") {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.only(bottom: 10, left: 10),
         child: InkWell(
           onTap: (() {
             finalShortList = false;
@@ -1341,6 +1336,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
           }),
           child: Container(
             height: 35,
+            width: 100,
             decoration: BoxDecoration(
                 color: ThemeConstants.lightRed,
                 border: Border.all(color: ThemeConstants.red, width: 0.5),
@@ -1362,7 +1358,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
     } else {
       if (finalShortList == false && widget.finalShortListFirst == true) {
         return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
+          padding: const EdgeInsets.only(bottom: 10, left: 10),
           child: InkWell(
             onTap: (() {
               finalShortList = true;
