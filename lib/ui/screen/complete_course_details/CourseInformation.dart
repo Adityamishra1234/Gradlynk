@@ -397,12 +397,20 @@ class CourseInformation extends StatelessWidget {
                       ),
                     ]),
                     TableRow(children: [
-                      CustomAutoSizeTextMontserrat(
-                        text: completeCourseDetail[0].scholarshipCriteria,
-                        textColor: ThemeConstants.TextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                      HtmlWidget(
+                        completeCourseDetail[0].scholarshipCriteria,
+                        textStyle: TextStyle(
+                          color: ThemeConstants.TextColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
+                      // CustomAutoSizeTextMontserrat(
+                      //   text: completeCourseDetail[0].scholarshipCriteria,
+                      //   textColor: ThemeConstants.TextColor,
+                      //   fontSize: 14,
+                      //   fontWeight: FontWeight.w600,
+                      // ),
                     ]),
                   ],
                 ),

@@ -43,6 +43,7 @@ class FundParameter extends StatelessWidget {
                           text: "Fund Parameter",
                           textColor: ThemeConstants.bluecolor,
                           fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
                         const Spacer(),
                         InkWell(
@@ -69,6 +70,8 @@ class FundParameter extends StatelessWidget {
 
     for (var i = 0; i < model.tableData!.length; i++) {
       data.add(FundparameterSubWidget(
+        iconColor:
+            i % 2 == 0 ? ThemeConstants.bluecolor : ThemeConstants.yellow,
         oddEven: i % 2 == 0,
         title: model.tableData![i].nameOfFiled,
         individual_Expenses: model.tableData![i].expenses,
@@ -91,11 +94,13 @@ class FundparameterSubWidget extends StatelessWidget {
   String? total_Expenses;
   String? iconPath;
   bool? oddEven;
+  Color? iconColor;
 
   String? total_Expenses_ind;
 
   FundparameterSubWidget(
       {Key? key,
+      this.iconColor,
       this.oddEven,
       this.iconPath,
       required this.title,
@@ -169,7 +174,7 @@ class FundparameterSubWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   children: [
-                    svgImage("$iconPath", ThemeConstants.GreenColor, 20, 20),
+                    svgImage("$iconPath", iconColor!, 20, 20),
                     // SvgPicture.asset(
                     //   '$iconPath',
                     //   width: 30,

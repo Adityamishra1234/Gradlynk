@@ -765,8 +765,9 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                             ? courseSearchModel.nearByIntake!
                                                 .split("-")[1]
                                             : "",
-                                        textColor: Colors.grey,
+                                        textColor: ThemeConstants.TextColor,
                                         fontSize: 14,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                   )),
@@ -783,7 +784,8 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                                   .split("-")[0]
                                               : "",
                                           fontSize: 14,
-                                          textColor: Colors.grey,
+                                          textColor: ThemeConstants.TextColor,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
@@ -798,7 +800,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                                             ? courseSearchModel.listIntake![0]
                                                 .toString()
                                                 .split('-')[2]
-                                            : "Closed",
+                                            : "",
                                         fontSize: 14,
                                         textColor: Colors.grey,
                                       ),

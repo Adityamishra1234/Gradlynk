@@ -66,6 +66,7 @@ class ApiServices extends StudentPanelBase implements api {
         // final formattedStr = formatDate(
         //     DateTime.now(), [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss]);
         // sharedPreferences.setString('UserModel', response);
+
         var jsondata = json.decode(response);
         studentPanel = StudentPanel.fromJson(jsondata);
         // sharedPreferences.setString('token', userModel.token);
@@ -80,7 +81,6 @@ class ApiServices extends StudentPanelBase implements api {
         "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
-        endpoint,
         StackTrace.current.toString(),
       );
     }

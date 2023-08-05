@@ -210,36 +210,76 @@ class _ApplicationCompleteDetailsState
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        Row(
-                                          children: [
-                                            FileDownload(
-                                                url: _
-                                                    .model.acknowledgementFile),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor),
-                                                backgroundColor: ThemeConstants
-                                                    .whitecolor, // foreground
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 50,
+                                                child: FileDownload(
+                                                    url: _.model
+                                                        .acknowledgementFile),
                                               ),
-                                              onPressed: () {
-                                                getViewDocument(_
-                                                    .model.acknowledgementFile);
-                                              },
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
+                                              const SizedBox(
+                                                width: 20,
                                               ),
-                                            ),
-                                          ],
+                                              InkWell(
+                                                onTap: () {
+                                                  getViewDocument(_.model
+                                                      .acknowledgementFile);
+                                                },
+                                                child: Container(
+                                                  height: 35,
+                                                  width: 55,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: ThemeConstants
+                                                              .bluecolor),
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  20))),
+                                                  child: Center(
+                                                    child: Icon(
+                                                      Icons.remove_red_eye,
+                                                      size: 18,
+                                                      color: ThemeConstants
+                                                          .bluecolor,
+                                                    ),
+                                                    // child: CustomAutoSizeTextMontserrat(
+                                                    //   text: "View",
+                                                    //   fontSize: 10,
+                                                    //   fontWeight: FontWeight.w500,
+                                                    //   textColor: ThemeConstants.orangeColor,
+                                                    // ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // ElevatedButton(
+                                              //   style: ElevatedButton.styleFrom(
+                                              //     foregroundColor:
+                                              //         ThemeConstants.whitecolor,
+                                              //     side: BorderSide(
+                                              //         color: ThemeConstants
+                                              //             .orangeColor),
+                                              //     backgroundColor: ThemeConstants
+                                              //         .whitecolor, // foreground
+                                              //   ),
+                                              //   onPressed: () {
+                                              //     getViewDocument(_
+                                              //         .model.acknowledgementFile);
+                                              //   },
+                                              //   child:
+                                              //       CustomAutoSizeTextMontserrat(
+                                              //     text: "View",
+                                              //     textColor:
+                                              //         ThemeConstants.orangeColor,
+                                              //   ),
+                                              // ),
+                                            ],
+                                          ),
                                         )
                                       ],
                                     ),
@@ -944,74 +984,111 @@ class _ApplicationCompleteDetailsState
                         textColor: ThemeConstants.TextColor,
                       ),
                       if (model.documents![i].viewLink != "test")
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            //Upload
-                            if (getNUllChecker(model.documents![i].viewLink) ==
-                                true)
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: ThemeConstants.whitecolor,
-                                  side: BorderSide(
-                                      color: ThemeConstants.GreenColor),
-                                  backgroundColor:
-                                      ThemeConstants.whitecolor, // foreground
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              //Upload
+                              if (getNUllChecker(
+                                      model.documents![i].viewLink) ==
+                                  true)
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: ThemeConstants.whitecolor,
+                                    side: BorderSide(
+                                        color: ThemeConstants.GreenColor),
+                                    backgroundColor:
+                                        ThemeConstants.whitecolor, // foreground
+                                  ),
+                                  onPressed: () {
+                                    controller.model.documents![i].viewLink =
+                                        "test";
+                                    getSourceSelected(
+                                        callbackSelectedSource1,
+                                        model.documents![i].id.toString(),
+                                        i,
+                                        Get.arguments);
+                                    controller.update();
+                                  },
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: "Upload",
+                                    textColor: ThemeConstants.GreenColor,
+                                  ),
                                 ),
-                                onPressed: () {
-                                  controller.model.documents![i].viewLink =
-                                      "test";
-                                  getSourceSelected(
-                                      callbackSelectedSource1,
-                                      model.documents![i].id.toString(),
-                                      i,
-                                      Get.arguments);
-                                  controller.update();
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "Upload",
-                                  textColor: ThemeConstants.GreenColor,
+                              if (getNUllChecker(
+                                      model.documents![i].viewLink) ==
+                                  true)
+                                const SizedBox(
+                                  width: 20,
                                 ),
-                              ),
-                            if (getNUllChecker(model.documents![i].viewLink) ==
-                                true)
-                              const SizedBox(
-                                width: 20,
-                              ),
-                            //Download
-                            if (getNUllChecker(model.documents![i].viewLink) ==
-                                false)
-                              Padding(
-                                  padding: const EdgeInsets.only(bottom: 5),
+                              //Download
+                              if (getNUllChecker(
+                                      model.documents![i].viewLink) ==
+                                  false)
+                                SizedBox(
+                                  width: 50,
                                   child: FileDownload(
-                                      url: model.documents![i].viewLink)),
+                                      url: model.documents![i].viewLink),
+                                ),
 
-                            if (getNUllChecker(model.documents![i].viewLink) ==
-                                false)
-                              const SizedBox(
-                                width: 20,
-                              ),
-                            //View
-                            if (getNUllChecker(model.documents![i].viewLink) ==
-                                false)
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: ThemeConstants.whitecolor,
-                                  side: BorderSide(
-                                      color: ThemeConstants.orangeColor),
-                                  backgroundColor:
-                                      ThemeConstants.whitecolor, // foreground
+                              if (getNUllChecker(
+                                      model.documents![i].viewLink) ==
+                                  false)
+                                const SizedBox(
+                                  width: 20,
                                 ),
-                                onPressed: () {
-                                  getViewDocument(model.documents![i].viewLink);
-                                },
-                                child: CustomAutoSizeTextMontserrat(
-                                  text: "View",
-                                  textColor: ThemeConstants.orangeColor,
+                              //View
+                              if (getNUllChecker(
+                                      model.documents![i].viewLink) ==
+                                  false)
+                                InkWell(
+                                  onTap: () {
+                                    getViewDocument(
+                                        model.documents![i].viewLink);
+                                  },
+                                  child: Container(
+                                    height: 35,
+                                    width: 55,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: ThemeConstants.bluecolor),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.remove_red_eye,
+                                        size: 18,
+                                        color: ThemeConstants.bluecolor,
+                                      ),
+                                      // child: CustomAutoSizeTextMontserrat(
+                                      //   text: "View",
+                                      //   fontSize: 10,
+                                      //   fontWeight: FontWeight.w500,
+                                      //   textColor: ThemeConstants.orangeColor,
+                                      // ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                          ],
+                              // ElevatedButton(
+                              //   style: ElevatedButton.styleFrom(
+                              //     foregroundColor: ThemeConstants.whitecolor,
+                              //     side: BorderSide(
+                              //         color: ThemeConstants.orangeColor),
+                              //     backgroundColor:
+                              //         ThemeConstants.whitecolor, // foreground
+                              //   ),
+                              //   onPressed: () {
+                              //     getViewDocument(model.documents![i].viewLink);
+                              //   },
+                              //   child: CustomAutoSizeTextMontserrat(
+                              //     text: "View",
+                              //     textColor: ThemeConstants.orangeColor,
+                              //   ),
+                              // ),
+                            ],
+                          ),
                         ),
                       if (model.documents![i].viewLink == "test")
                         const Center(child: CircularProgressIndicator())

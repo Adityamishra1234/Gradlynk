@@ -259,20 +259,16 @@ class StudentPanelBase {
     }
   }
 
-  errorHandle(
-      String enqId, String errorMessage, String statusCode, String endpointData,
+  errorHandle(String enq_id, String error_message, String statusCode,
       [String extra = ""]) async {
     String endpoint = Endpoints.errorHandlePart1! +
-        enqId +
+        enq_id +
         Endpoints.errorHandlepart2! +
-        errorMessage +
+        error_message +
         Endpoints.errorHandlepart3! +
         statusCode +
         Endpoints.errorHandlepart4! +
-
-        ///todo
-        extra.replaceAll("#", "") +
-        endpointData;
+        extra.replaceAll("#", "");
 
     try {
       if (int.parse(statusCode) != 440) {
