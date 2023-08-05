@@ -30,8 +30,9 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
       child: Container(
         color: ThemeConstants.whitecolor,
         width: MediaQuery.of(context).size.width,
-        height: 380,
+
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 20),

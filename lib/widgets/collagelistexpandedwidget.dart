@@ -1062,6 +1062,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 }
               },
               child: Container(
+                margin: EdgeInsets.all(200),
                 decoration: BoxDecoration(
                     border: Border.all(color: ThemeConstants.TextColor),
                     borderRadius: const BorderRadius.all(Radius.circular(5))),
