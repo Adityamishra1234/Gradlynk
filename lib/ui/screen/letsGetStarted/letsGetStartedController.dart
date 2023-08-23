@@ -26,7 +26,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   showEnglishTestNextQuestion() {
-    widthOfSlider = widthOfSlider + 30;
+    widthOfSlider = widthOfSlider + 40;
     questionToShowInEnglsihTest = questionToShowInEnglsihTest + 1;
     update();
   }
@@ -64,7 +64,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
     }
   }
 
-  double widthOfSlider = 30;
+  double widthOfSlider = 10;
 
   //firstQuestion
   int? selectedLastQualification = null;
@@ -96,7 +96,6 @@ class LetsGetStartedController extends GetxController with StateMixin {
       //     showQuestion();
       //   }
       // } else {
-
       if (questionNumberToShow != 5) {
         questionNumberToShow++;
       } else {
@@ -107,7 +106,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
         return;
       }
 
-      widthOfSlider = widthOfSlider + 30;
+      widthOfSlider = widthOfSlider + 40;
       var toShowOrNot = questionNumberToShow == 1
           ? questionsToShowList[questionNumberToShow]
           // : questionNumberToShow == 5
@@ -151,14 +150,14 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   back() {
-    widthOfSlider = widthOfSlider - 60;
+    widthOfSlider = widthOfSlider - 80;
     // questionToShowInEnglsihTest = 0;
     questionNumberToShow = questionNumberToShow - 2;
     showQuestion();
   }
 
   backForEnglish() {
-    widthOfSlider = widthOfSlider - 60;
+    widthOfSlider = widthOfSlider - 80;
     questionToShowInEnglsihTest = questionToShowInEnglsihTest - 2;
     // questionNumberToShow = questionNumberToShow - 2;
     showEnglishTestNextQuestion();
