@@ -94,16 +94,18 @@ class _ReviewShortListState extends State<ReviewShortList> {
             if (Get.arguments[7]["previous_screenCourseSearch"].toString() ==
                 "true") {
               Get.find<CourseShortListController>().courseSearch(
-                  false,
-                  Get.arguments[0]["countryId"].toString(),
-                  Get.arguments[1]["courseLevel"].toString(),
-                  Get.find<BaseController>().model1.id.toString(),
-                  Get.arguments[3]["statecode"].toString(),
-                  Get.arguments[4]["cityCode"].toString(),
-                  Get.arguments[5]["boardFieldCode"].toString(),
-                  Get.arguments[6]["narrowField"].toString(),
-                  Get.arguments[6]["narrowField"].toString(),
-                  Get.arguments[6]["narrowField"].toString());
+                false,
+                Get.arguments[0]["countryId"].toString(),
+                Get.arguments[1]["courseLevel"].toString(),
+                Get.find<BaseController>().model1.id.toString(),
+                Get.arguments[3]["statecode"].toString(),
+                Get.arguments[4]["cityCode"].toString(),
+                Get.arguments[5]["boardFieldCode"].toString(),
+                Get.arguments[6]["narrowField"].toString(),
+                Get.arguments[6]["narrowField"].toString(),
+                Get.arguments[6]["narrowField"].toString(),
+                Get.arguments[6]["narrowField"].toString(),
+              );
 
               ///todo
               Get.find<CourseShortListController>().update();

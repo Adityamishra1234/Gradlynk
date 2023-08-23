@@ -29,6 +29,7 @@ class CourseSearchList extends StatefulWidget {
   String? enq_id;
   String? profession;
   String? career_outcome;
+  String? university_code;
   FilterModel? filterModel;
   CourseModelFilter? courseModelFilter = CourseModelFilter();
   CourseSearchList(
@@ -45,7 +46,8 @@ class CourseSearchList extends StatefulWidget {
       this.courseModelFilter,
       this.profession,
       this.career_outcome,
-      this.enq_id})
+      this.enq_id,
+      this.university_code})
       : super(key: key);
 
   @override
@@ -110,7 +112,8 @@ class _CourseSearchListState extends State<CourseSearchList> {
           widget.boardFieldCode ?? "",
           widget.narrowField ?? "",
           widget.profession ?? "",
-          widget.career_outcome ?? "");
+          widget.career_outcome ?? "",
+          widget.university_code ?? '');
     }
     super.initState();
   }
@@ -241,17 +244,17 @@ class _CourseSearchListState extends State<CourseSearchList> {
                           InkWell(
                             onTap: () {
                               controller1.courseSearch(
-                                widget.showJobIndustry ?? false,
-                                widget.countryId!,
-                                widget.courseLevel!,
-                                widget.enq_id!,
-                                widget.stateCode ?? "",
-                                widget.cityCode ?? "",
-                                widget.boardFieldCode ?? "",
-                                widget.narrowField ?? "",
-                                widget.profession ?? "",
-                                widget.career_outcome ?? "",
-                              );
+                                  widget.showJobIndustry ?? false,
+                                  widget.countryId!,
+                                  widget.courseLevel!,
+                                  widget.enq_id!,
+                                  widget.stateCode ?? "",
+                                  widget.cityCode ?? "",
+                                  widget.boardFieldCode ?? "",
+                                  widget.narrowField ?? "",
+                                  widget.profession ?? "",
+                                  widget.career_outcome ?? "",
+                                  widget.university_code ?? '');
 
                               Get.toNamed(ReviewShortList.routeNamed,
                                   arguments: [

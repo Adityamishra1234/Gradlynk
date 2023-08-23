@@ -71,7 +71,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
               Form(
                 key: controller.formKey,
                 child: Container(
-                  alignment: Alignment.center,
+                  // alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -84,29 +84,29 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                           SizedBox(
                             height: 80,
                           ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(left: 15),
-                        //   child: Stack(
-                        //     children: [
-                        //       Container(
-                        //         decoration: BoxDecoration(
-                        //             color: ThemeConstants.ultraLightgreyColor,
-                        //             borderRadius: BorderRadius.circular(20)),
-                        //         width: 240,
-                        //         height: 10,
-                        //       ),
-                        //       AnimatedContainer(
-                        //         curve: Curves.fastOutSlowIn,
-                        //         duration: Duration(milliseconds: 800),
-                        //         width: controller.widthOfSlider,
-                        //         height: 10,
-                        //         decoration: BoxDecoration(
-                        //             color: ThemeConstants.bluecolor,
-                        //             borderRadius: BorderRadius.circular(20)),
-                        //       )
-                        //     ],
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Stack(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.ultraLightgreyColor,
+                                    borderRadius: BorderRadius.circular(20)),
+                                width: 210,
+                                height: 10,
+                              ),
+                              AnimatedContainer(
+                                curve: Curves.fastOutSlowIn,
+                                duration: Duration(milliseconds: 800),
+                                width: controller.widthOfSlider,
+                                height: 10,
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    borderRadius: BorderRadius.circular(20)),
+                              )
+                            ],
+                          ),
+                        ),
 
                         SizedBox(
                           height: 10,
@@ -910,229 +910,239 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                         ),
 
                         Padding(
-                          padding: const EdgeInsets.only(right: 105, top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              // CustomIconTextTogether(
-                              //   text: 'Back',
-                              //   Bgcolor: ThemeConstants.whitecolor,
-                              //   color: ThemeConstants.bluecolor,
-                              //   fontWeight: FontWeight.w400,
-                              //   textSize: 12,
-                              //   iconData: Icon(
-                              //     Icons.arrow_back_ios_new_rounded,
-                              //     size: 10,
-                              //     color: ThemeConstants.bluecolor,
-                              //   ),
-                              // ),
-                              if ((controller.questionNumberToShow != 0 &&
-                                      controller.questionNumberToShow != 1 &&
-                                      controller.questionNumberToShow != 2 &&
-                                      controller.questionToShowInEnglsihTest ==
-                                          0) ||
-                                  controller.questionNumberToShow == 4)
-                                InkWell(
-                                  onTap: () {
-                                    controller.back();
-                                  },
-                                  child: Container(
-                                    width: 100,
-                                    child: CustomIconTextTogether(
-                                      iconBeforetext: true,
-                                      // iconBeforeText: false,
-                                      text: 'Back',
-                                      Bgcolor: ThemeConstants.whitecolor,
-                                      color: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.w400,
-                                      textSize: 12,
-                                      iconData: Icon(
-                                        Icons.arrow_circle_left,
-                                        size: 15,
+                          padding: const EdgeInsets.only(
+                              right: 10, top: 10, left: 20),
+                          child: Container(
+                            width: 220,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // CustomIconTextTogether(
+                                //   text: 'Back',
+                                //   Bgcolor: ThemeConstants.whitecolor,
+                                //   color: ThemeConstants.bluecolor,
+                                //   fontWeight: FontWeight.w400,
+                                //   textSize: 12,
+                                //   iconData: Icon(
+                                //     Icons.arrow_back_ios_new_rounded,
+                                //     size: 10,
+                                //     color: ThemeConstants.bluecolor,
+                                //   ),
+                                // ),
+                                if ((controller.questionNumberToShow == 3 &&
+                                        controller
+                                                .questionToShowInEnglsihTest ==
+                                            0) ||
+                                    controller.questionNumberToShow == 4 ||
+                                    controller.questionNumberToShow == 5)
+                                  InkWell(
+                                    onTap: () {
+                                      controller.back();
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 35,
+                                      child: CustomIconTextTogether(
+                                        iconBeforetext: true,
+                                        // iconBeforeText: false,
+                                        text: 'Back',
+                                        Bgcolor: ThemeConstants.whitecolor,
                                         color: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.w400,
+                                        textSize: 12,
+                                        iconData: Icon(
+                                          Icons.arrow_circle_left,
+                                          size: 20,
+                                          color: ThemeConstants.bluecolor,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              if (controller.questionNumberToShow == 3 &&
-                                  controller.questionToShowInEnglsihTest != 0)
-                                InkWell(
-                                  onTap: () {
-                                    controller.backForEnglish();
-                                  },
-                                  child: Container(
-                                    width: 100,
-                                    child: CustomIconTextTogether(
-                                      iconBeforetext: true,
-                                      // iconBeforeText: false,
-                                      text: 'Back',
-                                      Bgcolor: ThemeConstants.whitecolor,
-                                      color: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.w400,
-                                      textSize: 12,
-                                      iconData: Icon(
-                                        Icons.arrow_circle_left,
-                                        size: 15,
+                                if (controller.questionNumberToShow == 3 &&
+                                    controller.questionToShowInEnglsihTest != 0)
+                                  InkWell(
+                                    onTap: () {
+                                      controller.backForEnglish();
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 35,
+                                      child: CustomIconTextTogether(
+                                        iconBeforetext: true,
+                                        // iconBeforeText: false,
+                                        text: 'Back',
+                                        Bgcolor: ThemeConstants.whitecolor,
                                         color: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.w400,
+                                        textSize: 12,
+                                        iconData: Icon(
+                                          Icons.arrow_circle_left,
+                                          size: 20,
+                                          color: ThemeConstants.bluecolor,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              if (controller.nextForChange == false)
-                                InkWell(
-                                  onTap: () {
-                                    if (controller
-                                                .selectedAppearedInEnglishTest ==
-                                            null &&
-                                        controller
-                                                .questionToShowInEnglsihTest ==
-                                            0) {
-                                      getToast('Please Select one option');
-                                    } else if (controller
-                                                .selectedTestYouAppearedFor ==
-                                            null &&
-                                        controller
-                                                .questionToShowInEnglsihTest ==
-                                            1) {
-                                      getToast('Please Select one option');
-                                    }
-                                    // else if (controller.specifyYourScore == null &&
-                                    //     controller.questionToShowInEnglsihTest == 2) {
-                                    //   getToast('Please Select one option');
-                                    // }
 
-                                    else if (controller
-                                                .specifyCourseTextController
-                                                .text ==
-                                            '' &&
-                                        controller
+                                if (controller.nextForChange == false)
+                                  InkWell(
+                                    onTap: () {
+                                      if (controller
+                                                  .selectedAppearedInEnglishTest ==
+                                              null &&
+                                          controller
+                                                  .questionToShowInEnglsihTest ==
+                                              0) {
+                                        getToast('Please Select one option');
+                                      } else if (controller
+                                                  .selectedTestYouAppearedFor ==
+                                              null &&
+                                          controller
+                                                  .questionToShowInEnglsihTest ==
+                                              1) {
+                                        getToast('Please Select one option');
+                                      }
+                                      // else if (controller.specifyYourScore == null &&
+                                      //     controller.questionToShowInEnglsihTest == 2) {
+                                      //   getToast('Please Select one option');
+                                      // }
+
+                                      else if (controller
+                                                  .specifyCourseTextController
+                                                  .text ==
+                                              '' &&
+                                          controller
+                                                  .questionToShowInEnglsihTest ==
+                                              2) {
+                                        getToast('Please Select one option');
+                                      } else {
+                                        if (controller
                                                 .questionToShowInEnglsihTest ==
                                             2) {
-                                      getToast('Please Select one option');
-                                    } else {
-                                      if (controller
-                                              .questionToShowInEnglsihTest ==
-                                          2) {
-                                        if (controller.formKey.currentState!
-                                            .validate()) {
+                                          if (controller.formKey.currentState!
+                                              .validate()) {
+                                            controller.nextForChange = true;
+                                            controller.showQuestion();
+                                          }
+                                        } else if (controller
+                                                    .questionToShowInEnglsihTest ==
+                                                0 &&
+                                            controller
+                                                    .selectedAppearedInEnglishTest ==
+                                                2) {
                                           controller.nextForChange = true;
+                                          controller.widthOfSlider =
+                                              controller.widthOfSlider + 30;
                                           controller.showQuestion();
-                                        }
-                                      } else if (controller
-                                                  .questionToShowInEnglsihTest ==
-                                              0 &&
+                                        } else {
                                           controller
-                                                  .selectedAppearedInEnglishTest ==
-                                              2) {
-                                        controller.nextForChange = true;
-                                        controller.showQuestion();
-                                      } else {
-                                        controller
-                                            .showEnglishTestNextQuestion();
+                                              .showEnglishTestNextQuestion();
+                                        }
                                       }
-                                    }
-                                  },
-                                  child: Container(
-                                    width: 100,
-                                    child: CustomIconTextTogether(
-                                      // iconBeforeText: false,
-                                      text: 'Next',
-                                      Bgcolor: ThemeConstants.whitecolor,
-                                      color: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.w400,
-                                      textSize: 12,
-                                      iconData: Icon(
-                                        Icons.arrow_circle_right,
-                                        size: 20,
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 35,
+                                      child: CustomIconTextTogether(
+                                        // iconBeforeText: false,
+                                        text: 'Next',
+                                        Bgcolor: ThemeConstants.whitecolor,
                                         color: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.w400,
+                                        textSize: 12,
+                                        iconData: Icon(
+                                          Icons.arrow_circle_right,
+                                          size: 20,
+                                          color: ThemeConstants.bluecolor,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
 
-                              if (controller.nextForChange == true &&
-                                  controller.showConsentTermsForm == false) ...[
-                                SizedBox(
-                                  height: 40,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    if (controller.selectedLastQualification ==
-                                            null &&
-                                        controller.questionNumberToShow == 2) {
-                                      getToast(
-                                          'Please select last qualification');
-                                    } else if (controller
-                                                .appearedForEnglishTest ==
-                                            null &&
-                                        controller.questionNumberToShow == 3) {
-                                      getToast('Please select one');
-                                    } else if (controller
-                                                .appearedForEnglishTest ==
-                                            null &&
-                                        controller.questionNumberToShow == 3) {
-                                      getToast('Please select one');
-                                    } else if (controller.nextForChange ==
-                                        true) {
-                                      if (controller.questionNumberToShow ==
-                                              4 &&
-                                          controller
-                                                  .selectedLevelYouWantToStudy ==
-                                              null) {
-                                        getToast("Please select one");
-                                      } else if (controller
-                                              .questionNumberToShow ==
-                                          4) {
-                                        controller.showQuestion();
-                                        // controller.questionNumberToShow =
-                                        //     controller.questionNumberToShow + 1;
-                                        controller.update();
-                                      } else if (controller
-                                                  .selectCourseBoardFieldCode ==
+                                if (controller.nextForChange == true &&
+                                    controller.showConsentTermsForm ==
+                                        false) ...[
+                                  InkWell(
+                                    onTap: () {
+                                      if (controller
+                                                  .selectedLastQualification ==
                                               null &&
                                           controller.questionNumberToShow ==
-                                              5) {
+                                              2) {
                                         getToast(
-                                            'Please Select one Broad Field');
-                                      } else {
+                                            'Please select last qualification');
+                                      } else if (controller
+                                                  .appearedForEnglishTest ==
+                                              null &&
+                                          controller.questionNumberToShow ==
+                                              3) {
+                                        getToast('Please select one');
+                                      } else if (controller
+                                                  .appearedForEnglishTest ==
+                                              null &&
+                                          controller.questionNumberToShow ==
+                                              3) {
+                                        getToast('Please select one');
+                                      } else if (controller.nextForChange ==
+                                          true) {
                                         if (controller.questionNumberToShow ==
-                                            5) {
-                                          controller.showConsentTermsForm =
-                                              true;
-                                          controller.questionNumberToShow = 0;
-                                          controller.update();
-                                        } else {
+                                                4 &&
+                                            controller
+                                                    .selectedLevelYouWantToStudy ==
+                                                null) {
+                                          getToast("Please select one");
+                                        } else if (controller
+                                                .questionNumberToShow ==
+                                            4) {
                                           controller.showQuestion();
+                                          // controller.questionNumberToShow =
+                                          //     controller.questionNumberToShow + 1;
+                                          controller.update();
+                                        } else if (controller
+                                                    .selectCourseBoardFieldCode ==
+                                                null &&
+                                            controller.questionNumberToShow ==
+                                                5) {
+                                          getToast(
+                                              'Please Select one Broad Field');
+                                        } else {
+                                          if (controller.questionNumberToShow ==
+                                              5) {
+                                            controller.showConsentTermsForm =
+                                                true;
+                                            controller.questionNumberToShow = 0;
+                                            controller.update();
+                                          } else {
+                                            controller.showQuestion();
+                                          }
                                         }
                                       }
-                                    }
-                                    // else if (controller.nextForChange ==
-                                    //     false) {
-                                    //   controller.showQuestion();
-                                    // }
-                                  },
-                                  child: Container(
-                                    width: 100,
-                                    child: CustomIconTextTogether(
-                                      // iconBeforeText: false,
-                                      text: 'Next',
-                                      Bgcolor: ThemeConstants.whitecolor,
-                                      color: ThemeConstants.bluecolor,
-                                      fontWeight: FontWeight.w400,
-                                      textSize: 12,
-                                      iconData: Icon(
-                                        Icons.arrow_circle_right,
-                                        size: 15,
+                                      // else if (controller.nextForChange ==
+                                      //     false) {
+                                      //   controller.showQuestion();
+                                      // }
+                                    },
+                                    child: Container(
+                                      width: 100,
+                                      height: 35,
+                                      child: CustomIconTextTogether(
+                                        // iconBeforeText: false,
+                                        text: 'Next',
+                                        Bgcolor: ThemeConstants.whitecolor,
                                         color: ThemeConstants.bluecolor,
+                                        fontWeight: FontWeight.w400,
+                                        textSize: 12,
+                                        iconData: Icon(
+                                          Icons.arrow_circle_right,
+                                          size: 20,
+                                          color: ThemeConstants.bluecolor,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ]
-                            ],
+                                ]
+                              ],
+                            ),
                           ),
                         ),
 

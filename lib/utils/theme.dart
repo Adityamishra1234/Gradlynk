@@ -12,6 +12,25 @@ class ThemeConstants {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+
+  static TextStyle montserrattextstyleForPlaceHolder = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle montserrattextstyleForFilledText = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle montserrattextstyleForFilledTextEnableEdit =
+      GoogleFonts.montserrat(
+    color: Color.fromARGB(255, 124, 124, 124),
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
   static TextStyle montserrattextstyle2 = GoogleFonts.montserrat(
     color: Colors.black,
     fontSize: 14,
@@ -52,7 +71,7 @@ class ThemeConstants {
 
   static Color lightorangeColor = const Color(0xFFFFF7F1);
   static Color orangeColor = const Color(0xFFF97316);
-  static Color TextColor = Color.fromARGB(255, 165, 161, 161);
+  static Color TextColor = Color.fromARGB(255, 85, 85, 85);
   static Color IconColor = const Color(0xFF3C4351);
   static Color GreenColor = const Color(0xFF2FAF5E);
   static Color ultraLightgreyColor = const Color(0xFFF6F6F6);
@@ -64,7 +83,7 @@ class ThemeConstants {
   static Color browcolor = const Color(0xFFBC7B1D);
   static Color lightRed = const Color(0xFFffe2e2);
   static Color red = const Color(0xFFcf3b3b);
-  static Color yellow = const Color.fromARGB(255, 241, 164, 55);
+  static Color yellow = Color.fromARGB(255, 247, 160, 38);
   static Color skycolor = const Color.fromARGB(255, 36, 197, 206);
   static Color bluelightgreycolor2 = const Color.fromARGB(255, 164, 178, 202);
   static Color Lightcian = const Color(0xFFE9FEFF);

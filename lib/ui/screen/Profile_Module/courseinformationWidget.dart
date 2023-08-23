@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/courseinformationprofile.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -41,8 +42,8 @@ class CourseInformationWidget extends StatelessWidget {
                         text: "Course Level",
                         mandatory: true,
                         //textColor: ThemeConstants.TextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                        fontSize: SizeConfig.fontLabelSize,
+                        fontWeight: SizeConfig.fontLabelWeight,
                         textColor: ThemeConstants.TextColor,
                       ),
                     ),
@@ -70,8 +71,8 @@ class CourseInformationWidget extends StatelessWidget {
                         textColor: ThemeConstants.TextColor,
 
                         //textColor: ThemeConstants.TextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                        fontSize: SizeConfig.fontLabelSize,
+                        fontWeight: SizeConfig.fontLabelWeight,
                       ),
                     ),
                   ),
@@ -103,12 +104,14 @@ class CourseInformationWidget extends StatelessWidget {
                       alignment: AlignmentDirectional.topStart,
                       child: CustomAutoSizeTextMontserrat(
                         text: "Course Narrow Field",
-                        textColor: ThemeConstants.TextColor,
 
                         mandatory: true,
                         //textColor: ThemeConstants.TextColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                        textColor: ThemeConstants.TextColor,
+
+                        //textColor: ThemeConstants.TextColor,
+                        fontSize: SizeConfig.fontLabelSize,
+                        fontWeight: SizeConfig.fontLabelWeight,
                       ),
                     ),
                   ),

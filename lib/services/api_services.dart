@@ -1866,7 +1866,7 @@ class ApiServices extends StudentPanelBase implements api {
       return jsondata['data'];
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}||",
+        "${Get.find<BaseController>().model1.id.toString()}||$continentID",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
@@ -1895,7 +1895,7 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}||",
+        "${Get.find<BaseController>().model1.id.toString()}||$job_industry_id",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),

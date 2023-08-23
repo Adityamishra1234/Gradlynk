@@ -143,7 +143,8 @@ class CourseShortListController extends GetxController with StateMixin {
       String boarderIeld,
       String narrowField,
       String profession,
-      String career_outcome) async {
+      String career_outcome,
+      String university_code) async {
     try {
       change(null, status: RxStatus.loading());
       courseModelFilter = CourseModelFilter();
@@ -155,7 +156,7 @@ class CourseShortListController extends GetxController with StateMixin {
 
       if (searchByJobIndustry == false) {
         endpoint =
-            "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId";
+            "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$courseLevel${Endpoints.courseSearchPart3!}$state${Endpoints.courseSearchPart4!}$city${Endpoints.courseSearchPart5!}$boarderIeld${Endpoints.courseSearchPart6!}$narrowField&enq_id=$enqId&university=$university_code";
       } else {
         endpoint =
             "${Endpoints.courseSearchPart1!}$country${Endpoints.courseSearchPart2!}$state${Endpoints.courseSearchPart4!}$city&enq_id=$enqId&profession=$profession&career_outcome=$career_outcome";

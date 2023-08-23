@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -10,13 +11,18 @@ class CustomProfileDialogue extends StatelessWidget {
   bool? enableEdit = false;
   Function()? onTap;
   Function()? onEdit;
+  Function()? viewDetail;
+  bool? showViewDetails = false;
+
   CustomProfileDialogue(
       {super.key,
+      this.showViewDetails,
       required this.child,
       this.enableEdit,
       required this.title,
       required this.onEdit,
       this.enableSaveNext,
+      this.viewDetail,
       required this.onTap});
 
   @override
@@ -40,6 +46,9 @@ class CustomProfileDialogue extends StatelessWidget {
                   children: [
                     CustomAutoSizeTextMontserrat(
                       text: title,
+                      fontSize: SizeConfig.headingSize,
+                      fontWeight: SizeConfig.headingFontWeight,
+                      textColor: ThemeConstants.bluecolor,
                     ),
                     if (enableEdit == true)
                       InkWell(
@@ -48,7 +57,21 @@ class CustomProfileDialogue extends StatelessWidget {
                           textColor: ThemeConstants.bluecolor,
                           text: 'Edit',
                         ),
-                      )
+                      ),
+                    if (showViewDetails == true)
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, top: 10, bottom: 10),
+                        child: InkWell(
+                            onTap: viewDetail,
+                            child: Container(
+                                child: Text(
+                              "View Details",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  color: ThemeConstants.orangeColor),
+                            ))),
+                      ),
                   ],
                 ),
               ),

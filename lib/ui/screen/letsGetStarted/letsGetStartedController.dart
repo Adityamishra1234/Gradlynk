@@ -26,7 +26,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   showEnglishTestNextQuestion() {
-    widthOfSlider = widthOfSlider + 40;
+    widthOfSlider = widthOfSlider + 30;
     questionToShowInEnglsihTest = questionToShowInEnglsihTest + 1;
     update();
   }
@@ -46,7 +46,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
       questionsToShowList.addAll(map.values.toList());
 
       ///todo
-      // questionsToShowList = [true, true, false, false, false, false];
+      questionsToShowList = [true, true, false, false, false, false];
 
       showQuestion();
 
@@ -64,7 +64,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
     }
   }
 
-  double widthOfSlider = 10;
+  double widthOfSlider = 30;
 
   //firstQuestion
   int? selectedLastQualification = null;
@@ -107,7 +107,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
         return;
       }
 
-      widthOfSlider = widthOfSlider + 40;
+      widthOfSlider = widthOfSlider + 30;
       var toShowOrNot = questionNumberToShow == 1
           ? questionsToShowList[questionNumberToShow]
           // : questionNumberToShow == 5
@@ -151,14 +151,14 @@ class LetsGetStartedController extends GetxController with StateMixin {
   }
 
   back() {
-    widthOfSlider = widthOfSlider - 80;
+    widthOfSlider = widthOfSlider - 60;
     // questionToShowInEnglsihTest = 0;
     questionNumberToShow = questionNumberToShow - 2;
     showQuestion();
   }
 
   backForEnglish() {
-    widthOfSlider = widthOfSlider - 80;
+    widthOfSlider = widthOfSlider - 60;
     questionToShowInEnglsihTest = questionToShowInEnglsihTest - 2;
     // questionNumberToShow = questionNumberToShow - 2;
     showEnglishTestNextQuestion();

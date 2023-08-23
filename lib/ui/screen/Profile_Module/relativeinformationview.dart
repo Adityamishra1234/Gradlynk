@@ -29,22 +29,22 @@ class RelativeInformationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: AlignmentDirectional.bottomEnd,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-                onPressed: () {
-                  callbackAddRelativeInfo(false);
-                },
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Added Relative Info.",
-                  fontSize: 12,
-                  textColor: ThemeConstants.bluecolor,
-                  fontWeight: FontWeight.bold,
-                )),
-          ),
-        ),
+        // Align(
+        //   alignment: AlignmentDirectional.bottomEnd,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 10),
+        //     child: TextButton(
+        //         onPressed: () {
+        //           callbackAddRelativeInfo(false);
+        //         },
+        //         child: CustomAutoSizeTextMontserrat(
+        //           text: "Added Relative Info.",
+        //           fontSize: 12,
+        //           textColor: ThemeConstants.bluecolor,
+        //           fontWeight: FontWeight.bold,
+        //         )),
+        //   ),
+        // ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(

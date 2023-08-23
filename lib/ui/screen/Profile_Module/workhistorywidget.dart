@@ -4,6 +4,7 @@ import 'package:studentpanel/ui/controllers/basecontroller.dart';
 
 import 'package:studentpanel/ui/models/workhistoryview.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -74,28 +75,28 @@ class WorkHistoryWidget extends StatelessWidget {
                     child: CustomAutoSizeTextMontserrat(
                       text: "Name of Last Organisation",
                       mandatory: true,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
                       textColor: ThemeConstants.TextColor,
+                      fontSize: SizeConfig.fontLabelSize,
+                      fontWeight: SizeConfig.fontLabelWeight,
                     ),
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-                  child: InkWell(
-                      onTap: () {
-                        // if (controller.loadingViewQualification.value == true) {
-                        controller.setViewDetails(true);
-                        // }
-                      },
-                      child: Container(
-                          child: Text(
-                        "View Details",
-                        style: TextStyle(
-                            fontSize: 12, color: ThemeConstants.orangeColor),
-                      ))),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                //   child: InkWell(
+                //       onTap: () {
+                //         // if (controller.loadingViewQualification.value == true) {
+                //         controller.setViewDetails(true);
+                //         // }
+                //       },
+                //       child: Container(
+                //           child: Text(
+                //         "View Details",
+                //         style: TextStyle(
+                //             fontSize: 12, color: ThemeConstants.orangeColor),
+                //       ))),
+                // ),
                 // Padding(
                 //   padding: const EdgeInsets.only(right: 10),
                 //   child: Align(
@@ -119,16 +120,17 @@ class WorkHistoryWidget extends StatelessWidget {
                 controller: WorkHistoryController.lastOrganisation.value,
                 scrollPadding: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                style: ThemeConstants.montserrattextstyleForFilledText,
                 decoration: InputDecoration(
-                  hintText: "Enter name of last organisation",
-                  filled: true,
-                  fillColor: ThemeConstants.lightblueColor,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                ),
-                style: ThemeConstants.montserrattextstyle,
+                    hintText: "Enter name of last organisation",
+                    filled: true,
+                    fillColor: ThemeConstants.lightblueColor,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    hintStyle:
+                        ThemeConstants.montserrattextstyleForPlaceHolder),
               ),
             ),
           ),
@@ -140,8 +142,8 @@ class WorkHistoryWidget extends StatelessWidget {
                 text: "Working From",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
@@ -166,8 +168,8 @@ class WorkHistoryWidget extends StatelessWidget {
               child: CustomAutoSizeTextMontserrat(
                 text: "Working Till",
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
@@ -203,8 +205,8 @@ class WorkHistoryWidget extends StatelessWidget {
                 text: "Industry",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
@@ -234,8 +236,8 @@ class WorkHistoryWidget extends StatelessWidget {
                 text: "Designation",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
@@ -247,15 +249,16 @@ class WorkHistoryWidget extends StatelessWidget {
                 scrollPadding: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).viewInsets.bottom + 30),
                 decoration: InputDecoration(
-                  hintText: "Enter your Designation",
-                  filled: true,
-                  fillColor: ThemeConstants.lightblueColor,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                ),
-                style: ThemeConstants.montserrattextstyle,
+                    hintText: "Enter your Designation",
+                    filled: true,
+                    fillColor: ThemeConstants.lightblueColor,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    hintStyle:
+                        ThemeConstants.montserrattextstyleForPlaceHolder),
+                style: ThemeConstants.montserrattextstyleForFilledText,
               ),
             ),
           ),
@@ -267,8 +270,8 @@ class WorkHistoryWidget extends StatelessWidget {
                 text: "Employement Type",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
@@ -295,8 +298,8 @@ class WorkHistoryWidget extends StatelessWidget {
                 text: "Income as per ITR",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
@@ -309,15 +312,16 @@ class WorkHistoryWidget extends StatelessWidget {
                 scrollPadding: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).viewInsets.bottom + 30),
                 decoration: InputDecoration(
-                  hintText: "Enter Income",
-                  filled: true,
-                  fillColor: ThemeConstants.lightblueColor,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                ),
-                style: ThemeConstants.montserrattextstyle,
+                    hintText: "Enter Income",
+                    filled: true,
+                    fillColor: ThemeConstants.lightblueColor,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    hintStyle:
+                        ThemeConstants.montserrattextstyleForPlaceHolder),
+                style: ThemeConstants.montserrattextstyleForFilledText,
               ),
             ),
           ),

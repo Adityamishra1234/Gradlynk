@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
@@ -44,8 +45,8 @@ class EnglishTestDetails extends StatelessWidget {
                       text: "Exam Status",
                       mandatory: true,
                       textColor: ThemeConstants.TextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.fontLabelSize,
+                      fontWeight: SizeConfig.fontLabelWeight,
                     ),
                     const Spacer(),
                   ],
@@ -178,8 +179,8 @@ class EnglishTestDetails extends StatelessWidget {
                 text: "Exam Name",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ],
           ),
@@ -206,8 +207,8 @@ class EnglishTestDetails extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -251,8 +252,8 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Do you want to book test?",
             mandatory: true,
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -270,8 +271,8 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Specify Exam Name",
             mandatory: true,
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -292,8 +293,8 @@ class EnglishTestDetails extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Tentative Exam Date",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -368,13 +369,12 @@ class EnglishTestDetails extends StatelessWidget {
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child:IgnorePointer(
+          child: IgnorePointer(
             ignoring: controller.editSave.value == true ? true : false,
-          
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.dateOfExamSelected,
               callback: (value) {
                 callbackDateOfExam(value);
@@ -412,11 +412,11 @@ class EnglishTestDetails extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: IgnorePointer(
-             ignoring: controller.editSave.value == true ? true : false,
+            ignoring: controller.editSave.value == true ? true : false,
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.dateOfTestReportSelcted,
               callback: (value) {
                 callbackDateOfTestReport(value);
@@ -450,11 +450,11 @@ class EnglishTestDetails extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: IgnorePointer(
-             ignoring: controller.editSave.value == true ? true : false,
+            ignoring: controller.editSave.value == true ? true : false,
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.testscoreExpirationDateSelcted,
               callback: (value) {
                 callbackTextScoreExpirationdate(value);

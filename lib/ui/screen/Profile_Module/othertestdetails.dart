@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetails.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
@@ -122,8 +123,8 @@ class OthertestDetail extends StatelessWidget {
                       text: "Exam Status",
                       mandatory: true,
                       textColor: ThemeConstants.TextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.fontLabelSize,
+                      fontWeight: SizeConfig.fontLabelWeight,
                     ),
                     // const Spacer(),
                     // if (controller.editSave.value == true)
@@ -385,8 +386,8 @@ class OthertestDetail extends StatelessWidget {
                 text: "Exam Name",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ],
           ),
@@ -411,8 +412,8 @@ class OthertestDetail extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -421,11 +422,11 @@ class OthertestDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: IgnorePointer(
-             ignoring: controller.editSave.value == true ? true : false,
+            ignoring: controller.editSave.value == true ? true : false,
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.dateOfExamSelected,
               callback: (value) {
                 callbackExamName(value);
@@ -448,8 +449,8 @@ class OthertestDetail extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Date of Test Report",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -458,11 +459,11 @@ class OthertestDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: IgnorePointer(
-             ignoring: controller.editSave.value == true ? true : false,
+            ignoring: controller.editSave.value == true ? true : false,
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.dateOftestReportSelected,
               callback: (value) {
                 callbackDateOfTestReport(value);
@@ -485,8 +486,8 @@ class OthertestDetail extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Test Score Expiration Date",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -495,11 +496,11 @@ class OthertestDetail extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: IgnorePointer(
-             ignoring: controller.editSave.value == true ? true : false,
+            ignoring: controller.editSave.value == true ? true : false,
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.testScoreExpirationDateSelected,
               callback: (value) {
                 callbackTextScoreExpirationdate(value);
@@ -522,8 +523,8 @@ class OthertestDetail extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Exam Score Status",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -1141,8 +1142,8 @@ class OthertestDetail extends StatelessWidget {
             child: CustomAutoSizeTextMontserrat(
               text: "Analytical Writing",
               textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontSize: SizeConfig.fontLabelSize,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -1184,12 +1185,13 @@ class OthertestDetail extends StatelessWidget {
               hintText: "Enter Analytical Writing",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
+              hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
               border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(15.0),
               ),
             ),
-            style: ThemeConstants.montserrattextstyle,
+            style: ThemeConstants.montserrattextstyleForFilledText,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -1200,8 +1202,8 @@ class OthertestDetail extends StatelessWidget {
             child: CustomAutoSizeTextMontserrat(
               text: "Verbal Reasoning",
               textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontSize: SizeConfig.fontLabelSize,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -1210,6 +1212,7 @@ class OthertestDetail extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
+            style: ThemeConstants.montserrattextstyleForFilledText,
 
             controller: OtherTestDetailsController.verbalReasoning,
             keyboardType: TextInputType.number,
@@ -1240,6 +1243,7 @@ class OthertestDetail extends StatelessWidget {
             scrollPadding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
+              hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
               hintText: "Enter Verbal Reasoning",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
@@ -1248,7 +1252,6 @@ class OthertestDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
             ),
-            style: ThemeConstants.montserrattextstyle,
           ),
         ),
       if (tentaiveDefinite == "Definite")
@@ -1259,8 +1262,8 @@ class OthertestDetail extends StatelessWidget {
             child: CustomAutoSizeTextMontserrat(
               text: "Quantitative Aptitude",
               textColor: ThemeConstants.TextColor,
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontSize: SizeConfig.fontLabelSize,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -1299,6 +1302,7 @@ class OthertestDetail extends StatelessWidget {
             scrollPadding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom + 40),
             decoration: InputDecoration(
+              hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
               hintText: "Enter Quantitative Aptitude",
               filled: true,
               fillColor: ThemeConstants.lightblueColor,
@@ -1307,7 +1311,7 @@ class OthertestDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
             ),
-            style: ThemeConstants.montserrattextstyle,
+            style: ThemeConstants.montserrattextstyleForFilledText,
           ),
         ),
       Padding(
@@ -1317,8 +1321,8 @@ class OthertestDetail extends StatelessWidget {
           child: CustomAutoSizeTextMontserrat(
             text: "Overall Score (Other Test)",
             textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontSize: SizeConfig.fontLabelSize,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -1356,6 +1360,7 @@ class OthertestDetail extends StatelessWidget {
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
           decoration: InputDecoration(
+            hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
             fillColor: ThemeConstants.lightblueColor,
@@ -1364,7 +1369,7 @@ class OthertestDetail extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.0),
             ),
           ),
-          style: ThemeConstants.montserrattextstyle,
+          style: ThemeConstants.montserrattextstyleForFilledText,
         ),
       ),
     ];

@@ -23,24 +23,24 @@ class RelativeInformation extends StatelessWidget {
               )
             : Column(
                 children: [
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: SizedBox(
-                        height: 30,
-                        child: TextButton(
-                            onPressed: () {
-                              _.setViewDetails(true);
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "View Details",
-                              fontSize: 12,
-                              textColor: ThemeConstants.orangeColor,
-                            )),
-                      ),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: AlignmentDirectional.bottomEnd,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(right: 10),
+                  //     child: SizedBox(
+                  //       height: 30,
+                  //       child: TextButton(
+                  //           onPressed: () {
+                  //             _.setViewDetails(true);
+                  //           },
+                  //           child: CustomAutoSizeTextMontserrat(
+                  //             text: "View Details",
+                  //             fontSize: 12,
+                  //             textColor: ThemeConstants.orangeColor,
+                  //           )),
+                  //     ),
+                  //   ),
+                  // ),
                   Expanded(
                       child: RelativeInformationWidget(
                     index: _.index,

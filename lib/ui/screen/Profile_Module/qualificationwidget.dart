@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/qualificationdetailview.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -45,6 +46,7 @@ class QualificationWidget extends StatefulWidget {
 
 class _QualificationWidgetState extends State<QualificationWidget> {
   var controller = Get.put(QualificationDetailsController());
+
   @override
   Widget build(BuildContext context) {
     return controller.obx((state) {
@@ -114,26 +116,27 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                       text: "Highest Qualification",
                       mandatory: true,
                       textColor: ThemeConstants.TextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.fontLabelSize,
+                      fontWeight: SizeConfig.fontLabelWeight,
+                      // textColor: ThemeConstants.TextColor,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-                  child: InkWell(
-                      onTap: () {
-                        // if (controller.loadingViewQualification.value == true) {
-                        controller.setaddedQualification(true);
-                        // }
-                      },
-                      child: Container(
-                          child: Text(
-                        "View Details",
-                        style: TextStyle(
-                            fontSize: 12, color: ThemeConstants.orangeColor),
-                      ))),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                //   child: InkWell(
+                //       onTap: () {
+                //         // if (controller.loadingViewQualification.value == true) {
+                //         controller.setaddedQualification(true);
+                //         // }
+                //       },
+                //       child: Container(
+                //           child: Text(
+                //         "View Details",
+                //         style: TextStyle(
+                //             fontSize: 12, color: ThemeConstants.orangeColor),
+                //       ))),
+                // ),
               ],
             )),
             CustomDropDownSingle(
@@ -156,8 +159,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   text: "Qualification Name",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -170,15 +173,16 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   scrollPadding: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
                   decoration: InputDecoration(
-                    hintText: "Enter Qualification Name",
-                    filled: true,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                  style: ThemeConstants.montserrattextstyle,
+                      hintText: "Enter Qualification Name",
+                      filled: true,
+                      fillColor: ThemeConstants.lightblueColor,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      hintStyle:
+                          ThemeConstants.montserrattextstyleForPlaceHolder),
+                  style: ThemeConstants.montserrattextstyleForFilledText,
                 ),
               ),
             ),
@@ -190,8 +194,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   text: "Stream",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -213,8 +217,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   text: "Education Status",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -237,8 +241,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Year of Passing",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -259,8 +263,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "CGPA",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -276,13 +280,14 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   decoration: InputDecoration(
                     hintText: "CGPA",
                     filled: true,
+                    hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
                     fillColor: ThemeConstants.lightblueColor,
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                   ),
-                  style: ThemeConstants.montserrattextstyle,
+                  style: ThemeConstants.montserrattextstyleForFilledText,
                   onChanged: (value) {
                     try {
                       if (getNUllChecker(QualificationDetailsController
@@ -323,8 +328,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Multiplier",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -338,14 +343,15 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   scrollPadding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
                   decoration: InputDecoration(
-                    hintText: "Multiplier",
-                    filled: true,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
+                      hintText: "Multiplier",
+                      filled: true,
+                      fillColor: ThemeConstants.lightblueColor,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      hintStyle:
+                          ThemeConstants.montserrattextstyleForPlaceHolder),
                   style: ThemeConstants.montserrattextstyle,
                   onChanged: (value) {
                     try {
@@ -387,8 +393,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Percentage",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -401,16 +407,17 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   keyboardType: TextInputType.number,
                   scrollPadding: EdgeInsets.only(
                       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+                  style: ThemeConstants.montserrattextstyleForFilledText,
                   decoration: InputDecoration(
                     hintText: "Enter your Percentage",
                     filled: true,
+                    hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
                     fillColor: ThemeConstants.lightblueColor,
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                   ),
-                  style: ThemeConstants.montserrattextstyle,
                   validator: (value) {
                     if (getNUllChecker(value) == false) {
                       if (double.parse(value!) > 101) {
@@ -433,8 +440,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   text: "Country of Education",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -455,8 +462,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "State",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -477,8 +484,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "City",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -499,8 +506,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Affiliation",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -524,8 +531,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                   text: "Name of the Institution",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -546,8 +553,8 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                 child: CustomAutoSizeTextMontserrat(
                   text: "Re-appear/Backlog",
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ),
             ),
@@ -555,20 +562,21 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               () => Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: TextField(
+                  style: ThemeConstants.montserrattextstyleForFilledText,
                   keyboardType: TextInputType.number,
                   controller: QualificationDetailsController.reApper.value,
                   scrollPadding: EdgeInsets.symmetric(
                       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
                   decoration: InputDecoration(
-                    hintText: "Enter backlogs",
-                    filled: true,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                  style: ThemeConstants.montserrattextstyle,
+                      hintText: "Enter backlogs",
+                      filled: true,
+                      fillColor: ThemeConstants.lightblueColor,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      hintStyle:
+                          ThemeConstants.montserrattextstyleForPlaceHolder),
                 ),
               ),
             ),

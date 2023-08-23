@@ -56,9 +56,8 @@ class BaseController extends GetxController with StateMixin {
     try {
       loadinValidatorDataForDashboard = true;
       update();
-      print(Get.find<BaseController>().model1.id!);
-      var x = await apiServices
-          .profileDataValidation(Get.find<BaseController>().model1.id!);
+      // print(Get.find<BaseController>().model1.id!);
+      var x = await apiServices.profileDataValidation(model1.id!);
       var z = ProfileDataValidatorModel.fromJson(x);
       data.value = z;
       loadinValidatorDataForDashboard = false;

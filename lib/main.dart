@@ -54,7 +54,6 @@ import 'package:studentpanel/ui/screen/Delete/sortcopy.dart';
 import 'package:studentpanel/ui/screen/test/documentdownload.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/test/timepickertest.dart';
-
 import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
@@ -140,9 +139,6 @@ class _MyAppState extends State<MyApp> {
           page: () => WelcomeView(),
         ),
 
-        //   name: "/wel",
-        //   page: () => WelcomeView(),
-        // ),
         GetPage(
           name: ReceiveACallBackView.routeNamed,
           page: () => ReceiveACallBackView(),

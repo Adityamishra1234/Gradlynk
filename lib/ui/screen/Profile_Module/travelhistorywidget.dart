@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/travelhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
@@ -59,21 +60,21 @@ class TravelHistoryWidget extends StatelessWidget {
                     child: CustomAutoSizeTextMontserrat(
                       text: "Have you travelled Abroad?",
                       textColor: ThemeConstants.TextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
+                      fontSize: SizeConfig.fontLabelSize,
+                      fontWeight: SizeConfig.fontLabelWeight,
                     ),
                   ),
-                  SizedBox(
-                    child: TextButton(
-                        onPressed: () {
-                          controller.viewDetails.value = true;
-                          controller.update();
-                        },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "View Details",
-                          textColor: ThemeConstants.orangeColor,
-                        )),
-                  ),
+                  // SizedBox(
+                  //   child: TextButton(
+                  //       onPressed: () {
+                  //         controller.viewDetails.value = true;
+                  //         controller.update();
+                  //       },
+                  //       child: CustomAutoSizeTextMontserrat(
+                  //         text: "View Details",
+                  //         textColor: ThemeConstants.orangeColor,
+                  //       )),
+                  // ),
                 ],
               ),
             ),

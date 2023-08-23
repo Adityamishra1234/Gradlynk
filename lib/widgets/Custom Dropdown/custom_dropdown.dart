@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/customizable_dropdown.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -35,9 +36,9 @@ class CustomDropDownSingle extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: CustomAutoSizeTextMontserrat(
-                  textColor: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                   text: initialSelectedValue,
                 ),
               ),

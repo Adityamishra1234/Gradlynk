@@ -1052,7 +1052,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               callbackRemoveCourse: callbackRemoveCourse,
                             ),
                             insetPadding:
-                                const EdgeInsets.only(left: 5, right: 5),
+                                const EdgeInsets.only(left: 20, right: 20),
                           ));
                 } else {
                   setState(() {
@@ -1062,6 +1062,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                 }
               },
               child: Container(
+                // margin: EdgeInsets.all(200),
                 decoration: BoxDecoration(
                     border: Border.all(color: ThemeConstants.TextColor),
                     borderRadius: const BorderRadius.all(Radius.circular(5))),
