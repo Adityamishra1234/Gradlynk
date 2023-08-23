@@ -901,6 +901,12 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                           MaterialPageRoute(
                                               builder:
                                                   (context) => CourseSearchList(
+                                                        university_code: controller
+                                                                    .selectedUniversityID ==
+                                                                null
+                                                            ? ""
+                                                            : controller
+                                                                .selectedUniversityID,
                                                         showJobIndustry:
                                                             controller.courseSearchType ==
                                                                     0
@@ -1171,18 +1177,20 @@ class _CourseSearch2State extends State<CourseSearch2> {
 
   callbackIndustry(data) {
     for (var i = 0; i < controller.industriesList.length; i++) {
-      if (i == 0) {
-        controller.selectedIndustryName = null;
-        controller.selectedIndustryCode = null;
-      } else {
-        if (controller.industriesList[i] == data) {
-          controller.selectedIndustryName = data;
-          controller.selectedIndustryCode = controller.industriesCode[i];
+      // if (i == 0) {
+      //   controller.selectedIndustryName = null;
+      //   controller.selectedIndustryCode = null;
+      // } else
+      // {
 
-          controller.getCareerOutComes();
-        }
+      if (controller.industriesList[i] == data) {
+        controller.selectedIndustryName = data;
+        controller.selectedIndustryCode = controller.industriesCode[i];
+
+        controller.getCareerOutComes();
       }
     }
+
     controller.update();
   }
 

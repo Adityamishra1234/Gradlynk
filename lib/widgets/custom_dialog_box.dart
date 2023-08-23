@@ -125,7 +125,7 @@ contactUsDialog(
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
 
                 // InkWell(
@@ -1676,7 +1676,7 @@ eventZoneDrawerPopUp(
                                 // ),
                               ),
                               const SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
                               CustomRichTextWidget(
                                 text: '',
@@ -1692,7 +1692,7 @@ eventZoneDrawerPopUp(
                     ),
 
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
 
                   if (showApplyForExpreesPass == true)

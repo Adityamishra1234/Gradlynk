@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/realtion.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/relativeinformation.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -80,8 +81,8 @@ class RelativeInformationWidget extends StatelessWidget {
                           text:
                               "Any relatives residing in the Interested Country",
                           textColor: ThemeConstants.TextColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                          fontSize: SizeConfig.fontLabelSize,
+                          fontWeight: SizeConfig.fontLabelWeight,
                         ),
                       ),
                     ),

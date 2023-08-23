@@ -67,10 +67,9 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: 
-                             svgImage(
-                              "University", ThemeConstants.IconColor, 20, 20),
-                            
+                            child: svgImage(
+                                "University", ThemeConstants.IconColor, 20, 20),
+
                             // SvgPicture.asset(
                             //   "assets/icons/University.svg",
                             //   width: 20,
@@ -83,9 +82,8 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: 
-                             svgImage(
-                              "Course", ThemeConstants.IconColor, 20, 20),
+                            child: svgImage(
+                                "Course", ThemeConstants.IconColor, 20, 20),
                             // SvgPicture.asset(
                             //   "assets/icons/Course.svg",
                             //   width: 20,
@@ -98,9 +96,8 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child:
-                             svgImage(
-                              "Duration", ThemeConstants.IconColor, 20, 20),
+                            child: svgImage(
+                                "Duration", ThemeConstants.IconColor, 20, 20),
                             //  SvgPicture.asset(
                             //   "assets/icons/Duration.svg",
                             //   width: 20,
@@ -113,9 +110,8 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: 
-                             svgImage(
-                              "Annual Tuition Fees", ThemeConstants.IconColor, 20, 20),
+                            child: svgImage("Annual Tuition Fees",
+                                ThemeConstants.IconColor, 20, 20),
                             // SvgPicture.asset(
                             //   "assets/icons/Annual Tuition Fees.svg",
                             //   width: 20,
@@ -128,9 +124,8 @@ class Fundrequirement extends StatelessWidget {
                         FundRequirementWidget(
                           iconData: Padding(
                             padding: const EdgeInsets.only(left: 5),
-                            child: 
-                             svgImage(
-                              "totalFees", ThemeConstants.IconColor, 20, 20),
+                            child: svgImage(
+                                "totalFees", ThemeConstants.IconColor, 20, 20),
                             // SvgPicture.asset(
                             //   "assets/icons/totalFees.svg",
                             //   width: 20,
@@ -519,9 +514,11 @@ class CustomIconTextTogether extends StatelessWidget {
   double? textSize;
   bool? iconBeforetext;
   FontWeight? fontWeight;
+  Color? borderColor;
 
   CustomIconTextTogether(
       {super.key,
+      this.borderColor,
       this.iconBeforetext = false,
       this.fontWeight,
       this.textSize,
@@ -536,7 +533,9 @@ class CustomIconTextTogether extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
       decoration: BoxDecoration(
           boxShadow: [
-            BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
+            BoxShadow(
+                blurRadius: 0.2,
+                color: borderColor ?? ThemeConstants.blackcolor),
           ],
           color: Bgcolor,
           borderRadius: BorderRadius.circular(20),

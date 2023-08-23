@@ -162,6 +162,7 @@ class FundPlan extends StatelessWidget {
                                       text: "Name of the Sponsor")),
                               const SizedBox(height: 10),
                               CustomTextField(
+                                  borderRadius: 10,
                                   hint: "",
                                   controller: controller.nameOfThePerson),
                               const SizedBox(

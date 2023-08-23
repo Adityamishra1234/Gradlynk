@@ -31,25 +31,26 @@ class TravingHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: AlignmentDirectional.bottomEnd,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-                onPressed: () {
-                  callbackAddTravelDetails(true);
-                },
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Added Travel Details",
-                  fontSize: 12,
-                  textColor: ThemeConstants.bluecolor,
-                  fontWeight: FontWeight.bold,
-                )),
-          ),
-        ),
+        // Align(
+        //   alignment: AlignmentDirectional.bottomEnd,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 10),
+        //     child: TextButton(
+        //         onPressed: () {
+        //           callbackAddTravelDetails(true);
+        //         },
+        //         child: CustomAutoSizeTextMontserrat(
+        //           text: "Added Travel Details",
+        //           fontSize: 12,
+        //           textColor: ThemeConstants.bluecolor,
+        //           fontWeight: FontWeight.bold,
+        //         )),
+        //   ),
+        // ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(
+              padding: EdgeInsets.all(0),
               itemCount: model.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(

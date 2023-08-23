@@ -37,7 +37,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: IconButton(
                 icon: svgImage("menu", ThemeConstants.IconColor, 35, 35),
                 onPressed: () {
-                  Get.find<BaseController>().profileDataValidator();
                   Scaffold.of(context).openDrawer();
                   DrawerFilter();
                 },

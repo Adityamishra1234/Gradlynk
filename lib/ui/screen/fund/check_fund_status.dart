@@ -55,7 +55,7 @@ class FundStatus extends StatelessWidget {
     List<Widget> list = [];
 
     for (var i = 0; i < model.length; i++) {
-      //           bool? oddEven,
+      // bool? oddEven,
       // String? sponsor_name,
       // String? sponsor_occupation,
       // String? source_income,

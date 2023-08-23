@@ -32,22 +32,22 @@ class WorkHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: AlignmentDirectional.bottomEnd,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-                onPressed: () {
-                  callbackAddWorkHistory(false);
-                },
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Added WorkHistory",
-                  fontSize: 12,
-                  textColor: ThemeConstants.bluecolor,
-                  fontWeight: FontWeight.bold,
-                )),
-          ),
-        ),
+        // Align(
+        //   alignment: AlignmentDirectional.bottomEnd,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 10),
+        //     child: TextButton(
+        //         onPressed: () {
+        //           callbackAddWorkHistory(false);
+        //         },
+        //         child: CustomAutoSizeTextMontserrat(
+        //           text: "Added WorkHistory",
+        //           fontSize: 12,
+        //           textColor: ThemeConstants.bluecolor,
+        //           fontWeight: FontWeight.bold,
+        //         )),
+        //   ),
+        // ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.6,
           child: ListView.builder(

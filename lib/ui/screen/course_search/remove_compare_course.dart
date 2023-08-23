@@ -102,14 +102,15 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
               },
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Spacer(),
                 Padding(
                   padding:
                       const EdgeInsets.only(right: 20, top: 20, bottom: 20),
                   child: SizedBox(
-                    width: 120,
-                    height: 50,
+                    width: 80,
+                    height: 30,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           foregroundColor: ThemeConstants.whitecolor,
@@ -130,8 +131,8 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                   padding:
                       const EdgeInsets.only(right: 20, top: 20, bottom: 20),
                   child: SizedBox(
-                    width: 120,
-                    height: 50,
+                    width: 85,
+                    height: 30,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           foregroundColor: ThemeConstants.bluecolor,
@@ -155,7 +156,6 @@ class _RemoveCompareCourseState extends State<RemoveCompareCourse> {
                         )),
                   ),
                 ),
-                const Spacer(),
               ],
             )
           ],

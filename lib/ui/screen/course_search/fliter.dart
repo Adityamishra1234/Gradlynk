@@ -1023,6 +1023,8 @@ class _FilterState extends State<Filter> {
 
   Widget getRankingFilter(int i) {
     return Column(
+      // mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomAutoSizeTextMontserrat(
           text: "Ranking",

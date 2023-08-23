@@ -31,22 +31,22 @@ class QualificationDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Align(
-          alignment: AlignmentDirectional.bottomEnd,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: TextButton(
-                onPressed: () {
-                  callbackAddQualification(true);
-                },
-                child: CustomAutoSizeTextMontserrat(
-                  text: "Added Qualification",
-                  fontSize: 12,
-                  textColor: ThemeConstants.bluecolor,
-                  fontWeight: FontWeight.bold,
-                )),
-          ),
-        ),
+        // Align(
+        //   alignment: AlignmentDirectional.bottomEnd,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(right: 10),
+        //     child: TextButton(
+        //         onPressed: () {
+        //           callbackAddQualification(true);
+        //         },
+        //         child: CustomAutoSizeTextMontserrat(
+        //           text: "Added Qualification",
+        //           fontSize: 12,
+        //           textColor: ThemeConstants.bluecolor,
+        //           fontWeight: FontWeight.bold,
+        //         )),
+        //   ),
+        // ),
         SizedBox(
           //245
           height: MediaQuery.of(context).size.height * 0.6,

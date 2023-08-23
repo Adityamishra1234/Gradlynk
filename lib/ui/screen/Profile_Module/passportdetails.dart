@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/passport.dart';
+import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widget.dart';
@@ -87,8 +88,8 @@ class PassportDetails extends StatelessWidget {
                   text: "Passport Avaliable",
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontSize: SizeConfig.fontLabelSize,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ],
             ),
@@ -112,8 +113,8 @@ class PassportDetails extends StatelessWidget {
                 text: "Tentative Date",
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
             Container(
@@ -320,7 +321,7 @@ class PassportDetails extends StatelessWidget {
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-          
+
               initialTime: controller.dateOfIssue,
               callback: (value) {
                 callbackDateOfIssue(value);
