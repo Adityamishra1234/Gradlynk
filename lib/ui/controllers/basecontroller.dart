@@ -61,7 +61,7 @@ class BaseController extends GetxController with StateMixin {
       var z = ProfileDataValidatorModel.fromJson(x);
       data.value = z;
       loadinValidatorDataForDashboard = false;
-
+      return z;
       update();
     } on Exception catch (e) {
       await apiServices.errorHandle(
