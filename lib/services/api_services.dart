@@ -50,6 +50,8 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:http/http.dart' as http;
 
+import '../ui/screen/mark_attendance/model/eventdocumentUpload.dart';
+
 class ApiServices extends StudentPanelBase implements api {
   StudentPanelBase? crmBase = StudentPanelBase();
 
@@ -1583,7 +1585,6 @@ class ApiServices extends StudentPanelBase implements api {
       var res = await httpPostNullBody(
           Endpoints.baseUrl! + Endpoints.phoneNuberverfiy! + phoneNumber,
           login: true);
-      print(res);
       if (res != null) {
         var jsondata = json.decode(res);
         // getToast(SnackBarConstants.phoneNumber!);
@@ -1591,7 +1592,6 @@ class ApiServices extends StudentPanelBase implements api {
       }
     } catch (e) {
       getToast(SnackBarConstants.phoneNumberError!);
-      print(e.toString());
       await errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
@@ -2215,6 +2215,24 @@ class ApiServices extends StudentPanelBase implements api {
         // model = EventZoneStatus.fromJson(jsondata);
 
         return res;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+  }
+
+  getEventdocument(String enqID) async {
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+
+      var res = await httpPostNullBody(
+          '${Endpoints.baseUrl}${Endpoints.eventDocumentUpload}$enqID');
+      if (res != null) {
+        var jsondata = json.decode(res);
+        eventModuleModel model = eventModuleModel();
+        model = eventModuleModel.fromJson(jsondata);
+
+        return model;
       }
     } catch (e) {
       throw UnimplementedError();

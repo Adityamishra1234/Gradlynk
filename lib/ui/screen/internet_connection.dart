@@ -40,10 +40,11 @@ class InternetConnectionStatusScreen extends StatelessWidget {
         ),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
-              foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
+              foregroundColor: ThemeConstants.bluecolor,
+              backgroundColor: ThemeConstants.bluecolor,
+              elevation: 0.0, // foreground
             ),
             onPressed: () {
-              print("aldjs");
               checkUserConnection();
             },
             child: CustomAutoSizeTextMontserrat(
