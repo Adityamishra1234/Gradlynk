@@ -381,7 +381,7 @@ class _DashBoardState extends State<DashBoard> {
                                                                     child:
                                                                         Padding(
                                                                       padding: const EdgeInsets
-                                                                          .all(
+                                                                              .all(
                                                                           10.0),
                                                                       child:
                                                                           SizedBox(
@@ -408,7 +408,7 @@ class _DashBoardState extends State<DashBoard> {
                                                                   child:
                                                                       Padding(
                                                                     padding: const EdgeInsets
-                                                                        .only(
+                                                                            .only(
                                                                         right:
                                                                             40,
                                                                         bottom:
@@ -549,7 +549,7 @@ class _DashBoardState extends State<DashBoard> {
                                                       Container(
                                                         padding:
                                                             const EdgeInsets
-                                                                .symmetric(
+                                                                    .symmetric(
                                                                 vertical: 0.5,
                                                                 horizontal: 8),
                                                         decoration: BoxDecoration(
@@ -604,12 +604,12 @@ class _DashBoardState extends State<DashBoard> {
                                                                 .bluecolor,
                                                         overlayColor:
                                                             const Color
-                                                                .fromARGB(
+                                                                    .fromARGB(
                                                                 183, 0, 0, 0),
                                                         overlayOpacity: 0.8,
                                                         tooltipPadding:
                                                             const EdgeInsets
-                                                                .only(
+                                                                    .only(
                                                                 left: 5,
                                                                 right: 5,
                                                                 top: 10,
@@ -695,10 +695,10 @@ class _DashBoardState extends State<DashBoard> {
                                               // getDailogForAgree(context);
 
                                               // Get.to(LetsGetStartedMainView());
-                                              Get.toNamed(EventDocumentUpload
-                                                  .routeNamed);
-                                              // Get.toNamed(
-                                              //     ProfileView.routeNamed);
+                                              // Get.toNamed(EventDocumentUpload
+                                              //     .routeNamed);
+                                              Get.toNamed(
+                                                  ProfileView.routeNamed);
                                             },
                                             child: Column(
                                               children: [
