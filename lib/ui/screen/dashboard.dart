@@ -170,7 +170,7 @@ class _DashBoardState extends State<DashBoard> {
                           icon: svgImage(
                               "menu", ThemeConstants.IconColor, 35, 35),
                           onPressed: () {
-                            Get.find<BaseController>().profileDataValidator();
+                            // Get.find<BaseController>().profileDataValidator();
                             _scaffoldKey.currentState!.openDrawer();
 
                             DrawerFilter();

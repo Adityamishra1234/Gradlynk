@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/profileDataValidatorModel.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/contactinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/QualificationDetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/contactinformationcontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/englishtest.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/othertestdetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/controller/passport.dart';
-import 'package:studentpanel/ui/screen/Profile_Module/controller/profilepagecontroller.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/relativeinformation.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/travelhistory.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/controller/workhistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/courseinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/englishtestdetails.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/othertestdetails.dart';
@@ -55,6 +57,7 @@ class ProfileViewMainController extends GetxController {
                 title: "Course Info",
                 onTap: () async {
                   Get.back();
+                  await Future.delayed(const Duration(milliseconds: 200));
                   // await Future.delayed(const Duration(milliseconds: 200));
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
@@ -71,7 +74,23 @@ class ProfileViewMainController extends GetxController {
                 enableEdit: false,
                 enableSaveNext: false,
                 onEdit: () {},
+                showViewDetails: true,
                 title: "Qualification Details",
+                viewDetail: () {
+                  // print('objdddddddect');
+                  if (Get.find<QualificationDetailsController>()
+                          .addedQualification
+                          .value ==
+                      false) {
+                    Get.find<QualificationDetailsController>()
+                        .setaddedQualification(true);
+                  } else {
+                    Get.find<QualificationDetailsController>()
+                        .setaddedQualification(false);
+                  }
+
+                  Get.find<QualificationDetailsController>().update();
+                },
                 onTap: () {
                   Get.back();
                   Get.find<ContactInformationInPopUpController>()
@@ -88,6 +107,17 @@ class ProfileViewMainController extends GetxController {
                 enableEdit: false,
                 enableSaveNext: false,
                 onEdit: () {},
+                viewDetail: () {
+                  if (Get.find<WorkHistoryController>().viewDetails.value ==
+                      false) {
+                    Get.find<WorkHistoryController>().setViewDetails(true);
+                  } else {
+                    Get.find<WorkHistoryController>().setViewDetails(false);
+                  }
+
+                  Get.find<WorkHistoryController>().update();
+                },
+                showViewDetails: true,
                 title: "Work History",
                 onTap: () {
                   Get.back();
@@ -205,8 +235,21 @@ class ProfileViewMainController extends GetxController {
             curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) => CustomProfileDialogue(
+                showViewDetails: true,
                 enableSaveNext: false,
                 onEdit: () {},
+                viewDetail: () {
+                  if (Get.find<TravelHistoryController>().viewDetails.value ==
+                      false) {
+                    Get.find<TravelHistoryController>().viewDetails.value =
+                        true;
+                  } else {
+                    Get.find<TravelHistoryController>().viewDetails.value =
+                        false;
+                  }
+
+                  Get.find<TravelHistoryController>().update();
+                },
                 title: "Travel History",
                 onTap: () {
                   Get.back();
@@ -225,6 +268,23 @@ class ProfileViewMainController extends GetxController {
                 enableSaveNext: false,
                 onEdit: () {},
                 title: "Relative Info",
+                showViewDetails: true,
+                viewDetail: () {
+                  if (Get.find<RelativeInformationController>()
+                          .viewDetails
+                          .value ==
+                      false) {
+                    Get.find<RelativeInformationController>()
+                        .viewDetails
+                        .value = true;
+                  } else {
+                    Get.find<RelativeInformationController>()
+                        .viewDetails
+                        .value = false;
+                  }
+
+                  Get.find<RelativeInformationController>().update();
+                },
                 onTap: () {
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
