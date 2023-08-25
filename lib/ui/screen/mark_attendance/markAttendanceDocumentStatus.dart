@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/eventdocumentupload.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/mark_attendance_controller.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -82,7 +83,7 @@ class MarkAttendanceDocumentStatus extends StatelessWidget {
                       child: CustomButton(
                         backgroundColor: ThemeConstants.bluecolor,
                         onPressed: () {
-                          Get.to(UploadDocument(is_event: true), arguments: 1);
+                          Get.offAllNamed(EventDocumentUpload.routeNamed);
                         },
                         text: 'Yes',
                       ),

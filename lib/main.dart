@@ -30,6 +30,7 @@ import 'package:studentpanel/ui/screen/gradlynk_support/raise_new_ticket.dart';
 import 'package:studentpanel/ui/screen/gradlynk_support/suggestedimprovisation.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
 import 'package:studentpanel/ui/screen/letsGetStarted/letsGetStartedMainVIew.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/eventdocumentupload.dart';
 import 'package:studentpanel/ui/screen/receiveACallback/ui/recieveACallback_view.dart';
 import 'package:studentpanel/ui/screen/registeration/registeration_main_view.dart';
 import 'package:studentpanel/ui/screen/track_application/trackapllication2.dart';
@@ -131,7 +132,7 @@ class _MyAppState extends State<MyApp> {
       // initialBinding: AppBinding(),
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: '/',
+      initialRoute: "/",
       // Create Route
       getPages: [
         GetPage(
@@ -382,6 +383,11 @@ class _MyAppState extends State<MyApp> {
             // page: () => ProfilePageCopy1(),
             page: () => const ProfileView(),
             binding: ProfilePageBinding()),
+        GetPage(
+          name: EventDocumentUpload.routeNamed,
+          transition: Transition.fade,
+          page: () => EventDocumentUpload(),
+        ),
       ],
     );
   }
