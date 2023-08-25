@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
 import 'package:studentpanel/ui/models/applicationmodel.dart';
+import 'package:studentpanel/ui/models/branchWithImageResModel.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
 import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
@@ -1395,6 +1396,19 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  allBranch2() async {
+    // var url = '${Endpoints.baseUrl}${Endpoints.allBranch}';
+    var url = 'https://api.sieceducation.in/api/get-all-branches-address';
+
+    var res2 = await httpPostNullBody2(url);
+
+    if (res2 != null) {
+      return res2;
+    }
+    // TODO: implement allBranch
+    // throw UnimplementedError();
+  }
+
   @override
   getServicesAssigned(String endpoint) async {
     try {
@@ -1408,6 +1422,27 @@ class ApiServices extends StudentPanelBase implements api {
     } catch (e) {
       await errorHandle(
         "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  @override
+  getCounsellorAddressFromId(int counsellorId) async {
+    try {
+      BranchWithImagesModel model = BranchWithImagesModel();
+      var res = await httpPostNullBody(Endpoints.baseUrl! +
+          Endpoints.getCounsellorBranchAddress! +
+          counsellorId.toString());
+      if (res != null) {
+        model = BranchWithImagesModel.fromJson(res);
+        return model;
+      }
+    } catch (e) {
+      await errorHandle(
+        "${Get.find<BaseController>().model1.id.toString()}||$counsellorId",
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),

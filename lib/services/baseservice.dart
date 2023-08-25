@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
@@ -102,6 +104,38 @@ class StudentPanelBase {
       if (kDebugMode) {
         print(e);
       }
+    }
+  }
+
+  httpPostNullBody2(String url, {bool login = false}) async {
+    // String? token = await getToken();
+    url = url.replaceAll('"null"', "");
+    if (login == false) {
+      await checkUserConnection();
+    }
+
+    var response = await http.post(
+      Uri.parse(url),
+    );
+    switch (response.statusCode) {
+      case 200:
+        {
+          var res = json.decode(response.body);
+
+          return res;
+        }
+      case 440:
+        throw EmptyDataException("440:${response.body}");
+      case 400:
+        throw BadRequestException("${response.statusCode}:${response.body}");
+      case 401:
+      case 403:
+        throw UnauthorisedException("${response.statusCode}:${response.body}");
+      case 502:
+        throw InternetError("${response.statusCode}:${response.body}");
+      case 500:
+      default:
+        throw FetchDataException("${response.statusCode}:${response.body}");
     }
   }
 
