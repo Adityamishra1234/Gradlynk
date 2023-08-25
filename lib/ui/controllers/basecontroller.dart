@@ -205,7 +205,6 @@ class BaseController extends GetxController with StateMixin {
       }
     }
     eventlist = eventlist.toSet().toList();
-
     update();
   }
 

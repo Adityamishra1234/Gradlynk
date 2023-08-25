@@ -37,7 +37,7 @@ class EventDocumentUpload extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                   ),
-                  if (controller.model.documentsAcedmicData == null)
+                  if (controller.model.documentsIdentityData == null)
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Stack(
@@ -154,7 +154,7 @@ class EventDocumentUpload extends StatelessWidget {
                                     ),
                                     CustomAutoSizeTextMontserrat(
                                       fontSize: 14,
-                                      text: "Academic Document",
+                                      text: "Identity Proof",
                                       textColor: ThemeConstants.blackcolor,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -164,7 +164,7 @@ class EventDocumentUpload extends StatelessWidget {
                         ],
                       ),
                     ),
-                  if (controller.model.documentsIdentityData == null)
+                  if (controller.model.documentsAcedmicData == null)
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: Stack(
@@ -245,6 +245,7 @@ class EventDocumentUpload extends StatelessWidget {
                                     child: CustomButton(
                                       text: "Upload",
                                       onPressed: () {
+                                        print(controller.academicIDselected!);
                                         getSourceSelected(
                                           callbackSelectedSource1,
                                           controller.academicIDselected!,

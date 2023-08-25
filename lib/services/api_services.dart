@@ -48,7 +48,6 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:http/http.dart' as http;
-
 import '../ui/screen/mark_attendance/model/eventdocumentUpload.dart';
 
 class ApiServices extends StudentPanelBase implements api {
@@ -1313,7 +1312,7 @@ class ApiServices extends StudentPanelBase implements api {
       var url = Uri.parse(
           "${Endpoints.baseUrl}${Endpoints.uploadCommonDocumentPart1}$enqId&id=$id&orgname=$orgname&is_event=$is_event");
       var request = http.MultipartRequest("POST", url);
-
+      print(url);
       request.files
           .add(await http.MultipartFile.fromPath('doc', file, filename: file));
       var res = await request.send();
@@ -1321,12 +1320,8 @@ class ApiServices extends StudentPanelBase implements api {
       if (responsed.statusCode == 200) {
         var jsondata = json.decode(responsed.body);
         CommonUploadStatus status = CommonUploadStatus.fromJson(jsondata);
-        if (is_event == 1) {
-          getToast(
-              "Your are now eligible for Platinum Pass. Visit the View Express Pass Section.");
-        } else {
-          getToast(SnackBarConstants.documentUpload!);
-        }
+
+        getToast(SnackBarConstants.documentUpload!);
 
         return status;
       }

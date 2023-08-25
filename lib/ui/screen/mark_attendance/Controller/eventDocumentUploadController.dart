@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
@@ -34,6 +35,15 @@ class EventDocumentUploadController extends GetxController with StateMixin {
         .getEventdocument(Get.find<BaseController>().model1.id.toString());
     if (res != null) {
       model = res;
+      if (model.documentsAcedmicData != null &&
+          model.documentsIdentityData != null) {
+        getToast(
+            "Your are now eligible for Platinum Pass. Visit the View Express Pass Section.");
+        await Get.find<BaseController>()
+            .eventZone(Get.find<BaseController>().model1.id.toString());
+        Get.offAndToNamed(DashBoard.routeNamed);
+      }
+
       model.documentsListIdentity?.forEach((element) {
         listIdentity.add(element.name);
       });
@@ -54,13 +64,15 @@ class EventDocumentUploadController extends GetxController with StateMixin {
   }
 
   uploadFileCamera(String id, String filePath, {String orgName = ""}) async {
+    change(null, status: RxStatus.loading());
     try {
       var res = await apiServices.uploadDocumentCommon(filePath, filePath,
           Get.find<BaseController>().model1.id.toString(), id.toString(),
-          orgname: orgName, is_event: 0);
+          orgname: orgName, is_event: 1);
       if (res != null) {
         CommonUploadStatus model = CommonUploadStatus();
         model = res;
+        await getEventData();
         //   if (model.status == "sucesss") {
         //     // documentModel.add(model.dataModal!);
         //   }
@@ -93,6 +105,7 @@ class EventDocumentUploadController extends GetxController with StateMixin {
     String orgname = "",
   }) async {
     try {
+      change(null, status: RxStatus.loading());
       String uploadFilename = "";
       PlatformFile? csvFile2;
       final results = await FilePicker.platform.pickFiles(
@@ -118,11 +131,11 @@ class EventDocumentUploadController extends GetxController with StateMixin {
                 Get.find<BaseController>().model1.id.toString(),
                 id,
                 orgname: orgname,
-                is_event: 0);
+                is_event: 1);
             if (res != null) {
-              CommonUploadStatus model = CommonUploadStatus();
-              model = res;
-
+              // CommonUploadStatus model = CommonUploadStatus();
+              // model = res;
+              await getEventData();
               // if (model.status == "sucesss") {
               //   documentModel.add(model.dataModal!);
               // }
@@ -132,7 +145,6 @@ class EventDocumentUploadController extends GetxController with StateMixin {
             // if (is_event == 1) {
             //   Get.offAndToNamed(DashBoard.routeNamed);
             // }
-            update();
           }
         }
       }
