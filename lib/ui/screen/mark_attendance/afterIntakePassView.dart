@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/eventdocumentupload.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/markAttendanceDocumentStatus.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/mark_attendance_controller.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/model/mark_attendance_intake.dart';
@@ -91,7 +92,8 @@ class AfterIntakeScreenView extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(UploadDocument(is_event: true), arguments: 1);
+                          Get.offAndToNamed(EventDocumentUpload.routeNamed);
+                          // Get.to(UploadDocument(is_event: true), arguments: 1);
                         },
                         child: CustomIconTextTogether(
                           text: 'Upload Document',
