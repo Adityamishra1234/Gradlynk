@@ -145,7 +145,8 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                                 children: [
                                   const Icon(Icons.location_on_sharp),
                                   CustomAutoSizeTextMontserrat(
-                                    text: "Branch Address:",
+                                    text:
+                                        "Branch Address: ${controller.branchOfAssignedCounsellor}",
                                     fontSize: 12,
                                     textColor: ThemeConstants.blackcolor,
                                   ),
@@ -162,198 +163,249 @@ class _BookAnAppointmentState extends State<BookAnAppointment> {
                                   ),
                                 ],
                               )),
-                          SizedBox(
-                            width: 300.0,
-                            height: 40.0,
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      color: ThemeConstants.lightgreycolor),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Connect Virtually",
-                                          fontSize: 12,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                const Spacer(),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      color: ThemeConstants.lightgreycolor),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 5, bottom: 5),
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Visit Nearest Branch",
-                                          fontSize: 12,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                          // SizedBox(
+                          //   width: 300.0,
+                          //   height: 40.0,
+                          //   child: Row(
+                          //     children: [
+                          //       InkWell(
+                          //         onTap: () {
+                          //           controller.showConnectVierually = true;
+                          //           controller.update();
+                          //         },
+                          //         child: Container(
+                          //           decoration: BoxDecoration(
+                          //               borderRadius:
+                          //                   BorderRadius.circular(15.0),
+                          //               color: ThemeConstants.lightgreycolor),
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.only(
+                          //                 left: 10,
+                          //                 right: 10,
+                          //                 top: 5,
+                          //                 bottom: 5),
+                          //             child: Row(
+                          //               children: [
+                          //                 CustomAutoSizeTextMontserrat(
+                          //                   text: "Connect Virtually",
+                          //                   fontSize: 12,
+                          //                 )
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //       const Spacer(),
+                          //       InkWell(
+                          //         onTap: () {
+                          //           controller.showConnectVierually = false;
+                          //           controller.update();
+                          //         },
+                          //         child: Container(
+                          //           decoration: BoxDecoration(
+                          //               borderRadius:
+                          //                   BorderRadius.circular(15.0),
+                          //               color: ThemeConstants.lightgreycolor),
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.only(
+                          //                 left: 10,
+                          //                 right: 10,
+                          //                 top: 5,
+                          //                 bottom: 5),
+                          //             child: Row(
+                          //               children: [
+                          //                 CustomAutoSizeTextMontserrat(
+                          //                   text: "Visit Nearest Branch",
+                          //                   fontSize: 12,
+                          //                 )
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
                           SizedBox(
                             height: 15,
                           ),
-                          Align(
-                            alignment: AlignmentDirectional.topStart,
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "Kindly Select the nearest branch",
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              textColor: ThemeConstants.blackcolor,
+                          if (controller.showConnectVierually == true) ...[
+                            Align(
+                              alignment: AlignmentDirectional.topStart,
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Kindly Select the nearest branch",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                textColor: ThemeConstants.blackcolor,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            margin: const EdgeInsets.symmetric(vertical: 5),
-                            width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            height: 90,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: controller.branchListwithFlag.length,
-                                itemBuilder: (context, index) => InkWell(
-                                      onTap: () {
-                                        controller.selectMeetingBranch.value =
-                                            controller
-                                                .branchListwithFlag[index].id!;
-                                        controller.update();
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5),
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        width: 100,
-                                        decoration: BoxDecoration(
-                                            color: controller
-                                                        .selectMeetingBranch
-                                                        .value ==
-                                                    controller
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ] else ...[
+                            Align(
+                              alignment: AlignmentDirectional.topStart,
+                              child: CustomAutoSizeTextMontserrat(
+                                text: "Kindly Select the nearest branch",
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                textColor: ThemeConstants.blackcolor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 5),
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              height: 90,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount:
+                                      controller.branchListwithFlag.length,
+                                  itemBuilder: (context, index) => InkWell(
+                                        onTap: () {
+                                          controller.selectMeetingBranch.value =
+                                              controller
+                                                  .branchListwithFlag[index]
+                                                  .id!;
+
+                                          controller
+                                                  .selectedBranchAdressFromList =
+                                              controller
+                                                  .branchListwithFlag[index]
+                                                  .address!;
+
+                                          controller.update();
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 5),
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                              color: controller
+                                                          .selectMeetingBranch
+                                                          .value ==
+                                                      controller
+                                                          .branchListwithFlag[
+                                                              index]
+                                                          .id
+                                                  ? ThemeConstants
+                                                      .lightblueColor2
+                                                  : ThemeConstants.whitecolor,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                              border: Border.all(
+                                                  width: 1,
+                                                  color: ThemeConstants
+                                                      .bluecolor)),
+                                          child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: 30,
+                                                  height: 30,
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: controller
                                                         .branchListwithFlag[
                                                             index]
-                                                        .id
-                                                ? ThemeConstants.lightblueColor2
-                                                : ThemeConstants.whitecolor,
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                            border: Border.all(
-                                                width: 1,
-                                                color:
-                                                    ThemeConstants.bluecolor)),
-                                        child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: 30,
-                                                height: 30,
-                                                child: CachedNetworkImage(
-                                                  imageUrl: controller
-                                                      .branchListwithFlag[index]
-                                                      .imageLink!,
+                                                        .imageLink!,
+                                                  ),
                                                 ),
-                                              ),
-                                              const SizedBox(
-                                                height: 5,
-                                              ),
-                                              Text(
-                                                '${controller.branchListwithFlag[index].name}',
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
+                                                const SizedBox(
+                                                  height: 5,
                                                 ),
-                                              )
-                                            ]),
-                                      ),
-                                    )),
-                          ),
-                          // Container(
-                          //     height: 80.0,
-                          //     width: 300,
-                          //     child: ListView.builder(
-                          //         scrollDirection: Axis.horizontal,
-                          //         itemCount: 20,
-                          //         itemBuilder:
-                          //             (BuildContext context, int index) {
-                          //           return Container(
-                          //               width: 80.0,
-                          //               child: Column(
-                          //                 mainAxisAlignment:
-                          //                     MainAxisAlignment.center,
-                          //                 children: <Widget>[
-                          //                   const Icon(Icons.abc),
-                          //                   const SizedBox(height: 8.0),
-                          //                   Text('Item $index'),
-                          //                 ],
-                          //               ));
-                          //         })),
+                                                Text(
+                                                  '${controller.branchListwithFlag[index].name}',
+                                                  textAlign: TextAlign.center,
+                                                  style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                )
+                                              ]),
+                                        ),
+                                      )),
+                            ),
+                            // Container(
+                            //     height: 80.0,
+                            //     width: 300,
+                            //     child: ListView.builder(
+                            //         scrollDirection: Axis.horizontal,
+                            //         itemCount: 20,
+                            //         itemBuilder:
+                            //             (BuildContext context, int index) {
+                            //           return Container(
+                            //               width: 80.0,
+                            //               child: Column(
+                            //                 mainAxisAlignment:
+                            //                     MainAxisAlignment.center,
+                            //                 children: <Widget>[
+                            //                   const Icon(Icons.abc),
+                            //                   const SizedBox(height: 8.0),
+                            //                   Text('Item $index'),
+                            //                 ],
+                            //               ));
+                            //         })),
 
-                          SizedBox(
-                              width: 300.0,
-                              height: 45.0,
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.location_on_sharp),
-                                  CustomAutoSizeTextMontserrat(
-                                    text: "Branch Address:",
-                                    fontSize: 12,
-                                    textColor: ThemeConstants.blackcolor,
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  ),
-                                  Flexible(
-                                    child: CustomAutoSizeTextMontserrat(
+                            SizedBox(
+                                width: 300.0,
+                                height: 45.0,
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.location_on_sharp),
+                                    CustomAutoSizeTextMontserrat(
                                       text:
-                                          "B-2/0 1st floor Opposite Happy Model School",
+                                          "Branch Address: ${controller.selectMeetingBranch}",
                                       fontSize: 12,
-                                      textColor: ThemeConstants.skycolor,
+                                      textColor: ThemeConstants.blackcolor,
                                     ),
-                                  ),
-                                ],
-                              )),
+                                    const SizedBox(
+                                      width: 15,
+                                    ),
+                                    Flexible(
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text:
+                                            "${controller.selectedBranchAdressFromList}",
+                                        fontSize: 12,
+                                        textColor: ThemeConstants.skycolor,
+                                      ),
+                                    ),
+                                  ],
+                                )),
 
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                  width: 150,
-                                  height: 50,
-                                  child: CustomTimerWidget(callback: (val) {})),
-                              SizedBox(
-                                  height: 50,
-                                  width: 150,
-                                  child: CustomTimerWidget2(callback: (val) {}))
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child:
-                                CustomButton(text: 'Confirm', onPressed: () {}),
-                          )
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                    width: 150,
+                                    height: 50,
+                                    child: CustomTimerWidget(
+                                        callback:
+                                            controller.callbackDatePicker)),
+                                SizedBox(
+                                    height: 50,
+                                    width: 150,
+                                    child: CustomTimerWidget2(
+                                        callback:
+                                            controller.callbackTimePicker))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              child: CustomButton(
+                                  text: 'Confirm', onPressed: () {}),
+                            ),
+                          ]
                         ],
                       ),
                     ),

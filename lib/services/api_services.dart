@@ -2484,4 +2484,25 @@ class ApiServices extends StudentPanelBase implements api {
       throw UnimplementedError();
     }
   }
+
+  @override
+  getCounsellorBranchAddress(int CounsellorID) async {
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+      var end =
+          '${Endpoints.baseUrl}${Endpoints.getCounsellorBranchAddress}$CounsellorID';
+      var res = await httpPostNullBody('$end');
+      if (res != null) {
+        var jsondata = json.decode(res);
+        // eventModuleModel model = eventModuleModel();
+        // model = eventModuleModel.fromJson(jsondata);
+
+        return jsondata;
+      }
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement getCounsellorBranchAddress
+    // throw UnimplementedError();
+  }
 }

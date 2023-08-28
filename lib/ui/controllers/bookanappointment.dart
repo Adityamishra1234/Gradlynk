@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/bookanAppointmentCounsellorAddress.dart';
 import 'package:studentpanel/ui/models/branchWithImageResModel.dart';
 import 'package:studentpanel/ui/models/serviceAssignesmodel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
@@ -23,6 +24,8 @@ class BookAnAppointmentController extends GetxController with StateMixin {
   Rx<int> selectMeetingBranch = 0.obs;
   RxBool loadingServiceAssigned = false.obs;
   List<BranchWithImagesModel> branchListwithFlag = <BranchWithImagesModel>[];
+  bool showConnectVierually = false;
+
   @override
   void onInit() async {
     change(null, status: RxStatus.loading());
@@ -33,6 +36,7 @@ class BookAnAppointmentController extends GetxController with StateMixin {
     super.onInit();
   }
 
+  String selectedBranchAdressFromList = '';
   getBranchData2() async {
     // print('fvffg');
     var res = await apiServices.allBranch2();
@@ -47,6 +51,25 @@ class BookAnAppointmentController extends GetxController with StateMixin {
     branchListwithFlag = data;
 
     // allBranchList.value = data;
+
+    update();
+  }
+
+  // String dateSelected = '';
+  callbackDatePicker(data) {
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dateSelected = date[0] + "-" + date[1] + '-' + date[2];
+    dateSelected = data;
+
+    update();
+  }
+
+  callbackTimePicker(data) {
+    // String temp = data.toString().split(' ')[0];
+    // List<String> date = temp.split('-');
+    // controller.dateSelected = date[0] + "-" + date[1] + '-' + date[2];
+    timeSelected = data;
 
     update();
   }
@@ -82,24 +105,25 @@ class BookAnAppointmentController extends GetxController with StateMixin {
   callbackOfSelectedCounsellor(int index) async {
     change(null, status: RxStatus.loading());
     var counsellorId = nameID[index];
-    BranchWithImagesModel res = await getCounsellorBranchAddress(counsellorId);
-    branchOfAssignedCounsellor = res.address!;
+    BookAnAppointmentCounsellorAddress res =
+        await getCounsellorBranchAddress(counsellorId);
+    branchOfAssignedCounsellor = res.address!.address!;
+    update();
     change(null, status: RxStatus.success());
   }
 
   getCounsellorBranchAddress(int counsellorId) async {
     try {
-      var res = await apiServices.getServicesAssigned(
-          Endpoints.serviceAssigness! +
-              Get.find<BaseController>().model1.id.toString());
+      var res = await apiServices.getCounsellorBranchAddress(counsellorId);
       if (res != null) {
+        var data = BookAnAppointmentCounsellorAddress.fromJson(res);
         // name.add("Select your counsellor");
         // nameID.add(0);
-        List<BranchWithImagesModel> modelc = [];
+        BookAnAppointmentCounsellorAddress modelc =
+            BookAnAppointmentCounsellorAddress();
 
-        modelc = res;
-        return res;
-        update();
+        modelc = data;
+        return modelc;
       }
     } catch (e) {
       await ApiServices().errorHandle(

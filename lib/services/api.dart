@@ -129,4 +129,6 @@ abstract class api {
   requestACallBackPost(String endpoint);
 
   getBaseUrlForAllApi();
+
+  getCounsellorBranchAddress(int CounsellorID);
 }
