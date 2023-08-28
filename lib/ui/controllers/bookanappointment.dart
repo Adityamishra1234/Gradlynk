@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/models/branchWithImageResModel.dart';
 import 'package:studentpanel/ui/models/serviceAssignesmodel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
-class BookAnAppointmentController extends GetxController {
+class BookAnAppointmentController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   List<ServiceAssigneersModel> model = [];
 
@@ -19,13 +20,35 @@ class BookAnAppointmentController extends GetxController {
   //Select
   String? nameSelected;
   int? nameSelectedID;
-
+  Rx<int> selectMeetingBranch = 0.obs;
   RxBool loadingServiceAssigned = false.obs;
-
+  List<BranchWithImagesModel> branchListwithFlag = <BranchWithImagesModel>[];
   @override
-  void onInit() {
+  void onInit() async {
+    change(null, status: RxStatus.loading());
+
+    await getServiceAssigned();
+    await getBranchData2();
+    change(null, status: RxStatus.success());
     super.onInit();
-    getServiceAssigned();
+  }
+
+  getBranchData2() async {
+    // print('fvffg');
+    var res = await apiServices.allBranch2();
+
+    // var data =
+    //     List<AllUserModel>.from(res.map((e) => AllUserModel.fromJson(e)));
+
+    var data = List<BranchWithImagesModel>.from(
+        res.map((e) => BranchWithImagesModel.fromJson(e)));
+    print(data.toString());
+
+    branchListwithFlag = data;
+
+    // allBranchList.value = data;
+
+    update();
   }
 
   getServiceAssigned() async {
@@ -42,6 +65,40 @@ class BookAnAppointmentController extends GetxController {
           nameID.add(element.id!);
         }
         loadingServiceAssigned = true.obs;
+        update();
+      }
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
+  }
+
+  String branchOfAssignedCounsellor = '';
+
+  callbackOfSelectedCounsellor(int index) async {
+    change(null, status: RxStatus.loading());
+    var counsellorId = nameID[index];
+    BranchWithImagesModel res = await getCounsellorBranchAddress(counsellorId);
+    branchOfAssignedCounsellor = res.address!;
+    change(null, status: RxStatus.success());
+  }
+
+  getCounsellorBranchAddress(int counsellorId) async {
+    try {
+      var res = await apiServices.getServicesAssigned(
+          Endpoints.serviceAssigness! +
+              Get.find<BaseController>().model1.id.toString());
+      if (res != null) {
+        // name.add("Select your counsellor");
+        // nameID.add(0);
+        List<BranchWithImagesModel> modelc = [];
+
+        modelc = res;
+        return res;
         update();
       }
     } catch (e) {

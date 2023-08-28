@@ -103,7 +103,12 @@ class Endpoints {
   static String? documentNameForDocumentTypePart2 = "&document_id=";
   static String? documentNameForDocumentTypePart3 = "&organization_name=";
   static String? commonUploadDocument = "get-common-uploaded-document?enq_id=";
+
+  ///Book an Appointment
+
   static String? serviceAssigness = "service-assignees?enq_id=";
+  static String? getCounsellorBranchAddress =
+      "get-counsellor-branch-address?counsellor_id=";
 
   static String? scheduleAnExpertCallPart1 = "schedule-an-expert-call?enq_id=";
   static String? scheduleAnExpertCallPart2 = "&expert_call_date=";

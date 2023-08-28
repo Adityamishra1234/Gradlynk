@@ -535,24 +535,50 @@ contactUsDialog(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(7),
+                            padding: const EdgeInsets.all(7),
                             height: 35,
                             width: 35,
                             decoration: BoxDecoration(
                                 color: ThemeConstants.bluecolor,
                                 shape: BoxShape.circle),
-                            child: SvgPicture.asset(
-                              'assets/icons/Calender icon.svg',
-                              color: ThemeConstants.whitecolor,
-                            ),
+                            child: svgImage("Calender icon",
+                                ThemeConstants.whitecolor, 30, 30),
+
+                            //  SvgPicture.asset(
+                            //   'assets/icons/SVO icon.svg',
+                            //   color: ThemeConstants.whitecolor,
+                            // ),
                           ),
+                          // Container(
+                          //   padding: EdgeInsets.all(7),
+                          //   height: 35,
+                          //   width: 35,
+                          //   decoration: BoxDecoration(
+                          //       color: ThemeConstants.bluecolor,
+                          //       shape: BoxShape.circle),
+                          //   child: SvgPicture.asset(
+                          //     'assets/icons/Calender icon.svg',
+                          //     color: ThemeConstants.whitecolor,
+                          //   ),
+                          // ),
                           const SizedBox(
                             width: 20,
                           ),
-                          CustomAutoSizeTextMontserrat(
-                              text: "Book an appointment"),
+                          CustomRichTextWidget(
+                            text: 'Book an appointment',
+                            // text1: "Join via ",
+                            fontWeight: FontWeight.w600,
+                            // fontSize: 10,
+                            textColor: ThemeConstants.bluecolor,
+                          ),
+                          // CustomAutoSizeTextMontserrat(
+                          //     text: "Book an appointment"),
                           const Spacer(),
                         ],
+                      ),
+                    ),
+                  ),
+                ),
                       ),
                     ),
                   ),
