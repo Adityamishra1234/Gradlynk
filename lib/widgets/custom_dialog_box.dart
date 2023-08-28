@@ -495,68 +495,68 @@ contactUsDialog(
                     ),
                   ),
                 ),
-                // const SizedBox(
-                //   height: 20,
-                // ),
-                // ////todo
-                // Material(
-                //   borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                //   color: ThemeConstants.ultraLightgreyColor,
-                //   child: InkWell(
-                //     borderRadius: BorderRadius.all(Radius.circular(25.0)),
-                //     splashColor: ThemeConstants.bluecolor,
-                //     onTap: () async {
-                //       Get.back();
-                //       await Future.delayed(Duration(milliseconds: 250));
+                const SizedBox(
+                  height: 20,
+                ),
+                ////todo
+                Material(
+                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  color: ThemeConstants.ultraLightgreyColor,
+                  child: InkWell(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                    splashColor: ThemeConstants.bluecolor,
+                    onTap: () async {
+                      Get.back();
+                      await Future.delayed(Duration(milliseconds: 250));
 
-                //       showAnimatedDialog(
-                //           barrierDismissible: true,
-                //           animationType:
-                //               DialogTransitionType.slideFromBottomFade,
-                //           curve: Curves.easeInOutQuart,
-                //           // barrierDismissible: false,
-                //           context: context,
-                //           builder: (_) {
-                //             return StatefulBuilder(
-                //                 builder: (context, setState) {
-                //               return BookAnAppointment();
-                //             });
-                //           });
-                //     },
-                //     child: Container(
-                //       width: 300,
-                //       height: 45,
-                //       padding: EdgeInsets.symmetric(horizontal: 10),
-                //       // decoration: BoxDecoration(
-                //       //     borderRadius:
-                //       //         BorderRadius.all(Radius.circular(25.0))),
-                //       child: Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         children: [
-                //           Container(
-                //             padding: EdgeInsets.all(7),
-                //             height: 35,
-                //             width: 35,
-                //             decoration: BoxDecoration(
-                //                 color: ThemeConstants.bluecolor,
-                //                 shape: BoxShape.circle),
-                //             child: SvgPicture.asset(
-                //               'assets/icons/Calender icon.svg',
-                //               color: ThemeConstants.whitecolor,
-                //             ),
-                //           ),
-                //           const SizedBox(
-                //             width: 20,
-                //           ),
-                //           CustomAutoSizeTextMontserrat(
-                //               text: "Book an appointment"),
-                //           const Spacer(),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                      showAnimatedDialog(
+                          barrierDismissible: true,
+                          animationType:
+                              DialogTransitionType.slideFromBottomFade,
+                          curve: Curves.easeInOutQuart,
+                          // barrierDismissible: false,
+                          context: context,
+                          builder: (_) {
+                            return StatefulBuilder(
+                                builder: (context, setState) {
+                              return BookAnAppointment();
+                            });
+                          });
+                    },
+                    child: Container(
+                      width: 300,
+                      height: 45,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      // decoration: BoxDecoration(
+                      //     borderRadius:
+                      //         BorderRadius.all(Radius.circular(25.0))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(7),
+                            height: 35,
+                            width: 35,
+                            decoration: BoxDecoration(
+                                color: ThemeConstants.bluecolor,
+                                shape: BoxShape.circle),
+                            child: SvgPicture.asset(
+                              'assets/icons/Calender icon.svg',
+                              color: ThemeConstants.whitecolor,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          CustomAutoSizeTextMontserrat(
+                              text: "Book an appointment"),
+                          const Spacer(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ));

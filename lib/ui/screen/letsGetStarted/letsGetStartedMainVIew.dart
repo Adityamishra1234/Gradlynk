@@ -452,12 +452,12 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                                   ThemeConstants.bluecolor,
                                               isSelected: controller
                                                           .selectedAppearedInEnglishTest ==
-                                                      2
+                                                      0
                                                   ? true
                                                   : false,
                                               onTap: () {
                                                 controller
-                                                    .selectedAppearedInEnglishTest = 2;
+                                                    .selectedAppearedInEnglishTest = 0;
 
                                                 controller.update();
                                               },
@@ -1029,7 +1029,7 @@ class _LetsGetStartedMainViewState extends State<LetsGetStartedMainView> {
                                                 0 &&
                                             controller
                                                     .selectedAppearedInEnglishTest ==
-                                                2) {
+                                                0) {
                                           controller.nextForChange = true;
                                           controller.widthOfSlider =
                                               controller.widthOfSlider + 30;

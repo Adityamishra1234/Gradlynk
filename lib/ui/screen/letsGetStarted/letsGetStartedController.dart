@@ -46,7 +46,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
       questionsToShowList.addAll(map.values.toList());
 
       ///todo
-      // questionsToShowList = [true, true, false, false, false, false];
+      // questionsToShowList = [true, false, true, true, true, true];
 
       showQuestion();
 

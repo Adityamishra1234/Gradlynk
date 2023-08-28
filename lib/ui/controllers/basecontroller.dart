@@ -145,11 +145,27 @@ class BaseController extends GetxController with StateMixin {
   }
 
   checkShowLetsGetStarted() async {
-    if (model1.student_consent == 0) {
-      change(null, status: RxStatus.success());
+    // if (model1.student_consent == 1) {
+    change(null, status: RxStatus.success());
+    var res = await apiServices.whichConsentForm(model1.id.toString());
 
+    var map = Map<String, bool>.from(res);
+
+    List<bool> questionsToShowList = [];
+
+    questionsToShowList.addAll(map.values.toList());
+
+    if (questionsToShowList[1] == false && model1.student_consent == 1) {
+      // Get.offAllNamed(DashBoard.routeNamed);
+    } else {
       Get.offAll(LetsGetStartedMainView());
     }
+    // if (questionsToShowList[1] == true )   {
+    // }else if( questionsToShowList[1] == false ){
+
+    // }
+
+    // }
   }
 
   getPersonalModal(PersonalInformationModel model) {
