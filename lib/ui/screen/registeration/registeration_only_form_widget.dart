@@ -389,13 +389,16 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           LoadingButton(
                             animate: true,
-                            loader: Container(
-                              padding: EdgeInsets.all(10),
-                              width: 40,
-                              height: 40,
-                              child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white)),
+                            loader: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                // padding: EdgeInsets.all(10),
+                                width: 40,
+                                height: 40,
+                                child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white)),
+                              ),
                             ),
                             borderRadius: 10,
                             color: ThemeConstants.bluecolor,
@@ -652,16 +655,11 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
   callBackSelectedLeadSource(data) {
     for (var i = 0; i < controller.leadSourcesListName.length; i++) {
-      if (i == 0) {
-        controller.selectedLeadSourcesName = null;
-        controller.selectedLeadSourcesCode = '';
-      } else {
-        if (controller.leadSourcesListName[i] == data) {
-          controller.selectedLeadSourcesName = data;
-          controller.selectedLeadSourcesCode = controller.leadSourcesListID[i];
+      if (controller.leadSourcesListName[i] == data) {
+        controller.selectedLeadSourcesName = data;
+        controller.selectedLeadSourcesCode = controller.leadSourcesListID[i];
 
-          // controller.getCareerOutComes();
-        }
+        // controller.getCareerOutComes();
       }
     }
     controller.update();
