@@ -533,21 +533,21 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               ),
                             ),
                           ),
-
                           LoadingButton(
                             animate: true,
-                            loader: Container(
-                              padding: EdgeInsets.all(10),
-                              width: 40,
-                              height: 40,
-                              child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white)),
+                            loader: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                // padding: EdgeInsets.all(10),
+                                width: 40,
+                                height: 40,
+                                child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white)),
+                              ),
                             ),
                             borderRadius: 10,
                             color: ThemeConstants.bluecolor,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 20),
                             onTap:
                                 (startLoading, stopLoading, buttonState) async {
                               // if( b )

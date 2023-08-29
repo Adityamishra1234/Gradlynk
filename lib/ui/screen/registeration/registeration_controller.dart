@@ -9,6 +9,7 @@ import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/login.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/ui/models/loginModel2.dart';
 
 class RegisterationCopntroller extends GetxController with StateMixin {
   TextEditingController nameController = TextEditingController();
@@ -136,7 +137,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
     return returnData;
   }
 
-  LoginModel? model;
+  late LoginModel2 model;
   verifyOtp(String otp) async {
     var res = await api.otpValidationInRegister(
       phoneNumberController.text,
@@ -144,7 +145,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
     );
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (res['status'] == false) {
+    if (res["status"] == false) {
       // Get.defaultDialog(
       //     content: Container(
       //   child: Column(children: [
@@ -154,7 +155,8 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       // ));
       getToast(res['message']);
     } else if (res['status'] == true) {
-      // model = res;
+      var data = LoginModel2.fromJson(res);
+      model = data;
       if (prefs.getBool("showcaseEnable") == false ||
           prefs.getBool("showcaseEnable") == null) {
         prefs.setBool("showcaseEnable", false);

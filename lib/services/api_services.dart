@@ -2094,7 +2094,7 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       var res = await httpPostNullBody(endPoint, login: true);
       if (res != null) {
-        var jsondata = json.decode(res);
+        var jsondata = await json.decode(res);
         return jsondata;
       }
     } catch (e) {
