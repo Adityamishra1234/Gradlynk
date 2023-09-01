@@ -148,7 +148,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                         height: 5,
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: () async {
                           getToast(
                               'Your pass is accessible in View Express Pass Section');
 

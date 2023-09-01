@@ -6,17 +6,20 @@ import 'package:studentpanel/ui/controllers/uploaddocumentcontroller.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
+import '../mark_attendance/Controller/eventDocumentUploadController.dart';
+
 class TakePictureScreenCommonDocument extends StatefulWidget {
-  TakePictureScreenCommonDocument({
-    super.key,
-    required this.camera,
-    required this.id,
-    this.orgname,
-  });
+  TakePictureScreenCommonDocument(
+      {super.key,
+      required this.camera,
+      required this.id,
+      this.orgname,
+      this.eventModule});
 
   final CameraDescription camera;
   String? id;
   String? orgname;
+  bool? eventModule;
 
   @override
   TakePictureScreenCommonDocumentState createState() =>
@@ -108,6 +111,7 @@ class TakePictureScreenCommonDocumentState
                             imagePath: image.path,
                             id: widget.id,
                             orgName: widget.orgname,
+                            eventModule: widget.eventModule,
                           ),
                         ),
                       );
@@ -182,13 +186,14 @@ class DisplayPictureScreen extends StatelessWidget {
   String? id;
   String? orgName;
   String? applicationId;
+  bool? eventModule;
 
-  DisplayPictureScreen({
-    super.key,
-    required this.imagePath,
-    this.id,
-    this.orgName,
-  });
+  DisplayPictureScreen(
+      {super.key,
+      required this.imagePath,
+      this.id,
+      this.orgName,
+      this.eventModule});
 
   @override
   Widget build(BuildContext context) {
@@ -253,11 +258,20 @@ class DisplayPictureScreen extends StatelessWidget {
                 },
                 child: InkWell(
                   onTap: () {
-                    Get.find<UploadDocumentController>().uploadFileCamera(
-                      id!,
-                      orgName: orgName!,
-                      imagePath,
-                    );
+                    if (eventModule == true) {
+                      Get.find<EventDocumentUploadController>()
+                          .uploadFileCamera(
+                        id!,
+                        orgName: orgName!,
+                        imagePath,
+                      );
+                    } else {
+                      Get.find<UploadDocumentController>().uploadFileCamera(
+                        id!,
+                        orgName: orgName!,
+                        imagePath,
+                      );
+                    }
                   },
                   child: Container(
                       height: 60,

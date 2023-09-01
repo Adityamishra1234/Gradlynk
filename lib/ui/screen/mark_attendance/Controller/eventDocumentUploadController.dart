@@ -6,6 +6,7 @@ import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/comonDocumentUploadStatus.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/eventdocumentupload.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
@@ -72,6 +73,7 @@ class EventDocumentUploadController extends GetxController with StateMixin {
       if (res != null) {
         CommonUploadStatus model = CommonUploadStatus();
         model = res;
+        Get.to(EventDocumentUpload());
         await getEventData();
         //   if (model.status == "sucesss") {
         //     // documentModel.add(model.dataModal!);

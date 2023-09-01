@@ -128,10 +128,16 @@ class EventDocumentUpload extends StatelessWidget {
                                       child: CustomButton(
                                         text: "Upload",
                                         onPressed: () {
-                                          getSourceSelected(
-                                            callbackSelectedSource1,
+                                          Get.find<
+                                                  EventDocumentUploadController>()
+                                              .uploadDocument(
                                             controller.identityIDselected!,
                                           );
+                                          //TODO
+                                          // getSourceSelected(
+                                          //   callbackSelectedSource1,
+                                          //   controller.identityIDselected!,
+                                          // );
                                         },
                                         backgroundColor:
                                             ThemeConstants.bluecolor,
@@ -266,11 +272,16 @@ class EventDocumentUpload extends StatelessWidget {
                                       child: CustomButton(
                                         text: "Upload",
                                         onPressed: () {
-                                          print(controller.academicIDselected!);
-                                          getSourceSelected(
-                                            callbackSelectedSource1,
+                                          Get.find<
+                                                  EventDocumentUploadController>()
+                                              .uploadDocument(
                                             controller.academicIDselected!,
                                           );
+                                          //TODO
+                                          // getSourceSelected(
+                                          //   callbackSelectedSource1,
+                                          //   controller.academicIDselected!,
+                                          // );
                                         },
                                         backgroundColor:
                                             ThemeConstants.bluecolor,
@@ -428,6 +439,7 @@ class EventDocumentUpload extends StatelessWidget {
           camera: firstCamera,
           id: temp[1],
           orgname: temp[2],
+          eventModule: true,
         ));
       } else {
         Get.find<EventDocumentUploadController>()
