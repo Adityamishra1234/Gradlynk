@@ -152,7 +152,7 @@ class AfterIntakeScreenView extends StatelessWidget {
                           getToast(
                               'Your pass is accessible in View Express Pass Section');
 
-                          controller.documentNotSubmi(arguments);
+                          await controller.documentNotSubmi(arguments);
                           Get.offAndToNamed(DashBoard.routeNamed);
                         },
                         child: CustomIconTextTogether(

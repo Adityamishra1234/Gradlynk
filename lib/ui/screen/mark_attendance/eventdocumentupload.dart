@@ -30,12 +30,15 @@ class EventDocumentUpload extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Column(
                 children: [
-                  CustomAutoSizeTextMontserrat(
-                    text:
-                        "kindly upload one of your identity and one or Acodemic Document",
-                    textColor: ThemeConstants.bluecolor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: CustomAutoSizeTextMontserrat(
+                      text:
+                          "Kindly upload one of your identity and one of your academic document",
+                      textColor: ThemeConstants.bluecolor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   // if (controller.model.documentsIdentityData == null)
                   IgnorePointer(
