@@ -139,7 +139,6 @@ class _MyAppState extends State<MyApp> {
           name: "/",
           page: () => WelcomeView(),
         ),
-
         GetPage(
           name: ReceiveACallBackView.routeNamed,
           page: () => ReceiveACallBackView(),

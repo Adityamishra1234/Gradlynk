@@ -100,10 +100,7 @@ class _CustomProfileButtonState extends State<CustomProfileButton> {
               ),
             ),
             widget.isCompleted == 1
-                ? 
-                
-                 svgImage(
-                              "tick", ThemeConstants.bluecolor, 35, 35)
+                ? svgImage("tick", ThemeConstants.bluecolor, 35, 35)
                 // SvgPicture.asset(
                 //     "assets/icons/tick.svg",
                 //     height: 30,

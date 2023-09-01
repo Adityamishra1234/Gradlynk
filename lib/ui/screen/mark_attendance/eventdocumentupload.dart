@@ -37,273 +37,297 @@ class EventDocumentUpload extends StatelessWidget {
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                   ),
-                  if (controller.model.documentsIdentityData == null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Stack(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, right: 10, top: 30, bottom: 20),
-                            margin: const EdgeInsets.only(
-                                top: 10, left: 5, right: 5),
-                            decoration: BoxDecoration(
-                                boxShadow: const [
-                                  BoxShadow(
-                                      blurRadius: 2,
-                                      spreadRadius: 0.1,
-                                      color: Color.fromARGB(97, 0, 0, 0))
-                                ],
-                                color: ThemeConstants.whitecolor,
+                  // if (controller.model.documentsIdentityData == null)
+                  IgnorePointer(
+                    ignoring: controller.model.documentsIdentityData == null
+                        ? false
+                        : true,
+                    child: Opacity(
+                      opacity: controller.model.documentsIdentityData == null
+                          ? 1
+                          : 0.5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 30, bottom: 20),
+                              margin: const EdgeInsets.only(
+                                  top: 10, left: 5, right: 5),
+                              decoration: BoxDecoration(
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        blurRadius: 2,
+                                        spreadRadius: 0.1,
+                                        color: Color.fromARGB(97, 0, 0, 0))
+                                  ],
+                                  color: ThemeConstants.whitecolor,
 
-                                // color: ThemeConstants.lightblueColor,
-                                border:
-                                    Border.all(color: ThemeConstants.yellow),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(15.0))),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Document Name",
-                                      fontSize: 16,
+                                  // color: ThemeConstants.lightblueColor,
+                                  border:
+                                      Border.all(color: ThemeConstants.yellow),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15.0))),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Document Name",
+                                        fontSize: 16,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: CustomDropDownSingle(
-                                    bgColor:
-                                        ThemeConstants.ultraLightgreyColor2,
-                                    model: controller.listIdentity,
-                                    initialSelectedValue:
-                                        controller.identityselected,
-                                    choosefieldtype: false,
-                                    callbackFunction: (value) {
-                                      controller.identityselected = value;
-                                      if (controller
-                                              .model.documentsListIdentity !=
-                                          null) {
-                                        for (var i = 0;
-                                            i <
-                                                controller
-                                                    .model
-                                                    .documentsListIdentity!
-                                                    .length;
-                                            i++) {
-                                          if (controller
-                                                  .model
-                                                  .documentsListIdentity![i]
-                                                  .name ==
-                                              value) {
-                                            controller.identityIDselected =
-                                                controller
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: CustomDropDownSingle(
+                                      bgColor:
+                                          ThemeConstants.ultraLightgreyColor2,
+                                      model: controller.listIdentity,
+                                      initialSelectedValue:
+                                          controller.identityselected,
+                                      choosefieldtype: false,
+                                      callbackFunction: (value) {
+                                        controller.identityselected = value;
+                                        if (controller
+                                                .model.documentsListIdentity !=
+                                            null) {
+                                          for (var i = 0;
+                                              i <
+                                                  controller
+                                                      .model
+                                                      .documentsListIdentity!
+                                                      .length;
+                                              i++) {
+                                            if (controller
                                                     .model
                                                     .documentsListIdentity![i]
-                                                    .id
-                                                    .toString();
+                                                    .name ==
+                                                value) {
+                                              controller.identityIDselected =
+                                                  controller
+                                                      .model
+                                                      .documentsListIdentity![i]
+                                                      .id
+                                                      .toString();
+                                            }
                                           }
                                         }
-                                      }
 
-                                      controller.update();
-                                    },
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomButton(
-                                      text: "Upload",
-                                      onPressed: () {
-                                        getSourceSelected(
-                                          callbackSelectedSource1,
-                                          controller.identityIDselected!,
-                                        );
+                                        controller.update();
                                       },
-                                      backgroundColor: ThemeConstants.bluecolor,
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Positioned(
-                              // top: -20,
-                              left: 25,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 10),
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.lightYellow,
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        width: 1,
-                                        color: ThemeConstants.yellow)),
-                                child: Row(
-                                  children: [
-                                    svgImage("identityproof",
-                                        ThemeConstants.blackcolor, 50, 50),
-                                    const SizedBox(
-                                      width: 10,
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomButton(
+                                        text: "Upload",
+                                        onPressed: () {
+                                          getSourceSelected(
+                                            callbackSelectedSource1,
+                                            controller.identityIDselected!,
+                                          );
+                                        },
+                                        backgroundColor:
+                                            ThemeConstants.bluecolor,
+                                      ),
                                     ),
-                                    CustomAutoSizeTextMontserrat(
-                                      fontSize: 14,
-                                      text: "Identity Proof",
-                                      textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ],
-                                ),
-                              )),
-                        ],
-                      ),
-                    ),
-                  if (controller.model.documentsAcedmicData == null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Stack(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 20, right: 10, top: 30, bottom: 20),
-                            margin: const EdgeInsets.only(
-                                top: 10, left: 5, right: 5),
-                            decoration: BoxDecoration(
-                                boxShadow: const [
-                                  BoxShadow(
-                                      blurRadius: 2,
-                                      spreadRadius: 0.1,
-                                      color: Color.fromARGB(97, 0, 0, 0))
+                                  )
                                 ],
-                                color: ThemeConstants.whitecolor,
-
-                                // color: ThemeConstants.lightblueColor,
-                                border:
-                                    Border.all(color: ThemeConstants.yellow),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(15.0))),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Document Name",
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: CustomDropDownSingle(
-                                    bgColor:
-                                        ThemeConstants.ultraLightgreyColor2,
-                                    model: controller.listAcedmic,
-                                    initialSelectedValue:
-                                        controller.academicselected,
-                                    choosefieldtype: false,
-                                    callbackFunction: (value) {
-                                      controller.academicselected = value;
-
-                                      if (controller
-                                              .model.documentsListIdentity !=
-                                          null) {
-                                        for (var i = 0;
-                                            i <
-                                                controller
-                                                    .model
-                                                    .documentsListAcedmic!
-                                                    .length;
-                                            i++) {
-                                          if (controller
-                                                  .model
-                                                  .documentsListAcedmic![i]
-                                                  .name ==
-                                              value) {
-                                            controller.academicIDselected =
-                                                controller.model
-                                                    .documentsListAcedmic![i].id
-                                                    .toString();
-                                          }
-                                        }
-                                      }
-                                      controller.update();
-                                    },
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: SizedBox(
-                                    width: 100,
-                                    child: CustomButton(
-                                      text: "Upload",
-                                      onPressed: () {
-                                        print(controller.academicIDselected!);
-                                        getSourceSelected(
-                                          callbackSelectedSource1,
-                                          controller.academicIDselected!,
-                                        );
-                                      },
-                                      backgroundColor: ThemeConstants.bluecolor,
-                                    ),
-                                  ),
-                                )
-                              ],
+                              ),
                             ),
-                          ),
-                          Positioned(
-                              // top: -20,
-                              left: 25,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 10),
-                                height: 35,
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.lightYellow,
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                        width: 1,
-                                        color: ThemeConstants.yellow)),
-                                child: Row(
-                                  children: [
-                                    svgImage("academicDocument",
-                                        ThemeConstants.blackcolor, 50, 50),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    CustomAutoSizeTextMontserrat(
-                                      fontSize: 14,
-                                      text: "Academic Document",
-                                      textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ],
-                                ),
-                              )),
-                        ],
+                            Positioned(
+                                // top: -20,
+                                left: 25,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  height: 35,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.lightYellow,
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                          width: 1,
+                                          color: ThemeConstants.yellow)),
+                                  child: Row(
+                                    children: [
+                                      svgImage("identityproof",
+                                          ThemeConstants.blackcolor, 50, 50),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      CustomAutoSizeTextMontserrat(
+                                        fontSize: 14,
+                                        text: "Identity Proof",
+                                        textColor: ThemeConstants.blackcolor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                          ],
+                        ),
                       ),
                     ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 15),
-                  //   child: Align(
-                  //     alignment: Alignment.topRight,
-                  //     child: SizedBox(
-                  //       width: 100,
-                  //       child: CustomButton(
-                  //         text: "Submit",
-                  //         onPressed: () {},
-                  //         backgroundColor: ThemeConstants.bluecolor,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
+                  ),
+                  // if (controller.model.documentsAcedmicData == null)
+                  IgnorePointer(
+                    ignoring: controller.model.documentsAcedmicData == null
+                        ? false
+                        : true,
+                    child: Opacity(
+                      opacity: controller.model.documentsAcedmicData == null
+                          ? 1
+                          : 0.5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 10, top: 30, bottom: 20),
+                              margin: const EdgeInsets.only(
+                                  top: 10, left: 5, right: 5),
+                              decoration: BoxDecoration(
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        blurRadius: 2,
+                                        spreadRadius: 0.1,
+                                        color: Color.fromARGB(97, 0, 0, 0))
+                                  ],
+                                  color: ThemeConstants.whitecolor,
+
+                                  // color: ThemeConstants.lightblueColor,
+                                  border:
+                                      Border.all(color: ThemeConstants.yellow),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15.0))),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        text: "Document Name",
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: CustomDropDownSingle(
+                                      bgColor:
+                                          ThemeConstants.ultraLightgreyColor2,
+                                      model: controller.listAcedmic,
+                                      initialSelectedValue:
+                                          controller.academicselected,
+                                      choosefieldtype: false,
+                                      callbackFunction: (value) {
+                                        controller.academicselected = value;
+
+                                        if (controller
+                                                .model.documentsListIdentity !=
+                                            null) {
+                                          for (var i = 0;
+                                              i <
+                                                  controller
+                                                      .model
+                                                      .documentsListAcedmic!
+                                                      .length;
+                                              i++) {
+                                            if (controller
+                                                    .model
+                                                    .documentsListAcedmic![i]
+                                                    .name ==
+                                                value) {
+                                              controller.academicIDselected =
+                                                  controller
+                                                      .model
+                                                      .documentsListAcedmic![i]
+                                                      .id
+                                                      .toString();
+                                            }
+                                          }
+                                        }
+                                        controller.update();
+                                      },
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomButton(
+                                        text: "Upload",
+                                        onPressed: () {
+                                          print(controller.academicIDselected!);
+                                          getSourceSelected(
+                                            callbackSelectedSource1,
+                                            controller.academicIDselected!,
+                                          );
+                                        },
+                                        backgroundColor:
+                                            ThemeConstants.bluecolor,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                                // top: -20,
+                                left: 25,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  height: 35,
+                                  decoration: BoxDecoration(
+                                      color: ThemeConstants.lightYellow,
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                          width: 1,
+                                          color: ThemeConstants.yellow)),
+                                  child: Row(
+                                    children: [
+                                      svgImage("academicDocument",
+                                          ThemeConstants.blackcolor, 50, 50),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      CustomAutoSizeTextMontserrat(
+                                        fontSize: 14,
+                                        text: "Academic Document",
+                                        textColor: ThemeConstants.blackcolor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ],
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 15),
+                      //   child: Align(
+                      //     alignment: Alignment.topRight,
+                      //     child: SizedBox(
+                      //       width: 100,
+                      //       child: CustomButton(
+                      //         text: "Submit",
+                      //         onPressed: () {},
+                      //         backgroundColor: ThemeConstants.bluecolor,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // )
+                    ),
+                  )
                 ],
               ),
             ),

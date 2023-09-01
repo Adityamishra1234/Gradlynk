@@ -45,7 +45,7 @@ class CustomImageViewer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 50, right: 20),
+            padding: const EdgeInsets.only(top: 70, right: 20),
             child: Align(
               alignment: AlignmentDirectional.topEnd,
               child: Container(

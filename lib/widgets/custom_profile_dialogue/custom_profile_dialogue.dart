@@ -35,12 +35,13 @@ class CustomProfileDialogue extends StatelessWidget {
       content: SizedBox(
           height: MediaQuery.of(context).size.height * 0.8,
           width: MediaQuery.of(context).size.width * 0.8,
-          child: Stack(
-            fit: StackFit.expand,
+          child: Column(
+            // fit: StackFit.expand,
             children: [
-              FractionallySizedBox(
-                heightFactor: 0.05,
-                alignment: Alignment.topCenter,
+              SizedBox(
+                height: 40,
+                // heightFactor: 0.05,
+                // alignment: Alignment.topCenter,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -75,15 +76,17 @@ class CustomProfileDialogue extends StatelessWidget {
                   ],
                 ),
               ),
-              FractionallySizedBox(
-                heightFactor: 0.85,
-                alignment: Alignment.centerLeft,
+              Expanded(
+                // height: 50,
+                // heightFactor: 0.85,
+                // alignment: Alignment.centerLeft,
                 child: Container(
                     padding: const EdgeInsets.only(bottom: 10), child: child),
               ),
-              FractionallySizedBox(
-                heightFactor: 0.1,
-                alignment: Alignment.bottomCenter,
+              SizedBox(
+                height: 40,
+                // heightFactor: 0.1,
+                // alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Row(

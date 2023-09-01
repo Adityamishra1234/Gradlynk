@@ -34,11 +34,12 @@ class MarkAttendanceController extends GetxController with StateMixin {
   String passName = '';
 
   bool showBelowContent = false;
-  getMarkAttendance(String code) async {
+
+  getMarkAttendance() async {
     try {
       change(null, status: RxStatus.loading());
       var res = await apiServices.getMarkAttandance(getMarkAttendanceForEvent(
-          Get.find<BaseController>().model1.id.toString(), code));
+          Get.find<BaseController>().model1.id.toString(), code.text));
       if (res != null) {
         markAttendanceModel = MarkAttendanceModel.fromJson(res);
 
@@ -52,11 +53,13 @@ class MarkAttendanceController extends GetxController with StateMixin {
               id: markAttendanceModel.campaignId.toString(),
             ));
           }
+          showBelowContent = true;
         } else {
+          code.clear();
           getToast("Event code not matched");
         }
       }
-      showBelowContent = true;
+
       change(null, status: RxStatus.success());
       update();
     } catch (e) {
