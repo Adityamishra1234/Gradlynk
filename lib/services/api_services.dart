@@ -2482,7 +2482,12 @@ class ApiServices extends StudentPanelBase implements api {
         return model;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        "${Get.find<BaseController>().model1.id.toString()}||",
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
   }
 
@@ -2501,9 +2506,12 @@ class ApiServices extends StudentPanelBase implements api {
         return jsondata;
       }
     } catch (e) {
-      throw UnimplementedError();
+      await errorHandle(
+        "${Get.find<BaseController>().model1.id.toString()}||",
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
     }
-    // TODO: implement getCounsellorBranchAddress
-    // throw UnimplementedError();
   }
 }
