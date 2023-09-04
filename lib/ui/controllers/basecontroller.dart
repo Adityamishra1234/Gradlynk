@@ -127,6 +127,9 @@ class BaseController extends GetxController with StateMixin {
           loadingStudentPanelData1 = true.obs;
 
           update();
+        } else {
+          Get.toNamed(LoginCopy.routeNamed);
+          sharedPreferences.clear();
         }
       } else {
         Get.toNamed(Login.routeNamed);

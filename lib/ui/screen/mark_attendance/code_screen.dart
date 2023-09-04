@@ -26,16 +26,17 @@ class CodeScreen extends StatelessWidget {
           (state) => Center(
             child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // const SizedBox(
-                  //   height: 30,
-                  // ),
-                  // const SizedBox(
-                  //   height: 30,
-                  // ),
-                  if (controller.showBelowContent == false) ...[
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // const SizedBox(
+                    //   height: 30,
+                    // ),
+                    // const SizedBox(
+                    //   height: 30,
+                    // ),
+                    // if (controller.markAttendanceModel.studentCategory ==
+                    //     null) ...[
                     Container(
                         width: 150,
                         height: 150,
@@ -142,9 +143,8 @@ class CodeScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                  ],
-                  if (controller.markAttendanceModel.studentCategory != null)
-                    if (controller.showBelowContent != false) ...[
+                    // ],
+                    if (controller.markAttendanceModel.studentCategory != null)
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 80),
                         child: CustomAutoSizeTextMontserrat(
@@ -154,40 +154,35 @@ class CodeScreen extends StatelessWidget {
                           fontSize: 15,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    if (controller.markAttendanceModel.studentCategory != null)
+                      CustomAutoSizeTextMontserrat(
+                          textColor: ThemeConstants.red,
+                          fontSize: 13,
+                          text: "Your Attendance has been Marked."),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    if (controller.markAttendanceModel.studentCategory != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CustomRichTextWidget(
+                            firstTextColor: ThemeConstants.blackcolor,
+                            customMiddleTextStyle: GoogleFonts.dancingScript(),
+                            text1: 'Your',
+                            text3:
+                                'has been generated in the View Express Pass Section.',
+                            textColor: const Color(0xFFebaa2b),
+                            fontSize: 16,
+                            text:
+                                " ${controller.markAttendanceModel.studentCategory ?? ""} Express Pass "),
                       ),
-                      if (controller.markAttendanceModel.studentCategory !=
-                          null)
-                        CustomAutoSizeTextMontserrat(
-                            textColor: ThemeConstants.red,
-                            fontSize: 13,
-                            text: "Your Attendance has been Marked."),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      if (controller.markAttendanceModel.studentCategory !=
-                          null)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: CustomRichTextWidget(
-                              firstTextColor: ThemeConstants.blackcolor,
-                              customMiddleTextStyle:
-                                  GoogleFonts.dancingScript(),
-                              text1: 'Your',
-                              text3:
-                                  'has been generated in the View Express Pass Section.',
-                              textColor: const Color(0xFFebaa2b),
-                              fontSize: 16,
-                              text:
-                                  " ${controller.markAttendanceModel.studentCategory ?? ""} Express Pass "),
-                        ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                    ]
-                ],
-              ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ]),
             ),
           ),
         ));
