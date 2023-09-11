@@ -173,7 +173,7 @@ class CodeScreen extends StatelessWidget {
                             customMiddleTextStyle: GoogleFonts.dancingScript(),
                             text1: 'Your',
                             text3:
-                                'has been generated in the View Express Pass Section.',
+                                'has been generated in the View Express Pass Section.',
                             textColor: const Color(0xFFebaa2b),
                             fontSize: 16,
                             text:
