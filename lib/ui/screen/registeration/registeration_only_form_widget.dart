@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
+import 'package:pinput/pinput.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/login.dart';
 import 'package:studentpanel/ui/screen/registeration/registeration_controller.dart';
@@ -26,10 +27,25 @@ class RegisterationFormWidget extends StatefulWidget {
 
 class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
   var controller = Get.put(RegisterationCopntroller());
+  final FocusNode _focusNode = FocusNode();
 
   TextEditingController otpcontroller = TextEditingController();
 
   String? otpCode;
+
+  final defaultPinTheme = PinTheme(
+    width: 58,
+    height: 58,
+    textStyle: const TextStyle(
+      fontSize: 22,
+      color: Color.fromRGBO(0, 0, 0, 0.827),
+    ),
+    decoration: BoxDecoration(
+      color: Color.fromRGBO(255, 255, 255, 0.349),
+      borderRadius: BorderRadius.circular(10),
+      border: Border.all(color: Color.fromRGBO(32, 32, 32, 0.345)),
+    ),
+  );
 
   signature() async {
     // String? smsCode = await AndroidSmsRetriever.listenForOneTimeConsent(senderPhoneNumber: );
@@ -466,28 +482,98 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
                         if (controller.showOtp == true) ...[
                           Padding(
-                            padding: const EdgeInsets.only(
-                                top: 20, left: 10, right: 10),
-                            child: TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                controller: otpcontroller,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly
+                            padding: const EdgeInsets.all(5),
+                            child: Pinput(
+                              length: 6,
+                              controller: otpcontroller,
+                              focusNode: _focusNode,
+
+                              androidSmsAutofillMethod:
+                                  AndroidSmsAutofillMethod.smsUserConsentApi,
+                              listenForMultipleSmsOnAndroid: true,
+                              // defaultPinTheme: defaultPinTheme,
+                              separatorBuilder: (index) =>
+                                  const SizedBox(width: 8),
+                              // validator: (value) {
+                              //   return value == '2222'
+                              //       ? null
+                              //       : 'Pin is incorrect';
+                              // },
+                              // onClipboardFound: (value) {
+                              //   debugPrint('onClipboardFound: $value');
+                              //   pinController.setText(value);
+                              // },
+                              hapticFeedbackType:
+                                  HapticFeedbackType.lightImpact,
+                              onCompleted: (pin) {
+                                debugPrint('onCompleted: $pin');
+                              },
+                              onChanged: (value) {
+                                debugPrint('onChanged: $value');
+                              },
+                              cursor: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(bottom: 9),
+                                    width: 22,
+                                    height: 1,
+                                    // color: focusedBorderColor,
+                                  ),
                                 ],
-                                decoration:
-                                    CustomInputDecoration.textFieldStyle(
-                                        labelTextStr: 'OTP'),
-                                validator: (value) {
-                                  if (value != null) {
-                                    if (value.length != 6) {
-                                      return SnackBarConstants.OTPError;
-                                    }
-                                  }
-                                  return null;
-                                }),
+                              ),
+                              defaultPinTheme: defaultPinTheme,
+                              // focusedPinTheme:
+                              //     defaultPinTheme.copyWith(
+                              //         decoration: BoxDecoration(
+                              //   borderRadius:
+                              //       BorderRadius.circular(8),
+                              //   border: Border.all(
+                              //       color: ThemeConstants.whitecolor),
+                              // )),
+                              // submittedPinTheme:
+                              //     defaultPinTheme.copyWith(
+                              //   decoration: defaultPinTheme
+                              //       .decoration!
+                              //       .copyWith(
+                              //     color: ThemeConstants.whitecolor,
+                              //     borderRadius:
+                              //         BorderRadius.circular(19),
+                              //     border: Border.all(
+                              //         color:
+                              //             ThemeConstants.whitecolor),
+                              //   ),
+                              // ),
+                              // errorPinTheme:
+                              //     defaultPinTheme.copyBorderWith(
+                              //   border: Border.all(
+                              //       color: Colors.redAccent),
+                              // ),
+                            ),
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(
+                          //       top: 20, left: 10, right: 10),
+                          //   child: TextFormField(
+                          //       autovalidateMode:
+                          //           AutovalidateMode.onUserInteraction,
+                          //       controller: otpcontroller,
+                          //       keyboardType: TextInputType.number,
+                          //       inputFormatters: [
+                          //         FilteringTextInputFormatter.digitsOnly
+                          //       ],
+                          //       decoration:
+                          //           CustomInputDecoration.textFieldStyle(
+                          //               labelTextStr: 'OTP'),
+                          //       validator: (value) {
+                          //         if (value != null) {
+                          //           if (value.length != 6) {
+                          //             return SnackBarConstants.OTPError;
+                          //           }
+                          //         }
+                          //         return null;
+                          //       }),
+                          // ),
                           const SizedBox(
                             height: 10,
                           ),

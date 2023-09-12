@@ -9,4 +9,6 @@ class MainActivity : FlutterActivity() {
         SplashScreen.show(this, true) // here
         super.onCreate(savedInstanceState)
     }
+
+    
 }

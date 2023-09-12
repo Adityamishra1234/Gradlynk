@@ -313,7 +313,9 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                           height: 40,
                           child: CustomTimerWidget(
                             isBlank: true,
+
                             initialTime: controller.dob,
+
                             // enableField: saveAndEdit,
                             // date: getNUllChecker(controller.dob) == false
                             //     ? controller.dob

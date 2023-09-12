@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
+import 'package:pinput/pinput.dart';
 
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,19 @@ class _LoginCopyState extends State<LoginCopy> {
   static TextEditingController otpcontroller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
+  final defaultPinTheme = PinTheme(
+    width: 58,
+    height: 70,
+    textStyle: const TextStyle(
+      fontSize: 22,
+      color: Color.fromRGBO(0, 0, 0, 0.827),
+    ),
+    decoration: BoxDecoration(
+      color: Color.fromRGBO(255, 255, 255, 0.349),
+      borderRadius: BorderRadius.circular(19),
+      border: Border.all(color: ThemeConstants.whitecolor),
+    ),
+  );
   @override
   void initState() {
     super.initState();
@@ -350,6 +364,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                   //             value);
                                   //       }),
                                   // ),
+
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         top: 20, left: 10, right: 10),
@@ -383,7 +398,6 @@ class _LoginCopyState extends State<LoginCopy> {
                                         fillColor: Colors.white,
                                       ),
                                     ),
-                                    // ),
                                   ),
                                 ],
                               ),
@@ -532,37 +546,110 @@ class _LoginCopyState extends State<LoginCopy> {
                                   // ),
                                   if (controller.otpEnable.value == true)
                                     Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 10, right: 10),
-                                      child: TextFormField(
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          controller: otpcontroller,
-                                          keyboardType: TextInputType.number,
-                                          inputFormatters: [
-                                            FilteringTextInputFormatter
-                                                .digitsOnly
+                                      padding: const EdgeInsets.all(5),
+                                      child: Pinput(
+                                        length: 6,
+                                        controller: otpcontroller,
+                                        focusNode: _focusNode,
+
+                                        androidSmsAutofillMethod:
+                                            AndroidSmsAutofillMethod
+                                                .smsUserConsentApi,
+                                        listenForMultipleSmsOnAndroid: true,
+                                        // defaultPinTheme: defaultPinTheme,
+                                        separatorBuilder: (index) =>
+                                            const SizedBox(width: 8),
+                                        // validator: (value) {
+                                        //   return value == '2222'
+                                        //       ? null
+                                        //       : 'Pin is incorrect';
+                                        // },
+                                        // onClipboardFound: (value) {
+                                        //   debugPrint('onClipboardFound: $value');
+                                        //   pinController.setText(value);
+                                        // },
+                                        hapticFeedbackType:
+                                            HapticFeedbackType.lightImpact,
+                                        onCompleted: (pin) {
+                                          debugPrint('onCompleted: $pin');
+                                        },
+                                        onChanged: (value) {
+                                          debugPrint('onChanged: $value');
+                                        },
+                                        cursor: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  bottom: 9),
+                                              width: 22,
+                                              height: 1,
+                                              // color: focusedBorderColor,
+                                            ),
                                           ],
-                                          decoration: InputDecoration(
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              filled: true,
-                                              hintStyle: TextStyle(
-                                                  color: Colors.grey[800]),
-                                              hintText: "Enter your OTP",
-                                              fillColor: Colors.white),
-                                          validator: (value) {
-                                            if (value != null) {
-                                              if (value.length != 6) {
-                                                return SnackBarConstants
-                                                    .OTPError;
-                                              }
-                                            }
-                                            return null;
-                                          }),
+                                        ),
+                                        defaultPinTheme: defaultPinTheme,
+                                        // focusedPinTheme:
+                                        //     defaultPinTheme.copyWith(
+                                        //         decoration: BoxDecoration(
+                                        //   borderRadius:
+                                        //       BorderRadius.circular(8),
+                                        //   border: Border.all(
+                                        //       color: ThemeConstants.whitecolor),
+                                        // )),
+                                        // submittedPinTheme:
+                                        //     defaultPinTheme.copyWith(
+                                        //   decoration: defaultPinTheme
+                                        //       .decoration!
+                                        //       .copyWith(
+                                        //     color: ThemeConstants.whitecolor,
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(19),
+                                        //     border: Border.all(
+                                        //         color:
+                                        //             ThemeConstants.whitecolor),
+                                        //   ),
+                                        // ),
+                                        // errorPinTheme:
+                                        //     defaultPinTheme.copyBorderWith(
+                                        //   border: Border.all(
+                                        //       color: Colors.redAccent),
+                                        // ),
+                                      ),
                                     ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.only(
+                                  //       top: 20, left: 10, right: 10),
+                                  //   child: TextFormField(
+                                  //       autovalidateMode: AutovalidateMode
+                                  //           .onUserInteraction,
+                                  //       controller: otpcontroller,
+                                  //       keyboardType: TextInputType.number,
+                                  //       inputFormatters: [
+                                  //         FilteringTextInputFormatter
+                                  //             .digitsOnly
+                                  //       ],
+                                  //       decoration: InputDecoration(
+                                  //           border: OutlineInputBorder(
+                                  //             borderRadius:
+                                  //                 BorderRadius.circular(10.0),
+                                  //           ),
+                                  //           filled: true,
+                                  //           hintStyle: TextStyle(
+                                  //               color: Colors.grey[800]),
+                                  //           hintText: "Enter your OTP",
+                                  //           fillColor: Colors.white),
+                                  //       validator: (value) {
+                                  //         if (value != null) {
+                                  //           if (value.length != 6) {
+                                  //             return SnackBarConstants
+                                  //                 .OTPError;
+                                  //           }
+                                  //         }
+                                  //         return null;
+                                  //       }),
+                                  // ),
                                   if (controller.otpEnable.value == true)
                                     Padding(
                                       padding: const EdgeInsets.only(
@@ -588,7 +675,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                             ),
                                             onPressed: () {
                                               print(
-                                                  'ddwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwddd${otpcontroller.text} dd ${phoneNumber.text}');
+                                                  'wwwwwwwddd${otpcontroller.text} dd ${phoneNumber.text}');
                                               if (otpcontroller.text.length ==
                                                   6) {
                                                 controller.login(
