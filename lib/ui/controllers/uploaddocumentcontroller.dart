@@ -194,11 +194,13 @@ class UploadDocumentController extends GetxController {
         if (model.status == "sucesss") {
           documentModel.add(model.dataModal!);
         }
-        getDocumentType();
-        getOrganizationName();
+        List<Future> futures = [getDocumentType(), getOrganizationName()];
+
+        await Future.wait(futures);
       } else {
-        getDocumentType();
-        getOrganizationName();
+        List<Future> futures = [getDocumentType(), getOrganizationName()];
+
+        await Future.wait(futures);
         if (is_event == 1) {
           Get.offAndToNamed(DashBoard.routeNamed);
         }
@@ -255,16 +257,17 @@ class UploadDocumentController extends GetxController {
               if (model.status == "sucesss") {
                 documentModel.add(model.dataModal!);
               }
-              getDocumentType();
-              getOrganizationName();
+              List<Future> futures = [getDocumentType(), getOrganizationName()];
+
+              await Future.wait(futures);
             }
             if (is_event == 1) {
               Get.offAndToNamed(DashBoard.routeNamed);
             }
-            update();
           }
         }
       }
+      update();
     } catch (e) {
       await getToast('Please give Storage Permission');
       await ApiServices().errorHandle(

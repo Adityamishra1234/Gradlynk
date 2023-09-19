@@ -71,11 +71,9 @@ class DashboardController extends GetxController {
     if (res != null) {
       var data = List<GetAllTestimonialsModel>.from(
           res.map((e) => GetAllTestimonialsModel.fromJson(e)));
-
       testimonialsList = data;
       loadingUpcomingEvents = true.obs;
     }
-
     testimonialsLoading = false;
     update();
   }
