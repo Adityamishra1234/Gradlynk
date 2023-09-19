@@ -9,9 +9,9 @@ class TrackYourTicketsController extends GetxController with StateMixin {
   Rxn<TicketDataModel> model = Rxn<TicketDataModel>();
   RxInt chooseOption = 1.obs;
   @override
-  void onInit() {
+  Future<void> onInit() async {
     // change(null, status: RxStatus.success());
-    getTrackYourTicket();
+    await getTrackYourTicket();
   }
 
   getTrackYourTicket() async {

@@ -23,9 +23,9 @@ class ScheduleExpertCallController extends GetxController {
   RxBool loadingServiceAssigned = false.obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getServiceAssigned();
+    await getServiceAssigned();
   }
 
   getServiceAssigned() async {

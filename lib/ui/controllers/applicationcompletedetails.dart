@@ -16,8 +16,8 @@ class ApplicationCompleteDetailsController extends GetxController {
   ApplicationDetailModel model = ApplicationDetailModel();
 
   @override
-  void onInit() {
-    getApplicationDetailComplete(Get.arguments.toString());
+  Future<void> onInit() async {
+    await getApplicationDetailComplete(Get.arguments.toString());
   }
 
 //Function

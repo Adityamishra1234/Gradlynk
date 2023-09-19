@@ -57,10 +57,15 @@ class WorkHistoryController extends GetxController with StateMixin {
   }
 
   @override
-  void onInit() async {
-    await getIndustries();
-    await emplyoymentType();
-    await getWorkHistoryView(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getIndustries(),
+      emplyoymentType(),
+      getWorkHistoryView(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }

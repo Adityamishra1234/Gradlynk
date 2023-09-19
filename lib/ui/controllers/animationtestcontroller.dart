@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AnimationtestController extends GetxController {
   String? phone;
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getUserData();
+    await getUserData();
   }
 
   getUserData() async {

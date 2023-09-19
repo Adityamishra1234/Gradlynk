@@ -3,13 +3,13 @@ import 'package:new_app_version_alert/new_app_version_alert.dart';
 
 class VersionController extends GetxController {
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getUpdateNotitifcation();
+    await getUpdateNotitifcation();
   }
 
   getUpdateNotitifcation() {
-    Future.delayed(const Duration(minutes: 3)).then((value) {
+    Future.delayed(const Duration(minutes: 1)).then((value) {
       NewVersionCheck.newVersionCheck(Get.context,
           "com.downtownengineers.gradlynk", "com.downtownengineers.gradlynk");
     });

@@ -27,14 +27,14 @@ class BookAnAppointmentController extends GetxController with StateMixin {
   bool showConnectVierually = false;
 
   @override
-  void onInit() async {
+  Future<void> onInit() async {
     change(null, status: RxStatus.loading());
 
     await getServiceAssigned();
     await getBranchData2();
     change(null, status: RxStatus.success());
     super.onInit();
-  }
+    await getServiceAssigned();
 
   String selectedBranchAdressFromList = '';
   getBranchData2() async {

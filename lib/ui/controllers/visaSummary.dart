@@ -17,9 +17,14 @@ class VisaSummaryController extends GetxController {
   RxBool loadingVisaStatus = false.obs;
 
   @override
-  void onInit() {
-    getVisaStatus();
-    getVisaDetails(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getVisaStatus(),
+      getVisaDetails(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     super.onInit();
   }
 

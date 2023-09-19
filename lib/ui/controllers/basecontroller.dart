@@ -38,11 +38,13 @@ class BaseController extends GetxController with StateMixin {
   void onInit() async {
     super.onInit();
 
-    await profiledetail();
-    await caraouselData();
-    await profileDataValidator();
-
+    List<Future> futures = [
+      profiledetail(),
+      caraouselData(),
+    ];
+    await Future.wait(futures);
     change(null, status: RxStatus.success());
+    profileDataValidator();
   }
 
   var data = ProfileDataValidatorModel().obs;

@@ -69,12 +69,16 @@ class CourseSearchController extends GetxController with StateMixin {
   RxBool loadingCourseShortList = false.obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getCountry();
-    getCourseLevel();
-    getIndustries();
-    getCourseBoardField();
+    List<Future> futures = [
+      getCountry(),
+      getCourseLevel(),
+      getIndustries(),
+      getCourseBoardField()
+    ];
+
+    await Future.wait(futures);
   }
 
   List industriesList = [];
