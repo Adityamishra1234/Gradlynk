@@ -14,8 +14,8 @@ class ReceiveACallbackController extends GetxController with StateMixin {
   RxString oo = 'Receive a call back'.obs;
 
   @override
-  void onInit() {
-    getdata();
+  Future<void> onInit() async {
+    await getdata();
     super.onInit();
   }
 

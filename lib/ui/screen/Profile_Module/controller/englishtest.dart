@@ -52,10 +52,15 @@ class EnglishTestController extends GetxController with StateMixin {
   bool? save = false;
 
   @override
-  void onInit() {
-    getExamName();
-    getExamStatus();
-    getEnglishTestDetails(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getExamName(),
+      getExamStatus(),
+      getEnglishTestDetails(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }

@@ -14,8 +14,8 @@ class CountryGuideController extends GetxController {
   RxBool loadingCountryGuide = false.obs;
 
   @override
-  void onInit() {
-    getCountryGuideModel();
+  Future<void> onInit() async {
+    await getCountryGuideModel();
   }
 
   getCountryGuideModel() async {

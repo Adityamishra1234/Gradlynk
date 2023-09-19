@@ -32,14 +32,16 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() async {
-    await upcomingEvents();
-    await getTestimonials();
-    await getYoutubeVideos();
+    List<Future> futures = [
+      upcomingEvents(),
+      getTestimonials(),
+      getYoutubeVideos()
+    ];
+    await Future.wait(futures);
     if (Get.find<BaseController>().model1.id != null) {
       await Get.find<BaseController>()
           .eventZone(Get.find<BaseController>().model1.id.toString());
     }
-
     super.onInit();
   }
 

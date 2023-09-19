@@ -76,10 +76,11 @@ class ContactInformationController extends GetxController with StateMixin {
   GlobalKey<FormState> profilePageKey = GlobalKey<FormState>();
 
   @override
-  void onInit() {
-    getCountry();
-    getMartialStatus();
-    profiledetail();
+  Future<void> onInit() async {
+    List<Future> futures = [getCountry(), getMartialStatus(), profiledetail()];
+
+    await Future.wait(futures);
+
     super.onInit();
     change(null, status: RxStatus.success());
   }
@@ -281,6 +282,7 @@ class ContactInformationController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
     return res;
   }
+
   bool socialMedia = false;
   saveButton() async {
     change(null, status: RxStatus.success());
@@ -310,10 +312,12 @@ class ContactInformationController extends GetxController with StateMixin {
         getToast(SnackBarConstants.cityError!);
       } else if (getNUllChecker(zipCode.text)) {
         getToast(SnackBarConstants.zipCodeError!);
-      } else if (socialMedia == true && (  instagramId.text == '' && snapchatId.text == '' && facebookId.text == '' ) ) {
-
+      } else if (socialMedia == true &&
+          (instagramId.text == '' &&
+              snapchatId.text == '' &&
+              facebookId.text == '')) {
         getToast("Please enter one social media id");
-      }else {
+      } else {
         var res = updatePesonalDetail(
             Get.find<BaseController>().model1.id!,
             firstName.text,

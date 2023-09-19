@@ -45,11 +45,16 @@ class UploadDocumentController extends GetxController {
   int is_event = 0;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getDocumentType();
-    getOrganizationName();
-    getcommondocument();
+    List<Future> futures = [
+      getDocumentType(),
+      getOrganizationName(),
+      getcommondocument()
+    ];
+
+    await Future.wait(futures);
+
     if (Get.arguments != null) {
       is_event = Get.arguments;
     }

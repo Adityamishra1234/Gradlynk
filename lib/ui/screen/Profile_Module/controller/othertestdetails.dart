@@ -51,10 +51,15 @@ class OtherTestDetailsController extends GetxController with StateMixin {
   static final overallScore = TextEditingController();
 
   @override
-  void onInit() {
-    getExamName();
-    getExamStatus();
-    getOtherTestDetails(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getExamName(),
+      getExamStatus(),
+      getOtherTestDetails(Get.find<BaseController>().model1.id.toString()),
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }

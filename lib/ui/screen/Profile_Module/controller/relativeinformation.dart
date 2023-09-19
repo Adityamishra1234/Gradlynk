@@ -57,11 +57,16 @@ class RelativeInformationController extends GetxController with StateMixin {
   }
 
   @override
-  void onInit() {
-    getCountry();
-    getCitizenShipStatus();
-    getRealtionWithStatus();
-    viewRelativeHistory(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getCountry(),
+      getCitizenShipStatus(),
+      getRealtionWithStatus(),
+      viewRelativeHistory(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }

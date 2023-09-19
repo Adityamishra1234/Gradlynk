@@ -54,10 +54,15 @@ class ContactInformationInPopUpController extends GetxController
   bool loading = false;
   @override
   void onInit() async {
-    await getCountry();
-    await getMartialStatus();
-    await profiledetail();
-    await profileDataValidator();
+    List<Future> futures = [
+      getCountry(),
+      getMartialStatus(),
+      profiledetail(),
+      profileDataValidator()
+    ];
+
+    await Future.wait(futures);
+
     super.onInit();
     update();
     change(null, status: RxStatus.success());

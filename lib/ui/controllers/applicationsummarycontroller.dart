@@ -29,9 +29,13 @@ class ApplicationSummaryController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    await getapplicationStatus();
-    await getapplicationStage();
-    await getApplicationDetail(Get.find<BaseController>().model1.id.toString());
+    List<Future> futures = [
+      getapplicationStatus(),
+      getapplicationStage(),
+      getApplicationDetail(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
 
     print(applicationSummaryModel.length);
     searchedList = applicationSummaryModel;

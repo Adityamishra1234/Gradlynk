@@ -20,8 +20,8 @@ class LoginController extends GetxController with StateMixin {
   RxBool otpEnable = false.obs;
 
   @override
-  void onInit() {
-    getUserData();
+  Future<void> onInit() async {
+    await getUserData();
     change(null, status: RxStatus.success());
   }
 

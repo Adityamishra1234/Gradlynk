@@ -27,10 +27,15 @@ class CourseInformationProfileController extends GetxController {
   RxBool loadingViewCourseInformation = false.obs;
 
   @override
-  void onInit() {
-    getCourseLevel();
-    getCoursenarrow();
-    getCourseInformation(Get.find<BaseController>().model1.id!);
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getCourseLevel(),
+      getCoursenarrow(),
+      getCourseInformation(Get.find<BaseController>().model1.id!)
+    ];
+
+    await Future.wait(futures);
+
     super.onInit();
   }
 
