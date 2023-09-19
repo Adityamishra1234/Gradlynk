@@ -68,9 +68,9 @@ class ContactInformationInPopUpController extends GetxController
   }
 
   profileDataValidator() async {
-    change(null, status: RxStatus.loading());
+    // change(null, status: RxStatus.loading());
 
-    var x = await Get.find<BaseController>().profileDataValidator();
+    var x = await Get.find<BaseController>().data.value;
     // var x = await apiservice
     //     .profileDataValidation(Get.find<BaseController>().model1.id!);
     // var z = ProfileDataValidatorModel.fromJson(x);
