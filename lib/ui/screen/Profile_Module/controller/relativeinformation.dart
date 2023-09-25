@@ -193,8 +193,15 @@ class RelativeInformationController extends GetxController with StateMixin {
       if (res == true) {
         resetfields();
       }
-
+      if (Get.find<BaseController>().data.value.validateIconForRelativeInfo !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForRelativeInfo = "1";
+        Get.find<BaseController>().data.value.totalPercentageComplete =
+            Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
+      }
+      Get.find<BaseController>().update();
       change(null, status: RxStatus.success());
+      update();
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

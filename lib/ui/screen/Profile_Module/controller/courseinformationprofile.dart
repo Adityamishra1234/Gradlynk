@@ -143,6 +143,14 @@ class CourseInformationProfileController extends GetxController {
       var res = await apiServices.addProfileModule(
           Endpoints.baseUrl!, endpoint!, "Course Information", action!);
       loadingViewCourseInformation.value = true;
+      // Update the Base Controller for Percentage of profile
+      if (Get.find<BaseController>().data.value.validateIconForCourseInfo !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForCourseInfo = "1";
+        Get.find<BaseController>().data.value.totalPercentageComplete =
+            Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
+      }
+      Get.find<BaseController>().update;
       update();
     } catch (e) {
       await ApiServices().errorHandle(

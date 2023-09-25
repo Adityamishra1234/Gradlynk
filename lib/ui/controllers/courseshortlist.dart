@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/completecoursedetail.dart';
@@ -9,7 +10,7 @@ import 'package:studentpanel/ui/models/filterModel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CourseShortListController extends GetxController with StateMixin {
-  ApiServices apiservices = ApiServices();
+  api apiservices = ApiServices();
 
   // Loading
   RxBool compareApply = false.obs;

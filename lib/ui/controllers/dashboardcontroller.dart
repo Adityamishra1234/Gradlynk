@@ -1,3 +1,4 @@
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
@@ -15,7 +16,7 @@ import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 
 class DashboardController extends GetxController {
   DropDownModel? dropDownModel;
-  ApiServices apiservices = ApiServices();
+  api apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
   List<UpcomingEventModel>? upcomingEventlist;
   List<UpcomingHoliday>? upcomingholidayslist;

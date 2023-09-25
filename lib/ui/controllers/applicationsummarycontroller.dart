@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
@@ -19,7 +20,7 @@ class ApplicationSummaryController extends GetxController {
   List stageNameList = [];
 
   // Model
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<ApplicationSummaryModel> applicationSummaryModel = [];
 
   List<ApplicationSummaryModel> searchedList = [];

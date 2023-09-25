@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
@@ -16,7 +17,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class UploadDocumentController extends GetxController {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<DropDownDocumentType> dropdownDocumentType = [];
   List<DropDownDocumentName> dropdownDocumentName = [];
   List<DropDownorganisationName> dropdownOrganization = [];

@@ -279,6 +279,13 @@ class ContactInformationController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     var res = await apiServices.personalInformationDataUpdate(
         personalInformationModel, Endpoints.personalDetailUpdate);
+    if (Get.find<BaseController>().data.value.validateIconForPersonalInfo !=
+        "1") {
+      Get.find<BaseController>().data.value.validateIconForPersonalInfo = "1";
+      Get.find<BaseController>().data.value.totalPercentageComplete =
+          Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
+    }
+    Get.find<BaseController>().update();
     change(null, status: RxStatus.success());
     return res;
   }

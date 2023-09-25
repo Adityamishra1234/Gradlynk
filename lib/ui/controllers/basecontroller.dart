@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/carouselListModel.dart';
 import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
@@ -18,7 +20,7 @@ import 'package:new_app_version_alert/new_app_version_alert.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class BaseController extends GetxController with StateMixin {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   StudentPanel model1 = StudentPanel();
   RxBool loadingStudentPanelData1 = false.obs;
   PersonalInformationModel personalModal = PersonalInformationModel();
@@ -65,7 +67,7 @@ class BaseController extends GetxController with StateMixin {
       loadinValidatorDataForDashboard = false;
       return z;
     } on Exception catch (e) {
-      await apiServices.errorHandle(
+      await StudentPanelBase().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
@@ -138,7 +140,7 @@ class BaseController extends GetxController with StateMixin {
 
       getNotificatin(model1.id.toString());
     } on Exception catch (e) {
-      await apiServices.errorHandle(
+      await StudentPanelBase().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),

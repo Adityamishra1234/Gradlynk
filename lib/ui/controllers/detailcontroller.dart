@@ -3,11 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/models/userHistory.dart';
 
 class DetailController extends GetxController {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
 
   List<UserHistory>? userHistoryList;
   RxBool isLoading = false.obs;

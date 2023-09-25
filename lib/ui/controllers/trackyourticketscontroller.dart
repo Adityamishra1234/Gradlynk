@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/ticketdatamodel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class TrackYourTicketsController extends GetxController with StateMixin {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   Rxn<TicketDataModel> model = Rxn<TicketDataModel>();
   RxInt chooseOption = 1.obs;
   @override

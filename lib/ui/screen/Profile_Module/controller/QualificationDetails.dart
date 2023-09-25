@@ -424,6 +424,17 @@ class QualificationDetailsController extends GetxController with StateMixin {
       if (res == true) {
         resetFields();
       }
+      if (Get.find<BaseController>()
+              .data
+              .value
+              .validateIconForQualificationInfo !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForQualificationInfo =
+            "1";
+        Get.find<BaseController>().data.value.totalPercentageComplete =
+            Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
+      }
+      Get.find<BaseController>().update;
 
       change(null, status: RxStatus.success());
     } catch (e) {

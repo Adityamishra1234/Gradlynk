@@ -128,6 +128,12 @@ class OtherTestDetailsController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     await apiServices.updateOtherTestDetails(
         otherTestDetailsModel, Endpoints.otherTestDetails! + enqId!);
+    if (Get.find<BaseController>().data.value.validateIconForOtherTest != "1") {
+      Get.find<BaseController>().data.value.validateIconForOtherTest = "1";
+      Get.find<BaseController>().data.value.totalPercentageComplete =
+          Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
+    }
+    Get.find<BaseController>().update();
     change(null, status: RxStatus.success());
     return true;
   }

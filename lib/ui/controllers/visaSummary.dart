@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class VisaSummaryController extends GetxController {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<VisaSummaryModel> modelList = [];
 
   // Visa Status ID and Name
