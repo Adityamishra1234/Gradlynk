@@ -287,6 +287,7 @@ class ContactInformationController extends GetxController with StateMixin {
     }
     Get.find<BaseController>().update();
     change(null, status: RxStatus.success());
+    update();
     return res;
   }
 

@@ -163,6 +163,7 @@ class WorkHistoryController extends GetxController with StateMixin {
       }
       Get.find<BaseController>().update();
       change(null, status: RxStatus.success());
+      update();
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

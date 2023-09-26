@@ -16,6 +16,7 @@ import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/middlewares/welcomeViewMiddleWare.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
@@ -114,6 +115,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> hideScreen() async {
+    var controller = Get.put(BaseController(), permanent: true);
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
         FlutterSplashScreen.hide();
