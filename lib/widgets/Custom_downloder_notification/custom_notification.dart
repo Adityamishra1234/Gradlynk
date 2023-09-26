@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file_plus/open_file_plus.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification_payload_types.dart';
+import 'package:open_app_file/open_app_file.dart';
 
 class CustomOpenLocalPath {
   Future<void> openFile(String path) async {
@@ -85,8 +89,16 @@ class NotificationService {
 
     if (receivedAction.payload!['type'] == PayloadTypes.download) {
       print(receivedAction.payload!['path']);
-      await CustomOpenLocalPath()
-          .openFile('${receivedAction.payload!['path']}');
+      var path = receivedAction.payload!['path'];
+
+//       openAppPrivateFile(String path) async {
+// //open an app private storage file
+      var data = await File("$path").path;
+      print(path);
+      print(data);
+
+      await OpenFile.open(path!);
+      // }
     }
     // final payload = receivedAction.payload ?? {};
     // // if (payload["navigate"] == "true") {

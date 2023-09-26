@@ -43,7 +43,7 @@ class _LoginCopyState extends State<LoginCopy> {
       color: Color.fromRGBO(0, 0, 0, 0.827),
     ),
     decoration: BoxDecoration(
-      color: Color.fromRGBO(255, 255, 255, 0.349),
+      color: Color.fromRGBO(255, 255, 255, 0.514),
       borderRadius: BorderRadius.circular(19),
       border: Border.all(color: ThemeConstants.whitecolor),
     ),

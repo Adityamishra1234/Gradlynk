@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
-
+import 'package:flutter/services.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
@@ -24,6 +24,8 @@ class FileDownload extends StatefulWidget {
 }
 
 class _FileDownloadState extends State<FileDownload> {
+  static const methodChannel = MethodChannel('methodChannel.download');
+
   final Dio dio = Dio();
   bool loading = false;
   double progress = 0;
@@ -95,9 +97,10 @@ class _FileDownloadState extends State<FileDownload> {
             // Do something here
             // getToast("Please wait for download");
             if (Platform.isAndroid) {
-              await download(widget.url);
+              // await donwloadTestKotlin(widget.url);
+              // await download(widget.url);
             } else if (Platform.isIOS) {
-              await downloadFile(widget.url);
+              // await downloadFile(widget.url);
             }
             stopLoading();
           }
@@ -199,6 +202,16 @@ class _FileDownloadState extends State<FileDownload> {
       title: filepath,
       filePath: filepath,
     );
+  }
+
+  donwloadTestKotlin(String url) async {
+    print('object');
+
+    try {
+      var uri = await methodChannel.invokeMethod('getLocalPath');
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future download(String url) async {

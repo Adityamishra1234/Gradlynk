@@ -132,13 +132,14 @@ class _MyAppState extends State<MyApp> {
       // initialBinding: AppBinding(),
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: "/",
+      initialRoute: '/',
       // Create Route
       getPages: [
         GetPage(
           name: "/",
           page: () => WelcomeView(),
         ),
+
         GetPage(
           name: ReceiveACallBackView.routeNamed,
           page: () => ReceiveACallBackView(),

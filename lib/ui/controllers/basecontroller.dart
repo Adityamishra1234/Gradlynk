@@ -94,6 +94,7 @@ class BaseController extends GetxController with StateMixin {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       String? phonenumber = sharedPreferences.getString("phonenumber");
+
       if (phonenumber != null) {
         var res = await apiServices.dashboard(
             Endpoints.baseUrl!, "${Endpoints.dashboard!}$phonenumber");

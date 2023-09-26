@@ -642,6 +642,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               if (controller.formKey.currentState!.validate() &&
                                   controller.buttonClickEnabled) {
                                 startLoading();
+
                                 controller.buttonClickEnabled = false;
                                 controller.update();
 
