@@ -47,7 +47,7 @@ class _CustomDocumentViewerState extends State<CustomDocumentViewer> {
         ),
       )
       ..loadRequest(Uri.parse(
-          "http://docs.google.com/gview?embedded=true&url=${widget.url}"));
+          "https://docs.google.com/gview?embedded=true&url=${widget.url}"));
     super.initState();
   }
 

@@ -1,6 +1,7 @@
 //test
 
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/loginmodel.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:get/get.dart';
@@ -58,6 +59,7 @@ class LoginController extends GetxController with StateMixin {
       prefs.setString("id", model!.user!.id.toString());
       change(null, status: RxStatus.success());
 
+      var controller = Get.put(BaseController());
       Get.offAllNamed(DashBoard.routeNamed, arguments: true);
 
       return model;

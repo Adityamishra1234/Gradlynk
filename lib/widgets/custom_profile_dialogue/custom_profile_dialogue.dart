@@ -13,9 +13,11 @@ class CustomProfileDialogue extends StatelessWidget {
   Function()? onEdit;
   Function()? viewDetail;
   bool? showViewDetails = false;
+  Function()? backButton;
 
   CustomProfileDialogue(
       {super.key,
+      required this.backButton,
       this.showViewDetails,
       required this.child,
       this.enableEdit,
@@ -94,9 +96,7 @@ class CustomProfileDialogue extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
+                        onTap: backButton,
                         child: CustomAutoSizeTextMontserrat(
                           textColor: ThemeConstants.bluecolor,
                           text: 'Cancel',

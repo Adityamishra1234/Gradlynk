@@ -101,18 +101,18 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
 
     bool dirDownloadExists = true;
     String directory;
-    if (io.Platform.isIOS) {
-      directory = (await getApplicationDocumentsDirectory()).path;
-    } else {
-      directory = "/storage/emulated/0/Download/";
+    // if (io.Platform.isIOS) {
+    directory = (await getApplicationDocumentsDirectory()).path;
+    // } else {
+    //   directory = "/storage/emulated/0/Download/";
 
-      dirDownloadExists = await io.Directory(directory).exists();
-      if (dirDownloadExists) {
-        directory = "/storage/emulated/0/Download/";
-      } else {
-        directory = "/storage/emulated/0/Downloads/";
-      }
-    }
+    //   dirDownloadExists = await io.Directory(directory).exists();
+    //   if (dirDownloadExists) {
+    //     directory = "/storage/emulated/0/Download/";
+    //   } else {
+    //     directory = "/storage/emulated/0/Downloads/";
+    //   }
+    // }
 
     String basenames = path.basename(url);
     final finalPath = path.join(directory, basenames);
@@ -132,11 +132,11 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
                 final directory = await getApplicationDocumentsDirectory();
                 var newpath = paths;
                 // await openLocalFile(directory.toString());
-                await OpenFilex.open(newpath);
-                // NotificationService.showNotification(
-                //     title: 'Downlaod Completed',
-                //     body: 'Click to Open',
-                //     payload: {'path': newpath, 'type': widget.payload});
+                // await OpenFilex.open(newpath);
+                NotificationService.showNotification(
+                    title: 'Downlaod Completed',
+                    body: 'Click to Open',
+                    payload: {'path': newpath, 'type': widget.payload});
               },
               onDownloadError: (String error) {
                 print('DOWNLOAD ERROR: $error');
@@ -146,7 +146,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
         }
       } else {
         getToast(SnackBarConstants.flutterStroageToast);
-        Future.delayed(const Duration(seconds: 2))
+        Future.delayed(const Duration(seconds: 1))
             .then((value) => openAppSettings());
       }
     } else {
@@ -158,12 +158,12 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
               onDownloadCompleted: (String paths) async {
                 var newpath = paths;
 
-                await openLocalFile(paths);
+                // await openLocalFile(paths);
 
-                // NotificationService.showNotification(
-                //     title: 'Downlaod Completed',
-                //     body: 'Click to Open',
-                //     payload: {'path': newpath, 'type': widget.payload});
+                NotificationService.showNotification(
+                    title: 'Downlaod Completed',
+                    body: 'Click to Open',
+                    payload: {'path': newpath, 'type': widget.payload});
               },
               onDownloadError: (String error) {
                 print('DOWNLOAD ERROR: $error');

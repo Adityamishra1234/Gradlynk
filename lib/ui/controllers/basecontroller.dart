@@ -46,7 +46,6 @@ class BaseController extends GetxController with StateMixin {
     ];
     await Future.wait(futures);
     change(null, status: RxStatus.success());
-    profileDataValidator();
   }
 
   var data = ProfileDataValidatorModel().obs;
@@ -60,7 +59,7 @@ class BaseController extends GetxController with StateMixin {
     try {
       loadinValidatorDataForDashboard = true;
       update();
-      print(Get.find<BaseController>().model1.id!);
+
       var x = await apiServices.profileDataValidation(model1.id!);
       var z = ProfileDataValidatorModel.fromJson(x);
       data.value = z;
@@ -123,19 +122,22 @@ class BaseController extends GetxController with StateMixin {
               countryid.add(model1.countryID!);
             }
           }
-
-          await checkShowLetsGetStarted();
-          await eventZone(model1.id.toString());
-          await getFundPlannerData();
+          List<Future> futures = [
+            checkShowLetsGetStarted(),
+            eventZone(model1.id.toString()),
+            getFundPlannerData(),
+            profileDataValidator(),
+          ];
+          await Future.wait(futures);
           loadingStudentPanelData1 = true.obs;
 
           update();
         } else {
-          Get.toNamed(LoginCopy.routeNamed);
+          Get.offNamed(LoginCopy.routeNamed);
           sharedPreferences.clear();
         }
       } else {
-        Get.toNamed(Login.routeNamed);
+        Get.offNamed(LoginCopy.routeNamed);
       }
 
       getNotificatin(model1.id.toString());

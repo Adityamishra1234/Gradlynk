@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/binding/app_bindings.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
@@ -60,6 +61,7 @@ import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 import 'ui/screen/Login_Module/animationtest.dart';
@@ -115,7 +117,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> hideScreen() async {
-    var controller = Get.put(BaseController(), permanent: true);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    print(phonenumber);
+    if (getNUllChecker(phonenumber) == false) {
+      var controller = Get.put(BaseController());
+    }
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
         FlutterSplashScreen.hide();
