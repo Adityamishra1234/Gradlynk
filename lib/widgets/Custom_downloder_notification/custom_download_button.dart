@@ -1,12 +1,9 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
-import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io' as io;
@@ -86,96 +83,58 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
   //   //   FlutterToastConstant().getToast('Please give storage access');
   //   // }
   // }
-  static const methodChannel = MethodChannel('methodChannel.download');
-  downloadTest(String url) async {
-    try {
-      var uri = await methodChannel.invokeMethod('getLocalPath');
-
-      String basenames = path.basename(url);
-      final finalPath = path.join(uri, basenames);
-
-      print(uri);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-  }
 
   Future download(String url) async {
-    ////--------- TODO
     var status = await Permission.storage.request();
     var d = await Permission.photos.request();
     var y = await Permission.notification.request();
 
-    // // print(status);
-    // // if (await Permission.storage.request().isGranted) {
-    // final io.Directory tempDir = await getTemporaryDirectory();
+    // print(status);
+    // if (await Permission.storage.request().isGranted) {
+    final io.Directory tempDir = await getTemporaryDirectory();
 
-    // final io.Directory appDocumentsDir =
-    //     await getApplicationDocumentsDirectory();
+    final io.Directory appDocumentsDir =
+        await getApplicationDocumentsDirectory();
 
-    // bool dirDownloadExists = true;
-    // String directory;
-    // if (io.Platform.isIOS) {
-    //   directory = (await getApplicationDocumentsDirectory()).path;
-    // } else {
-    //   directory = "/storage/emulated/0/Download/";
+    bool dirDownloadExists = true;
+    String directory;
+    if (io.Platform.isIOS) {
+      directory = (await getApplicationDocumentsDirectory()).path;
+    } else {
+      directory = "/storage/emulated/0/Download/";
 
-    //   dirDownloadExists = await io.Directory(directory).exists();
-    //   if (dirDownloadExists) {
-    //     directory = "/storage/emulated/0/Download/";
-    //   } else {
-    //     directory = "/storage/emulated/0/Downloads/";
-    //   }
-    // }
+      dirDownloadExists = await io.Directory(directory).exists();
+      if (dirDownloadExists) {
+        directory = "/storage/emulated/0/Download/";
+      } else {
+        directory = "/storage/emulated/0/Downloads/";
+      }
+    }
 
-    // String basenames = path.basename(url);
-    // final finalPath = path.join(directory, basenames);
-    // final finalPath2 = '${appDocumentsDir.path}/$basenames';
+    String basenames = path.basename(url);
+    final finalPath = path.join(directory, basenames);
+    io.File saveFile = io.File(finalPath);
 
-    // io.File saveFile = io.File(finalPath);
-    // io.File saveFile2 = io.File(finalPath2);
-
-    // final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    // AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    // var sdkVersion = androidInfo.version.sdkInt;
-
-    // print(sdkVersion);
-
-    /////// ---- todo
-    ///
-    ///
-    ///
-    ///
-    ///
     final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     var sdkVersion = androidInfo.version.sdkInt;
-    // var uri = await methodChannel.invokeMethod('getLocalPath');
 
-    String basenames = path.basename(url);
-    // final finalPath = path.join(uri, basenames);
+    print(sdkVersion);
 
 // 33=> d
 // 30 less=>status
-
-    print(sdkVersion);
     if (sdkVersion > 30) {
       if (d.isGranted) {
         if (y.isGranted) {
           await FileDownloader.downloadFile(
               url: url,
               name: basenames,
-              onDownloadCompleted: (String paths) async {
+              onDownloadCompleted: (String paths) {
                 var newpath = paths;
-                print(paths);
-                var uri = await methodChannel
-                    .invokeMethod('getLocalPath', {"path": paths});
-                getToast('Please Check Download Folder');
-                // await OpenFile.open(finalPath2);
-                // NotificationService.showNotification(
-                //     title: 'Download Completed',
-                //     body: 'Click to Open',
-                //     payload: {'path': newpath, 'type': widget.payload});
+                NotificationService.showNotification(
+                    title: 'Downlaod Completed',
+                    body: 'Click to Open',
+                    payload: {'path': newpath, 'type': widget.payload});
               },
               onDownloadError: (String error) {
                 print('DOWNLOAD ERROR: $error');
@@ -194,17 +153,12 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
           await FileDownloader.downloadFile(
               url: url,
               name: basenames,
-              onDownloadCompleted: (String paths) async {
+              onDownloadCompleted: (String paths) {
                 var newpath = paths;
-                var uri = await methodChannel
-                    .invokeMethod('getLocalPath', {"path": paths});
-                print(paths);
-                getToast('Please Check Download Folder');
-                //  await OpenFile.open(finalPath2);
-                //               NotificationService.showNotification(
-                //                   title: 'Downlaod Completed',
-                //                   body: 'Click to Open',
-                //                   payload: {'path': newpath, 'type': widget.payload});
+                NotificationService.showNotification(
+                    title: 'Downlaod Completed',
+                    body: 'Click to Open',
+                    payload: {'path': newpath, 'type': widget.payload});
               },
               onDownloadError: (String error) {
                 print('DOWNLOAD ERROR: $error');
@@ -316,7 +270,6 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
         if (buttonState == ButtonState.idle) {
           startLoading();
           await download(widget.path);
-          // await download(widget.path);
           // await Future.delayed(const Duration(seconds: 5))
           stopLoading();
         }
