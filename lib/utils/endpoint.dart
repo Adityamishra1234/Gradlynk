@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class Endpoints {
-  // static String? baseUrl = "https://api.sieceducation.in/api/";
+  static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
@@ -10,7 +10,7 @@ class Endpoints {
 
   // static String? baseUrl_mark_attendance = "http://14.97.86.202:204/api/";
 
-  static String? baseUrl = "http://164.52.208.95:99/api/";
+  // static String? baseUrl = "http://164.52.208.95:99/api/";
 
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
@@ -189,6 +189,8 @@ class Endpoints {
   static String? getBaseUrlForAllAPi = "base-url";
   static String? eventDocumentUpload = "process-platinum-pass?enq_id=";
   static String? documentNotSubmit = "show-menu?enq_id=";
+
+  static String? subServiceInRegister = "get-sub-service?service_id=";
 }
 
 documentNotSubmit(String enq_id, String campaign_id) {
@@ -328,15 +330,16 @@ addRelativeInformationPart3(
   return "&any_relative_country_interested=1&added_relative[$index][id]=$id&added_relative[$index][any_relative_country_interested]=$anyRelativeCountryInterested&added_relative[$index][citizenship_status]=$citizenshipStatus&added_relative[$index][relative_country]=$relativeCountry&added_relative[$index][relation_with_relative]=$relationWithrelative&added_relative[$index][relative_email_id]=$relativeEmailID&added_relative[$index][contact_of_relative]=$contactOfRelative&added_relative[$index][address_of_relative]=$addressOfRelative";
 }
 
-String registerNewUserEndpoint({
-  required name,
-  required phoneNumber,
-  required emailID,
-  required targetDestination,
-  required nearestSiecBranch,
-  required howDidYouHearAboutUS,
-}) {
-  return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS";
+String registerNewUserEndpoint(
+    {required name,
+    required phoneNumber,
+    required emailID,
+    required targetDestination,
+    required nearestSiecBranch,
+    required howDidYouHearAboutUS,
+    required primarySubServiceId,
+    required primaryServiceId}) {
+  return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS&primary_service_id=$primaryServiceId&primary_sub_service_id=$primarySubServiceId";
 }
 
 String letsGetStartedSendData(

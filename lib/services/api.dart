@@ -131,4 +131,6 @@ abstract class api {
   getBaseUrlForAllApi();
 
   getCounsellorBranchAddress(int CounsellorID);
+
+  getSubServiceInRegisterData(int ServiceID);
 }

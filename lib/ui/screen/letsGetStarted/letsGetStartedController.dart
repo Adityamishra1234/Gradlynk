@@ -45,6 +45,12 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
       questionsToShowList.addAll(map.values.toList());
 
+      var serviceId = 1;
+      if (serviceId != 0) {
+        questionsToShowList[4] = true;
+        questionsToShowList[5] = true;
+      }
+
       ///todo
       // questionsToShowList = [true, false, true, true, true, true];
 
