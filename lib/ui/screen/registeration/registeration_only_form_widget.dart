@@ -813,6 +813,10 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
           // controller.getCareerOutComes();
         }
       }
+
+      if (controller.selectedTargetServiceId != '3') {
+        controller.selectedTargetServiceSubId = '0';
+      }
     }
     controller.update();
   }
