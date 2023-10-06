@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/field_validators.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -88,10 +89,12 @@ class CustomTextField extends StatelessWidget {
           ),
         ),
         validator: (value) {
+          FieldValidators fieldValidator = FieldValidators();
+
           if (Validator.phone == validator) {
             return getPhoneNumbervalidation(value);
           } else if (Validator.email == validator) {
-            return getEmailvaliation(value);
+            return fieldValidator.getEmailvaliation(value);
           } else if (Validator.password == validator) {
             print("password");
           } else if (Validator.notEmpty == validator) {

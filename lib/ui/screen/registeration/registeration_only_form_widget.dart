@@ -151,6 +151,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             child: CustomTextField(
+                              key: const Key('registrationNameField'),
                               fieldFontWeight: FontWeight.w400,
                               hintFontWeight: FontWeight.w500,
                               borderRadius: 10,
