@@ -46,7 +46,6 @@ import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
-import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:http/http.dart' as http;
 import '../ui/screen/mark_attendance/model/eventdocumentUpload.dart';
@@ -1393,6 +1392,7 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  @override
   allBranch2() async {
     // var url = '${Endpoints.baseUrl}${Endpoints.allBranch}';
     var url = 'https://api.sieceducation.in/api/get-all-branches-address';
@@ -2010,6 +2010,7 @@ class ApiServices extends StudentPanelBase implements api {
     }
   }
 
+  @override
   getUniversitiesByCountryStateCity(
       {required int countryId, int? stateID, int? cityID}) async {
     var endpoint = '';
@@ -2221,6 +2222,7 @@ class ApiServices extends StudentPanelBase implements api {
     return "true";
   }
 
+  @override
   getFundPlannerData(String enq_id) async {
     try {
       var response = await httpPostNullBodyWithNullData(
@@ -2383,6 +2385,7 @@ class ApiServices extends StudentPanelBase implements api {
     // TODO: implement requestACallBackPost
   }
 
+  @override
   getEventZone(String endpoint) async {
     try {
       // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';

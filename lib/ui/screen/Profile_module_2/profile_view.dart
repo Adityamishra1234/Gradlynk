@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/contact_information_in_popup_controller.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/controllers.dart/profile_main_controller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
@@ -20,9 +21,10 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
-    var controller = Get.put(ContactInformationInPopUpController());
-    var ProfileController =
-        Get.put(ProfileViewMainController(), permanent: true);
+    var controller =
+        Get.put(ContactInformationInPopUpController(), permanent: true);
+    // var ProfileController =
+    //     Get.put(ProfileViewMainController(), ;
     return WillPopScope(
         onWillPop: () async {
           Get.offAllNamed(DashBoard.routeNamed);
@@ -205,7 +207,7 @@ class ProfileView extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             print(";sadxl");
-                            ProfileController.getDailog(8, context);
+                            controller.getDailog(8, context);
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -283,25 +285,33 @@ class ProfileView extends StatelessWidget {
                             runSpacing: 15,
                             spacing: 15,
                             children: [
-                              InkWell(
-                                splashColor: ThemeConstants.lightgreycolor,
-                                onTap: () {
-                                  print(context.size!.width);
-                                  ProfileController.getDailog(0, context);
-                                },
-                                child: CustomProfileButton(
-                                  isCompleted: int.parse(controller
-                                      .profileValidationData
-                                      .validateIconForCourseInfo!),
-                                  // isCompleted: 0,
+                              if (Get.find<BaseController>()
+                                          .model1
+                                          .service_id !=
+                                      1 ||
+                                  Get.find<BaseController>()
+                                          .model1
+                                          .service_id !=
+                                      3)
+                                InkWell(
+                                  splashColor: ThemeConstants.lightgreycolor,
+                                  onTap: () {
+                                    print(context.size!.width);
+                                    controller.getDailog(0, context);
+                                  },
+                                  child: CustomProfileButton(
+                                    isCompleted: int.parse(controller
+                                        .profileValidationData
+                                        .validateIconForCourseInfo!),
+                                    // isCompleted: 0,
 
-                                  title: "Course Info",
+                                    title: "Course Info",
+                                  ),
                                 ),
-                              ),
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
-                                  ProfileController.getDailog(1, context);
+                                  controller.getDailog(1, context);
                                 },
                                 child: CustomProfileButton(
                                   isCompleted: int.parse(controller
@@ -313,7 +323,7 @@ class ProfileView extends StatelessWidget {
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
-                                  ProfileController.getDailog(2, context);
+                                  controller.getDailog(2, context);
                                 },
                                 child: CustomProfileButton(
                                   isCompleted: int.parse(controller
@@ -325,7 +335,7 @@ class ProfileView extends StatelessWidget {
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
-                                  ProfileController.getDailog(3, context);
+                                  controller.getDailog(3, context);
                                 },
                                 child: CustomProfileButton(
                                   isCompleted: int.parse(controller
@@ -334,22 +344,26 @@ class ProfileView extends StatelessWidget {
                                   title: "Language Test",
                                 ),
                               ),
-                              InkWell(
-                                splashColor: ThemeConstants.lightgreycolor,
-                                onTap: () {
-                                  ProfileController.getDailog(4, context);
-                                },
-                                child: CustomProfileButton(
-                                  isCompleted: int.parse(controller
-                                      .profileValidationData
-                                      .validateIconForOtherTest!),
-                                  title: "Qualifying Test",
+                              if (Get.find<BaseController>()
+                                      .model1
+                                      .service_id !=
+                                  1)
+                                InkWell(
+                                  splashColor: ThemeConstants.lightgreycolor,
+                                  onTap: () {
+                                    controller.getDailog(4, context);
+                                  },
+                                  child: CustomProfileButton(
+                                    isCompleted: int.parse(controller
+                                        .profileValidationData
+                                        .validateIconForOtherTest!),
+                                    title: "Qualifying Test",
+                                  ),
                                 ),
-                              ),
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
-                                  ProfileController.getDailog(5, context);
+                                  controller.getDailog(5, context);
                                 },
                                 child: CustomProfileButton(
                                   isCompleted: int.parse(controller
@@ -361,7 +375,7 @@ class ProfileView extends StatelessWidget {
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
-                                  ProfileController.getDailog(6, context);
+                                  controller.getDailog(6, context);
                                 },
                                 child: CustomProfileButton(
                                   isCompleted: int.parse(controller
@@ -373,12 +387,15 @@ class ProfileView extends StatelessWidget {
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
-                                  ProfileController.getDailog(7, context);
+                                  controller.getDailog(7, context);
                                 },
                                 child: CustomProfileButton(
-                                  isCompleted: int.parse(controller
-                                      .profileValidationData
-                                      .validateIconForRelativeInfo!),
+                                  isCompleted: int.parse(
+                                      Get.find<BaseController>()
+                                              .data
+                                              .value
+                                              .validateIconForRelativeInfo ??
+                                          "0"),
                                   title: "Relative Info",
                                 ),
                               ),

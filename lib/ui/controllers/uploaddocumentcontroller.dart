@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/commonuploaddocument.dart';
@@ -16,7 +17,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class UploadDocumentController extends GetxController {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<DropDownDocumentType> dropdownDocumentType = [];
   List<DropDownDocumentName> dropdownDocumentName = [];
   List<DropDownorganisationName> dropdownOrganization = [];
@@ -45,11 +46,16 @@ class UploadDocumentController extends GetxController {
   int is_event = 0;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getDocumentType();
-    getOrganizationName();
-    getcommondocument();
+    List<Future> futures = [
+      getDocumentType(),
+      getOrganizationName(),
+      getcommondocument()
+    ];
+
+    await Future.wait(futures);
+
     if (Get.arguments != null) {
       is_event = Get.arguments;
     }
@@ -189,11 +195,13 @@ class UploadDocumentController extends GetxController {
         if (model.status == "sucesss") {
           documentModel.add(model.dataModal!);
         }
-        getDocumentType();
-        getOrganizationName();
+        List<Future> futures = [getDocumentType(), getOrganizationName()];
+
+        await Future.wait(futures);
       } else {
-        getDocumentType();
-        getOrganizationName();
+        List<Future> futures = [getDocumentType(), getOrganizationName()];
+
+        await Future.wait(futures);
         if (is_event == 1) {
           Get.offAndToNamed(DashBoard.routeNamed);
         }
@@ -250,16 +258,17 @@ class UploadDocumentController extends GetxController {
               if (model.status == "sucesss") {
                 documentModel.add(model.dataModal!);
               }
-              getDocumentType();
-              getOrganizationName();
+              List<Future> futures = [getDocumentType(), getOrganizationName()];
+
+              await Future.wait(futures);
             }
             if (is_event == 1) {
               Get.offAndToNamed(DashBoard.routeNamed);
             }
-            update();
           }
         }
       }
+      update();
     } catch (e) {
       await getToast('Please give Storage Permission');
       await ApiServices().errorHandle(

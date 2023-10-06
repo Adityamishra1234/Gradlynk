@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/serviceAssignesmodel.dart';
@@ -6,7 +7,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class ScheduleExpertCallController extends GetxController {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<ServiceAssigneersModel> model = [];
 
   String dateSelected = "";
@@ -23,9 +24,9 @@ class ScheduleExpertCallController extends GetxController {
   RxBool loadingServiceAssigned = false.obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getServiceAssigned();
+    await getServiceAssigned();
   }
 
   getServiceAssigned() async {

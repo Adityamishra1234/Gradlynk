@@ -57,10 +57,15 @@ class WorkHistoryController extends GetxController with StateMixin {
   }
 
   @override
-  void onInit() async {
-    await getIndustries();
-    await emplyoymentType();
-    await getWorkHistoryView(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getIndustries(),
+      emplyoymentType(),
+      getWorkHistoryView(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -150,7 +155,13 @@ class WorkHistoryController extends GetxController with StateMixin {
         resetfields();
         loadingWorkUpdate.value = true;
       }
+      if (Get.find<BaseController>().data.value.validateIconForWorkHistory !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForWorkHistory = "1";
+      }
+      Get.find<BaseController>().update();
       change(null, status: RxStatus.success());
+      update();
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

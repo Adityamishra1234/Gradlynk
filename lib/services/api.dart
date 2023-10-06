@@ -74,9 +74,12 @@ abstract class api {
     String id,
     String endpoint,
   );
+  // Future<CommonUploadStatus?> uploadDocumentCommon(
+  //     file, uploadFilename, String enqId, String id,
+  //     {String orgname = ""});
   Future<CommonUploadStatus?> uploadDocumentCommon(
       file, uploadFilename, String enqId, String id,
-      {String orgname = ""});
+      {String orgname = "", int is_event = 0});
   getLogin(String? endpoint);
   getDropdownUploadDocument(String endpoint);
   getDocumentName(String endpoint);
@@ -129,6 +132,30 @@ abstract class api {
   requestACallBackPost(String endpoint);
 
   getBaseUrlForAllApi();
+  getCounsellorAddressFromId(int counsellorId);
+  counselorList(String id);
+  getFundCalculator(int enq_id, String inst_course, int is_partner,
+      int is_child, int num_of_child,
+      [int child_age1 = 0,
+      int child_age2 = 0,
+      int child_age3 = 0,
+      int child_age4 = 0]);
 
+  getFundCalculatorInit(
+    int enq_id,
+    String inst_course,
+  );
+  Future<String?> fundPlannerFileSend(
+    file,
+    uploadFilename,
+    String endpoint,
+  );
+  allTimeMarkAttandance(String baseUrl, String endpoint);
+  markAttendanceIntake(String endpoint);
+  getEventZone(String endpoint);
+  getFundPlannerData(String enq_id);
+  allBranch2();
+  getUniversitiesByCountryStateCity(
+      {required int countryId, int? stateID, int? cityID});
   getCounsellorBranchAddress(int CounsellorID);
 }

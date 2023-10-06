@@ -1,3 +1,4 @@
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/dropdownmodel.dart';
@@ -15,7 +16,7 @@ import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 
 class DashboardController extends GetxController {
   DropDownModel? dropDownModel;
-  ApiServices apiservices = ApiServices();
+  api apiservices = ApiServices();
   List<NewsAndUpdate>? newsAndUpdatelist;
   List<UpcomingEventModel>? upcomingEventlist;
   List<UpcomingHoliday>? upcomingholidayslist;
@@ -34,14 +35,16 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() async {
-    // await upcomingEvents();
-    await getTestimonials();
-    await getYoutubeVideos();
+    List<Future> futures = [
+      upcomingEvents(),
+      getTestimonials(),
+      getYoutubeVideos()
+    ];
+    await Future.wait(futures);
     if (Get.find<BaseController>().model1.id != null) {
       await Get.find<BaseController>()
           .eventZone(Get.find<BaseController>().model1.id.toString());
     }
-
     super.onInit();
   }
 
@@ -69,11 +72,9 @@ class DashboardController extends GetxController {
     if (res != null) {
       var data = List<GetAllTestimonialsModel>.from(
           res.map((e) => GetAllTestimonialsModel.fromJson(e)));
-
       testimonialsList = data;
       loadingUpcomingEvents = true.obs;
     }
-
     testimonialsLoading = false;
     update();
   }

@@ -36,6 +36,7 @@ class StudentPanel {
       this.dateOfBirth,
       this.passportAvailable,
       this.addtionalDetails,
+      this.service_id,
       // this.testDetails,
       // this.passportDetails,
       this.otherCountryOfInterest,
@@ -77,12 +78,14 @@ class StudentPanel {
   String? dateOfBirth;
   String? passportAvailable;
   List<AddtionalDetail>? addtionalDetails;
+  int? service_id;
   // TestDetails? testDetails;
   // List<PassportDetail>? passportDetails;
   List<OtherCountryOfInterest>? otherCountryOfInterest;
   // List<CourseChoice>? courseChoice;
 
   factory StudentPanel.fromJson(Map<String?, dynamic> json) => StudentPanel(
+        service_id: json['service_id'],
         student_consent: json['student_consent'],
         loginproof: json['login_proof'],
         is_block: json['is_blocked'],

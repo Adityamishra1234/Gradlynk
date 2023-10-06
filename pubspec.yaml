@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 
-version: 2.1.15+37
+version: 2.1.16+38
 
 
 environment:
@@ -103,6 +103,7 @@ dependencies:
   flutter_pin_code_fields: ^2.2.0
   pin_code_fields: ^8.0.1
   pinput: ^3.0.1
+  open_filex: ^4.3.2
 
 
 

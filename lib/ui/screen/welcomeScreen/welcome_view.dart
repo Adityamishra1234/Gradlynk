@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view_controller.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -10,7 +11,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class WelcomeView extends StatelessWidget {
   WelcomeView({super.key});
   static const routeNamed = '/WelcomeView';
-
+  var controller1 = Get.put(BaseController(), permanent: true);
   var controller = Get.put(WelcomeViewController());
 
   @override

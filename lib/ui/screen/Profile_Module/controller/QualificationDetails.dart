@@ -84,13 +84,18 @@ class QualificationDetailsController extends GetxController with StateMixin {
   static final Rx<TextEditingController> reApper = TextEditingController().obs;
 
   @override
-  void onInit() {
-    getHighestQualification();
-    getStream();
-    getCountryOfEducation();
-    getYearOfpassing();
-    getEducationStatus();
-    viewQualification(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getHighestQualification(),
+      getStream(),
+      getCountryOfEducation(),
+      getYearOfpassing(),
+      getEducationStatus(),
+      viewQualification(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -419,8 +424,18 @@ class QualificationDetailsController extends GetxController with StateMixin {
       if (res == true) {
         resetFields();
       }
+      if (Get.find<BaseController>()
+              .data
+              .value
+              .validateIconForQualificationInfo !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForQualificationInfo =
+            "1";
+      }
+      Get.find<BaseController>().update;
 
       change(null, status: RxStatus.success());
+      update();
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

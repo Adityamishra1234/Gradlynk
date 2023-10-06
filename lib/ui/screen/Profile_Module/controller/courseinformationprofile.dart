@@ -27,10 +27,15 @@ class CourseInformationProfileController extends GetxController {
   RxBool loadingViewCourseInformation = false.obs;
 
   @override
-  void onInit() {
-    getCourseLevel();
-    getCoursenarrow();
-    getCourseInformation(Get.find<BaseController>().model1.id!);
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getCourseLevel(),
+      getCoursenarrow(),
+      getCourseInformation(Get.find<BaseController>().model1.id!)
+    ];
+
+    await Future.wait(futures);
+
     super.onInit();
   }
 
@@ -138,6 +143,12 @@ class CourseInformationProfileController extends GetxController {
       var res = await apiServices.addProfileModule(
           Endpoints.baseUrl!, endpoint!, "Course Information", action!);
       loadingViewCourseInformation.value = true;
+      // Update the Base Controller for Percentage of profile
+      if (Get.find<BaseController>().data.value.validateIconForCourseInfo !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForCourseInfo = "1";
+      }
+      Get.find<BaseController>().update;
       update();
     } catch (e) {
       await ApiServices().errorHandle(

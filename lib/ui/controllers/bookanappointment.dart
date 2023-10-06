@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/bookanAppointmentCounsellorAddress.dart';
@@ -8,7 +9,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class BookAnAppointmentController extends GetxController with StateMixin {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<ServiceAssigneersModel> model = [];
 
   String dateSelected = "";
@@ -28,10 +29,9 @@ class BookAnAppointmentController extends GetxController with StateMixin {
 
   @override
   void onInit() async {
-    change(null, status: RxStatus.loading());
-
-    await getServiceAssigned();
-    await getBranchData2();
+    // change(null, status: RxStatus.loading());
+    List<Future> futures = [await getServiceAssigned(), await getBranchData2()];
+    await Future.wait(futures);
     change(null, status: RxStatus.success());
     super.onInit();
   }

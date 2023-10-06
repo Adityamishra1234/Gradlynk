@@ -50,10 +50,15 @@ class PassportController extends GetxController with StateMixin {
   static final passportNumber = TextEditingController();
 
   @override
-  void onInit() {
-    getPassPortDetail(Get.find<BaseController>().model1.id.toString());
-    getCountry();
-    getPlaceOfIssue();
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getPassPortDetail(Get.find<BaseController>().model1.id.toString()),
+      getCountry(),
+      getPlaceOfIssue(),
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -63,8 +68,12 @@ class PassportController extends GetxController with StateMixin {
     var res = await apiServices.updatePassport(
         passportModel, Endpoints.updatepassPostDetails! + enqId!);
     updateData = true;
-
+    if (Get.find<BaseController>().data.value.validateIconForPassport != "1") {
+      Get.find<BaseController>().data.value.validateIconForPassport = "1";
+    }
+    Get.find<BaseController>().update();
     change(null, status: RxStatus.success());
+    update();
     return true;
   }
 

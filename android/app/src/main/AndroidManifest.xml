@@ -60,14 +60,14 @@
             </intent-filter>
         </activity>
 
-        <provider
-             android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
-             android:authorities="${applicationId}.flutter_downloader.provider"
-             android:exported="false"
-             android:grantUriPermissions="true">
-        <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/provider_paths"/>
+            <provider android:name="androidx.core.content.FileProvider" 
+                  android:authorities="${applicationId}.fileProvider"
+                  android:exported="false"
+                  android:grantUriPermissions="true"
+                  tools:replace="android:authorities">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                       android:resource="@xml/filepaths"
+                       tools:replace="android:resource" />
         </provider>
         <!-- Begin FlutterDownloader customization -->
 <!-- disable default Initializer -->

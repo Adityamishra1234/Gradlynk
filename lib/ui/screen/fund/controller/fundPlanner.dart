@@ -75,11 +75,16 @@ class FundPlannerController extends GetxController with StateMixin {
 
   @override
   Future<void> onInit() async {
-    await getSourceOfIncome();
-    await getOccupation();
-    await getFundType();
-    await getCountry();
-    await getFundPlannerData();
+    List<Future> futures = [
+      getSourceOfIncome(),
+      getOccupation(),
+      getFundType(),
+      getCountry(),
+      getFundPlannerData()
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }

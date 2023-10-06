@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
@@ -12,12 +13,12 @@ import 'package:studentpanel/utils/snackbarconstants.dart';
 class ApplicationCompleteDetailsController extends GetxController {
   RxBool loadingApplicationCompleteDetails = false.obs;
   RxBool loadingUploadDocument = false.obs;
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   ApplicationDetailModel model = ApplicationDetailModel();
 
   @override
-  void onInit() {
-    getApplicationDetailComplete(Get.arguments.toString());
+  Future<void> onInit() async {
+    await getApplicationDetailComplete(Get.arguments.toString());
   }
 
 //Function

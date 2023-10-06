@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 
 class CompleteCourseDetailController extends GetxController with StateMixin {
@@ -22,7 +23,7 @@ class CompleteCourseDetailController extends GetxController with StateMixin {
 
   // Model Create
 
-  ApiServices apiservices = ApiServices();
+  api apiservices = ApiServices();
 
   setIndex(int data) {
     index.value = data;

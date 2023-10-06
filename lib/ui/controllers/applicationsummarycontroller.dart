@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/applicationdetailmodel.dart';
@@ -19,7 +20,7 @@ class ApplicationSummaryController extends GetxController {
   List stageNameList = [];
 
   // Model
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<ApplicationSummaryModel> applicationSummaryModel = [];
 
   List<ApplicationSummaryModel> searchedList = [];
@@ -29,9 +30,13 @@ class ApplicationSummaryController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    await getapplicationStatus();
-    await getapplicationStage();
-    await getApplicationDetail(Get.find<BaseController>().model1.id.toString());
+    List<Future> futures = [
+      getapplicationStatus(),
+      getapplicationStage(),
+      getApplicationDetail(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
 
     print(applicationSummaryModel.length);
     searchedList = applicationSummaryModel;

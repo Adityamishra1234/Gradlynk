@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class Endpoints {
-  // static String? baseUrl = "https://api.sieceducation.in/api/";
+  static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
@@ -10,7 +10,7 @@ class Endpoints {
 
   // static String? baseUrl_mark_attendance = "http://14.97.86.202:204/api/";
 
-  static String? baseUrl = "http://164.52.208.95:99/api/";
+  // static String? baseUrl = "http://164.52.208.95:99/api/";
 
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
@@ -350,21 +350,3 @@ String letsGetStartedSendData(
   return 'lets-get-started?enq_id=${enqId}&consent_qualifactionData=${consentQualifactionData}&consent_for_english=${consentForEnglishtest}&consent_for_english_value=${consentForEnglishValue}&consent_for_english_over_all=${consentForEnglishOverAll}&consent_for_LevelToStudy=${consentForLevelToStudy}&consent_for_course_broad_fields=${selectedBroadField}';
   // return '';
 }
-
-// api/which-consent-form?enq_id=182058
-// api/lets-get-started?enq_id=182058&consent_qualifactionData=7&consent_for_english=1&consent_for_english_value=TOEFL&consent_for_english_over_all=2&consent_for_LevelToStudy=3&consent_for_course_broad_fields=7
-
-// 7 12th
-// 4 Bachelor
-// 3 Master
-// 6  Diploma
-
-// PTE
-// TOEFL
-// Duolingo
-// Cambridge
-// IELTS
-
-// 4:Undergraduate
-// 3:Postgraduate
-// 6:Diploma

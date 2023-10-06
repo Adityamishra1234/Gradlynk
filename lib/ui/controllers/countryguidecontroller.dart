@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/countryGuide.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 
 class CountryGuideController extends GetxController {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   List<CountryGuideModel> model = [];
   List countrylist = [];
   String? countrySelected;
@@ -14,8 +15,8 @@ class CountryGuideController extends GetxController {
   RxBool loadingCountryGuide = false.obs;
 
   @override
-  void onInit() {
-    getCountryGuideModel();
+  Future<void> onInit() async {
+    await getCountryGuideModel();
   }
 
   getCountryGuideModel() async {

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/careerOutcomeModel.dart';
@@ -50,7 +51,7 @@ class CourseSearchController extends GetxController with StateMixin {
 
 // Model Create
   List<CompleteCourseDetail> completeCourseDetail = [];
-  ApiServices apiservices = ApiServices();
+  api apiservices = ApiServices();
   CourseModelFilter courseModelFilter = CourseModelFilter();
   List<CourseSearchModel> courseSearchModel = [];
   CourseSearchModel courseSearchModelCompare1 = CourseSearchModel();
@@ -69,12 +70,16 @@ class CourseSearchController extends GetxController with StateMixin {
   RxBool loadingCourseShortList = false.obs;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
-    getCountry();
-    getCourseLevel();
-    getIndustries();
-    getCourseBoardField();
+    List<Future> futures = [
+      getCountry(),
+      getCourseLevel(),
+      getIndustries(),
+      getCourseBoardField()
+    ];
+
+    await Future.wait(futures);
   }
 
   List industriesList = [];

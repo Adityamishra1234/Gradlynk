@@ -47,7 +47,7 @@ class _UploadDocumentState extends State<UploadDocument> {
         body: WillPopScope(
           onWillPop: () async {
             if (widget.is_event == true) {}
-            return await true;
+            return true;
           },
           child: GetBuilder<UploadDocumentController>(builder: (_) {
             documentList(_.documentModel, context);

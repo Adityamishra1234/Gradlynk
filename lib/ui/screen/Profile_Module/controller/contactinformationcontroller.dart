@@ -76,10 +76,11 @@ class ContactInformationController extends GetxController with StateMixin {
   GlobalKey<FormState> profilePageKey = GlobalKey<FormState>();
 
   @override
-  void onInit() async {
-    await getCountry();
-    await getMartialStatus();
-    await profiledetail();
+  Future<void> onInit() async {
+    List<Future> futures = [getCountry(), getMartialStatus(), profiledetail()];
+
+    await Future.wait(futures);
+
     super.onInit();
     change(null, status: RxStatus.success());
   }
@@ -278,7 +279,13 @@ class ContactInformationController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     var res = await apiServices.personalInformationDataUpdate(
         personalInformationModel, Endpoints.personalDetailUpdate);
+    if (Get.find<BaseController>().data.value.validateIconForPersonalInfo !=
+        "1") {
+      Get.find<BaseController>().data.value.validateIconForPersonalInfo = "1";
+    }
+    Get.find<BaseController>().update();
     change(null, status: RxStatus.success());
+    update();
     return res;
   }
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:open_filex/open_filex.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomDownloadButton extends StatefulWidget {
   final String path;
@@ -98,18 +101,18 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
 
     bool dirDownloadExists = true;
     String directory;
-    if (io.Platform.isIOS) {
-      directory = (await getApplicationDocumentsDirectory()).path;
-    } else {
-      directory = "/storage/emulated/0/Download/";
+    // if (io.Platform.isIOS) {
+    directory = (await getApplicationDocumentsDirectory()).path;
+    // } else {
+    //   directory = "/storage/emulated/0/Download/";
 
-      dirDownloadExists = await io.Directory(directory).exists();
-      if (dirDownloadExists) {
-        directory = "/storage/emulated/0/Download/";
-      } else {
-        directory = "/storage/emulated/0/Downloads/";
-      }
-    }
+    //   dirDownloadExists = await io.Directory(directory).exists();
+    //   if (dirDownloadExists) {
+    //     directory = "/storage/emulated/0/Download/";
+    //   } else {
+    //     directory = "/storage/emulated/0/Downloads/";
+    //   }
+    // }
 
     String basenames = path.basename(url);
     final finalPath = path.join(directory, basenames);
@@ -119,18 +122,17 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     var sdkVersion = androidInfo.version.sdkInt;
 
-    print(sdkVersion);
-
-// 33=> d
-// 30 less=>status
     if (sdkVersion > 30) {
       if (d.isGranted) {
         if (y.isGranted) {
           await FileDownloader.downloadFile(
               url: url,
               name: basenames,
-              onDownloadCompleted: (String paths) {
+              onDownloadCompleted: (String paths) async {
+                final directory = await getApplicationDocumentsDirectory();
                 var newpath = paths;
+                // await openLocalFile(directory.toString());
+                // await OpenFilex.open(newpath);
                 NotificationService.showNotification(
                     title: 'Downlaod Completed',
                     body: 'Click to Open',
@@ -144,7 +146,7 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
         }
       } else {
         getToast(SnackBarConstants.flutterStroageToast);
-        Future.delayed(const Duration(seconds: 2))
+        Future.delayed(const Duration(seconds: 1))
             .then((value) => openAppSettings());
       }
     } else {
@@ -153,8 +155,11 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
           await FileDownloader.downloadFile(
               url: url,
               name: basenames,
-              onDownloadCompleted: (String paths) {
+              onDownloadCompleted: (String paths) async {
                 var newpath = paths;
+
+                // await openLocalFile(paths);
+
                 NotificationService.showNotification(
                     title: 'Downlaod Completed',
                     body: 'Click to Open',
@@ -196,6 +201,25 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
     // );
 
     // }
+  }
+
+  Future<void> openLocalFile(String filePath) async {
+    // Create a Uri object from the file path.
+    Uri uri = Uri.file(filePath);
+
+    // Check if the file exists.
+    if (!await File(filePath).exists()) {
+      // Throw an error if the file does not exist.
+      throw Exception('File does not exist: $filePath');
+    }
+
+    // Launch the file.
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      // Throw an error if the file cannot be launched.
+      throw Exception('Could not launch file: $filePath');
+    }
   }
 
   Future<void> downloadMainFunction() async {

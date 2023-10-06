@@ -84,11 +84,16 @@ class TravelHistoryController extends GetxController with StateMixin {
   }
 
   @override
-  void onInit() {
-    getTravelStatus();
-    getCountry();
-    getTypeOfVisa();
-    getVisaTravelHistory(Get.find<BaseController>().model1.id.toString());
+  Future<void> onInit() async {
+    List<Future> futures = [
+      getTravelStatus(),
+      getCountry(),
+      getTypeOfVisa(),
+      getVisaTravelHistory(Get.find<BaseController>().model1.id.toString())
+    ];
+
+    await Future.wait(futures);
+
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -248,7 +253,14 @@ class TravelHistoryController extends GetxController with StateMixin {
       if (res == true) {
         resetfields();
       }
+      if (Get.find<BaseController>().data.value.validateIconForTravelHistory !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForTravelHistory =
+            "1";
+      }
+      Get.find<BaseController>().update;
       change(null, status: RxStatus.success());
+      update();
     } catch (e) {
       await ApiServices().errorHandle(
         Get.find<BaseController>().model1.id.toString(),

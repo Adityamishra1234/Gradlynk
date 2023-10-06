@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
+import 'package:studentpanel/services/baseservice.dart';
 import 'package:studentpanel/ui/models/carouselListModel.dart';
 import 'package:studentpanel/ui/models/notificationmodel.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
@@ -18,7 +20,7 @@ import 'package:new_app_version_alert/new_app_version_alert.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 
 class BaseController extends GetxController with StateMixin {
-  ApiServices apiServices = ApiServices();
+  api apiServices = ApiServices();
   StudentPanel model1 = StudentPanel();
   RxBool loadingStudentPanelData1 = false.obs;
   PersonalInformationModel personalModal = PersonalInformationModel();
@@ -38,10 +40,11 @@ class BaseController extends GetxController with StateMixin {
   void onInit() async {
     super.onInit();
 
-    await profiledetail();
-    await caraouselData();
-    await profileDataValidator();
-
+    List<Future> futures = [
+      profiledetail(),
+      caraouselData(),
+    ];
+    await Future.wait(futures);
     change(null, status: RxStatus.success());
   }
 
@@ -56,15 +59,14 @@ class BaseController extends GetxController with StateMixin {
     try {
       loadinValidatorDataForDashboard = true;
       update();
-      // print(Get.find<BaseController>().model1.id!);
+
       var x = await apiServices.profileDataValidation(model1.id!);
       var z = ProfileDataValidatorModel.fromJson(x);
       data.value = z;
       loadinValidatorDataForDashboard = false;
       return z;
-      update();
     } on Exception catch (e) {
-      await apiServices.errorHandle(
+      await StudentPanelBase().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
@@ -120,24 +122,27 @@ class BaseController extends GetxController with StateMixin {
               countryid.add(model1.countryID!);
             }
           }
-
-          await checkShowLetsGetStarted();
-          await eventZone(model1.id.toString());
-          await getFundPlannerData();
+          List<Future> futures = [
+            checkShowLetsGetStarted(),
+            eventZone(model1.id.toString()),
+            getFundPlannerData(),
+            profileDataValidator(),
+          ];
+          await Future.wait(futures);
           loadingStudentPanelData1 = true.obs;
 
           update();
         } else {
-          Get.toNamed(LoginCopy.routeNamed);
+          Get.offNamed(LoginCopy.routeNamed);
           sharedPreferences.clear();
         }
       } else {
-        Get.toNamed(Login.routeNamed);
+        Get.offNamed(LoginCopy.routeNamed);
       }
 
       getNotificatin(model1.id.toString());
     } on Exception catch (e) {
-      await apiServices.errorHandle(
+      await StudentPanelBase().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
         e.toString().split(":")[0].toString(),
@@ -252,5 +257,47 @@ class BaseController extends GetxController with StateMixin {
         StackTrace.current.toString(),
       );
     }
+  }
+
+  calculateProfilePercentage() {
+    var percentage = 0.0;
+    var singlepartCompletePercentage = 0.0;
+
+    if (model1.service_id == 1) {
+      singlepartCompletePercentage = 14.25;
+    } else if (model1.service_id == 2) {
+      singlepartCompletePercentage = 11.11;
+    } else if (model1.service_id == 3) {
+      singlepartCompletePercentage = 12.25;
+    }
+    if (data.value.validateIconForCourseInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForQualificationInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForWorkHistory == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForEnglishTest == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForOtherTest == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForPassport == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForTravelHistory == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForRelativeInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForPersonalInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    data.value.totalPercentageComplete = percentage.toInt();
+    update();
   }
 }
