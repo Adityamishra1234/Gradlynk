@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/data/repositories/registration_repository_impl.dart';
+import 'package:studentpanel/domain/repository/registration_repository.dart';
+import 'package:studentpanel/domain/usecase/registration_usescases.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
 import 'package:studentpanel/ui/models/loginmodel.dart';
@@ -26,6 +29,10 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
   void onInit() async {
     super.onInit();
+
+    // var registrationRepository = RegistrationRepositoryImpl();
+    // await RegistrationUseCasesImpl(registrationRepository)
+    //     .getSubServiceDropDownData(ServiceID: 3);
     await getSubServiceDropDownData(3);
     await getNearestSiecBranch();
     await getLeadSources();
