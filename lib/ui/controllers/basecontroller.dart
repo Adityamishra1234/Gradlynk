@@ -92,6 +92,7 @@ class BaseController extends GetxController with StateMixin {
   }
 
   profiledetail() async {
+    print("object");
     try {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();

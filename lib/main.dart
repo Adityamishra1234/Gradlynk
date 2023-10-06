@@ -121,7 +121,8 @@ class _MyAppState extends State<MyApp> {
     String phonenumber = sharedPreferences.getString("phonenumber").toString();
     print(phonenumber);
     if (getNUllChecker(phonenumber) == false) {
-      var controller = Get.put(BaseController());
+      print("object");
+      var controller = Get.put(BaseController(), permanent: true);
     }
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
