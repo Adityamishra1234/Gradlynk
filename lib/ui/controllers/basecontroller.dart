@@ -258,4 +258,46 @@ class BaseController extends GetxController with StateMixin {
       );
     }
   }
+
+  calculateProfilePercentage() {
+    var percentage = 0.0;
+    var singlepartCompletePercentage = 0.0;
+
+    if (model1.service_id == 1) {
+      singlepartCompletePercentage = 14.25;
+    } else if (model1.service_id == 2) {
+      singlepartCompletePercentage = 11.11;
+    } else if (model1.service_id == 3) {
+      singlepartCompletePercentage = 12.25;
+    }
+    if (data.value.validateIconForCourseInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForQualificationInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForWorkHistory == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForEnglishTest == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForOtherTest == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForPassport == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForTravelHistory == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForRelativeInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    if (data.value.validateIconForPersonalInfo == "1") {
+      percentage = percentage + singlepartCompletePercentage;
+    }
+    data.value.totalPercentageComplete = percentage.toInt();
+    update();
+  }
 }

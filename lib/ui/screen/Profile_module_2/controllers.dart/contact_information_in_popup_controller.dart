@@ -255,6 +255,16 @@ class ContactInformationInPopUpController extends GetxController
   }
 
   getDailog(int number, BuildContext context) {
+// Services id Modification
+
+    if ((number == 0) &&
+        (Get.find<BaseController>().model1.service_id == 1 ||
+            Get.find<BaseController>().model1.service_id == 3)) {
+      number++;
+    }
+    if ((number == 4) && Get.find<BaseController>().model1.service_id == 3) {
+      number++;
+    }
     switch (number) {
       case 0:
         return showAnimatedDialog(
@@ -263,6 +273,7 @@ class ContactInformationInPopUpController extends GetxController
             context: context,
             builder: (_) => CustomProfileDialogue(
                 backButton: () {
+                  Get.find<BaseController>().calculateProfilePercentage();
                   update();
                   Get.back();
                 },
@@ -276,6 +287,7 @@ class ContactInformationInPopUpController extends GetxController
                   // await Future.delayed(const Duration(milliseconds: 200));
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
+                  Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(1, context);
                 },
                 child: CourseInformationCopy()));
@@ -287,6 +299,7 @@ class ContactInformationInPopUpController extends GetxController
             context: context,
             builder: (_) => CustomProfileDialogue(
                 backButton: () {
+                  Get.find<BaseController>().calculateProfilePercentage();
                   update();
                   Get.back();
                 },
@@ -314,6 +327,7 @@ class ContactInformationInPopUpController extends GetxController
                   Get.back();
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
+                  Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(2, context);
                 },
                 child: QualificationDetailsCopy()));
@@ -324,6 +338,7 @@ class ContactInformationInPopUpController extends GetxController
             context: context,
             builder: (_) => CustomProfileDialogue(
                 backButton: () {
+                  Get.find<BaseController>().calculateProfilePercentage();
                   update();
                   Get.back();
                 },
@@ -346,6 +361,7 @@ class ContactInformationInPopUpController extends GetxController
                   Get.back();
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
+                  Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(3, context);
                 },
                 child: WorkHistoryCopy()));
@@ -360,6 +376,7 @@ class ContactInformationInPopUpController extends GetxController
                   builder: (thisLowerContext, innerSetState) {
                 return CustomProfileDialogue(
                     backButton: () {
+                      Get.find<BaseController>().calculateProfilePercentage();
                       update();
                       Get.back();
                     },
@@ -378,6 +395,7 @@ class ContactInformationInPopUpController extends GetxController
                         Get.back();
                         Get.find<ContactInformationInPopUpController>()
                             .profileDataValidator();
+                        Get.find<BaseController>().calculateProfilePercentage();
                         getDailog(4, context);
                       }
                     },
@@ -397,6 +415,7 @@ class ContactInformationInPopUpController extends GetxController
                   builder: (thisLowerContext, innerSetState) {
                 return CustomProfileDialogue(
                     backButton: () {
+                      Get.find<BaseController>().calculateProfilePercentage();
                       update();
                       Get.back();
                     },
@@ -415,6 +434,7 @@ class ContactInformationInPopUpController extends GetxController
                         Get.back();
                         Get.find<ContactInformationInPopUpController>()
                             .profileDataValidator();
+                        Get.find<BaseController>().calculateProfilePercentage();
                         getDailog(5, context);
                       }
                     },
@@ -435,6 +455,7 @@ class ContactInformationInPopUpController extends GetxController
                   builder: (thisLowerContext, innerSetState) {
                 return CustomProfileDialogue(
                     backButton: () {
+                      Get.find<BaseController>().calculateProfilePercentage();
                       update();
                       Get.back();
                     },
@@ -455,6 +476,7 @@ class ContactInformationInPopUpController extends GetxController
                         Get.back();
                         Get.find<ContactInformationInPopUpController>()
                             .profileDataValidator();
+                        Get.find<BaseController>().calculateProfilePercentage();
                         getDailog(6, context);
                       }
                     },
@@ -471,6 +493,7 @@ class ContactInformationInPopUpController extends GetxController
             context: context,
             builder: (_) => CustomProfileDialogue(
                 backButton: () {
+                  Get.find<BaseController>().calculateProfilePercentage();
                   update();
                   Get.back();
                 },
@@ -494,6 +517,7 @@ class ContactInformationInPopUpController extends GetxController
                   Get.back();
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
+                  Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(7, context);
                 },
                 child: TravingHistory()));
@@ -505,7 +529,7 @@ class ContactInformationInPopUpController extends GetxController
             context: context,
             builder: (_) => CustomProfileDialogue(
                 backButton: () {
-                  Get.find<BaseController>().update();
+                  Get.find<BaseController>().calculateProfilePercentage();
 
                   update();
                   Get.back();
@@ -533,6 +557,7 @@ class ContactInformationInPopUpController extends GetxController
                 onTap: () {
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
+                  Get.find<BaseController>().calculateProfilePercentage();
                   Get.back();
                 },
                 child: RelativeInformation()));
@@ -548,6 +573,7 @@ class ContactInformationInPopUpController extends GetxController
                   builder: (thisLowerContext, innerSetState) {
                 return CustomProfileDialogue(
                     backButton: () {
+                      Get.find<BaseController>().calculateProfilePercentage();
                       update();
                       Get.back();
                     },
@@ -564,6 +590,7 @@ class ContactInformationInPopUpController extends GetxController
                           .saveButton();
                       if (res == true) {
                         Get.back();
+                        Get.find<BaseController>().calculateProfilePercentage();
                         getDailog(0, context);
                       }
                       // Get.back();

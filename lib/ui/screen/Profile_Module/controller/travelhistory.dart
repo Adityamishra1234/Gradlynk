@@ -257,8 +257,6 @@ class TravelHistoryController extends GetxController with StateMixin {
           "1") {
         Get.find<BaseController>().data.value.validateIconForTravelHistory =
             "1";
-        Get.find<BaseController>().data.value.totalPercentageComplete =
-            Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
       }
       Get.find<BaseController>().update;
       change(null, status: RxStatus.success());

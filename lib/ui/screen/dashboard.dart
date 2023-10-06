@@ -694,20 +694,6 @@ class _DashBoardState extends State<DashBoard> {
                                                 // Create profile
                                                 InkWell(
                                                   onTap: () async {
-                                                    // showAnimatedDialog(
-                                                    //     animationType:
-                                                    //         DialogTransitionType
-                                                    //             .slideFromBottomFade,
-                                                    //     curve: Curves.easeInOutQuart,
-                                                    //     context: context,
-                                                    //     builder: (_) =>
-                                                    //         BookAnAppointment());
-                                                    // getBookAnAppointment(context);
-                                                    // getDailogForAgree(context);
-
-                                                    // Get.to(LetsGetStartedMainView());
-                                                    // Get.toNamed(EventDocumentUpload
-                                                    //     .routeNamed);
                                                     Get.toNamed(
                                                         ProfileView.routeNamed);
                                                   },
@@ -888,89 +874,95 @@ class _DashBoardState extends State<DashBoard> {
                                                   ),
                                                 ),
                                                 //Course Search
-                                                InkWell(
-                                                  onTap: () {
-                                                    Get.toNamed(CourseSearch2
-                                                        .routeNamed);
-                                                  },
-                                                  child: Column(
-                                                    children: [
-                                                      Showcase(
-                                                        descTextStyle: TextStyle(
-                                                            color:
-                                                                ThemeConstants
-                                                                    .whitecolor,
-                                                            fontSize: 18),
-                                                        tooltipBackgroundColor:
-                                                            ThemeConstants
-                                                                .bluecolor,
-                                                        overlayColor:
-                                                            const Color
-                                                                .fromARGB(
-                                                                183, 0, 0, 0),
-                                                        overlayOpacity: 0.8,
-                                                        tooltipPadding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 5,
-                                                                right: 5,
-                                                                top: 10,
-                                                                bottom: 10),
-                                                        targetBorderRadius:
-                                                            BorderRadius
-                                                                .circular(18.0),
-                                                        key: _four,
-                                                        description:
-                                                            "Search Course assists you in searching your desired course across the globe.",
-                                                        child: Container(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .all(10),
-                                                            constraints:
-                                                                const BoxConstraints(
-                                                                    maxHeight:
-                                                                        70,
-                                                                    maxWidth:
-                                                                        70),
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                                    // border: Border.all(
-                                                                    //     width: 1.2,
-                                                                    //     color: const Color(
-                                                                    //         0xFFF16660)),
-                                                                    color: Color(
-                                                                        0xFFFEF0F0),
-                                                                    borderRadius:
-                                                                        BorderRadius.all(Radius.circular(
-                                                                            20))),
-                                                            child: svgImage(
-                                                                "course",
-                                                                const Color(
-                                                                    0xFFF16660),
-                                                                80,
-                                                                80)),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 10),
-                                                        child: SizedBox(
-                                                          width: 80,
-                                                          child:
-                                                              CustomAutoSizeTextMontserrat(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize: 13,
-                                                            text:
-                                                                "Search Course",
-                                                            textalingCentre:
-                                                                true,
-                                                          ),
+                                                if (controller.meetingZoneStatus
+                                                        .searchCourse ==
+                                                    true)
+                                                  InkWell(
+                                                    onTap: () {
+                                                      Get.toNamed(CourseSearch2
+                                                          .routeNamed);
+                                                    },
+                                                    child: Column(
+                                                      children: [
+                                                        Showcase(
+                                                          descTextStyle: TextStyle(
+                                                              color:
+                                                                  ThemeConstants
+                                                                      .whitecolor,
+                                                              fontSize: 18),
+                                                          tooltipBackgroundColor:
+                                                              ThemeConstants
+                                                                  .bluecolor,
+                                                          overlayColor:
+                                                              const Color
+                                                                  .fromARGB(
+                                                                  183, 0, 0, 0),
+                                                          overlayOpacity: 0.8,
+                                                          tooltipPadding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 5,
+                                                                  right: 5,
+                                                                  top: 10,
+                                                                  bottom: 10),
+                                                          targetBorderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      18.0),
+                                                          key: _four,
+                                                          description:
+                                                              "Search Course assists you in searching your desired course across the globe.",
+                                                          child: Container(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(10),
+                                                              constraints:
+                                                                  const BoxConstraints(
+                                                                      maxHeight:
+                                                                          70,
+                                                                      maxWidth:
+                                                                          70),
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                      // border: Border.all(
+                                                                      //     width: 1.2,
+                                                                      //     color: const Color(
+                                                                      //         0xFFF16660)),
+                                                                      color: Color(
+                                                                          0xFFFEF0F0),
+                                                                      borderRadius:
+                                                                          BorderRadius.all(Radius.circular(
+                                                                              20))),
+                                                              child: svgImage(
+                                                                  "course",
+                                                                  const Color(
+                                                                      0xFFF16660),
+                                                                  80,
+                                                                  80)),
                                                         ),
-                                                      )
-                                                    ],
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  top: 10),
+                                                          child: SizedBox(
+                                                            width: 80,
+                                                            child:
+                                                                CustomAutoSizeTextMontserrat(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize: 13,
+                                                              text:
+                                                                  "Search Course",
+                                                              textalingCentre:
+                                                                  true,
+                                                            ),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
                                                 // Track Application
                                                 if (controller.meetingZoneStatus
                                                         .trackApplication ==
@@ -1121,12 +1113,14 @@ class _DashBoardState extends State<DashBoard> {
                                                   horizontal: 15, vertical: 10),
                                               child: DashboardEventSection(),
                                             ),
-
-                                          const Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 15, vertical: 10),
-                                            child: StageProgress(),
-                                          ),
+                                          if (controller.meetingZoneStatus
+                                                  .journeyItinerary ==
+                                              true)
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 15, vertical: 10),
+                                              child: StageProgress(),
+                                            ),
 
                                           TestiMonial(
                                             testimonialsList:

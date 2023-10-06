@@ -282,8 +282,6 @@ class ContactInformationController extends GetxController with StateMixin {
     if (Get.find<BaseController>().data.value.validateIconForPersonalInfo !=
         "1") {
       Get.find<BaseController>().data.value.validateIconForPersonalInfo = "1";
-      Get.find<BaseController>().data.value.totalPercentageComplete =
-          Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
     }
     Get.find<BaseController>().update();
     change(null, status: RxStatus.success());

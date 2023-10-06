@@ -147,8 +147,6 @@ class CourseInformationProfileController extends GetxController {
       if (Get.find<BaseController>().data.value.validateIconForCourseInfo !=
           "1") {
         Get.find<BaseController>().data.value.validateIconForCourseInfo = "1";
-        Get.find<BaseController>().data.value.totalPercentageComplete =
-            Get.find<BaseController>().data.value.totalPercentageComplete! + 11;
       }
       Get.find<BaseController>().update;
       update();

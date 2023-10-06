@@ -285,21 +285,29 @@ class ProfileView extends StatelessWidget {
                             runSpacing: 15,
                             spacing: 15,
                             children: [
-                              InkWell(
-                                splashColor: ThemeConstants.lightgreycolor,
-                                onTap: () {
-                                  print(context.size!.width);
-                                  controller.getDailog(0, context);
-                                },
-                                child: CustomProfileButton(
-                                  isCompleted: int.parse(controller
-                                      .profileValidationData
-                                      .validateIconForCourseInfo!),
-                                  // isCompleted: 0,
+                              if (Get.find<BaseController>()
+                                          .model1
+                                          .service_id !=
+                                      1 ||
+                                  Get.find<BaseController>()
+                                          .model1
+                                          .service_id !=
+                                      3)
+                                InkWell(
+                                  splashColor: ThemeConstants.lightgreycolor,
+                                  onTap: () {
+                                    print(context.size!.width);
+                                    controller.getDailog(0, context);
+                                  },
+                                  child: CustomProfileButton(
+                                    isCompleted: int.parse(controller
+                                        .profileValidationData
+                                        .validateIconForCourseInfo!),
+                                    // isCompleted: 0,
 
-                                  title: "Course Info",
+                                    title: "Course Info",
+                                  ),
                                 ),
-                              ),
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
@@ -336,18 +344,22 @@ class ProfileView extends StatelessWidget {
                                   title: "Language Test",
                                 ),
                               ),
-                              InkWell(
-                                splashColor: ThemeConstants.lightgreycolor,
-                                onTap: () {
-                                  controller.getDailog(4, context);
-                                },
-                                child: CustomProfileButton(
-                                  isCompleted: int.parse(controller
-                                      .profileValidationData
-                                      .validateIconForOtherTest!),
-                                  title: "Qualifying Test",
+                              if (Get.find<BaseController>()
+                                      .model1
+                                      .service_id !=
+                                  1)
+                                InkWell(
+                                  splashColor: ThemeConstants.lightgreycolor,
+                                  onTap: () {
+                                    controller.getDailog(4, context);
+                                  },
+                                  child: CustomProfileButton(
+                                    isCompleted: int.parse(controller
+                                        .profileValidationData
+                                        .validateIconForOtherTest!),
+                                    title: "Qualifying Test",
+                                  ),
                                 ),
-                              ),
                               InkWell(
                                 splashColor: ThemeConstants.lightgreycolor,
                                 onTap: () {
