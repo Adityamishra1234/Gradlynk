@@ -133,4 +133,6 @@ abstract class api {
   getCounsellorBranchAddress(int CounsellorID);
 
   getSubServiceInRegisterData(int ServiceID);
+
+  getEventHistoryList(int userID);
 }

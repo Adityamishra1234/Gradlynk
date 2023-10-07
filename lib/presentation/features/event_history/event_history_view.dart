@@ -22,6 +22,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
   @override
   void initState() {
     eventHistoryBloc = EventHistoryBloc();
+    eventHistoryBloc.add(EventHistoryInitialEvent());
     // TODO: implement initState
     super.initState();
   }
@@ -54,34 +55,26 @@ class _EventHistoryViewState extends State<EventHistoryView> {
                       height: 50,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   CustomAutoSizeTextMontserrat(text: 'Event History'),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  SizedBox(
-                    height: 30,
-                    width: MediaQuery.sizeOf(context).width - 20,
-                    child: customDropDownPlanFund(
-                      model: const [
-                        'ee',
-                        'dede',
-                        'ee',
-                        'dede' 'ee',
-                        'dede' 'ee',
-                        'dede' 'ee',
-                        'dede' 'ee',
-                        'dede'
-                      ],
-                      callback: (value) {
-                        // controller.selectedRelationship =
-                        //     controller.relationShip[value];
-                        // controller.update();
-                      },
+                  if (state is EventHistoryFetchedState)
+                    SizedBox(
+                      height: 30,
+                      width: MediaQuery.sizeOf(context).width - 20,
+                      child: customDropDownPlanFund(
+                        model: state.nameListOfEventHistory,
+                        callback: (value) {
+                          // controller.selectedRelationship =
+                          //     controller.relationShip[value];
+                          // controller.update();
+                        },
+                      ),
                     ),
-                  ),
                   const SizedBox(
                     height: 40,
                   ),

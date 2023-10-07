@@ -191,6 +191,13 @@ class Endpoints {
   static String? documentNotSubmit = "show-menu?enq_id=";
 
   static String? subServiceInRegister = "get-sub-service?service_id=";
+
+  static String? eventHistoryList = 'event-history?enq_id=';
+}
+
+String getEventTrackingDetails(
+    {required String userID, required String eventID}) {
+  return "get-event-tracking-details?enq_id=$userID&event_id=$eventID";
 }
 
 documentNotSubmit(String enq_id, String campaign_id) {

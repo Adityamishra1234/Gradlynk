@@ -8,3 +8,8 @@ class EventHistoryInitial extends EventHistoryState {}
 class EventHistoryActionState extends EventHistoryState {}
 
 class EventHistoryChangeEventState extends EventHistoryState {}
+
+class EventHistoryFetchedState extends EventHistoryState {
+  final List<String> nameListOfEventHistory;
+  EventHistoryFetchedState(this.nameListOfEventHistory);
+}
