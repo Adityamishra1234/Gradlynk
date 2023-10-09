@@ -28,7 +28,8 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
 
   eventHistoryInitialEvent(EventHistoryInitialEvent event, emit) async {
     emit(state.copyWith(status: Status.loaded));
-    var res = await api.getEventHistoryList(325127);
+    var res =
+        await api.getEventHistoryList(Get.find<BaseController>().model1.id!);
 
     int dataList = res['data'].length;
     List listOfEventAttended = [];
@@ -85,24 +86,24 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
 
     var res = await api.getEventHistoryData(endPoint);
 
-    int dataListLength = res['student_time_line'].length;
-
     List<dynamic> rawStudentData = res['student_time_line'];
+
+    int dataListLength = res['student_time_line'].length;
 
     print(rawStudentData);
 
-    if (rawStudentData.length == 0) {
-      eventHistoryStudentTimeline = [SizedBox.shrink()];
+    // if (rawStudentData.length == 0) {
+    //   eventHistoryStudentTimeline = [SizedBox.shrink()];
 
-      emit(state.copyWith(
-          status: Status.loaded,
-          nameListOfEventHistory: listOfeventHistoryName,
-          eventHistoryTimelineWidget: eventHistoryStudentTimeline,
-          nameOfEvent: listOfeventHistoryName[event.eventIDIndex]));
-      return;
-    }
+    //   emit(state.copyWith(
+    //       status: Status.loaded,
+    //       nameListOfEventHistory: listOfeventHistoryName,
+    //       eventHistoryTimelineWidget: eventHistoryStudentTimeline,
+    //       nameOfEvent: listOfeventHistoryName[event.eventIDIndex]));
+    //   return;
+    // }
 
-    print(rawStudentData[0]['user_name']);
+    // print(rawStudentData[0]['user_name']);
 
     var name = res['events_data']["campaign_name"];
 
@@ -111,24 +112,33 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
     print(num);
 
     List listOfEventAttended = [];
+    // rawStudentData.add({
+    //   "user_name": "Start Time",
+    //   "start_time": " ${res["events_data"]["event_start_time"]} "
+    // });
 
     eventHistoryStudentTimeline = [];
+    eventHistoryStudentTimeline.add(CustomStepper(
+      iconColor: ThemeConstants.bluecolor,
+      backIconColor: ThemeConstants.lightblueColor,
+      text: "Start Time",
+      text2: "${res["events_data"]["event_start_time"]}",
+      count: 1,
+      count1: 1,
+      last: true,
+      first: false,
+    ));
+
     for (var i = 0; i < dataListLength; i++) {
-      eventHistoryStudentTimeline.add(Container(
-        child: Column(children: [
-          CustomStepper(
-            iconColor: ThemeConstants.bluecolor,
-            backIconColor: ThemeConstants.lightblueColor,
-            text: "${rawStudentData[i]['user_name']}",
-            text2: "${rawStudentData[i]['start_time']}",
-            count: 1,
-            last: true,
-            first: i == dataListLength - 1 ? true : false,
-          ),
-          // CustomAutoSizeTextMontserrat(
-          //     text: '${rawStudentData[i]['user_name']}'),
-          // CustomAutoSizeTextMontserrat(text: '${rawStudentData[i]}'),
-        ]),
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 1,
+        last: true,
+        first: i == dataListLength - 1 ? true : false,
       ));
 
       // listOfEventAttended.add(res['data'][i]);
@@ -143,14 +153,32 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
 
       // listOfeventHistoryCode.add(listOfEventAttended[i]['event_id']);
       // print(res['data'][i]);
-      emit(state.copyWith(
-          status: Status.loaded,
-          nameListOfEventHistory: listOfeventHistoryName,
-          eventHistoryTimelineWidget: eventHistoryStudentTimeline,
-          nameOfEvent: num));
+
       // emit(EventHistoryFetchedState(
       //     listOfeventHistoryName, eventHistoryStudentTimeline, num));
     }
+
+    // if (dataListLength == 0) {
+    //   dataListLength = 1;
+    // }
+
+    print(res["events_data"]["event_end_time"]);
+    eventHistoryStudentTimeline.add(CustomStepper(
+      iconColor: ThemeConstants.bluecolor,
+      backIconColor: ThemeConstants.lightblueColor,
+      text: "End Time",
+      text2: "${res["events_data"]["event_end_time"]}",
+      count: dataListLength + 1,
+      count1: dataListLength + 2,
+      last: true,
+      first: true,
+    ));
+
+    emit(state.copyWith(
+        status: Status.loaded,
+        nameListOfEventHistory: listOfeventHistoryName,
+        eventHistoryTimelineWidget: eventHistoryStudentTimeline,
+        nameOfEvent: num));
   }
 
   callBackOfSelectionFrom({index, listOfName, listOfCode}) {

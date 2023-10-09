@@ -208,11 +208,16 @@ class CustomStepper extends StatelessWidget {
   String text2;
   Color backIconColor;
   Color iconColor;
+  int? count1;
+
+  double? radius;
 
   String? icon;
   int count;
   CustomStepper(
       {Key? key,
+      this.radius,
+      this.count1,
       required this.backIconColor,
       required this.iconColor,
       required this.text2,
@@ -259,8 +264,8 @@ class CustomStepper extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(left: 0, right: 5),
-                    height: 50,
-                    width: 50,
+                    height: radius ?? 50,
+                    width: radius ?? 50,
                     decoration: BoxDecoration(
                         color: backIconColor,
                         shape: BoxShape.circle,
@@ -268,7 +273,12 @@ class CustomStepper extends StatelessWidget {
                     child: Center(
                       child: icon != null
                           ? svgImage("$icon", iconColor, 23, 23)
-                          : SizedBox.shrink(),
+                          : CustomAutoSizeTextMontserrat(
+                              text: count1,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              textColor: ThemeConstants.bluecolor,
+                            ),
                       //  SvgPicture.asset(
                       //   icon,
                       //   height: 23,
