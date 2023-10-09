@@ -597,7 +597,7 @@ class CustomDrawer extends StatelessWidget {
                                           children: [
                                             svgImage(
                                                 "Review Course",
-                                                index == 4
+                                                index == 9
                                                     ? ThemeConstants.bluecolor
                                                     : const Color.fromARGB(
                                                         255, 31, 31, 31),
@@ -871,7 +871,7 @@ class CustomDrawer extends StatelessWidget {
                                                                 5.0))),
                                                 child: Padding(
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       horizontal: 5,
                                                       vertical: 2),
                                                   child:
