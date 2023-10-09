@@ -166,11 +166,20 @@ class BaseController extends GetxController with StateMixin {
 
     questionsToShowList.addAll(map.values.toList());
 
+if( model1.applicantType == 2 ){
     if (questionsToShowList[1] == false && model1.student_consent == 1) {
       // Get.offAllNamed(DashBoard.routeNamed);
     } else {
       Get.offAll(LetsGetStartedMainView());
     }
+}else{
+  
+    if ( model1.student_consent == 1) {
+      // Get.offAllNamed(DashBoard.routeNamed);
+    } else {
+      Get.offAll(LetsGetStartedMainView());
+    }
+}
     // if (questionsToShowList[1] == true )   {
     // }else if( questionsToShowList[1] == false ){
 
