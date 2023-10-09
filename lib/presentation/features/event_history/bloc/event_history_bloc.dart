@@ -70,7 +70,8 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
       var id = codeAndName[0];
 
       endPoint = getEventTrackingDetails(
-          userID: 325127.toString(), eventID: id.toString());
+          userID: Get.find<BaseController>().model1.id.toString(),
+          eventID: id.toString());
       // userID: Get.find<BaseController>().model1.id.toString(),
       // eventID: id.toString());
     } else {
