@@ -12,10 +12,10 @@ import 'package:equatable/equatable.dart';
 part 'event_history_event.dart';
 part 'event_history_state.dart';
 
-class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryState> {
+class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
   ApiServices api = ApiServices();
 
-  EventHistoryBloc() : super(EventHistoryInitial()) {
+  EventHistoryBloc() : super(EventHistoryInitial.initial()) {
     // on<EventHistoryEvent>(eventHistoryInitialEvent);
 
     on<EventHistoryInitialEvent>(eventHistoryInitialEvent);
@@ -27,7 +27,8 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryState> {
   List listOfeventHistoryCode = [];
 
   eventHistoryInitialEvent(EventHistoryInitialEvent event, emit) async {
-    var res = await api.getEventHistoryList(325111);
+    emit(state.copyWith(status: Status.loaded));
+    var res = await api.getEventHistoryList(325127);
 
     int dataList = res['data'].length;
     List listOfEventAttended = [];
@@ -53,20 +54,25 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryState> {
     }
     await eventHistorySelected(event, emit);
 
-    emit(EventHistoryFetchedState(
-        listOfeventHistoryName, eventHistoryStudentTimeline, nameFirst));
+    emit(state.copyWith(
+        status: Status.loaded, nameListOfEventHistory: listOfeventHistoryName));
   }
 
   List<Widget> eventHistoryStudentTimeline = [];
 
   eventHistorySelected(event, emit) async {
     var endPoint;
-    if (event.eventId != 0) {
-      var id = listOfeventHistoryCode[event.eventId];
+    if (event.eventIDIndex != 0) {
+      var codeAndName = await callBackOfSelectionFrom(
+          index: event.eventIDIndex,
+          listOfCode: listOfeventHistoryCode,
+          listOfName: listOfeventHistoryName);
+      var id = codeAndName[0];
 
       endPoint = getEventTrackingDetails(
-          userID: Get.find<BaseController>().model1.id.toString(),
-          eventID: id.toString());
+          userID: 325127.toString(), eventID: id.toString());
+      // userID: Get.find<BaseController>().model1.id.toString(),
+      // eventID: id.toString());
     } else {
       endPoint = getEventTrackingDetails(
           userID: Get.find<BaseController>().model1.id.toString(),
@@ -87,8 +93,11 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryState> {
     if (rawStudentData.length == 0) {
       eventHistoryStudentTimeline = [SizedBox.shrink()];
 
-      emit(EventHistoryFetchedState(listOfeventHistoryName,
-          eventHistoryStudentTimeline, listOfeventHistoryName[event.eventId]));
+      emit(state.copyWith(
+          status: Status.loaded,
+          nameListOfEventHistory: listOfeventHistoryName,
+          eventHistoryTimelineWidget: eventHistoryStudentTimeline,
+          nameOfEvent: listOfeventHistoryName[event.eventIDIndex]));
       return;
     }
 
@@ -133,8 +142,20 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryState> {
 
       // listOfeventHistoryCode.add(listOfEventAttended[i]['event_id']);
       // print(res['data'][i]);
-      emit(EventHistoryFetchedState(
-          listOfeventHistoryName, eventHistoryStudentTimeline, num));
+      emit(state.copyWith(
+          status: Status.loaded,
+          nameListOfEventHistory: listOfeventHistoryName,
+          eventHistoryTimelineWidget: eventHistoryStudentTimeline,
+          nameOfEvent: num));
+      // emit(EventHistoryFetchedState(
+      //     listOfeventHistoryName, eventHistoryStudentTimeline, num));
     }
+  }
+
+  callBackOfSelectionFrom({index, listOfName, listOfCode}) {
+    var code = listOfCode[index];
+    var name = listOfName[index];
+
+    return [code, name];
   }
 }
