@@ -56,13 +56,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           const Spacer(),
-          IconButton(
-            icon: svgImage("qr code", ThemeConstants.IconColor, 30, 30),
-            onPressed: () {
-              if (Get.find<BaseController>()
-                      .meetingZoneStatus
-                      .qrCodeGenerated ==
-                  true) {
+          if (Get.find<BaseController>().meetingZoneStatus.qrCodeGenerated ==
+              true)
+            IconButton(
+              icon: svgImage("qr code", ThemeConstants.IconColor, 30, 30),
+              onPressed: () {
                 Get.to(QRScreen(
                     Url: Get.find<BaseController>()
                         .meetingZoneStatus
@@ -70,11 +68,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     code: Get.find<BaseController>()
                         .meetingZoneStatus
                         .student_code!));
-              } else {
-                getToast(SnackBarConstants.qrCode);
-              }
-            },
-          ),
+              },
+            ),
           // IconButton(
           //   icon: SvgPicture.asset(
           //     "assets/icons/profile.svg",

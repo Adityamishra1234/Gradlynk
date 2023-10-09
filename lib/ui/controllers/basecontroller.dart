@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api.dart';
@@ -64,6 +65,7 @@ class BaseController extends GetxController with StateMixin {
       var z = ProfileDataValidatorModel.fromJson(x);
       data.value = z;
       loadinValidatorDataForDashboard = false;
+      calculateProfilePercentage();
       return z;
     } on Exception catch (e) {
       await StudentPanelBase().errorHandle(

@@ -12,6 +12,7 @@ import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/dashboard/testimonials.dart';
 import 'package:studentpanel/ui/screen/dashboard/youtube_video_section.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/qrCodeScreen.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/utils/constants.dart';
@@ -176,24 +177,24 @@ class _DashBoardState extends State<DashBoard> {
                           ),
                         ),
                         const Spacer(),
-                        Showcase(
-                          descTextStyle: TextStyle(
-                              color: ThemeConstants.whitecolor, fontSize: 18),
-                          tooltipBackgroundColor: ThemeConstants.bluecolor,
-                          overlayColor: const Color.fromARGB(178, 0, 0, 0),
-                          overlayOpacity: 0.8,
-                          key: _ten,
-                          description:
-                              "The bell rings with an updated notification at your doors.",
-                          child: IconButton(
-                            icon: svgImage("notification",
-                                ThemeConstants.IconColor, 30, 30),
+                        if (Get.find<BaseController>()
+                                .meetingZoneStatus
+                                .qrCodeGenerated ==
+                            true)
+                          IconButton(
+                            icon: svgImage(
+                                "qr code", ThemeConstants.IconColor, 30, 30),
                             onPressed: () {
-                              //TODO
-                              Get.to(const NotificationScreen());
+                              Get.to(QRScreen(
+                                  Url: Get.find<BaseController>()
+                                      .meetingZoneStatus
+                                      .qrCodeView!,
+                                  code: Get.find<BaseController>()
+                                      .meetingZoneStatus
+                                      .student_code!));
                             },
                           ),
-                        ),
+
                         // IconButton(
                         //   icon: SvgPicture.asset(
                         //     "assets/icons/profile.svg",
