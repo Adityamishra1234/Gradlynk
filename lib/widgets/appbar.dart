@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
+import 'package:studentpanel/ui/screen/mark_attendance/qrCodeScreen.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/drawerfilter.dart';
 
@@ -55,10 +57,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           const Spacer(),
           IconButton(
-            icon: svgImage("notification", ThemeConstants.IconColor, 30, 30),
+            icon: svgImage("qr code", ThemeConstants.IconColor, 30, 30),
             onPressed: () {
-              //TODO
-              Get.to(const NotificationScreen());
+              if (Get.find<BaseController>()
+                      .meetingZoneStatus
+                      .qrCodeGenerated ==
+                  true) {
+                Get.to(QRScreen(
+                    Url: Get.find<BaseController>()
+                        .meetingZoneStatus
+                        .qrCodeView!,
+                    code: Get.find<BaseController>()
+                        .meetingZoneStatus
+                        .student_code!));
+              } else {
+                getToast(SnackBarConstants.qrCode);
+              }
             },
           ),
           // IconButton(

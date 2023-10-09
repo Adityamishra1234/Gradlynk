@@ -14,9 +14,11 @@ class EventZoneStatus {
   bool? qrCodeGenerated;
   String? qrCodeView;
   bool? journeyItinerary;
+  String? student_code;
 
   EventZoneStatus(
       {this.status,
+      this.student_code,
       this.trackApplication,
       this.expressPass,
       this.markAttendance,
@@ -34,6 +36,7 @@ class EventZoneStatus {
 
   EventZoneStatus.fromJson(Map<String, dynamic> json) {
     journeyItinerary = json['journey_itinerary'];
+    student_code = json['student_code'];
     status = json['status'];
     trackApplication = json['track_application'];
     expressPass = json['express_pass'];
@@ -58,6 +61,7 @@ class EventZoneStatus {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
+    data['student_code'] = student_code;
     data['track_application'] = trackApplication;
     data['express_pass'] = expressPass;
     data['mark_attendance'] = markAttendance;
