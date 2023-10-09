@@ -2568,4 +2568,31 @@ class ApiServices extends StudentPanelBase implements api {
     // TODO: implement getEventHistoryList
     throw UnimplementedError();
   }
+
+  getEventHistoryData(endpoint) async {
+    try {
+      String endPoint = '${Endpoints.baseUrl}${endpoint}';
+      // var end = '${Endpoints.baseUrl}${Endpoints.eventHistoryList}$userID';
+      var res = await httpPostNullBody(endPoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+
+        // eventModuleModel model = eventModuleModel();
+        // model = eventModuleModel.fromJson(jsondata);
+
+        return jsondata;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      await errorHandle(
+        "${Get.find<BaseController>().model1.id.toString()}||",
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+
+    // TODO: implement getEventHistoryList
+    throw UnimplementedError();
+  }
 }

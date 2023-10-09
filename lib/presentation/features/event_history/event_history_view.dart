@@ -22,7 +22,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
   @override
   void initState() {
     eventHistoryBloc = EventHistoryBloc();
-    eventHistoryBloc.add(EventHistoryInitialEvent());
+    eventHistoryBloc.add(EventHistoryInitialEvent(0));
     // TODO: implement initState
     super.initState();
   }
@@ -58,35 +58,66 @@ class _EventHistoryViewState extends State<EventHistoryView> {
                   const SizedBox(
                     height: 5,
                   ),
-                  CustomAutoSizeTextMontserrat(text: 'Event History'),
-                  const SizedBox(
-                    height: 15,
+                  CustomAutoSizeTextMontserrat(
+                    text: 'Event History',
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                   ),
-                  if (state is EventHistoryFetchedState)
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  if (state is EventHistoryFetchedState) ...[
                     SizedBox(
                       height: 30,
                       width: MediaQuery.sizeOf(context).width - 20,
                       child: customDropDownPlanFund(
                         model: state.nameListOfEventHistory,
                         callback: (value) {
+                          print(value);
+                          eventHistoryBloc
+                              .add(EventHistoryClickEvent(value, ''));
                           // controller.selectedRelationship =
                           //     controller.relationShip[value];
                           // controller.update();
                         },
                       ),
                     ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Expanded(
-                      child: Container(
-                    decoration: BoxDecoration(
-                        color: ThemeConstants.GreenColor,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
-                        )),
-                  ))
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Expanded(
+                        child: Container(
+                      padding: EdgeInsets.all(30),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: ThemeConstants.whitecolor,
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color.fromARGB(29, 0, 0, 0),
+                                offset: Offset.zero,
+                                blurRadius: 3,
+                                spreadRadius: 0.0)
+                          ],
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          )),
+                      child: Column(children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: CustomAutoSizeTextMontserrat(
+                              text: "${state.nameOfEvent}",
+                              textColor: ThemeConstants.bluecolor,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        ...state.eventHistoryTimelineWidget
+                      ]),
+                    ))
+                  ]
                 ],
               ),
             ),
@@ -97,8 +128,6 @@ class _EventHistoryViewState extends State<EventHistoryView> {
   }
 }
 
-
-
 /////
 ///
 ///
@@ -108,6 +137,6 @@ class _EventHistoryViewState extends State<EventHistoryView> {
 /// name: "event start",
 /// time: '120',
 /// icon: '',
-/// 
+///
 /// }
 /// ]
