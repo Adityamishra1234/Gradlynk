@@ -18,6 +18,11 @@ class EventHistoryFetchedState extends EventHistoryState {
       this.eventHistoryTimelineWidget, this.nameOfEvent);
 }
 
+
+
+
+
+
 // class EventHistoryWidgetState extends EventHistoryState {
 //   final List<Widget> eventHistoryTimelineWidget;
 //   final String nameOfEvent;

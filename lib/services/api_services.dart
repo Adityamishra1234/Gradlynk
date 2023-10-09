@@ -79,6 +79,7 @@ class ApiServices extends StudentPanelBase implements api {
         return false;
       }
     } catch (e) {
+      print(e.toString());
       await errorHandle(
         "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
