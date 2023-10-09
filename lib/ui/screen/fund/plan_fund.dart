@@ -555,8 +555,11 @@ class customDropDownPlanFund extends StatelessWidget {
   Function callback;
   List model;
   String? selectedValue;
+  int? selectedValueByID;
+
   customDropDownPlanFund({
     Key? key,
+    this.selectedValueByID,
     required this.model,
     required this.callback,
     this.selectedValue,
@@ -573,7 +576,7 @@ class customDropDownPlanFund extends StatelessWidget {
   getlist(List model) {
     List<Widget> data = [];
     for (var i = 0; i < model.length; i++) {
-      if (selectedValue == model[i]) {
+      if (selectedValue == model[i] || selectedValueByID == i) {
         data.add(
           InkWell(
             onTap: () {

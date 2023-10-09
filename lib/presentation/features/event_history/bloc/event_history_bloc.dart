@@ -142,9 +142,9 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
         text: "${rawStudentData[i]['user_name']}",
         text2: "${rawStudentData[i]['start_time']}",
         count: 1,
-        count1: i + 1,
+        count1: i + 2,
         last: true,
-        first: i == dataListLength - 1 ? true : false,
+        first: false,
       ));
 
       // listOfEventAttended.add(res['data'][i]);
@@ -182,6 +182,7 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
 
     emit(state.copyWith(
         status: Status.loaded,
+        eventId: event.eventIDIndex,
         nameListOfEventHistory: listOfeventHistoryName,
         eventHistoryTimelineWidget: eventHistoryStudentTimeline,
         nameOfEvent: num));

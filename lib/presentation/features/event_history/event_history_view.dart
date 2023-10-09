@@ -42,7 +42,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
         return Scaffold(
           appBar: const CustomAppBar('title'),
           drawer: CustomDrawer(
-            index: 7,
+            index: 9,
           ),
           body: SafeArea(
             child: Container(
@@ -76,6 +76,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
                       height: 30,
                       width: MediaQuery.sizeOf(context).width - 20,
                       child: customDropDownPlanFund(
+                        selectedValueByID: state.eventId,
                         model: state.nameListOfEventHistory,
                         callback: (value) {
                           print(value);
