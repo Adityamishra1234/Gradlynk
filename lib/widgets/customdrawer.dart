@@ -632,7 +632,7 @@ class CustomDrawer extends StatelessWidget {
                                                     text: "Event History",
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w500,
-                                                    textColor: index == 4
+                                                    textColor: index == 9
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : ThemeConstants
