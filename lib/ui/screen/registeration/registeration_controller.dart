@@ -26,11 +26,34 @@ class RegisterationCopntroller extends GetxController with StateMixin {
 
   void onInit() async {
     super.onInit();
+    await getSubServiceDropDownData(3);
     await getNearestSiecBranch();
     await getLeadSources();
     await getCountry();
     change(null, status: RxStatus.success());
   }
+
+  getSubServiceDropDownData(serviceID) async {
+    var res = await api.getSubServiceInRegisterData(serviceID);
+    print(res);
+
+    if (res['data'] != []) {
+      var drop = res['data'];
+
+      Map map = Map<String, String>.from(res['data']);
+      subServiceDropDownListName.addAll(map.values.toList());
+      subServiceDropDownListCode.addAll(map.keys.toList());
+    }
+
+    print(subServiceDropDownListCode);
+    print(subServiceDropDownListName);
+  }
+
+  String? selectedTargetServiceSubId = '0';
+  String? selectedTargetServiceSubName = 'Kindly Select';
+
+  List subServiceDropDownListName = [];
+  List subServiceDropDownListCode = [];
 
   bool showOtp = false;
 
@@ -88,6 +111,17 @@ class RegisterationCopntroller extends GetxController with StateMixin {
   String? selectedCountryID = '';
   bool loadingCountry = false;
 
+  List targetServiceNameList = [
+    'Kindly Select',
+    'Student Visa',
+    'Test Prep',
+    'Migration'
+  ];
+  String? selectedTargetSericeName = 'Kindly Select';
+  String? selectedTargetServiceId = '0';
+
+  List targetServiceCodeList = [0, 2, 3, 1];
+
   getCountry() async {
     try {
       var res = await api.getCountry(Endpoints.baseUrl!, Endpoints.country!);
@@ -119,7 +153,11 @@ class RegisterationCopntroller extends GetxController with StateMixin {
         emailID: emailIdController.text,
         targetDestination: selectedCountryID,
         nearestSiecBranch: selectedBranchCode,
-        howDidYouHearAboutUS: selectedLeadSourcesCode);
+        howDidYouHearAboutUS: selectedLeadSourcesCode,
+        primaryServiceId: selectedTargetServiceId,
+        primarySubServiceId: selectedTargetServiceSubId);
+
+    print(endpoint);
     var res = await api.registerNewUser(endpoint);
     var status = res['status'];
     var returnData;

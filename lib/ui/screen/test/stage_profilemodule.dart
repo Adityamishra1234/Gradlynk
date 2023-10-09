@@ -209,7 +209,7 @@ class CustomStepper extends StatelessWidget {
   Color backIconColor;
   Color iconColor;
 
-  String icon;
+  String? icon;
   int count;
   CustomStepper(
       {Key? key,
@@ -219,7 +219,7 @@ class CustomStepper extends StatelessWidget {
       required this.text,
       required this.count,
       this.last,
-      required this.icon,
+      this.icon,
       this.first})
       : super(key: key);
 
@@ -266,7 +266,9 @@ class CustomStepper extends StatelessWidget {
                         shape: BoxShape.circle,
                         border: Border.all(color: iconColor)),
                     child: Center(
-                      child: svgImage("$icon", iconColor, 23, 23),
+                      child: icon != null
+                          ? svgImage("$icon", iconColor, 23, 23)
+                          : SizedBox.shrink(),
                       //  SvgPicture.asset(
                       //   icon,
                       //   height: 23,

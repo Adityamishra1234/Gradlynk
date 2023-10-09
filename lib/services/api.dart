@@ -158,4 +158,8 @@ abstract class api {
   getUniversitiesByCountryStateCity(
       {required int countryId, int? stateID, int? cityID});
   getCounsellorBranchAddress(int CounsellorID);
+
+  getSubServiceInRegisterData(int ServiceID);
+
+  getEventHistoryList(int userID);
 }

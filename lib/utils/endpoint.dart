@@ -189,6 +189,15 @@ class Endpoints {
   static String? getBaseUrlForAllAPi = "base-url";
   static String? eventDocumentUpload = "process-platinum-pass?enq_id=";
   static String? documentNotSubmit = "show-menu?enq_id=";
+
+  static String? subServiceInRegister = "get-sub-service?service_id=";
+
+  static String? eventHistoryList = 'event-history?enq_id=';
+}
+
+String getEventTrackingDetails(
+    {required String userID, required String eventID}) {
+  return "get-event-tracking-details?enq_id=$userID&event_id=$eventID";
 }
 
 documentNotSubmit(String enq_id, String campaign_id) {
@@ -328,15 +337,16 @@ addRelativeInformationPart3(
   return "&any_relative_country_interested=1&added_relative[$index][id]=$id&added_relative[$index][any_relative_country_interested]=$anyRelativeCountryInterested&added_relative[$index][citizenship_status]=$citizenshipStatus&added_relative[$index][relative_country]=$relativeCountry&added_relative[$index][relation_with_relative]=$relationWithrelative&added_relative[$index][relative_email_id]=$relativeEmailID&added_relative[$index][contact_of_relative]=$contactOfRelative&added_relative[$index][address_of_relative]=$addressOfRelative";
 }
 
-String registerNewUserEndpoint({
-  required name,
-  required phoneNumber,
-  required emailID,
-  required targetDestination,
-  required nearestSiecBranch,
-  required howDidYouHearAboutUS,
-}) {
-  return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS";
+String registerNewUserEndpoint(
+    {required name,
+    required phoneNumber,
+    required emailID,
+    required targetDestination,
+    required nearestSiecBranch,
+    required howDidYouHearAboutUS,
+    required primarySubServiceId,
+    required primaryServiceId}) {
+  return "signup-student?student_name=$name&mobile_number=$phoneNumber&student_email=$emailID&student_destination=$targetDestination&student_branch=$nearestSiecBranch&student_source=$howDidYouHearAboutUS&primary_service_id=$primaryServiceId&primary_sub_service_id=$primarySubServiceId";
 }
 
 String letsGetStartedSendData(

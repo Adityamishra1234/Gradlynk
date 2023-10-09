@@ -78,6 +78,7 @@ class ApiServices extends StudentPanelBase implements api {
         return false;
       }
     } catch (e) {
+      print(e.toString());
       await errorHandle(
         "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
@@ -2516,5 +2517,86 @@ class ApiServices extends StudentPanelBase implements api {
         StackTrace.current.toString(),
       );
     }
+  }
+
+  @override
+  getSubServiceInRegisterData(int ServiceID) async {
+    // TODO: implement getSubServiceInRegisterData
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+      var end =
+          '${Endpoints.baseUrl}${Endpoints.subServiceInRegister}$ServiceID';
+      var res = await httpPostNullBody('$end', login: true);
+      if (res != null) {
+        var jsondata = json.decode(res);
+        // eventModuleModel model = eventModuleModel();
+        // model = eventModuleModel.fromJson(jsondata);
+
+        return jsondata;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      // await errorHandle(
+      //   // "${Get.find<BaseController>().model1.id.toString()}||",
+      //   // e.toString().split(":")[1].toString(),
+      //   // e.toString().split(":")[0].toString(),
+      //   // StackTrace.current.toString(),
+      // );
+    }
+  }
+
+  @override
+  getEventHistoryList(int userID) async {
+    try {
+      // String endPoint = '${Endpoints.baseUrl_mark_attendance}${endpoint}';
+      var end = '${Endpoints.baseUrl}${Endpoints.eventHistoryList}$userID';
+      var res = await httpPostNullBody('$end');
+      if (res != null) {
+        var jsondata = json.decode(res);
+
+        // eventModuleModel model = eventModuleModel();
+        // model = eventModuleModel.fromJson(jsondata);
+
+        return jsondata;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      await errorHandle(
+        "${Get.find<BaseController>().model1.id.toString()}||",
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+
+    // TODO: implement getEventHistoryList
+    throw UnimplementedError();
+  }
+
+  getEventHistoryData(endpoint) async {
+    try {
+      String endPoint = '${Endpoints.baseUrl}${endpoint}';
+      // var end = '${Endpoints.baseUrl}${Endpoints.eventHistoryList}$userID';
+      var res = await httpPostNullBody(endPoint);
+      if (res != null) {
+        var jsondata = json.decode(res);
+
+        // eventModuleModel model = eventModuleModel();
+        // model = eventModuleModel.fromJson(jsondata);
+
+        return jsondata;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      await errorHandle(
+        "${Get.find<BaseController>().model1.id.toString()}||",
+        e.toString().split(":")[1].toString(),
+        e.toString().split(":")[0].toString(),
+        StackTrace.current.toString(),
+      );
+    }
+
+    // TODO: implement getEventHistoryList
+    throw UnimplementedError();
   }
 }

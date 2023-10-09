@@ -272,8 +272,58 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           SizedBox(
                             height: 20,
                           ),
-                          // SizedBox(
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: CustomAutoSizeTextMontserrat(
+                              mandatory: true,
+                              text: 'Target Service',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                              child: CustomDropDownSingle(
+                            bgColor: ThemeConstants.ultraLightgreyColor2,
+                            model: controller.targetServiceNameList,
+                            choosefieldtype: false,
+                            initialSelectedValue:
+                                controller.selectedTargetSericeName,
+                            callbackFunction: callBackSelectedTargetService,
+                          )),
 
+                          if (controller.selectedTargetServiceId == '3') ...[
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(left: 10),
+                              alignment: Alignment.topLeft,
+                              child: CustomAutoSizeTextMontserrat(
+                                mandatory: true,
+                                text: 'Target Test',
+                                fontWeight: FontWeight.w400,
+                                fontSize: 13,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            SizedBox(
+                                child: CustomDropDownSingle(
+                              bgColor: ThemeConstants.ultraLightgreyColor2,
+                              model: controller.subServiceDropDownListName,
+                              choosefieldtype: false,
+                              initialSelectedValue:
+                                  controller.selectedTargetServiceSubName,
+                              callbackFunction:
+                                  callBackSubSelectedTargetService,
+                            )),
+                            // SizedBox(
+                          ],
                           //   child: TextFormField(
                           //     validator: (value) {
                           //       return getEmptyValidation(value);
@@ -283,7 +333,9 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           //         labelTextStr: 'Target Destination'),
                           //   ),
                           // ),
-
+                          SizedBox(
+                            height: 20,
+                          ),
                           Container(
                             padding: EdgeInsets.only(left: 10),
                             alignment: Alignment.topLeft,
@@ -428,7 +480,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 print('object');
                                 controller.update();
                                 startLoading();
-                                if (controller.selectedBranchCode == "") {
+
+                                if (controller.selectedTargetServiceId == '3' &&
+                                    controller.selectedTargetServiceSubId ==
+                                        '0') {
+                                  getToast('Please Select Target Test');
+                                } else if (controller.selectedBranchCode ==
+                                    "") {
                                   getToast('Please Select Branch');
                                 } else if (controller.selectedCountryID == "") {
                                   getToast('Please Select Country');
@@ -717,6 +775,46 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
           // controller.getCareerOutComes();
         }
+      }
+    }
+    controller.update();
+  }
+
+  callBackSubSelectedTargetService(data) {
+    for (var i = 0; i < controller.subServiceDropDownListName.length; i++) {
+      if (i == 0) {
+        controller.selectedTargetServiceSubName = 'Kindly Select';
+        controller.selectedTargetServiceSubId = '0';
+      } else {
+        if (controller.subServiceDropDownListName[i] == data) {
+          controller.selectedTargetServiceSubName = data;
+          controller.selectedTargetServiceSubId =
+              controller.subServiceDropDownListCode[i].toString();
+
+          // controller.getCareerOutComes();
+        }
+      }
+    }
+    controller.update();
+  }
+
+  callBackSelectedTargetService(data) {
+    for (var i = 0; i < controller.targetServiceNameList.length; i++) {
+      if (i == 0) {
+        controller.selectedTargetSericeName = 'Kindly Select';
+        controller.selectedTargetServiceId = '0';
+      } else {
+        if (controller.targetServiceNameList[i] == data) {
+          controller.selectedTargetSericeName = data;
+          controller.selectedTargetServiceId =
+              controller.targetServiceCodeList[i].toString();
+
+          // controller.getCareerOutComes();
+        }
+      }
+
+      if (controller.selectedTargetServiceId != '3') {
+        controller.selectedTargetServiceSubId = '0';
       }
     }
     controller.update();

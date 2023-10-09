@@ -17,6 +17,7 @@ import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/middlewares/welcomeViewMiddleWare.dart';
+import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
@@ -167,6 +168,10 @@ class _MyAppState extends State<MyApp> {
           page: () => LetsGetStartedMainView(),
         ),
 
+        GetPage(
+          name: EventHistoryView.routeName,
+          page: () => EventHistoryView(),
+        ),
         GetPage(
           name: Fundrequirement.routenamed,
           page: () => Fundrequirement(),

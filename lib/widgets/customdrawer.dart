@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
+import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/drawerController.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
@@ -452,284 +453,330 @@ class CustomDrawer extends StatelessWidget {
                                         ),
                                       )),
                                 ),
-                                if (controller.meetingZoneStatus.searchCourse ==
-                                    true)
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: InkWell(
-                                          highlightColor:
-                                              ThemeConstants.whitecolor,
-                                          onTap: () {
-                                            Get.deleteAll();
-                                            Get.toNamed(
-                                                CourseSearch2.routeNamed);
-                                          },
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10),
-                                            child: Row(
-                                              children: [
-                                                svgImage(
-                                                    "Course search",
-                                                    index == 3
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.deleteAll();
+                                          Get.toNamed(CourseSearch2.routeNamed);
+                                        },
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: Row(
+                                            children: [
+                                              svgImage(
+                                                  "Course search",
+                                                  index == 3
+                                                      ? ThemeConstants.bluecolor
+                                                      : const Color.fromARGB(
+                                                          255, 31, 31, 31),
+                                                  20,
+                                                  20),
+                                              // SvgPicture.asset(
+                                              //   'assets/icons/Course search.svg',
+                                              //   color: index == 3
+                                              //       ? ThemeConstants.bluecolor
+                                              //       : const Color.fromARGB(
+                                              //           255, 31, 31, 31),
+                                              //   width: 20,
+                                              // ),
+                                              Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 3
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Search Course",
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 15,
+                                                    textColor: index == 3
                                                         ? ThemeConstants
                                                             .bluecolor
-                                                        : const Color.fromARGB(
-                                                            255, 31, 31, 31),
-                                                    20,
-                                                    20),
-                                                // SvgPicture.asset(
-                                                //   'assets/icons/Course search.svg',
-                                                //   color: index == 3
-                                                //       ? ThemeConstants.bluecolor
-                                                //       : const Color.fromARGB(
-                                                //           255, 31, 31, 31),
-                                                //   width: 20,
-                                                // ),
-                                                Container(
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                      // color: index == 3
-                                                      //     ? ThemeConstants.lightblueColor
-                                                      //     : ThemeConstants.whitecolor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10, top: 5),
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text: "Search Course",
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 15,
-                                                      textColor: index == 3
-                                                          ? ThemeConstants
-                                                              .bluecolor
-                                                          : ThemeConstants
-                                                              .blackcolor,
-                                                    ),
+                                                        : ThemeConstants
+                                                            .blackcolor,
                                                   ),
                                                 ),
-                                              ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.deleteAll();
+                                          Get.toNamed(
+                                              ReviewShortList.routeNamed);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            svgImage(
+                                                "Review Course",
+                                                index == 4
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
+                                            // SvgPicture.asset(
+                                            //   'assets/icons/Review Course.svg',
+                                            //   color: index == 4
+                                            //       ? ThemeConstants.bluecolor
+                                            //       : const Color.fromARGB(
+                                            //           255, 31, 31, 31),
+                                            //   width: 20,
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 4
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Review Course",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 4
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        )),
-                                  ),
-                                if (controller.meetingZoneStatus.shortlist ==
-                                    true)
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: InkWell(
-                                          highlightColor:
-                                              ThemeConstants.whitecolor,
-                                          onTap: () {
-                                            Get.deleteAll();
-                                            Get.toNamed(
-                                                ReviewShortList.routeNamed);
-                                          },
-                                          child: Row(
-                                            children: [
-                                              svgImage(
-                                                  "Review Course",
-                                                  index == 4
-                                                      ? ThemeConstants.bluecolor
-                                                      : const Color.fromARGB(
-                                                          255, 31, 31, 31),
-                                                  20,
-                                                  20),
-                                              // SvgPicture.asset(
-                                              //   'assets/icons/Review Course.svg',
-                                              //   color: index == 4
-                                              //       ? ThemeConstants.bluecolor
-                                              //       : const Color.fromARGB(
-                                              //           255, 31, 31, 31),
-                                              //   width: 20,
-                                              // ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: Container(
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                      // color: index == 4
-                                                      //     ? ThemeConstants.lightblueColor
-                                                      //     : ThemeConstants.whitecolor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10, top: 5),
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text: "Review Course",
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      textColor: index == 4
-                                                          ? ThemeConstants
-                                                              .bluecolor
-                                                          : ThemeConstants
-                                                              .blackcolor,
-                                                    ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.deleteAll();
+                                          Get.toNamed(
+                                              EventHistoryView.routeName);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            svgImage(
+                                                "Review Course",
+                                                index == 4
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
+                                            // SvgPicture.asset(
+                                            //   'assets/icons/Review Course.svg',
+                                            //   color: index == 4
+                                            //       ? ThemeConstants.bluecolor
+                                            //       : const Color.fromARGB(
+                                            //           255, 31, 31, 31),
+                                            //   width: 20,
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 4
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Event History",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 4
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
                                                   ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                if (controller.meetingZoneStatus
-                                        .applicationShortlist ==
-                                    true)
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: InkWell(
-                                          highlightColor:
-                                              ThemeConstants.whitecolor,
-                                          onTap: () {
-                                            Get.deleteAll();
-                                            Get.toNamed(
-                                                FinalShortList.routeNamed);
-                                          },
-                                          child: Row(
-                                            children: [
-                                              svgImage(
-                                                  "Shortlist",
-                                                  index == 5
-                                                      ? ThemeConstants.bluecolor
-                                                      : const Color.fromARGB(
-                                                          255, 31, 31, 31),
-                                                  20,
-                                                  20),
-                                              // SvgPicture.asset(
-                                              //   'assets/icons/Shortlist.svg',
-                                              //   color: index == 5
-                                              //       ? ThemeConstants.bluecolor
-                                              //       : const Color.fromARGB(
-                                              //           255, 31, 31, 31),
-                                              //   width: 20,
-                                              // ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: Container(
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                      // color: index == 5
-                                                      //     ? ThemeConstants.lightblueColor
-                                                      //     : ThemeConstants.whitecolor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10, top: 5),
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text:
-                                                          "Application Shortlist",
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      textColor: index == 5
-                                                          ? ThemeConstants
-                                                              .bluecolor
-                                                          : ThemeConstants
-                                                              .blackcolor,
-                                                    ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.deleteAll();
+                                          Get.toNamed(
+                                              FinalShortList.routeNamed);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            svgImage(
+                                                "Shortlist",
+                                                index == 5
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
+                                            // SvgPicture.asset(
+                                            //   'assets/icons/Shortlist.svg',
+                                            //   color: index == 5
+                                            //       ? ThemeConstants.bluecolor
+                                            //       : const Color.fromARGB(
+                                            //           255, 31, 31, 31),
+                                            //   width: 20,
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 5
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text:
+                                                        "Application Shortlist",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 5
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
                                                   ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                if (controller.meetingZoneStatus
-                                        .applicationShortlist ==
-                                    true)
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Align(
-                                        alignment:
-                                            AlignmentDirectional.topStart,
-                                        child: InkWell(
-                                          highlightColor:
-                                              ThemeConstants.whitecolor,
-                                          onTap: () {
-                                            Get.back();
-                                            planYourFundDialog(context);
-                                          },
-                                          child: Row(
-                                            children: [
-                                              svgImage(
-                                                  "totalFees",
-                                                  index == 7
-                                                      ? ThemeConstants.bluecolor
-                                                      : const Color.fromARGB(
-                                                          255, 31, 31, 31),
-                                                  20,
-                                                  20),
-                                              // SvgPicture.asset(
-                                              //   'assets/icons/totalFees.svg',
-                                              //   color: index == 7
-                                              //       ? ThemeConstants.bluecolor
-                                              //       : const Color.fromARGB(
-                                              //           255, 31, 31, 31), index == 7
-                                              //       ? ThemeConstants.bluecolor
-                                              //       : const Color.fromARGB(
-                                              //           255, 31, 31, 31),
-                                              //   width: 20,
-                                              // ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: Container(
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                      // color: index == 5
-                                                      //     ? ThemeConstants.lightblueColor
-                                                      //     : ThemeConstants.whitecolor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10, top: 5),
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text: "Plan your funds",
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      textColor: index == 7
-                                                          ? ThemeConstants
-                                                              .bluecolor
-                                                          : ThemeConstants
-                                                              .blackcolor,
-                                                    ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.back();
+                                          planYourFundDialog(context);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            svgImage(
+                                                "totalFees",
+                                                index == 7
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
+                                            // SvgPicture.asset(
+                                            //   'assets/icons/totalFees.svg',
+                                            //   color: index == 7
+                                            //       ? ThemeConstants.bluecolor
+                                            //       : const Color.fromARGB(
+                                            //           255, 31, 31, 31), index == 7
+                                            //       ? ThemeConstants.bluecolor
+                                            //       : const Color.fromARGB(
+                                            //           255, 31, 31, 31),
+                                            //   width: 20,
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 5
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Plan your funds",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 7
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
                                                   ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
                                 if (controller
                                             .meetingZoneStatus.markAttendance ==
                                         true ||
