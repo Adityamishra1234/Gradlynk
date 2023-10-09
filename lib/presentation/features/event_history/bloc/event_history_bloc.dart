@@ -176,6 +176,7 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
 
     emit(state.copyWith(
         status: Status.loaded,
+        eventId: event.eventIDIndex,
         nameListOfEventHistory: listOfeventHistoryName,
         eventHistoryTimelineWidget: eventHistoryStudentTimeline,
         nameOfEvent: num));
