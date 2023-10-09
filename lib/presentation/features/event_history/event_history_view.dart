@@ -1,7 +1,9 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:studentpanel/presentation/features/event_history/bloc/event_history_bloc.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -29,7 +31,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<EventHistoryBloc, EventHistoryState>(
+    return BlocConsumer<EventHistoryBloc, EventHistoryInitial>(
       bloc: eventHistoryBloc,
       listenWhen: (previous, current) => current is EventHistoryActionState,
       buildWhen: (previous, current) => current is! EventHistoryActionState,
@@ -38,35 +40,38 @@ class _EventHistoryViewState extends State<EventHistoryView> {
       },
       builder: (context, state) {
         return Scaffold(
-          // appBar: const CustomAppBar('title'),
+          appBar: const CustomAppBar('title'),
           drawer: CustomDrawer(
             index: 7,
           ),
           body: SafeArea(
             child: Container(
               alignment: Alignment.topCenter,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Image.network(
-                      "https://sieceducation.in/assets/assets/images/logo.png",
-                      width: 150,
-                      height: 50,
+              child: Column(children: [
+                if (state is EventHistoryInitial) ...[
+                  if (state.status == Status.loading) ...[
+                    getLoading(context)
+                  ] else if (state.status == Status.loaded) ...[
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10),
+                    //   child: Image.network(
+                    //     "https://sieceducation.in/assets/assets/images/logo.png",
+                    //     width: 150,
+                    //     height: 50,
+                    //   ),
+                    // ),
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  CustomAutoSizeTextMontserrat(
-                    text: 'Event History',
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  if (state is EventHistoryFetchedState) ...[
+                    CustomAutoSizeTextMontserrat(
+                      text: 'Event History',
+                      fontSize: 25,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // if (state is EventHistoryFetchedState) ...[
                     SizedBox(
                       height: 30,
                       width: MediaQuery.sizeOf(context).width - 20,
@@ -102,7 +107,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
                             topLeft: Radius.circular(40),
                             topRight: Radius.circular(40),
                           )),
-                      child: Column(children: [
+                      child: ListView(children: [
                         Align(
                           alignment: Alignment.topLeft,
                           child: CustomAutoSizeTextMontserrat(
@@ -118,8 +123,10 @@ class _EventHistoryViewState extends State<EventHistoryView> {
                       ]),
                     ))
                   ]
-                ],
-              ),
+                ]
+              ]
+                  // ],
+                  ),
             ),
           ),
         );
