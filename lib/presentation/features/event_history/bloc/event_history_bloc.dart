@@ -5,7 +5,9 @@ import 'package:meta/meta.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/test/stage_profilemodule.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:equatable/equatable.dart';
@@ -32,6 +34,10 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
         await api.getEventHistoryList(Get.find<BaseController>().model1.id!);
 
     int dataList = res['data'].length;
+    if (dataList == 0) {
+      getToast(SnackBarConstants.eventHistory);
+      Get.back();
+    }
     List listOfEventAttended = [];
 
     var nameFirst = '';

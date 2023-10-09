@@ -320,5 +320,7 @@ class SnackBarConstants {
   static String fileSize = "your file size more than  5MB";
 
   static String noTrackApplication = "No Application Available for Tracking";
+
+  static String eventHistory = "No Event History Available for Tracking";
   static String qrCode = "Your QR code is not generated";
 }

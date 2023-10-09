@@ -596,7 +596,7 @@ class CustomDrawer extends StatelessWidget {
                                         child: Row(
                                           children: [
                                             svgImage(
-                                                "Review Course",
+                                                "Mark attendence",
                                                 index == 4
                                                     ? ThemeConstants.bluecolor
                                                     : const Color.fromARGB(
