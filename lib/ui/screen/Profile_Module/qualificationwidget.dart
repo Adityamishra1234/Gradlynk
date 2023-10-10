@@ -616,7 +616,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                                 getToast(SnackBarConstants.countrySelect!);
                               } else if (controller.institutionSelected ==
                                   null) {
-                                getToast('Please Seelct a institution');
+                                getToast('Select an institution');
                               } else {
                                 controller.modelList
                                     .add(QualificationDetailsViewModel(
