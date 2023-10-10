@@ -312,7 +312,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: model[index].yearOfPassing,
+                                      text: model[index].percentage,
                                     )),
                               ]),
                               rowSpacer,
@@ -333,7 +333,7 @@ class QualificationDetailView extends StatelessWidget {
                                 Align(
                                     alignment: AlignmentDirectional.centerStart,
                                     child: CustomAutoSizeTextMontserrat(
-                                      text: model[index].yearOfPassing,
+                                      text: model[index].reapperCount,
                                     )),
                               ]),
                             ],

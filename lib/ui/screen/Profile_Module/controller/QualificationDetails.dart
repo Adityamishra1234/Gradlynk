@@ -404,22 +404,24 @@ class QualificationDetailsController extends GetxController with StateMixin {
       for (var i = 0; i < modelList.length; i++) {
         endpoint = endpoint +
             getAddQualificationPart2(
-                i.toString(),
-                modelList[i].qualificationId ?? "",
-                modelList[i].courseName ?? "",
-                modelList[i].cityId ?? "",
-                modelList[i].stateId ?? "",
-                modelList[i].countryId ?? "",
-                modelList[i].reapperCount ?? "",
-                modelList[i].grade ?? "",
-                modelList[i].multiplier ?? "",
-                modelList[i].percentage ?? "",
-                modelList[i].passingInstId ?? "",
-                modelList[i].streamId ?? "",
-                modelList[i].affiliationId ?? "",
-                modelList[i].educationStatus ?? "",
-                modelList[i].yearOfPassing ?? "");
+              index: i.toString(),
+              qualificationId: modelList[i].qualificationId ?? "",
+              grade: modelList[i].grade ?? "",
+              multiplier: modelList[i].multiplier ?? "",
+              percentage: modelList[i].percentage ?? "",
+              streamId: modelList[i].streamId ?? "",
+              affiliationId: modelList[i].affiliationId ?? "",
+              educationStatus: modelList[i].educationStatus ?? "",
+              yearOfPassing: modelList[i].yearOfPassing ?? "",
+              courseName: modelList[i].courseName ?? "",
+              cityId: modelList[i].cityId ?? "",
+              stateId: modelList[i].stateId ?? "",
+              countryId: modelList[i].countryId ?? "",
+              reapperCount: modelList[i].reapperCount ?? "",
+              paasingInstId: modelList[i].passingInstId ?? "",
+            );
       }
+      print(endpoint);
       var res = await apiServices.updateQualification(endpoint, action);
       if (res == true) {
         resetFields();

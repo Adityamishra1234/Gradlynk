@@ -591,71 +591,6 @@ class CustomDrawer extends StatelessWidget {
                                         onTap: () {
                                           Get.deleteAll();
                                           Get.toNamed(
-                                              EventHistoryView.routeName);
-                                        },
-                                        child: Row(
-                                          children: [
-                                            svgImage(
-                                                "Mark attendence",
-                                                index == 9
-                                                    ? ThemeConstants.bluecolor
-                                                    : const Color.fromARGB(
-                                                        255, 31, 31, 31),
-                                                20,
-                                                20),
-                                            // SvgPicture.asset(
-                                            //   'assets/icons/Review Course.svg',
-                                            //   color: index == 4
-                                            //       ? ThemeConstants.bluecolor
-                                            //       : const Color.fromARGB(
-                                            //           255, 31, 31, 31),
-                                            //   width: 20,
-                                            // ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 10),
-                                              child: Container(
-                                                height: 30,
-                                                decoration: BoxDecoration(
-                                                    // color: index == 4
-                                                    //     ? ThemeConstants.lightblueColor
-                                                    //     : ThemeConstants.whitecolor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10, top: 5),
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: "Event History",
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w500,
-                                                    textColor: index == 9
-                                                        ? ThemeConstants
-                                                            .bluecolor
-                                                        : ThemeConstants
-                                                            .blackcolor,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Align(
-                                      alignment: AlignmentDirectional.topStart,
-                                      child: InkWell(
-                                        highlightColor:
-                                            ThemeConstants.whitecolor,
-                                        onTap: () {
-                                          Get.deleteAll();
-                                          Get.toNamed(
                                               FinalShortList.routeNamed);
                                         },
                                         child: Row(
@@ -982,6 +917,70 @@ class CustomDrawer extends StatelessWidget {
                                 //     ),
                                 //   ),
                                 // ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Align(
+                                      alignment: AlignmentDirectional.topStart,
+                                      child: InkWell(
+                                        highlightColor:
+                                            ThemeConstants.whitecolor,
+                                        onTap: () {
+                                          Get.deleteAll();
+                                          Get.toNamed(
+                                              EventHistoryView.routeName);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            svgImage(
+                                                "Mark attendence",
+                                                index == 9
+                                                    ? ThemeConstants.bluecolor
+                                                    : const Color.fromARGB(
+                                                        255, 31, 31, 31),
+                                                20,
+                                                20),
+                                            // SvgPicture.asset(
+                                            //   'assets/icons/Review Course.svg',
+                                            //   color: index == 4
+                                            //       ? ThemeConstants.bluecolor
+                                            //       : const Color.fromARGB(
+                                            //           255, 31, 31, 31),
+                                            //   width: 20,
+                                            // ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 10),
+                                              child: Container(
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                    // color: index == 4
+                                                    //     ? ThemeConstants.lightblueColor
+                                                    //     : ThemeConstants.whitecolor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0)),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 5),
+                                                  child:
+                                                      CustomAutoSizeTextMontserrat(
+                                                    text: "Event History",
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    textColor: index == 9
+                                                        ? ThemeConstants
+                                                            .bluecolor
+                                                        : ThemeConstants
+                                                            .blackcolor,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
 
                                 InkWell(
                                   onTap: () {
