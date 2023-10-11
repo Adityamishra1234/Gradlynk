@@ -276,14 +276,21 @@ class TravelHistoryController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     try {
       String endpoint;
-      endpoint = Endpoints.addTravelHistoryPart1! +
-          enqId +
-          Endpoints.addTravelHistoryPart2! +
-          "0";
+      endpoint =
+          "${Endpoints.addTravelHistoryPart1!}$enqId${Endpoints.addTravelHistoryPart2!}0";
 
       var res = await apiServices.updateTravelHistory(endpoint, action);
       if (res == true) {
         resetfields();
+        if (Get.find<BaseController>()
+                .data
+                .value
+                .validateIconForTravelHistory !=
+            "1") {
+          Get.find<BaseController>().data.value.validateIconForTravelHistory =
+              "1";
+        }
+        Get.find<BaseController>().update;
       }
       change(null, status: RxStatus.success());
     } catch (e) {
