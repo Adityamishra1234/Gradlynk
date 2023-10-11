@@ -37,6 +37,7 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
     if (dataList == 0) {
       getToast(SnackBarConstants.eventHistory);
       Get.back();
+      return;
     }
     List listOfEventAttended = [];
 
