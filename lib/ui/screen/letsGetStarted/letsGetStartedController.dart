@@ -185,8 +185,7 @@ class LetsGetStartedController extends GetxController with StateMixin {
 
       if (res['status'] == true) {
         change(null, status: RxStatus.success());
-        await Get.find<BaseController>()
-            .eventZone(Get.find<BaseController>().model1.id.toString());
+        await Get.find<BaseController>().profileDataValidator();
         Get.offAllNamed(DashBoard.routeNamed);
       }
 
