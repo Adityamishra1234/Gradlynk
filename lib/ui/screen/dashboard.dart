@@ -127,7 +127,9 @@ class _DashBoardState extends State<DashBoard> {
         builder: Builder(builder: (context) {
           myContext = context;
           return controller.obx(
-              onLoading: getLoading(context),
+              onLoading: Scaffold(
+                body: getLoading(context),
+              ),
               (state) => Scaffold(
                     drawerScrimColor: const Color.fromARGB(110, 255, 255, 255),
                     backgroundColor: const Color.fromARGB(255, 248, 252, 255),
