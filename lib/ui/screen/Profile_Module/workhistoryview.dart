@@ -129,6 +129,32 @@ class WorkHistoryView extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8),
                                     child: CustomAutoSizeTextMontserrat(
+                                      text: "Working From",
+                                      maxLines: 2,
+                                      textColor: ThemeConstants.blackcolor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: CustomAutoSizeTextMontserrat(
+                                    text: model[index].workingFrom,
+                                    textColor: ThemeConstants.TextColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    maxLines: 2,
+                                  ),
+                                ),
+                              ]),
+                              rowSpacer,
+                              TableRow(children: [
+                                Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8),
+                                    child: CustomAutoSizeTextMontserrat(
                                       text: "Working Till",
                                       maxLines: 2,
                                       textColor: ThemeConstants.blackcolor,
