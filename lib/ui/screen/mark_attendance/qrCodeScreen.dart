@@ -74,7 +74,11 @@ class QRScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(Url),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 8, color: ThemeConstants.whitecolor)),
+                      child: Image.network(Url)),
                   const SizedBox(
                     height: 20,
                   ),
