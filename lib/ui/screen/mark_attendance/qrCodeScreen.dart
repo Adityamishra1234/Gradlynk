@@ -60,10 +60,13 @@ class QRScreen extends StatelessWidget {
                       child: Image.asset("assets/images/map.png")),
                   Positioned(
                     top: MediaQuery.of(context).size.height * 0.2,
-                    child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        child: Image.asset("assets/images/monumet.png")),
+                    child: Opacity(
+                      opacity: 0.8,
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          child: Image.asset("assets/images/monumet.png")),
+                    ),
                   ),
                 ],
               ),
