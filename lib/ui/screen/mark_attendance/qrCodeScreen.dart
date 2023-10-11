@@ -17,8 +17,8 @@ class QRScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-              right: 30,
-              top: 40,
+              right: 5,
+              top: 45,
               child: CircleContainerWithIcon(
                 icon: Icons.close,
                 color: ThemeConstants.lightgreycolor,
