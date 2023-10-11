@@ -347,7 +347,7 @@ class ProfileView extends StatelessWidget {
                               if (Get.find<BaseController>()
                                       .model1
                                       .service_id !=
-                                  3)
+                                  1)
                                 InkWell(
                                   splashColor: ThemeConstants.lightgreycolor,
                                   onTap: () {

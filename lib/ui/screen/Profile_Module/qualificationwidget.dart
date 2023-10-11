@@ -373,15 +373,17 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                     setState(() {});
                   },
                   validator: (value) {
-                    if (getNUllChecker(value) == false) {
-                      if (double.parse(value!) > 11) {
-                        return 'Multiplier in Between 0 to 10';
+                    try {
+                      if (getNUllChecker(value) == false) {
+                        if (double.parse(value!) > 11) {
+                          return 'Multiplier in Between 0 to 10';
+                        } else {
+                          return null;
+                        }
                       } else {
-                        return null;
+                        return "Multiplier in Between 0 to 10";
                       }
-                    } else {
-                      return "Multiplier in Between 0 to 10";
-                    }
+                    } catch (e) {}
                   },
                 ),
               ),
@@ -419,15 +421,17 @@ class _QualificationWidgetState extends State<QualificationWidget> {
                     ),
                   ),
                   validator: (value) {
-                    if (getNUllChecker(value) == false) {
-                      if (double.parse(value!) > 101) {
-                        return 'Percentage in Between 0 to 100';
+                    try {
+                      if (getNUllChecker(value) == false) {
+                        if (double.parse(value!) > 101) {
+                          return 'Percentage in Between 0 to 100';
+                        } else {
+                          return null;
+                        }
                       } else {
-                        return null;
+                        return "Percentage in Between 0 to 100";
                       }
-                    } else {
-                      return "Percentage in Between 0 to 100";
-                    }
+                    } catch (e) {}
                   },
                 ),
               ),

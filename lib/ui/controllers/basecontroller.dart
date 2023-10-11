@@ -308,7 +308,7 @@ class BaseController extends GetxController with StateMixin {
     if (data.value.validateIconForPersonalInfo == "1") {
       percentage = percentage + singlepartCompletePercentage;
     }
-    data.value.totalPercentageComplete = percentage.toInt();
+    data.value.totalPercentageComplete = percentage.round();
     update();
   }
 }
