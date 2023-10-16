@@ -158,6 +158,10 @@ class StudentPanelBase {
                 response.body != []
             ? response.body
             : throw EmptyDataException("440 :${response.body}");
+
+      case 429:
+        throw BadRequestException("${response.statusCode} :${response.body}");
+
       case 440:
         throw EmptyDataException("440 :${response.body}");
       case 400:

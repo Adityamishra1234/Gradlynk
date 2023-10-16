@@ -481,6 +481,10 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 controller.update();
                                 startLoading();
 
+                                // if (controller.selectedTargetServiceId == '0') {
+                                //   getToast('Please Select Target Service');
+                                // }
+
                                 if (controller.selectedTargetServiceId == '3' &&
                                     controller.selectedTargetServiceSubId ==
                                         '0') {
