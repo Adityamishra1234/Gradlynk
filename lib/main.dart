@@ -118,12 +118,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> hideScreen() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String phonenumber = sharedPreferences.getString("phonenumber").toString();
+    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // String phonenumber = sharedPreferences.getString("phonenumber").toString();
 
-    if (getNUllChecker(phonenumber) == false) {
-      var controller = Get.put(BaseController(), permanent: true);
-    }
+    // if (getNUllChecker(phonenumber) == false) {
+    //   var controller = Get.put(BaseController(), permanent: true);
+    // }
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
         FlutterSplashScreen.hide();
@@ -185,16 +185,16 @@ class _MyAppState extends State<MyApp> {
           page: () => const LoginCopy(),
           transition: Transition.fade,
         ),
-        GetPage(
-          name: LoginScreen.routeNamed,
-          page: () => LoginScreen(),
-          transition: Transition.fade,
-        ),
-        GetPage(
-          name: Login.routeNamed,
-          page: () => const Login(),
-          transition: Transition.fade,
-        ),
+        // GetPage(
+        //   name: LoginScreen.routeNamed,
+        //   page: () => LoginScreen(),
+        //   transition: Transition.fade,
+        // ),
+        // GetPage(
+        //   name: Login.routeNamed,
+        //   page: () => const Login(),
+        //   transition: Transition.fade,
+        // ),
         GetPage(
           name: RegisterationMainView.routeNmaed,
           page: () => const RegisterationMainView(),

@@ -67,6 +67,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
+    controller.getDataAgain();
     // Get.offAllNamed(DashBoard.routeNamed);
     try {
       //todo

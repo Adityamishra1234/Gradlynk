@@ -39,14 +39,21 @@ class BaseController extends GetxController with StateMixin {
 
   @override
   void onInit() async {
+    print(
+        'ecccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc');
     super.onInit();
 
-    List<Future> futures = [
-      profiledetail(),
-      caraouselData(),
-    ];
-    await Future.wait(futures);
+    // List<Future> futures = [
+    //   profiledetail(),
+    //   caraouselData(),
+    // ];
+    // await Future.wait(futures);
     change(null, status: RxStatus.success());
+  }
+
+  getDataAgain() async {
+    await profiledetail();
+    await caraouselData();
   }
 
   var data = ProfileDataValidatorModel().obs;
@@ -124,13 +131,12 @@ class BaseController extends GetxController with StateMixin {
               countryid.add(model1.countryID!);
             }
           }
-          List<Future> futures = [
-            checkShowLetsGetStarted(),
-            eventZone(model1.id.toString()),
-            getFundPlannerData(),
-            profileDataValidator(),
-          ];
-          await Future.wait(futures);
+
+          await checkShowLetsGetStarted();
+          await eventZone(model1.id.toString());
+          await getFundPlannerData();
+          await profileDataValidator();
+
           loadingStudentPanelData1 = true.obs;
           // model1.service_id = 3;
           update();
