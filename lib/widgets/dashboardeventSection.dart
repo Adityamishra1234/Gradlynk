@@ -39,7 +39,7 @@ class DashboardEventSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      width: 130,
+                      width: 110,
                       height: 190,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
