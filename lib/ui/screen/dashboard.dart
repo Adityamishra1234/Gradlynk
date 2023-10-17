@@ -1133,13 +1133,13 @@ class _DashBoardState extends State<DashBoard> {
                                                 .testimonialsLoading,
                                           ),
 
-                                          YoutubeVideoSection(
-                                            youtubeVideoModel:
-                                                dashboardController
-                                                    .youtubeVideoModel,
-                                            isLoading: dashboardController
-                                                .youtubeVideoLoading,
-                                          ),
+                                          // YoutubeVideoSection(
+                                          //   youtubeVideoModel:
+                                          //       dashboardController
+                                          //           .youtubeVideoModel,
+                                          //   isLoading: dashboardController
+                                          //       .youtubeVideoLoading,
+                                          // ),
                                           // Upcoming Event
                                           // if (_.loadingUpcomingEvents.value == true)
                                           //   Padding(

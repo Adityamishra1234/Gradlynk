@@ -26,7 +26,8 @@ class MarkAttendanceController extends GetxController with StateMixin {
   String? intake;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    url = await apiServices.getBaseUrlForAllApi();
     change(null, status: RxStatus.success());
   }
 
@@ -34,6 +35,8 @@ class MarkAttendanceController extends GetxController with StateMixin {
   String passName = '';
 
   bool showBelowContent = false;
+
+  var url;
 
   getMarkAttendance() async {
     try {
@@ -75,7 +78,6 @@ class MarkAttendanceController extends GetxController with StateMixin {
   allTimeAPI({String? campaignId}) async {
     change(null, status: RxStatus.loading());
 
-    var url = await apiServices.getBaseUrlForAllApi();
     var res = await apiServices.allTimeMarkAttandance(
         url,
         getMarkAttandenceAllTime(

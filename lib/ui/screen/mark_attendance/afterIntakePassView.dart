@@ -45,8 +45,8 @@ class AfterIntakeScreenView extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: ThemeConstants.whitecolor,
                       borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        const BoxShadow(
+                      boxShadow: const [
+                        BoxShadow(
                             color: Color.fromARGB(29, 0, 0, 0),
                             blurRadius: 2,
                             spreadRadius: 2)
