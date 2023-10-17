@@ -206,11 +206,6 @@ class RegisterationCopntroller extends GetxController with StateMixin {
         change(null, status: RxStatus.success());
 
         Get.offAllNamed(DashBoard.routeNamed, arguments: true);
-        List<Future> futures = [
-          Get.find<BaseController>().profiledetail(),
-          Get.find<BaseController>().caraouselData(),
-        ];
-        await Future.wait(futures);
       } else {
         getToast(res['message']);
       }
