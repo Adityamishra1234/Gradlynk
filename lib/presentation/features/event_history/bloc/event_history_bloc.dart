@@ -29,7 +29,7 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
   List listOfeventHistoryCode = [];
 
   eventHistoryInitialEvent(EventHistoryInitialEvent event, emit) async {
-    emit(state.copyWith(status: Status.loaded));
+    emit(state.copyWith(status: Status.loading));
     var res =
         await api.getEventHistoryList(Get.find<BaseController>().model1.id!);
 
@@ -37,6 +37,7 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
     if (dataList == 0) {
       getToast(SnackBarConstants.eventHistory);
       Get.back();
+      return;
     }
     List listOfEventAttended = [];
 

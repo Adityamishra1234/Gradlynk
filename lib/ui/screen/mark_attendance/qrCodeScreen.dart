@@ -17,8 +17,8 @@ class QRScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-              right: 30,
-              top: 40,
+              right: 5,
+              top: 45,
               child: CircleContainerWithIcon(
                 icon: Icons.close,
                 color: ThemeConstants.lightgreycolor,
@@ -60,10 +60,13 @@ class QRScreen extends StatelessWidget {
                       child: Image.asset("assets/images/map.png")),
                   Positioned(
                     top: MediaQuery.of(context).size.height * 0.2,
-                    child: SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        child: Image.asset("assets/images/monumet.png")),
+                    child: Opacity(
+                      opacity: 0.8,
+                      child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.25,
+                          child: Image.asset("assets/images/monumet.png")),
+                    ),
                   ),
                 ],
               ),
@@ -74,7 +77,11 @@ class QRScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(Url),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 8, color: ThemeConstants.whitecolor)),
+                      child: Image.network(Url)),
                   const SizedBox(
                     height: 20,
                   ),
