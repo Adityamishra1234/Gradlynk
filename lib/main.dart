@@ -120,9 +120,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> hideScreen() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String phonenumber = sharedPreferences.getString("phonenumber").toString();
-    print(phonenumber);
+
     if (getNUllChecker(phonenumber) == false) {
-      print("object");
       var controller = Get.put(BaseController(), permanent: true);
     }
     if (Platform.isIOS) {
