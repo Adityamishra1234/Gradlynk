@@ -30,7 +30,6 @@ class DashboardController extends GetxController {
   List<String>? model = [];
   EventZoneStatus meetingZoneStatus = EventZoneStatus();
   List eventlist = [];
-
   List<YoutubeVideoModel> youtubeVideoModel = [];
 
   @override
@@ -41,10 +40,7 @@ class DashboardController extends GetxController {
       getYoutubeVideos()
     ];
     await Future.wait(futures);
-    if (Get.find<BaseController>().model1.id != null) {
-      await Get.find<BaseController>()
-          .eventZone(Get.find<BaseController>().model1.id.toString());
-    }
+    Get.find<BaseController>().update();
     super.onInit();
   }
 
@@ -126,6 +122,4 @@ class DashboardController extends GetxController {
     // return apiservices.updateUserHistory(
     //     Endpoints.baseUrl!, Endpoints.userHistory!, reason);
   }
-
-// Notification Api call
 }

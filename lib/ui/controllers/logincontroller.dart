@@ -58,13 +58,12 @@ class LoginController extends GetxController with StateMixin {
       prefs.setString("token", model!.token.toString());
       prefs.setString("id", model!.user!.id.toString());
       change(null, status: RxStatus.success());
+      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
       List<Future> futures = [
         Get.find<BaseController>().profiledetail(),
         Get.find<BaseController>().caraouselData(),
       ];
       await Future.wait(futures);
-      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
-
       return model;
     } else {
       change(null, status: RxStatus.success());

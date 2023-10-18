@@ -5,9 +5,15 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomLoadingButton extends StatefulWidget {
   String buttonName;
-  dynamic Function(Function, Function, ButtonState)? onTap;
+  double? width;
+  double? height;
+  dynamic Function(Function, Function, ButtonState) onTap;
   CustomLoadingButton(
-      {super.key, required this.buttonName, required this.onTap});
+      {super.key,
+      required this.buttonName,
+      required this.onTap,
+      this.height,
+      this.width});
 
   @override
   State<CustomLoadingButton> createState() => _CustomLoadingButtonState();
@@ -17,11 +23,11 @@ class _CustomLoadingButtonState extends State<CustomLoadingButton> {
   @override
   Widget build(BuildContext context) {
     return LoadingButton(
-        height: 35,
+        height: widget.height ?? 35,
         borderRadius: 8,
         animate: true,
         color: Colors.indigo,
-        width: 120,
+        width: widget.width ?? 120,
         loader: Container(
           padding: const EdgeInsets.all(10),
           width: 30,

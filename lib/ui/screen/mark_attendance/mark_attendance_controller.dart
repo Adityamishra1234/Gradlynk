@@ -33,7 +33,6 @@ class MarkAttendanceController extends GetxController with StateMixin {
 
   String campaignName = '';
   String passName = '';
-
   bool showBelowContent = false;
 
   var url;
@@ -95,7 +94,6 @@ class MarkAttendanceController extends GetxController with StateMixin {
       change(null, status: RxStatus.loading());
       if (intake != null) {
         var res = await apiServices.markAttendanceIntake(markAttendanceIntake(
-            //TODO HardCoded
             campaign_id: campaign_id,
             enq_id: Get.find<BaseController>().model1.id.toString(),
             intake_month: intake!.split("-")[1],
@@ -105,13 +103,17 @@ class MarkAttendanceController extends GetxController with StateMixin {
           await allTimeAPI(campaignId: campaign_id);
           if (markAttendanceIntakeModel.documentExists == false) {
             if (markAttendanceIntakeModel.studentCategory == "C") {
+              await Get.find<BaseController>()
+                  .eventZone(Get.find<BaseController>().model1.id.toString());
+              Get.offAndToNamed(DashBoard.routeNamed);
               getToast(
                   "Your Silver Express Pass is accessible in View Express Pass Section.");
-              Get.offAndToNamed(DashBoard.routeNamed);
             } else {
               Get.to(AfterIntakeScreenView(), arguments: campaign_id);
             }
           } else {
+            await Get.find<BaseController>()
+                .eventZone(Get.find<BaseController>().model1.id.toString());
             getToast("kindly view your express pass view option");
             Get.offAndToNamed(DashBoard.routeNamed);
           }

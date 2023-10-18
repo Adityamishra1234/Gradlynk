@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/eventdocumentupload.dart';
@@ -14,6 +15,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/loading_button.dart';
 
 class AfterIntakeScreenView extends StatelessWidget {
   AfterIntakeScreenView({super.key});
@@ -147,25 +149,36 @@ class AfterIntakeScreenView extends StatelessWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      InkWell(
-                        onTap: () async {
-                          getToast(
-                              'Your pass is accessible in View Express Pass Section');
+                      CustomLoadingButton(
+                          width: 200,
+                          buttonName: "Continue with Gold Pass",
+                          onTap: ((p0, p1, p2) async {
+                            p0();
+                            await controller.documentNotSubmi(arguments);
+                            await Get.find<BaseController>().eventZone(
+                                Get.find<BaseController>()
+                                    .model1
+                                    .id
+                                    .toString());
+                            Get.offAndToNamed(DashBoard.routeNamed);
+                            getToast(
+                                'Your pass is accessible in View Express Pass Section');
+                            p1();
+                          })),
 
-                          await controller.documentNotSubmi(arguments);
-                          Get.offAndToNamed(DashBoard.routeNamed);
-                        },
-                        child: CustomIconTextTogether(
-                          text: 'Continue with Gold Pass',
-                          iconBeforetext: true,
-                          color: ThemeConstants.blackcolor,
-                          Bgcolor: ThemeConstants.whitecolor,
-                          iconData: Icon(
-                            Icons.upload,
-                            color: ThemeConstants.whitecolor,
-                          ),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () async {},
+                      //   child: CustomIconTextTogether(
+                      //     text: 'Continue with Gold Pass',
+                      //     iconBeforetext: true,
+                      //     color: ThemeConstants.blackcolor,
+                      //     Bgcolor: ThemeConstants.whitecolor,
+                      //     iconData: Icon(
+                      //       Icons.upload,
+                      //       color: ThemeConstants.whitecolor,
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   )),
             ),
