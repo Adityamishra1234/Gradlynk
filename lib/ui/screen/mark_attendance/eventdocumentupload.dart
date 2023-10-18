@@ -87,6 +87,8 @@ class EventDocumentUpload extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.topLeft,
                                     child: CustomDropDownSingle(
+                                      selectedValue:
+                                          controller.identityselected,
                                       bgColor:
                                           ThemeConstants.ultraLightgreyColor2,
                                       model: controller.listIdentity,
@@ -231,6 +233,8 @@ class EventDocumentUpload extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.topLeft,
                                     child: CustomDropDownSingle(
+                                      selectedValue:
+                                          controller.academicselected,
                                       bgColor:
                                           ThemeConstants.ultraLightgreyColor2,
                                       model: controller.listAcedmic,

@@ -184,6 +184,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       height: 5,
                     ),
                     CustomDropDownSingle(
+                      selectedValue:
+                          controller.selectedCountryNameFromContinent,
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
                           controller.loadingcountryFromContientName,
@@ -228,6 +230,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: CustomDropDownSingle(
+                              selectedValue: controller.selectStateName,
                               bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: getDropdownModel(
                                   controller.loadingState.value,
@@ -265,6 +268,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           Container(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: CustomDropDownSingle(
+                              selectedValue: controller.selectCityName,
                               bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: getDropdownModel(
                                   controller.loadingCity.value,
@@ -307,6 +311,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     child: CustomDropDownSingle(
+                      selectedValue: controller.selectedUniversityName,
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
                           controller.universityLoading,
@@ -560,6 +565,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         height: 10,
                       ),
                       CustomDropDownSingle(
+                        selectedValue: controller.selectCourseLevelName,
                         bgColor: ThemeConstants.ultraLightgreyColor2,
                         model: getDropdownModel(
                             controller.loadingCourseLevel.value,
@@ -711,6 +717,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       height: 5,
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.selectCourseNarrowFieldName,
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
                           controller.loadingCourseNarrowField.value,
@@ -744,6 +751,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       height: 10,
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.selectedIndustryName,
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
                           controller.loadingIndustries,
@@ -776,6 +784,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       height: 10,
                     ),
                     CustomDropDownSingle(
+                      selectedValue:
+                          controller.selectedcareerOutcomeDropDownName,
                       bgColor: ThemeConstants.ultraLightgreyColor2,
                       model: getDropdownModel(
                           controller.careerOutcomeLoading,

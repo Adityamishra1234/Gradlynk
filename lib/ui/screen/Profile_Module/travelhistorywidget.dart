@@ -80,6 +80,7 @@ class TravelHistoryWidget extends StatelessWidget {
             ),
           ),
           CustomDropDownSingle(
+            selectedValue: controller.travelAbroadSelected,
             model: const ["Yes", "No"],
             initialSelectedValue:
                 getNUllChecker(controller.travelAbroadSelected) == true
@@ -166,6 +167,7 @@ class TravelHistoryWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.travelStatusSelected,
         model: getDropdownModel(controller.loadingtravelStatus.value,
             controller.travelStatusSelected, controller.travelStatus),
         initialSelectedValue: getSelectedDropDown(
@@ -188,6 +190,7 @@ class TravelHistoryWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.countrySelected,
         model: getDropdownModel(controller.loadingCountry.value == true,
             controller.countrySelected, controller.countryList),
         initialSelectedValue: getSelectedDropDown(
@@ -210,6 +213,7 @@ class TravelHistoryWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.typeOfVisaSelected,
         model: getDropdownModel(
             controller.loadingTypeVisa.value,
             controller.typeOfVisaSelected,
@@ -234,6 +238,7 @@ class TravelHistoryWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.visaStatusSelected,
         model: getDropdownModel(controller.loadingVisaStatus.value,
             controller.visaStatusSelected, controller.visaStatusList),
         initialSelectedValue: getSelectedDropDown(
@@ -378,6 +383,7 @@ class TravelHistoryWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.proofAvailableSelected,
         model: const ["Yes", "No"],
         initialSelectedValue: controller.proofAvailableSelected,
         choosefieldtype: false,

@@ -262,6 +262,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            selectedValue: controller.selectedBranchName,
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.branchListName,
                             choosefieldtype: false,
@@ -287,6 +288,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            selectedValue: controller.selectedTargetSericeName,
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.targetServiceNameList,
                             choosefieldtype: false,
@@ -314,6 +316,8 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             ),
                             SizedBox(
                                 child: CustomDropDownSingle(
+                              selectedValue:
+                                  controller.selectedTargetServiceSubName,
                               bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: controller.subServiceDropDownListName,
                               choosefieldtype: false,
@@ -351,6 +355,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            selectedValue: controller.selectedCountryName,
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.countryListName,
                             choosefieldtype: false,
@@ -376,6 +381,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            selectedValue: controller.selectedLeadSourcesName,
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.leadSourcesListName,
                             choosefieldtype: false,

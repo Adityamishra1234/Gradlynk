@@ -178,6 +178,7 @@ class FundPlan extends StatelessWidget {
                                       text: "Occupation of Sponsor")),
                               const SizedBox(height: 5),
                               CustomDropDownSingle(
+                                selectedValue: controller.occupationNameSelect,
                                 choosefieldtype: false,
                                 bgColor: ThemeConstants.ultraLightgreyColor2,
                                 model: controller.occupationName,
@@ -242,6 +243,7 @@ class FundPlan extends StatelessWidget {
                               ),
                               const SizedBox(height: 10),
                               CustomDropDownSingle(
+                                selectedValue: controller.countrySelected,
                                 choosefieldtype: false,
                                 bgColor: ThemeConstants.ultraLightgreyColor2,
                                 model: controller.loadingCountry == true
@@ -276,6 +278,7 @@ class FundPlan extends StatelessWidget {
                                   text: "Name of the Financial Institution"),
                               const SizedBox(height: 10),
                               CustomDropDownSingle(
+                                selectedValue: controller.selectedBankname,
                                 choosefieldtype: false,
                                 bgColor: ThemeConstants.ultraLightgreyColor2,
                                 model: controller.loadingBank == true

@@ -81,6 +81,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                         ),
                       ),
                       CustomDropDownSingle(
+                        selectedValue: _.documentTypeSelectedName,
                         model: getDropdownModel(_.loadingDocumentType.value,
                             _.documentTypeSelectedName, _.documenttypeName),
                         callbackFunction: callbackDocumentType,
@@ -107,6 +108,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                         ),
                       if (_.documentTypeSelectedID == 3)
                         CustomDropDownSingle(
+                          selectedValue: _.organizationSelectedName,
                           model: getDropdownModel(_.loadingOrgName.value,
                               _.organizationSelectedName, _.organizationName),
                           callbackFunction: callbackOrganization,
@@ -131,6 +133,7 @@ class _UploadDocumentState extends State<UploadDocument> {
                         ),
                       ),
                       CustomDropDownSingle(
+                        selectedValue: _.documentNameSelectedName,
                         model: getDropdownModel(_.loadingDocumentName.value,
                             _.documentNameSelectedName, _.documentNameName),
                         callbackFunction: callbackDocumentName,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/config/size_config.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/customizable_dropdown.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -7,6 +8,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 class CustomDropDownSingle extends StatelessWidget {
   bool? choosefieldtype;
   List model;
+  String? selectedValue;
   String? initialSelectedValue;
   final Function callbackFunction;
   Color? bgColor;
@@ -16,6 +18,7 @@ class CustomDropDownSingle extends StatelessWidget {
     this.bgColor,
     required this.model,
     this.fontWeight,
+    required this.selectedValue,
     required this.callbackFunction,
     required this.choosefieldtype,
     required this.initialSelectedValue,
@@ -23,7 +26,6 @@ class CustomDropDownSingle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(initialSelectedValue);
     return choosefieldtype == true
         ? Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -39,7 +41,9 @@ class CustomDropDownSingle extends StatelessWidget {
                   textColor: ThemeConstants.TextColor,
                   fontSize: SizeConfig.fontLabelSize,
                   fontWeight: SizeConfig.fontLabelWeight,
-                  text: initialSelectedValue,
+                  text: getNUllChecker(selectedValue) == false
+                      ? ""
+                      : initialSelectedValue,
                 ),
               ),
             ),
@@ -68,7 +72,9 @@ class CustomDropDownSingle extends StatelessWidget {
                 placeholder: Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: CustomAutoSizeTextMontserrat(
-                        text: initialSelectedValue))),
+                        text: getNUllChecker(selectedValue) == false
+                            ? ""
+                            : initialSelectedValue))),
           );
   }
 }

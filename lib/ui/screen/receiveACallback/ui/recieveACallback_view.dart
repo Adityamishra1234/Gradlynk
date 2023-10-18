@@ -28,6 +28,7 @@ class ReceiveACallBackView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         CustomDropDownSingle(
+                          selectedValue: controller.oo.value,
                           model: controller.name,
                           initialSelectedValue: controller.oo.value,
                           choosefieldtype: false,

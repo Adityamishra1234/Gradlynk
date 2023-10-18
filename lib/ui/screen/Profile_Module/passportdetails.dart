@@ -95,6 +95,7 @@ class PassportDetails extends StatelessWidget {
             ),
           ),
           CustomDropDownSingle(
+            selectedValue: controller.passportAvaliable.value.toString(),
             model: const ["Yes", "No"],
             initialSelectedValue:
                 getNUllChecker(controller.passportAvaliable.value) == true
@@ -152,6 +153,7 @@ class PassportDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.citizenSelected,
         model: controller.loadingCountry.value == true
             ? controller.countryList
             : ["No Data"],
@@ -236,6 +238,7 @@ class PassportDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.countrySelected,
         model: controller.loadingCountry.value == true
             ? controller.countryList
             : ["No Data"],
@@ -262,6 +265,7 @@ class PassportDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.stateSelected,
         model: controller.loadingState.value == true
             ? controller.stateList
             : ["No Data"],

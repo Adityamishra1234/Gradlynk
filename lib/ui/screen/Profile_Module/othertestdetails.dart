@@ -152,6 +152,7 @@ class OthertestDetail extends StatelessWidget {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.examStatusSelected,
               model: controller.loadingExamStaus.value == true
                   ? controller.examStatusList
                   : ["No Data"],
@@ -242,6 +243,7 @@ class OthertestDetail extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.examNameSelected,
         model: controller.loadingExamName.value == true
             ? controller.examNameList
             : ["No Data"],
@@ -302,6 +304,7 @@ class OthertestDetail extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.bookTestSelected,
         model: const ["Yes", "No"],
         initialSelectedValue: controller.bookTestSelected ?? "No",
         choosefieldtype: controller.editSave.value == true ? true : false,
@@ -326,6 +329,7 @@ class OthertestDetail extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.examNameSelected.toString(),
         model: controller.loadingExamName.value == true
             ? controller.examNameList
             : ["No Data"],
@@ -394,6 +398,7 @@ class OthertestDetail extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.examNameSelected.toString(),
         model: controller.loadingExamName.value == true
             ? controller.examNameList
             : ["No Data"],
@@ -531,6 +536,7 @@ class OthertestDetail extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(top: 10),
         child: CustomDropDownSingle(
+          selectedValue: controller.tentaiveDefinite,
           model: const ["Tentative", "Definite"],
           initialSelectedValue: controller.tentaiveDefinite,
           choosefieldtype: controller.editSave.value == true ? true : false,

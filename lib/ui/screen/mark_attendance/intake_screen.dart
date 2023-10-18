@@ -57,6 +57,7 @@ class IntakeScreen extends StatelessWidget {
                   ),
                 if (Get.find<BaseController>().eventlist.length > 1)
                   CustomDropDownSingle(
+                    selectedValue: controller.eventSelected,
                     bgColor: ThemeConstants.ultraLightgreyColor2,
                     model: Get.find<BaseController>().eventlist,
                     initialSelectedValue:

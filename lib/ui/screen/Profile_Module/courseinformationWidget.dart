@@ -49,6 +49,7 @@ class CourseInformationWidget extends StatelessWidget {
                     ),
                   ),
                   CustomDropDownSingle(
+                    selectedValue: controller1.courseLevelSelected,
                     model: getDropdownModel(
                         controller1.loadingCourseLevel.value,
                         controller1.courseLevelSelected,
@@ -117,6 +118,7 @@ class CourseInformationWidget extends StatelessWidget {
                   ),
                   CustomDropDownSingle(
                     //Todo
+                    selectedValue: controller1.courseNarrowSelected,
                     model: getDropdownModel(
                         controller1.loadingCourseNarrow.value,
                         controller1.courseNarrowSelected,

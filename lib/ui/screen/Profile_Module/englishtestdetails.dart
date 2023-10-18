@@ -54,6 +54,7 @@ class EnglishTestDetails extends StatelessWidget {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.examStatusSelected,
               model: controller.loadingExamStaus.value == true
                   ? controller.examStatusList
                   : ["No Data"],
@@ -188,6 +189,7 @@ class EnglishTestDetails extends StatelessWidget {
       ),
       GetBuilder<EnglishTestController>(builder: (controller) {
         return CustomDropDownSingle(
+          selectedValue: controller.examNameSelected,
           model: controller.loadingExamName2.value == true
               ? controller.examNameList
               : ["No Data"],
@@ -258,6 +260,7 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.bookTestSelcted,
         model: const ["Yes", "No"],
         initialSelectedValue: controller.bookTestSelcted ?? "No",
         choosefieldtype: editsave,
@@ -277,6 +280,7 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.examNameSelected,
         model: controller.loadingExamName2.value == true
             ? controller.examNameList
             : ["No data"],
@@ -342,6 +346,7 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.examNameSelected,
         model: controller.loadingExamName2.value == true
             ? controller.examNameList
             : ["No Data"],
@@ -487,6 +492,7 @@ class EnglishTestDetails extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.tentative.value,
         model: const ["Tentative", "Definite"],
         initialSelectedValue: controller.tentative.value,
         choosefieldtype: controller.editSave.value == true ? true : false,

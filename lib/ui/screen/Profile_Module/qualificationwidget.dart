@@ -140,6 +140,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ],
             )),
             CustomDropDownSingle(
+              selectedValue: controller.highestQualificationSelected,
               model: getDropdownModel(
                   controller.loadingHighestQualification.value,
                   controller.highestQualificationSelected,
@@ -200,6 +201,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.streamSelected,
               model: getDropdownModel(controller.loadingStream.value,
                   controller.streamSelected, controller.streamList),
               initialSelectedValue: getSelectedDropDown(
@@ -223,6 +225,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.educationStatusSelected,
               model: getDropdownModel(
                   controller.loadingEducationStatus.value,
                   controller.educationStatusSelected,
@@ -247,6 +250,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.yearOfPassingSelected,
               model: getDropdownModel(controller.loadingyearOfpassing.value,
                   controller.yearOfPassingSelected, controller.yearofPassing),
               initialSelectedValue: getSelectedDropDown(
@@ -450,6 +454,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.countrySelected,
               model: getDropdownModel(controller.loadingCountry.value,
                   controller.countrySelected, controller.countryList),
               initialSelectedValue: getSelectedDropDown(
@@ -472,6 +477,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.stateSelected,
               model: getDropdownModel(controller.loadingState.value,
                   controller.stateSelected, controller.stateList),
               initialSelectedValue: getSelectedDropDown(
@@ -494,6 +500,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.citySelected,
               model: getDropdownModel(controller.loadingCity.value,
                   controller.citySelected, controller.cityList),
               initialSelectedValue: getSelectedDropDown(
@@ -516,6 +523,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.affiliationNameSelected,
               model: getDropdownModel(
                   controller.loadingAffiliation.value,
                   controller.affiliationNameSelected,
@@ -541,6 +549,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               ),
             ),
             CustomDropDownSingle(
+              selectedValue: controller.institutionSelected,
               model: getDropdownModel(controller.loadingInstitution.value,
                   controller.institutionSelected, controller.institutionList),
               initialSelectedValue: getSelectedDropDown(

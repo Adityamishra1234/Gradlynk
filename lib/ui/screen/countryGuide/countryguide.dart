@@ -59,6 +59,7 @@ class CountryGuide extends StatelessWidget {
                         // width: 300,
                         // height: 45,
                         child: CustomDropDownSingle(
+                          selectedValue: _.countrySelected,
                           model: getDropdownModel(
                             true,
                             _.countrySelected,

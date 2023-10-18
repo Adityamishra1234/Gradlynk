@@ -90,6 +90,7 @@ class RelativeInformationWidget extends StatelessWidget {
                 ],
               ),
               CustomDropDownSingle(
+                selectedValue: controller.anyRelativeCountryInterestedSelected,
                 model: const ["Yes", "No"],
                 initialSelectedValue: getNUllChecker(
                             controller.anyRelativeCountryInterestedSelected) ==
@@ -129,6 +130,7 @@ class RelativeInformationWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.countryNameSelected,
         model: getDropdownModel(controller.loadingCountry.value,
             controller.countryNameSelected, controller.countryList),
         initialSelectedValue: getSelectedDropDown(
@@ -152,6 +154,7 @@ class RelativeInformationWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.citizenShipStatusSelected,
         model: getDropdownModel(controller.loadingCitizen.value,
             controller.citizenShipStatusSelected, controller.citizenShipStatus),
         initialSelectedValue: getSelectedDropDown(
@@ -175,6 +178,7 @@ class RelativeInformationWidget extends StatelessWidget {
         ),
       ),
       CustomDropDownSingle(
+        selectedValue: controller.relationSelected,
         model: getDropdownModel(controller.loadingRealtion.value,
             controller.relationSelected, controller.realtion),
         initialSelectedValue: getSelectedDropDown(

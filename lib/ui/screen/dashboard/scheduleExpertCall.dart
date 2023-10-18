@@ -56,6 +56,7 @@ class ScheduleExpertCall extends StatelessWidget {
                 ),
               ),
               CustomDropDownSingle(
+                selectedValue: _.nameSelected,
                 model: getDropdownModel(
                     _.loadingServiceAssigned.value, _.nameSelected, _.name),
                 initialSelectedValue: getSelectedDropDown(

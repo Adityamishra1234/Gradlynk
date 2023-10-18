@@ -211,6 +211,7 @@ class WorkHistoryWidget extends StatelessWidget {
             ),
           ),
           CustomDropDownSingle(
+            selectedValue: controller.industryNameSelected,
             model: getDropdownModel(controller.loadingIndustries.value,
                 controller.industryNameSelected, controller.industriesList),
             // controller.loadingIndustries.value == true
@@ -276,6 +277,7 @@ class WorkHistoryWidget extends StatelessWidget {
             ),
           ),
           CustomDropDownSingle(
+            selectedValue: controller.employementTypeSelected,
             model: getDropdownModel(
                 controller.loadingEmploymentType.value,
                 controller.employementTypeSelected,

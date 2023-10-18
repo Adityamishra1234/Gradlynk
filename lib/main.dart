@@ -143,7 +143,7 @@ class _MyAppState extends State<MyApp> {
       // initialBinding: AppBinding(),
       debugShowCheckedModeBanner: false,
       // Initial Route
-      initialRoute: "/",
+      initialRoute: DashBoard.routeNamed,
       // Create Route
       getPages: [
         GetPage(

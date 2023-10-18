@@ -434,6 +434,7 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
                       ),
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.genderSelected,
                       model: getDropdownModel(
                           true, controller.genderSelected, gender),
                       callbackFunction: callbackGender,
@@ -456,6 +457,7 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
                       ),
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.maritalStatusSelected,
                       model: getDropdownModel(
                           controller.loadingmartialStatus.value,
                           controller.maritalStatusSelected,
@@ -485,6 +487,8 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
                     if (controller.maritalStatusIdSelected == 1 ||
                         controller.maritalStatusIdSelected == 3)
                       CustomDropDownSingle(
+                        selectedValue:
+                            controller.childrenCountSelected.toString(),
                         model: const ["1", "2", "3", "4"],
                         callbackFunction: callbackChildrenCount,
                         initialSelectedValue:
@@ -735,6 +739,7 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
                       ),
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.countrySelected,
                       model: getDropdownModel(controller.loadingCountry.value,
                           controller.countrySelected, controller.countryList),
                       callbackFunction: callbackCountry,
@@ -759,6 +764,7 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
                       ),
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.stateSelected,
                       model: getDropdownModel(controller.loadingState.value,
                           controller.stateSelected, controller.stateList),
                       callbackFunction: calllbackState,
@@ -783,6 +789,7 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
                       ),
                     ),
                     CustomDropDownSingle(
+                      selectedValue: controller.citySelected,
                       model: getDropdownModel(controller.loadingCity.value,
                           controller.citySelected, controller.cityList),
                       callbackFunction: callbackCity,
