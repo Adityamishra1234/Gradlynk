@@ -205,7 +205,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
@@ -218,7 +218,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             callbackFunction: callBackSelectedBranch,
                           )),
 
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -231,7 +231,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
@@ -246,7 +246,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           )),
 
                           if (controller.selectedTargetServiceId == '3') ...[
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Container(
@@ -259,7 +259,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 fontSize: 13,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             SizedBox(
@@ -284,7 +284,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           //         labelTextStr: 'Target Destination'),
                           //   ),
                           // ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -297,7 +297,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
@@ -310,7 +310,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 controller.selectedCountryName,
                             callbackFunction: callBackSelectedDestination,
                           )),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -323,7 +323,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
