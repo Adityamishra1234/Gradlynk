@@ -98,9 +98,9 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             height: 5,
                           ),
                           Container(
-                            key: Key('registration_name_field'),
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             child: CustomTextField(
+                              key: Key('registration_name_field'),
                               fieldFontWeight: FontWeight.w400,
                               hintFontWeight: FontWeight.w500,
                               borderRadius: 10,
@@ -145,6 +145,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 7),
                           child: CustomTextField(
+                            key: Key('registration_phoneNumber_field'),
                             fieldFontWeight: FontWeight.w400,
                             borderRadius: 10,
                             hint: '',
@@ -175,6 +176,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             child: CustomTextField(
+                              key: Key('registration_email_field'),
                               fieldFontWeight: FontWeight.w400,
                               borderRadius: 10,
                               backgroundCOlour:
@@ -208,6 +210,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            key: Key('registration_siec_branch'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.branchListName,
                             choosefieldtype: false,
@@ -233,6 +236,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            key: Key('registration_target_service'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.targetServiceNameList,
                             choosefieldtype: false,
@@ -260,6 +264,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             ),
                             SizedBox(
                                 child: CustomDropDownSingle(
+                              key: Key('registration_target_test'),
                               bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: controller.subServiceDropDownListName,
                               choosefieldtype: false,
@@ -297,6 +302,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            key: Key('registration_target_destination'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.countryListName,
                             choosefieldtype: false,
@@ -322,6 +328,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            key: Key('registration_hear_about_us'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.leadSourcesListName,
                             choosefieldtype: false,
