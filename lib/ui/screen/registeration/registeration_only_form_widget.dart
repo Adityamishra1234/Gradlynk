@@ -47,52 +47,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     ),
   );
 
-  signature() async {
-    // String? smsCode = await AndroidSmsRetriever.listenForOneTimeConsent(senderPhoneNumber: );
-
-    // otpCode = await AltSmsAutofill().listenForSms!;
-
-    // var d = otpCode!.split(' ');
-
-    // print(match);
-
-    // var d = int.parse();
-
-    // otpcontroller.text = d[8];
-
-    // setState(() {});
-    // print('otpCode)');
-
-    // print(odtpCode);
-    // await SmsAutoFill().getAppSignature.then((signature) {
-    //   setState(() {
-    //     appSignature = signature;
-    //   });
-    // });
-
-    // await SmsAutoFill().listenForCode();
-    // print(appSignature);
-  }
-
   void initState() {
     controller.initialized;
     super.initState();
-    // _focusNode.addListener(_onFocusChange);
-    // MobileNumber.listenPhonePermission((isPermissionGranted) {
-    //   if (isPermissionGranted) {
-    //     // initMobileNumberState();
-    //   } else {}
-    // });
-
-    // _checkVersion();
   }
 
   @override
   void dispose() {
-    // AltSmsAutofill().unregisterListener();
-
-    // controller.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -101,11 +62,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     return controller.obx(
         onLoading: getLoading(context),
         (state) => Container(
-              // elevation: 5,
-
               constraints: BoxConstraints(maxHeight: 500, minHeight: 300),
-
-              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               margin: const EdgeInsets.symmetric(horizontal: 40),
               decoration: BoxDecoration(
@@ -126,14 +83,6 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: CustomAutoSizeTextMontserrat(
-                        //     text: 'Name',
-                        //     fontWeight: FontWeight.w500,
-                        //   ),
-                        // ),
-
                         if (controller.showOtp == false) ...[
                           Container(
                             padding: EdgeInsets.only(left: 10),
@@ -154,15 +103,11 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fieldFontWeight: FontWeight.w400,
                               hintFontWeight: FontWeight.w500,
                               borderRadius: 10,
-
                               hint: '',
                               backgroundCOlour:
                                   ThemeConstants.ultraLightgreyColor2,
                               validator: Validator.notEmpty,
-                              // autovalidateMode: AutovalidateMode.onUserInteraction,
                               controller: controller.nameController,
-                              // decoration: CustomInputDecoration.textFieldStyle(
-                              //     labelTextStr: 'Name'),
                             ),
                           ),
                           SizedBox(
@@ -474,40 +419,47 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 (startLoading, stopLoading, buttonState) async {
                               // if( b )
 
-                              if (controller.formKey.currentState!.validate() &&
-                                  controller.buttonClickEnabled == true) {
-                                controller.buttonClickEnabled = false;
-                                print('object');
-                                controller.update();
-                                startLoading();
+                              if (buttonState == ButtonState.idle) {
+                                if (controller.formKey.currentState!
+                                    .validate()) {
+                                  // controller.buttonClickEnabled = false;
+                                  print('object');
+                                  controller.update();
+                                  startLoading();
 
-                                if (controller.selectedTargetServiceId == '0') {
-                                  getToast('Please Select Target Service');
-                                } else if (controller.selectedTargetServiceId ==
-                                        '3' &&
-                                    controller.selectedTargetServiceSubId ==
-                                        '0') {
-                                  getToast('Please Select Target Test');
-                                } else if (controller.selectedBranchCode ==
-                                    "") {
-                                  getToast('Please Select Branch');
-                                } else if (controller.selectedCountryID == "") {
-                                  getToast('Please Select Country');
-                                } else if (controller.selectedLeadSourcesCode ==
-                                    "") {
-                                  getToast(
-                                      'Please select how you heard about us');
-                                } else {
-                                  var res = await controller.regsiter();
+                                  if (controller.selectedTargetServiceId ==
+                                      '0') {
+                                    getToast('Please Select Target Service');
+                                  } else if (controller
+                                              .selectedTargetServiceId ==
+                                          '3' &&
+                                      controller.selectedTargetServiceSubId ==
+                                          '0') {
+                                    getToast('Please Select Target Test');
+                                  } else if (controller.selectedBranchCode ==
+                                      "") {
+                                    getToast('Please Select Branch');
+                                  } else if (controller.selectedCountryID ==
+                                      "") {
+                                    getToast('Please Select Country');
+                                  } else if (controller
+                                          .selectedLeadSourcesCode ==
+                                      "") {
+                                    getToast(
+                                        'Please select how you heard about us');
+                                  } else {
+                                    print('ee');
+                                    var res = await controller.regsiter();
 
-                                  // if (res == true) {
-                                  //   signature();
-                                  // }
+                                    // if (res == true) {
+                                    //   signature();
+                                    // }
+                                  }
+                                  // controller.buttonClickEnabled = true;
+                                  stopLoading();
+                                  controller.update();
+                                  // Get.toNamed(LoginCopy.routeNamed);
                                 }
-                                controller.buttonClickEnabled = true;
-                                stopLoading();
-                                controller.update();
-                                // Get.toNamed(LoginCopy.routeNamed);
                               }
                             },
                             height: 30,
@@ -540,7 +492,6 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           //       }
                           //     }),
                         ],
-
                         if (controller.showOtp == true) ...[
                           Padding(
                             padding: const EdgeInsets.all(5),
