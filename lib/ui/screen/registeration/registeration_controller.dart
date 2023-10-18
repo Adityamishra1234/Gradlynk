@@ -148,32 +148,36 @@ class RegisterationCopntroller extends GetxController with StateMixin {
   }
 
   regsiter() async {
-    var endpoint = registerNewUserEndpoint(
-        name: nameController.text,
-        phoneNumber: phoneNumberController.text,
-        emailID: emailIdController.text,
-        targetDestination: selectedCountryID,
-        nearestSiecBranch: selectedBranchCode,
-        howDidYouHearAboutUS: selectedLeadSourcesCode,
-        primaryServiceId: selectedTargetServiceId,
-        primarySubServiceId: selectedTargetServiceSubId);
+    try {
+      var endpoint = registerNewUserEndpoint(
+          name: nameController.text,
+          phoneNumber: phoneNumberController.text,
+          emailID: emailIdController.text,
+          targetDestination: selectedCountryID,
+          nearestSiecBranch: selectedBranchCode,
+          howDidYouHearAboutUS: selectedLeadSourcesCode,
+          primaryServiceId: selectedTargetServiceId,
+          primarySubServiceId: selectedTargetServiceSubId);
 
-    print(endpoint);
-    var res = await api.registerNewUser(endpoint);
-    var status = res['status'];
-    var returnData;
-    if (status == true) {
-      showOtp = true;
+      print(endpoint);
+      var res = await api.registerNewUser(endpoint);
+      var status = res['status'];
+      var returnData;
+      if (status == true) {
+        showOtp = true;
 
-      returnData = true;
-      startTimer();
-    } else {
-      returnData = false;
-      getToast(res['message']);
+        returnData = true;
+        startTimer();
+      } else {
+        returnData = false;
+        getToast(res['message']);
+      }
+
+      update();
+      return returnData;
+    } catch (e) {
+      return false;
     }
-
-    update();
-    return returnData;
   }
 
   late LoginModel2 model;
