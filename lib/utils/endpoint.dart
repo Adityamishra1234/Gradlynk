@@ -190,7 +190,7 @@ class Endpoints {
 }
 
 String getRelativeInformationNo(String enqId) {
-  return "add-relative-details?enq_id=$enqId&any_relative_country_interested=0";
+  return "add-relative-details?enq_id=$enqId&has_travelled=0";
 }
 
 String getEventTrackingDetails(
