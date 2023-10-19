@@ -67,6 +67,13 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
+    print(Get.previousRoute);
+// "/LoginCopy"
+// "/LoginCopy"
+
+    if (Get.previousRoute == '/' || Get.previousRoute == '/LoginCopy') {
+      controller.getDataAgain();
+    }
     // Get.offAllNamed(DashBoard.routeNamed);
     try {
       //todo

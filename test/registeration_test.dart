@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
@@ -10,16 +12,30 @@ void main() {
     final fieldValidator = FieldValidators();
     test('valid email address', () {
       var result = fieldValidator.getEmailvaliation('test@gmail.com');
-
+  group('registeration_widget', () {
+    testWidgets('valid phone number', (WidgetTester tester) async {
+      var name = find.byKey(const Key('registration_name_field'));
+      var phoneNumber = find.byKey(const Key('registration_phoneNumber_field'));
+      var email = find.byKey(const Key('registration_email_field'));
       expect(result, '');
+      var siecBranch = find.byKey(const Key('registration_siec_branch'));
+      var targetService = find.byKey(const Key('registration_target_service'));
+      var targetTest = find.byKey(const Key('registration_target_test'));
+      var targetDestination =
+          find.byKey(const Key('registration_target_destination'));
 
       // final fieldValidator = Field;
+      var hearAboutUs = find.byKey(const Key('registration_hear_about_us'));
     });
 
     test('no valid email address', () {
       var result = fieldValidator.getEmailvaliation('test@gmail');
+      await tester.enterText(name, 'test');
+      await tester.enterText(phoneNumber, '9918810901');
+      await tester.enterText(email, 'testets@gmail.com');
 
       expect(result, 'Enter a valid email address');
+      await tester.tap(siecBranch);
       // final fieldValidator = Field;
     });
 
@@ -28,6 +44,11 @@ void main() {
 
       expect(result, 'Please enter email address');
       // final fieldValidator = Field;
+      // final fieldValidator = Field;
+    });
+  });
+}
+
     });
   });
 

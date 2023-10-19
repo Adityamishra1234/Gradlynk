@@ -47,52 +47,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     ),
   );
 
-  signature() async {
-    // String? smsCode = await AndroidSmsRetriever.listenForOneTimeConsent(senderPhoneNumber: );
-
-    // otpCode = await AltSmsAutofill().listenForSms!;
-
-    // var d = otpCode!.split(' ');
-
-    // print(match);
-
-    // var d = int.parse();
-
-    // otpcontroller.text = d[8];
-
-    // setState(() {});
-    // print('otpCode)');
-
-    // print(odtpCode);
-    // await SmsAutoFill().getAppSignature.then((signature) {
-    //   setState(() {
-    //     appSignature = signature;
-    //   });
-    // });
-
-    // await SmsAutoFill().listenForCode();
-    // print(appSignature);
-  }
-
   void initState() {
     controller.initialized;
     super.initState();
-    // _focusNode.addListener(_onFocusChange);
-    // MobileNumber.listenPhonePermission((isPermissionGranted) {
-    //   if (isPermissionGranted) {
-    //     // initMobileNumberState();
-    //   } else {}
-    // });
-
-    // _checkVersion();
   }
 
   @override
   void dispose() {
-    // AltSmsAutofill().unregisterListener();
-
-    // controller.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -101,11 +62,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
     return controller.obx(
         onLoading: getLoading(context),
         (state) => Container(
-              // elevation: 5,
-
               constraints: BoxConstraints(maxHeight: 500, minHeight: 300),
-
-              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               margin: const EdgeInsets.symmetric(horizontal: 40),
               decoration: BoxDecoration(
@@ -126,14 +83,6 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: CustomAutoSizeTextMontserrat(
-                        //     text: 'Name',
-                        //     fontWeight: FontWeight.w500,
-                        //   ),
-                        // ),
-
                         if (controller.showOtp == false) ...[
                           Container(
                             padding: EdgeInsets.only(left: 10),
@@ -151,19 +100,15 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             child: CustomTextField(
-                              key: const Key('registrationNameField'),
+                              key: Key('registration_name_field'),
                               fieldFontWeight: FontWeight.w400,
                               hintFontWeight: FontWeight.w500,
                               borderRadius: 10,
-
                               hint: '',
                               backgroundCOlour:
                                   ThemeConstants.ultraLightgreyColor2,
                               validator: Validator.notEmpty,
-                              // autovalidateMode: AutovalidateMode.onUserInteraction,
                               controller: controller.nameController,
-                              // decoration: CustomInputDecoration.textFieldStyle(
-                              //     labelTextStr: 'Name'),
                             ),
                           ),
                           SizedBox(
@@ -200,6 +145,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 7),
                           child: CustomTextField(
+                            key: Key('registration_phoneNumber_field'),
                             fieldFontWeight: FontWeight.w400,
                             borderRadius: 10,
                             hint: '',
@@ -230,6 +176,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 7),
                             child: CustomTextField(
+                              key: Key('registration_email_field'),
                               fieldFontWeight: FontWeight.w400,
                               borderRadius: 10,
                               backgroundCOlour:
@@ -258,11 +205,12 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
+                            key: Key('registration_siec_branch'),
                             selectedValue: controller.selectedBranchName,
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.branchListName,
@@ -271,7 +219,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             callbackFunction: callBackSelectedBranch,
                           )),
 
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -284,12 +232,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
                             selectedValue: controller.selectedTargetSericeName,
+                            key: Key('registration_target_service'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.targetServiceNameList,
                             choosefieldtype: false,
@@ -299,7 +248,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           )),
 
                           if (controller.selectedTargetServiceId == '3') ...[
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Container(
@@ -312,12 +261,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 fontSize: 13,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 5,
                             ),
                             SizedBox(
                                 child: CustomDropDownSingle(
                               selectedValue:
+                              key: Key('registration_target_test'),
                                   controller.selectedTargetServiceSubName,
                               bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: controller.subServiceDropDownListName,
@@ -338,7 +288,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           //         labelTextStr: 'Target Destination'),
                           //   ),
                           // ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -351,12 +301,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
                             selectedValue: controller.selectedCountryName,
+                            key: Key('registration_target_destination'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.countryListName,
                             choosefieldtype: false,
@@ -364,7 +315,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 controller.selectedCountryName,
                             callbackFunction: callBackSelectedDestination,
                           )),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -377,12 +328,13 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               fontSize: 13,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           SizedBox(
                               child: CustomDropDownSingle(
                             selectedValue: controller.selectedLeadSourcesName,
+                            key: Key('registration_hear_about_us'),
                             bgColor: ThemeConstants.ultraLightgreyColor2,
                             model: controller.leadSourcesListName,
                             choosefieldtype: false,
@@ -481,37 +433,47 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 (startLoading, stopLoading, buttonState) async {
                               // if( b )
 
-                              if (controller.formKey.currentState!.validate() &&
-                                  controller.buttonClickEnabled == true) {
-                                controller.buttonClickEnabled = false;
-                                print('object');
-                                controller.update();
-                                startLoading();
+                              if (buttonState == ButtonState.idle) {
+                                if (controller.formKey.currentState!
+                                    .validate()) {
+                                  // controller.buttonClickEnabled = false;
+                                  print('object');
+                                  controller.update();
+                                  startLoading();
 
-                                if (controller.selectedTargetServiceId == '3' &&
-                                    controller.selectedTargetServiceSubId ==
-                                        '0') {
-                                  getToast('Please Select Target Test');
-                                } else if (controller.selectedBranchCode ==
-                                    "") {
-                                  getToast('Please Select Branch');
-                                } else if (controller.selectedCountryID == "") {
-                                  getToast('Please Select Country');
-                                } else if (controller.selectedLeadSourcesCode ==
-                                    "") {
-                                  getToast(
-                                      'Please select how you heard about us');
-                                } else {
-                                  var res = await controller.regsiter();
+                                  if (controller.selectedTargetServiceId ==
+                                      '0') {
+                                    getToast('Please Select Target Service');
+                                  } else if (controller
+                                              .selectedTargetServiceId ==
+                                          '3' &&
+                                      controller.selectedTargetServiceSubId ==
+                                          '0') {
+                                    getToast('Please Select Target Test');
+                                  } else if (controller.selectedBranchCode ==
+                                      "") {
+                                    getToast('Please Select Branch');
+                                  } else if (controller.selectedCountryID ==
+                                      "") {
+                                    getToast('Please Select Country');
+                                  } else if (controller
+                                          .selectedLeadSourcesCode ==
+                                      "") {
+                                    getToast(
+                                        'Please select how you heard about us');
+                                  } else {
+                                    print('ee');
+                                    var res = await controller.regsiter();
 
-                                  // if (res == true) {
-                                  //   signature();
-                                  // }
+                                    // if (res == true) {
+                                    //   signature();
+                                    // }
+                                  }
+                                  // controller.buttonClickEnabled = true;
+                                  stopLoading();
+                                  controller.update();
+                                  // Get.toNamed(LoginCopy.routeNamed);
                                 }
-                                controller.buttonClickEnabled = true;
-                                stopLoading();
-                                controller.update();
-                                // Get.toNamed(LoginCopy.routeNamed);
                               }
                             },
                             height: 30,
@@ -544,7 +506,6 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                           //       }
                           //     }),
                         ],
-
                         if (controller.showOtp == true) ...[
                           Padding(
                             padding: const EdgeInsets.all(5),
