@@ -68,7 +68,7 @@ class ContactInformationController extends GetxController with StateMixin {
   static TextEditingController facebookId = TextEditingController();
   static TextEditingController snapchatId = TextEditingController();
   static TextEditingController otherCountryinterested = TextEditingController();
-  static TextEditingController assignedBranch = TextEditingController();
+  TextEditingController assignedBranch = TextEditingController();
   static TextEditingController service = TextEditingController();
   static TextEditingController firstCountryInterest = TextEditingController();
   static TextEditingController assignedAdvisors = TextEditingController();
@@ -413,20 +413,19 @@ class ContactInformationController extends GetxController with StateMixin {
     try {
       if (loadingStudentPanelData.value == 1) {
         for (var i = 0; i < model.addtionalDetails!.length; i++) {
-          if (model.addtionalDetails![i].serviceName == "Student Visa") {
-            ContactInformationController.assignedBranch.text =
-                model.addtionalDetails![i].branchName ?? "";
-            ContactInformationController.service.text =
-                model.addtionalDetails![i].serviceName ?? "";
-            ContactInformationController.firstCountryInterest.text =
-                model.addtionalDetails![i].countryName ?? "";
+          // if (model.addtionalDetails![i].serviceName == "Student Visa") {
+          assignedBranch.text = model.addtionalDetails![i].branchName ?? "";
+          ContactInformationController.service.text =
+              model.addtionalDetails![i].serviceName ?? "";
+          ContactInformationController.firstCountryInterest.text =
+              model.addtionalDetails![i].countryName ?? "";
+          ContactInformationController.assignedAdvisors.text =
+              model.addtionalDetails![i].assigned_advisor ?? "";
+          if (getNUllChecker(model.addtionalDetails![i].assigne) == false) {
             ContactInformationController.assignedAdvisors.text =
-                model.addtionalDetails![i].assigned_advisor ?? "";
-            if (getNUllChecker(model.addtionalDetails![i].assigne) == false) {
-              ContactInformationController.assignedAdvisors.text =
-                  ContactInformationController.assignedAdvisors.text +
-                      model.addtionalDetails![i].assigne!;
-            }
+                ContactInformationController.assignedAdvisors.text +
+                    model.addtionalDetails![i].assigne!;
+            // }
           }
         }
 

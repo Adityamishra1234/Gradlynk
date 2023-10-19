@@ -1145,8 +1145,7 @@ class _ContactInformationCopyState extends State<ContactInformationCopy> {
                               ? ThemeConstants
                                   .montserrattextstyleForFilledTextEnableEdit
                               : ThemeConstants.montserrattextstyleForFilledText,
-                          hintText:
-                              ContactInformationController.assignedBranch.text,
+                          hintText: controller.assignedBranch.text,
                           filled: true,
                           fillColor: ThemeConstants.lightblueColor,
                           border: OutlineInputBorder(

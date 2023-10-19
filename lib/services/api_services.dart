@@ -60,6 +60,7 @@ class ApiServices extends StudentPanelBase implements api {
       var response;
 
       response = await httpPostNullBody(baseUrl + endpoint);
+      print(endpoint);
       if (response != null) {
         // debugPrint(response);
         // SharedPreferences sharedPreferences =
