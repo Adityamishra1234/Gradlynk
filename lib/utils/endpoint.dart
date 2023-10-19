@@ -6,7 +6,6 @@ class Endpoints {
   // static String? baseUrl_mark_attendance = "http://14.97.86.202:204/api/";
   static String? baseUrl = "http://164.52.208.95:99/api/";
 
-  static String? baseUrl = "http://164.52.208.95:99/api/";
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
   static String? userHistory = "login-logout-history";
