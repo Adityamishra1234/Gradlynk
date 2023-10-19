@@ -9,6 +9,7 @@ import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
+import 'package:studentpanel/widgets/custombutton.dart';
 
 class RelativeInformationWidget extends StatelessWidget {
   int? index;
@@ -104,6 +105,24 @@ class RelativeInformationWidget extends StatelessWidget {
               ),
               if (controller.anyRelativeCountryInterestedSelected == "1")
                 ...interestedCountry(controller, context),
+              if (controller.anyRelativeCountryInterestedSelected == "2")
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: SizedBox(
+                      width: 100,
+                      child: CustomButton(
+                          text: "Added",
+                          onPressed: () {
+                            controller.updateRelativeInformationNO(
+                                Get.find<BaseController>().model1.id.toString(),
+                                "Updated");
+                          },
+                          backgroundColor: ThemeConstants.bluecolor),
+                    ),
+                  ),
+                )
             ],
           ),
         ),

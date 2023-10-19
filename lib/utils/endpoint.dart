@@ -189,6 +189,10 @@ class Endpoints {
   static String? eventHistoryList = 'event-history?enq_id=';
 }
 
+String getRelativeInformationNo(String enqId) {
+  return "add-relative-details?enq_id=$enqId&any_relative_country_interested=0";
+}
+
 String getEventTrackingDetails(
     {required String userID, required String eventID}) {
   return "get-event-tracking-details?enq_id=$userID&event_id=$eventID";
