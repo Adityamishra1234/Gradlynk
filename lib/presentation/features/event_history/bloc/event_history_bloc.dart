@@ -123,6 +123,11 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
     //   "user_name": "Start Time",
     //   "start_time": " ${res["events_data"]["event_start_time"]} "
     // });
+    bool isInitialSetepperFirst = false;
+
+    if (res["events_data"]["event_end_time"] == null && dataListLength == 0) {
+      isInitialSetepperFirst = true;
+    }
 
     eventHistoryStudentTimeline = [];
     eventHistoryStudentTimeline.add(CustomStepper(
@@ -133,20 +138,35 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
       count: 1,
       count1: 1,
       last: true,
-      first: false,
+      first: isInitialSetepperFirst,
     ));
 
     for (var i = 0; i < dataListLength; i++) {
-      eventHistoryStudentTimeline.add(CustomStepper(
-        iconColor: ThemeConstants.bluecolor,
-        backIconColor: ThemeConstants.lightblueColor,
-        text: "${rawStudentData[i]['user_name']}",
-        text2: "${rawStudentData[i]['start_time']}",
-        count: 1,
-        count1: i + 2,
-        last: true,
-        first: false,
-      ));
+      if (i != dataListLength - 1) {
+        eventHistoryStudentTimeline.add(CustomStepper(
+          iconColor: ThemeConstants.bluecolor,
+          backIconColor: ThemeConstants.lightblueColor,
+          text: "${rawStudentData[i]['user_name']}",
+          text2: "${rawStudentData[i]['start_time']}",
+          count: 1,
+          count1: i + 2,
+          last: true,
+          first: false,
+        ));
+      } else {
+        if (res["events_data"]["event_end_time"] == null) {
+          eventHistoryStudentTimeline.add(CustomStepper(
+            iconColor: ThemeConstants.bluecolor,
+            backIconColor: ThemeConstants.lightblueColor,
+            text: "${rawStudentData[i]['user_name']}",
+            text2: "${rawStudentData[i]['start_time']}",
+            count: 1,
+            count1: i + 2,
+            last: true,
+            first: true,
+          ));
+        }
+      }
 
       // listOfEventAttended.add(res['data'][i]);
 
@@ -168,18 +188,19 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
     // if (dataListLength == 0) {
     //   dataListLength = 1;
     // }
-
+    if (res["events_data"]["event_end_time"] != null) {
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "End Time",
+        text2: "${res["events_data"]["event_end_time"]}",
+        count: dataListLength + 1,
+        count1: dataListLength + 2,
+        last: true,
+        first: true,
+      ));
+    }
     print(res["events_data"]["event_end_time"]);
-    eventHistoryStudentTimeline.add(CustomStepper(
-      iconColor: ThemeConstants.bluecolor,
-      backIconColor: ThemeConstants.lightblueColor,
-      text: "End Time",
-      text2: "${res["events_data"]["event_end_time"]}",
-      count: dataListLength + 1,
-      count1: dataListLength + 2,
-      last: true,
-      first: true,
-    ));
 
     emit(state.copyWith(
         status: Status.loaded,

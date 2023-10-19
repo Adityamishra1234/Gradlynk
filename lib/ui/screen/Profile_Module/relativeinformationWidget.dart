@@ -113,7 +113,8 @@ class RelativeInformationWidget extends StatelessWidget {
                     child: SizedBox(
                       width: 100,
                       child: CustomButton(
-                          text: "Added",
+                          radius: 5,
+                          text: "Add",
                           onPressed: () {
                             controller.updateRelativeInformationNO(
                                 Get.find<BaseController>().model1.id.toString(),
