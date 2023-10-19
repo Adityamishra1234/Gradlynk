@@ -94,8 +94,7 @@ class BaseController extends GetxController with StateMixin {
 
     carouselList.value = List<CarouselListModel>.from(
         res.map((e) => CarouselListModel.fromJson(e)));
-
-    print(res);
+    update();
   }
 
   profiledetail() async {
