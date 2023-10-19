@@ -35,6 +35,7 @@ class OthertestDetail extends StatelessWidget {
           }
           controller.bookTestSelected =
               controller.otherTestDetailsModel.testBook;
+
           controller.examNameSelected =
               controller.otherTestDetailsModel.examName;
           // controller.specifyExamNameSelected=controller.otherTestDetailsModel.
