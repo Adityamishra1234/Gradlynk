@@ -262,7 +262,7 @@ class ContactInformationInPopUpController extends GetxController
             Get.find<BaseController>().model1.service_id == 3)) {
       number++;
     }
-    if ((number == 4) && Get.find<BaseController>().model1.service_id == 3) {
+    if ((number == 4) && Get.find<BaseController>().model1.service_id == 1) {
       number++;
     }
     switch (number) {
