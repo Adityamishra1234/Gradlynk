@@ -12,11 +12,23 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/custombutton.dart';
 import 'package:studentpanel/widgets/customdropdownbutton.dart';
 
-class IntakeScreen extends StatelessWidget {
+class IntakeScreen extends StatefulWidget {
   String? id;
   IntakeScreen({Key? key, this.id}) : super(key: key);
 
+  @override
+  State<IntakeScreen> createState() => _IntakeScreenState();
+}
+
+class _IntakeScreenState extends State<IntakeScreen> {
   var controller = Get.put(MarkAttendanceController());
+
+  @override
+  void dispose() {
+    controller.onDelete;
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +106,7 @@ class IntakeScreen extends StatelessWidget {
                   child: SizedBox(
                       height: 50,
                       child: CustomTimerWidget(
+                          startingDate: DateTime.now(),
                           isBlank: true,
                           callback: (value) {
                             controller.intake = value;
@@ -107,8 +120,8 @@ class IntakeScreen extends StatelessWidget {
                         text: "Next",
                         onPressed: () {
                           try {
-                            if (id != null) {
-                              controller.getIntakeSubmit(id!);
+                            if (widget.id != null) {
+                              controller.getIntakeSubmit(widget.id!);
                             } else {
                               if (Get.find<BaseController>().eventlist.length >
                                   1) {
