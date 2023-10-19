@@ -41,8 +41,8 @@ class CustomDropDownSingle extends StatelessWidget {
                   textColor: ThemeConstants.TextColor,
                   fontSize: SizeConfig.fontLabelSize,
                   fontWeight: SizeConfig.fontLabelWeight,
-                  text: getNUllChecker(selectedValue) == false
-                      ? ""
+                  text: getNUllChecker(selectedValue) == true
+                      ? " "
                       : initialSelectedValue,
                 ),
               ),
@@ -51,7 +51,9 @@ class CustomDropDownSingle extends StatelessWidget {
         : Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: CustomizableDropdown(
-                selectedItem: initialSelectedValue,
+                selectedItem: getNUllChecker(selectedValue) == true
+                    ? " "
+                    : initialSelectedValue,
                 maxHeight: 150,
                 height: 50,
                 icon: const Icon(
@@ -62,7 +64,6 @@ class CustomDropDownSingle extends StatelessWidget {
                 decoration: BoxDecoration(
                   color:
                       bgColor == null ? ThemeConstants.lightblueColor : bgColor,
-                  // border: Border.all(color: ThemeConstants.bluecolor),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 itemList: model,
@@ -72,8 +73,8 @@ class CustomDropDownSingle extends StatelessWidget {
                 placeholder: Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: CustomAutoSizeTextMontserrat(
-                        text: getNUllChecker(selectedValue) == false
-                            ? ""
+                        text: getNUllChecker(selectedValue) == true
+                            ? " "
                             : initialSelectedValue))),
           );
   }

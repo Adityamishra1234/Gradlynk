@@ -144,7 +144,7 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
     // TODO: implement didUpdateWidget
 
     filterSearchResults(editingController.text);
-    print("didUpdateWidget");
+
     super.didUpdateWidget(oldWidget);
   }
 
