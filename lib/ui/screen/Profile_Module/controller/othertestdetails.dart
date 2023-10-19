@@ -27,7 +27,7 @@ class OtherTestDetailsController extends GetxController with StateMixin {
   //Selected
   String? examStatusSelected;
   String? examStatusSelectedID;
-  String? examNameSelected = "";
+  String? examNameSelected = "GRE";
   String? examNameSelectedID;
   String? bookTestSelected;
   String? bookTestSelectedID;
@@ -138,22 +138,16 @@ class OtherTestDetailsController extends GetxController with StateMixin {
   }
 
   saveButton() {
-//     if (examStatusSelected == "Not Yet Registered") {
-//       if (bookTestSelected == null) {
-//         getToast(SnackBarConstants.bookTestSelectedError!);
-//       }else if{
-// if (examNameSelected == '') {
-//       }
-//       }
-
-//     }
+    if (examStatusSelected == "Not Yet Registered") {
+      if (bookTestSelected == null) {
+        getToast(SnackBarConstants.bookTestSelectedError!);
+      }
+    }
     if (examStatusSelected == null) {
       getToast(SnackBarConstants.examStatusError!);
     } else if (examStatusSelected == "Not Yet Registered") {
       if (bookTestSelected == null) {
         getToast(SnackBarConstants.bookTestSelectedError!);
-      } else if (examNameSelected == '') {
-        getToast('Please specify exam name');
       } else {
         // DropDown
         otherTestDetailsModel.examStatus = examStatusSelectedID ?? "";
