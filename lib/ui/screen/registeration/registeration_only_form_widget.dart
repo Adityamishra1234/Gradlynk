@@ -267,8 +267,8 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             SizedBox(
                                 child: CustomDropDownSingle(
                               selectedValue:
-                              key: Key('registration_target_test'),
                                   controller.selectedTargetServiceSubName,
+                              key: Key('registration_target_test'),
                               bgColor: ThemeConstants.ultraLightgreyColor2,
                               model: controller.subServiceDropDownListName,
                               choosefieldtype: false,
