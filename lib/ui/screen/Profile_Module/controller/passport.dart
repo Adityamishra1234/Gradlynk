@@ -222,6 +222,10 @@ class PassportController extends GetxController with StateMixin {
         }
       }
     } else {
+      if (passportModel.passportTentativeDate == null) {
+        getToast('Please fill the tentative date');
+        return false;
+      }
       var res = await updatePassportNull();
       return true;
     }
