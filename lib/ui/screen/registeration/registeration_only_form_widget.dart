@@ -750,17 +750,12 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
 
   callBackSubSelectedTargetService(data) {
     for (var i = 0; i < controller.subServiceDropDownListName.length; i++) {
-      if (i == 0) {
-        controller.selectedTargetServiceSubName = 'Kindly Select';
-        controller.selectedTargetServiceSubId = '0';
-      } else {
-        if (controller.subServiceDropDownListName[i] == data) {
-          controller.selectedTargetServiceSubName = data;
-          controller.selectedTargetServiceSubId =
-              controller.subServiceDropDownListCode[i].toString();
+      if (controller.subServiceDropDownListName[i] == data) {
+        controller.selectedTargetServiceSubName = data;
+        controller.selectedTargetServiceSubId =
+            controller.subServiceDropDownListCode[i].toString();
 
-          // controller.getCareerOutComes();
-        }
+        // controller.getCareerOutComes();
       }
     }
     controller.update();

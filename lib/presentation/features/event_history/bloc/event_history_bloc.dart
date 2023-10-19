@@ -80,16 +80,11 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
       endPoint = getEventTrackingDetails(
           userID: Get.find<BaseController>().model1.id.toString(),
           eventID: id.toString());
-      // userID: Get.find<BaseController>().model1.id.toString(),
-      // eventID: id.toString());
     } else {
       endPoint = getEventTrackingDetails(
           userID: Get.find<BaseController>().model1.id.toString(),
           eventID: listOfeventHistoryCode[0].toString());
     }
-
-    // var res =
-    //     await api.getEventHistoryList(Get.find<BaseController>().model1.id!);
 
     var res = await api.getEventHistoryData(endPoint);
 
@@ -167,6 +162,96 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
           ));
         }
       }
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
+      eventHistoryStudentTimeline.add(CustomStepper(
+        iconColor: ThemeConstants.bluecolor,
+        backIconColor: ThemeConstants.lightblueColor,
+        text: "${rawStudentData[i]['user_name']}",
+        text2: "${rawStudentData[i]['start_time']}",
+        count: 1,
+        count1: i + 2,
+        last: true,
+        first: false,
+      ));
 
       // listOfEventAttended.add(res['data'][i]);
 

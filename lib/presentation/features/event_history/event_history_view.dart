@@ -89,7 +89,7 @@ class _EventHistoryViewState extends State<EventHistoryView> {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
                     Expanded(
                         child: Container(

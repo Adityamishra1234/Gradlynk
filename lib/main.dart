@@ -139,9 +139,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "S2C_studentpanel",
-      // initialBinding: AppBinding(),
+
       debugShowCheckedModeBanner: false,
-      // Initial Route
+
       initialRoute: "/",
       // Create Route
       getPages: [
