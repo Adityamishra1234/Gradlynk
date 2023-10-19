@@ -290,7 +290,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(1, context);
                 },
-                child: CourseInformationCopy()));
+                child: CourseInformationCopy())).whenComplete(
+            () => Get.find<BaseController>().calculateProfilePercentage());
 
       case 1:
         return showAnimatedDialog(
@@ -330,7 +331,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(2, context);
                 },
-                child: QualificationDetailsCopy()));
+                child: QualificationDetailsCopy())).whenComplete(
+            () => Get.find<BaseController>().calculateProfilePercentage());
       case 2:
         return showAnimatedDialog(
             animationType: DialogTransitionType.slideFromBottomFade,
@@ -364,127 +366,140 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(3, context);
                 },
-                child: WorkHistoryCopy()));
+                child: WorkHistoryCopy())).whenComplete(
+            () => Get.find<BaseController>().calculateProfilePercentage());
       case 3:
         return showAnimatedDialog(
-            animationType: DialogTransitionType.slideFromBottomFade,
-            curve: Curves.easeInOutQuart,
-            context: context,
-            builder: (_) {
-              bool? editButton = false;
-              return StatefulBuilder(
-                  builder: (thisLowerContext, innerSetState) {
-                return CustomProfileDialogue(
-                    backButton: () {
-                      Get.find<BaseController>().calculateProfilePercentage();
-                      update();
-                      Get.back();
-                    },
-                    enableEdit: true,
-                    enableSaveNext: true,
-                    onEdit: () {
-                      innerSetState(() {
-                        editButton = true;
-                      });
-                    },
-                    title: "Language Test",
-                    onTap: () async {
-                      var res =
-                          await Get.find<EnglishTestController>().saveButton();
-                      if (res != false) {
-                        Get.back();
-                        Get.find<ContactInformationInPopUpController>()
-                            .profileDataValidator();
-                        Get.find<BaseController>().calculateProfilePercentage();
-                        getDailog(4, context);
-                      }
-                    },
-                    child: EnglishTestDetails(
-                      editButton: editButton,
-                    ));
-              });
-            });
+                animationType: DialogTransitionType.slideFromBottomFade,
+                curve: Curves.easeInOutQuart,
+                context: context,
+                builder: (_) {
+                  bool? editButton = false;
+                  return StatefulBuilder(
+                      builder: (thisLowerContext, innerSetState) {
+                    return CustomProfileDialogue(
+                        backButton: () {
+                          Get.find<BaseController>()
+                              .calculateProfilePercentage();
+                          update();
+                          Get.back();
+                        },
+                        enableEdit: true,
+                        enableSaveNext: true,
+                        onEdit: () {
+                          innerSetState(() {
+                            editButton = true;
+                          });
+                        },
+                        title: "Language Test",
+                        onTap: () async {
+                          var res = await Get.find<EnglishTestController>()
+                              .saveButton();
+                          if (res != false) {
+                            Get.back();
+                            Get.find<ContactInformationInPopUpController>()
+                                .profileDataValidator();
+                            Get.find<BaseController>()
+                                .calculateProfilePercentage();
+                            getDailog(4, context);
+                          }
+                        },
+                        child: EnglishTestDetails(
+                          editButton: editButton,
+                        ));
+                  });
+                })
+            .whenComplete(
+                () => Get.find<BaseController>().calculateProfilePercentage());
       case 4:
         return showAnimatedDialog(
-            animationType: DialogTransitionType.slideFromBottomFade,
-            curve: Curves.easeInOutQuart,
-            context: context,
-            builder: (_) {
-              bool? editButton = false;
-              return StatefulBuilder(
-                  builder: (thisLowerContext, innerSetState) {
-                return CustomProfileDialogue(
-                    backButton: () {
-                      Get.find<BaseController>().calculateProfilePercentage();
-                      update();
-                      Get.back();
-                    },
-                    enableEdit: true,
-                    enableSaveNext: true,
-                    onEdit: () {
-                      innerSetState(() {
-                        editButton = true;
-                      });
-                    },
-                    title: "Qualifying Test",
-                    onTap: () async {
-                      var res = await Get.find<OtherTestDetailsController>()
-                          .saveButton();
-                      if (res == true) {
-                        Get.back();
-                        Get.find<ContactInformationInPopUpController>()
-                            .profileDataValidator();
-                        Get.find<BaseController>().calculateProfilePercentage();
-                        getDailog(5, context);
-                      }
-                    },
-                    child: OthertestDetail(
-                      editButton: editButton,
-                    ));
-              });
-            });
+                animationType: DialogTransitionType.slideFromBottomFade,
+                curve: Curves.easeInOutQuart,
+                context: context,
+                builder: (_) {
+                  bool? editButton = false;
+                  return StatefulBuilder(
+                      builder: (thisLowerContext, innerSetState) {
+                    return CustomProfileDialogue(
+                        backButton: () {
+                          Get.find<BaseController>()
+                              .calculateProfilePercentage();
+                          update();
+                          Get.back();
+                        },
+                        enableEdit: true,
+                        enableSaveNext: true,
+                        onEdit: () {
+                          innerSetState(() {
+                            editButton = true;
+                          });
+                        },
+                        title: "Qualifying Test",
+                        onTap: () async {
+                          var res = await Get.find<OtherTestDetailsController>()
+                              .saveButton();
+                          if (res == true) {
+                            Get.back();
+                            Get.find<ContactInformationInPopUpController>()
+                                .profileDataValidator();
+                            Get.find<BaseController>()
+                                .calculateProfilePercentage();
+                            getDailog(5, context);
+                          }
+                        },
+                        child: OthertestDetail(
+                          editButton: editButton,
+                        ));
+                  });
+                })
+            .whenComplete(
+                () => Get.find<BaseController>().calculateProfilePercentage());
 
       case 5:
         return showAnimatedDialog(
-            animationType: DialogTransitionType.slideFromBottomFade,
-            curve: Curves.easeInOutQuart,
-            context: context,
-            builder: (_) {
-              bool? editButton = false;
-              return StatefulBuilder(
-                  builder: (thisLowerContext, innerSetState) {
-                return CustomProfileDialogue(
-                    backButton: () {
-                      Get.find<BaseController>().calculateProfilePercentage();
-                      update();
-                      Get.back();
-                    },
-                    enableEdit: true,
-                    enableSaveNext: true,
-                    onEdit: () {
-                      innerSetState(() {
-                        editButton = true;
-                      });
-                    },
-                    title: "Passport",
-                    onTap: () async {
-                      Get.find<PassportController>().updateData = false;
-                      Get.find<PassportController>().update();
-                      var res =
-                          await Get.find<PassportController>().saveButton();
-                      if (res == true) {
-                        Get.back();
-                        Get.find<ContactInformationInPopUpController>()
-                            .profileDataValidator();
-                        Get.find<BaseController>().calculateProfilePercentage();
-                        getDailog(6, context);
-                      }
-                    },
-                    child: PassportDetails(
-                      editButton: editButton,
-                    ));
-              });
-            });
+                animationType: DialogTransitionType.slideFromBottomFade,
+                curve: Curves.easeInOutQuart,
+                context: context,
+                builder: (_) {
+                  bool? editButton = false;
+                  return StatefulBuilder(
+                      builder: (thisLowerContext, innerSetState) {
+                    return CustomProfileDialogue(
+                        backButton: () {
+                          Get.find<BaseController>()
+                              .calculateProfilePercentage();
+                          update();
+                          Get.back();
+                        },
+                        enableEdit: true,
+                        enableSaveNext: true,
+                        onEdit: () {
+                          innerSetState(() {
+                            editButton = true;
+                          });
+                        },
+                        title: "Passport",
+                        onTap: () async {
+                          Get.find<PassportController>().updateData = false;
+                          Get.find<PassportController>().update();
+                          var res =
+                              await Get.find<PassportController>().saveButton();
+                          if (res == true) {
+                            Get.back();
+                            Get.find<ContactInformationInPopUpController>()
+                                .profileDataValidator();
+                            Get.find<BaseController>()
+                                .calculateProfilePercentage();
+                            getDailog(6, context);
+                          }
+                        },
+                        child: PassportDetails(
+                          editButton: editButton,
+                        ));
+                  });
+                })
+            .whenComplete(
+                () => Get.find<BaseController>().calculateProfilePercentage());
 
       case 6:
         return showAnimatedDialog(
@@ -520,7 +535,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<BaseController>().calculateProfilePercentage();
                   getDailog(7, context);
                 },
-                child: TravingHistory()));
+                child: TravingHistory())).whenComplete(
+            () => Get.find<BaseController>().calculateProfilePercentage());
 
       case 7:
         return showAnimatedDialog(
@@ -560,46 +576,52 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<BaseController>().calculateProfilePercentage();
                   Get.back();
                 },
-                child: RelativeInformation()));
+                child: RelativeInformation())).whenComplete(
+            () => Get.find<BaseController>().calculateProfilePercentage());
 
       case 8:
         return showAnimatedDialog(
-            animationType: DialogTransitionType.slideFromBottomFade,
-            curve: Curves.easeInOutQuart,
-            context: context,
-            builder: (_) {
-              bool? editButton = false;
-              return StatefulBuilder(
-                  builder: (thisLowerContext, innerSetState) {
-                return CustomProfileDialogue(
-                    backButton: () {
-                      Get.find<BaseController>().calculateProfilePercentage();
-                      update();
-                      Get.back();
-                    },
-                    enableEdit: true,
-                    enableSaveNext: true,
-                    onEdit: () {
-                      innerSetState(() {
-                        editButton = true;
-                      });
-                    },
-                    title: "Mandatory Details",
-                    onTap: () async {
-                      var res = await Get.find<ContactInformationController>()
-                          .saveButton();
-                      if (res == true) {
-                        Get.back();
-                        Get.find<BaseController>().calculateProfilePercentage();
-                        getDailog(0, context);
-                      }
-                      // Get.back();
-                    },
-                    child: ContactInformationCopy(
-                      editButton: editButton,
-                    ));
-              });
-            });
+                animationType: DialogTransitionType.slideFromBottomFade,
+                curve: Curves.easeInOutQuart,
+                context: context,
+                builder: (_) {
+                  bool? editButton = false;
+                  return StatefulBuilder(
+                      builder: (thisLowerContext, innerSetState) {
+                    return CustomProfileDialogue(
+                        backButton: () {
+                          Get.find<BaseController>()
+                              .calculateProfilePercentage();
+                          update();
+                          Get.back();
+                        },
+                        enableEdit: true,
+                        enableSaveNext: true,
+                        onEdit: () {
+                          innerSetState(() {
+                            editButton = true;
+                          });
+                        },
+                        title: "Mandatory Details",
+                        onTap: () async {
+                          var res =
+                              await Get.find<ContactInformationController>()
+                                  .saveButton();
+                          if (res == true) {
+                            Get.back();
+                            Get.find<BaseController>()
+                                .calculateProfilePercentage();
+                            getDailog(0, context);
+                          }
+                          // Get.back();
+                        },
+                        child: ContactInformationCopy(
+                          editButton: editButton,
+                        ));
+                  });
+                })
+            .whenComplete(
+                () => Get.find<BaseController>().calculateProfilePercentage());
 
       default:
         print('choose a different number!');

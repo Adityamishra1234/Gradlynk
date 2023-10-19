@@ -226,4 +226,30 @@ class RelativeInformationController extends GetxController with StateMixin {
         modelList[index!].anyRelativeCountryInterested;
     countryNameCodeSelected = modelList[index!].relativeCountry.toString();
   }
+
+  updateRelativeInformationNO(String enqId, String action) async {
+    change(null, status: RxStatus.loading());
+    try {
+      String endpoint = getRelativeInformationNo(enqId);
+
+      var res = await apiServices.updateRelativeInformation(endpoint, action);
+      if (res == true) {
+        resetfields();
+      }
+      if (Get.find<BaseController>().data.value.validateIconForRelativeInfo !=
+          "1") {
+        Get.find<BaseController>().data.value.validateIconForRelativeInfo = "1";
+      }
+      Get.find<BaseController>().update();
+      change(null, status: RxStatus.success());
+      update();
+    } catch (e) {
+      await ApiServices().errorHandle(
+        Get.find<BaseController>().model1.id.toString(),
+        e.toString(),
+        "1111",
+        StackTrace.current.toString(),
+      );
+    }
+  }
 }

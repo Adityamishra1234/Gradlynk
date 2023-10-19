@@ -39,8 +39,6 @@ class BaseController extends GetxController with StateMixin {
 
   @override
   void onInit() async {
-    print(
-        'ecccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc');
     super.onInit();
 
     // List<Future> futures = [
