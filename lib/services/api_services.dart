@@ -1023,7 +1023,9 @@ class ApiServices extends StudentPanelBase implements api {
       EnglishTestDetailsViewModel model, String? endpoint) async {
     try {
       String jsonData = json.encode(model);
-      String jsonData2 = jsonData.replaceAll('"null"', "");
+
+      String jsonData2 = jsonData.replaceAll('"null"', "''");
+
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData2);
       if (response != null) {
         var jsondata = json.decode(response);

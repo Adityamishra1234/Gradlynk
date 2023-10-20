@@ -19,9 +19,9 @@ class EnglishTestController extends GetxController with StateMixin {
       dateOfExamSelected,
       bookTestSelcted,
       specifyExamNameSelected,
-      tentativeExamDateSelcted,
-      dateOfTestReportSelcted,
-      testscoreExpirationDateSelcted;
+      tentativeExamDateSelcted = '',
+      dateOfTestReportSelcted = '',
+      testscoreExpirationDateSelcted = '';
   int? examStatusCodeSelected = 1;
 // specify and ExamName is Same
 
@@ -53,13 +53,10 @@ class EnglishTestController extends GetxController with StateMixin {
 
   @override
   Future<void> onInit() async {
-    List<Future> futures = [
-      getExamName(),
-      getExamStatus(),
-      getEnglishTestDetails(Get.find<BaseController>().model1.id.toString())
-    ];
-
-    await Future.wait(futures);
+    await getExamName();
+    await getExamStatus();
+    await getEnglishTestDetails(
+        Get.find<BaseController>().model1.id.toString());
 
     change(null, status: RxStatus.success());
     super.onInit();
@@ -112,8 +109,13 @@ class EnglishTestController extends GetxController with StateMixin {
           Endpoints.baseUrl!, Endpoints.viewEnglishTestDetails! + enqId);
       if (res != null) {
         englishTestDetailsViewModel = res;
+
+        if (getNUllChecker(englishTestDetailsViewModel.overAll) == false) {
+          examStatusSelected = "Test Already Taken";
+          examStatusCodeSelected = 3;
+        }
+        await viewCondition();
         loadingViewEnglishTestDetails = true.obs;
-        viewCondition();
       }
     } catch (e) {
       await ApiServices().errorHandle(
