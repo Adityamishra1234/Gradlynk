@@ -42,6 +42,8 @@ class WorkHistoryController extends GetxController with StateMixin {
 
   static final Rx<TextEditingController> income = TextEditingController().obs;
 
+  bool stillWorking = true;
+
   resetfields() {
     income.value.text = "";
     designation.value.text = "";

@@ -161,11 +161,31 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
+
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+            padding: const EdgeInsets.only(top: 5, left: 10, right: 10),
+            child: Row(children: [
+              Checkbox(
+                  activeColor: ThemeConstants.bluecolor,
+                  value: controller.stillWorking,
+                  onChanged: (value) {
+                    controller.stillWorking = value!;
+                    controller.update();
+                  }),
+              CustomAutoSizeTextMontserrat(
+                textColor: ThemeConstants.TextColor,
+                fontSize: SizeConfig.fontLabelSize,
+                fontWeight: SizeConfig.fontLabelWeight,
+                text: 'Still Working',
+              )
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5, left: 20, right: 10),
             child: Align(
               alignment: AlignmentDirectional.topStart,
               child: CustomAutoSizeTextMontserrat(
+                mandatory: !controller.stillWorking,
                 text: "Working Till",
                 textColor: ThemeConstants.TextColor,
                 fontSize: SizeConfig.fontLabelSize,
@@ -351,6 +371,9 @@ class WorkHistoryWidget extends StatelessWidget {
                               getToast(SnackBarConstants.lastOrg!);
                             } else if (controller.workingFromSelected == null) {
                               getToast(SnackBarConstants.workingFromSelect!);
+                            } else if (controller.stillWorking == false &&
+                                controller.workingTillSelected == null) {
+                              getToast('Please select working till');
                             } else if (controller.industryNameSelected ==
                                 null) {
                               getToast(SnackBarConstants.industryNameSelect!);
