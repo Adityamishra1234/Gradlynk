@@ -69,9 +69,9 @@ class DashboardEventSection extends StatelessWidget {
                       child: Wrap(
                         // mainAxisAlignment: MainAxisAlignment.end,
                         // crossAxisAlignment: CrossAxisAlignment.end,
-                        alignment: WrapAlignment.start,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        runAlignment: WrapAlignment.start,
+                        alignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        runAlignment: WrapAlignment.center,
                         spacing: 10,
                         runSpacing: 20,
                         children: [
@@ -185,7 +185,7 @@ class DashboardEventSection extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.only(top: 10),
                                     child: SizedBox(
-                                      width: 80,
+                                      width: 100,
                                       child: CustomAutoSizeTextMontserrat(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
