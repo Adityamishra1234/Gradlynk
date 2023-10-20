@@ -137,6 +137,8 @@ class _IntakeScreenState extends State<IntakeScreen> {
                                           .campaignDetails![0]
                                           .id
                                           .toString());
+                                } else {
+                                  getToast('Campaign detail not found');
                                 }
                               }
                             }
