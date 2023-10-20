@@ -1,324 +1,326 @@
-// import 'dart:io';
-// import 'package:open_filex/open_filex.dart';
-// import 'package:device_info_plus/device_info_plus.dart';
-// import 'package:dio/dio.dart' as dio;
-// import 'package:flutter/material.dart';
+import 'dart:io';
 
-// import 'package:flutter_file_downloader/flutter_file_downloader.dart';
-// import 'package:nice_loading_button/nice_loading_button.dart';
-// import 'package:path/path.dart' as path;
-// import 'package:path_provider/path_provider.dart';
-// import 'dart:io' as io;
-// import 'package:permission_handler/permission_handler.dart';
-// import 'package:studentpanel/utils/constants.dart';
-// import 'package:studentpanel/utils/snackbarconstants.dart';
-// import 'package:studentpanel/utils/theme.dart';
-// import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification.dart';
-// import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:dio/dio.dart' as dio;
+import 'package:flutter/material.dart';
 
-// class CustomDownloadButton extends StatefulWidget {
-//   final String path;
-//   final String payload;
-//   const CustomDownloadButton(
-//       {super.key, required this.path, required this.payload});
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
+import 'package:nice_loading_button/nice_loading_button.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
+import 'dart:io' as io;
+import 'package:permission_handler/permission_handler.dart';
+import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
+import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification.dart';
+import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-//   @override
-//   State<CustomDownloadButton> createState() => _CustomDownloadButtonState();
-// }
+class CustomDownloadButton extends StatefulWidget {
+  final String path;
+  final String payload;
+  const CustomDownloadButton(
+      {super.key, required this.path, required this.payload});
 
-// class _CustomDownloadButtonState extends State<CustomDownloadButton> {
-//   bool _isLoading = false;
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     NotificationService.initializeNotification();
-//   }
+  @override
+  State<CustomDownloadButton> createState() => _CustomDownloadButtonState();
+}
 
-//   // downloadFile() async {
-//   //   var status2 = await Permission.storage.status;
-//   //   var ImageStatus = await Permission.photos.status;
+class _CustomDownloadButtonState extends State<CustomDownloadButton> {
+  bool _isLoading = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
-//   //   var status = await Permission.manageExternalStorage.status;
-//   //   var notificationStatus = await Permission.notification.status;
+  // downloadFile() async {
+  //   var status2 = await Permission.storage.status;
+  //   var ImageStatus = await Permission.photos.status;
 
-//   //   final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-//   //   AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-//   //   var sdkVersion = await androidInfo.version.sdkInt;
+  //   var status = await Permission.manageExternalStorage.status;
+  //   var notificationStatus = await Permission.notification.status;
 
-//   //   print(sdkVersion);
+  //   final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  //   AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+  //   var sdkVersion = await androidInfo.version.sdkInt;
 
-//   //   if (sdkVersion > 30) {
-//   //     var x = await Permission.manageExternalStorage.request();
-//   //     var y = await Permission.notification.request();
+  //   print(sdkVersion);
 
-//   //     if (x.isGranted && y.isGranted) {
-//   //       await downloadMainFunction();
-//   //     } else {
-//   //       getToast(SnackBarConstants.flutterStroageToast);
-//   //     }
-//   //   }
+  //   if (sdkVersion > 30) {
+  //     var x = await Permission.manageExternalStorage.request();
+  //     var y = await Permission.notification.request();
 
-//   //   if (sdkVersion == 30) {
-//   //     var x = await Permission.manageExternalStorage.request();
+  //     if (x.isGranted && y.isGranted) {
+  //       await downloadMainFunction();
+  //     } else {
+  //       getToast(SnackBarConstants.flutterStroageToast);
+  //     }
+  //   }
 
-//   //     var y = await Permission.storage.request();
-//   //     if (x.isGranted) {
-//   //       await downloadMainFunction();
-//   //     } else {
-//   //       getToast(SnackBarConstants.flutterStroageToast);
-//   //     }
-//   //   }
+  //   if (sdkVersion == 30) {
+  //     var x = await Permission.manageExternalStorage.request();
 
-//   //   if (sdkVersion < 30) {
-//   //     var x = await Permission.storage.request();
-//   //     if (x.isGranted) {
-//   //       await downloadMainFunction();
-//   //     } else {
-//   //       getToast(SnackBarConstants.flutterStroageToast);
-//   //     }
-//   //   }
+  //     var y = await Permission.storage.request();
+  //     if (x.isGranted) {
+  //       await downloadMainFunction();
+  //     } else {
+  //       getToast(SnackBarConstants.flutterStroageToast);
+  //     }
+  //   }
 
-//   //   // if (status.isGranted && status2.isGranted) {
-//   //   //   await downloadMainFunction();
-//   //   // } else {
-//   //   //   FlutterToastConstant().getToast('Please give storage access');
-//   //   // }
-//   // }
+  //   if (sdkVersion < 30) {
+  //     var x = await Permission.storage.request();
+  //     if (x.isGranted) {
+  //       await downloadMainFunction();
+  //     } else {
+  //       getToast(SnackBarConstants.flutterStroageToast);
+  //     }
+  //   }
 
-//   Future download(String url) async {
-//     var status = await Permission.storage.request();
-//     var d = await Permission.photos.request();
-//     var y = await Permission.notification.request();
+  //   // if (status.isGranted && status2.isGranted) {
+  //   //   await downloadMainFunction();
+  //   // } else {
+  //   //   FlutterToastConstant().getToast('Please give storage access');
+  //   // }
+  // }
 
-//     // print(status);
-//     // if (await Permission.storage.request().isGranted) {
-//     final io.Directory tempDir = await getTemporaryDirectory();
+  Future download(String url) async {
+    var status = await Permission.storage.request();
+    var d = await Permission.photos.request();
+    var y = await Permission.notification.request();
 
-//     final io.Directory appDocumentsDir =
-//         await getApplicationDocumentsDirectory();
+    // print(status);
+    // if (await Permission.storage.request().isGranted) {
+    final io.Directory tempDir = await getTemporaryDirectory();
 
-//     bool dirDownloadExists = true;
-//     String directory;
-//     // if (io.Platform.isIOS) {
-//     directory = (await getApplicationDocumentsDirectory()).path;
-//     // } else {
-//     //   directory = "/storage/emulated/0/Download/";
+    final io.Directory appDocumentsDir =
+        await getApplicationDocumentsDirectory();
 
-//     //   dirDownloadExists = await io.Directory(directory).exists();
-//     //   if (dirDownloadExists) {
-//     //     directory = "/storage/emulated/0/Download/";
-//     //   } else {
-//     //     directory = "/storage/emulated/0/Downloads/";
-//     //   }
-//     // }
+    bool dirDownloadExists = true;
+    String directory;
+    // if (io.Platform.isIOS) {
+    directory = (await getApplicationDocumentsDirectory()).path;
+    // } else {
+    //   directory = "/storage/emulated/0/Download/";
 
-//     String basenames = path.basename(url);
-//     final finalPath = path.join(directory, basenames);
-//     io.File saveFile = io.File(finalPath);
+    //   dirDownloadExists = await io.Directory(directory).exists();
+    //   if (dirDownloadExists) {
+    //     directory = "/storage/emulated/0/Download/";
+    //   } else {
+    //     directory = "/storage/emulated/0/Downloads/";
+    //   }
+    // }
 
-//     final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-//     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-//     var sdkVersion = androidInfo.version.sdkInt;
+    String basenames = path.basename(url);
+    final finalPath = path.join(directory, basenames);
+    io.File saveFile = io.File(finalPath);
 
-//     if (sdkVersion > 30) {
-//       if (d.isGranted) {
-//         if (y.isGranted) {
-//           await FileDownloader.downloadFile(
-//               url: url,
-//               name: basenames,
-//               onDownloadCompleted: (String paths) async {
-//                 final directory = await getApplicationDocumentsDirectory();
-//                 var newpath = paths;
-//                 // await openLocalFile(directory.toString());
-//                 // await OpenFilex.open(newpath);
-//                 NotificationService.showNotification(
-//                     title: 'Downlaod Completed',
-//                     body: 'Click to Open',
-//                     payload: {'path': newpath, 'type': widget.payload});
-//               },
-//               onDownloadError: (String error) {
-//                 print('DOWNLOAD ERROR: $error');
-//               });
-//         } else {
-//           await Permission.notification.request();
-//         }
-//       } else {
-//         getToast(SnackBarConstants.flutterStroageToast);
-//         Future.delayed(const Duration(seconds: 1))
-//             .then((value) => openAppSettings());
-//       }
-//     } else {
-//       if (status.isGranted) {
-//         if (y.isGranted) {
-//           await FileDownloader.downloadFile(
-//               url: url,
-//               name: basenames,
-//               onDownloadCompleted: (String paths) async {
-//                 var newpath = paths;
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    var sdkVersion = androidInfo.version.sdkInt;
 
-//                 // await openLocalFile(paths);
+    if (sdkVersion > 30) {
+      if (d.isGranted) {
+        if (y.isGranted) {
+          await FileDownloader.downloadFile(
+              url: url,
+              name: basenames,
+              onDownloadCompleted: (String paths) async {
+                final directory = await getApplicationDocumentsDirectory();
+                var newpath = paths;
 
-//                 NotificationService.showNotification(
-//                     title: 'Downlaod Completed',
-//                     body: 'Click to Open',
-//                     payload: {'path': newpath, 'type': widget.payload});
-//               },
-//               onDownloadError: (String error) {
-//                 print('DOWNLOAD ERROR: $error');
-//               });
-//         } else {
-//           await Permission.notification.request();
-//         }
-//       } else {
-//         getToast(SnackBarConstants.flutterStroageToast);
-//         Future.delayed(const Duration(seconds: 2))
-//             .then((value) => openAppSettings());
-//       }
-//     }
+                getToast('Downloaded Successfully');
+                // await openLocalFile(directory.toString());
+                // await OpenFilex.open(newpath);
+                // NotificationService.showNotification(
+                //     title: 'Downlaod Completed',
+                //     body: 'Click to Open',
+                //     payload: {'path': newpath, 'type': widget.payload});
+              },
+              onDownloadError: (String error) {
+                print('DOWNLOAD ERROR: $error');
+              });
+        } else {
+          await Permission.notification.request();
+        }
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+        Future.delayed(const Duration(seconds: 1))
+            .then((value) => openAppSettings());
+      }
+    } else {
+      if (status.isGranted) {
+        if (y.isGranted) {
+          await FileDownloader.downloadFile(
+              url: url,
+              name: basenames,
+              onDownloadCompleted: (String paths) async {
+                var newpath = paths;
+                getToast('Downloaded Successfully');
 
-//     // }
+                // await openLocalFile(paths);
 
-//     // await dio.Dio().download(url, saveFile.path);
+                // NotificationService.showNotification(
+                //     title: 'Downlaod Completed',
+                //     body: 'Click to Open',
+                //     payload: {'path': newpath, 'type': widget.payload});
+              },
+              onDownloadError: (String error) {
+                print('DOWNLOAD ERROR: $error');
+              });
+        } else {
+          await Permission.notification.request();
+        }
+      } else {
+        getToast(SnackBarConstants.flutterStroageToast);
+        Future.delayed(const Duration(seconds: 2))
+            .then((value) => openAppSettings());
+      }
+    }
 
-//     // print(saveFile.path);
+    // }
 
-//     setState(() {
-//       _isLoading = false;
-//     });
+    // await dio.Dio().download(url, saveFile.path);
 
-//     // var res = await FlutterDownloader.enqueue(
-//     //   url: url,
+    // print(saveFile.path);
 
-//     //   headers: {}, // optional: header send with url (auth token etc)
-//     //   savedDir: directory,
-//     //   saveInPublicStorage: true,
-//     //   showNotification:
-//     //       false, // show download progress in status bar (for Android)
-//     //   openFileFromNotification:
-//     //       false, // click on notification to open downloaded file (for Android)
-//     // );
+    setState(() {
+      _isLoading = false;
+    });
 
-//     // }
-//   }
+    // var res = await FlutterDownloader.enqueue(
+    //   url: url,
 
-//   Future<void> openLocalFile(String filePath) async {
-//     // Create a Uri object from the file path.
-//     Uri uri = Uri.file(filePath);
+    //   headers: {}, // optional: header send with url (auth token etc)
+    //   savedDir: directory,
+    //   saveInPublicStorage: true,
+    //   showNotification:
+    //       false, // show download progress in status bar (for Android)
+    //   openFileFromNotification:
+    //       false, // click on notification to open downloaded file (for Android)
+    // );
 
-//     // Check if the file exists.
-//     if (!await File(filePath).exists()) {
-//       // Throw an error if the file does not exist.
-//       throw Exception('File does not exist: $filePath');
-//     }
+    // }
+  }
 
-//     // Launch the file.
-//     if (await canLaunchUrl(uri)) {
-//       await launchUrl(uri);
-//     } else {
-//       // Throw an error if the file cannot be launched.
-//       throw Exception('Could not launch file: $filePath');
-//     }
-//   }
+  Future<void> openLocalFile(String filePath) async {
+    // Create a Uri object from the file path.
+    Uri uri = Uri.file(filePath);
 
-//   Future<void> downloadMainFunction() async {
-//     io.HttpClient httpClient = io.HttpClient();
-//     io.File file;
-//     String filePath = '';
-//     String myUrl = '';
-//     try {
-//       String myUrl = widget.path;
+    // Check if the file exists.
+    if (!await File(filePath).exists()) {
+      // Throw an error if the file does not exist.
+      throw Exception('File does not exist: $filePath');
+    }
 
-//       io.Directory? applicationpath = await getExternalStorageDirectory();
+    // Launch the file.
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      // Throw an error if the file cannot be launched.
+      throw Exception('Could not launch file: $filePath');
+    }
+  }
 
-//       print(applicationpath);
+  Future<void> downloadMainFunction() async {
+    io.HttpClient httpClient = io.HttpClient();
+    io.File file;
+    String filePath = '';
+    String myUrl = '';
+    try {
+      String myUrl = widget.path;
 
-//       final indexOf = applicationpath!.path.indexOf('0');
-//       final pathTemp = applicationpath.path.substring(0, indexOf + 1);
-//       var request = await httpClient.getUrl(Uri.parse(myUrl));
-//       var response = await request.close();
-//       var theMainPath = "$pathTemp/gradlynk";
-//       io.Directory finalDirectory = io.Directory(theMainPath);
-//       String basenames = path.basename(myUrl);
-//       final finalPath = path.join(theMainPath, basenames);
-//       io.File saveFile = io.File(finalPath);
-//       if (!await finalDirectory.exists()) {
-//         await finalDirectory.create(recursive: true);
-//       }
-//       if (await finalDirectory.exists()) {
-//         await dio.Dio().download(myUrl, saveFile.path);
-//         setState(() {
-//           _isLoading = false;
-//         });
-//         // await NotificationService.showNotification(
-//         //     title: 'Download Completed',
-//         //     body: 'Click to Open',
-//         //     payload: {'path': saveFile.path, 'type': widget.payload});
-//       } else {
-//         filePath = 'Error code: ${response.statusCode}';
-//       }
-//     } catch (ex) {
-//       filePath = 'Can not fetch url';
-//     }
-//   }
+      io.Directory? applicationpath = await getExternalStorageDirectory();
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return LoadingButton(
-//       height: 35,
-//       width: 35,
-//       animate: true,
-//       borderRadius: 200,
-//       padding: EdgeInsets.all(0),
-//       color: ThemeConstants.bluecolor,
+      print(applicationpath);
 
-//       loader: Container(
-//         padding: const EdgeInsets.all(10),
-//         width: 40,
-//         height: 40,
-//         child: const CircularProgressIndicator(
-//           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-//         ),
-//       ),
-//       child: Icon(
-//         Icons.download_rounded,
-//         size: 18,
-//       ),
-//       // child: CustomAutoSizeTextMontserrat(
-//       //   text: 'Download',
-//       //   textColor: ThemeConstants.whitecolor,
-//       // ),
-//       onTap: (startLoading, stopLoading, buttonState) async {
-//         print(widget.path);
-//         if (buttonState == ButtonState.idle) {
-//           startLoading();
-//           await download(widget.path);
-//           // await Future.delayed(const Duration(seconds: 5))
-//           stopLoading();
-//         }
-//       },
-//     );
+      final indexOf = applicationpath!.path.indexOf('0');
+      final pathTemp = applicationpath.path.substring(0, indexOf + 1);
+      var request = await httpClient.getUrl(Uri.parse(myUrl));
+      var response = await request.close();
+      var theMainPath = "$pathTemp/gradlynk";
+      io.Directory finalDirectory = io.Directory(theMainPath);
+      String basenames = path.basename(myUrl);
+      final finalPath = path.join(theMainPath, basenames);
+      io.File saveFile = io.File(finalPath);
+      if (!await finalDirectory.exists()) {
+        await finalDirectory.create(recursive: true);
+      }
+      if (await finalDirectory.exists()) {
+        await dio.Dio().download(myUrl, saveFile.path);
+        setState(() {
+          _isLoading = false;
+        });
+        // await NotificationService.showNotification(
+        //     title: 'Download Completed',
+        //     body: 'Click to Open',
+        //     payload: {'path': saveFile.path, 'type': widget.payload});
+      } else {
+        filePath = 'Error code: ${response.statusCode}';
+      }
+    } catch (ex) {
+      filePath = 'Can not fetch url';
+    }
+  }
 
-//     //      Container(
-//     //       width: 150,
-//     //       height: 40,
-//     //       // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-//     //       alignment: Alignment.center,
-//     //       decoration: BoxDecoration(
-//     //         borderRadius: BorderRadius.circular(30),
-//     //         color: ThemeConstants.bluecolor,
-//     //       ),
-//     //       child: _isLoading
-//     //           ? SizedBox(
-//     //               child: CircularProgressIndicator(
-//     //                   color: ThemeConstants.whitecolor),
-//     //               height: 20.0,
-//     //               width: 20.0,
-//     //             )
-//     //           : Text('Downlaod', style: ThemeConstants.defaultTextStyle),
-//     //     ),
-//     //   ),
-//     // );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return LoadingButton(
+      height: 35,
+      width: 35,
+      animate: true,
+      borderRadius: 200,
+      padding: EdgeInsets.all(0),
+      color: ThemeConstants.bluecolor,
+
+      loader: Container(
+        padding: const EdgeInsets.all(10),
+        width: 40,
+        height: 40,
+        child: const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
+      ),
+      child: Icon(
+        Icons.download_rounded,
+        size: 18,
+      ),
+      // child: CustomAutoSizeTextMontserrat(
+      //   text: 'Download',
+      //   textColor: ThemeConstants.whitecolor,
+      // ),
+      onTap: (startLoading, stopLoading, buttonState) async {
+        print(widget.path);
+        if (buttonState == ButtonState.idle) {
+          startLoading();
+          await download(widget.path);
+          // await Future.delayed(const Duration(seconds: 5))
+          stopLoading();
+        }
+      },
+    );
+
+    //      Container(
+    //       width: 150,
+    //       height: 40,
+    //       // padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+    //       alignment: Alignment.center,
+    //       decoration: BoxDecoration(
+    //         borderRadius: BorderRadius.circular(30),
+    //         color: ThemeConstants.bluecolor,
+    //       ),
+    //       child: _isLoading
+    //           ? SizedBox(
+    //               child: CircularProgressIndicator(
+    //                   color: ThemeConstants.whitecolor),
+    //               height: 20.0,
+    //               width: 20.0,
+    //             )
+    //           : Text('Downlaod', style: ThemeConstants.defaultTextStyle),
+    //     ),
+    //   ),
+    // );
+  }
+}

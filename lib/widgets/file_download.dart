@@ -64,9 +64,8 @@ class _FileDownloadState extends State<FileDownload> {
   Widget build(BuildContext context) {
     if (Platform.isAndroid) {
       //TODO for Android
-      return Text("test");
-      // CustomDownloadButton(
-      //     path: widget.url, payload: PayloadTypes.download);
+      return CustomDownloadButton(
+          path: widget.url, payload: PayloadTypes.download);
     } else {
       return LoadingButton(
         height: 35,
