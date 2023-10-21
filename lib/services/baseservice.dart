@@ -79,6 +79,8 @@ class StudentPanelBase {
       case 502:
         throw InternetError("Please try after sometime");
       case 500:
+        getToast("Server Error : Status : 500");
+        throw InternetError("Please try after sometime");
       default:
         throw FetchDataException(
             'Something went to wrong : ${response.statusCode}');
@@ -134,6 +136,8 @@ class StudentPanelBase {
       case 502:
         throw InternetError("${response.statusCode}:${response.body}");
       case 500:
+        getToast("Server Error : Status : 500");
+        throw InternetError("Please try after sometime");
       default:
         throw FetchDataException("${response.statusCode}:${response.body}");
     }
@@ -173,7 +177,8 @@ class StudentPanelBase {
       case 502:
         throw InternetError("${response.statusCode} :${response.body}");
       case 500:
-        throw InternetError("${response.statusCode} :${response.body}");
+        getToast("Server Error : Status : 500");
+        throw InternetError("Please try after sometime");
       case 404:
         return handele404Error == true
             ? response.body
@@ -212,6 +217,8 @@ class StudentPanelBase {
       case 502:
         throw InternetError("${response.statusCode} :${response.body}");
       case 500:
+        getToast("Server Error : Status : 500");
+        throw InternetError("Please try after sometime");
       default:
         throw FetchDataException("${response.statusCode} :${response.body}");
     }
@@ -247,6 +254,8 @@ class StudentPanelBase {
       case 502:
         throw InternetError("Please try after sometime");
       case 500:
+        getToast("Server Error : Status : 500");
+        throw InternetError("Please try after sometime");
       default:
         throw FetchDataException(
             'Something went to wrong : ${response.statusCode}');
@@ -340,6 +349,8 @@ class StudentPanelBase {
       case 502:
         throw InternetError("${response.statusCode} :${response.body}");
       case 500:
+        getToast("Server Error : Status : 500");
+        throw InternetError("Please try after sometime");
       default:
         throw FetchDataException("${response.statusCode} :${response.body}");
     }

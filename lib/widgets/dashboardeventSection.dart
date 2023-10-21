@@ -60,7 +60,7 @@ class DashboardEventSection extends StatelessWidget {
                   Container(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       // height: 180,
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
 
                       // color: ThemeConstants.GreenColor,
                       width: foldPhone == true
