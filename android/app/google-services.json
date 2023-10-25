@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "471321973932",
+    "firebase_url": "https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "gradlynk-8460c",
+    "storage_bucket": "gradlynk-8460c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471321973932:android:a35baa23b6e8a3a95d3b09",
+        "android_client_info": {
+          "package_name": "com.downtownengineers.gradlynk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471321973932-rtrr9iosvfqle1s875gog2cn1l9mupfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj8eDqKS6zhAMEUkRcipcWdy7d-kwMPkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471321973932-rtrr9iosvfqle1s875gog2cn1l9mupfs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,7 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
@@ -74,17 +74,17 @@ class _ApplicationCompleteDetailsState
           directory = "/storage/emulated/0/Downloads/";
         }
       }
-      var res = await FlutterDownloader.enqueue(
-        url: url,
+      // var res = await FlutterDownloader.enqueue(
+      //   url: url,
 
-        headers: {}, // optional: header send with url (auth token etc)
-        savedDir: directory,
-        saveInPublicStorage: true,
-        showNotification:
-            true, // show download progress in status bar (for Android)
-        openFileFromNotification:
-            true, // click on notification to open downloaded file (for Android)
-      );
+      //   headers: {}, // optional: header send with url (auth token etc)
+      //   savedDir: directory,
+      //   saveInPublicStorage: true,
+      //   showNotification:
+      //       true, // show download progress in status bar (for Android)
+      //   openFileFromNotification:
+      //       true, // click on notification to open downloaded file (for Android)
+      // );
     }
   }
 
@@ -98,15 +98,15 @@ class _ApplicationCompleteDetailsState
         _port.sendPort, 'downloader_send_port');
     _port.listen((dynamic data) {
       String id = data[0];
-      DownloadTaskStatus status = data[1];
+      // DownloadTaskStatus status = data[1];
       int progress = data[2];
-      if (status == DownloadTaskStatus.complete) {
-        print("file downloaded");
-      }
+      // if (status == DownloadTaskStatus.complete) {
+      //   print("file downloaded");
+      // }
       setState(() {});
     });
 
-    FlutterDownloader.registerCallback(downloadCallback);
+    // FlutterDownloader.registerCallback(downloadCallback);
   }
 
   @override
@@ -115,13 +115,13 @@ class _ApplicationCompleteDetailsState
     super.dispose();
   }
 
-  @pragma('vm:entry-point')
-  static void downloadCallback(
-      String id, DownloadTaskStatus status, int progress) {
-    final SendPort? send =
-        IsolateNameServer.lookupPortByName('downloader_send_port');
-    send!.send([id, status, progress]);
-  }
+  // @pragma('vm:entry-point')
+  // static void downloadCallback(
+  //     String id, DownloadTaskStatus status, int progress) {
+  //   final SendPort? send =
+  //       IsolateNameServer.lookupPortByName('downloader_send_port');
+  //   send!.send([id, status, progress]);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +238,7 @@ class _ApplicationCompleteDetailsState
                                                               .bluecolor),
                                                       borderRadius:
                                                           const BorderRadius
-                                                                  .all(
+                                                              .all(
                                                               Radius.circular(
                                                                   20))),
                                                   child: Center(

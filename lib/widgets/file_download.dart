@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
@@ -38,12 +38,12 @@ class _FileDownloadState extends State<FileDownload> {
         _port.sendPort, 'downloader_send_port');
     _port.listen((dynamic data) {
       String id = data[0];
-      DownloadTaskStatus status = DownloadTaskStatus(data[1]);
+      // DownloadTaskStatus status = DownloadTaskStatus(data[1]);
       int progress = data[2];
       setState(() {});
     });
 
-    FlutterDownloader.registerCallback(downloadCallback);
+    // FlutterDownloader.registerCallback(downloadCallback);
   }
 
   @override
@@ -52,13 +52,13 @@ class _FileDownloadState extends State<FileDownload> {
     super.dispose();
   }
 
-  @pragma('vm:entry-point')
-  static void downloadCallback(
-      String id, DownloadTaskStatus status, int progress) {
-    final SendPort? send =
-        IsolateNameServer.lookupPortByName('downloader_send_port');
-    send!.send([id, status, progress]);
-  }
+  // @pragma('vm:entry-point')
+  // static void downloadCallback(
+  //     String id, DownloadTaskStatus status, int progress) {
+  //   final SendPort? send =
+  //       IsolateNameServer.lookupPortByName('downloader_send_port');
+  //   send!.send([id, status, progress]);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -226,18 +226,18 @@ class _FileDownloadState extends State<FileDownload> {
             directory = "/storage/emulated/0/Downloads/";
           }
         }
-        var res = await FlutterDownloader.enqueue(
-          url: url,
+        // var res = await FlutterDownloader.enqueue(
+        //   url: url,
 
-          headers: {}, // optional: header send with url (auth token etc)
-          savedDir: directory,
+        //   headers: {}, // optional: header send with url (auth token etc)
+        //   savedDir: directory,
 
-          saveInPublicStorage: true,
-          showNotification:
-              true, // show download progress in status bar (for Android)
-          openFileFromNotification:
-              false, // click on notification to open downloaded file (for Android)
-        );
+        //   saveInPublicStorage: true,
+        //   showNotification:
+        //       true, // show download progress in status bar (for Android)
+        //   openFileFromNotification:
+        //       false, // click on notification to open downloaded file (for Android)
+        // );
       }
     } catch (e) {
       print("object");

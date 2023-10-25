@@ -87,7 +87,7 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   change_app_package_name: ^1.1.0
   rounded_background_text: ^0.3.0
-  flutter_downloader: ^1.10.2
+  # flutter_downloader: ^1.10.2
   showcaseview: ^2.0.2
   flutter_html: ^3.0.0-alpha.6
   nice_loading_button: ^0.0.1
@@ -109,6 +109,9 @@ dependencies:
   fp_util: ^0.0.2
   fpdart: ^1.1.0
   youtube_player_flutter: ^8.1.2
+  firebase_core: ^2.20.0
+  firebase_messaging: ^14.6.7
+  flutter_local_notifications: ^16.1.0
 
 
 
