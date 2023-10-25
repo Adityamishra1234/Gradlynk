@@ -1024,7 +1024,7 @@ class ApiServices extends StudentPanelBase implements api {
     try {
       String jsonData = json.encode(model);
 
-      String jsonData2 = jsonData.replaceAll('"null"', "''");
+      String jsonData2 = jsonData.replaceAll('"null"', "null");
 
       var response = await httpPost("${Endpoints.baseUrl}$endpoint", jsonData2);
       if (response != null) {

@@ -153,10 +153,10 @@ class EnglishTestController extends GetxController with StateMixin {
         getToast(SnackBarConstants.bookTestSelectedError!);
         return false;
       } else {
-        print("sfdhs");
         EnglishTestDetailsViewModel englishTestDetailsViewModel =
             EnglishTestDetailsViewModel();
         englishTestDetailsViewModel = englishTestDetailsViewModel;
+        englishTestDetailsViewModel.testBook = bookTestSelcted;
         englishTestDetailsViewModel.dateOfExam = dateOfExamSelected;
         englishTestDetailsViewModel.tentativeExamDate =
             tentativeExamDateSelcted;
@@ -214,6 +214,7 @@ class EnglishTestController extends GetxController with StateMixin {
         EnglishTestDetailsViewModel englishTestDetailsViewModel =
             EnglishTestDetailsViewModel();
         englishTestDetailsViewModel = englishTestDetailsViewModel;
+        englishTestDetailsViewModel.testBook = bookTestSelcted;
         englishTestDetailsViewModel.dateOfExam = dateOfExamSelected;
         englishTestDetailsViewModel.tentativeExamDate =
             tentativeExamDateSelcted;
