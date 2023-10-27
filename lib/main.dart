@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/Test/testScreen.dart';
 import 'package:studentpanel/binding/app_bindings.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
@@ -261,12 +262,17 @@ Future<void> main() async {
   FirebaseMessaging.onMessage.listen(showFlutterNotification);
 
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    print('A new onMessageOpenedApp event was published!');
-    // Navigator.pushNamed(
-    //   Get.context!,
-    //   '/message',
-    //   arguments: MessageArguments(message, true),
-    // );
+    final temp = message.data;
+    temp.forEach((key, value) {
+      print(key);
+      print(value);
+
+      if (key == "test") {
+        if (value == "value") {
+          Get.to(const TestScreen());
+        }
+      }
+    });
   });
 
   WidgetsFlutterBinding.ensureInitialized();
