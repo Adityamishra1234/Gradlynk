@@ -37,7 +37,8 @@ class DashboardController extends GetxController {
     List<Future> futures = [
       upcomingEvents(),
       getTestimonials(),
-      getYoutubeVideos()
+      getYoutubeVideos(),
+      getUpdateFCMToken()
     ];
     await Future.wait(futures);
     Get.find<BaseController>().update();
@@ -121,5 +122,16 @@ class DashboardController extends GetxController {
   updateUserHistory(String reason) {
     // return apiservices.updateUserHistory(
     //     Endpoints.baseUrl!, Endpoints.userHistory!, reason);
+  }
+
+  getUpdateFCMToken() async {
+    print("as.dj");
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var token = await prefs.getString('token');
+
+    if (token != null) {
+      var res = apiservices.updateFCMToken(token);
+    }
   }
 }

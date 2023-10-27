@@ -2602,4 +2602,12 @@ class ApiServices extends StudentPanelBase implements api {
     // TODO: implement getEventHistoryList
     throw UnimplementedError();
   }
+
+  updateFCMToken(String token) {
+    print("object");
+    var res = httpPostNullBody2(
+        "http://192.168.107.88:3001/api/updateFcmTokenTest/$token");
+
+    print("asad");
+  }
 }
