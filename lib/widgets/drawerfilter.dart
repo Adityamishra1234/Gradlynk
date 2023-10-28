@@ -112,23 +112,25 @@ class DrawerFilter extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 120),
             child: ConfigurableExpansionTile(
-              header: const SizedBox(
-                width: 220,
-                height: 40,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text(
-                        "Select Ranking",
-                        style: Constants.textstyle,
+              header: (isExpanded, iconTurns, heightFactor) {
+                return const SizedBox(
+                  width: 220,
+                  height: 40,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "Select Ranking",
+                          style: Constants.textstyle,
+                        ),
                       ),
-                    ),
-                    Spacer(),
-                    Icon(Icons.keyboard_arrow_down),
-                  ],
-                ),
-              ),
+                      Spacer(),
+                      Icon(Icons.keyboard_arrow_down),
+                    ],
+                  ),
+                );
+              },
               childrenBody: Column(
                 children: [
                   // Check Box

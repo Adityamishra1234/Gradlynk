@@ -35,26 +35,28 @@ class _CustomExpansionPlanListState extends State<CustomExpansionPlanList> {
     return Card(
       elevation: 0,
       child: ConfigurableExpansionTile(
-        header: Flexible(
-          child: SizedBox(
-            // width: width - 10,
-            height: 40,
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: CustomAutoSizeTextMontserrat(
-                    text: title,
-                    textColor: ThemeConstants.bluecolor,
-                    fontWeight: FontWeight.bold,
+        header: (isExpanded, iconTurns, heightFactor) {
+          return Flexible(
+            child: SizedBox(
+              // width: width - 10,
+              height: 40,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: CustomAutoSizeTextMontserrat(
+                      text: title,
+                      textColor: ThemeConstants.bluecolor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                const Icon(Icons.keyboard_arrow_down),
-              ],
+                  const Spacer(),
+                  const Icon(Icons.keyboard_arrow_down),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
         childrenBody: Column(
           children: [
             // Check Box
