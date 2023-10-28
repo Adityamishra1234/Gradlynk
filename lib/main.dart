@@ -255,13 +255,18 @@ Future<void> main() async {
     await setupFlutterNotifications();
   }
   FirebaseMessaging.instance.getInitialMessage().then((value) {
+    print(value);
     _resolved = true;
     initialMessage = value?.data.toString();
   });
 
   FirebaseMessaging.onMessage.listen(showFlutterNotification);
 
+//Notification on tap process
+
+//IOS Notification on tap process
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    print("object");
     final temp = message.data;
     temp.forEach((key, value) {
       print(key);
@@ -274,6 +279,8 @@ Future<void> main() async {
       }
     });
   });
+
+//IOS Notification on tap process
 
   WidgetsFlutterBinding.ensureInitialized();
 
