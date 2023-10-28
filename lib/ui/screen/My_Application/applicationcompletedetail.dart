@@ -172,23 +172,27 @@ class _ApplicationCompleteDetailsState
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 20,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Application Submission Details",
-                                            textColor:
-                                                ThemeConstants.blackcolor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 20,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text:
+                                                  "Application Submission Details",
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         getTable(
@@ -302,21 +306,25 @@ class _ApplicationCompleteDetailsState
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: ConfigurableExpansionTile(
-                                  header: SizedBox(
-                                    width: width - 10,
-                                    height: 40,
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Offer Details",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        const Spacer(),
-                                        const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                  header:
+                                      (isExpanded, iconTurns, heightFactor) {
+                                    return SizedBox(
+                                      width: width - 10,
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Offer Details",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          const Spacer(),
+                                          const Icon(Icons.keyboard_arrow_down),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   childrenBody: Column(
                                     children: [
                                       getTable(
@@ -559,21 +567,25 @@ class _ApplicationCompleteDetailsState
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: ConfigurableExpansionTile(
-                                  header: SizedBox(
-                                    width: width - 10,
-                                    height: 40,
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Offer Acceptance",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        const Spacer(),
-                                        const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                  header:
+                                      (isExpanded, iconTurns, heightFactor) {
+                                    return SizedBox(
+                                      width: width - 10,
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Offer Acceptance",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          const Spacer(),
+                                          const Icon(Icons.keyboard_arrow_down),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   childrenBody: Column(
                                     children: [
                                       getTable(
@@ -750,21 +762,25 @@ class _ApplicationCompleteDetailsState
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: ConfigurableExpansionTile(
-                                  header: SizedBox(
-                                    width: width - 10,
-                                    height: 40,
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Defer Information",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        const Spacer(),
-                                        const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                  header:
+                                      (isExpanded, iconTurns, heightFactor) {
+                                    return SizedBox(
+                                      width: width - 10,
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Defer Information",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          const Spacer(),
+                                          const Icon(Icons.keyboard_arrow_down),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   childrenBody: Column(
                                     children: [
                                       getTable(
@@ -812,21 +828,25 @@ class _ApplicationCompleteDetailsState
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: ConfigurableExpansionTile(
-                                  header: SizedBox(
-                                    width: width - 10,
-                                    height: 40,
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Withdraw Information",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        const Spacer(),
-                                        const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                  header:
+                                      (isExpanded, iconTurns, heightFactor) {
+                                    return SizedBox(
+                                      width: width - 10,
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Withdraw Information",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          const Spacer(),
+                                          const Icon(Icons.keyboard_arrow_down),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   childrenBody: Column(
                                     children: [
                                       getTable(
@@ -864,21 +884,25 @@ class _ApplicationCompleteDetailsState
                                 elevation: 0,
                                 shadowColor: ThemeConstants.lightgreycolor,
                                 child: ConfigurableExpansionTile(
-                                  header: SizedBox(
-                                    width: width - 15,
-                                    height: 40,
-                                    child: Row(
-                                      children: [
-                                        CustomAutoSizeTextMontserrat(
-                                          text: "Document",
-                                          textColor: ThemeConstants.blackcolor,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                        const Spacer(),
-                                        const Icon(Icons.keyboard_arrow_down),
-                                      ],
-                                    ),
-                                  ),
+                                  header:
+                                      (isExpanded, iconTurns, heightFactor) {
+                                    return SizedBox(
+                                      width: width - 15,
+                                      height: 40,
+                                      child: Row(
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Document",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          const Spacer(),
+                                          const Icon(Icons.keyboard_arrow_down),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   childrenBody: Column(
                                     children: [
                                       ...documentList(_.model, context)

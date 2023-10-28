@@ -28,23 +28,25 @@ class _CustomExpansiontileState extends State<CustomExpansiontile> {
     return ConfigurableExpansionTile(
       borderColorEnd: Colors.transparent,
       bottomBorderOn: false,
-      header: SizedBox(
-        width: 220,
-        height: 40,
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                title!,
-                style: Constants.textstyle,
+      header: (isExpanded, iconTurns, heightFactor) {
+        return SizedBox(
+          width: 220,
+          height: 40,
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  title!,
+                  style: Constants.textstyle,
+                ),
               ),
-            ),
-            const Spacer(),
-            const Icon(Icons.keyboard_arrow_down),
-          ],
-        ),
-      ),
+              const Spacer(),
+              const Icon(Icons.keyboard_arrow_down),
+            ],
+          ),
+        );
+      },
       childrenBody: Column(
         children: [
           // Check Box

@@ -53,24 +53,26 @@ class _DocumentCheckListState extends State<DocumentCheckList> {
         Card(
           elevation: 5,
           child: ConfigurableExpansionTile(
-            header: SizedBox(
-              width: MediaQuery.of(context).size.width - 10,
-              height: 40,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Test",
-                      textColor: ThemeConstants.bluecolor,
-                      fontWeight: FontWeight.bold,
+            header: (isExpanded, iconTurns, heightFactor) {
+              return SizedBox(
+                width: MediaQuery.of(context).size.width - 10,
+                height: 40,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: CustomAutoSizeTextMontserrat(
+                        text: "Test",
+                        textColor: ThemeConstants.bluecolor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                  const Icon(Icons.keyboard_arrow_down),
-                ],
-              ),
-            ),
+                    const Spacer(),
+                    const Icon(Icons.keyboard_arrow_down),
+                  ],
+                ),
+              );
+            },
             childrenBody: Column(
               children: [
                 // Check Box

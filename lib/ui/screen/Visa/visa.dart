@@ -212,23 +212,27 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Application Related Documents",
-                                            textColor:
-                                                ThemeConstants.blackcolor,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text:
+                                                  "Application Related Documents",
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Align(
@@ -443,25 +447,30 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "GIC Section",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontWeight: FontWeight.w700,
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(),
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "GIC Section",
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Padding(
@@ -884,27 +893,32 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 0),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Medical Process",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w700,
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 0),
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Medical Process",
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Padding(
@@ -1148,26 +1162,31 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 0),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Biometrics",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontWeight: FontWeight.w700,
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 0),
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Biometrics",
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Padding(
@@ -1366,26 +1385,31 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 0),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Visa Submission",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontWeight: FontWeight.w700,
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 0),
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Visa Submission",
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Padding(
@@ -1767,26 +1791,31 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 0),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Visa Payment Details",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontWeight: FontWeight.w700,
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 0),
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Visa Payment Details",
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Padding(
@@ -1989,26 +2018,31 @@ class _VisaDetailState extends State<VisaDetail> {
                                 child: Card(
                                   elevation: 0,
                                   child: ConfigurableExpansionTile(
-                                    header: SizedBox(
-                                      width: width - 30,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 0),
-                                            child: CustomAutoSizeTextMontserrat(
-                                              text: "Visa Outcome",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontWeight: FontWeight.w700,
+                                    header:
+                                        (isExpanded, iconTurns, heightFactor) {
+                                      return SizedBox(
+                                        width: width - 30,
+                                        height: 40,
+                                        child: Row(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 0),
+                                              child:
+                                                  CustomAutoSizeTextMontserrat(
+                                                text: "Visa Outcome",
+                                                textColor:
+                                                    ThemeConstants.blackcolor,
+                                                fontWeight: FontWeight.w700,
+                                              ),
                                             ),
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
-                                      ),
-                                    ),
+                                            const Spacer(),
+                                            const Icon(
+                                                Icons.keyboard_arrow_down),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                     childrenBody: Column(
                                       children: [
                                         Padding(

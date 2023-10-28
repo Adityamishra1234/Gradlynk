@@ -5,16 +5,28 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.FLASHLIGHT"/>    
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:node="remove"/>
+=======
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+>>>>>>> be5d0ca6dfa739e8942b1f6e9c1aaf96c84dc721
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" tools:node="remove"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+<<<<<<< HEAD
 
 
     
+=======
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+>>>>>>> be5d0ca6dfa739e8942b1f6e9c1aaf96c84dc721
     <!-- Provide required visibility configuration for API level 30 and above -->
      <queries>
         <intent>
@@ -30,9 +42,13 @@
             <data android:mimeType="*/*" />
         </intent>
     </queries>
+<<<<<<< HEAD
 
  
    <application
+=======
+    <application
+>>>>>>> be5d0ca6dfa739e8942b1f6e9c1aaf96c84dc721
         android:label="Gradlynk"
        
         android:name="${applicationName}"
@@ -50,6 +66,10 @@
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
                  to determine the Window background behind the Flutter UI. -->
+            <intent-filter>
+                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>     
             <meta-data
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
@@ -58,7 +78,9 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            
         </activity>
+<<<<<<< HEAD
 
         <!-- <provider
              android:name="vn.hunghd.flutterdownloader.DownloadedFileProvider"
@@ -69,6 +91,17 @@
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/provider_paths"/>
         </provider> -->
+=======
+        <provider android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"
+                tools:replace="android:resource" />
+        </provider>
+>>>>>>> be5d0ca6dfa739e8942b1f6e9c1aaf96c84dc721
         <!-- Begin FlutterDownloader customization -->
 <!-- disable default Initializer -->
         <!-- <provider
@@ -97,6 +130,30 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="high_importance_channel" />
+        <service
+            android:name="com.dexterous.flutterlocalnotifications.ForegroundService"        
+            android:exported="false"
+            android:stopWithTask="false"/>
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" />
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>    
     </application>
+<<<<<<< HEAD
 </manifest>
  
+=======
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+</manifest>
+
+
+>>>>>>> be5d0ca6dfa739e8942b1f6e9c1aaf96c84dc721
