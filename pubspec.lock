@@ -534,14 +534,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
+  flutter_downloader:
+    dependency: "direct main"
+    description:
+      name: flutter_downloader
+      sha256: "4a03c705dc60b4f537796da937c80fd5bff63b175f4dd99e1539ab3ad5dbeda0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.4"
   flutter_file_downloader:
     dependency: "direct main"
     description:
       name: flutter_file_downloader
-      sha256: "383d1fda8ab7d9bc4314db20ab322c135ab9f616545eca4b19592b3428e2ecca"
+      sha256: "1374c31dcbd9df0324439cbc8877c6a9d5fc3eac80196493f22b25342dffb44c"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "1.1.4"
   flutter_html:
     dependency: "direct main"
     description:
@@ -771,11 +779,12 @@ packages:
   image_gallery_saver:
     dependency: "direct main"
     description:
-      name: image_gallery_saver
-      sha256: be812580c7a320d3bf583af89cac6b376f170d48000aca75215a73285a3223a0
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.1"
+      path: "."
+      ref: master
+      resolved-ref: "8c6480bf3a07834df89525e7ac6e0196ec701f73"
+      url: "https://github.com/hui-z/image_gallery_saver"
+    source: git
+    version: "2.0.3"
   image_picker:
     dependency: transitive
     description:
@@ -1711,4 +1720,4 @@ packages:
     version: "8.1.2"
 sdks:
   dart: ">=3.1.0-185.0.dev <4.0.0"
-  flutter: ">=3.7.0"
+  flutter: ">=3.10.0"

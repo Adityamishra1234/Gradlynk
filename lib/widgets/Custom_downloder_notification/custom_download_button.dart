@@ -130,7 +130,6 @@ class _CustomDownloadButtonState extends State<CustomDownloadButton> {
               onDownloadCompleted: (String paths) async {
                 final directory = await getApplicationDocumentsDirectory();
                 var newpath = paths;
-
                 getToast('Downloaded Successfully');
                 // await openLocalFile(directory.toString());
                 // await OpenFilex.open(newpath);

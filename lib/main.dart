@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 // import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,8 +24,8 @@ import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/fcm/firebase_options.dart';
 import 'package:studentpanel/middlewares/welcomeViewMiddleWare.dart';
 import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
+import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
@@ -85,6 +86,7 @@ import 'fcm/message.dart';
 import 'package:http/http.dart' as http;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 @pragma('vm:entry-point')
@@ -243,6 +245,13 @@ String constructFCMPayload(String? token) {
   });
 }
 
+class DownloadClass {
+  static void callback(String id, int status, int progress) {
+    print('Download Status: $status');
+    print('Download Prgress: $progress');
+  }
+}
+
 Future<void> main() async {
   String? initialMessage;
   bool _resolved = false;
@@ -284,12 +293,12 @@ Future<void> main() async {
 
   // Plugin must be initialized before using
   // await FlutterDownloader.initialize(
-  //     debug:
-  //         true, // optional: set to false to disable printing logs to console (default: true)
-  //     ignoreSsl:
-  //         true // option: set to false to disable working with http links (default: false)
-  //     );
-
+  //   debug:
+  //       true, // optional: set to false to disable printing logs to console (default: true)
+  //   // ignoreSsl:
+  //   //     true // option: set to false to disable working with http links (default: false)
+  // );
+  // FlutterDownloader.registerCallback(DownloadClass.callback);
   // SystemChrome.setEnabledSystemUIOverlays([]);
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
@@ -323,10 +332,9 @@ class _MyAppState extends State<MyApp> {
   Future<void> hideScreen() async {
     // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     // String phonenumber = sharedPreferences.getString("phonenumber").toString();
-
     // if (getNUllChecker(phonenumber) == false) {
-    //   var controller = Get.put(BaseController(), permanent: true);
-    // }
+    //   var controller = Get.put(BaseController(), permanent: true);}
+
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
         FlutterSplashScreen.hide();
