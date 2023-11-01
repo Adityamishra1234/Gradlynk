@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -9,6 +11,7 @@ import 'package:studentpanel/ui/models/upcomingholiday.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -125,13 +128,15 @@ class DashboardController extends GetxController {
   }
 
   getUpdateFCMToken() async {
-    print("as.dj");
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     var token = await prefs.getString('token');
-
+    var phonenumber = await getPhoneNumber();
     if (token != null) {
-      var res = apiservices.updateFCMToken(token);
+      if (Platform.isAndroid) {
+        var res = apiservices.updateFCMToken(phonenumber, token, "2");
+      } else {
+        var res = apiservices.updateFCMToken(phonenumber, token, "1");
+      }
     }
   }
 }

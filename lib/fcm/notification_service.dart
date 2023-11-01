@@ -1,11 +1,14 @@
 import 'dart:io';
 import 'dart:math';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:studentpanel/Test/testScreen.dart';
 import 'package:studentpanel/utils/constants.dart';
 
 class NotificationServices {
@@ -168,8 +171,10 @@ class NotificationServices {
 
   //function to get device token on which we will send the notifications
   Future<String> getDeviceToken() async {
-    onActionSelected;
+    await onActionSelected;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = await messaging.getToken();
+    await prefs.setString('token', '$token');
     return token!;
   }
 
@@ -189,7 +194,6 @@ class NotificationServices {
         await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
-      getToast("Notification generated");
       handleMessage(context, initialMessage);
     }
 
@@ -199,14 +203,13 @@ class NotificationServices {
     });
   }
 
-  void handleMessage(BuildContext context, RemoteMessage message) {
-    print("object");
-    // if(message.data['type'] =='msj'){
-    //   Navigator.push(context,
-    //       MaterialPageRoute(builder: (context) => MessageScreen(
-    //         id: message.data['id'] ,
-    //       )));
-    // }
+  Future<void> handleMessage(
+      BuildContext context, RemoteMessage message) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (message.data['type'] == 'test') {
+      await prefs.setString("Route", "testScreen");
+    }
   }
 
   Future forgroundMessage() async {

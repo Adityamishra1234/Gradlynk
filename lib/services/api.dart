@@ -162,5 +162,9 @@ abstract class api {
   getSubServiceInRegisterData(int ServiceID);
 
   getEventHistoryList(int userID);
-  updateFCMToken(String token);
+  updateFCMToken(
+    String phone,
+    String token,
+    String token_type,
+  );
 }

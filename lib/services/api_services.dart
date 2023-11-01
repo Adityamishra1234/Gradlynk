@@ -2603,11 +2603,12 @@ class ApiServices extends StudentPanelBase implements api {
     throw UnimplementedError();
   }
 
-  updateFCMToken(String token) {
-    print("object");
-    var res = httpPostNullBody2(
-        "http://192.168.107.88:3001/api/updateFcmTokenTest/$token");
-
-    print("asad");
+  updateFCMToken(
+    String phone,
+    String token,
+    String token_type,
+  ) {
+    var endpoint = fcmTokenUpdate(phone, token, token_type);
+    var res = httpPostNullBody2("${Endpoints.baseUrl}$endpoint");
   }
 }

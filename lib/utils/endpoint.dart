@@ -189,6 +189,11 @@ class Endpoints {
   static String? eventHistoryList = 'event-history?enq_id=';
 }
 
+String fcmTokenUpdate(String phone, String token, String token_type) {
+  //  1=> IOS and  2=> Android
+  return "set-fcm-token-ios-andriod?mobile=$phone&token=$token&token_type=$token_type";
+}
+
 String getRelativeInformationNo(String enqId) {
   return "add-relative-details?enq_id=$enqId&has_travelled=0";
 }
