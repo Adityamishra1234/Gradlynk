@@ -3,6 +3,7 @@ import 'package:studentpanel/ui/models/englishtestdetailsview.dart';
 import 'package:studentpanel/ui/models/otherTestDetails.dart';
 import 'package:studentpanel/ui/models/passport.dart';
 import 'package:studentpanel/ui/models/personalinformation.dart';
+import 'package:studentpanel/ui/screen/FeedBack/models/feedbackmodels.dart';
 
 abstract class api {
   dashboard(String baseUrl, String endpoint);
@@ -167,4 +168,5 @@ abstract class api {
     String token,
     String token_type,
   );
+  updatedFeedBack(FeedBackModel model);
 }

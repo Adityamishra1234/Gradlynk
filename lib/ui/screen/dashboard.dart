@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:studentpanel/Test/checkBoxtest.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/versioncontroller.dart';
+import 'package:studentpanel/ui/screen/FeedBack/feedback.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
@@ -704,6 +706,11 @@ class _DashBoardState extends State<DashBoard> {
                                                 // Create profile
                                                 InkWell(
                                                   onTap: () async {
+                                                    // Get.to(FeedbackPage(
+                                                    //   enq_id: '78623',
+                                                    //   event_id: '2',
+                                                    //   phoneNumber: '8394049598',
+                                                    // ));
                                                     Get.toNamed(
                                                         ProfileView.routeNamed);
                                                   },

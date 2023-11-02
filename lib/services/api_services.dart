@@ -41,6 +41,7 @@ import 'package:studentpanel/ui/models/viewcourseinformation.dart';
 import 'package:studentpanel/ui/models/visadetail.dart';
 import 'package:studentpanel/ui/models/visasummarymodel.dart';
 import 'package:studentpanel/ui/models/workhistoryview.dart';
+import 'package:studentpanel/ui/screen/FeedBack/models/feedbackmodels.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
@@ -2610,5 +2611,21 @@ class ApiServices extends StudentPanelBase implements api {
   ) {
     var endpoint = fcmTokenUpdate(phone, token, token_type);
     var res = httpPostNullBody2("${Endpoints.baseUrl}$endpoint");
+  }
+
+  getFeedbackCheckBox(String star) async {
+    var res = await httpPostNullBody2(
+        "${Endpoints.baseUrl}${Endpoints.feedbackCheckBox}$star");
+    if (res != null) {
+      return res["data"];
+    }
+  }
+
+  updatedFeedBack(FeedBackModel model) async {
+    var jsondata = model.toJson();
+    ;
+    var res = await httpPost("${Endpoints.baseUrl}${Endpoints.updateFeedback}",
+        json.encode(jsondata));
+    if (res != null) {}
   }
 }

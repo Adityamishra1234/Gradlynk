@@ -207,8 +207,9 @@ class NotificationServices {
       BuildContext context, RemoteMessage message) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (message.data['type'] == 'test') {
-      await prefs.setString("Route", "testScreen");
+    if (message.data['type'] == 'testScreen') {
+      await prefs.setString("Route",
+          "testScreen/${message.data['type']}/${message.data['enq_id']}/${message.data['eventId']}/${message.data['phoneNumber']}");
     }
   }
 

@@ -323,4 +323,7 @@ class SnackBarConstants {
 
   static String eventHistory = "No Event History Available for Tracking";
   static String qrCode = "Your QR code is not generated";
+
+  static String feedbackpart1 = "Kindly Select your FeedBack";
+  static String feedbackpart2 = "Kindly Select your fields";
 }

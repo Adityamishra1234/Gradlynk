@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 class Endpoints {
-  // static String? baseUrl = "https://api.sieceducation.in/api/";
+  static String? baseUrl = "https://api.sieceducation.in/api/";
   //http://192.168.104.204:205/api/get-course-broad-field
   //http://192.168.104.204:205/api/get-country
   // static String? baseUrl = "http://192.168.104.204:205/api/";
   // static String? baseUrl_mark_attendance = "http://14.97.86.202:204/api/";
-  static String? baseUrl = "http://164.52.208.95:99/api/";
+  // static String? baseUrl = "http://164.52.208.95:99/api/";
 
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
@@ -187,6 +189,20 @@ class Endpoints {
   static String? subServiceInRegister = "get-sub-service?service_id=";
 
   static String? eventHistoryList = 'event-history?enq_id=';
+  static String? feedbackCheckBox = 'get-area-of-improvement?rating=';
+  static String? updateFeedback = 'save-event-feedback';
+}
+
+String updateFeedback(
+    {required String enqID,
+    required String eventID,
+    String suggestion = "",
+    String complaint = "",
+    String compliment = "",
+    String feedback = "",
+    required String rating,
+    String optUpdate = ""}) {
+  return "?enq_id=$enqID&event_id=$eventID&suggestion=$suggestion&complaint=$complaint&compliment=$compliment&rating=$rating&feedback=$feedback&optUpdate=$optUpdate";
 }
 
 String fcmTokenUpdate(String phone, String token, String token_type) {
