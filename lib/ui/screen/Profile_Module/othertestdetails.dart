@@ -33,8 +33,15 @@ class OthertestDetail extends StatelessWidget {
               controller.examStatusSelected = controller.examStatusList[i];
             }
           }
-          controller.bookTestSelected =
+
+          controller.bookTestSelectedID =
               controller.otherTestDetailsModel.testBook;
+          if (controller.otherTestDetailsModel.testBook == "0") {
+            controller.bookTestSelected = "Yes";
+          }
+          if (controller.otherTestDetailsModel.testBook == "1") {
+            controller.bookTestSelected = "No";
+          }
           controller.examNameSelected =
               controller.otherTestDetailsModel.examName;
           // controller.specifyExamNameSelected=controller.otherTestDetailsModel.

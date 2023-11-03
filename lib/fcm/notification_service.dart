@@ -9,6 +9,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/Test/testScreen.dart';
+import 'package:studentpanel/ui/screen/FeedBack/feedback.dart';
 import 'package:studentpanel/utils/constants.dart';
 
 class NotificationServices {
@@ -107,10 +108,9 @@ class NotificationServices {
             priority: Priority.high,
             playSound: true,
             ticker: 'ticker',
-            sound: channel.sound
+            sound: channel.sound,
             //     sound: RawResourceAndroidNotificationSound('jetsons_doorbell')
-            //  icon: largeIconPath
-            );
+            icon: '@mipmap/ic_launcher');
 
     const DarwinNotificationDetails darwinNotificationDetails =
         DarwinNotificationDetails(
@@ -206,10 +206,14 @@ class NotificationServices {
   Future<void> handleMessage(
       BuildContext context, RemoteMessage message) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    if (message.data['type'] == 'testScreen') {
+    if (message.data['type'] == 'FeedbackPage') {
       await prefs.setString("Route",
-          "testScreen/${message.data['type']}/${message.data['enq_id']}/${message.data['eventId']}/${message.data['phoneNumber']}");
+          "${message.data['type']}/${message.data['enq_id']}/${message.data['eventId']}/${message.data['phoneNumber']}");
+      Get.to(FeedbackPage(
+        enq_id: message.data['enq_id'],
+        event_id: message.data['eventId'],
+        phoneNumber: message.data['phoneNumber'],
+      ));
     }
   }
 

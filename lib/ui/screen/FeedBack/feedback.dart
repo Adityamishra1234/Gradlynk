@@ -31,181 +31,192 @@ class FeedbackPage extends StatelessWidget {
     return Scaffold(
         body: controller.obx(onLoading: getLoading(context), (state) {
       return SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAutoSizeTextMontserrat(
-                text: "FEEDBACK FORM",
-                textColor: ThemeConstants.bluecolor,
-                fontSize: 28,
-                fontWeight: FontWeight.w700,
-              ),
-              const Divider(),
-              CustomAutoSizeTextMontserrat(
-                text: "Rate your overall event experience",
-                mandatory: true,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-              SizedBox(
-                width: 200,
-                height: 40,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: () async {
-                      controller.numberOfStar = index + 1;
-                      controller.getCheckBox((index + 1).toString());
-                      controller.update();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Icon(
-                        Icons.star,
-                        color: controller.numberOfStar >= index + 1
-                            ? const Color(0xFFFFC107)
-                            : ThemeConstants
-                                .lightgreycolor, // Color of the star's fill
-                        size: 22,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 15,
+                ),
+                CustomAutoSizeTextMontserrat(
+                  text: "FEEDBACK FORM",
+                  textColor: ThemeConstants.bluecolor,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Divider(),
+                CustomAutoSizeTextMontserrat(
+                  text: "Rate your overall event experience",
+                  mandatory: true,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  width: 200,
+                  height: 40,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () async {
+                        controller.numberOfStar = index + 1;
+                        controller.getCheckBox((index + 1).toString());
+                        controller.update();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Icon(
+                          Icons.star,
+                          color: controller.numberOfStar >= index + 1
+                              ? const Color(0xFFFFC107)
+                              : ThemeConstants
+                                  .lightgreycolor, // Color of the star's fill
+                          size: 30,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              //less than 3
-              if (controller.numberOfStar <= 3)
-                CustomAutoSizeTextMontserrat(
-                  text:
-                      "We apologise for the inconvenience.\n Kindly select the area(s) of dissatisfaction.",
-                  mandatory: true,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                const SizedBox(
+                  height: 10,
                 ),
-              if (controller.numberOfStar <= 3)
-                CustomMultiSelectedCheckbox(
-                    items: controller.items,
-                    selectedValues: controller.selectedValues,
-                    onSelectionChanged: (value) {
-                      controller.selectedValues = value;
-                      controller.update();
-                    }),
+                //less than 3
+                if (controller.numberOfStar <= 3)
+                  CustomAutoSizeTextMontserrat(
+                    text:
+                        "We apologise for the inconvenience.\n Kindly select the area(s) of dissatisfaction.",
+                    mandatory: true,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                if (controller.numberOfStar <= 3)
+                  CustomMultiSelectedCheckbox(
+                      items: controller.items,
+                      selectedValues: controller.selectedValues,
+                      onSelectionChanged: (value) {
+                        controller.selectedValues = value;
+                        controller.update();
+                      }),
 
-              // 4 start
-              if (controller.numberOfStar == 4)
+                // 4 start
+                if (controller.numberOfStar == 4)
+                  CustomAutoSizeTextMontserrat(
+                    text: "Kindly select area(s) of improvement",
+                    mandatory: true,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                if (controller.numberOfStar == 4)
+                  CustomMultiSelectedCheckbox(
+                      items: controller.items,
+                      selectedValues: controller.selectedValues,
+                      onSelectionChanged: (value) {
+                        controller.selectedValues = value;
+                        controller.update();
+                      }),
+                // 5 start
+                if (controller.numberOfStar == 5)
+                  CustomAutoSizeTextMontserrat(
+                    text: "Kindly select area(s) of satisfaction",
+                    mandatory: true,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                if (controller.numberOfStar == 5)
+                  CustomMultiSelectedCheckbox(
+                      items: controller.items,
+                      selectedValues: controller.selectedValues,
+                      onSelectionChanged: (value) {
+                        controller.selectedValues = value;
+                        controller.update();
+                      }),
                 CustomAutoSizeTextMontserrat(
-                  text: "Kindly select area(s) of improvement",
-                  mandatory: true,
+                  text: "Write your Feedback",
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
-              if (controller.numberOfStar == 4)
-                CustomMultiSelectedCheckbox(
-                    items: controller.items,
-                    selectedValues: controller.selectedValues,
-                    onSelectionChanged: (value) {
-                      controller.selectedValues = value;
-                      controller.update();
-                    }),
-              // 5 start
-              if (controller.numberOfStar == 5)
-                CustomAutoSizeTextMontserrat(
-                  text: "Kindly select area(s) of satisfaction",
-                  mandatory: true,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
-              if (controller.numberOfStar == 5)
-                CustomMultiSelectedCheckbox(
-                    items: controller.items,
-                    selectedValues: controller.selectedValues,
-                    onSelectionChanged: (value) {
-                      controller.selectedValues = value;
-                      controller.update();
-                    }),
-              CustomAutoSizeTextMontserrat(
-                text: "Write your Feedback",
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-              Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: TextField(
-                    controller: textController,
-                    maxLines: 5,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextField(
+                      controller: textController,
+                      maxLines: 5,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
-                    ),
-                  )),
+                    )),
 
-              // CustomTextFieldSquare(
-              //   hint: 'Kindly enter your feedback',
-              //   controller: textController,
-              //   borderRadius: 10.0,
-              // )),
+                // CustomTextFieldSquare(
+                //   hint: 'Kindly enter your feedback',
+                //   controller: textController,
+                //   borderRadius: 10.0,
+                // )),
 
-              //   CustomTextField(
-              //     keybord: TextInputType.number,
-              //     hint: "Kindly enter your feedback",
-              //     controller: textController,
-              //   ),
-              // ),
+                //   CustomTextField(
+                //     keybord: TextInputType.number,
+                //     hint: "Kindly enter your feedback",
+                //     controller: textController,
+                //   ),
+                // ),
 
-              CheckboxWithTextSelected(
-                text: 'Opt for latest SIEC News and Updates.',
-                isSelected: controller.optUpdate,
-                onChanged: (bool value) {
-                  controller.optUpdate = value;
-                  controller.update();
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: Align(
-                  alignment: AlignmentDirectional.topEnd,
-                  child: CustomButton(
-                    text: "Submit",
-                    onPressed: () {
-                      List temp = [];
-                      for (var i = 0;
-                          i < controller.selectedValues.length;
-                          i++) {
-                        if (controller.selectedValues[i] == true) {
-                          temp.add(controller.items[i]);
+                CheckboxWithTextSelected(
+                  text: 'Opt for latest SIEC News and Updates.',
+                  isSelected: controller.optUpdate,
+                  onChanged: (bool value) {
+                    controller.optUpdate = value;
+                    controller.update();
+                  },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: Align(
+                    alignment: AlignmentDirectional.topEnd,
+                    child: CustomButton(
+                      text: "Submit",
+                      onPressed: () {
+                        List temp = [];
+                        for (var i = 0;
+                            i < controller.selectedValues.length;
+                            i++) {
+                          if (controller.selectedValues[i] == true) {
+                            temp.add(controller.items[i]);
+                          }
                         }
-                      }
-                      if (controller.numberOfStar == 0) {
-                        getToast(SnackBarConstants.feedbackpart1);
-                      } else if (temp.isEmpty) {
-                        getToast(SnackBarConstants.feedbackpart2);
-                      } else {
-                        FeedBackModel model = FeedBackModel();
-                        model.enqId = enq_id;
-                        model.eventId = event_id;
-                        model.rating = controller.numberOfStar.toString();
-                        model.feedback = textController.text;
-                        model.optUpdate = controller.optUpdate;
-                        if (controller.numberOfStar <= 3) {
-                          model.complaint = temp;
-                        } else if (controller.numberOfStar == 4) {
-                          model.suggestion = temp;
+                        if (controller.numberOfStar == 0) {
+                          getToast(SnackBarConstants.feedbackpart1);
+                        } else if (temp.isEmpty) {
+                          getToast(SnackBarConstants.feedbackpart2);
                         } else {
-                          model.compliment = temp;
+                          FeedBackModel model = FeedBackModel();
+                          model.enqId = enq_id;
+                          model.eventId = event_id;
+                          model.rating = controller.numberOfStar.toString();
+                          model.feedback = textController.text;
+                          model.optUpdate = controller.optUpdate;
+                          if (controller.numberOfStar <= 3) {
+                            model.complaint = temp;
+                          } else if (controller.numberOfStar == 4) {
+                            model.suggestion = temp;
+                          } else {
+                            model.compliment = temp;
+                          }
+                          controller.UpdateFeedback(model);
                         }
-                        controller.UpdateFeedback(model);
-                      }
-                    },
-                    backgroundColor: ThemeConstants.bluecolor,
-                    radius: 10.0,
+                      },
+                      backgroundColor: ThemeConstants.bluecolor,
+                      radius: 10.0,
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       );

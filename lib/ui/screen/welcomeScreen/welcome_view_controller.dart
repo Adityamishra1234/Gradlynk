@@ -2,6 +2,7 @@ import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/Test/testScreen.dart';
+import 'package:studentpanel/ui/screen/FeedBack/feedback.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 
@@ -33,11 +34,21 @@ class WelcomeViewController extends GetxController with StateMixin {
       return;
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      var route = await prefs.getString("Route");
-      if (route == "testScreen") {
-        Get.to(const TestScreen());
-      } else {
+      String? route = await prefs.getString("Route");
+      if (route == null) {
         Get.offNamed(DashBoard.routeNamed);
+      } else {
+        List temp = [];
+        if (route != null) {
+          temp = route.split("/");
+        }
+        if (temp[0] == "FeedbackPage") {
+          Get.to(FeedbackPage(
+            enq_id: temp[1].toString(),
+            event_id: temp[2].toString(),
+            phoneNumber: temp[3].toString(),
+          ));
+        }
       }
     }
   }

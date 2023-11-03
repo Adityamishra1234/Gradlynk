@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/screen/FeedBack/models/feedbackmodels.dart';
+import 'package:studentpanel/ui/screen/dashboard.dart';
 
 class feedBackController extends GetxController with StateMixin {
   ApiServices apiservice = ApiServices();
@@ -11,6 +13,8 @@ class feedBackController extends GetxController with StateMixin {
 
   @override
   void onInit() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove("Route");
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -31,6 +35,9 @@ class feedBackController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     var res = await apiservice.updatedFeedBack(model);
     if (res != null) {
+      if (res == true) {
+        Get.toNamed(DashBoard.routeNamed);
+      }
       change(null, status: RxStatus.success());
     }
   }

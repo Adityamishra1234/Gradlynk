@@ -210,9 +210,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
       if (prefs.getBool("showcaseEnable") == false ||
           prefs.getBool("showcaseEnable") == null) {
         prefs.setBool("showcaseEnable", false);
-
         prefs.setString("phonenumber", phoneNumberController.text);
-        prefs.setString("token", model!.token.toString());
         prefs.setString("id", model!.user!.id.toString());
         change(null, status: RxStatus.success());
 

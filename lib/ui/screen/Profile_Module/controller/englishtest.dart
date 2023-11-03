@@ -287,6 +287,7 @@ class EnglishTestController extends GetxController with StateMixin {
       dateOfTestReportSelcted = englishTestDetailsViewModel.resultDate;
       testscoreExpirationDateSelcted =
           englishTestDetailsViewModel.expirationDate;
+      bookTestSelcted = englishTestDetailsViewModel.testBook;
       tentativeExamDateSelcted = englishTestDetailsViewModel.tentativeExamDate;
       EnglishTestController.overallScoreController.text =
           getNUllChecker(englishTestDetailsViewModel.overAll) == false

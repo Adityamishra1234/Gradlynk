@@ -2626,6 +2626,13 @@ class ApiServices extends StudentPanelBase implements api {
     ;
     var res = await httpPost("${Endpoints.baseUrl}${Endpoints.updateFeedback}",
         json.encode(jsondata));
-    if (res != null) {}
+    if (res != null) {
+      if (res['status'] == "error") {
+        getToast(res["msg"]);
+        return false;
+      } else {
+        return true;
+      }
+    }
   }
 }
