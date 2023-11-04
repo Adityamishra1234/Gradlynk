@@ -12,6 +12,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/http-request@v3 
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2
@@ -28,8 +29,7 @@ jobs:
         with:
           name: release-apk
           path: build/app/outputs/apk/release/app-release.apk
-      - uses: actions/http-request@v3
-        with:
+           
           url: https://dummy.restapiexample.com/api/v1/employees
           method: GET
           successOutput: response
