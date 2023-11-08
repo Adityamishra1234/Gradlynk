@@ -401,6 +401,7 @@ class QualificationDetailsController extends GetxController with StateMixin {
     change(null, status: RxStatus.loading());
     try {
       String endpoint = Endpoints.addQualification! + enqId;
+      print(modelList);
       for (var i = 0; i < modelList.length; i++) {
         endpoint = endpoint +
             getAddQualificationPart2(
@@ -454,6 +455,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
           Endpoints.baseUrl!, Endpoints.viewQualificationDetails! + enqId);
       if (res != null) {
         modelList = res;
+
+        print(modelList);
         loadingViewQualification.value = true;
         update();
       }
@@ -480,7 +483,7 @@ class QualificationDetailsController extends GetxController with StateMixin {
         Map map = Map<String, dynamic>.from(res);
         yearofPassing.add("Select year of Passing");
         yearofPassing = map.values.toList();
-        yearOfPassingSelected = '2023';
+        yearOfPassingSelected = '';
         loadingyearOfpassing.value = true;
         update();
       }
@@ -652,10 +655,13 @@ class QualificationDetailsController extends GetxController with StateMixin {
   getUpdateQualificationDetails(int index) async {
     try {
       change(null, status: RxStatus.loading());
+      print(modelList);
       qualificationName.value.text = modelList[index].courseName ?? "";
       multiplier.value.text = modelList[index].multiplier ?? "";
       percentage.value.text = modelList[index].percentage ?? "";
       reApper.value.text = modelList[index].reapperCount ?? "";
+
+      highestQualificationSelectedID = modelList[index].qualificationId ?? '';
       // }
       // if (updateForEdit == false && loadingEditQualification.value == true) {
       loadingEditQualification.value = false;
@@ -671,6 +677,8 @@ class QualificationDetailsController extends GetxController with StateMixin {
       countrySelected = modelList[index].countryName;
       Get.find<QualificationDetailsController>().loadingEdit.value = 1;
       // cgpa.text = double.parse(modelList[index].percentage.toString()) /;
+      print(modelList);
+
       await getEdit(
           modelList[index].countryId!,
           modelList[index].stateName,
@@ -681,6 +689,7 @@ class QualificationDetailsController extends GetxController with StateMixin {
           modelList[index].affiliationId,
           modelList[index].universityName,
           modelList[index].passingInstId);
+      print(modelList);
       change(null, status: RxStatus.success());
     } catch (e) {
       print(e.toString());

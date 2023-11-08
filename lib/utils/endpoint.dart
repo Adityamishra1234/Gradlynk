@@ -136,15 +136,10 @@ class Endpoints {
   static String? agree = "agree-student-consent?enq_id=";
 
   static String? counselorList = "service-assignees?enq_id=";
-
   static String? profileDataValidation = "profile-data-validation?enq_id=";
-
   static String? carouselList = "carousel-banner";
-
   static String? idsFromZipCode = "ids-from-zip-code";
-
   static String? getAllCourseBroadField = "get-all-course-broad-field";
-
   static String? getNarrowFieldFromCourseBroadField =
       "get-course-narrow-fiels-by-broad-field";
 
@@ -159,35 +154,25 @@ class Endpoints {
   static String? fund_type = "get-fund-types";
   static String? bankByCountry = "get_bank_by_country?country_id=";
   static String? getYoutubeVideoLink = "testimonial-videos";
-
   static String? getCountryWithFlag = "country-flags";
-
   static String? countriesOfContinent = "countries-of-continent/";
-
   static String? fundPlannerResult = "funds-planner-get-results?enq_id=";
   static String? fundPlannerDelete = "funds-planner-delete-results?id=";
   static String? getCarrerOutcomeByProfession =
       "get-carrer-outcome-by-profession?job_industry_id=";
   static String? courseSearchGetUniversities = "universities/";
-
   static String? getAllBranches = "get-all-branches";
   static String? getAllLeadSources = "get-all-lead-source";
 
   //params number_otp=195185&mobile_number=9650117662
   static String? otpValidationForRegister = "otp-validate-student?number_otp=";
-
   static String? resendOtpRegister = "otp-number-resend?mobile_number=";
-
   static String? which_consent_form = "which-consent-form?enq_id=";
-
   static String? eventZone = "show-menu?enq_id=";
-
   static String? getBaseUrlForAllAPi = "base-url";
   static String? eventDocumentUpload = "process-platinum-pass?enq_id=";
   static String? documentNotSubmit = "show-menu?enq_id=";
-
   static String? subServiceInRegister = "get-sub-service?service_id=";
-
   static String? eventHistoryList = 'event-history?enq_id=';
   static String? feedbackCheckBox = 'get-area-of-improvement?rating=';
   static String? updateFeedback = 'save-event-feedback';

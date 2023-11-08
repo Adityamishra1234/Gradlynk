@@ -317,71 +317,74 @@ class OthertestDetail extends StatelessWidget {
         choosefieldtype: controller.editSave.value == true ? true : false,
         callbackFunction: callbackBookTest,
       ),
-      //Yes
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: Row(
-            children: [
-              CustomAutoSizeTextMontserrat(
-                text: "Specify Exam Name",
-                mandatory: true,
-                textColor: ThemeConstants.TextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ],
-          ),
-        ),
-      ),
-      CustomDropDownSingle(
-        selectedValue: controller.examNameSelected.toString(),
-        model: controller.loadingExamName.value == true
-            ? controller.examNameList
-            : ["No Data"],
-        initialSelectedValue: controller.loadingExamName.value == true
-            ? getNUllChecker(controller.examNameSelected) == false
-                ? controller.examNameSelected.toString()
-                : controller.examNameList[0]
-            : "No Data",
-        choosefieldtype: controller.editSave.value == true ? true : false,
-        callbackFunction: callbackExamName,
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Tentative Exam Date",
-            textColor: ThemeConstants.TextColor,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Container(
-        height: 45,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: CustomTimerWidget(
-            isBlank: true,
-            // enableField: false,
 
-            initialTime: controller.tentativeDateSelected,
-            callback: (value) {
-              callbackTentativeExamDate(value);
-            },
+      if (controller.bookTestSelectedID != '1') ...[
+        //Yes
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: Row(
+              children: [
+                CustomAutoSizeTextMontserrat(
+                  text: "Specify Exam Name",
+                  mandatory: true,
+                  textColor: ThemeConstants.TextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      // Padding(
-      //   padding: const EdgeInsets.only(left: 10, right: 10),
-      //   child: DatePickerExample(
-      //       enableField: controller.editSave.value == true ? true : false,
-      //       date: controller.tentativeDateSelected,
-      //       callbackDate: callbackTentativeExamDate),
-      // )
+        CustomDropDownSingle(
+          selectedValue: controller.examNameSelected.toString(),
+          model: controller.loadingExamName.value == true
+              ? controller.examNameList
+              : ["No Data"],
+          initialSelectedValue: controller.loadingExamName.value == true
+              ? getNUllChecker(controller.examNameSelected) == false
+                  ? controller.examNameSelected.toString()
+                  : controller.examNameList[0]
+              : "No Data",
+          choosefieldtype: controller.editSave.value == true ? true : false,
+          callbackFunction: callbackExamName,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Tentative Exam Date",
+              textColor: ThemeConstants.TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Container(
+          height: 45,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: CustomTimerWidget(
+              isBlank: true,
+              // enableField: false,
+
+              initialTime: controller.tentativeDateSelected,
+              callback: (value) {
+                callbackTentativeExamDate(value);
+              },
+            ),
+          ),
+        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 10, right: 10),
+        //   child: DatePickerExample(
+        //       enableField: controller.editSave.value == true ? true : false,
+        //       date: controller.tentativeDateSelected,
+        //       callbackDate: callbackTentativeExamDate),
+        // )
+      ]
     ];
   }
 
