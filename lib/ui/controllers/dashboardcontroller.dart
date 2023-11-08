@@ -143,18 +143,20 @@ class DashboardController extends GetxController {
   }
 
   getFeedBack() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? route = await prefs.getString("Route");
-    List temp = [];
-    if (route != null) {
-      temp = route.split("/");
-    }
-    if (temp[0] == "FeedbackPage") {
-      Get.offAll(FeedbackPage(
-        enq_id: temp[1].toString(),
-        event_id: temp[2].toString(),
-        phoneNumber: temp[3].toString(),
-      ));
-    }
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? route = await prefs.getString("Route");
+      List temp = [];
+      if (route != null) {
+        temp = route.split("/");
+      }
+      if (temp[0] == "FeedbackPage") {
+        Get.offAll(FeedbackPage(
+          enq_id: temp[1].toString(),
+          event_id: temp[2].toString(),
+          phoneNumber: temp[3].toString(),
+        ));
+      }
+    } catch (e) {}
   }
 }
