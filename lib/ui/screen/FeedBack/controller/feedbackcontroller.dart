@@ -13,8 +13,6 @@ class feedBackController extends GetxController with StateMixin {
 
   @override
   void onInit() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove("Route");
     change(null, status: RxStatus.success());
     super.onInit();
   }
@@ -36,6 +34,8 @@ class feedBackController extends GetxController with StateMixin {
     var res = await apiservice.updatedFeedBack(model);
     if (res != null) {
       if (res == true) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.remove("Route");
         Get.toNamed(DashBoard.routeNamed);
       }
       change(null, status: RxStatus.success());
