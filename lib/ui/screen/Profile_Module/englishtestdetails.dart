@@ -266,67 +266,69 @@ class EnglishTestDetails extends StatelessWidget {
         choosefieldtype: editsave,
         callbackFunction: callback,
       ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Specify Exam Name",
-            mandatory: true,
-            textColor: ThemeConstants.TextColor,
-            fontSize: SizeConfig.fontLabelSize,
-            fontWeight: SizeConfig.fontLabelWeight,
+      if (controller.bookTestSelcted == 'Yes') ...[
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Specify Exam Name",
+              mandatory: true,
+              textColor: ThemeConstants.TextColor,
+              fontSize: SizeConfig.fontLabelSize,
+              fontWeight: SizeConfig.fontLabelWeight,
+            ),
           ),
         ),
-      ),
-      CustomDropDownSingle(
-        selectedValue: controller.examNameSelected,
-        model: controller.loadingExamName2.value == true
-            ? controller.examNameList
-            : ["No data"],
-        initialSelectedValue: controller.loadingExamName2.value == true
-            ? controller.examNameSelected
-            : "No data",
-        choosefieldtype: editsave,
-        callbackFunction: callbackExamName,
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-        child: Align(
-          alignment: AlignmentDirectional.topStart,
-          child: CustomAutoSizeTextMontserrat(
-            text: "Tentative Exam Date",
-            textColor: ThemeConstants.TextColor,
-            fontSize: SizeConfig.fontLabelSize,
-            fontWeight: SizeConfig.fontLabelWeight,
+        CustomDropDownSingle(
+          selectedValue: controller.examNameSelected,
+          model: controller.loadingExamName2.value == true
+              ? controller.examNameList
+              : ["No data"],
+          initialSelectedValue: controller.loadingExamName2.value == true
+              ? controller.examNameSelected
+              : "No data",
+          choosefieldtype: editsave,
+          callbackFunction: callbackExamName,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+          child: Align(
+            alignment: AlignmentDirectional.topStart,
+            child: CustomAutoSizeTextMontserrat(
+              text: "Tentative Exam Date",
+              textColor: ThemeConstants.TextColor,
+              fontSize: SizeConfig.fontLabelSize,
+              fontWeight: SizeConfig.fontLabelWeight,
+            ),
           ),
         ),
-      ),
-      Container(
-        height: 45,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
-          child: CustomTimerWidget(
-            isBlank: true,
-            // enableField: false,
+        Container(
+          height: 45,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: CustomTimerWidget(
+              isBlank: true,
+              // enableField: false,
 
-            initialTime: controller.tentativeExamDateSelcted,
-            callback: (value) {
-              callbackTentativeExamDate(value);
-            },
+              initialTime: controller.tentativeExamDateSelcted,
+              callback: (value) {
+                callbackTentativeExamDate(value);
+              },
+            ),
           ),
         ),
-      ),
-      // Padding(
-      //   padding: const EdgeInsets.only(left: 10, right: 10),
-      //   child: DatePickerExample(
-      //     enableField: controller.editSave.value == true ? true : false,
-      //     date: getNUllChecker(controller.tentativeExamDateSelcted) == false
-      //         ? controller.tentativeExamDateSelcted
-      //         : null,
-      //     callbackDate: callbackTentativeExamDate,
-      //   ),
-      // ),
+        // Padding(
+        //   padding: const EdgeInsets.only(left: 10, right: 10),
+        //   child: DatePickerExample(
+        //     enableField: controller.editSave.value == true ? true : false,
+        //     date: getNUllChecker(controller.tentativeExamDateSelcted) == false
+        //         ? controller.tentativeExamDateSelcted
+        //         : null,
+        //     callbackDate: callbackTentativeExamDate,
+        //   ),
+        // ),
+      ]
     ];
   }
 
