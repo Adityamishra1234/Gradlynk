@@ -8,6 +8,7 @@ import 'package:studentpanel/ui/models/getAllTestimonialsModel.dart';
 import 'package:studentpanel/ui/models/newsandupdate.dart';
 import 'package:studentpanel/ui/models/upcomingevent.dart';
 import 'package:studentpanel/ui/models/upcomingholiday.dart';
+import 'package:studentpanel/ui/screen/FeedBack/feedback.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/evenZonestatusModel.dart';
 import 'package:studentpanel/ui/screen/dashboard/models/youtubevideoModel.dart';
 import 'package:studentpanel/ui/screen/fund/model/fundPlanner.dart';
@@ -38,6 +39,7 @@ class DashboardController extends GetxController {
   @override
   void onInit() async {
     List<Future> futures = [
+      getFeedBack(),
       upcomingEvents(),
       getTestimonials(),
       getYoutubeVideos(),
@@ -137,6 +139,22 @@ class DashboardController extends GetxController {
       } else {
         var res = apiservices.updateFCMToken(phonenumber, token, "1");
       }
+    }
+  }
+
+  getFeedBack() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? route = await prefs.getString("Route");
+    List temp = [];
+    if (route != null) {
+      temp = route.split("/");
+    }
+    if (temp[0] == "FeedbackPage") {
+      Get.offAll(FeedbackPage(
+        enq_id: temp[1].toString(),
+        event_id: temp[2].toString(),
+        phoneNumber: temp[3].toString(),
+      ));
     }
   }
 }

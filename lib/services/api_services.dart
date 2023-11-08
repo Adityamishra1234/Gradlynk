@@ -2615,7 +2615,8 @@ class ApiServices extends StudentPanelBase implements api {
 
   getFeedbackCheckBox(String star) async {
     var res = await httpPostNullBody2(
-        "${Endpoints.baseUrl}${Endpoints.feedbackCheckBox}$star");
+        "${Endpoints.baseUrl}${Endpoints.feedbackCheckBox}$star",
+        login: true);
     if (res != null) {
       return res["data"];
     }

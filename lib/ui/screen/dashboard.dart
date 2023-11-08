@@ -41,7 +41,7 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   var controller = Get.find<BaseController>();
-  var controller1 = Get.put(VersionController(), permanent: true);
+  var controller1 = Get.put(VersionController());
   var dashboardController = Get.put(DashboardController());
   final TextStyle _textStyle = GoogleFonts.roboto(
     fontWeight: FontWeight.w800,

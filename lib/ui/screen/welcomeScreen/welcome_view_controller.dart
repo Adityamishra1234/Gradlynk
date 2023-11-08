@@ -5,6 +5,7 @@ import 'package:studentpanel/Test/testScreen.dart';
 import 'package:studentpanel/ui/screen/FeedBack/feedback.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:flutter_splash_screen/flutter_splash_screen.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 class WelcomeViewController extends GetxController with StateMixin {
   @override
@@ -35,6 +36,7 @@ class WelcomeViewController extends GetxController with StateMixin {
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? route = await prefs.getString("Route");
+      getToast(route ?? "sampel");
       if (route == null) {
         Get.offNamed(DashBoard.routeNamed);
       } else {
@@ -43,7 +45,7 @@ class WelcomeViewController extends GetxController with StateMixin {
           temp = route.split("/");
         }
         if (temp[0] == "FeedbackPage") {
-          Get.to(FeedbackPage(
+          Get.offAll(FeedbackPage(
             enq_id: temp[1].toString(),
             event_id: temp[2].toString(),
             phoneNumber: temp[3].toString(),

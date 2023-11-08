@@ -363,7 +363,8 @@ class _MyAppState extends State<MyApp> {
     // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     // String phonenumber = sharedPreferences.getString("phonenumber").toString();
     // if (getNUllChecker(phonenumber) == false) {
-    //   var controller = Get.put(BaseController(), permanent: true);}
+    //   var controller = Get.put(BaseController(), permanent: true);
+    // }
 
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
@@ -517,11 +518,11 @@ class _MyAppState extends State<MyApp> {
             transition: Transition.fade,
             page: () => const TrackApplicationCopy(),
             binding: TrackApplicationBinding()),
-        GetPage(
-          name: LunchingPage.routeNamed,
-          transition: Transition.cupertino,
-          page: () => const LunchingPage(),
-        ),
+        // GetPage(
+        //   name: LunchingPage.routeNamed,
+        //   transition: Transition.cupertino,
+        //   page: () => const LunchingPage(),
+        // ),
         GetPage(
           name: AnimationTest.routeNamed,
           transition: Transition.cupertino,

@@ -18,14 +18,13 @@ class feedBackController extends GetxController with StateMixin {
   }
 
   getCheckBox(String number_of_star) async {
-    change(null, status: RxStatus.loading());
     var res = await apiservice.getFeedbackCheckBox(number_of_star);
     if (res != null) {
       items = [];
       items = res;
       selectedValues = [];
       selectedValues = List.filled(items.length, false);
-      change(null, status: RxStatus.success());
+      update();
     }
   }
 
