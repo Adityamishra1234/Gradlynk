@@ -60,8 +60,8 @@ class ApiServices extends StudentPanelBase implements api {
       StudentPanel studentPanel;
       var response;
 
-      response = await httpPostNullBody(baseUrl + endpoint);
-      print(endpoint);
+      response = await httpPostNullBody(baseUrl + endpoint, login: true);
+
       if (response != null) {
         // debugPrint(response);
         // SharedPreferences sharedPreferences =
@@ -71,6 +71,11 @@ class ApiServices extends StudentPanelBase implements api {
         // sharedPreferences.setString('UserModel', response);
 
         var jsondata = json.decode(response);
+        try {
+          if (jsondata['status'].toString() == "error") {
+            getToast(jsondata['message']);
+          }
+        } catch (e) {}
         studentPanel = StudentPanel.fromJson(jsondata);
         // sharedPreferences.setString('token', userModel.token);
         // sharedPreferences.setString("login_time", formattedStr);
@@ -79,15 +84,7 @@ class ApiServices extends StudentPanelBase implements api {
       } else {
         return false;
       }
-    } catch (e) {
-      print(e.toString());
-      await errorHandle(
-        "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
-        e.toString().split(":")[1].toString(),
-        e.toString().split(":")[0].toString(),
-        StackTrace.current.toString(),
-      );
-    }
+    } catch (e) {}
   }
 
   @override
@@ -1338,7 +1335,6 @@ class ApiServices extends StudentPanelBase implements api {
 
   @override
   getLogin(String? endpoint) async {
-    print(endpoint);
     try {
       var response =
           await httpPostNullBody(Endpoints.baseUrl! + endpoint!, login: true);
@@ -2635,5 +2631,10 @@ class ApiServices extends StudentPanelBase implements api {
         return true;
       }
     }
+  }
+
+  logoutPostNull(String url) async {
+    var res = await httpPostNullBody2("${Endpoints.baseUrl}$url");
+    if (res != null) {}
   }
 }

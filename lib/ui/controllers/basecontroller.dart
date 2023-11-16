@@ -91,7 +91,6 @@ class BaseController extends GetxController with StateMixin {
 
   caraouselData() async {
     var res = await apiServices.caraouselList();
-
     carouselList.value = List<CarouselListModel>.from(
         res.map((e) => CarouselListModel.fromJson(e)));
     update();
@@ -110,7 +109,7 @@ class BaseController extends GetxController with StateMixin {
 
           if (model1.is_block == 1) {
             getToast(SnackBarConstants.userBlock!);
-            logout();
+            // logout();
           } else {
             // if(model1.p)
             if (model1.otherCountryOfInterest != null) {
@@ -138,15 +137,15 @@ class BaseController extends GetxController with StateMixin {
           // model1.service_id = 3;
           update();
         } else {
-          Get.offNamed(LoginCopy.routeNamed);
-          sharedPreferences.clear();
+          logout();
         }
       } else {
-        Get.offNamed(LoginCopy.routeNamed);
+        logout();
       }
 
       getNotificatin(model1.id.toString());
     } on Exception catch (e) {
+      change(null, status: RxStatus.loadingMore());
       await StudentPanelBase().errorHandle(
         Get.find<BaseController>().model1.id.toString(),
         e.toString().split(":")[1].toString(),
@@ -218,9 +217,8 @@ class BaseController extends GetxController with StateMixin {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String token = sharedPreferences.getString("token").toString();
     String id = sharedPreferences.getString("id").toString();
-    // var res = await apiServices.logout(
-    //     Endpoints.baseUrl!, Endpoints.logout! + id, token);
-    // if (res == true) {
+    var res = await apiServices.logoutPostNull(await logout());
+
     Get.deleteAll();
     sharedPreferences.clear();
     Get.offAll(const LoginCopy());

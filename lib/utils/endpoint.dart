@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:studentpanel/utils/constants.dart';
 
 class Endpoints {
   // static String? baseUrl = "https://api.sieceducation.in/api/";
@@ -7,7 +10,6 @@ class Endpoints {
   // static String? baseUrl = "http://192.168.104.204:205/api/";
   // static String? baseUrl_mark_attendance = "http://14.97.86.202:204/api/";
   static String? baseUrl = "http://164.52.208.95:99/api/";
-
   static String? dashboard = "student-panel-login?mobile_number=";
   static String? logout = "logout?id=";
   static String? userHistory = "login-logout-history";
@@ -176,6 +178,14 @@ class Endpoints {
   static String? eventHistoryList = 'event-history?enq_id=';
   static String? feedbackCheckBox = 'get-area-of-improvement?rating=';
   static String? updateFeedback = 'save-event-feedback';
+}
+
+String logout() {
+  if (Platform.isAndroid) {
+    return "logout?id=${getUserID()}&device_id=2";
+  } else {
+    return "logout?id=${getUserID()}&device_id=1";
+  }
 }
 
 String updateFeedback(

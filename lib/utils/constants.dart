@@ -779,3 +779,21 @@ getPhoneNumber() async {
   var phoneNumber = await prefs.getString('phonenumber');
   return phoneNumber;
 }
+
+getUserID() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var phoneNumber = await prefs.getString('userid');
+  return phoneNumber;
+}
+
+getUserToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var phoneNumber = await prefs.getString('userToken');
+  return phoneNumber;
+}
+
+getUserEnqID() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var phoneNumber = await prefs.getString('enq_id');
+  return phoneNumber;
+}

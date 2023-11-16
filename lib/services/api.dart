@@ -169,4 +169,5 @@ abstract class api {
     String token_type,
   );
   updatedFeedBack(FeedBackModel model);
+  logoutPostNull(String url);
 }
