@@ -211,7 +211,9 @@ class RegisterationCopntroller extends GetxController with StateMixin {
           prefs.getBool("showcaseEnable") == null) {
         prefs.setBool("showcaseEnable", false);
         prefs.setString("phonenumber", phoneNumberController.text);
-        prefs.setString("id", model!.user!.id.toString());
+        prefs.setString("userid", model!.user!.id.toString());
+        prefs.setString("userToken", model!.token.toString());
+        prefs.setString("enq_id", model!.user!.enqId.toString());
         change(null, status: RxStatus.success());
 
         Get.offAllNamed(DashBoard.routeNamed, arguments: true);
