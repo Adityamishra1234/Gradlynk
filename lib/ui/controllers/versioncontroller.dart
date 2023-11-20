@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:new_app_version_alert/new_app_version_alert.dart';
+import 'package:studentpanel/ui/screen/app_update/new_version_check.dart';
 
 class VersionController extends GetxController {
   @override
@@ -9,7 +9,7 @@ class VersionController extends GetxController {
   }
 
   getUpdateNotitifcation() {
-    Future.delayed(const Duration(minutes: 1)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       NewVersionCheck.newVersionCheck(Get.context,
           "com.downtownengineers.gradlynk", "com.downtownengineers.gradlynk");
     });
