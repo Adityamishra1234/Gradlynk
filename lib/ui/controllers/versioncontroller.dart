@@ -5,7 +5,7 @@ class VersionController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    await getUpdateNotitifcation();
+    // await getUpdateNotitifcation();
   }
 
   getUpdateNotitifcation() {
