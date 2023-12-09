@@ -118,15 +118,19 @@ class PassportDetails extends StatelessWidget {
                 fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
-            Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                height: 40,
-                child: CustomTimerWidget(
-                    isBlank: true,
-                    initialTime: controller.passportModel.passportTentativeDate,
-                    callback: (value) {
-                      controller.passportModel.passportTentativeDate = value;
-                    })),
+            IgnorePointer(
+              ignoring: controller.editSave.value == false,
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  height: 40,
+                  child: CustomTimerWidget(
+                      isBlank: true,
+                      initialTime:
+                          controller.passportModel.passportTentativeDate,
+                      callback: (value) {
+                        controller.passportModel.passportTentativeDate = value;
+                      })),
+            ),
           ],
           if (controller.passportAvaliable.value == true)
             ...getPassportAvaliable(controller, context),

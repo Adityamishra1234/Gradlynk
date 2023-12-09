@@ -36,7 +36,7 @@ class WelcomeViewController extends GetxController with StateMixin {
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? route = await prefs.getString("Route");
-      getToast(route ?? "sampel");
+
       if (route == null) {
         Get.offNamed(DashBoard.routeNamed);
       } else {

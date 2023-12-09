@@ -134,9 +134,11 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      color: ThemeConstants.whitecolor,
       duration: const Duration(milliseconds: 600),
       child: Card(
         shadowColor: Colors.white,
+        // color: ThemeConstants.lightblueColo,
         shape: RoundedRectangleBorder(
           side:
               BorderSide(color: ThemeConstants.bluelightgreycolor, width: 0.5),
@@ -180,7 +182,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Align(
@@ -198,7 +200,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Align(
@@ -216,7 +218,7 @@ class _CollagelistExpandedWidgetState extends State<CollagelistExpandedWidget>
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Align(

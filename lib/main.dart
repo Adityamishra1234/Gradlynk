@@ -70,6 +70,7 @@ import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
 import 'package:studentpanel/utils/constants.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
 import 'ui/screen/Login_Module/animationtest.dart';
@@ -380,6 +381,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        useMaterial3: false,
+      ),
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
       initialRoute: "/",

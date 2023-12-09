@@ -27,6 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: const EdgeInsets.only(top: 0),
       child: AppBar(
         elevation: 0,
+        automaticallyImplyLeading: false,
         actions: [
           if (displayMobileLayout == true)
             IconButton(
@@ -89,7 +90,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         //   title,
         //   style: const TextStyle(color: Colors.black),
         // ),
-        backgroundColor: Colors.white,
+        backgroundColor: ThemeConstants.whitecolor,
+        foregroundColor: ThemeConstants.whitecolor,
       ),
     );
   }

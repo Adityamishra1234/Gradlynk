@@ -98,7 +98,7 @@ class _FinalShortListState extends State<FinalShortList> {
                         if (_.loadingCourseShortList.value == true)
                           Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                               InkWell(
@@ -153,7 +153,7 @@ class _FinalShortListState extends State<FinalShortList> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               InkWell(

@@ -25,6 +25,7 @@ import 'package:studentpanel/ui/screen/Profile_Module/travinghistory.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/workhistory.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_profile_dialogue/custom_profile_dialogue.dart';
 
 class ContactInformationInPopUpController extends GetxController

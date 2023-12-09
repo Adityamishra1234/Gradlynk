@@ -49,7 +49,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '471321973932',
     projectId: 'gradlynk-8460c',
     authDomain: 'gradlynk-8460c.firebaseapp.com',
-    databaseURL: 'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'gradlynk-8460c.appspot.com',
     measurementId: 'G-DRL60TJR29',
   );
@@ -59,7 +60,8 @@ class DefaultFirebaseOptions {
     appId: '1:471321973932:android:a35baa23b6e8a3a95d3b09',
     messagingSenderId: '471321973932',
     projectId: 'gradlynk-8460c',
-    databaseURL: 'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'gradlynk-8460c.appspot.com',
   );
 
@@ -68,7 +70,8 @@ class DefaultFirebaseOptions {
     appId: '1:471321973932:ios:89ffa7d102e9db425d3b09',
     messagingSenderId: '471321973932',
     projectId: 'gradlynk-8460c',
-    databaseURL: 'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'gradlynk-8460c.appspot.com',
     iosBundleId: 'com.downtownengineers.gradlynk',
   );
@@ -78,7 +81,8 @@ class DefaultFirebaseOptions {
     appId: '1:471321973932:ios:e3c7abaaf160c72f5d3b09',
     messagingSenderId: '471321973932',
     projectId: 'gradlynk-8460c',
-    databaseURL: 'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://gradlynk-8460c-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'gradlynk-8460c.appspot.com',
     iosBundleId: 'io.flutter.plugins.firebase.messaging',
   );

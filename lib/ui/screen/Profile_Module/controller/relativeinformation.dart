@@ -27,7 +27,7 @@ class RelativeInformationController extends GetxController with StateMixin {
   List realtion = [];
 
   //selected Fields
-  String? anyRelativeCountryInterestedSelected;
+  String? anyRelativeCountryInterestedSelected = "2";
   String? countryNameSelected;
   String? countryNameCodeSelected;
   String? citizenShipStatusSelected;

@@ -105,7 +105,17 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
                             setState(() {
                               previousDate = date;
                               date = dateToShow;
-                              widget.callback(dateToShow);
+
+                              if (dateToShow == "") {
+                                dateToShow =
+                                    '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+
+                                widget.callback(
+                                    '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}');
+                                // widget.callback(dateToShow);
+                              } else {
+                                widget.callback(dateToShow);
+                              }
                             });
                           },
                           child: const Text('Done'),

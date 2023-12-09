@@ -30,6 +30,7 @@ class CustomProfileDialogue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      // backgroundColor: ThemeConstants.whitecolor,
       contentPadding: const EdgeInsets.all(15),
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),

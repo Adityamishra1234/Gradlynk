@@ -145,6 +145,7 @@ class _DashBoardState extends State<DashBoard> {
                     key: _scaffoldKey,
                     appBar: AppBar(
                       elevation: 0,
+                      automaticallyImplyLeading: false,
                       actions: [
                         if (displayMobileLayout == true)
                           IconButton(
@@ -262,7 +263,7 @@ class _DashBoardState extends State<DashBoard> {
                                             padding:
                                                 const EdgeInsets.only(top: 10),
                                             child: SizedBox(
-                                              height: 95,
+                                              height: 110,
                                               width: displayMobileLayout == true
                                                   ? MediaQuery.of(context)
                                                           .size

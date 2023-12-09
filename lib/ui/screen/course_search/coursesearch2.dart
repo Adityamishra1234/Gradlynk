@@ -83,7 +83,6 @@ class _CourseSearch2State extends State<CourseSearch2> {
                   const SizedBox(
                     height: 5,
                   ),
-
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 5),
                     width: MediaQuery.of(context).size.width,
