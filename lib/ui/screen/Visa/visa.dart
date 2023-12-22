@@ -42,7 +42,9 @@ class _VisaDetailState extends State<VisaDetail> {
   @override
   void initState() {
     controller.getVisDetail(
-        Get.find<BaseController>().model1.id.toString(), widget.applicationId);
+        "78623",
+        // Get.find<BaseController>().model1.id.toString(),
+        widget.applicationId);
     super.initState();
   }
 

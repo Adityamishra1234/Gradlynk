@@ -217,7 +217,7 @@ class BaseController extends GetxController with StateMixin {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String token = sharedPreferences.getString("token").toString();
     String id = sharedPreferences.getString("id").toString();
-    var res = await apiServices.logoutPostNull(await logout());
+    var res = await apiServices.logoutPostNull(await logoutEndpoint());
 
     Get.deleteAll();
     sharedPreferences.clear();

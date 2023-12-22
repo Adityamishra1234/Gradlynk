@@ -19,10 +19,7 @@ class VisaSummaryController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    List<Future> futures = [
-      getVisaStatus(),
-      getVisaDetails(Get.find<BaseController>().model1.id.toString())
-    ];
+    List<Future> futures = [getVisaStatus(), getVisaDetails("78623")];
 
     await Future.wait(futures);
 

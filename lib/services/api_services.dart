@@ -2634,7 +2634,19 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   logoutPostNull(String url) async {
-    var res = await httpPostNullBody2("${Endpoints.baseUrl}$url");
-    if (res != null) {}
+    var response = await http.post(
+      Uri.parse("${Endpoints.baseUrl}$url"),
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ${await getUserToken}',
+
+        //login
+        // "Accept": "application/json",
+        // "Content-Type": "application/x-www-form-urlencoded"
+      },
+    );
+    print(response.body);
+    // var res = await httpPostNullBody2("");
+    if (response != null) {}
   }
 }

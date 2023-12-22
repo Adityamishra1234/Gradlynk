@@ -180,11 +180,11 @@ class Endpoints {
   static String? updateFeedback = 'save-event-feedback';
 }
 
-String logout() {
+logoutEndpoint() async {
   if (Platform.isAndroid) {
-    return "logout?id=${getUserID()}&device_id=2";
+    return "logout?id=${await getUserID()}&device_id=2";
   } else {
-    return "logout?id=${getUserID()}&device_id=1";
+    return "logout?id=${await getUserID()}&device_id=1";
   }
 }
 

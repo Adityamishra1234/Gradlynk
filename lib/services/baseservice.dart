@@ -57,7 +57,7 @@ class StudentPanelBase {
     var response = await http.post(Uri.parse(url),
         headers: {
           "Content-Type": "application/json",
-          // // 'Authorization': 'Bearer $token',
+          // 'Authorization': 'Bearer $token',
 
           //login
           // "Accept": "application/json",
