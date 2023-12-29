@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:pinput/pinput.dart';
 
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
@@ -11,6 +12,7 @@ import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/dialogs/registration_dialogue.dart';
 
 class LoginCopy extends StatefulWidget {
   const LoginCopy({Key? key}) : super(key: key);
@@ -51,7 +53,7 @@ class _LoginCopyState extends State<LoginCopy> {
   @override
   void initState() {
     super.initState();
-
+    // showRegisterDialgoue();
     // _focusNode.addListener(_onFocusChange);
     // MobileNumber.listenPhonePermission((isPermissionGranted) {
     //   if (isPermissionGranted) {
@@ -60,6 +62,16 @@ class _LoginCopyState extends State<LoginCopy> {
     // });
 
     // _checkVersion();
+  }
+
+  showRegisterDialgoue() async {
+    await Future.delayed(Duration(seconds: 2));
+
+    showAnimatedDialog(
+        animationType: DialogTransitionType.slideFromBottomFade,
+        curve: Curves.easeInOutQuart,
+        context: context,
+        builder: (_) => RegistrationDialogue());
   }
 
   signature() async {
@@ -474,10 +486,15 @@ class _LoginCopyState extends State<LoginCopy> {
                                                   if (phoneNumber.text.length >
                                                       9) {
                                                     otpcontroller.text = "";
-                                                    await controller
-                                                        .phonenumberVerfiy(
-                                                            phoneNumber.text);
+                                                    var alreadyRegistered =
+                                                        await controller
+                                                            .phonenumberVerfiy(
+                                                                phoneNumber
+                                                                    .text);
 
+                                                    if (!alreadyRegistered) {
+                                                      showRegisterDialgoue();
+                                                    }
                                                     // await SmsAutoFill()
                                                     //     .listenForCode();
                                                     // signature();
