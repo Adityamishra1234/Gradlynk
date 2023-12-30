@@ -214,14 +214,23 @@ class BaseController extends GetxController with StateMixin {
   }
 
   logout() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String token = sharedPreferences.getString("token").toString();
-    String id = sharedPreferences.getString("id").toString();
-    var res = await apiServices.logoutPostNull(await logoutEndpoint());
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      String token = sharedPreferences.getString("token").toString();
+      String id = sharedPreferences.getString("id").toString();
+      var res = await apiServices.logoutPostNull(await logoutEndpoint());
 
-    Get.deleteAll();
-    sharedPreferences.clear();
-    Get.offAll(const LoginCopy());
+      Get.deleteAll();
+      sharedPreferences.clear();
+      Get.offAll(const LoginCopy());
+    } catch (e) {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.clear();
+      Get.offAll(const LoginCopy());
+    }
+
     // Get.toNamed(LoginCopy.routeNamed);
     // } else {
     //   sharedPreferences.clear();

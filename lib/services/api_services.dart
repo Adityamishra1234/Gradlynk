@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/baseservice.dart';
+import 'package:studentpanel/services/error.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/reviewshortlistcontroller.dart';
 import 'package:studentpanel/ui/models/affiliationdropdown.dart';
@@ -2634,19 +2635,23 @@ class ApiServices extends StudentPanelBase implements api {
   }
 
   logoutPostNull(String url) async {
-    var response = await http.post(
-      Uri.parse("${Endpoints.baseUrl}$url"),
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer ${await getUserToken}',
+    try {
+      var response = await http.post(
+        Uri.parse("${Endpoints.baseUrl}$url"),
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer ${await getUserToken}',
 
-        //login
-        // "Accept": "application/json",
-        // "Content-Type": "application/x-www-form-urlencoded"
-      },
-    );
-    print(response.body);
-    // var res = await httpPostNullBody2("");
-    if (response != null) {}
+          //login
+          // "Accept": "application/json",
+          // "Content-Type": "application/x-www-form-urlencoded"
+        },
+      );
+      print(response.body);
+      // var res = await httpPostNullBody2("");
+      if (response != null) {}
+    } catch (e) {
+      throw Error();
+    }
   }
 }
