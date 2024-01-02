@@ -9,6 +9,7 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+import 'package:studentpanel/widgets/empty_widget.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -143,6 +144,8 @@ class NotificationScreen extends StatelessWidget {
                 ),
               ));
             }
+          } else {
+            addWidget = [Empty_details()];
           }
         } catch (e) {
           print(e.toString());
