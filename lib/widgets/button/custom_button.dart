@@ -9,8 +9,10 @@ class CustomButtonWidget extends StatelessWidget {
   VoidCallback onTap;
   bool? isSelected;
   Color? selectedColor;
+  Color? textColor;
 
   CustomButtonWidget({
+    this.textColor,
     this.isSelected = false,
     this.selectedColor,
     super.key,
@@ -49,7 +51,7 @@ class CustomButtonWidget extends StatelessWidget {
             fontSize: 8,
             textColor: isSelected == true
                 ? ThemeConstants.whitecolor
-                : ThemeConstants.blackcolor,
+                : textColor ?? ThemeConstants.blackcolor,
           ),
         ),
       ),

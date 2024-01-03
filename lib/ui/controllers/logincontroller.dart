@@ -144,9 +144,11 @@ class LoginController extends GetxController with StateMixin {
     if (res['status'] == true) {
       otpEnable.value = true;
       change(null, status: RxStatus.success());
+      return true;
     } else {
       getToast('${res['message']}');
       change(null, status: RxStatus.success());
+      return false;
     }
   }
 }
