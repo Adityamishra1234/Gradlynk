@@ -679,6 +679,24 @@ class _DashBoardState extends State<DashBoard> {
                                             ],
                                           ),
                                           const SizedBox(
+                                            height: 15,
+                                          ),
+                                          if (controller.meetingZoneStatus
+                                                      .markAttendance ==
+                                                  true ||
+                                              controller.meetingZoneStatus
+                                                      .expressPass ==
+                                                  true ||
+                                              controller.meetingZoneStatus
+                                                      .expressPassGenerated ==
+                                                  true)
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 15, vertical: 10),
+                                              child: DashboardEventSection(),
+                                            ),
+
+                                          const SizedBox(
                                             height: 20,
                                           ),
 
@@ -1114,31 +1132,32 @@ class _DashBoardState extends State<DashBoard> {
                                               ],
                                             ),
                                           ),
-                                          const SizedBox(
-                                            height: 15,
-                                          ),
-                                          if (controller.meetingZoneStatus
-                                                      .markAttendance ==
-                                                  true ||
-                                              controller.meetingZoneStatus
-                                                      .expressPass ==
-                                                  true ||
-                                              controller.meetingZoneStatus
-                                                      .expressPassGenerated ==
-                                                  true)
-                                            const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 15, vertical: 10),
-                                              child: DashboardEventSection(),
-                                            ),
-                                          if (controller.meetingZoneStatus
-                                                  .journeyItinerary ==
-                                              true)
-                                            const Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 15, vertical: 10),
-                                              child: StageProgress(),
-                                            ),
+                                          // const SizedBox(
+                                          //   height: 15,
+                                          // ),
+                                          // if (controller.meetingZoneStatus
+                                          //             .markAttendance ==
+                                          //         true ||
+                                          //     controller.meetingZoneStatus
+                                          //             .expressPass ==
+                                          //         true ||
+                                          //     controller.meetingZoneStatus
+                                          //             .expressPassGenerated ==
+                                          //         true)
+                                          //   const Padding(
+                                          //     padding: EdgeInsets.symmetric(
+                                          //         horizontal: 15, vertical: 10),
+                                          //     child: DashboardEventSection(),
+                                          //   ),
+
+                                          // if (controller.meetingZoneStatus
+                                          //         .journeyItinerary ==
+                                          //     true)
+                                          //   const Padding(
+                                          //     padding: EdgeInsets.symmetric(
+                                          //         horizontal: 15, vertical: 10),
+                                          //     child: StageProgress(),
+                                          //   ),
 
                                           TestiMonial(
                                             testimonialsList:

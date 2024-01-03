@@ -67,21 +67,22 @@ class CustomButtomNavbar extends StatelessWidget {
         // ),
 
         /// Search
-        SalomonBottomBarItem(
-          icon: const Icon(
-            Icons.help_outline_sharp,
+        if (Get.find<BaseController>().loadingStudentPanelData1.value == true)
+          SalomonBottomBarItem(
+            icon: const Icon(
+              Icons.help_outline_sharp,
+            ),
+            //   child: svgImage(
+            //       "track",
+            //       currentIndex == 3
+            //           ? ThemeConstants.bluecolor
+            //           : ThemeConstants.blackcolor,
+            //       25,
+            //       25),
+            // ),
+            title: const Text("Gradlynk Support"),
+            selectedColor: ThemeConstants.bluecolor,
           ),
-          //   child: svgImage(
-          //       "track",
-          //       currentIndex == 3
-          //           ? ThemeConstants.bluecolor
-          //           : ThemeConstants.blackcolor,
-          //       25,
-          //       25),
-          // ),
-          title: const Text("Gradlynk Support"),
-          selectedColor: ThemeConstants.bluecolor,
-        ),
 
         /// Profile
       ],
