@@ -65,7 +65,7 @@ class _LoginCopyState extends State<LoginCopy> {
   }
 
   showRegisterDialgoue() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(milliseconds: 500));
 
     showAnimatedDialog(
         animationType: DialogTransitionType.slideFromBottomFade,
