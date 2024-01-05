@@ -170,4 +170,8 @@ abstract class api {
   );
   updatedFeedBack(FeedBackModel model);
   logoutPostNull(String url);
+
+  saveVisitSheetDesk({required String enq_id, required List<String> deskIds});
+
+  getVisitSheetDesks(String id);
 }
