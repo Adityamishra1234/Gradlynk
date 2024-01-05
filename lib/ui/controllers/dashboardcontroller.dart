@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -43,9 +42,15 @@ class DashboardController extends GetxController {
       upcomingEvents(),
       getTestimonials(),
       getYoutubeVideos(),
-      getUpdateFCMToken()
+      getUpdateFCMToken(),
     ];
     await Future.wait(futures);
+    try {
+      if (Get.find<BaseController>().model1.id != null)
+        Get.find<BaseController>()
+            .eventZone(Get.find<BaseController>().model1.id.toString());
+    } catch (e) {}
+
     Get.find<BaseController>().update();
     super.onInit();
   }

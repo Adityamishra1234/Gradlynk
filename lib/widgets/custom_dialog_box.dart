@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -1897,6 +1896,65 @@ eventZoneDrawerPopUp(
                   //   ),
                   // ),
 
+                  Material(
+                    borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+                    color: ThemeConstants.ultraLightgreyColor,
+                    child: InkWell(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(25.0)),
+                      splashColor: ThemeConstants.bluecolor,
+                      onTap: () async {
+                        // await Future.delayed(
+                        //     const Duration(milliseconds: 150));
+
+                        // _launchEmailURL();
+
+                        // Get.toNamed(ScheduleExpertCall.routeNamed);
+                        //TODO for univeristy desk
+                        // Get.to(CustomImageViewer(
+                        //     url: Get.find<BaseController>()
+                        //         .meetingZoneStatus
+                        //         .expressPassView
+                        //         .toString()));
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        // decoration: BoxDecoration(
+                        //     borderRadius:
+                        //         BorderRadius.all(Radius.circular(25.0))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                padding: const EdgeInsets.all(7),
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                    color: ThemeConstants.bluecolor,
+                                    shape: BoxShape.circle),
+                                child: svgImage("Check box list",
+                                    ThemeConstants.whitecolor, 80, 80)),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            CustomRichTextWidget(
+                                fontWeight: FontWeight.w600,
+                                textColor: ThemeConstants.bluecolor,
+                                text: "Event Visit Sheet"),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+
                   if (showDowmloadExpreesPass == true)
                     Material(
                       borderRadius:
@@ -1955,8 +2013,7 @@ eventZoneDrawerPopUp(
                     ),
                   const SizedBox(
                     height: 20,
-                  ),
-                  // InkWell(
+                  ), // InkWell(
                   //   onTap: () {
                   //     _launchURL2();
                   //   },

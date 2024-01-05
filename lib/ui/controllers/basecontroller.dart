@@ -23,6 +23,7 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/custom_dialog_box.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/dashboardeventSection.dart';
@@ -248,7 +249,7 @@ class BaseController extends GetxController with StateMixin {
   }
 
   eventZone(String end_id) async {
-    change(null, status: RxStatus.loading());
+    // change(null, status: RxStatus.loading());
     eventlist = [];
     var res = await apiServices.getEventZone(Endpoints.eventZone! + end_id);
     if (res != null) {
@@ -260,14 +261,22 @@ class BaseController extends GetxController with StateMixin {
       }
     }
     eventlist = eventlist.toSet().toList();
+
     if (meetingZoneStatus.markAttendance == true ||
         meetingZoneStatus.expressPass == true ||
         meetingZoneStatus.expressPassGenerated == true) {
       if (showDailogEventZone == false) {
-        getDailogEventZone(Get.context!);
+        eventZoneDrawerPopUp(
+            Get.context!,
+            meetingZoneStatus.markAttendance ?? false,
+            meetingZoneStatus.expressPass ?? false,
+            meetingZoneStatus.expressPassGenerated ?? false);
+        showDailogEventZone = true;
+        update();
+        // getDailogEventZone(Get.context!);
       }
     }
-    change(null, status: RxStatus.success());
+    // change(null, status: RxStatus.success());
     update();
   }
 
@@ -338,199 +347,5 @@ class BaseController extends GetxController with StateMixin {
     }
     data.value.totalPercentageComplete = percentage.round();
     update();
-  }
-
-  getDailogEventZone(
-    BuildContext context,
-  ) {
-    showDailogEventZone = true;
-    update();
-    return showDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20.0))),
-        insetPadding: const EdgeInsets.symmetric(horizontal: 20),
-        content: SingleChildScrollView(
-          child: Container(
-              width: 400,
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      children: [
-                        CustomAutoSizeTextMontserrat(
-                          text: "Event Zone",
-                          textColor: ThemeConstants.bluecolor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            width: 25,
-                            height: 25,
-                            alignment: Alignment.centerRight,
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor:
-                                  ThemeConstants.ultraLightgreyColor,
-                              child: Icon(
-                                Icons.close,
-                                color: ThemeConstants.bluecolor,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Wrap(
-                    // mainAxisAlignment: MainAxisAlignment.end,
-                    // crossAxisAlignment: CrossAxisAlignment.end,
-                    alignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    spacing: 10,
-                    runSpacing: 20,
-                    children: [
-                      if (Get.find<BaseController>()
-                              .meetingZoneStatus
-                              .markAttendance ==
-                          true)
-                        InkWell(
-                          onTap: () {
-                            Get.to(CodeScreen());
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                constraints: const BoxConstraints(
-                                    maxHeight: 60, maxWidth: 60),
-                                padding: const EdgeInsets.all(10),
-                                decoration: const BoxDecoration(
-                                    color: Color(0xFFF1F0FF),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20))),
-                                child: svgImage("Mark attendence",
-                                    ThemeConstants.VioletColor, 30, 30),
-
-                                // SvgPicture.asset(
-                                //   "assets/icons/Mark attendence.svg",
-                                //   color: ThemeConstants.VioletColor,
-                                // )
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 80,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "Mark Attendance",
-                                    textalingCentre: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      if (Get.find<BaseController>()
-                              .meetingZoneStatus
-                              .expressPass ==
-                          true)
-                        InkWell(
-                          onTap: () {
-                            Get.to(IntakeScreen());
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                constraints: const BoxConstraints(
-                                    maxHeight: 60, maxWidth: 60),
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: ThemeConstants.lightYellow,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(20))),
-                                child: svgImage("Express entry",
-                                    ThemeConstants.orangeColor, 30, 30),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 100,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "Apply For Express Pass",
-                                    textalingCentre: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      if (Get.find<BaseController>()
-                              .meetingZoneStatus
-                              .expressPassGenerated ==
-                          true)
-                        InkWell(
-                          onTap: () {
-                            try {
-                              Get.to(CustomImageViewer(
-                                url: Get.find<BaseController>()
-                                    .meetingZoneStatus
-                                    .expressPassView!,
-                              ));
-                            } catch (e) {}
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                  constraints: const BoxConstraints(
-                                      maxHeight: 50, maxWidth: 120),
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      // border: Border.all(
-                                      //     width: 1.2,
-                                      //     color: ThemeConstants
-                                      //         .VioletColor),
-                                      color: ThemeConstants.lightRed,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  child: svgImage("create_profile",
-                                      ThemeConstants.red, 80, 80)),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10),
-                                child: SizedBox(
-                                  width: 100,
-                                  child: CustomAutoSizeTextMontserrat(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    text: "View Express Pass",
-                                    textalingCentre: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
-              )),
-        ),
-      ),
-    );
   }
 }
