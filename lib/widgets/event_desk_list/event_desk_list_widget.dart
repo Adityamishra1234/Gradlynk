@@ -5,6 +5,7 @@ import 'package:studentpanel/data/models/saveVisitSheetDeskResponse.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:get/get.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
@@ -23,6 +24,7 @@ class _EventDeskListWidgetState extends State<EventDeskListWidget> {
   @override
   void initState() {
     controller.getEventDeskListData(id: controller.model1.id.toString());
+    controller.temporarySelectedDeskIndex = [];
 
     // TODO: implement initState
     super.initState();
@@ -119,7 +121,13 @@ class _EventDeskListWidgetState extends State<EventDeskListWidget> {
                     children: [
                       InkWell(
                         onTap: () {
-                          controller.saveEventDeskData();
+                          print(controller.temporarySelectedDeskIndex);
+                          if (controller
+                              .temporarySelectedDeskIndex.isNotEmpty) {
+                            controller.saveEventDeskData();
+                          } else {
+                            getToast("Kindly Select your fields");
+                          }
                         },
                         child: Container(
                           // color: ThemeConstants.bluecolor,
@@ -168,15 +176,17 @@ class _EventDeskListState extends State<EventDeskList> {
           onTap: () {
             if (data.contains(index)) {
               data.remove(index);
-              Get.find<BaseController>()
-                  .temporarySelectedDeskIndex
-                  .remove(index);
+              // Get.find<BaseController>()
+              //     .temporarySelectedDeskIndex
+              //     .remove(index);
             } else {
-              Get.find<BaseController>().temporarySelectedDeskIndex.add(index);
+              // Get.find<BaseController>().temporarySelectedDeskIndex.add(index);
 
               data.add(index);
             }
 
+            Get.find<BaseController>().temporarySelectedDeskIndex = data;
+            Get.find<BaseController>().update();
             setState(() {});
 
             // controller.update();

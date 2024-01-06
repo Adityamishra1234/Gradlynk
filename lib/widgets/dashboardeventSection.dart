@@ -206,6 +206,22 @@ class DashboardEventSection extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 try {
+                                  // showAnimatedDialog(
+                                  //   animationType: DialogTransitionType
+                                  //       .slideFromBottomFade,
+                                  //   curve: Curves.easeInOutQuart,
+                                  //   context: context,
+                                  //   builder: ((context) {
+                                  //     return AlertDialog(
+                                  //       contentPadding: EdgeInsets.all(5),
+                                  //       content: Container(
+                                  //           width: MediaQuery.of(context)
+                                  //               .size
+                                  //               .width,
+                                  //           child: EventDeskListWidget()),
+                                  //     );
+                                  //   }));
+
                                   showAnimatedDialog(
                                       animationType: DialogTransitionType
                                           .slideFromBottomFade,

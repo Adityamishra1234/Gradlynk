@@ -20,6 +20,7 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customRichTextWidget.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/event_desk_list/event_desk_list_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../ui/screen/mark_attendance/code_screen.dart';
@@ -1904,18 +1905,21 @@ eventZoneDrawerPopUp(
                           const BorderRadius.all(Radius.circular(25.0)),
                       splashColor: ThemeConstants.bluecolor,
                       onTap: () async {
-                        // await Future.delayed(
-                        //     const Duration(milliseconds: 150));
+                        Get.back();
 
-                        // _launchEmailURL();
-
-                        // Get.toNamed(ScheduleExpertCall.routeNamed);
-                        //TODO for univeristy desk
-                        // Get.to(CustomImageViewer(
-                        //     url: Get.find<BaseController>()
-                        //         .meetingZoneStatus
-                        //         .expressPassView
-                        //         .toString()));
+                        showAnimatedDialog(
+                            animationType:
+                                DialogTransitionType.slideFromBottomFade,
+                            curve: Curves.easeInOutQuart,
+                            context: Get.context!,
+                            builder: ((context) {
+                              return AlertDialog(
+                                contentPadding: EdgeInsets.all(5),
+                                content: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: EventDeskListWidget()),
+                              );
+                            }));
                       },
                       child: Container(
                         width: 300,

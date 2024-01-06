@@ -358,6 +358,7 @@ class BaseController extends GetxController with StateMixin {
       stringData
           .add(notAssignedDesk[temporarySelectedDeskIndex[i]].id!.toString());
     }
+
     var res = await apiServices.saveVisitSheetDesk(
         deskIds: stringData,
         enq_id: Get.find<BaseController>().model1.id.toString());
