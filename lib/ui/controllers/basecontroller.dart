@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
 import 'package:new_app_version_alert/new_app_version_alert.dart';
 import 'package:studentpanel/utils/snackbarconstants.dart';
+import 'package:studentpanel/data/models/saveVisitSheetDeskResponse.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_dialog_box.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
@@ -278,6 +280,89 @@ class BaseController extends GetxController with StateMixin {
     }
     // change(null, status: RxStatus.success());
     update();
+  }
+
+  List<Data> notAssignedDesk = [];
+  List<Data> assignedDesk = [];
+
+  List<int> temporarySelectedDeskIndex = [];
+  bool showAddAssignOption = false;
+
+  List<String> convertString(String inputString) {
+    // Remove leading and trailing double quotes
+    // Remove the leading and trailing double quotes
+    inputString = inputString.substring(1, inputString.length - 1);
+
+    // Split the string by commas, removing any extra spaces
+    List<String> items =
+        inputString.split(",").map((item) => item.trim()).toList();
+
+    // Remove the leading and trailing double quotes from each item
+    for (int i = 0; i < items.length; i++) {
+      items[i] = items[i].substring(1, items[i].length - 1);
+    }
+
+    return items;
+  }
+
+  getEventDeskListData({required String id}) async {
+    var res = await apiServices.getVisitSheetDesks(id);
+
+    var data = SaveVisitSheetDeskResponse.fromJson(res);
+
+    notAssignedDesk = [];
+    assignedDesk = [];
+    if (data.data != null) {
+      for (var i = 0; i < data.data!.length; i++) {
+        notAssignedDesk.add(data.data![i]);
+      }
+    }
+
+    List<String> temporaryAssignedDesk = [];
+    print(getNUllChecker(data.assignedDesk));
+    if (!getNUllChecker(data.assignedDesk)) {
+      temporaryAssignedDesk = await convertString(data.assignedDesk!);
+      print(temporaryAssignedDesk);
+      for (var i = 0; i < temporaryAssignedDesk!.length; i++) {
+        for (var j = 0; j < data.data!.length; j++) {
+          print(data.data![j].id.toString());
+          print(temporaryAssignedDesk[i].toString());
+
+          if (data.data![j].id.toString() ==
+              temporaryAssignedDesk[i].toString()) {
+            assignedDesk.add(data.data![j]);
+          }
+        }
+        // var tempData = data.data!
+        //     .where((element) => element.id == temporaryAssignedDesk[i])
+        //     .toList();
+        // assignedDesk = tempData;
+      }
+    }
+
+    print(assignedDesk);
+
+    if (assignedDesk.length != 0) {
+      showAddAssignOption = false;
+    } else {
+      showAddAssignOption = true;
+    }
+
+    update();
+  }
+
+  saveEventDeskData() async {
+    List<String> stringData = [];
+
+    for (var i = 0; i < temporarySelectedDeskIndex.length; i++) {
+      stringData
+          .add(notAssignedDesk[temporarySelectedDeskIndex[i]].id!.toString());
+    }
+    var res = await apiServices.saveVisitSheetDesk(
+        deskIds: stringData,
+        enq_id: Get.find<BaseController>().model1.id.toString());
+
+    getEventDeskListData(id: Get.find<BaseController>().model1.id.toString());
   }
 
   fundPlanner fundplanner = fundPlanner();

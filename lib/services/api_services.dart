@@ -2654,4 +2654,41 @@ class ApiServices extends StudentPanelBase implements api {
       throw Error();
     }
   }
+
+  @override
+  saveVisitSheetDesk(
+      {required String enq_id, required List<String> deskIds}) async {
+    try {
+      var endPoint =
+          await saveVisitSheetDeskEndpoint(enq_id: enq_id, contactIds: deskIds);
+
+      var end = "${Endpoints.baseUrl}$endPoint";
+
+      var res = await httpPostNullBody(end);
+
+      print(res);
+
+      var decoded = jsonDecode(res);
+
+      return decoded;
+    } catch (e) {
+      throw UnimplementedError();
+    }
+    // TODO: implement saveVisitSheetDesk
+  }
+
+  @override
+  getVisitSheetDesks(String id) async {
+    try {
+      var res = await httpPostNullBody(
+          "${Endpoints.baseUrl}${Endpoints.getVisitSheetDesks}$id");
+
+      var decoded = jsonDecode(res);
+
+      return decoded;
+    } catch (e) {}
+
+    // TODO: implement getVisitSheetDesks
+    // throw UnimplementedError();
+  }
 }

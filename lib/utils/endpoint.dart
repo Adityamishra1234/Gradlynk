@@ -178,6 +178,14 @@ class Endpoints {
   static String? eventHistoryList = 'event-history?enq_id=';
   static String? feedbackCheckBox = 'get-area-of-improvement?rating=';
   static String? updateFeedback = 'save-event-feedback';
+  static String? getVisitSheetDesks = 'get-visit-sheet-desks?enq_id=';
+}
+
+saveVisitSheetDeskEndpoint(
+    {required String enq_id, required List<String> contactIds}) {
+  var data = "['${contactIds.join("', '")}']";
+
+  return "save-visit-sheet-desks?enq_id=$enq_id&contact_ids=$data";
 }
 
 logoutEndpoint() async {

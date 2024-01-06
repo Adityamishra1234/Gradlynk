@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -8,6 +9,7 @@ import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_image_viewer.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
+import 'package:studentpanel/widgets/event_desk_list/event_desk_list_widget.dart';
 import '../ui/screen/mark_attendance/code_screen.dart';
 
 class DashboardEventSection extends StatelessWidget {
@@ -190,6 +192,67 @@ class DashboardEventSection extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
                                         text: "View Express Pass",
+                                        textalingCentre: true,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          if (Get.find<BaseController>()
+                                  .meetingZoneStatus
+                                  .expressPassGenerated ==
+                              true)
+                            InkWell(
+                              onTap: () {
+                                try {
+                                  showAnimatedDialog(
+                                      animationType: DialogTransitionType
+                                          .slideFromBottomFade,
+                                      curve: Curves.easeInOutQuart,
+                                      context: context,
+                                      builder: ((context) {
+                                        return AlertDialog(
+                                          contentPadding: EdgeInsets.all(5),
+                                          content: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: EventDeskListWidget()),
+                                        );
+                                      }));
+                                  // Get.to(CustomImageViewer(
+                                  //   url: Get.find<BaseController>()
+                                  //       .meetingZoneStatus
+                                  //       .expressPassView!,
+                                  // ));
+                                } catch (e) {}
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                      constraints: const BoxConstraints(
+                                          maxHeight: 50, maxWidth: 120),
+                                      padding: const EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                          // border: Border.all(
+                                          //     width: 1.2,
+                                          //     color: ThemeConstants
+                                          //         .VioletColor),
+                                          color:
+                                              ThemeConstants.lightVioletColor,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: svgImage("Check box list",
+                                          ThemeConstants.VioletColor, 80, 80)),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 10),
+                                    child: SizedBox(
+                                      width: 100,
+                                      child: CustomAutoSizeTextMontserrat(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        text: "Event Visit Sheet",
                                         textalingCentre: true,
                                       ),
                                     ),
