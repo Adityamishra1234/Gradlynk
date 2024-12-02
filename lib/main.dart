@@ -284,7 +284,6 @@ class _MyAppState extends State<MyApp> {
 
         GetPage(
           name: Test1.routeNamed,
-          // transition: Transition.fade,
           transition: Transition.downToUp,
           page: () => const Test1(),
         ),
